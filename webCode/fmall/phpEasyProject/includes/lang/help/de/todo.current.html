@@ -1,0 +1,51 @@
+<h2 style="margin-top:50px;">Aufgaben (ToDo Liste)</h2>
+
+<p>Die Aufgabenliste hat zwei Teile – Aktuelle Aufgaben und Archiv.<br />
+In den beiden Teilen kann der Benutzer alle Aufgaben von Projekten wo er von der Projekt- bzw. Geschäftsleitung eingetragen ist sehen. Aufgaben mit der Kennzeichnung „Privat“ sind nur für die Eigentümer sichtbar, d.h. von wem diese Aufgabe erstellt wurde.</p>
+
+<h3>Editormaske</h3>
+
+<p>Jede Aufgabe hat eine Bezeichnung (Titel) und muss zu einem bestimmten Projekt zugewiesen werden. Für bessere Kontrolle dient die Terminierung mit dem Pflichtfeld „Anfang“ (ab wann diese Aufgabe zu erledigen ist) und optionalem Feld „Ende“ (bis wann diese Aufgabe zu erledigen ist).Allerdings wirkt sich die Angabe der Terminierung auf die Statusanzeige aus und macht damit die ganze Arbeit viel übersichtlicher.</p>
+
+<p>Außerdem muss jede Aufgabe eine Priorität enthalten. Außer seiner direkten Bedeutung kann dieses Feld auch für andere Zwecke benutzt werden. Dieses Feld kann ausnahmsweise nicht nur Ziffern, sondern auch alle andere Zeichen enthalten. Sie können damit diesem Feld besondere Funktionalität zuweisen (z.B. ‚D’ – für Development, ‚GF’ – für die Geschäftsführung usw.).</p>
+
+<p>Die Aufgabenfunktionalität unterbietet einem Benutzer das von anderen Personen erstellten Aufgaben zu den eigenen gemacht werden. Deswegen wird auch die Checkbox „Privat“ nur bei den selbst erstellten Aufgaben angezeigt mit der Möglichkeit diese von anderen Benutzern auszublenden. Das ist sinnvoll wenn man bei kleineren persönlichen Aufgaben die Aufgabenliste für alle Teilnehmer übersichtlich halten möchte. Man muss auf dieser Stelle beachten, dass selbst „Private“ Aufgaben unabhängig vom Status (erledigt – nicht erledigt) das Schließen des Projektes von der Projektleitung verhindert. In diesem Fall sollen alle Aufgaben zum Projekt von jeweiligen Mitarbeitern manuell ins Archiv verschoben werden.</p>
+
+<p><a name="warn">„Warnung für Ablaufsdatum“</a> hat nur eine Auswirkung, wenn dem optionalen Feld „Ende“ das Datum eingetragen wurde. Wenn in dem Feld z.B. 1 Tag steht, dann wird 1 Tag vom Ende-Datum in der Statusleiste ein gelb blinkendes Symbol auftauchen, was Aussagen soll: „Achtung! Die Zeit für diese Aufgabe läuft bald ab!“.</p>
+
+<p>Zur weiteren Übersichtlichkeit dient auch der „Fertigstellungsgrad“. Die Prozentangabe wird von Mitarbeitern subjektiv geschätzt und eingetragen. In der entsprechenden Spalte, zeigt die Aufgabenliste mit grünen Balken den Fertigstellungsgrad.</p>
+
+<p>Sollte die Aufgabe erledigt sein, muss man die Checkbox „Erledigt“ in der  Bearbeitungsmaske oder direkt in der Liste anklicken (Spalten „Erledig“ oder „Status“). Wenn die gewählte Aufgabe erledigt ist, dann wird sie nach dem Speichern „durchgestrichen“.</p>
+
+<p>Das Feld „Kommentar“ kann auch als Historie für diese Aufgabe für die beteiligten Mitarbeitern dienen.</p>
+
+<p>Die Aufgaben aus der Gruppe „Aktuell“ können nicht direkt gelöscht werden, sie werden  zuerst ins Archiv verschoben.  Nur im Archiv, wenn es unbedingt sein soll, dürfen unerwünschte Aufgaben gelöscht werden.</p>
+
+<p>Das Klicken auf das grüne Kreuzsymbol bereitet die Eingabemaske für eine neue Aufgabe vor. Wenn man auf eine Bestehende Aufgabe klickt, dann wird sie in die Eingabemaske geladen.</p>
+
+<h3>Aufgabenliste</h3>
+<img src="images/de/todolist.png"  style="float:left; margin-right:20px;" alt="Aufgabenliste" />
+<p>Für eine gute Übersichtlichkeit zeigt die Aufgabenliste 50 Eintragungen pro Seite. Außerdem lässt die Liste nach „Suchbegriff“, „Prio.“, Anzeigeart und einzelnen Projekten sich filtern.<br />
+Mit dem Mausklick auf der Beschriftungsleiste in der Aufgabenliste kann man einzelne Spalten vor- und abwärts sortieren.</p>
+
+<p>Das Klicken auf die Checkbox in der Spalte „Erledigt“ oder „Status“ macht ausgewählte Aufgabe als „erledigt“ (durchgestrichen) und umgekehrt. Das Änderungsdatum für diese Aufgabe wird entsprechend jedes Mal geändert.</p>
+
+<p>Das Klicken auf alle Zellen in der Liste außer „Erledigt“, „Status“ und „Fertigstellungsgrad“ lädt diese Aufgabe in das Formular für die Bearbeitung.</p>
+
+<p>Das Klicken auf der Spalte Fertigstellungsgrad erholt dieses um 25% aufwärts. Nach dem erreichten Grad in 100% wird der Fertigstellungsgrad wieder auf 0% zurückgesetzt usw.</p>
+
+Die Statusspalte kann folgende Symbole enthalten:
+<ul>
+<li>Grün – Die Aufgabe läuft normal nach dem Terminplan (mehr als 0% Fertigstellungsgrad)</li>
+<li>Gelb – Die Zeit für diese Aufgabe nach dem Terminplan läuft schon, doch es wurde noch nichts gemacht.</li>
+<li>Gelb blinkend – Die Zeit für diese läuft bald ab (Siehe <a href="#warn">„Warnung für Ablaufsdatum“</a>)</li>
+<li>Rot – Die Zeit für diese Aufgabe ist abgelaufen.</li>
+<li>Blau – Die Zeit für diese Aufgabe ist noch nicht angefangen.</li>
+</ul>
+
+
+<h3>Archiv</h3>
+
+<p>Das Archiv ist ähnlich aufgebaut, allerdings ohne die Möglichkeit für die nachträgliche Bearbeitung von Aufgaben. Dafür sollte man diese Aufgabe mit dem Klick auf das Symbol mit der Tabelle und dem Pfeil in die Liste mit aktuellen Aufgaben verschieben und erst danach dort auch auf schon bekannte Weise bearbeiten.</p>
+
+<p>Das Klicken auf das Mülleimersymbol löscht die Aufgabe unwiderruflich.</p>
