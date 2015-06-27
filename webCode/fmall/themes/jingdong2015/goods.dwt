@@ -47,220 +47,62 @@ function reg(str){
 <div class="w">
 	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
     <div id="product-intro">
-    	<div id="name">
-        	<h1>{$goods.goods_style_name}</h1>
-            <strong>{$goods.goods_brief}</strong>
+    	<div class="goods_detail">
+	    	<div id="name">
+	        	<h1>{$goods.goods_style_name}</h1>
+	        </div> 
+	        <div id="summary-grade">
+	        		<p style="height:42px;line-height:42px;font-size:14px;">基金代码<span class="goods_lists">000000</span>|&nbsp;&nbsp;基金类型<span class="goods_lists">股票型</span></p>
+	                <ul class="goods_color">
+	                    <li class="goods_colorleft"><h3>最新净值（）</h3><span>12346</span></li>
+	                    <li class="goods_colorright"><h3>净值增长率</h3><span>12346</span></li>
+	                </ul>
+	                <ul class="summarymiddle">
+	                    <li>
+							<div>申够费率：</div>
+	                    </li>
+	                    <li>
+	                    	<div>起购金额：</div>   
+	                    </li>
+	                    <li style="display:none;">
+	                    	<div>赎回说明：</div>
+	                    </li>
+	                   	<li>
+	                    	<div>赎回时长：</div>   
+	                    </li>
+	                    <li>
+	                    	<div>投资风险：</div>
+	                    </li>
+	                </ul>
+	                <div id="chooseBtns">
+	                	<div style="410px;height:42px;font-size:14px;">
+	                		<span style="color:#A5A5A5;">投资金额</span>：<input onblur=num() id="moneynum" style="border: 1px solid #E6E6E6;width: 100px;height: 14px;padding: 7px;font-size: 14px;"></input><em style="margin-left:5px;">元<em>
+	                		<span id="minmoney" style="display:none;color:red;">低于起购额度1000元</span>
+	                	</div>
+	                    <div id="choose-btn-append" class="btn"> <a class="btn-append " id="InitCartUrl" href="javascript:addToCart({$goods.goods_id})" title="">立即申购<b></b></a></div>
+	                </div>
+	                <script>
+	                	
+	                	function num(){
+	                		var num = document.getElementById('moneynum').value;
+	                		var block = document.getElementById('minmoney');
+	                		if(num < 1000){
+	                			block.style.display="block";
+	                		}else{
+	                			block.style.display="none";
+	                		}
+	                	}
+	                	
+	                </script>
+	            <!--choose end--> 
+	            <span class="clr"></span>
+	        </div>
         </div>
-        <!--name end-->
-            
-        <div class="clearfix">
-            <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
-                <ul class="proInfoUl" id="summary">
-                    <!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->
-                    {insert_scripts files='lefttime.js'}
-                    <li id="summary-price">
-                        <div class="dt">{$lang.promote_price}：</div>
-                        <div class="dd"> <strong class="p-price">{$goods.promote_price}</strong> </div>
-                        <div class="clearfix" id="TK-clear"></div>
-                    </li>
-                    <!--{else} -->
-                    <li id="summary-price">
-                        <div class="dt">{$lang.shop_prices}：</div>
-                        <div class="dd"> <strong class="p-price" id="ECS_SHOPPRICE">{$goods.shop_price_formated}</strong> </div>
-                        <div class="clearfix" id="TK-clear"></div>
-                    </li>
-                    <!--{/if}-->
-                    <!-- {if $cfg.show_marketprice} 市场价格-->
-                    <li id="summary-market" class="hide">
-                        <div class="dt">{$lang.market_price}：</div>
-                        <div class="dd"><del id="page_maprice">{$goods.market_price}</del></div>
-                    </li>
-                    <!-- {/if} -->
-                    <!-- {if $promotion} 优惠活动 -->
-                    <li id="summary-promotion" class="hide" style="display: list-item; ">
-                        <div class="dt">{$lang.activity}：</div>
-                        <div class="dd"> 
-                            <!-- {foreach from=$promotion item=item key=key} 优惠活动-->
-                            <div id="product-promotions"> 
-                                <!-- {if $item.type eq "snatch"} -->
-                                <em class="hl_red_bg">{$lang.snatch}</em>
-                                <!-- {elseif $item.type eq "group_buy"} -->
-                                <em class="hl_red_bg">{$lang.group_buy}</em>
-                                <!-- {elseif $item.type eq "auction"} -->
-                                <em class="hl_red_bg">{$lang.auction}</em>
-                                <!-- {elseif $item.type eq "favourable"} -->
-                                <em class="hl_red_bg">{$lang.favourable}</em>
-                                <!-- {/if} -->
-                                <em class="hl_red">{$item.act_name}</em><a href="{$item.url}" target="_blank">&nbsp;&nbsp;详情 <s class="s-arrow">&gt;&gt;</s></a>
-                            </div>
-                            <!-- {/foreach} --> 
-                        </div>
-                    </li>
-                    <!-- {/if} --> 
-                    <!-- 商品评分--> 
-                    <li id="summary-grade">
-                    	<p>累计评价</p>
-                        <p><a href="#comment">{$goods.comments_number}</a></p>
-                    </li>
-                </ul>
-                <ul class="proInfoUl">
-                    <!-- {if $goods.goods_number neq "" and $cfg.show_goodsnumber} 商品库存-->
-                    <li id="summary-market"> 
-                        <!-- {if $goods.goods_number eq 0} -->
-                        <div class="dt">{$lang.goods_number}</div>
-                        <div class="dd"><span>{$lang.stock_up}</span></div>
-                        <!-- {else} -->
-                        <div class="dt">{$lang.goods_number}</div>
-                        <div class="dd"><span>{$goods.goods_number} {$goods.measure_unit}</span></div>
-                        <!-- {/if} --> 
-                    </li>
-                    <!-- {/if} --> 
-                    <!-- {if $goods.goods_brand neq "" and $cfg.show_brand} 显示商品品牌-->
-                    <li id="summary-market">
-                        <div class="dt">{$lang.goods_brand}</div>
-                        <div class="dd"><span>{$goods.goods_brand}</span></div>
-                    </li>
-                    <!-- {/if} --> 
-                    <!-- {if $cfg.show_goodsweight} 商品重量-->
-                    <li id="summary-market">
-                        <div class="dt">{$lang.goods_weight}</div>
-                        <div class="dd"><span>{$goods.goods_weight}</span></div>
-                    </li>
-                    <!-- {/if} --> 
-                    <!-- {if $cfg.show_addtime} 上架时间-->
-                    <li id="summary-market">
-                        <div class="dt">{$lang.add_time}</div>
-                        <div class="dd"><span>{$goods.add_time}</span></div>
-                    </li>
-                    <!-- {/if} --> 
-                    <!-- {if $goods.bonus_money} 红包-->
-                    <li id="summary-market">
-                        <div class="dt">{$lang.goods_bonus}</div>
-                        <div class="dd"><span>{$goods.bonus_money}</span></div>
-                    </li>
-                    <!-- {/if} --> 
-                    <!-- {if $cfg.use_integral} 购买此商品赠送积分-->
-                    <li id="summary-tips">
-                        <div class="dt">{$lang.goods_integral}</div>
-                        <div class="dd">
-                            <div id="product-tips"><em class="hl_red">最多可使用 {$goods.integral} {$points_name}</em></div>
-                        </div>
-                    </li>
-                    <!-- {/if} --> 
-                    <!-- {if $goods.give_integral > 0} 购买此商品赠送积分-->
-                    <li id="summary-tips">
-                        <div class="dt">{$lang.goods_give_integral}</div>
-                        <div class="dd">
-                            <div id="product-tips"><em class="hl_red">{$goods.give_integral} {$points_name}</em></div>
-                        </div>
-                    </li>
-                    <!-- {/if} -->
-                </ul>
-                <!--summary end-->
-                <ul id="choose" class="proInfoUl spec_list_box">
-                    <!-- {* 开始循环所有可选属性 *} --> 
-                    <!-- {foreach from=$specification item=spec key=spec_key} --> 
-                    <!-- {if $spec.attr_type eq 1} --> 
-                        <!-- {if $spec.is_show_img eq 1} -->
-                        <li id="choose-version">
-                            <div class="dt">{$spec.name}：</div>
-                            <div class="dd"> 
-                                <!-- {foreach from=$spec.values item=value key=key} -->
-                                <div class="item{if $key eq 0} selected{/if}">
-                                    <b></b>
-                                    <a href="#none" title="{$value.label}" style="cursor: pointer; "><img src="{$value.thumb_url}" width="30" height="30" />{$value.label}</a>
-                                    <input id="spec_value_{$value.id}" style="display:none;" type="radio" name="spec_{$spec_key}" value="{$value.id}" {if $key eq 0}checked{/if} />
-                                </div>
-                                <!-- {/foreach} --> 
-                            </div>
-                        </li>
-                        <!-- {else} -->
-                        <li id="choose-version">
-                            <div class="dt">{$spec.name}：</div>
-                            <div class="dd"> 
-                                <!-- {foreach from=$spec.values item=value key=key} -->
-                                <div class="item{if $key eq 0} selected{/if}">
-                                    <b></b>
-                                    <a href="#none" title="{$value.label}" style="cursor: pointer; line-height:30px;">&nbsp;&nbsp;{$value.label}</a>
-                                    <input id="spec_value_{$value.id}" style="display:none;" type="radio" name="spec_{$spec_key}" value="{$value.id}" {if $key eq 0}checked{/if} />
-                                </div>
-                                <!-- {/foreach} --> 
-                            </div>
-                        </li>
-                        <!-- {/if} -->
-                    <!-- {else} -->
-                    <li id="choose-version">
-                        <div class="dt">{$spec.name}：</div>
-                        <div class="dd">
-                            <!-- {foreach from=$spec.values item=value key=key} -->
-                            <div class="check_item">
-                                <label for="spec_value_{$value.id}">
-                                    <input type="checkbox" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" onclick="changePrice()" />
-                                    {$value.label} [{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]
-                                </label>
-                            </div>
-                            <!-- {/foreach} -->
-                            <input type="hidden" name="spec_list" value="{$key}" />
-                        </div>
-                    </li>
-                    <!-- {/if} -->
-                    <!-- {/foreach} --> 
-                    <!-- {* 结束循环可选属性 *} -->
-                       <!-- {if $volume_price_list} --> 
-                    <li class="summary-market">
-                        <font>{$lang.volume_price}：</font><br />
-                        <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#e5e5e5">
-                            <tr>
-                                <td align="center" bgcolor="#FFFFFF"><strong>{$lang.number_to}</strong></td>
-                                <td align="center" bgcolor="#FFFFFF"><strong>{$lang.preferences_price}</strong></td>
-                            </tr>
-                            <!-- {foreach from=$volume_price_list item=price_list key=price_key} -->
-                            <tr>
-                                <td align="center" bgcolor="#FFFFFF" class="shop">{$price_list.number}</td>
-                                <td align="center" bgcolor="#FFFFFF" class="shop">{$price_list.format_price}</td>
-                            </tr>
-                            <!-- {/foreach} -->
-                        </table>
-                    </li>
-                    <!--{/if}-->
-                    <li id="choose-service" style="height:28px;">
-                    <div class="dt">会员价格：</div>
-                        <div class="dd">
-                            <div class="service-type-yb">
-                                <div class="yb-item-cat yb-item-cat-r1"> 
-                                    <!-- {foreach from=$rank_prices item=rank_price key=key name=rank_price} 会员等级对应的价格--> 
-                                    <!-- {if $smarty.foreach.rank_price.iteration eq 1} -->
-                                    <div class="item"> <a href="#none" class="yb-item yb-item-first" id="ECS_RANKPRICE_{$key}">{$rank_price.rank_name} {$rank_price.price}</a></div>
-                                    <!-- {/if} --> 
-                                    <!--{/foreach}-->
-                                    <div class="yb-item-hide"> 
-                                        <!-- {foreach from=$rank_prices item=rank_price key=key name=rank_price} 会员等级对应的价格-->
-                                        <!-- {if $smarty.foreach.rank_price.iteration > 1} -->
-                                        <div class="item"><a href="#none" class="yb-item" id="ECS_RANKPRICE_{$key}">{$rank_price.rank_name} {$rank_price.price}</a></div>
-                                        <!-- {/if} --> 
-                                        <!--{/foreach}--> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div id="chooseBtns">
-                	<div class="chooseAmount">
-                    	<div class="wrapInput">
-                        	<a class="btn-reduce" href="javascript:;" onclick="setAmount('reduce')">-</a>
-                            <a class="btn-add" href="javascript:;" onclick="setAmount('add')">+</a>
-                            <input class="text" name="number" id="buy-num" value="1" onchange="setAmount('edit')">
-                        </div>
-                    </div>
-                    <div id="choose-btn-append" class="btn"> <a class="btn-append " id="InitCartUrl" href="javascript:addToCart({$goods.goods_id})" title="">加入购物车<b></b></a></div>
-                </div>
-            </form>
-            <!--choose end--> 
-            <span class="clr"></span>
+        <div class="detail_table">
+        	<p style="margin-top:20px;margin-left:30px;">七日年化率</p>
+        	<!-- #BeginLibraryItem "/library/goods_table.lbi" --><!-- #EndLibraryItem -->
         </div>
         <!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem --> 
-        <!--preview end--> 
     </div>
     <!--product-intro end-->
 </div>
