@@ -71,6 +71,13 @@ Utils.isEmail = function( email )
   return reg1.test( email );
 }
 
+Utils.isIdcard = function( idcard )
+{
+	var reg2 = /^[1-9]{1}[0-9]{14}$|^[1-9]{1}[0-9]{16}([0-9]|[xX])$/;
+	
+	return reg2.test( idcard );
+}
+
 Utils.isTel = function ( tel )
 {
   var reg = /^[\d|\-|\s|\_]+$/; //只允许使用数字-空格等

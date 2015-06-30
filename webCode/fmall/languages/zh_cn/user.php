@@ -23,6 +23,8 @@ $_LANG['shot_message'] = "短消息";
 /* 用户菜单 */
 $_LANG['label_welcome'] = '欢迎页';
 $_LANG['label_profile'] = '用户信息';
+$_LANG['label_update_loginpass'] = '修改账号密码';
+$_LANG['label_update_tempass'] = '修改提取密码';
 $_LANG['label_order_fund'] = '我的基金';
 $_LANG['label_order_secure'] = '我的保险';
 $_LANG['label_order_invest'] = '我的投资';
@@ -149,6 +151,9 @@ $_LANG['profile_js']['confirm_password_empty'] = '请输入您的确认密码！
 $_LANG['profile_js']['both_password_error'] = '您现两次输入的密码不一致！';
 $_LANG['profile_js']['msg_blank'] = '不能为空';
 $_LANG['profile_js']['no_select_question'] = '- 您没有完成密码提示问题的操作';
+$_LANG['profile_js']['truename_empty'] = '请输入您的真实姓名！';
+$_LANG['profile_js']['idcard_empty'] = '请输入您的身份证号码！';
+$_LANG['profile_js']['idcard_error'] = '您输入的身份证号码格式不正确！';
 
 /* 支付方式 */
 $_LANG['pay_name'] = '名称';
@@ -414,6 +419,10 @@ $_LANG['male'] = '男';
 $_LANG['female'] = '女';
 $_LANG['secrecy'] = '保密';
 $_LANG['birthday'] = '出生日期';
+$_LANG['user_username'] = '账号';
+$_LANG['user_truename'] = '真实姓名';
+$_LANG['user_idcard'] = '身份证号';
+$_LANG['user_phone'] = '手机号';
 
 $_LANG['logout'] = '您已经成功的退出了。';
 $_LANG['username_empty'] = '用户名为空';

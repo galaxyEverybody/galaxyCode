@@ -7,6 +7,8 @@ function userEdit()
 {
   var frm = document.forms['formEdit'];
   var email = frm.elements['email'].value;
+  var truename = frm.elements['truename'].value;
+  var idcard = frm.elements['idcard'].value;
   var msg = '';
   var reg = null;
   var passwd_answer = frm.elements['passwd_answer'] ? Utils.trim(frm.elements['passwd_answer'].value) : '';
@@ -22,6 +24,23 @@ function userEdit()
     {
       msg += email_error + '\n';
     }
+  }
+  
+  if(truename.length == 0)
+  {
+	  msg += truename_empty + '\n';
+  }
+  
+  if(idcard.length == 0)
+  {
+	  msg += idcard_empty + '\n';
+  }
+  else
+  {
+	if( ! (Utils.isIdcard(idcard)))
+	{
+		msg += idcard_error + '\n';
+	}
   }
 
   if (passwd_answer.length > 0 && sel_question == 0 || document.getElementById('passwd_quesetion') && passwd_answer.length == 0)
@@ -48,6 +67,48 @@ function userEdit()
   {
     return true;
   }
+}
+
+/*身份证实名认证*/
+function truenamecheck()
+{
+	var frm = document.forms['formEdit'];
+	var truename = frm.elements['truename'].value;
+	var idcard = frm.elements['idcard'].value;
+	
+	var msg = '';
+	
+	if(truename.length == 0)
+	  {
+		  msg += truename_empty + '\n';
+	  }
+	  
+	  if(idcard.length == 0)
+	  {
+		  msg += idcard_empty + '\n';
+	  }
+	  else
+	  {
+		if( ! (Utils.isIdcard(idcard)))
+		{
+			msg += idcard_error + '\n';
+		}
+	  }
+	  if (msg.length > 0)
+	  {
+	    alert(msg);
+	    return false;
+	  }
+	  else
+	  {
+		Ajax.call('user.php?act=ajax_checkidcard','turename=' + truename,callback_checkidcard,'POST','JSON');
+	  }
+			
+}
+function callback_checkidcard(result)
+{
+	document.getElementById("checknameid").style.display="block";
+		
 }
 
 /* 会员修改密码 */
