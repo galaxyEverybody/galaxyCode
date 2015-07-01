@@ -568,6 +568,156 @@ function check_email_callback(result)
   }
 }
 
+
+/*注册时手机号码的检验*/
+function checkPhone(phone)
+{
+	var submit_disabled = false;
+	
+	if (phone == '')
+	  {
+	    document.getElementById('phone_notice').innerHTML = '手机号不能为空';
+		if($("#phone_notice").hasClass("focus"))
+		{
+			$("#phone_notice").removeClass("focus");
+		}
+		$("#phone_notice").addClass("error");
+	    submit_disabled = true;
+	  }
+	  else if (!Utils.isTel(phone))
+	  {
+	    document.getElementById('phone_notice').innerHTML = '手机号格式不正确';
+		if($("#phone_notice").hasClass("focus"))
+		{
+			$("#phone_notice").removeClass("focus");
+		}
+		$("#phone_notice").addClass("error");
+	    submit_disabled = true;
+	  }
+	 
+	  if( submit_disabled )
+	  {
+		if($("#phone_notice").hasClass("focus"))
+		{
+			$("#phone_notice").removeClass("focus");
+		}
+		$("#phone_notice").addClass("error");
+	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+	    return false;
+	  }
+	Ajax.call( 'user.php?act=check_phone', 'phone=' + phone, check_phone_callback , 'GET', 'TEXT', true, true );
+}
+function check_phone_callback(result){
+	if ( result == 'ok' )
+	  {
+		if($("#phone_notice").hasClass("error"))
+		{
+			$("#phone_notice").removeClass("error");
+		}
+		$("#phone_notice").addClass("focus");
+	    document.getElementById('phone_notice').innerHTML = "<a onclick=getphoneverify()>点击获取短信验证码</a>";
+	    document.forms['formUser'].elements['Submit'].disabled = '';
+	  }
+	  else
+	  {
+	    document.getElementById('phone_notice').innerHTML = '手机号已存在,请重新输入';
+		if($("#phone_notice").hasClass("focus"))
+		{
+			$("#phone_notice").removeClass("focus");
+		}
+		$("#phone_notice").addClass("error");
+	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+	  }
+}
+/* 点击获取验证码*/
+function getphoneverify()
+{
+	var phone = document.getElementById('phone').value;
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, get_phoneverify_callback , 'GET', 'TEXT', true, true );
+}
+function get_phoneverify_callback(result)
+{
+	if ( result == 'ok' )
+	  {
+		if($("#phoneverify_notice").hasClass("error"))
+		{
+			$("#phoneverify_notice").removeClass("error");
+		}
+		$("#phoneverify_notice").addClass("focus");
+	    document.getElementById('phoneverify_notice').innerHTML = '验证码已发送';
+	    document.forms['formUser'].elements['Submit'].disabled = '';
+	  }
+	  else
+	  {
+	    document.getElementById('phoneverify_notice').innerHTML = '验证码发送失败';
+		if($("#phoneverify_notice").hasClass("focus"))
+		{
+			$("#phoneverify_notice").removeClass("focus");
+		}
+		$("#phoneverify_notice").addClass("error");
+	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+	  }
+}
+/*手机短信验证码的验证*/
+function checkphoneverify(phoneverify)
+{
+	var submit_disabled = false;
+	if (phoneverify == '')
+	  {
+	    document.getElementById('phoneverify_notice').innerHTML = '验证码不能为空';
+		if($("#phoneverify_notice").hasClass("focus"))
+		{
+			$("#phoneverify_notice").removeClass("focus");
+		}
+		$("#phoneverify_notice").addClass("error");
+	    submit_disabled = true;
+	  }
+	  else if (!Utils.isTelverify(phoneverify))
+	  {
+	    document.getElementById('phoneverify_notice').innerHTML = '验证码格式不正确';
+		if($("#phoneverify_notice").hasClass("focus"))
+		{
+			$("#phoneverify_notice").removeClass("focus");
+		}
+		$("#phoneverify_notice").addClass("error");
+	    submit_disabled = true;
+	  }
+	 
+	  if( submit_disabled )
+	  {
+		if($("#phoneverify_notice").hasClass("focus"))
+		{
+			$("#phoneverify_notice").removeClass("focus");
+		}
+		$("#phoneverify_notice").addClass("error");
+	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+	    return false;
+	  }
+	 Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_phoneverify_callback , 'GET', 'TEXT', true, true );
+}
+function check_phoneverify_callback(result)
+{
+	if ( result == 'ok' )
+	  {
+		if($("#phoneverify_notice").hasClass("error"))
+		{
+			$("#phoneverify_notice").removeClass("error");
+		}
+		$("#phoneverify_notice").addClass("focus");
+	    document.getElementById('phoneverify_notice').innerHTML = '输入正确';
+	    document.forms['formUser'].elements['Submit'].disabled = '';
+	  }
+	  else
+	  {
+	    document.getElementById('phoneverify_notice').innerHTML = '输入错误';
+		if($("#phoneverify_notice").hasClass("focus"))
+		{
+			$("#phoneverify_notice").removeClass("focus");
+		}
+		$("#phoneverify_notice").addClass("error");
+	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+	  }
+}
 /* *
  * 处理注册用户
  */

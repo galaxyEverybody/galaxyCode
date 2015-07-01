@@ -80,9 +80,16 @@ Utils.isIdcard = function( idcard )
 
 Utils.isTel = function ( tel )
 {
-  var reg = /^[\d|\-|\s|\_]+$/; //只允许使用数字-空格等
+  var reg = /13[123569]{1}\d{8}|15[1235689]\d{8}|188\d{8}/; //只允许使用数字-空格等
 
   return reg.test( tel );
+}
+
+Utils.isTelverify = function ( phoneverify )
+{
+	var reg = /\d{6}/; //只允许使用数字
+
+	return reg.test( phoneverify );
 }
 
 Utils.fixEvent = function(e)
