@@ -540,6 +540,29 @@ class integrate
         }
     }
 
+    /**
+     * 检查指定手机号是否存在
+     * @access	public
+     * @param	string	$phone	用户手机号
+     * @return	boolean
+     */
+    function check_phone($phone)
+    {
+    	if(!empty($phone))
+    	{
+    		/*检查phone是否重复*/
+    		$sql = "SELECT " . $this->field_id .
+                       " FROM " . $this->table($this->user_table).
+                       " WHERE " . $this->field_phone . " = '$phone' ";
+
+    		if($this->db->getOne($sql, true) > 0)
+    		{
+    			$this->error = ERR_PHONE_EXISTS;
+    			return true;
+    		}
+    		return false;
+    	}
+    }
 
     /**
      *  检查cookie是正确，返回用户名
