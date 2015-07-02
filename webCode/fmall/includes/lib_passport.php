@@ -61,7 +61,7 @@ function register($username, $password, $email, $other = array())
             $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['email_invalid'], htmlspecialchars($email)));
         }
     }
-
+	
     if ($GLOBALS['err']->error_no > 0)
     {
         return false;
@@ -99,6 +99,10 @@ function register($username, $password, $email, $other = array())
         elseif ($GLOBALS['user']->error == ERR_EMAIL_EXISTS)
         {
             $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['email_exist'], $email));
+        }
+        elseif ($GLOBALS['user']->error == ERR_PHONE_EXISTS)
+        {
+        	$GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['phone_exist'],$phone));
         }
         else
         {
