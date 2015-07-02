@@ -624,3 +624,20 @@ function checkConsignee(frm)
   }
   return ! err;
 }
+/*
+ * 风险提示页面检查复选框是否勾选 
+ */
+function checksubmitorder(){
+	var checkbox0 = document.getElementsByClassName('checkbox0');
+	var checkbox1 = document.getElementsByClassName('checkbox1');
+	var sub_btn = document.getElementById('cart_good_btn');
+	var status = checkbox0[0].checked;
+	var status1 = checkbox1[0].checked;
+	if(status && status1){
+		sub_btn.style.background="#F35858";
+		sub_btn.style.color="#FFFFFF";
+	}else{
+		sub_btn.style.background="";
+		sub_btn.style.color="#B4B4B4";
+	}
+}

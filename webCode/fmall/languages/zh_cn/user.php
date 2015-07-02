@@ -388,6 +388,8 @@ $_LANG['back_retry_answer'] = '返回重试';
 /* 登录 注册 */
 $_LANG['label_username'] = '用户名';
 $_LANG['label_email'] = 'email';
+$_LANG['label_bang_money'] = '支付宝账号';
+$_LANG['label_zlpassword'] = '支付密码';
 $_LANG['label_password'] = '密码';
 $_LANG['label_confirm_password'] = '确认密码';
 $_LANG['label_telephone'] = '手机号';
