@@ -2434,9 +2434,24 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #recommend .mt ul li.curr{ color: #e4393c; background-color: white; margin-top: -6px; border-top: 2px solid #e4393c;}
 #recommend .mt ul li.curr a{ height: 34px; line-height: 34px; padding: 0 12px; border-left: 1px solid #ddd; border-right: 1px solid #ddd; color: #e4393c;}
 
+.top_div_ff{ border-top:2px solid #F5F5F5;width:100%;height:20px;}
 .flowBox .cart-hd{ height:auto; padding-top:10px; border-bottom:1px solid #e0e0e0;}
 .flowBox .cart-hd h2{ font-weight: 700; font-size: 16px; height: 26px; line-height: 26px; text-align: center; padding: 0 0 5px; cursor: pointer; margin:0; background:none; border-bottom:2px solid #e4393c; width:auto; color:#e4393c; display:inline-block; float:none; margin-bottom:-2px;}
 .flowBox .cart-hd h2 span{ font-family: verdana; font-size: 14px; float:none; padding-left:5px;}
+.flowBox .cart_order_info{ width:925px;margin:0px auto;padding:25px 30px;background:#F5F5F5 none repeat scroll 0% 0%;box-shadow:1px 1px 3px 0px rgba(0,0,0,0.2)}
+.flowBox .cart_order_info a{ color:blue;cursor:pointer;}
+.flowBox .cart_order_tz{ border-bottom:2px solid #DEDEDE;line-height:30px;height:30px;}
+.flowBox .cart_order_good{ padding:40px 20px 70px;margin-top:10px;text-align:center;}
+.flowBox .cart_good_th{ height:35px;line-height:35px;border-bottom:1px solid #DEDEDE;background:#F5F5F5;}
+.flowBox .cart_good_td{ height:100px;line-height:100px;border-bottom:1px solid #DEDEDE;background:#fff;border-bottom:1px solid red;}
+.flowBox .cart_good_sub{ width:100%;height:200px;border:1px solid #DEDEDE;background-color:#fff;}
+.flowBox .cart_good_money{ margin-top:30px;margin-left:30px;}
+.flowBox .cart_good_money span{ font-size:16px;color:red;font-weight:bold;}
+.flowBox .cart_order_xy { margin-left:60px;margin-top:10px;}
+.flowBox .cart_order_xy ul{ list-style:none;line-height:30px;}
+.flowBox .cart_order_xy .checkbox0{ width:15px;height:15px;}
+.flowBox .cart_order_xy .checkbox1{ width:15px;height:15px;}
+.flowBox .cart_order_xy button{ width:100px;height:40px;line-height:40px;text-align:center;font-size:16px;border:1px solid #D7D7D7;color:#B4B4B4;font-weight:bold;border-radius:5px;margin-top:10px;}
 .flowBox .cart-inner{ border:0;}
 .flowBox .cart-inner .cart-thead{ display: block; height: 32px; line-height: 32px; margin: 0 0 10px; padding: 5px 0; background: #f3f3f3; border: 1px solid #e9e9e9; border-top: 0;}
 .flowBox .cart-thead .column{ height:32px; line-height:32px;}
