@@ -32,7 +32,7 @@ $back_act='';
 
 // 不需要登录的操作或自己验证是否登录（如ajax处理）的act
 $not_login_arr =
-array('login','act_login','register','act_register','act_edit_password','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
+array('login','act_login','register','act_register','act_edit_password','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
 
 /* 显示页面的action列表 */
 $ui_arr = array('register', 'login', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
@@ -118,11 +118,11 @@ if ($action == 'register')
         $back_act = strpos($GLOBALS['_SERVER']['HTTP_REFERER'], 'user.php') ? './index.php' : $GLOBALS['_SERVER']['HTTP_REFERER'];
     }
 
-    /* 取出注册扩展字段 */
+    /* 取出注册扩展字段 
     $sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
     $extend_info_list = $db->getAll($sql);
     $smarty->assign('extend_info_list', $extend_info_list);
-
+	*/
     /* 验证码相关设置 */
     if ((intval($_CFG['captcha']) & CAPTCHA_REGISTER) && gd_version() > 0)
     {
@@ -156,11 +156,12 @@ elseif ($action == 'act_register')
         $username = isset($_POST['username']) ? trim($_POST['username']) : '';
         $password = isset($_POST['password']) ? trim($_POST['password']) : '';
         $email    = isset($_POST['email']) ? trim($_POST['email']) : '';
-        $other['msn'] = isset($_POST['extend_field1']) ? $_POST['extend_field1'] : '';
+        $other['mobile_phone']    = isset($_POST['mobile_phone']) ? trim($_POST['mobile_phone']) : '';
+        //$other['msn'] = isset($_POST['msn']) ? $_POST['msn'] : '';
         $other['qq'] = isset($_POST['extend_field2']) ? $_POST['extend_field2'] : '';
         $other['office_phone'] = isset($_POST['extend_field3']) ? $_POST['extend_field3'] : '';
         $other['home_phone'] = isset($_POST['extend_field4']) ? $_POST['extend_field4'] : '';
-        $other['mobile_phone'] = isset($_POST['extend_field5']) ? $_POST['extend_field5'] : '';
+        //$other['mobile_phone'] = isset($_POST['extend_field5']) ? $_POST['extend_field5'] : '';
         $sel_question = empty($_POST['sel_question']) ? '' : compile_str($_POST['sel_question']);
         $passwd_answer = isset($_POST['passwd_answer']) ? compile_str(trim($_POST['passwd_answer'])) : '';
 
@@ -185,7 +186,7 @@ elseif ($action == 'act_register')
         {
             show_message($_LANG['passwd_balnk']);
         }
-
+		
         /* 验证码检查 */
         if ((intval($_CFG['captcha']) & CAPTCHA_REGISTER) && gd_version() > 0)
         {
@@ -474,6 +475,16 @@ elseif ($action == 'is_registered')
     }
 }
 
+/*验证用户的真实身份（实名认证）*/
+elseif($action == 'ajax_checkidcard')
+{
+	include_once(ROOT_PATH . 'includes/cls_json.php');
+	$_POST['nameinfo'] = json_str_iconv($_POST['nameinfo']);
+	$result['status'] = 'false';
+	$result['message'] = '实名认证未通过';
+	die($json->encode($result));
+}
+
 /* 验证用户邮箱地址是否被注册 */
 elseif($action == 'check_email')
 {
@@ -486,6 +497,71 @@ elseif($action == 'check_email')
     {
         echo 'ok';
     }
+}
+/* 验证手机号是否被注册*/
+elseif($action == 'check_phone')
+{
+	$phone = trim($_GET['phone']);
+	if($user->check_phone($phone))
+	{
+		echo 'false';
+	}
+	else 
+	{
+		echo 'ok';
+	}
+}
+
+/* 获取短信验证码*/
+elseif($action == 'get_phoneverify')
+{
+	//header("Content-Type: text/html; charset=UTF-8");
+	$mobile = trim($_GET['phone']);
+	$flag = 0;
+	$params='';//要post的数据
+	$verify = rand(123456, 999999);//获取随机验证码
+	$_SESSION['phoneverify'] = $verify;
+	//以下信息自己填以下
+	//$mobile='';//手机号
+	$argv = array(
+			'name'=>'13146278834',     //必填参数。用户账号
+			'pwd'=>'2037048B7A632BA55205CA6A9645',     //必填参数。（web平台：基本资料中的接口密码）
+			'content'=>'尊敬的用户您好：您的短信验证码为：'.$verify.'，请勿将验证码提供给他人。',   //必填参数。发送内容（1-500 个汉字）UTF-8编码
+			'mobile'=>$mobile,   //必填参数。手机号码。多个以英文逗号隔开
+			'stime'=>'',   //可选参数。发送时间，填写时已填写的时间发送，不填时为当前时间发送
+			'sign'=>'银河众联',    //必填参数。用户签名。
+			'type'=>'pt',  //必填参数。固定值 pt
+			'extno'=>''    //可选参数，扩展码，用户定义扩展码，只能为数字
+	);
+	//print_r($argv);exit;
+	//构造要post的字符串
+	//echo $argv['content'];
+	foreach ($argv as $key=>$value) {
+		if ($flag!=0) {
+			$params .= "&";
+			$flag = 1;
+		}
+		$params.= $key."="; $params.= urlencode($value);// urlencode($value);
+		$flag = 1;
+	}
+	$url = "http://web.cr6868.com/asmx/smsservice.aspx?".$params; //提交的url地址
+	$con= substr( file_get_contents($url), 0, 1 );  //获取信息发送后的状态
+	
+	if($con == '0'){
+		echo "ok";
+	}else{
+		echo "false";
+	}
+}
+/* 验证短信验证码*/
+elseif($action == 'check_phoneverify')
+{
+	$phoneverify = trim($_GET['phoneverify']);
+	if($_SESSION['phoneverify'] == $phoneverify){
+		echo 'ok';
+	}else{
+		echo 'false';
+	}
 }
 /* 用户登录界面 */
 elseif ($action == 'login')
