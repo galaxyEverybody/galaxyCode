@@ -69,28 +69,14 @@
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.email}： </td>
             <td width="72%" align="left" bgcolor="#FFFFFF"><input name="email" type="text" value="{$profile.email}" size="25" class="inputBg" /><span style="color:#FF0000"> *</span></td>
         </tr>
-        {foreach from=$extend_info_list item=field}
-        <!-- {if $field.id eq 6} -->
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.passwd_question}：</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF">
-                <select name='sel_question'>
-                    <option value='0'>{$lang.sel_question}</option>
-                    {html_options options=$passwd_questions selected=$profile.passwd_question}
-                </select>
-            </td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.label_bang_money}： </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="label_bang_money" type="text" value="{$profile.label_bang_money}" size="25" class="inputBg" /><span style="color:#FF0000"> *</span><b style="margin-left:10px;font-size:16px;"><a href="">绑定</a></b><em style="color:blue;margin-left:10px;">[用于产品的购买与收益的提取]</em></td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF" {if $field.is_need}id="passwd_quesetion"{/if}>{$lang.passwd_answer}：</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="passwd_answer" type="text" size="25" class="inputBg" maxlengt='20' value="{$profile.passwd_answer}"/><!-- {if $field.is_need} --><span style="color:#FF0000"> *</span><!-- {/if} --></td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.label_zlpassword}： </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="zlpassword" type="text" value="{$profile.zlpassword}" size="25" class="inputBg" /><span style="color:#FF0000"> *</span><em style="color:blue;margin-left:10px;">[用于平台账号的提取与充值]</em></td>
         </tr>
-        <!-- {else} -->
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF" <!-- {if $field.is_need} -->id="extend_field{$field.id}i"<!--{/if}-->>{$field.reg_field_name}aaa：</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="extend_field{$field.id}" type="text" class="inputBg" value="{$field.content}"/><!-- {if $field.is_need} --><span style="color:#FF0000"> *</span><!-- {/if} --></td>
-        </tr>
-        <!-- {/if} -->
-        {/foreach}
         <tr>
             <td colspan="2" align="center" bgcolor="#FFFFFF"><input name="act" type="hidden" value="act_edit_profile" /><input name="submit" type="submit" value="{$lang.confirm_edit}" class="bnt_blue_1" style="border:none;" /></td>
         </tr>

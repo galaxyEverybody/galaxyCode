@@ -39,6 +39,22 @@
 <form name="formEdit" action="user.php" method="post" onSubmit="return userEdit()">
     <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
         <tr>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['user_username']; ?>： </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">账号</td>
+        </tr>
+        <tr>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['user_phone']; ?>： </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">手机</td>
+        </tr>
+        <tr>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['user_truename']; ?>： </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF"><input type="text" name="truename" value="" class="inputBg"/><span style="color:#FF0000"> *</span></td>
+        </tr>
+        <tr>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['user_idcard']; ?>： </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF"><input type="text" name="idcard" value="" class="inputBg" onblur="truenamecheck(this);"/><span style="color:#FF0000"> *</span><span id="checknameid" style="display:none;color:red;">实名认证未通过</span></td>
+        </tr>
+        <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['birthday']; ?>： </td>
             <td width="72%" align="left" bgcolor="#FFFFFF"> <?php echo $this->html_select_date(array('field_order'=>'YMD','prefix'=>'birthday','start_year'=>'-60','end_year'=>'+1','display_days'=>'true','month_format'=>'%m','day_value_format'=>'%02d','time'=>$this->_var['profile']['birthday'])); ?> </td>
         </tr>
@@ -56,36 +72,22 @@
             <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['email']; ?>： </td>
             <td width="72%" align="left" bgcolor="#FFFFFF"><input name="email" type="text" value="<?php echo $this->_var['profile']['email']; ?>" size="25" class="inputBg" /><span style="color:#FF0000"> *</span></td>
         </tr>
-        <?php $_from = $this->_var['extend_info_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'field');if (count($_from)):
-    foreach ($_from AS $this->_var['field']):
-?>
-        <?php if ($this->_var['field']['id'] == 6): ?>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['passwd_question']; ?>：</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF">
-                <select name='sel_question'>
-                    <option value='0'><?php echo $this->_var['lang']['sel_question']; ?></option>
-                    <?php echo $this->html_options(array('options'=>$this->_var['passwd_questions'],'selected'=>$this->_var['profile']['passwd_question'])); ?>
-                </select>
-            </td>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['label_bang_money']; ?>： </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="label_bang_money" type="text" value="<?php echo $this->_var['profile']['label_bang_money']; ?>" size="25" class="inputBg" /><span style="color:#FF0000"> *</span><b style="margin-left:10px;font-size:16px;"><a href="">绑定</a></b><em style="color:blue;margin-left:10px;">[用于产品的购买与收益的提取]</em></td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF" <?php if ($this->_var['field']['is_need']): ?>id="passwd_quesetion"<?php endif; ?>><?php echo $this->_var['lang']['passwd_answer']; ?>：</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="passwd_answer" type="text" size="25" class="inputBg" maxlengt='20' value="<?php echo $this->_var['profile']['passwd_answer']; ?>"/><?php if ($this->_var['field']['is_need']): ?><span style="color:#FF0000"> *</span><?php endif; ?></td>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['label_zlpassword']; ?>： </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="zlpassword" type="text" value="<?php echo $this->_var['profile']['zlpassword']; ?>" size="25" class="inputBg" /><span style="color:#FF0000"> *</span><em style="color:blue;margin-left:10px;">[用于平台账号的提取与充值]</em></td>
         </tr>
-        <?php else: ?>
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF" <?php if ($this->_var['field']['is_need']): ?>id="extend_field<?php echo $this->_var['field']['id']; ?>i"<?php endif; ?>><?php echo $this->_var['field']['reg_field_name']; ?>：</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="extend_field<?php echo $this->_var['field']['id']; ?>" type="text" class="inputBg" value="<?php echo $this->_var['field']['content']; ?>"/><?php if ($this->_var['field']['is_need']): ?><span style="color:#FF0000"> *</span><?php endif; ?></td>
-        </tr>
-        <?php endif; ?>
-        <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
         <tr>
             <td colspan="2" align="center" bgcolor="#FFFFFF"><input name="act" type="hidden" value="act_edit_profile" /><input name="submit" type="submit" value="<?php echo $this->_var['lang']['confirm_edit']; ?>" class="bnt_blue_1" style="border:none;" /></td>
         </tr>
     </table>
 </form>
 <div class="blank10"></div>
+
+<h5 class="mc"><span><?php echo $this->_var['lang']['label_update_loginpass']; ?></span></h5>
 <form name="formPassword" action="user.php" method="post" onSubmit="return editPassword()" >
     <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
         <tr>
@@ -105,6 +107,29 @@
         </tr>
     </table>
 </form>
+
+
+<h5 class="mc"><span><?php echo $this->_var['lang']['label_update_tempass']; ?></span></h5>
+<form name="formPassword" action="user.php" method="post" onSubmit="return editPassword()" >
+    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+        <tr>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['old_password']; ?>：</td>
+            <td width="76%" align="left" bgcolor="#FFFFFF"><input name="old_password" type="password" size="25"  class="inputBg" /></td>
+        </tr>
+        <tr>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['new_password']; ?>：</td>
+            <td align="left" bgcolor="#FFFFFF"><input name="new_password" type="password" size="25"  class="inputBg" /></td>
+        </tr>
+        <tr>
+            <td width="28%" align="right" bgcolor="#FFFFFF"><?php echo $this->_var['lang']['confirm_password']; ?>：</td>
+            <td align="left" bgcolor="#FFFFFF"><input name="comfirm_password" type="password" size="25"  class="inputBg" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" bgcolor="#FFFFFF"><input name="act" type="hidden" value="act_edit_password" /><input name="submit" type="submit" class="bnt_blue_1" style="border:none;" value="<?php echo $this->_var['lang']['confirm_edit']; ?>" /></td>
+        </tr>
+    </table>
+</form>
+
 </div>
 <?php endif; ?>
 
@@ -1078,7 +1103,7 @@
     </div>
     <div class="left">
     	<div id="myjd" class="m">
-        	<div class="mt"><h2><a href="user.php">我的京东</a></h2></div>
+        	<div class="mt"><h2><a href="user.php">我的众联</a></h2></div>
             <?php echo $this->fetch('library/user_menu.lbi'); ?>
         </div>
     </div>
