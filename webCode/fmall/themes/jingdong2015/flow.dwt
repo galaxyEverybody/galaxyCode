@@ -27,98 +27,54 @@
     var {$key} = "{$item}";
   {/foreach}
   </script>
+<div class="top_div_ff"></div>
 <div class="w cart flowBox">
-	<div class="cart-hd"><h2>全部商品<span id="selectedCount">{$total.goods_count}</span></h2></div>
+	<!--<div class="cart-hd"><h2>全部商品<span id="selectedCount">{$total.goods_count}</span></h2></div>-->
     <div id="show">
-    	<div class="cart-inner">
-        	<div class="cart-thead clearfix">
-            	<div class="column t-checkbox form">
-                	<input id="toggle-checkboxes" type="checkbox" checked="">
-                    <label for="toggle-checkboxes">全选</label>
-                </div>
-                <div class="column t-goods">{$lang.goods_name}</div>
-                <div class="column t-price">{$lang.shop_prices}</div>
-                <div class="column t-quantity">{$lang.number}</div>
-                <div class="column t-price">{$lang.subtotal}</div>
-                <div class="column t-action">{$lang.handle}</div>
-            </div>
-            <div id="product-list" class="cart-tbody"> 
-                <!-- {foreach from=$goods_list item=goods name=foo} -->
-                <div class="item item_selected fore{$smarty.foreach.foo.iteration}">
-                    <div class="item_form clearfix">
-                        <div class="cell p-checkbox">
-                            <input class="checkbox" type="checkbox" name="checkItem" checked="">
-                            <input type="hidden" name="rec_id" value="{$goods.rec_id}" />
-                        </div>
-                        <div class="cell p-goods">
-                            <!-- {if $goods.goods_id gt 0 && $goods.extension_code neq 'package_buy'} 商品 -->
-                            <div class="p-img"><a href="goods.php?id={$goods.goods_id}" target="_blank"><img src="{$goods.goods_thumb}" width="50" height="50" alt="{$goods.goods_name|escape:html}"></a></div>
-                            <div class="p-name">
-                                <a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name}
-                                    <!-- {if $goods.parent_id gt 0} 配件 -->
-                                    <span style="color:#FF0000; display:inline;">（{$lang.accessories}）</span>
-                                    <!-- {/if} -->
-                                    <!-- {if $goods.is_gift gt 0} 赠品 -->
-                                    <span style="color:#FF0000; display:inline;">（{$lang.largess}）</span>
-                                    <!-- {/if} -->
-                                </a>
-                                <span class="promise411" id="promise411_1094457453"></span>
-                            </div>
-                            <div class="p-attr">{$goods.goods_attr}</div>
-                            <!-- {elseif $goods.goods_id gt 0 && $goods.extension_code eq 'package_buy'} -->
-                            <div class="p-name"><a href="javascript:void(0)" onclick="setSuitShow({$goods.goods_id})">{$goods.goods_name}<span style="color:#FF0000; display:inline;">（{$lang.remark_package}）</span></a></div>
-                            <div id="suit_{$goods.goods_id}" style="display:none">
-                                <!-- {foreach from=$goods.package_goods_list item=package_goods_list} -->
-                                <a href="goods.php?id={$package_goods_list.goods_id}" target="_blank">{$package_goods_list.goods_name}</a><br />
-                                <!-- {/foreach} -->
-                            </div>
-                            <!-- {else} 优惠活动 -->
-                            {$goods.goods_name}
-                        <!-- {/if} -->
-                    </div>
-                    <div class="cell p-price"><span class="price">{$goods.goods_price}</span></div>
-                    <div class="cell p-quantity">
-                        <!-- {if $goods.goods_id gt 0 && $goods.is_gift eq 0 && $goods.parent_id eq 0} 普通商品可修改数量 -->
-                        <div class="quantity-form">
-                            <a href="javascript:void(0);" onclick="flowClickCartNum({$goods.rec_id},-1);" class="decrement">-</a>
-                            <input type="text" class="quantity-text" value="{$goods.goods_number}" id="goods_number_{$goods.rec_id}" onchange="flowClickCartNum({$goods.rec_id},0);">
-                            <a href="javascript:void(0);" onclick="flowClickCartNum({$goods.rec_id},+1);" class="increment">+</a>
-                        </div>
-                        <!-- {else} --> 
-                        {$goods.goods_number}
-                        <!-- {/if} --> 
-                    </div>
-                    <div class="cell p-sum"><span class="price" id="total_items_{$goods.rec_id}">{$goods.subtotal}</span></div>
-                    <div class="cell p-remove">
-                        <a class="cart-remove" href="javascript:if (confirm('{$lang.drop_goods_confirm}')) location.href='flow.php?step=drop_goods&amp;id={$goods.rec_id}';">删除</a><br />
-                        <!-- {if $smarty.session.user_id gt 0 && $goods.extension_code neq 'package_buy'} 如果登录了，可以加入收藏 -->
-                        <a href="javascript:if (confirm('{$lang.drop_goods_confirm}')) location.href='flow.php?step=drop_to_collect&amp;id={$goods.rec_id}'; ">{$lang.drop_to_collect}</a> 
-                        <!-- {/if} --> 
-                    </div>
-                </div>
-            </div>
-            <!-- {/foreach} --> 
-        </div>
-        <div class="blank20"></div>
-        <div class="cart-toolbar clearfix">
-            <div class="operation"><a href="javascript:void(0);" id="remove-batch">删除选中的商品</a></div>
-            <div class="toolbar-right">
-                <div class="normal">
-                    <div class="comm-right">
-                        <div class="btn-area"><a class="checkout" href="flow.php?step=checkout" id="toSettlement">去结算<b></b></a></div>
-                        <div class="price-sum">
-                            <div>
-                                <span class="txt">总计（不含运费）：</span>
-                                <span class="price sumPrice"><em id="totalSkuPrice">{$total.goods_price}</em></span>
-                                <br />
-                                <span class="txt">节省：</span>
-                                <span class="price totalRePrice" id="totalRePrice">- {$total.saving}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    	<div class = "cart_order_info">
+    		<div>
+    			<div class="cart_order_tz">
+    				<h3>确认订单信息</h3>
+    			</div>
+    			<div class = "cart_order_good">
+    				<table style="width:100%;border:0px;">
+    					<thead>
+    						<tr class = "cart_good_th">
+    							<th>{$lang.goods_name}</th>
+    							<th>{$lang.goods_type}</th>
+    							<th>{$lang.goods_return_time}</th>
+    							<th>{$lang.goods_risk_revel}</th>
+    						</tr>
+    					</thead>
+    					<tbody>
+    					<!-- {foreach from=$goods_list item=goods name=foo} -->
+    						<tr class = "cart_good_td">
+    							<td><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name}</a></td>
+    							<td>aaaaaaaaaaaa</td>
+    							<td>aaaaaaaaaaaa</td>
+    							<td>aaaaaaaaaaaa</td>
+    						</tr>
+    					<!-- {/foreach} -->
+    					</tbody>
+    				</table>
+    			</div>
+    		</div>
+    		<div class = "cart_good_sub">
+    			<div class = "cart_good_money">
+					<p>投资金额：<span>{$goods.subtotal}</span>元</p>    			
+    			</div>
+    			<div class = "cart_order_xy">
+    				<ul>
+    					<li><input type="checkbox" class="checkbox0" onclick="checksubmitorder()">我确认购买超出我风险偏好的产品</li>
+    					<li><input type="checkbox" class="checkbox1" onclick="checksubmitorder()">同意<a href="#">银河众联基金直销平台用户协议</a>、<a href="#">基金公司直销平台用户协议</a>,并开通基金交易账户</li>
+    					<li>
+    						<button id="cart_good_btn">立即投资</button>
+    					</li>
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
+    	
         <div class="blank20"></div>
     </div>
   <!-- {if $smarty.session.user_id gt 0} --> 
