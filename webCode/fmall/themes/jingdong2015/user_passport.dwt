@@ -153,7 +153,7 @@
                     <div class="item">
                         <span class="label"><b class="ftx04">*</b>{$lang.label_telephone}：</span>
                         <div class="fl item-ifo">
-                            <input type="text" id="phone" onblur="checkPhone(this.value);" name="phone" class="text" tabindex="3" onpaste="return  false" autocomplete="off">
+                            <input type="text" id="phone" onblur="checkPhone(this.value);" name="mobile_phone" class="text" tabindex="3" onpaste="return  false" autocomplete="off">
                             <label id="phone_notice"></label>
                         </div>
                     </div>
