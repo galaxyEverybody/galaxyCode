@@ -441,6 +441,7 @@ $_LANG['agreement'] = "我已看过并接受《<a href=\"article.php?cat_id=-1\"
 $_LANG['email_empty'] = 'email为空';
 $_LANG['email_invalid'] = '%s 不是合法的email地址';
 $_LANG['email_exist'] = '%s 已经存在';
+$_LANG['phone_exist'] = '%s 已经存在';
 $_LANG['email_not_allow'] = 'Email %s 不允许注册';
 $_LANG['register'] = '注册新用户名';
 $_LANG['register_success'] = '用户名 %s 注册成功';
