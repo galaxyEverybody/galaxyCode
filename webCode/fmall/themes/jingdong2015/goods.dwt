@@ -75,9 +75,9 @@ function reg(str){
 	                    </li>
 	                </ul>
 	                <div id="chooseBtns">
-	                	<div style="410px;height:42px;font-size:14px;">
-	                		<span style="color:#A5A5A5;">投资金额</span>：<input onblur=num() id="moneynum" style="border: 1px solid #E6E6E6;width: 100px;height: 14px;padding: 7px;font-size: 14px;"></input><em style="margin-left:5px;">元<em>
-	                		<span id="minmoney" style="display:none;color:red;">低于起购额度1000元</span>
+	                	<div class="choosesubnums">
+	                		<span>投资金额</span>：<input onblur=num() id="moneynum"></input><em>元<em>
+	                		<span id="minmoney">低于起购额度1000元</span>
 	                	</div>
 	                    <div id="choose-btn-append" class="btn"> <a class="btn-append " id="InitCartUrl" href="javascript:addToCart({$goods.goods_id})" title="">立即申购<b></b></a></div>
 	                </div>
