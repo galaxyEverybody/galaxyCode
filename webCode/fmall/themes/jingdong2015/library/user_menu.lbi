@@ -18,6 +18,7 @@
       <div class="item {if $action eq 'message_list'}curr{/if}"><a href="user.php?act=message_list">{$lang.label_message}</a></div>
       <div class="item {if $action eq 'affiliate'}curr{/if}"><a href="user.php?act=affiliate">{$lang.label_affiliate}</a></div>
       <div class="item {if $action eq 'comment_list'}curr{/if}"><a href="user.php?act=comment_list">{$lang.label_comment}</a></div>
+      <div class="item {if $action eq 'account_log'}curr{/if}"><a href="user.php?act=bang_payment">{$lang.label_bang_paymoney}</a></div>
     </dd>
   </dl>
   </dl>
