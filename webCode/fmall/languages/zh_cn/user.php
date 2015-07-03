@@ -31,6 +31,7 @@ $_LANG['label_order_invest'] = '我的投资';
 $_LANG['label_address'] = '收货地址';
 $_LANG['label_message'] = '我的留言';
 $_LANG['label_tag'] = '我的标签';
+$_LANG['label_bang_paymoney'] = '支付宝绑定';
 $_LANG['label_collection'] = '我的收藏';
 $_LANG['label_bonus'] = '我的红包';
 $_LANG['label_comment'] = '我的评论';
@@ -159,7 +160,10 @@ $_LANG['profile_js']['idcard_error'] = '您输入的身份证号码格式不正�
 $_LANG['pay_name'] = '名称';
 $_LANG['pay_desc'] = '描述';
 $_LANG['pay_fee'] = '手续费';
+$_LANG['consignee_good_name'] = '您选择的基金是';
 
+/* 绑定支付宝*/
+$_LANG['bang_payname'] = '绑定支付宝';
 /* 收货地址 */
 $_LANG['consignee_name'] = '收货人姓名';
 $_LANG['country_province'] = '配送区域';
