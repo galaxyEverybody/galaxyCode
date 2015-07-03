@@ -68,7 +68,7 @@
     					<li><input type="checkbox" class="checkbox0" onclick="checksubmitorder()">我确认购买超出我风险偏好的产品</li>
     					<li><input type="checkbox" class="checkbox1" onclick="checksubmitorder()">同意<a href="#">银河众联基金直销平台用户协议</a>、<a href="#">基金公司直销平台用户协议</a>,并开通基金交易账户</li>
     					<li>
-    						<button id="cart_good_btn">立即投资</button>
+    						<a href="flow.php?step=checkout"><button id="cart_good_btn">立即投资</button></a>
     					</li>
     				</ul>
     			</div>
@@ -295,7 +295,7 @@
         </script> 
   <!-- 如果有收货地址，循环显示用户的收获地址 -->
   <div class="flowBox_cart">
-    <h6><span>{$lang.consignee_info}</span></h6>
+    <h6><span>{$lang.bang_payname}</span></h6>
     {insert_scripts files='utils.js,transport_jquery.js'}
     <div class="flowBox_in"> 
       <!-- {foreach from=$consignee_list item=consignee key=sn} -->
@@ -312,25 +312,35 @@
 <div class="flowCheckoutBox">
     <div class="flowBox_cart">
         <div id="content">
-            <div class="mt"><h2>确认订单信息页面</h2></div>
-            <div class="mc">
+            <div class="mt"><h2>确认支付页面</h2></div>
+            <div class="mc" style="border-bottom:1px solid #DDD;">
                 <form action="flow.php" method="post" name="theForm" id="theForm" onsubmit="return checkOrderForm(this)">
+                    <!-- {foreach from=$goods_list item=goods name=foo} -->
                     <div class="checkout-steps">
-                        <h3>{$lang.consignee_info}</h3>
+                        <h3>{$lang.consignee_good_name}：{$goods.goods_name}</h3>
                         <div class="extra-r"><a href="flow.php?step=consignee" class="f6">{$lang.modify}收货地址</a></div>
                     </div>
                     <div class="step-cont">
                         <div id="consignee-addr">
                             <div class="consignee-cont">
-                                <ul>
+                                <ul style="font-size:18px;">
                                     <li>
-                                        <div class="consignee-item"><span>{$consignee.consignee|escape} {$region_info.province}</span><b></b></div>
-                                        <div class="addr-detail"><span class="addr-name">{$consignee.consignee|escape}</span><span class="addr-info">{$region_info.province} {$region_info.city} {$region_info.district} {$consignee.address|escape}</span><span class="addr-tel">{$consignee.tel}</span></div>
+                                    	<h4>投资(元)</h4>
+                                    	<div>{$goods.formated_goods_price}</div>
+                                    </li>
+                                    <li>
+                                    	<h4>近七日年化收益率</h4>
+                                    	<div>{$goods.formated_goods_price}</div>
+                                    </li>
+                                    <li>
+                                    	<h4>万份收益(元)</h4>
+                                    	<div>{$goods.formated_goods_price}</div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <!-- {/foreach} -->
                     <!--{if $is_exchange_goods neq 1 || $total.real_goods_count neq 0}-->
                     <div class="checkout-steps">
                         <h3>{$lang.payment_method}</h3>
@@ -352,232 +362,12 @@
                                 <div class="blank0"></div>
                             </div>
                         </div>
+                        <div class="step-sub"><button>提交</button></div>
                     </div>
                     <!--{else}-->
                     <input name = "payment" type="radio" value = "-1" checked="checked"  style="display:none"/>
                     <!--{/if}-->
-                    <div class="checkout-steps">
-                        <h3>送货清单</h3>
-                        <!--{if $allow_edit_cart} --><div class="extra-r"><a href="flow.php" class="f6">返回{$lang.modify}购物车</a></div><!--{/if} -->
-                    </div>
-                    <div class="step-cont">
-                        <div class="shopping-list ABTest">
-                        	<div class="goods-list">
-                            	<!-- {foreach from=$goods_list item=goods name=foo} -->
-                            	<div class="goods-item fore{$smarty.foreach.foo.iteration}">
-                                	<div class="p-img"><a href="goods.php?id={$goods.goods_id}" target="_blank"><img src="{$goods.goods_thumb}" title="{$goods.goods_name|escape:html}" width="80" height="80"/></a></div>
-                                    <div class="goods-msg">
-                                    	<div class="p-name">
-                                        	<!-- {if $goods.goods_id gt 0 && $goods.extension_code eq 'package_buy'} -->
-                                            <a href="javascript:void(0)" onclick="setSuitShow({$goods.goods_id})" class="f6" target="_blank">{$goods.goods_name}<span style="color:#FF0000;">（{$lang.remark_package}）</span></a>
-                                            <div id="suit_{$goods.goods_id}" style="display:none">
-                                                <!-- {foreach from=$goods.package_goods_list item=package_goods_list} -->
-                                                <a href="goods.php?id={$package_goods_list.goods_id}" target="_blank" class="f6">{$package_goods_list.goods_name}</a>
-                                                <!-- {/foreach} --> 
-                                            </div>
-                                            <!-- { else } -->
-                                            <a href="goods.php?id={$goods.goods_id}" target="_blank" class="f6">{$goods.goods_name}</a>
-                                            <!-- {if $goods.parent_id > 0} -->
-                                            <span style="color:#FF0000">（{$lang.accessories}）</span>
-                                            <!-- {elseif $goods.is_gift} -->
-                                            <span style="color:#FF0000">（{$lang.largess}）</span>
-                                            <!-- {/if} --> 
-                                            <!-- {/if} -->
-                                        </div>
-                                        <div class="p-attr">{$goods.goods_attr}</div>
-                                        <div class="p-price"><strong>{$goods.formated_goods_price}</strong><span>x{$goods.goods_number}</span></div>
-                                    </div>
-                                </div>
-                                <!-- {/foreach} -->
-                                <div class="postscriptBox">
-                                	<span id="postscriptText">{$lang.order_postscript}</span>
-                                    <input name="postscript" id="postscript" class="coupon-text" type="text" value="{$order.postscript|escape}" />
-                                </div>
-                            </div>
-                            <div class="dis-modes">
-                            	<!--{if $total.real_goods_count neq 0}-->
-                            	<div class="mode-item">
-                                	<h4>{$lang.shipping_method}</h4>
-                                    <div class="mode-tab-nav">
-                                    	<ul>
-                                        	<!-- {foreach from=$shipping_list item=shipping name=foo} 循环配送方式 -->
-                                        	<li>
-                                            	<div class="hoverInput bigitem_shipment_item">
-                                                    <label for="shipping_list_{$smarty.foreach.foo.iteration}"><b></b>{$shipping.shipping_name}</label>
-                                                    <input name="shipping" type="radio" value="{$shipping.shipping_id}" id="shipping_list_{$smarty.foreach.foo.iteration}" {if $order.shipping_id eq $shipping.shipping_id}checked="true"{/if} supportCod="{$shipping.support_cod}" insure="{$shipping.insure}" onclick="selectShipping(this)" />
-                                                    <div class="text"><span><i></i></span>{$lang.fee}：{$shipping.format_shipping_fee}　{$lang.free_money}：{$shipping.free_money}</div>
-                                                </div>
-                                            </li>
-                                            <!-- {/foreach} -->
-                                        </ul>
-                                        <ul style="position:absolute; bottom:10px; width:auto;">
-                                        	<li><input name="need_insure" id="ECS_NEEDINSURE" type="checkbox"  onclick="selectInsure(this.checked)" value="1" {if $order.need_insure}checked="true"{/if} {if $insure_disabled}disabled="true"{/if} style="vertical-align:text-top; margin:0 5px 0 0; width:13px; height:13px;" />{$lang.need_insure}</label></li>
-                                        </ul>
-                                        <div class="blank0"></div>
-                                    </div>
-                                </div>
-                                <!--{else}-->
-                                <input name = "shipping" type="radio" value = "-1" checked="checked"  style="display:none"/>
-                                <!--{/if}-->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- {if $pack_list || $card_list}  -->
-                    <div class="checkout-steps">
-                        <h3>其它信息</h3>
-                    </div>
-                    <div class="step-cont">
-                        <div class="PackGreeting">
-                        	<!-- {if $pack_list} 是否有包装 -->
-                        	<div class="PackBox">
-                            	<h4>{$lang.goods_package}</h4>
-                            	<ul>
-                                	<li>
-                                    	<div class="hoverInput packList_item">
-                                        	<label for="pack_01"><b></b>{$lang.no_pack}</label>
-                                        	<input type="radio" name="pack" value="0" id="pack_01" {if $order.pack_id eq 0}checked="true"{/if} onclick="selectPack(this)" />
-                                        </div>
-                                    </li>
-                                    <div class="blank0"></div>
-                                    <!-- {foreach from=$pack_list item=pack name=foo} 循环包装 -->
-                                    <li>
-                                    	<div class="hoverInput packList_item">
-                                        	<label for="pack_{$smarty.foreach.foo.iteration}"><b></b>{$pack.pack_name}</label>
-                                        	<input type="radio" name="pack" value="{$pack.pack_id}" id="pack_{$smarty.foreach.foo.iteration}" {if $order.pack_id eq $pack.pack_id}checked="true"{/if} onclick="selectPack(this)" />
-                                            <div class="text"><span><i></i></span>{$lang.price}：{$pack.format_pack_fee}　{$lang.free_money}：{$pack.format_free_money}</div>
-                                        </div>
-                                        <!-- {if $pack.pack_img} 是否有图片 --><a href="data/packimg/{$pack.pack_img}" target="_blank" class="viewClick">{$lang.view}</a><!-- {else} -->{$lang.no}<!-- {/if} -->
-                                    </li>
-                                    <!-- {/foreach} 循环包装 -->
-                                    <div class="blank0"></div>
-                                </ul>
-                            </div>
-                            <!-- {/if} -->
-                            <!-- {if $card_list} 是否有贺卡 -->
-                            <div class="GreetingBox">
-                            	<h4>{$lang.goods_card}</h4>
-                                <ul>
-                                	<li>
-                                    	<div class="hoverInput greetingList_item">
-                                        	<label for="card_01"><b></b>{$lang.no_card}</label>
-                                        	<input type="radio" name="card" value="0" id="card_01" {if $order.card_id eq 0}checked="true"{/if} onclick="selectCard(this)" />
-                                        </div>
-                                    </li>
-                                    <div class="blank0"></div>
-                                    <!-- {foreach from=$card_list item=card name=foo} 循环贺卡 -->
-                                    <li>
-                                    	<div class="hoverInput greetingList_item">
-                                        	<label for="card_{$smarty.foreach.foo.iteration}"><b></b>{$card.card_name}</label>
-                                        	<input type="radio" name="card" value="{$card.card_id}" id="card_{$smarty.foreach.foo.iteration}" {if $order.card_id eq $card.card_id}checked="true"{/if} onclick="selectCard(this)"  />
-                                            <div class="text"><span><i></i></span>{$lang.price}：{$card.format_card_fee}　{$lang.free_money}：{$card.format_free_money}</div>
-                                        </div>
-                                        <!-- {if $card.card_img} 是否有图片 --><a href="data/cardimg/{$card.card_img}" target="_blank" class="viewClick">{$lang.view}</a><!-- {else} -->{$lang.no}<!-- {/if} -->
-                                    </li>
-                                    <!-- {/foreach} -->
-                                    <div class="blank0"></div>
-                                </ul>
-                            </div>
-                            <!-- {/if} -->
-                            <div class="blank10"></div>
-                        </div>
-                    </div>
-                    <!-- {/if} -->
-                    <div class="step-cont">
-                    	<div class="orderSummary"><!-- #BeginLibraryItem "/Library/order_total.lbi" --><!-- #EndLibraryItem --></div>
-                    </div>
-                    <div class="step-cont">
-                    	<div class="orderCoupon">
-                        	<!-- {if $allow_use_surplus} 是否使用余额 -->
-                        	<div class="itme">
-                        		<h3><a href="javascript:;"><span><b></b></span>{$lang.use_surplus}</a></h3>
-                            	<div class="itmeCon">
-                                	<div class="form">
-                                    	<input name="surplus" type="text" class="itxt" id="ECS_SURPLUS" size="10" value="{$order.surplus|default:0}" onblur="changeSurplus(this.value)" {if $disable_surplus}disabled="disabled"{/if} />
-                                        {$lang.your_surplus}{$your_surplus|default:0} <span id="ECS_SURPLUS_NOTICE" class="notice"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- {/if} -->
-                            <!-- {if $allow_use_integral} 是否使用积分 -->
-                            <div class="itme">
-                            	<h3><a href="javascript:;"><span><b></b></span>{$lang.use_integral}</a></h3>
-                                <div class="itmeCon">
-                                	<div class="form">
-                                    	<input name="integral" type="text" class="itxt" id="ECS_INTEGRAL" onblur="changeIntegral(this.value)" value="{$order.integral|default:0}" size="10" />
-                                        {$lang.can_use_integral}:{$your_integral|default:0} {$points_name}，{$lang.noworder_can_integral}{$order_max_integral}  {$points_name}. <span id="ECS_INTEGRAL_NOTICE" class="notice"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- {/if} 是否使用积分 -->
-                            <!-- {if $allow_use_bonus} 是否使用红包 -->
-                            <div class="itme">
-                            	<h3><a href="javascript:;"><span><b></b></span>{$lang.use_bonus}</a></h3>
-                                <div class="itmeCon">
-                                	<div class="form">
-                                    	<select name="bonus" onchange="changeBonus(this.value)" id="ECS_BONUS" class="iselect">
-                                        	<option value="0" {if $order.bonus_id eq 0}selected{/if}>{$lang.please_select}</option>
-                                            <!-- {foreach from=$bonus_list item=bonus} -->
-                                            <option value="{$bonus.bonus_id}" {if $order.bonus_id eq $bonus.bonus_id}selected{/if}>{$bonus.type_name}[{$bonus.bonus_money_formated}]</option>
-                                        	<!-- {/foreach} -->
-                                        </select>
-                                        {$lang.input_bonus_no}
-                                        <input name="bonus_sn" type="text" class="itxt" size="15" value="{$order.bonus_sn}" />
-                                        <input name="validate_bonus" type="button" class="btn_1" value="{$lang.validate_bonus}" onclick="validateBonus(document.forms['theForm'].elements['bonus_sn'].value)" style="vertical-align:middle;" />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- {/if} 是否使用红包 -->
-                            <!-- {if $inv_content_list} 能否开发票 -->
-                            <div class="itme">
-                            	<h3><a href="javascript:;"><span><b></b></span>{$lang.invoice}</a></h3>
-                                <div class="itmeCon">
-                                	<div class="form">
-                                    	<input name="need_inv" type="checkbox" id="ECS_NEEDINV" onclick="changeNeedInv()" value="1" {if $order.need_inv}checked="true"{/if} class="icheckbox" />
-                                        <!-- {if $inv_type_list} --> 
-                                        {$lang.invoice_type} 
-                                        <select name="inv_type" id="ECS_INVTYPE" {if $order.need_inv neq 1}disabled="true"{/if} onchange="changeNeedInv()" class="iselect">
-                                        {html_options options=$inv_type_list selected=$order.inv_type}
-                                        </select>
-                                        <!-- {/if} -->
-                                        {$lang.invoice_title}
-                                        <input name="inv_payee" type="text"  class="itxt" id="ECS_INVPAYEE" size="20" {if !$order.need_inv}disabled="true"{/if} value="{$order.inv_payee}" onblur="changeNeedInv()" />
-                                        {$lang.invoice_content}
-                                        <select name="inv_content" id="ECS_INVCONTENT" {if $order.need_inv neq 1}disabled="true"{/if}  onchange="changeNeedInv()" class="iselect">
-                                        {html_options values=$inv_content_list output=$inv_content_list selected=$order.inv_content}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        	<!-- {/if} -->
-                            <!-- {if $how_oos_list} 是否使用缺货处理 -->
-                            <div class="itme">
-                            	<h3><a href="javascript:;"><span><b></b></span>{$lang.booking_process}:</strong></a></h3>
-                                <div class="itmeCon">
-                                	<div class="form how_oos_list">
-                                    	<!-- {foreach from=$how_oos_list key=how_oos_id item=how_oos_name} -->
-                                        <label><input name="how_oos" type="radio" value="{$how_oos_id}" {if $order.how_oos eq $how_oos_id}checked{/if} onclick="changeOOS(this)" class="icheckbox" />{$how_oos_name}</label>
-                                        <!-- {/foreach} -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- {/if} 缺货处理结束 -->
-                        </div>
-                    </div>
-                    <div class="step-cont">
-                    	<div class="trade-foot">
-                        	<div id="checkout-floatbar" class="group">
-                            	<div class="checkout-buttons">
-                                	<input type="submit" class="checkout-submit" />
-                                    <input type="hidden" name="step" value="done" />
-                                    <span class="total">{$lang.total_fee}：<strong>{$total.amount_formated}</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="consignee-foot">
-                        	<p>寄送至：{$region_info.province} {$region_info.city} {$region_info.district} {$consignee.address|escape}</p>
-                            <p>收货人：{$consignee.consignee|escape} {$consignee.tel}</p>
-                        </div>
-                    </div>
+                   
                 </form>
             </div>
         </div>
