@@ -1294,9 +1294,9 @@ h2,h3{font-size:14px}
 #choose .dd{overflow:hidden}
 #choose-btns .btn-coll b{background-position:0 -307px}
 #choose-btns a.btn-coll:hover b{background-position:-157px -307px}
-#preview{position:absolute;top:0;left:0;width:352px;*z-index:4}
+#preview{position:absolute;top:0;left:0;width:200px;*z-index:4}
 .jqzoom{position:relative;padding:0}
-#spec-n1{width:350px;height:350px;border:1px solid #ddd;margin-bottom:5px}
+#spec-n1{width:210px;height:210px;border:1px solid #ddd;margin-bottom:5px}
 #spec-list{position:relative;width:310px;height:54px;overflow:hidden;padding:0 21px}
 #spec-forward{left:0;background-position:0 -139px}
 #spec-list .spec-control{display:block;position:absolute;top:0;width:17px;height:54px}
@@ -2396,7 +2396,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .rootNav{ background:#f2f2f2; border-bottom:solid 1px #f2f2f2; margin-bottom:10px;}
 .rootNav .breadcrumb{ padding:0 0 0 6px; line-height:45px; height:45px;}
 .rootNav #product-intro{ background:#fff;padding-left: 378px; min-height:489px; _height:489px;}
-.rootNav #preview{ width:378px; padding-bottom:15px;}
+.rootNav #preview{ width:200px; padding-bottom:15px;}
 .rootNav #spec-n1{ border:0; margin:14px 0 14px 14px;}
 .rootNav #short-share{ padding:24px 40px 0 34px; overflow:hidden;}
 #spec-list .spec-control{ width:14px; background:url(images/newicon20140910.png) no-repeat;}
@@ -2404,16 +2404,24 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #spec-list #spec-forward.prevStop{ background-position:-56px -346px;}
 #spec-list #spec-backward{ background-position:-13px -346px;}
 #spec-list #spec-backward.nextStop{ background-position:-70px -346px;}
-.chooseBtnColl{ padding-left:18px; position: relative; white-space: nowrap; text-decoration: none;}
+.chooseBtnColl{ padding-left:0px; position: relative; white-space: nowrap; text-decoration: none;}
 .chooseBtnColl b{ position: absolute; display: inline-block; top:3px; left: 0; width:14px; height:14px; overflow: hidden; background:url(images/newicon20140910.png) -177px -296px no-repeat;}
 .rootNav #summary{ float:none; background:#f7f7f7; padding:10px 0 10px 0; position:relative; margin-bottom:5px;}
 .rootNav .proInfoUl{ height:auto; overflow:hidden; float:none; width:452px;}
 .rootNav #summary-grade p{ height:auto; line-height:normal;}
+.rootNav #summary-grade .goods_lists{ margin-right:5px;margin-left:5px;}
+.rootNav #summary-grade .goods_color{ list-style:none;width:320px;height:80px;background-color:#FFECEC;}
+.rootNav #summary-grade .goods_color span{ color:red;font-size:2em;}
+.rootNav #summary-grade .goods_colorleft{ float:left;width:150px;height:40px;text-align:center;margin-top:20px;border-right:dashed 1px #00FF00;}
+.rootNav #summary-grade .goods_colorright{ float:right;width:150px;height:40px;text-align:center;margin-top:20px;}
+.rootNav #summary-grade .summarymiddle{list-style:none;width:350px;line-height:30px;margin-top:20px;}
+.rootNav #product-intro .detail_table{width:460px;height:400px;float:right;margin-right:30px;}
 .rootNav #summary-grade a{ font: 14px verdana; color: #005ea7;}
 .rootNav #summary-grade a:hover{ text-decoration:underline; color: #005ea7;}
 .rootNav #summary li{ height:30px; line-height:30px; padding:0;}
 .rootNav #summary #summary-grade{ position:absolute; top:0; right:0; width: 50px; height: 30px; line-height: 15px; padding:0 0 0 10px; border-left: solid 1px #e6e6e6; position: absolute; top: 10px; right: 20px; z-index: 6; text-align: center;}
 .rootNav #summary-price .dd{ line-height:30px;}
+.rootNav #product-intro .goods_detail{ width:420px;float:left;margin-left:-100px;}
 .rootNav #summary-price .p-price{ color: #e4393c; font-size: 20px;}
 .rootNav #product-intro .dt{ width:72px;}
 .rootNav #name{ padding:15px 0 10px; border:0;}
@@ -2424,6 +2432,10 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .rootNav #choose.spec_list_box{ margin:5px 0 0 0; overflow:visible;}
 .rootNav #choose.spec_list_box li{}
 #chooseBtns{ padding: 10px 0 8px 10px; height:auto; overflow:hidden;}
+#chooseBtns .choosesubnums{ 410px;height:42px;font-size:14px;}
+#chooseBtns .choosesubnums em{ margin-left:5px;}
+#moneynum{ border: 1px solid #E6E6E6;width: 100px;height: 14px;padding: 7px;font-size: 14px;}
+#minmoney{ display:none;color:red;}
 #chooseBtns .chooseAmount{ width: 49px; height: 34px; overflow: hidden; border: 1px solid #ccc; position: relative; margin: 8px 10px 0 0; float:left;}
 #chooseBtns .wrapInput a{ display: block; width: 15px; text-align: center; height: 17px; line-height: 17px; overflow: hidden; background: #f1f1f1; color: #666; position: absolute; right: -1px; border: 1px solid #ccc;}
 #chooseBtns .btn-reduce{ bottom: -1px;}
