@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+</head>
+<body class="user_center JD_userCenter">
+<!-- #BeginLibraryItem "/library/page_header_user.lbi" --><!-- #EndLibraryItem --> 
+<div class="hide"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
+<div class="JD_userMain">
+<div class="w main">
+	<div class="right">
+    	<Div class="ordercontainer">
+        	<div class="userCenterBox clearfix" style="_height:1%;">
+<!-- {if $action eq "bang_payment"} -->
+	<div id="user_bang_pay">
+		<div class="user_pay_title">
+			<h3>绑定支付宝账号</h3>
+		</div>
+		<div class="user_payinfo">
+			<table style="width:100%;">
+				<tr class="pay_pagetr">
+					<td align="right" style="width:150px;">账号：</td><td>上善若水</td>
+				</tr>
+				<tr class="pay_pagetr">
+					<td align="right" style="width:150px;">手机号：</td><td>13121524680</td>
+				</tr>
+				<tr class="pay_pagetr">
+					<td align="right" style="width:150px;">淘宝账号：</td><td><input class="user_payusername" type="text" name="payname"></td>
+				</tr>
+				<tr style="height:60px;">
+					<td colspan="2"><input class="user_paynamesub" type="submit" name="submit" value="提交"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+<!-- {/if} -->
+
+			</div>
+        </div>
+    </div>
+    <div class="left">
+    	<div id="myjd" class="m">
+        	<div class="mt"><h2><a href="user.php">我的众联</a></h2></div>
+            <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
+        </div>
+    </div>
+    <div class="clr"></div>
+</div>
+</div>
+<!-- #BeginLibraryItem "/library/help.lbi" --> <!-- #EndLibraryItem --> 
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem -->
+</body>
+</html>
