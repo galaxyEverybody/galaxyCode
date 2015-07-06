@@ -161,7 +161,7 @@
 </div>
 <Div class="clear"></Div>
 
-<!--<div class="w todayRest">
+<div class="w todayRest">
 	<div class="mt">
     	<div class="jd-clock-wrap">
         	<div class="jd-clock">
@@ -172,16 +172,13 @@
             </div>
         </div>
     </div>
--->
     <!--slide end-->
-<!--
     <div class="jscroll" id="mscroll">
         <div class="ctrl" id="mscroll-ctrl-prev"><</div>
         <div class="ctrl" id="mscroll-ctrl-next">></div>
         <div class="o-list">
             <div class="list" id="mscroll-list">
                 <ul class="mscroll-ul" >
--->
                 <!-- TemplateBeginEditable name="首页幻灯片下方广告区域" -->
 <!-- #BeginLibraryItem "/library/ad_position.lbi" -->
 
@@ -888,13 +885,13 @@
 </div>
 
 <!-- fanbo s 20150423 -->
-<div id="elevator" class="elevator">
+<div id="elevator" class="elevator" >
     <ul>
-        <li><span class="lou">1F</span><span class="text">信托</span></li>
-        <li><span class="lou">2F</span><span class="text">保险</span></li>
-        <li><span class="lou">3F</span><span class="text">股票</span></li>
-        <li><span class="lou">4F</span><span class="text">债券</span></li>
-        <li><span class="lou">5F</span><span class="text">信贷</span></li>
+        <li ><span class="lou">1F</span><span class="text">信托</span></li>
+        <li ><span class="lou">2F</span><span class="text">保险</span></li>
+        <li ><span class="lou">3F</span><span class="text">股票</span></li>
+        <li ><span class="lou">4F</span><span class="text">债券</span></li>
+        <li ><span class="lou">5F</span><span class="text">信贷</span></li>
     </ul>
 </div>
 <!-- fanbo e 20150423 -->

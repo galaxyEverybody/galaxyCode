@@ -115,11 +115,11 @@ function reg(str){
       <div class="float-nav-wrap" style="height: 30px; ">
         <div class="mt" style="height: 30px;">
           <ul class="tab">
-            <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">商品介绍</a></li>
-            <li id="p-con-attr"><a href="javascript:;" class="toggle-link">规格参数</a></li>
-            <li id="p-con-list"><a href="javascript:;" class="toggle-link">包装清单</a></li>
-            <li id="p-con-comm"><a href="javascript:;" class="toggle-link">商品评价</a></li>
-            <li id="p-con-guar"><a href="javascript:;" class="toggle-link">售后保障</a></li>
+            <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">产品介绍</a></li>
+            <li id="p-con-attr"><a href="javascript:;" class="toggle-link" style="display:none;">规格参数</a></li>
+            <li id="p-con-list"><a href="javascript:;" class="toggle-link" style="display:none;">包装清单</a></li>
+            <li id="p-con-comm"><a href="javascript:;" class="toggle-link">产品评价</a></li>
+            <li id="p-con-guar"><a href="javascript:;" class="toggle-link" style="display:none;">售后保障</a></li>
           </ul>
         </div>
       </div>
@@ -208,7 +208,7 @@ function reg(str){
   </div>
   <div class="left">
     <!-- {if $related_cat} -->
-    <div id="related-sorts" class="m m2">
+    <div id="related-sorts" class="m m2" style="display:none;">
       <div class="mt">
         <h2>相关分类</h2>
       </div>
@@ -241,7 +241,7 @@ function reg(str){
        <!-- {/if} -->
     
     <!-- {if $$top10_price || $top10_brand || $top10_category}-->
-    <div id="ranklist" class="m m2">
+    <div id="ranklist" class="m m2" style="display:none;">
       <div class="mt">
         <h2>排行榜</h2>
       </div>

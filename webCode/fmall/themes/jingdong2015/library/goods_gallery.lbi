@@ -1,10 +1,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div>
 	<div id="preview">
-    	<div id="spec-n1" class="jqzoom" style="border:1px solid blue;"> <a href="{$pictures.0.img_url}" ><img id="midimg" src="{$goods.goods_img}" title="{$goods.goods_name|escape:html}" width="200" height="200"></a> </div>
+    	<div id="spec-n1" class="jqzoom"> <a href="{$pictures.0.img_url}" ><img id="midimg" src="{$goods.goods_img}" title="{$goods.goods_name|escape:html}" width="200" height="200"></a> </div>
         
-        <div id="short-share">
-            <a href="#none" onclick="javascript:collect({$goods.goods_id})" class="chooseBtnColl fr" >关注商品<b></b></a>
+        <div id="short-shareles">
+            <a href="#none" onclick="javascript:collect({$goods.goods_id})" class="chooseBtnColl fr" >关注产品<b></b></a>
             <div class="clb"></div>
         </div>
     </div>

@@ -190,28 +190,30 @@
 <div class="boxCenterList">
     <h5 class="mc"><span>{$lang.label_order}</span></h5>
     <div class="blank"></div>
-    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-        <tr align="center">
-            <td bgcolor="#ffffff">{$lang.order_number}</td>
-            <td bgcolor="#ffffff">{$lang.order_addtime}</td>
-            <td bgcolor="#ffffff">{$lang.order_money}</td>
-            <td bgcolor="#ffffff">{$lang.order_status}</td>
-            <td bgcolor="#ffffff">{$lang.handle}</td>
-        </tr>
-        <!--{foreach from=$orders item=item}-->
-        <tr>
-            <td align="center" bgcolor="#ffffff"><a href="user.php?act=order_detail&order_id={$item.order_id}" class="f6">{$item.order_sn}</a></td>
-            <td align="center" bgcolor="#ffffff">{$item.order_time}</td>
-            <td align="right" bgcolor="#ffffff">{$item.total_fee}</td>
-            <td align="center" bgcolor="#ffffff">{$item.order_status}</td>
-            <td align="center" bgcolor="#ffffff"><font class="f6">{$item.handler}</font></td>
-        </tr>
-        <!--{/foreach}-->
-    </table>
+    <!--{foreach from=$orders item=item}-->
+    <div class="goods_list_fund">
+    	<div class="goods_list_goodname">
+    		<em><a href="user.php?act=order_detail&order_id={$item.order_id}" class="f6">产品名称</a></em>
+    		<p><span><a href="">买入</a></span><span><a href="">赎回</a></span></p>
+    	</div>
+    	<ul>
+    		<li>
+    			<h3>总投入(元)</h3><div class="goods_list_money">{$item.total_fee}</div>
+    		</li>
+    		<li>
+    			<h3>昨日收益(元)</h3><div class="goods_list_money">0.05</div>
+    		</li>
+    		<li>
+    			<h3>累计收益(元)</h3><div class="goods_list_money">0.05</div>
+    		</li>
+    	</ul>
+    </div>
+    <!--{/foreach}-->
+    
     <div class="blank10"></div>
     <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
-</div>
-<div class="boxCenterList">
+
+<div class="boxCenterList" style="display:none;">
     <h5 class="mc"><span>{$lang.merge_order}</span></h5>
     <div class="blank"></div>
     <script type="text/javascript">
@@ -272,168 +274,56 @@
 <!--{if $action eq order_detail} -->
 <div class="boxCenterList">
 <h5 class="mc"><span>{$lang.order_status}</span></h5>
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-	<tr>
-		<td width="15%" align="right" bgcolor="#ffffff">{$lang.detail_order_sn}：</td>
-		<td align="left" bgcolor="#ffffff">
-        	{$order.order_sn}
-            <!-- {if $order.extension_code eq "group_buy"} -->
-            <a href="./group_buy.php?act=view&id={$order.extension_id}" class="f6"><strong>{$lang.order_is_group_buy}</strong></a>
-            <!-- {elseif $order.extension_code eq "exchange_goods"} -->
-            <a href="./exchange.php?act=view&id={$order.extension_id}" class="f6"><strong>{$lang.order_is_exchange}</strong></a>
-            <!--{/if}-->
-            <a href="user.php?act=message_list&order_id={$order.order_id}" class="f6">[{$lang.business_message}]</a>
-        </td>
-    </tr>
-	<tr>
-		<td align="right" bgcolor="#ffffff">{$lang.detail_order_status}：</td>
-		<td align="left" bgcolor="#ffffff">{$order.order_status}&nbsp;&nbsp;&nbsp;&nbsp;{$order.confirm_time}</td>
-	</tr>
-	<tr>
-		<td align="right" bgcolor="#ffffff">{$lang.detail_pay_status}：</td>
-		<td align="left" bgcolor="#ffffff">{$order.pay_status}&nbsp;&nbsp;&nbsp;&nbsp;{if $order.order_amount gt 0}{$order.pay_online}{/if}{$order.pay_time}</td>
-	</tr>
-	<tr>
-		<td align="right" bgcolor="#ffffff">{$lang.detail_shipping_status}：</td>
-		<td align="left" bgcolor="#ffffff">{$order.shipping_status}&nbsp;&nbsp;&nbsp;&nbsp;{$order.shipping_time}</td>
-	</tr>
-	<!-- {if $order.invoice_no}-->
-	<tr>
-		<td align="right" bgcolor="#ffffff">{$lang.consignment}：</td>
-		<td align="left" bgcolor="#ffffff">{$order.invoice_no}</td>
-	</tr>
-	<!--{/if}-->
-	<!--{if $order.to_buyer}-->
-	<tr>
-		<td align="right" bgcolor="#ffffff">{$lang.detail_to_buyer}：</td>
-		<td align="left" bgcolor="#ffffff">{$order.to_buyer}</td>
-	</tr>
-	<!-- {/if} -->
-
-	<!--{if $virtual_card}-->
-	<tr>
-		<td align="right" bgcolor="#ffffff">{$lang.virtual_card_info}：</td>
-		<td colspan="3" align="left" bgcolor="#ffffff">
-			<!--{foreach from=$virtual_card item=vgoods}-->
-			<!--{foreach from=$vgoods.info item=card}-->
-			<!--{if $card.card_sn}-->{$lang.card_sn}:<span style="color:red;">{$card.card_sn}</span><!--{/if}-->
-			<!--{if $card.card_password}-->{$lang.card_password}:<span style="color:red;">{$card.card_password}</span><!--{/if}-->
-			<!--{if $card.end_date}-->{$lang.end_date}:{$card.end_date}<!--{/if}--><br />
-			<!--{/foreach}-->
-			<!--{/foreach}-->
-		</td>
-	</tr>
-	<!--{/if}-->
-</table>
+	<!-- {foreach from=$goods_list item=goods} -->
+    <div class="goods_list_fund">
+    	<div class="goods_list_goodname">
+    		<em><a href="user.php?act=order_detail&order_id={$item.order_id}" class="f6">{$goods.goods_name}</a></em>
+    		<p><span><a href="">买入</a></span><span><a href="">赎回</a></span></p>
+    	</div>
+    	<ul>
+    		<li>
+    			<h3>总投入(元)</h3><div class="goods_list_money">{$goods.goods_price}</div>
+    		</li>
+    		<li>
+    			<h3>昨日收益(元)</h3><div class="goods_list_money">0.05</div>
+    		</li>
+    		<li>
+    			<h3>累计收益(元)</h3><div class="goods_list_money">0.05</div>
+    		</li>
+    	</ul>
+    </div>
+    <div style="text-align:center;margin-top:5px;">
+		<button style="width:100px;height:30px;background:#fb552f;border:1px solid #dedede;color:#fff;font-size:14px;font-weight:bold;"><a href="">买入</a></button>
+		<button style="margin-left:10px;width:100px;height:30px;background:#fb552f;border:1px solid #dedede;color:#fff;font-size:14px;font-weight:bold;"><!-- {if $allow_to_cart} --><a href="javascript:;" onclick="returnToCart({$order.order_id})">赎回</a><!-- {/if} --></button>
+	</div>
+	<!-- {/foreach} -->
 </div>
 <div class="boxCenterList">
-<h5 class="mc"><span>{$lang.goods_list}</span><!-- {if $allow_to_cart} --><a href="javascript:;" onclick="returnToCart({$order.order_id})" class="f6">{$lang.return_to_cart}</a><!-- {/if} --></h5>
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-	<tr>
-		<th width="23%" align="center" bgcolor="#ffffff">{$lang.goods_name}</th>
-		<th width="29%" align="center" bgcolor="#ffffff">{$lang.goods_attr}</th>
-		<!--<th>{$lang.market_price}</th>-->
-		<th width="26%" align="center" bgcolor="#ffffff">{$lang.goods_price}<!-- {if $order.extension_code eq "group_buy"} -->{$lang.gb_deposit}<!-- {/if} --></th>
-		<th width="9%" align="center" bgcolor="#ffffff">{$lang.number}</th>
-		<th width="20%" align="center" bgcolor="#ffffff">{$lang.subtotal}</th>
-	</tr>
-	<!-- {foreach from=$goods_list item=goods} -->
-	<tr>
-		<td bgcolor="#ffffff">
-			<!-- {if $goods.goods_id gt 0 && $goods.extension_code neq 'package_buy'} 商品 -->
-            <a href="goods.php?id={$goods.goods_id}" target="_blank" class="f6">{$goods.goods_name}</a>
-            <!-- {if $goods.parent_id > 0} -->
-            <span style="color:#FF0000">（{$lang.accessories}）</span>
-            <!-- {elseif $goods.is_gift} -->
-            <span style="color:#FF0000">（{$lang.largess}）</span>
-            <!-- {/if} -->
-            <!-- {elseif $goods.goods_id gt 0 && $goods.extension_code eq 'package_buy'} -->
-            <a href="javascript:void(0)" onclick="setSuitShow({$goods.goods_id})" class="f6">{$goods.goods_name}<span style="color:#FF0000;">（礼包）</span></a>
-            <div id="suit_{$goods.goods_id}" style="display:none">
-            	<!-- {foreach from=$goods.package_goods_list item=package_goods_list} -->
-                <a href="goods.php?id={$package_goods_list.goods_id}" target="_blank" class="f6">{$package_goods_list.goods_name}</a><br />
-                <!-- {/foreach} -->
-            </div>
-        	<!-- {/if} -->
-        </td>
-		<td align="left" bgcolor="#ffffff">{$goods.goods_attr|nl2br}</td>
-		<!--<td align="right">{$goods.market_price}</td>-->
-		<td align="right" bgcolor="#ffffff">{$goods.goods_price}</td>
-		<td align="center" bgcolor="#ffffff">{$goods.goods_number}</td>
-		<td align="right" bgcolor="#ffffff">{$goods.subtotal}</td>
-	</tr>
-	<!-- {/foreach} -->
-	<tr>
-		<td colspan="8" bgcolor="#ffffff" align="right">{$lang.shopping_money}<!-- {if $order.extension_code eq "group_buy"} -->{$lang.gb_deposit}<!-- {/if} -->: {$order.formated_goods_amount}</td>
-	</tr>
-</table>
+<h5 class="mc"><span>{$lang.goods_list}</span></h5>
+	<p>近七日年化收益率：{}&nbsp;&nbsp;&nbsp;万份收益：{}元</p>
+	<div style="width:98%;height:200px;border:1px solid blue;margin-top:10px;">
+		
+	</div>
 </div>
 <div class="boxCenterList">
 <h5 class="mc"><span>{$lang.fee_total}</span></h5>
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-	<tr>
-		<td align="right" bgcolor="#ffffff">
-			{$lang.goods_all_price}<!-- {if $order.extension_code eq "group_buy"} -->{$lang.gb_deposit}<!-- {/if} -->: {$order.formated_goods_amount}
-			<!-- {if $order.discount gt 0} 折扣 -->
-			- {$lang.discount}: {$order.formated_discount}
-			<!-- {/if} -->
-            <!-- {if $order.tax gt 0} -->
-            + {$lang.tax}: {$order.formated_tax}
-            <!-- {/if} -->
-            <!-- {if $order.shipping_fee > 0} -->
-            + {$lang.shipping_fee}: {$order.formated_shipping_fee}
-            <!-- {/if} -->
-            <!-- {if $order.insure_fee > 0} -->
-            + {$lang.insure_fee}: {$order.formated_insure_fee}
-            <!-- {/if} -->
-            <!-- {if $order.pay_fee > 0} -->
-            + {$lang.pay_fee}: {$order.formated_pay_fee}
-            <!-- {/if} -->
-            <!-- {if $order.pack_fee > 0} -->
-            + {$lang.pack_fee}: {$order.formated_pack_fee}
-            <!-- {/if} -->
-            <!-- {if $order.card_fee > 0} -->
-            + {$lang.card_fee}: {$order.formated_card_fee}
-            <!-- {/if} -->
-        </td>
+<table width="100%" style="width:100%;background-color:#f5f5f5;border:1px solid #ddd;text-align:center;" cellpadding="5" cellspacing="1">
+	<tr style="background-color:#ddd">
+		<th>产品名称</th>
+		<th>产品类型</th>
+		<th>日期</th>
+		<th>金额</th>
 	</tr>
 	<tr>
-		<td align="right" bgcolor="#ffffff">
-			<!-- {if $order.money_paid > 0} -->
-			- {$lang.order_money_paid}: {$order.formated_money_paid}
-			<!-- {/if} -->
-			<!-- {if $order.surplus > 0} -->
-			- {$lang.use_surplus}: {$order.formated_surplus}
-			<!-- {/if} -->
-			<!-- {if $order.integral_money > 0} -->
-			- {$lang.use_integral}: {$order.formated_integral_money}
-			<!-- {/if} -->
-			<!-- {if $order.bonus > 0} -->
-			- {$lang.use_bonus}: {$order.formated_bonus}
-			<!-- {/if} -->
-        </td>
+		<td>广发基金</td>
+		<td>股票型</td>
+		<td>2015-7-6</td>
+		<td>+0.05</td>
 	</tr>
-	<tr>
-		<td align="right" bgcolor="#ffffff">{$lang.order_amount}: {$order.formated_order_amount}
-			<!-- {if $order.extension_code eq "group_buy"} --><br />
-			{$lang.notice_gb_order_amount}<!-- {/if} -->
-        </td>
-    </tr>
-	<!-- {if $allow_edit_surplus} 如果可以编辑使用余额数 -->
-	<tr>
-		<td align="right" bgcolor="#ffffff">
-            <form action="user.php" method="post" name="formFee" id="formFee">{$lang.use_more_surplus}:
-                <input name="surplus" type="text" size="8" value="0" style="border:1px solid #ccc;"/>{$max_surplus}
-                <input type="submit" name="Submit" class="submit" value="{$lang.button_submit}" />
-                <input type="hidden" name="act" value="act_edit_surplus" />
-                <input type="hidden" name="order_id" value="{$smarty.get.order_id}" />
-            </form>
-        </td>
-	</tr>
-	<!--{/if}-->
 </table>
 </div>
-<div class="boxCenterList">
+
+<div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span>{$lang.consignee_info}</span></h5>
 <!-- {if $order.allow_update_address gt 0} -->
 <form action="user.php" method="post" name="formAddress" id="formAddress">
@@ -510,9 +400,10 @@
     </tr>
 	<!--{/if}-->
 </table>
-<!-- {/if} -->
 </div>
-<div class="boxCenterList">
+<!-- {/if} -->
+
+<div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span>{$lang.payment}</span></h5>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
 	<tr>
@@ -536,7 +427,7 @@
     </tr>
 </table>
 </div>
-<div class="boxCenterList">
+<div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span>{$lang.other_info}</span></h5>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
     <!-- {if $order.shipping_id > 0} -->
@@ -603,164 +494,84 @@
 <!--#订单详情页 end-->
 
 <!--#会员余额 start-->
-<!--{if $action eq "account_raply" || $action eq "account_log" || $action eq "account_deposit" || $action eq "account_detail"} -->
-<script type="text/javascript">
-	{foreach from=$lang.account_js item=item key=key}
-	var {$key} = "{$item}";
-	{/foreach}
-</script>
+<!-- {if $action eq "account_log"} -->
 <div class="boxCenterList">
-<h5 class="mc"><span>{$lang.user_balance}</span></h5>
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-	<tr>
-		<td align="right" bgcolor="#ffffff"><a href="user.php?act=account_deposit" class="f6">{$lang.surplus_type_0}</a> | <a href="user.php?act=account_raply" class="f6">{$lang.surplus_type_1}</a> | <a href="user.php?act=account_detail" class="f6">{$lang.add_surplus_log}</a> | <a href="user.php?act=account_log" class="f6">{$lang.view_application}</a> </td>
-    </tr>
+	<p style="width:100%;height:50px;line-height:50px;">
+		账户余额:{}  
+		<button style="width:100px;height:30px;background:#fb552f;border:1px solid #dedede;margin-left:10px;font-weight:bold;font-size:14px;"><a href="user.php?act=account_deposit" class="f6">充值</a></button>
+		<button style="width:100px;height:30px;background:#fb552f;border:1px solid #dedede;margin-left:10px;font-weight:bold;font-size:14px;"><a href="user.php?act=account_raply" class="f6">提现</a></button>
+	</p>
+	<h5 class="mc">我的投资</h5>
+	<table style="width:100%;height:auto;border:1px solid #ddd;text-align:center;" cellpadding="5" cellspacing="1">
+		<tr style="background-color:#ddd;">
+			<th>产品</th>
+			<th>数量</th>
+			<th>金额</th>
+		</tr>
+		<tr>
+			<td>基金</td>
+			<td>3</td>
+			<td>50000元</td>
+		</tr>
+	</table>
+</div>
+<div class="blank10"></div>
+<!-- {/if} -->
+<!-- {if $action eq "account_deposit"} -->
+<div class="boxCenterList">
+<div style="width:100%;height:35px;border-bottom:1px solid #ddd;">
+	<h3>账户充值</h3>
+</div>
+<form name="formSurplus" method="post" action="user.php" onSubmit="return submitSurplus()">
+<table style="width:40%;height:auto;border:0px solid #ddd;text-align:center;margin-left:150px;font-size:14px;" cellpadding="10" cellspacing="1">
+		<tr>
+			<td align="left">充值金额:</td>
+			<td><input style="width:200px;height:30px;" type="text" name="amount"/></td>
+		</tr>
+		<tr>
+			<td>充值密码:</td>
+			<td><input style="width:200px;height:30px;" type="text" name=""/></td>
+		</tr>
+		<tr>
+			<td>支付方式:</td>
+			<td>农行支付</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input style="width:200px;height:30px;" type="submit" name="" value="提交"/></td>
+		</tr>
 </table>
+</form>
+</div>
 <div class="blank10"></div>
 <!-- {/if} -->
 <!-- {if $action eq "account_raply"} -->
-<form name="formSurplus" method="post" action="user.php" onSubmit="return submitSurplus()">
-    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-        <tr>
-            <td width="15%" bgcolor="#ffffff">{$lang.repay_money}:</td>
-            <td bgcolor="#ffffff" align="left"><input type="text" name="amount" value="{$order.amount|escape}" class="inputBg" size="30" />
-        </td>
-        </tr>
-        <tr>
-            <td bgcolor="#ffffff">{$lang.process_notic}:</td>
-            <td bgcolor="#ffffff" align="left"><textarea name="user_note" cols="55" rows="6" style="border:1px solid #ccc;">{$order.user_note|escape}</textarea></td>
-        </tr>
-        <tr>
-            <td bgcolor="#ffffff" colspan="2" align="center">
-                <input type="hidden" name="surplus_type" value="1" />
-                <input type="hidden" name="act" value="act_account" />
-                <input type="submit" name="submit"  class="bnt_blue_1" value="{$lang.submit_request}" />
-                <input type="reset" name="reset" class="bnt_blue_1" value="{$lang.button_reset}" />
-            </td>
-        </tr>
-    </table>
-</form>
-<!-- {/if} -->
-<!-- {if $action eq "account_deposit"} -->
-<form name="formSurplus" method="post" action="user.php" onSubmit="return submitSurplus()">
-    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-        <tr>
-            <td width="15%" bgcolor="#ffffff">{$lang.deposit_money}:</td>
-            <td align="left" bgcolor="#ffffff"><input type="text" name="amount"  class="inputBg" value="{$order.amount|escape}" size="30" /></td>
-        </tr>
-        <tr>
-            <td bgcolor="#ffffff">{$lang.process_notic}:</td>
-            <td align="left" bgcolor="#ffffff"><textarea name="user_note" cols="55" rows="6" style="border:1px solid #ccc;">{$order.user_note|escape}</textarea></td>
-        </tr>
-    </table>
-    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-        <tr align="center">
-            <td bgcolor="#ffffff"  colspan="3" align="left">{$lang.payment}:</td>
-        </tr>
-        <tr align="center">
-            <td bgcolor="#ffffff">{$lang.pay_name}</td>
-            <td bgcolor="#ffffff" width="60%">{$lang.pay_desc}</td>
-            <td bgcolor="#ffffff" width="17%">{$lang.pay_fee}</td>
-        </tr>
-        <!-- {foreach from=$payment item=list} -->
-        <tr>
-            <td bgcolor="#ffffff" align="left"><input type="radio" name="payment_id" value="{$list.pay_id}" />{$list.pay_name}</td>
-            <td bgcolor="#ffffff" align="left">{$list.pay_desc}</td>
-            <td bgcolor="#ffffff" align="center">{$list.pay_fee}</td>
-        </tr>
-        <!-- {/foreach} -->
-        <tr>
-        <td bgcolor="#ffffff" colspan="3"  align="center">
-            <input type="hidden" name="surplus_type" value="0" />
-            <input type="hidden" name="rec_id" value="{$order.id}" />
-            <input type="hidden" name="act" value="act_account" />
-            <input type="submit" class="bnt_blue_1" name="submit" value="{$lang.submit_request}" />
-            <input type="reset" class="bnt_blue_1" name="reset" value="{$lang.button_reset}" />
-        </td>
-        </tr>
-    </table>
-</form>
-<!-- {/if} -->
-<!-- {if $action eq "act_account"} -->
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-    <tr>
-        <td width="25%" align="right" bgcolor="#ffffff">{$lang.surplus_amount}</td>
-        <td width="80%" bgcolor="#ffffff">{$amount}</td>
-    </tr>
-    <tr>
-        <td align="right" bgcolor="#ffffff">{$lang.payment_name}</td>
-        <td bgcolor="#ffffff">{$payment.pay_name}</td>
-    </tr>
-    <tr>
-        <td align="right" bgcolor="#ffffff">{$lang.payment_fee}</td>
-        <td bgcolor="#ffffff">{$pay_fee}</td>
-    </tr>
-    <tr>
-        <td align="right" valign="middle" bgcolor="#ffffff">{$lang.payment_desc}</td>
-        <td bgcolor="#ffffff">{$payment.pay_desc}</td>
-    </tr>
-    <tr>
-        <td colspan="2" bgcolor="#ffffff">{$payment.pay_button}</td>
-    </tr>
-</table>
-<!-- {/if} -->
-<!-- {if $action eq "account_detail"} -->
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-    <tr align="center">
-        <td bgcolor="#ffffff">{$lang.process_time}</td>
-        <td bgcolor="#ffffff">{$lang.surplus_pro_type}</td>
-        <td bgcolor="#ffffff">{$lang.money}</td>
-        <td bgcolor="#ffffff">{$lang.change_desc}</td>
-    </tr>
-    <!--{foreach from=$account_log item=item}-->
-    <tr>
-        <td align="center" bgcolor="#ffffff">{$item.change_time}</td>
-        <td align="center" bgcolor="#ffffff">{$item.type}</td>
-        <td align="right" bgcolor="#ffffff">{$item.amount}</td>
-        <td bgcolor="#ffffff" title="{$item.change_desc}">&nbsp;&nbsp;{$item.short_change_desc}</td>
-    </tr>
-    <!--{/foreach}-->
-    <tr>
-        <td colspan="4" align="center" bgcolor="#ffffff"><div align="right">{$lang.current_surplus}{$surplus_amount}</div></td>
-    </tr>
-</table>
-<div class="blank10"></div>
-<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
-<!-- {/if} -->
-<!-- {if $action eq "account_log"} -->
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-    <tr align="center">
-        <td bgcolor="#ffffff">{$lang.process_time}</td>
-        <td bgcolor="#ffffff">{$lang.surplus_pro_type}</td>
-        <td bgcolor="#ffffff">{$lang.money}</td>
-        <td bgcolor="#ffffff">{$lang.process_notic}</td>
-        <td bgcolor="#ffffff">{$lang.admin_notic}</td>
-        <td bgcolor="#ffffff">{$lang.is_paid}</td>
-        <td bgcolor="#ffffff">{$lang.handle}</td>
-    </tr>
-    <!--{foreach from=$account_log item=item}-->
-    <tr>
-        <td align="center" bgcolor="#ffffff">{$item.add_time}</td>
-        <td align="left" bgcolor="#ffffff">{$item.type}</td>
-        <td align="right" bgcolor="#ffffff">{$item.amount}</td>
-        <td align="left" bgcolor="#ffffff">{$item.short_user_note}</td>
-        <td align="left" bgcolor="#ffffff">{$item.short_admin_note}</td>
-        <td align="center" bgcolor="#ffffff">{$item.pay_status}</td>
-        <td align="right" bgcolor="#ffffff">{$item.handle}
-            <!-- {if ($item.is_paid eq 0 && $item.process_type eq 1) || $item.handle} -->
-            <a href="user.php?act=cancel&id={$item.id}" onclick="if (!confirm('{$lang.confirm_remove_account}')) return false;">{$lang.is_cancel}</a>
-            <!-- {/if} -->
-        </td>
-    </tr>
-    <!--{/foreach}-->
-    <tr>
-        <td colspan="7" align="right" bgcolor="#ffffff">{$lang.current_surplus}{$surplus_amount}</td>
-    </tr>
-</table>
-<div class="blank10"></div>
-<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+<div class="boxCenterList">
+<div style="width:100%;height:35px;border-bottom:1px solid #ddd;">
+	<h3>账户提现</h3>
 </div>
+<form name="formSurplus" method="post" action="user.php" onSubmit="return submitSurplus()">
+<table style="width:40%;height:auto;border:0px solid #ddd;text-align:center;margin-left:150px;font-size:14px;" cellpadding="10" cellspacing="1">
+		<tr>
+			<td align="left">提现金额:</td>
+			<td><input style="width:200px;height:30px;" type="text" name="amount"/></td>
+		</tr>
+		<tr>
+			<td>充值密码:</td>
+			<td><input style="width:200px;height:30px;" type="password" name=""/></td>
+		</tr>
+		<tr>
+			<td>提现方式:</td>
+			<td>农行支付</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input style="width:200px;height:30px;" type="submit" name="" value="提交"/></td>
+		</tr>
+</table>
+</form>
+</div>
+<div class="blank10"></div>
 <!-- {/if} -->
+</div>
 <!--#会员余额 end-->
 
 <!--#收货地址页面 -->

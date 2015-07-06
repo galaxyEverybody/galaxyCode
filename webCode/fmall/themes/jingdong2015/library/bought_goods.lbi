@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- {if $bought_goods} -->
 <div>
-  <div id="buy-buy" class="m m2 related-buy" style="display: block; ">
+  <div id="buy-buy" class="m m2 related-buy" style="display: none; ">
     <div class="mt">
       <h2>购买了该商品的用户还购买了</h2>
     </div>
