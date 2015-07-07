@@ -615,7 +615,7 @@ function check_phone_callback(result){
 			$("#phone_notice").removeClass("error");
 		}
 		$("#phone_notice").addClass("focus");
-	    document.getElementById('phone_notice').innerHTML = "<a onclick=getphoneverify()>点击获取短信验证码</a>";
+	    document.getElementById('phone_notice').innerHTML = "可以注册";
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
@@ -644,7 +644,8 @@ function get_phoneverify_callback(result)
 			$("#phoneverify_notice").removeClass("error");
 		}
 		$("#phoneverify_notice").addClass("focus");
-	    document.getElementById('phoneverify_notice').innerHTML = '验证码已发送';
+	    //document.getElementById('phone_notice').innerHTML = '';
+		RemainTime();
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
@@ -664,7 +665,8 @@ function checkphoneverify(phoneverify)
 	var submit_disabled = false;
 	if (phoneverify == '')
 	  {
-	    document.getElementById('phoneverify_notice').innerHTML = '验证码不能为空';
+		alert('短信验证码不能为空');
+	    //document.getElementById('phoneverify_notice').innerHTML = '验证码不能为空';
 		if($("#phoneverify_notice").hasClass("focus"))
 		{
 			$("#phoneverify_notice").removeClass("focus");
@@ -674,7 +676,8 @@ function checkphoneverify(phoneverify)
 	  }
 	  else if (!Utils.isTelverify(phoneverify))
 	  {
-	    document.getElementById('phoneverify_notice').innerHTML = '验证码格式不正确';
+		 alert('短信验证码格式不正确')
+	    //document.getElementById('phoneverify_notice').innerHTML = '验证码格式不正确';
 		if($("#phoneverify_notice").hasClass("focus"))
 		{
 			$("#phoneverify_notice").removeClass("focus");
@@ -704,12 +707,13 @@ function check_phoneverify_callback(result)
 			$("#phoneverify_notice").removeClass("error");
 		}
 		$("#phoneverify_notice").addClass("focus");
-	    document.getElementById('phoneverify_notice').innerHTML = '输入正确';
+	    //document.getElementById('phone_notice').innerHTML = '输入正确';
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
 	  {
-	    document.getElementById('phoneverify_notice').innerHTML = '输入错误';
+		alert('短信验证码输入错误');
+	    //document.getElementById('phone_notice').innerHTML = '输入错误';
 		if($("#phoneverify_notice").hasClass("focus"))
 		{
 			$("#phoneverify_notice").removeClass("focus");
@@ -895,36 +899,53 @@ function submitSurplus()
 {
   var frm            = document.forms['formSurplus'];
   var surplus_type   = frm.elements['surplus_type'].value;
-  var surplus_amount = frm.elements['amount'].value;
-  var process_notic  = frm.elements['user_note'].value;
+  var surplus_amount = frm.elements['amount'].value;//充值提现金额
+  var process_notic  = frm.elements['moneypassword'].value;//提现密码
   var payment_id     = 0;
   var msg = '';
 
   if (surplus_amount.length == 0 )
   {
-    msg += surplus_amount_empty + "\n";
+    msg += '请输入您要操作的金额数量！' + '\n';
   }
   else
   {
     var reg = /^[\.0-9]+/;
     if ( ! reg.test(surplus_amount))
     {
-      msg += surplus_amount_error + '\n';
+      msg += '您输入的金额数量格式不正确！' + '\n';
     }
   }
-
-  if (process_notic.length == 0)
+  
+  if(surplus_type == 1)
   {
-    msg += process_desc + "\n";
+	  if (process_notic.length == 0)
+	  {
+	    msg += '请输入您的提现密码';
+	  }
+	  else
+	  {
+		  var reg = /[a-zA-Z0-9]{8,18}/;
+		  if ( ! reg.test(process_notic))
+	      {
+			  msg += '您输入的密码格式不正确！';
+	      }
+	  }
+	  
   }
+  
 
   if (msg.length > 0)
   {
     alert(msg);
     return false;
   }
+  else
+  {
+	  return true;
+  }
 
-  if (surplus_type == 0)
+  /*if (surplus_type == 0)
   {
     for (i = 0; i < frm.elements.length ; i ++)
     {
@@ -940,9 +961,9 @@ function submitSurplus()
       alert(payment_empty);
       return false;
     }
-  }
+  }*/
 
-  return true;
+  //return true;
 }
 
 /* *

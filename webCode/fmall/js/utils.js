@@ -80,14 +80,14 @@ Utils.isIdcard = function( idcard )
 
 Utils.isTel = function ( tel )
 {
-  var reg = /13[123569]{1}\d{8}|15[1235689]\d{8}|188\d{8}/; //只允许使用数字-空格等
+  var reg = /13[1235689]{1}\d{8}|15[1235689]\d{8}|188\d{8}/; //只允许使用数字-空格等
 
   return reg.test( tel );
 }
 
 Utils.isTelverify = function ( phoneverify )
 {
-	var reg = /\d{6}/; //只允许使用数字
+	var reg = /\d{4}/; //只允许使用数字
 
 	return reg.test( phoneverify );
 }
@@ -206,4 +206,30 @@ function cleanWhitespace(element)
    if (node.nodeType == 3 && !/\S/.test(node.nodeValue))
      element.removeChild(node);
    }
+}
+
+/*倒计时*/
+function RemainTime(){
+	var iTime = 59;
+	var Account;
+	var timenum = document.getElementById('doutimeinp').value;
+
+	if(timenum < iTime){
+		iTime = timenum
+	}
+
+	var sTime="";
+	if (iTime >= 0){
+		if(iTime==0){
+			clearTimeout(Account);
+		}else{
+			iTime=iTime-1;
+			document.getElementById('doutimeinp').value = iTime;
+			Account = setTimeout("RemainTime()",1000);
+		}
+	}else{
+		sTime='没有倒计时';
+	}
+	
+	document.getElementById('phone_notice').innerHTML = iTime;
 }
