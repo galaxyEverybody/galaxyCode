@@ -325,7 +325,8 @@
           <td><input name="confirm_password" type="password" size="25"  class="inputBg"/></td>
         </tr>
         <tr>
-          <td colspan="2" align="center"><input type="hidden" name="act" value="act_edit_password" />
+          <td colspan="2" align="center">
+          	<input type="hidden" name="act" value="act_edit_password" />
             <input type="hidden" name="uid" value="{$uid}" />
             <input type="hidden" name="code" value="{$code}" />
             <input type="submit" name="submit" value="{$lang.confirm_submit}" /></td>

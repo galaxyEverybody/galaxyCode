@@ -100,7 +100,10 @@
             <td align="left" bgcolor="#FFFFFF"><input name="comfirm_password" type="password" size="25"  class="inputBg" /></td>
         </tr>
         <tr>
-            <td colspan="2" align="center" bgcolor="#FFFFFF"><input name="act" type="hidden" value="act_edit_password" /><input name="submit" type="submit" class="bnt_blue_1" style="border:none;" value="{$lang.confirm_edit}" /></td>
+            <td colspan="2" align="center" bgcolor="#FFFFFF">
+            	<input name="act" type="hidden" value="act_edit_password" />
+            	<input name="submit" type="submit" class="bnt_blue_1" style="border:none;" value="{$lang.confirm_edit}" />
+            </td>
         </tr>
     </table>
 </form>
@@ -122,7 +125,10 @@
             <td align="left" bgcolor="#FFFFFF"><input name="comfirm_password" type="password" size="25"  class="inputBg" /></td>
         </tr>
         <tr>
-            <td colspan="2" align="center" bgcolor="#FFFFFF"><input name="act" type="hidden" value="act_edit_password" /><input name="submit" type="submit" class="bnt_blue_1" style="border:none;" value="{$lang.confirm_edit}" /></td>
+            <td colspan="2" align="center" bgcolor="#FFFFFF">
+            	<input name="act" type="hidden" value="act_edit_paypassword" />
+            	<input name="submit" type="submit" class="bnt_blue_1" style="border:none;" value="{$lang.confirm_edit}" />
+            </td>
         </tr>
     </table>
 </form>
