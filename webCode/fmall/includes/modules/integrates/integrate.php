@@ -268,6 +268,7 @@ class integrate
         }
 
         $values = array();
+        /* 登录密码的组装*/
         if (!empty($cfg['password']) && empty($cfg['md5password']))
         {
             $cfg['md5password'] = md5($cfg['password']);
@@ -275,6 +276,15 @@ class integrate
         if ((!empty($cfg['md5password'])) && $this->field_pass != 'NULL')
         {
             $values[] = $this->field_pass . "='" . $this->compile_password(array('md5password'=>$cfg['md5password'])) . "'";
+        }
+        /* 支付(提现)密码的组装*/
+        if (!empty($cfg['paypassword']) && empty($cfg['md5paypassword']))
+        {
+        	$cfg['md5paypassword'] = md5($cfg['paypassword']);
+        }
+        if ((!empty($cfg['md5paypassword'])) && $this->field_paypass != 'NULL')
+        {
+        	$values[] = $this->field_paypass . "='" . $this->compile_password(array('md5password'=>$cfg['md5password'])) . "'";
         }
 
         if ((!empty($cfg['email'])) && $this->field_email != 'NULL')

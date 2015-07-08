@@ -414,7 +414,7 @@ ol,ul{list-style:none}
 #search-2013 .text,#search-2013 .button{-webkit-appearance:none;-webkit-border-radius:0}
 #hotwords{height:18px;color:#999;overflow:hidden}
 #hotwords span,#hotwords strong{float:left;font-weight:400}
-#hotwords a:link,#hotwords a:visited{float:left;margin-right:10px;color:#999}
+#hotwords a:link,#hotwords a:visited{float:left;margin-right:30px;color:#999}
 #hotwords a:hover,#hotwords a:active{color:#ff500b}
 #my360buy-2013{float:left;position:relative;z-index:9;width:106px;height:30px;margin-top:12px}
 .root61 #my360buy-2013{margin-right:10px;}

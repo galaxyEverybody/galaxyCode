@@ -32,7 +32,7 @@ $back_act='';
 
 // 不需要登录的操作或自己验证是否登录（如ajax处理）的act
 $not_login_arr =
-array('login','act_login','register','act_register','act_edit_password','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
+array('login','act_login','register','act_register','act_edit_password','act_edit_paypassword','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
 
 /* 显示页面的action列表 */
 $ui_arr = array('register', 'login', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
@@ -975,7 +975,7 @@ elseif ($action == 'reset_password')
     $smarty->display('user_passport.dwt');
 }
 
-/* 修改会员密码 */
+/* 修改会员账号密码 */
 elseif ($action == 'act_edit_password')
 {
     include_once(ROOT_PATH . 'includes/lib_passport.php');
@@ -1011,6 +1011,45 @@ elseif ($action == 'act_edit_password')
     {
         show_message($_LANG['edit_password_failure'], $_LANG['back_page_up'], '', 'info');
     }
+
+}
+
+/* 修改会员提现密码 */
+elseif ($action == 'act_edit_paypassword')
+{
+	include_once(ROOT_PATH . 'includes/lib_passport.php');
+
+	$old_password = isset($_POST['old_password']) ? trim($_POST['old_password']) : null;
+	$new_password = isset($_POST['new_password']) ? trim($_POST['new_password']) : '';
+	$user_id      = isset($_POST['uid'])  ? intval($_POST['uid']) : $user_id;
+	$code         = isset($_POST['code']) ? trim($_POST['code'])  : '';
+
+	if (strlen($new_password) < 6)
+	{
+		show_message($_LANG['passport_js']['password_shorter']);
+	}
+
+	$user_info = $user->get_profile_by_id($user_id); //论坛记录
+
+	if (($user_info && (!empty($code) && md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']) == $code)) || ($_SESSION['user_id']>0 && $_SESSION['user_id'] == $user_id && $user->check_user($_SESSION['user_name'], $old_password)))
+	{
+
+		if ($user->edit_user(array('username'=> (empty($code) ? $_SESSION['user_name'] : $user_info['user_name']), 'old_password'=>$old_password, 'paypassword'=>$new_password), empty($code) ? 0 : 1))
+		{
+			$sql="UPDATE ".$ecs->table('users'). "SET `ec_salt`='0' WHERE user_id= '".$user_id."'";
+			$db->query($sql);
+			$user->logout();
+			show_message($_LANG['edit_password_success'], $_LANG['relogin_lnk'], 'user.php?act=login', 'info');
+		}
+		else
+		{
+			show_message($_LANG['edit_password_failure'], $_LANG['back_page_up'], '', 'info');
+		}
+	}
+	else
+	{
+		show_message($_LANG['edit_password_failure'], $_LANG['back_page_up'], '', 'info');
+	}
 
 }
 

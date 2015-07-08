@@ -161,7 +161,7 @@
 </div>
 <Div class="clear"></Div>
 
-<div class="w todayRest">
+<div class="w todayRest" style="display:none;">
 	<div class="mt">
     	<div class="jd-clock-wrap">
         	<div class="jd-clock">
@@ -173,7 +173,7 @@
         </div>
     </div>
     <!--slide end-->
-    <div class="jscroll" id="mscroll">
+    <div class="jscroll" id="mscroll" >
         <div class="ctrl" id="mscroll-ctrl-prev"><</div>
         <div class="ctrl" id="mscroll-ctrl-next">></div>
         <div class="o-list">
@@ -192,11 +192,10 @@
     <!--mscroll end-->
 </div>
 
-{insert name='browse_related_index'}
 <div class="blank20"></div>
 <div id="showcase" class="w advanced">
 	<div class="m">
-    	<div class="mt"><h2>京东特色购</h2></div>
+    	<div class="mt"><h2>为您推荐</h2></div>
         <div class="mc">
         	<div class="sc-list clearfix">
             	<div class="item fore1"> {insert name='ads_pro' type='特色1'} </div>
@@ -209,22 +208,10 @@
                 <div class="item fore8"> {insert name='ads_pro' type='特色8'} </div>
             </div>
             <div class="blank10"></div>
-            <div id="showcase-promotion-1" class="sc-bottom" style="display: block; ">
-            	<div class="item">
-                	<!-- TemplateBeginEditable name="生活橱窗下方通栏广告区域（宽）" -->
-<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
-
-{insert name='ads' id=$ads_id num=$ads_num}
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable -->
-                    <!-- TemplateBeginEditable name="生活橱窗下方通栏广告区域（窄）" -->
-<!-- TemplateEndEditable -->
-                </div>
-            </div>
         </div>
     </div>
 </div>
-<div id="floors-list">
+<div id="floors-list" style="display:none;">
    <!-- TemplateBeginEditable name="分类下商品区域" -->
 <!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 
@@ -823,7 +810,7 @@
 
 <div class="w">
 	<div id="special">
-        <div class="mt"><h2>天天低价</h2></div>
+        <div class="mt"><h2>天天狂赚</h2></div>
         <div class="mc">
             <ul>
                 <!--{foreach from=$hot_goods item=goods name=no}-->
@@ -887,7 +874,7 @@
 <!-- fanbo s 20150423 -->
 <div id="elevator" class="elevator" >
     <ul>
-        <li ><span class="lou">1F</span><span class="text">信托</span></li>
+        <li ><span class="lou">1F</span><span class="text">基金</span></li>
         <li ><span class="lou">2F</span><span class="text">保险</span></li>
         <li ><span class="lou">3F</span><span class="text">股票</span></li>
         <li ><span class="lou">4F</span><span class="text">债券</span></li>
