@@ -1,0 +1,27 @@
+Installation of phpEasyProject
+
+Requirements
+
+    * A web server or web hosting account running on any major
+      operating system (Apache is recommended)
+    * A SQL database system (MySQL 3.23.x, 4.1.x or 5.x)
+    * PHP (4.3.x or 5.x) with MySQL Client library support and
+      the PHP DOMDocument class
+
+Installation
+
+If you have basic knowledge of using FTP and you are sure your hosting service
+or web server will run phpEasyProject you can use these steps to quickly get
+started.
+
+   1. Decompress the phpEasyProject archive to a local directory on your system.
+   2. Upload all the files contained in this archive (retaining the directory
+      structure) to a web accessible directory on your web server or
+      hosting account.
+   3. Change the permissions on /config and /templates_c directories to be
+      writeable by all (777 or -rwxrwxrwx).
+   4. Using your web browser visit the location where you placed phpEasyProject.
+   5. Fill out all the requested information in 5 steps.
+   6. Delete the /install directory.
+   7. phpEasyProject should now be available. Login into phpEasyProject with
+      the just created login name.

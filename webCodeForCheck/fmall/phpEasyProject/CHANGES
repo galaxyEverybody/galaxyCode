@@ -1,0 +1,46 @@
+ChangeLog of phpEasyProject
+===========================
+
+phpEasyProject 1.1 (2007-01-12):
+
+- Code cleanup (with security fixes)
+
+- Add Italian translation (Thank you Dariusz Stojek)
+
+- Add Brazilian Portuguese translation (Thank you Jose Carlos Medeiros)
+
+- Add Spanish translation (Thank you Leopoldo Sanczyk)
+
+- upgrade xajax to last version (0.2.4)
+
+- Fixed a problem with quotes and other special chars (including #1545045)
+
+- XHTML 1.1 - conform templates
+
+- Minor bugfixes
+
+- Fixed a problem with SQL - compatibility for MySQL < 5.x
+
+- Fixed a problem with export for installations with use DB-Prefix
+
+- Minor design changes
+
+
+
+phpEasyProject 1.0.2 (2006-03-20):
+
+- Moved the README from the docs directory to the top folder.
+
+- Added the ability to create new activities by just clicking on the time.
+  This time is taken then as start time of the new activity.
+
+- Some text corrections and changes in the docs directory.
+
+- (X)HTML-File export works now in case there is no data to export.
+
+- Fixed the case when phpEasyProject is installed in user's
+  public_html folder. (#1424471)
+
+- Fixed a problem with the global already existing PEAR installation. (#1421942)
+
+- minor bugfixes (including #1429316)

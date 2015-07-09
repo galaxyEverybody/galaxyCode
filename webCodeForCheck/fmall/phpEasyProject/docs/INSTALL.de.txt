@@ -1,0 +1,26 @@
+Installation von phpEasyProject
+
+Anforderungen
+
+    * Web-Server oder Webhosting (Apache ist empfohlen)
+    * SQL Datenbank (zur Zeit MySQL 3.23.x, 4.1.x oder 5.x möglich)
+    * PHP (4.3.x oder 5.x) mit Unterstützung für MySQL Client Bibliothek
+      und PHP DOMDocument class
+
+Installation
+
+Wenn Sie über die Grundkenntisse der Bedienung von FTP-Programmen verfügen und
+einen Zugang zum Web-Server haben, können Sie phpEasyProject in nur 5 Schritten
+auf dem Web-Server installieren.
+
+   1. Entpacken Sie das Archiv mit phpEasyProject in ein Verzeichnis auf Ihrem
+      System.
+   2. Übertragen Sie alle Verzeichnisse und Dateien auf den Web-Server.
+   3. Setzen Sie die Schreib-Rechte für die Verzeichnisse /config
+      und /templates_c für alle Benutzer (777 oder -rwxrwxrwx).
+   4. In Ihrem Browser rufen Sie phpEasyProject über die Server-Adresse auf,
+      zuzüglich des Ordners wo Sie die Dateien platziert haben.
+   5. Installieren Sie die Anwendung in 5 Schritten.
+   6. Entfernen Sie anschließend das Verzeichnis /install vom Web-Server.
+   7. phpEasyProject sollte jetzt installiert sein. Melden Sie sich in
+      phpEasyProject mit Ihrem zuvor festgelegtem Login-Namen.
