@@ -1,0 +1,95 @@
+<?php
+$data = array (
+  0 => 
+  array (
+    'cat_id' => '998',
+    'cat_name' => '基金',
+    'measure_unit' => '',
+    'parent_id' => '0',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '6',
+    'goods_num' => 0,
+  ),
+  1 => 
+  array (
+    'cat_id' => '1004',
+    'cat_name' => '理财型基金',
+    'measure_unit' => '',
+    'parent_id' => '998',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => '1',
+  ),
+  2 => 
+  array (
+    'cat_id' => '1006',
+    'cat_name' => '货币型基金',
+    'measure_unit' => '',
+    'parent_id' => '998',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => '2',
+  ),
+  3 => 
+  array (
+    'cat_id' => '1008',
+    'cat_name' => '指数型基金',
+    'measure_unit' => '',
+    'parent_id' => '998',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => '1',
+  ),
+  4 => 
+  array (
+    'cat_id' => '1007',
+    'cat_name' => '混合型基金',
+    'measure_unit' => '',
+    'parent_id' => '998',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => '1',
+  ),
+  5 => 
+  array (
+    'cat_id' => '1005',
+    'cat_name' => '债券型基金',
+    'measure_unit' => '',
+    'parent_id' => '998',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => '1',
+  ),
+  6 => 
+  array (
+    'cat_id' => '999',
+    'cat_name' => '股票型基金',
+    'measure_unit' => '',
+    'parent_id' => '998',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => '4',
+  ),
+);
+?>
