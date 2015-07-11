@@ -4,7 +4,7 @@
 <div id="shortcut-2013">
 	<div class="w">
     	<ul class="fl lh">
-        	<li class="fore1 ld"><b></b><a href="javascript:addToFavorite()" rel="nofollow">收藏京东</a></li>
+        	<li class="fore1 ld"><b></b><a href="javascript:addToFavorite()" rel="nofollow">收藏联众</a></li>
         </ul>
         <ul class="fr lh">
         	{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
@@ -13,13 +13,13 @@
             <li class="fore2 ld"><div class="dt"><s></s> <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a></div></li>
             <!-- {/foreach} -->
             <!--{/if}-->
-            <li class="fore3 ld menu" id="app-jd">
-            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机京东</a><b></b></div>
+            <li class="fore3 ld menu" id="app-jd" style="display:none">
+            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机联众</a><b></b></div>
                 <div class="dd lh">
                     <div class="qr-info"></div>
                     <div class="qr-item qr-jd-app">
-                    	<div class="qr-img"><img id="app-qrcode-img" src="images/538557daNd249a428.png" class="err-product" width="76" height="76" alt="手机京东" src="images/blank.gif"></div>
-                    	<div class="qr-ext"><strong>京东客户端</strong><a href="#" target="_blank" class="btn-app-apple"></a><a href="#" target="_blank" class="btn-app-android"></a></div>
+                    	<div class="qr-img"><img id="app-qrcode-img" src="images/538557daNd249a428.png" class="err-product" width="76" height="76" alt="手机联众" src="images/blank.gif"></div>
+                    	<div class="qr-ext"><strong>联众客户端</strong><a href="#" target="_blank" class="btn-app-apple"></a><a href="#" target="_blank" class="btn-app-android"></a></div>
                     </div>
                 </div>
             </li>
@@ -38,7 +38,7 @@
 </div>
 <div id="o-header-2013" class="PageHeader">
     <div class="w" id="header-2013">
-    <div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.gif" width="270" height="48" alt="京东"></a></div>
+    <div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.gif" width="270" height="48" alt="联众"></a></div>
     <!--logo end-->
     <div id="search-2013">
       <div class="i-search ld">
@@ -52,16 +52,16 @@
         </div>
       </div>
       {if $searchkeywords}
-      <div id="hotwords"><strong>热门搜索：</strong> {foreach from=$searchkeywords item=val name=foo}
+      <div id="hotwords" style="display:none"><strong>热门搜索：</strong> {foreach from=$searchkeywords item=val name=foo}
         {if $smarty.foreach.foo.first} <a href="search.php?keywords={$val|escape:url}" target="_blank" style="color:#ff0000">{$val}</a> {else} <a href="search.php?keywords={$val|escape:url}" target="_blank">{$val}</a> {/if}
         {/foreach} </div>
       {/if} </div>
     <!--search end-->
     <div id="my360buy-2013">
       <dl>
-        <dt class="ld"><s></s><a href="user.php">我的京东</a><b></b></dt>
+        <dt class="ld"><s></s><a href="user.php">我的联众</a><b></b></dt>
         <dd>
-          <div class="prompt"> <span class="fl"><strong></strong></span> <span class="fr"><a href="user.php">去我的京东首页&nbsp;&gt;</a></span> </div>
+          <div class="prompt"> <span class="fl"><strong></strong></span> <span class="fr"><a href="user.php">去我的联众首页&nbsp;&gt;</a></span> </div>
           <div id="jduc-orderlist">
             <div class="orderlist">
               <div class="smt">

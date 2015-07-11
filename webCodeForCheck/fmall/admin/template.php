@@ -614,12 +614,7 @@ if ($_REQUEST['act'] == 'update_library')
 {
     check_authz_json('library_manage');
 
-    /* */
-    $temp_check = json_str_iconv($_POST['html']);
-    $temp_check = preg_replace("/<\?[^><]+(\?>){0,1}|<\%[^><]+(\%>){0,1}|<\%=[^><]+(\%>){0,1}|<script[^>]+language[^>]*=[^>]*php[^>]*>[^><]*<\/script\s*>/iU", "", $temp_check); 
-    $temp_check = preg_replace("/([^a-zA-Z0-9_]{1,1})+(extract|parse_str|str_replace|unserialize|ob_start|require|include|array_map|preg_replace|copy|fputs|fopen|file_put_contents|file_get_contents|fwrite|eval|phpinfo|assert|base64_decode|create_function|call_user_func)+( |\()/is", "", $temp_check);
-    $html = stripslashes($temp_check);
-    /* */
+    $html = stripslashes(json_str_iconv($_POST['html']));
     $lib_file = '../themes/' . $_CFG['template'] . '/library/' . $_POST['lib'] . '.lbi';
     $lib_file = str_replace("0xa", '', $lib_file); // 过滤 0xa 非法字符
 

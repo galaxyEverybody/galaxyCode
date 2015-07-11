@@ -20,10 +20,10 @@
     <th>{$lang.handler}</th>
   </tr>
   {foreach from=$cat_info item=cat}
-  <tr align="center" class="{$cat.level}" id="{$cat.level}_{$cat.cat_id}">
+  <tr align="center" class="{$cat.level}" id="{$cat.level}_{$cat.cat_id}" {if $cat.level gt 0}style="display:none;"{/if} >
     <td align="left" class="first-cell" >
       {if $cat.is_leaf neq 1}
-      <img src="images/menu_minus.gif" id="icon_{$cat.level}_{$cat.cat_id}" width="12" height="12" border="0" style="margin-left:{$cat.level}em" onclick="rowClicked(this)" />
+      <img src="images/menu_plus.gif" id="icon_{$cat.level}_{$cat.cat_id}" width="12" height="12" border="0" style="margin-left:{$cat.level}em" onclick="rowClicked(this)" />
       {else}
       <img src="images/menu_arrow.gif" width="9" height="9" border="0" style="margin-left:{$cat.level}em" />
       {/if}

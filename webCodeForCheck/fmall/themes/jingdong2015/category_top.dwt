@@ -145,7 +145,7 @@
 
 <div class="w">
 	<div class="banner-ad-list"><!-- TemplateBeginEditable name="首页疯狂秒杀下广告位" -->
-<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
+<!-- #BeginLibraryItem "/library///ad_position.lbi" -->
 
 {insert name='ads' id=$ads_id num=$ads_num}
  <!-- #EndLibraryItem -->
@@ -153,9 +153,9 @@
 	<div class="blank20"></div>
 </div>
 
-<div class="w">
+<div class="w" style="display:none;">
 	<div class="brand_flagship">
-    	<div class="mt"><h2>品牌旗舰店</h2></div>
+    	<div class="mt"><h2>品牌旗舰店aaaaa</h2></div>
         <div class="mc">
         	<ul>
             	<!--{foreach from=$brands1 item=brand name=foo}-->

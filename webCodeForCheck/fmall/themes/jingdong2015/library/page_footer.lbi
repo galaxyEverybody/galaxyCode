@@ -12,7 +12,7 @@
     <!-- {/if} -->
     
     <div class="copyright"> 
-     copyright2015 银河众联版权所有<br />
+     copyright2015 银河众联(北京)信息科技有限公司版权所有</br>公司地址:北京市海淀区中关村东路66号1号楼21层2507<br />
      <!-- {if $shop_address} --> 
      {$shop_address} <br /> 
      <!-- {/if} --> 
@@ -24,12 +24,13 @@
       <!-- 结束客服电话{/if} --> 
       <!-- 邮件{if $service_email} --> 
       E-mail: {$service_email}<br />
-      <!-- 结束邮件{/if} --> 
+      <!-- 结束邮件{/if} -->
+      	联系电话：010-58772933&nbsp;&nbsp;&nbsp;
       <!-- QQ 号码 {foreach from=$qq item=im} --> 
       <!-- {if $im} --> 
-      <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$im}&amp;Site={$shop_name}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$im}:4" height="16" border="0" alt="QQ" /> {$im}</a> 
+      <a href="http://wpa.qq.com/msgrd?V=3&uin={$im}&Site={$shop_name}&Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$im}:4" height="16" border="0" alt="QQ" /> {$im}</a> 
       <!-- {/if} --> 
-      <!-- {/foreach} 结束QQ号码 --> 
+      <!-- {/foreach} 结束QQ号码 -->
       <!-- 淘宝旺旺 {foreach from=$ww item=im} --> 
       <!-- {if $im} --> 
       <a href="http://amos1.taobao.com/msg.ww?v=2&uid={$im|escape:u8_url}&s=2" target="_blank"><img src="http://amos1.taobao.com/online.ww?v=2&uid={$im|escape:u8_url}&s=2" width="16" height="16" border="0" alt="淘宝旺旺" />{$im}</a> 
@@ -56,7 +57,6 @@
       <!-- 结束ICP 证书{/if} --> 
       
     </div>
-    <div align="center"><a href=" http://www.ecmoban.com" target="_blank"><img src="images/ecmoban.gif" alt="ECShop模板" /></a></div><br />
     
     <div class="authentication">
      <a href="javascript:void(0);" target="_blank"><img width="103" height="32" alt="经营性网站备案中心" src="images/108_40_zZOKnl.gif"></a> 

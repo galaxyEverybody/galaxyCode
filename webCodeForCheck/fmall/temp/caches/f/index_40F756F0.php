@@ -1,16 +1,16 @@
-<?php exit;?>a:3:{s:8:"template";a:11:{i:0;s:56:"/home/www/default/fmallOld/themes/jingdong2015/index.dwt";i:1;s:76:"/home/www/default/fmallOld/themes/jingdong2015/library/page_header_index.lbi";i:2;s:67:"/home/www/default/fmallOld/themes/jingdong2015/library/index_ad.lbi";i:3;s:71:"/home/www/default/fmallOld/themes/jingdong2015/library/cat_articles.lbi";i:4;s:70:"/home/www/default/fmallOld/themes/jingdong2015/library/ad_position.lbi";i:5;s:72:"/home/www/default/fmallOld/themes/jingdong2015/library/invoice_query.lbi";i:6;s:70:"/home/www/default/fmallOld/themes/jingdong2015/library/order_query.lbi";i:7;s:68:"/home/www/default/fmallOld/themes/jingdong2015/library/vote_list.lbi";i:8;s:68:"/home/www/default/fmallOld/themes/jingdong2015/library/cat_goods.lbi";i:9;s:69:"/home/www/default/fmallOld/themes/jingdong2015/library/help_index.lbi";i:10;s:70:"/home/www/default/fmallOld/themes/jingdong2015/library/page_footer.lbi";}s:7:"expires";i:1436458594;s:8:"maketime";i:1436454994;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php exit;?>a:3:{s:8:"template";a:11:{i:0;s:81:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/index.dwt";i:1;s:101:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/page_header_index.lbi";i:2;s:92:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/index_ad.lbi";i:3;s:96:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/cat_articles.lbi";i:4;s:95:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/ad_position.lbi";i:5;s:97:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/invoice_query.lbi";i:6;s:95:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/order_query.lbi";i:7;s:93:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/vote_list.lbi";i:8;s:93:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/cat_goods.lbi";i:9;s:94:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/help_index.lbi";i:10;s:95:"D:/AppServ/www/git/galaxyCode/webCodeForCheck/fmall/themes/jingdong2015/library/page_footer.lbi";}s:7:"expires";i:1436587547;s:8:"maketime";i:1436583947;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta name="Keywords" content="网上购物,网上商城,手机,笔记本,电脑,MP3,CD,VCD,DV,相机,数码,配件,手表,存储卡,京东商城" />
-<meta name="Description" content="京东JD.COM-专业的综合网上购物商城，在线销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品、在线旅游等数万个品牌千万种优质商品。便捷、诚信的服务，为您提供愉悦的网上商城购物体验!" />
-<title>京东网上商城-综合网购首选（JD.COM）-正品低价、品质保障、货到付款、配送及时、放心服务、轻松购物！ - Powered by ECShop</title>
+<meta name="Description" content="联众LZ.COM-专业的综合网上购物商城，在线销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品、在线旅游等数万个品牌千万种优质商品。便捷、诚信的服务，为您提供愉悦的网上商城购物体验!" />
+<title>联众网上商城-综合网购首选（JD.COM）-正品低价、品质保障、货到付款、配送及时、放心服务、轻松购物！ - Powered by ECShop</title>
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
 <link href="themes/jingdong2015/style.css" rel="stylesheet" type="text/css" />
-<link rel="alternate" type="application/rss+xml" title="RSS|京东网上商城-综合网购首选（JD.COM）-正品低价、品质保障、货到付款、配送及时、放心服务、轻松购物！ - Powered by ECShop" href="feed.php" />
+<link rel="alternate" type="application/rss+xml" title="RSS|联众网上商城-综合网购首选（JD.COM）-正品低价、品质保障、货到付款、配送及时、放心服务、轻松购物！ - Powered by ECShop" href="feed.php" />
 <script type="text/javascript" src="js/common.js"></script><script type="text/javascript" src="js/index.js"></script></head>
 <body>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script><script type="text/javascript" src="js/jquery.json.js"></script><script type="text/javascript" src="js/jd_common.js"></script><script type="text/javascript" src="js/easydialog.min.js"></script><script type="text/javascript" src="js/transport_jquery.js"></script><script type="text/javascript" src="js/utils.js"></script><script type="text/javascript" src="js/jquery.SuperSlide.js"></script><div id="shortcut-2013">
@@ -63,7 +63,7 @@
                                     <li class="fore2 ld"><div class="dt"><s></s> <a href="#" >会员俱乐部</a></div></li>
                         <li class="fore2 ld"><div class="dt"><s></s> <a href="#" >企业频道</a></div></li>
                                     <!--<li class="fore3 ld menu" id="app-jd">
-            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机京东</a><b></b></div>
+            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机众联</a><b></b></div>
                 <div class="dd lh">
                 	<div class="qr-info"></div>
                     <div class="qr-item qr-jd-app">
@@ -87,7 +87,7 @@
 </div>
 <div id="o-header-2013">
 	<div class="w" id="header-2013">
-    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><img src="themes/jingdong2015/images/logo.gif" alt="京东"></a></div>
+    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><img src="themes/jingdong2015/images/logo.gif" alt="众联"></a></div>
         
         <div id="search-2013">
         	<div class="i-search ld">
@@ -98,7 +98,7 @@
                     </form>
                 </div>
             </div>
-                        <div id="hotwords">
+                        <div id="hotwords" style="display:none">
             	                                <a href="search.php?keywords=%E6%88%B7%E5%A4%96%E5%87%BA%E6%B8%B8" target="_blank" style="color:#ff0000">户外出游</a>
                                                                 <a href="search.php?keywords=%E5%8A%9E%E5%85%AC%E6%96%87%E5%85%B7" target="_blank">办公文具</a>
                                                                 <a href="search.php?keywords=%E5%AE%B6%E7%94%B5%E8%A3%B8%E4%BB%B7" target="_blank">家电裸价</a>
@@ -112,9 +112,9 @@
         
         <div id="my360buy-2013" class="hide">
         	<dl>
-            	<dt class="ld"><s></s><a href="user.php">我的京东</a><b></b></dt>
+            	<dt class="ld"><s></s><a href="user.php">我的众联</a><b></b></dt>
                 <dd>
-                	<div class="prompt"> <span class="fl"><strong></strong></span> <span class="fr"><a href="user.php">去我的京东首页&nbsp;&gt;</a></span> </div>
+                	<div class="prompt"> <span class="fl"><strong></strong></span> <span class="fr"><a href="user.php">去我的众联首页&nbsp;&gt;</a></span> </div>
                     <div id="jduc-orderlist">
                     	<div class="orderlist">
                         	<div class="smt">
@@ -893,7 +893,7 @@
                                         <li class="fore3 "><a href="category.php?id=4" >家居、家具、家装、厨具</a></li>
                                         <li class="fore4 "><a href="category.php?id=6" >童装</a></li>
                                         <li class="fore5 "><a href="category.php?id=3" >女鞋/男鞋</a></li>
-                                        <li class="fore6 "><a href="category.php?id=5" >家用电器</a></li>
+                                        <li class="fore6 "><a href="category.php?id=2" >家用电器</a></li>
                                         <li class="fore7 "><a href="group_buy.php" >团购商品</a></li>
                                     </ul>
             </div>
@@ -915,8 +915,7 @@
     </div>
     <a class="indexAd_qh prev" href="javascript:void(0)"><</a>
     <a class="indexAd_qh next" href="javascript:void(0)">></a>
-</div>
-</div>
+</div></div>
   
   <div id="jdnews" class="m m1"> 
 <div class="mt">
@@ -1102,9 +1101,13 @@
     	<h2><i></i><span></span><font>家用电器</font></h2>
         <div class="hd_box">
         	<ul>
-            	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
+            	<li><a href="javascript:;">热门<i></i></a></li>
             	                            	<li><a href="javascript:;">大 家 电<i></i></a></li>
-                                                                                                                                                                            </ul>
+                                                            	<li><a href="javascript:;">个护健康<i></i></a></li>
+                                                            	<li><a href="javascript:;">厨房电器<i></i></a></li>
+                                                            	<li><a href="javascript:;">生活电器<i></i></a></li>
+                                                            	<li><a href="javascript:;">五金家装<i></i></a></li>
+                                            </ul>
         </div>
     </div>
     <div class="mc">
@@ -1112,23 +1115,46 @@
         	<div class="banner">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:12:"家用电器";s:4:"type";s:24:"分类下商品左广告";}554fcae493e564ee0dc75bdf2ebf94ca<i></i></div>
             <div class="themes Category">
             	<ul>
-                                                            <!--<li class="fore1"><a href="category.php?id=90"><i></i><span>大 家 电</span></a></li>-->
-                                                                                <!--<li class="fore2"><a href="category.php?id=93"><i></i><span>个护健康</span></a></li>-->
-                                                                                <!--<li class="fore3"><a href="category.php?id=92"><i></i><span>厨房电器</span></a></li>-->
-                                                                                <!--<li class="fore4"><a href="category.php?id=91"><i></i><span>生活电器</span></a></li>-->
-                                                                                <!--<li class="fore5"><a href="category.php?id=94"><i></i><span>五金家装</span></a></li>-->
+                                                            <li class="fore1"><a href="category.php?id=90"><i></i><span>大 家 电</span></a></li>
+                                                                                <li class="fore2"><a href="category.php?id=93"><i></i><span>个护健康</span></a></li>
+                                                                                <li class="fore3"><a href="category.php?id=92"><i></i><span>厨房电器</span></a></li>
+                                                                                <li class="fore4"><a href="category.php?id=91"><i></i><span>生活电器</span></a></li>
+                                                                                <li class="fore5"><a href="category.php?id=94"><i></i><span>五金家装</span></a></li>
                                                         </ul>
             </div>
             <div class="words">
             	<ul>
-                	
-                    <div class="text"></div>
-                    
-                </ul>
+                	                	                	<li>
+                                        	                                                <span><a href="category.php?id=95" target="_blank" title="平板电视">平板电视</a></span>
+                                                                                                <span><a href="category.php?id=96" target="_blank" title="空调">空调</a></span>
+                                                                                                <span><a href="category.php?id=97" target="_blank" title="冰箱">冰箱</a></span>
+                                                                                                <span><a href="category.php?id=98" target="_blank" title="洗衣机">洗衣机</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=139" target="_blank" title="剃须刀">剃须刀</a></span>
+                                                                                                <span><a href="category.php?id=140" target="_blank" title="口腔护理">口腔护理</a></span>
+                                                                                                <span><a href="category.php?id=141" target="_blank" title="剃/脱毛器">剃/脱毛器</a></span>
+                                                                                                <span><a href="category.php?id=142" target="_blank" title="电吹风">电吹风</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=122" target="_blank" title="电压力锅">电压力锅</a></span>
+                                                                                                <span><a href="category.php?id=123" target="_blank" title="电饭煲">电饭煲</a></span>
+                                                                                                <span><a href="category.php?id=124" target="_blank" title="豆浆机">豆浆机</a></span>
+                                                                                                <span><a href="category.php?id=125" target="_blank" title="面包机">面包机</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=107" target="_blank" title="电风扇">电风扇</a></span>
+                                                                                                <span><a href="category.php?id=108" target="_blank" title="冷风扇">冷风扇</a></span>
+                                                                                                <span><a href="category.php?id=109" target="_blank" title="净化器">净化器</a></span>
+                                                                                                <span><a href="category.php?id=110" target="_blank" title="饮水机">饮水机</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=154" target="_blank" title="电动工具">电动工具</a></span>
+                                                                                                <span><a href="category.php?id=155" target="_blank" title="手动工具">手动工具</a></span>
+                                                                                                <span><a href="category.php?id=156" target="_blank" title="仪器仪表">仪器仪表</a></span>
+                                                                                                <span><a href="category.php?id=157" target="_blank" title="浴霸/排气扇">浴霸/排气扇</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        </ul>
             </div>
         </div>
         <div class="bd_box">
-        	<!--<div class="bdBox bdBox01">
+        	<div class="bdBox bdBox01">
             	<div class="mainInner">
                 	<ul class="mainBody">
                     	<li class="fore1">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:12:"家用电器";s:4:"type";s:31:"分类下商品右侧小广告1";}554fcae493e564ee0dc75bdf2ebf94ca</li>
@@ -1164,7 +1190,6 @@
                     <a class="bdSliderQh next_bd" href="javascript:void(0)">></a>
                 </div>
             </div>
-            -->
         	                    	<div class="bdBox bdBoxPro">
             	<ul>
                 	                	<li>
@@ -1437,14 +1462,34 @@
             </div>
                                 </div>
     </div>
+    <div class="cat_brands">
+    	<ul>
+        	                    	<li class="fore1"><a target="_blank" href="brand.php?id=1"><img height="40" width="100" src="data/brandlogo/1408388661280162950.gif"></a></li>
+                                            	<li class="fore2"><a target="_blank" href="brand.php?id=2"><img height="40" width="100" src="data/brandlogo/1408388666819567839.gif"></a></li>
+                                            	<li class="fore3"><a target="_blank" href="brand.php?id=3"><img height="40" width="100" src="data/brandlogo/1408388672554358389.jpg"></a></li>
+                                            	<li class="fore4"><a target="_blank" href="brand.php?id=4"><img height="40" width="100" src="data/brandlogo/1408388684265799995.gif"></a></li>
+                                            	<li class="fore5"><a target="_blank" href="brand.php?id=5"><img height="40" width="100" src="data/brandlogo/1408388690499800497.gif"></a></li>
+                                            	<li class="fore6"><a target="_blank" href="brand.php?id=6"><img height="40" width="100" src="data/brandlogo/1408388695099889406.gif"></a></li>
+                                            	<li class="fore7"><a target="_blank" href="brand.php?id=7"><img height="40" width="100" src="data/brandlogo/1408388701900679009.gif"></a></li>
+                                            	<li class="fore8"><a target="_blank" href="brand.php?id=8"><img height="40" width="100" src="data/brandlogo/1408388707352962838.jpg"></a></li>
+                                            	<li class="fore9"><a target="_blank" href="brand.php?id=9"><img height="40" width="100" src="data/brandlogo/1408388712994021778.gif"></a></li>
+                                            	<li class="fore10"><a target="_blank" href="brand.php?id=10"><img height="40" width="100" src="data/brandlogo/1408388718360024044.gif"></a></li>
+                                </ul>
+    </div>
 </div><div class="w catGoodsBox catGoodsSlide">
 	<div class="mt">
     	<h2><i></i><span></span><font>电脑、办公</font></h2>
         <div class="hd_box">
         	<ul>
-            	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
+            	<li><a href="javascript:;">热门<i></i></a></li>
             	                            	<li><a href="javascript:;">电脑整机<i></i></a></li>
-                                                                                                                                                                                                                                            </ul>
+                                                            	<li><a href="javascript:;">办公文仪<i></i></a></li>
+                                                            	<li><a href="javascript:;">外设产品<i></i></a></li>
+                                                            	<li><a href="javascript:;">服务产品<i></i></a></li>
+                                                            	<li><a href="javascript:;">网络产品<i></i></a></li>
+                                                            	<li><a href="javascript:;">办公打印<i></i></a></li>
+                                                            	<li><a href="javascript:;">电脑配件<i></i></a></li>
+                                            </ul>
         </div>
     </div>
     <div class="mc">
@@ -1452,24 +1497,56 @@
         	<div class="banner">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:15:"电脑、办公";s:4:"type";s:24:"分类下商品左广告";}554fcae493e564ee0dc75bdf2ebf94ca<i></i></div>
             <div class="themes Category">
             	<ul>
-                                                            <!--<li class="fore1"><a href="category.php?id=244"><i></i><span>电脑整机</span></a></li>-->
-                                                                                <!--<li class="fore2"><a href="category.php?id=245"><i></i><span>电脑配件</span></a></li>-->
-                                                                                <!--<li class="fore3"><a href="category.php?id=246"><i></i><span>外设产品</span></a></li>-->
-                                                                                <!--<li class="fore4"><a href="category.php?id=247"><i></i><span>网络产品</span></a></li>-->
-                                                                                <!--<li class="fore5"><a href="category.php?id=248"><i></i><span>办公打印</span></a></li>-->
-                                                                                <!--<li class="fore6"><a href="category.php?id=249"><i></i><span>办公文仪</span></a></li>-->
+                                                            <li class="fore1"><a href="category.php?id=244"><i></i><span>电脑整机</span></a></li>
+                                                                                <li class="fore2"><a href="category.php?id=245"><i></i><span>电脑配件</span></a></li>
+                                                                                <li class="fore3"><a href="category.php?id=246"><i></i><span>外设产品</span></a></li>
+                                                                                <li class="fore4"><a href="category.php?id=247"><i></i><span>网络产品</span></a></li>
+                                                                                <li class="fore5"><a href="category.php?id=248"><i></i><span>办公打印</span></a></li>
+                                                                                <li class="fore6"><a href="category.php?id=249"><i></i><span>办公文仪</span></a></li>
                                                                                                 </ul>
             </div>
             <div class="words">
             	<ul>
-                	
-                    <div class="text"></div>
-                    
-                </ul>
+                	                	                	<li>
+                                        	                                                <span><a href="category.php?id=251" target="_blank" title="笔记本">笔记本</a></span>
+                                                                                                <span><a href="category.php?id=252" target="_blank" title="超极本">超极本</a></span>
+                                                                                                <span><a href="category.php?id=253" target="_blank" title="游戏本">游戏本</a></span>
+                                                                                                <span><a href="category.php?id=254" target="_blank" title="平板电脑">平板电脑</a></span>
+                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=259" target="_blank" title="CPU">CPU</a></span>
+                                                                                                <span><a href="category.php?id=260" target="_blank" title="主板">主板</a></span>
+                                                                                                <span><a href="category.php?id=261" target="_blank" title="显卡">显卡</a></span>
+                                                                                                <span><a href="category.php?id=262" target="_blank" title="硬盘">硬盘</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=273" target="_blank" title="鼠标">鼠标</a></span>
+                                                                                                <span><a href="category.php?id=274" target="_blank" title="键盘">键盘</a></span>
+                                                                                                <span><a href="category.php?id=275" target="_blank" title="游戏设备">游戏设备</a></span>
+                                                                                                <span><a href="category.php?id=276" target="_blank" title="U盘">U盘</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=288" target="_blank" title="路由器">路由器</a></span>
+                                                                                                <span><a href="category.php?id=289" target="_blank" title="网卡">网卡</a></span>
+                                                                                                <span><a href="category.php?id=290" target="_blank" title="交换机">交换机</a></span>
+                                                                                                <span><a href="category.php?id=291" target="_blank" title="网络存储">网络存储</a></span>
+                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=295" target="_blank" title="打印机">打印机</a></span>
+                                                                                                <span><a href="category.php?id=296" target="_blank" title="一体机">一体机</a></span>
+                                                                                                <span><a href="category.php?id=297" target="_blank" title="投影机">投影机</a></span>
+                                                                                                <span><a href="category.php?id=298" target="_blank" title="投影配件">投影配件</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=307" target="_blank" title="办公文具">办公文具</a></span>
+                                                                                                <span><a href="category.php?id=308" target="_blank" title="文件管理">文件管理</a></span>
+                                                                                                <span><a href="category.php?id=309" target="_blank" title="笔类">笔类</a></span>
+                                                                                                <span><a href="category.php?id=310" target="_blank" title="纸类">纸类</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=325" target="_blank" title="上门服务">上门服务</a></span>
+                                                                                                <span><a href="category.php?id=326" target="_blank" title="远程服务">远程服务</a></span>
+                                                                                                <span><a href="category.php?id=327" target="_blank" title="电脑软件">电脑软件</a></span>
+                                                                                        </li>
+                                                        </ul>
             </div>
         </div>
         <div class="bd_box">
-        	<!--<div class="bdBox bdBox01">
+        	<div class="bdBox bdBox01">
             	<div class="mainInner">
                 	<ul class="mainBody">
                     	<li class="fore1">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:15:"电脑、办公";s:4:"type";s:31:"分类下商品右侧小广告1";}554fcae493e564ee0dc75bdf2ebf94ca</li>
@@ -1505,7 +1582,6 @@
                     <a class="bdSliderQh next_bd" href="javascript:void(0)">></a>
                 </div>
             </div>
-            -->
         	                    	<div class="bdBox bdBoxPro">
             	<ul>
                 	                	<li>
@@ -1586,14 +1662,32 @@
             </div>
                                 </div>
     </div>
+    <div class="cat_brands">
+    	<ul>
+        	                    	<li class="fore1"><a target="_blank" href="brand.php?id=12"><img height="40" width="100" src="data/brandlogo/1408388731946030201.gif"></a></li>
+                                            	<li class="fore2"><a target="_blank" href="brand.php?id=33"><img height="40" width="100" src="data/brandlogo/1408388860169094248.jpg"></a></li>
+                                            	<li class="fore3"><a target="_blank" href="brand.php?id=35"><img height="40" width="100" src="data/brandlogo/1408388873290611085.jpg"></a></li>
+                                            	<li class="fore4"><a target="_blank" href="brand.php?id=36"><img height="40" width="100" src="data/brandlogo/1408388884893878072.jpg"></a></li>
+                                            	<li class="fore5"><a target="_blank" href="brand.php?id=37"><img height="40" width="100" src="data/brandlogo/1408388892253249002.jpg"></a></li>
+                                            	<li class="fore6"><a target="_blank" href="brand.php?id=38"><img height="40" width="100" src="data/brandlogo/1408388897063788352.jpg"></a></li>
+                                            	<li class="fore7"><a target="_blank" href="brand.php?id=39"><img height="40" width="100" src="data/brandlogo/1408388904367521114.jpg"></a></li>
+                                            	<li class="fore8"><a target="_blank" href="brand.php?id=66"><img height="40" width="100" src="data/brandlogo/1408389135311019767.gif"></a></li>
+                                            	<li class="fore9"><a target="_blank" href="brand.php?id=73"><img height="40" width="100" src="data/brandlogo/1408400371994766756.gif"></a></li>
+                                            	<li class="fore10"><a target="_blank" href="brand.php?id=74"><img height="40" width="100" src="data/brandlogo/1408400377137441291.gif"></a></li>
+                                </ul>
+    </div>
 </div><div class="w catGoodsBox catGoodsSlide">
 	<div class="mt">
     	<h2><i></i><span></span><font>服饰内衣、珠宝首饰</font></h2>
         <div class="hd_box">
         	<ul>
-            	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
+            	<li><a href="javascript:;">热门<i></i></a></li>
             	                            	<li><a href="javascript:;">女装<i></i></a></li>
-                                                                                                                                                                            </ul>
+                                                            	<li><a href="javascript:;">男装<i></i></a></li>
+                                                            	<li><a href="javascript:;">内衣<i></i></a></li>
+                                                            	<li><a href="javascript:;">服饰配件<i></i></a></li>
+                                                            	<li><a href="javascript:;">珠宝首饰<i></i></a></li>
+                                            </ul>
         </div>
     </div>
     <div class="mc">
@@ -1601,23 +1695,46 @@
         	<div class="banner">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:27:"服饰内衣、珠宝首饰";s:4:"type";s:24:"分类下商品左广告";}554fcae493e564ee0dc75bdf2ebf94ca<i></i></div>
             <div class="themes Category">
             	<ul>
-                                                            <!--<li class="fore1"><a href="category.php?id=711"><i></i><span>女装</span></a></li>-->
-                                                                                <!--<li class="fore2"><a href="category.php?id=712"><i></i><span>男装</span></a></li>-->
-                                                                                <!--<li class="fore3"><a href="category.php?id=713"><i></i><span>内衣</span></a></li>-->
-                                                                                <!--<li class="fore4"><a href="category.php?id=714"><i></i><span>服饰配件</span></a></li>-->
-                                                                                <!--<li class="fore5"><a href="category.php?id=715"><i></i><span>珠宝首饰</span></a></li>-->
+                                                            <li class="fore1"><a href="category.php?id=711"><i></i><span>女装</span></a></li>
+                                                                                <li class="fore2"><a href="category.php?id=712"><i></i><span>男装</span></a></li>
+                                                                                <li class="fore3"><a href="category.php?id=713"><i></i><span>内衣</span></a></li>
+                                                                                <li class="fore4"><a href="category.php?id=714"><i></i><span>服饰配件</span></a></li>
+                                                                                <li class="fore5"><a href="category.php?id=715"><i></i><span>珠宝首饰</span></a></li>
                                                         </ul>
             </div>
             <div class="words">
             	<ul>
-                	
-                    <div class="text"></div>
-                    
-                </ul>
+                	                	                	<li>
+                                        	                                                <span><a href="category.php?id=716" target="_blank" title="连衣裙">连衣裙</a></span>
+                                                                                                <span><a href="category.php?id=717" target="_blank" title="蕾丝/雪纺衫">蕾丝/雪纺衫</a></span>
+                                                                                                <span><a href="category.php?id=718" target="_blank" title="衬衫">衬衫</a></span>
+                                                                                                <span><a href="category.php?id=719" target="_blank" title="T恤">T恤</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=749" target="_blank" title="衬衫">衬衫</a></span>
+                                                                                                <span><a href="category.php?id=750" target="_blank" title="T恤">T恤</a></span>
+                                                                                                <span><a href="category.php?id=751" target="_blank" title="POLO衫">POLO衫</a></span>
+                                                                                                <span><a href="category.php?id=752" target="_blank" title="针织衫">针织衫</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=777" target="_blank" title="文胸">文胸</a></span>
+                                                                                                <span><a href="category.php?id=778" target="_blank" title="睡衣/家居服">睡衣/家居服</a></span>
+                                                                                                <span><a href="category.php?id=779" target="_blank" title="情侣睡衣">情侣睡衣</a></span>
+                                                                                                <span><a href="category.php?id=780" target="_blank" title="文胸套装">文胸套装</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=798" target="_blank" title="太阳镜">太阳镜</a></span>
+                                                                                                <span><a href="category.php?id=799" target="_blank" title="光学镜架/镜片">光学镜架/镜片</a></span>
+                                                                                                <span><a href="category.php?id=800" target="_blank" title="防辐射眼镜">防辐射眼镜</a></span>
+                                                                                                <span><a href="category.php?id=801" target="_blank" title="女士丝巾/围巾/披肩">女士丝巾/围巾/披肩</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=812" target="_blank" title="时尚饰品">时尚饰品</a></span>
+                                                                                                <span><a href="category.php?id=813" target="_blank" title="钻石">钻石</a></span>
+                                                                                                <span><a href="category.php?id=814" target="_blank" title="翡翠玉石">翡翠玉石</a></span>
+                                                                                                <span><a href="category.php?id=815" target="_blank" title="纯金K金饰品">纯金K金饰品</a></span>
+                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        </ul>
             </div>
         </div>
         <div class="bd_box">
-        	<!--<div class="bdBox bdBox01">
+        	<div class="bdBox bdBox01">
             	<div class="mainInner">
                 	<ul class="mainBody">
                     	<li class="fore1">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:27:"服饰内衣、珠宝首饰";s:4:"type";s:31:"分类下商品右侧小广告1";}554fcae493e564ee0dc75bdf2ebf94ca</li>
@@ -1653,7 +1770,6 @@
                     <a class="bdSliderQh next_bd" href="javascript:void(0)">></a>
                 </div>
             </div>
-            -->
         	                    	<div class="bdBox bdBoxPro">
             	<ul>
                 	                	<li>
@@ -1716,14 +1832,32 @@
             </div>
                                 </div>
     </div>
+    <div class="cat_brands">
+    	<ul>
+        	                    	<li class="fore1"><a target="_blank" href="brand.php?id=40"><img height="40" width="100" src="data/brandlogo/1408388912842195129.gif"></a></li>
+                                            	<li class="fore2"><a target="_blank" href="brand.php?id=41"><img height="40" width="100" src="data/brandlogo/1408388917023098895.gif"></a></li>
+                                            	<li class="fore3"><a target="_blank" href="brand.php?id=42"><img height="40" width="100" src="data/brandlogo/1408388927970168396.gif"></a></li>
+                                            	<li class="fore4"><a target="_blank" href="brand.php?id=43"><img height="40" width="100" src="data/brandlogo/1408388934924405061.jpg"></a></li>
+                                            	<li class="fore5"><a target="_blank" href="brand.php?id=44"><img height="40" width="100" src="data/brandlogo/1408388941128040572.gif"></a></li>
+                                            	<li class="fore6"><a target="_blank" href="brand.php?id=45"><img height="40" width="100" src="data/brandlogo/1408388948874779333.gif"></a></li>
+                                            	<li class="fore7"><a target="_blank" href="brand.php?id=46"><img height="40" width="100" src="data/brandlogo/1408388959674000474.gif"></a></li>
+                                            	<li class="fore8"><a target="_blank" href="brand.php?id=50"><img height="40" width="100" src="data/brandlogo/1408388992835276757.gif"></a></li>
+                                </ul>
+    </div>
 </div><div class="w catGoodsBox catGoodsSlide">
 	<div class="mt">
     	<h2><i></i><span></span><font>家居、家具、家装、厨具</font></h2>
         <div class="hd_box">
         	<ul>
-            	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
+            	<li><a href="javascript:;">热门<i></i></a></li>
             	                            	<li><a href="javascript:;">家纺<i></i></a></li>
-                                                                                                                                                                                                                                            </ul>
+                                                            	<li><a href="javascript:;">灯具<i></i></a></li>
+                                                            	<li><a href="javascript:;">家装建材<i></i></a></li>
+                                                            	<li><a href="javascript:;">生活日用<i></i></a></li>
+                                                            	<li><a href="javascript:;">家装软饰<i></i></a></li>
+                                                            	<li><a href="javascript:;">家具<i></i></a></li>
+                                                            	<li><a href="javascript:;">厨具<i></i></a></li>
+                                            </ul>
         </div>
     </div>
     <div class="mc">
@@ -1731,24 +1865,57 @@
         	<div class="banner">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:33:"家居、家具、家装、厨具";s:4:"type";s:24:"分类下商品左广告";}554fcae493e564ee0dc75bdf2ebf94ca<i></i></div>
             <div class="themes Category">
             	<ul>
-                                                            <!--<li class="fore1"><a href="category.php?id=330"><i></i><span>家纺</span></a></li>-->
-                                                                                <!--<li class="fore2"><a href="category.php?id=328"><i></i><span>厨具</span></a></li>-->
-                                                                                <!--<li class="fore3"><a href="category.php?id=329"><i></i><span>家装建材</span></a></li>-->
-                                                                                <!--<li class="fore4"><a href="category.php?id=331"><i></i><span>家具</span></a></li>-->
-                                                                                <!--<li class="fore5"><a href="category.php?id=332"><i></i><span>灯具</span></a></li>-->
-                                                                                <!--<li class="fore6"><a href="category.php?id=333"><i></i><span>生活日用</span></a></li>-->
+                                                            <li class="fore1"><a href="category.php?id=330"><i></i><span>家纺</span></a></li>
+                                                                                <li class="fore2"><a href="category.php?id=328"><i></i><span>厨具</span></a></li>
+                                                                                <li class="fore3"><a href="category.php?id=329"><i></i><span>家装建材</span></a></li>
+                                                                                <li class="fore4"><a href="category.php?id=331"><i></i><span>家具</span></a></li>
+                                                                                <li class="fore5"><a href="category.php?id=332"><i></i><span>灯具</span></a></li>
+                                                                                <li class="fore6"><a href="category.php?id=333"><i></i><span>生活日用</span></a></li>
                                                                                                 </ul>
             </div>
             <div class="words">
             	<ul>
-                	
-                    <div class="text"></div>
-                    
-                </ul>
+                	                	                	<li>
+                                        	                                                <span><a href="category.php?id=353" target="_blank" title="床品套件">床品套件</a></span>
+                                                                                                <span><a href="category.php?id=355" target="_blank" title="蚊帐">蚊帐</a></span>
+                                                                                                <span><a href="category.php?id=356" target="_blank" title="凉席">凉席</a></span>
+                                                                                                <span><a href="category.php?id=357" target="_blank" title="床单被罩">床单被罩</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=335" target="_blank" title="烹饪锅具">烹饪锅具</a></span>
+                                                                                                <span><a href="category.php?id=336" target="_blank" title="刀剪菜板">刀剪菜板</a></span>
+                                                                                                <span><a href="category.php?id=337" target="_blank" title="厨房配件">厨房配件</a></span>
+                                                                                                <span><a href="category.php?id=338" target="_blank" title="水具酒具">水具酒具</a></span>
+                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=341" target="_blank" title="灯饰照明">灯饰照明</a></span>
+                                                                                                <span><a href="category.php?id=342" target="_blank" title="厨房卫浴">厨房卫浴</a></span>
+                                                                                                <span><a href="category.php?id=343" target="_blank" title="五金工具">五金工具</a></span>
+                                                                                                <span><a href="category.php?id=344" target="_blank" title="电工电料">电工电料</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=366" target="_blank" title="卧室家具">卧室家具</a></span>
+                                                                                                <span><a href="category.php?id=367" target="_blank" title="客厅家具">客厅家具</a></span>
+                                                                                                <span><a href="category.php?id=368" target="_blank" title="餐厅家具">餐厅家具</a></span>
+                                                                                                <span><a href="category.php?id=369" target="_blank" title="书房家具">书房家具</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=383" target="_blank" title="台灯">台灯</a></span>
+                                                                                                <span><a href="category.php?id=384" target="_blank" title="吸顶灯">吸顶灯</a></span>
+                                                                                                <span><a href="category.php?id=385" target="_blank" title="筒灯射灯">筒灯射灯</a></span>
+                                                                                                <span><a href="category.php?id=386" target="_blank" title="LED灯">LED灯</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=394" target="_blank" title="收纳用品">收纳用品</a></span>
+                                                                                                <span><a href="category.php?id=395" target="_blank" title="雨伞雨具">雨伞雨具</a></span>
+                                                                                                <span><a href="category.php?id=396" target="_blank" title="浴室用品">浴室用品</a></span>
+                                                                                                <span><a href="category.php?id=397" target="_blank" title="缝纫/针织用品">缝纫/针织用品</a></span>
+                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=400" target="_blank" title="桌布/罩件">桌布/罩件</a></span>
+                                                                                                <span><a href="category.php?id=401" target="_blank" title="地毯地垫">地毯地垫</a></span>
+                                                                                                <span><a href="category.php?id=402" target="_blank" title="沙发垫套/椅垫">沙发垫套/椅垫</a></span>
+                                                                                                <span><a href="category.php?id=403" target="_blank" title="帘艺隔断">帘艺隔断</a></span>
+                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        </ul>
             </div>
         </div>
         <div class="bd_box">
-        	<!--<div class="bdBox bdBox01">
+        	<div class="bdBox bdBox01">
             	<div class="mainInner">
                 	<ul class="mainBody">
                     	<li class="fore1">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:33:"家居、家具、家装、厨具";s:4:"type";s:31:"分类下商品右侧小广告1";}554fcae493e564ee0dc75bdf2ebf94ca</li>
@@ -1784,7 +1951,6 @@
                     <a class="bdSliderQh next_bd" href="javascript:void(0)">></a>
                 </div>
             </div>
-            -->
         	                    	<div class="bdBox bdBoxPro">
             	<ul>
                 	                	<li>
@@ -1855,14 +2021,31 @@
             </div>
                                 </div>
     </div>
+    <div class="cat_brands">
+    	<ul>
+        	                    	<li class="fore1"><a target="_blank" href="brand.php?id=47"><img height="40" width="100" src="data/brandlogo/1408388968061368049.gif"></a></li>
+                                            	<li class="fore2"><a target="_blank" href="brand.php?id=48"><img height="40" width="100" src="data/brandlogo/1408388977236154439.jpg"></a></li>
+                                            	<li class="fore3"><a target="_blank" href="brand.php?id=49"><img height="40" width="100" src="data/brandlogo/1408388984062114039.gif"></a></li>
+                                            	<li class="fore4"><a target="_blank" href="brand.php?id=50"><img height="40" width="100" src="data/brandlogo/1408388992835276757.gif"></a></li>
+                                            	<li class="fore5"><a target="_blank" href="brand.php?id=51"><img height="40" width="100" src="data/brandlogo/1408389003705467870.gif"></a></li>
+                                            	<li class="fore6"><a target="_blank" href="brand.php?id=52"><img height="40" width="100" src="data/brandlogo/1408389011381507906.gif"></a></li>
+                                </ul>
+    </div>
 </div><div class="w catGoodsBox catGoodsSlide">
 	<div class="mt">
     	<h2><i></i><span></span><font>母婴、玩具乐器</font></h2>
         <div class="hd_box">
         	<ul>
-            	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
+            	<li><a href="javascript:;">热门<i></i></a></li>
             	                            	<li><a href="javascript:;">奶粉<i></i></a></li>
-                                                                                                                                                                                                                                                                            </ul>
+                                                            	<li><a href="javascript:;">童车童床<i></i></a></li>
+                                                            	<li><a href="javascript:;">尿裤湿巾<i></i></a></li>
+                                                            	<li><a href="javascript:;">安全座椅<i></i></a></li>
+                                                            	<li><a href="javascript:;">洗护用品<i></i></a></li>
+                                                            	<li><a href="javascript:;">寝居服饰<i></i></a></li>
+                                                            	<li><a href="javascript:;">喂养用品<i></i></a></li>
+                                                            	<li><a href="javascript:;">营养辅食<i></i></a></li>
+                                            </ul>
         </div>
     </div>
     <div class="mc">
@@ -1870,24 +2053,57 @@
         	<div class="banner">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:21:"母婴、玩具乐器";s:4:"type";s:24:"分类下商品左广告";}554fcae493e564ee0dc75bdf2ebf94ca<i></i></div>
             <div class="themes Category">
             	<ul>
-                                                            <!--<li class="fore1"><a href="category.php?id=688"><i></i><span>奶粉</span></a></li>-->
-                                                                                <!--<li class="fore2"><a href="category.php?id=689"><i></i><span>营养辅食</span></a></li>-->
-                                                                                <!--<li class="fore3"><a href="category.php?id=690"><i></i><span>尿裤湿巾</span></a></li>-->
-                                                                                <!--<li class="fore4"><a href="category.php?id=691"><i></i><span>洗护用品</span></a></li>-->
-                                                                                <!--<li class="fore5"><a href="category.php?id=692"><i></i><span>喂养用品</span></a></li>-->
-                                                                                <!--<li class="fore6"><a href="category.php?id=693"><i></i><span>童车童床</span></a></li>-->
+                                                            <li class="fore1"><a href="category.php?id=688"><i></i><span>奶粉</span></a></li>
+                                                                                <li class="fore2"><a href="category.php?id=689"><i></i><span>营养辅食</span></a></li>
+                                                                                <li class="fore3"><a href="category.php?id=690"><i></i><span>尿裤湿巾</span></a></li>
+                                                                                <li class="fore4"><a href="category.php?id=691"><i></i><span>洗护用品</span></a></li>
+                                                                                <li class="fore5"><a href="category.php?id=692"><i></i><span>喂养用品</span></a></li>
+                                                                                <li class="fore6"><a href="category.php?id=693"><i></i><span>童车童床</span></a></li>
                                                                                                                                         </ul>
             </div>
             <div class="words">
             	<ul>
-                	
-                    <div class="text"></div>
-                    
-                </ul>
+                	                	                	<li>
+                                        	                                                <span><a href="category.php?id=821" target="_blank" title="婴幼奶粉">婴幼奶粉</a></span>
+                                                                                                        	                    	                                                <span><a href="category.php?id=830" target="_blank" title="DHA">DHA</a></span>
+                                                                                                <span><a href="category.php?id=831" target="_blank" title="钙铁锌/维生素">钙铁锌/维生素</a></span>
+                                                                                                <span><a href="category.php?id=832" target="_blank" title="益生菌/初乳">益生菌/初乳</a></span>
+                                                                                                <span><a href="category.php?id=833" target="_blank" title="清火/开胃">清火/开胃</a></span>
+                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=838" target="_blank" title="婴儿尿裤">婴儿尿裤</a></span>
+                                                                                                <span><a href="category.php?id=839" target="_blank" title="拉拉裤">拉拉裤</a></span>
+                                                                                                <span><a href="category.php?id=840" target="_blank" title="成人尿裤">成人尿裤</a></span>
+                                                                                                <span><a href="category.php?id=841" target="_blank" title="湿巾">湿巾</a></span>
+                                                                                                        	                    	                                                <span><a href="category.php?id=842" target="_blank" title="宝宝护肤">宝宝护肤</a></span>
+                                                                                                <span><a href="category.php?id=843" target="_blank" title="宝宝洗浴">宝宝洗浴</a></span>
+                                                                                                <span><a href="category.php?id=844" target="_blank" title="理发器">理发器</a></span>
+                                                                                                <span><a href="category.php?id=845" target="_blank" title="洗衣液/皂">洗衣液/皂</a></span>
+                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=850" target="_blank" title="奶瓶奶嘴">奶瓶奶嘴</a></span>
+                                                                                                <span><a href="category.php?id=851" target="_blank" title="吸奶器">吸奶器</a></span>
+                                                                                                <span><a href="category.php?id=852" target="_blank" title="牙胶安抚">牙胶安抚</a></span>
+                                                                                                <span><a href="category.php?id=853" target="_blank" title="暖奶消毒">暖奶消毒</a></span>
+                                                                                                                                                                                                                                                        	                    	                                                <span><a href="category.php?id=857" target="_blank" title="婴儿床">婴儿床</a></span>
+                                                                                                <span><a href="category.php?id=858" target="_blank" title="婴儿推车">婴儿推车</a></span>
+                                                                                                <span><a href="category.php?id=859" target="_blank" title="餐椅摇椅">餐椅摇椅</a></span>
+                                                                                                <span><a href="category.php?id=860" target="_blank" title="学步车">学步车</a></span>
+                                                                                                                                                                                                                                                                                                                                        </li>
+                                                        	                	<li>
+                                        	                                                <span><a href="category.php?id=866" target="_blank" title="提篮式">提篮式</a></span>
+                                                                                                <span><a href="category.php?id=867" target="_blank" title="安全座椅">安全座椅</a></span>
+                                                                                                <span><a href="category.php?id=868" target="_blank" title="增高垫">增高垫</a></span>
+                                                                                                        	                    	                                                <span><a href="category.php?id=869" target="_blank" title="婴儿外出服">婴儿外出服</a></span>
+                                                                                                <span><a href="category.php?id=870" target="_blank" title="婴儿内衣">婴儿内衣</a></span>
+                                                                                                <span><a href="category.php?id=871" target="_blank" title="婴儿礼盒">婴儿礼盒</a></span>
+                                                                                                <span><a href="category.php?id=872" target="_blank" title="婴儿鞋帽袜">婴儿鞋帽袜</a></span>
+                                                                                                                                                                                        </li>
+                                                        </ul>
             </div>
         </div>
         <div class="bd_box">
-        	<!--<div class="bdBox bdBox01">
+        	<div class="bdBox bdBox01">
             	<div class="mainInner">
                 	<ul class="mainBody">
                     	<li class="fore1">554fcae493e564ee0dc75bdf2ebf94caads_pro|a:3:{s:4:"name";s:7:"ads_pro";s:8:"cat_name";s:21:"母婴、玩具乐器";s:4:"type";s:31:"分类下商品右侧小广告1";}554fcae493e564ee0dc75bdf2ebf94ca</li>
@@ -1923,7 +2139,6 @@
                     <a class="bdSliderQh next_bd" href="javascript:void(0)">></a>
                 </div>
             </div>
-            -->
         	                    	<div class="bdBox bdBoxPro">
             	<ul>
                 	                	<li>
@@ -1997,6 +2212,16 @@
                 	                </ul>
             </div>
                                 </div>
+    </div>
+    <div class="cat_brands">
+    	<ul>
+        	                    	<li class="fore1"><a target="_blank" href="brand.php?id=53"><img height="40" width="100" src="data/brandlogo/1408389020467816163.gif"></a></li>
+                                            	<li class="fore2"><a target="_blank" href="brand.php?id=54"><img height="40" width="100" src="data/brandlogo/1408389028549234249.gif"></a></li>
+                                            	<li class="fore3"><a target="_blank" href="brand.php?id=55"><img height="40" width="100" src="data/brandlogo/1408389036032699536.gif"></a></li>
+                                            	<li class="fore4"><a target="_blank" href="brand.php?id=56"><img height="40" width="100" src="data/brandlogo/1408389045513441324.jpg"></a></li>
+                                            	<li class="fore5"><a target="_blank" href="brand.php?id=57"><img height="40" width="100" src="data/brandlogo/1408389052474444489.gif"></a></li>
+                                            	<li class="fore6"><a target="_blank" href="brand.php?id=58"><img height="40" width="100" src="data/brandlogo/1408389066427584551.gif"></a></li>
+                                </ul>
     </div>
 </div>
 </div>
@@ -2155,7 +2380,7 @@
 </div>
 <span class="clr"></span>
 </div>
-<div class="service2015">
+<div class="service2015" style="display:none">
 	<div class="service2015Box">
         <div class="slogen">
             <ul>
@@ -2227,7 +2452,6 @@
         </dl>
     </div>
 </div>
- 
 <div class="w">
   <div id="footer-2013"> 
         <div class="links"> 
@@ -2256,21 +2480,20 @@
     </div>
         
     <div class="copyright"> 
-     copyright2015 银河众联版权所有<br />
+     copyright2015 银河众联(北京)信息科技有限公司版权所有</br>公司地址:北京市海淀区中关村东路66号1号楼21层2507<br />
       
        
        
+            	联系电话：010-58772933&nbsp;&nbsp;&nbsp;
+       
+       
+      <a href="http://wpa.qq.com/msgrd?V=3&uin=729797175&Site=联众金融&Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:729797175:4" height="16" border="0" alt="QQ" /> 729797175</a> 
        
        
        
-      <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=729797175&amp;Site=京东&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:729797175:4" height="16" border="0" alt="QQ" /> 729797175</a> 
+      <a href="http://wpa.qq.com/msgrd?V=3&uin=707570803&Site=联众金融&Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:707570803:4" height="16" border="0" alt="QQ" /> 707570803</a> 
        
-       
-       
-      <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=707570803&amp;Site=京东&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:707570803:4" height="16" border="0" alt="QQ" /> 707570803</a> 
-       
-       
-       
+             
        
        
        
@@ -2288,7 +2511,6 @@
        
       
     </div>
-    <div align="center"><a href=" http://www.ecmoban.com" target="_blank"><img src="themes/jingdong2015/images/ecmoban.gif" alt="ECShop模板" /></a></div><br />
     
     <div class="authentication">
      <a href="javascript:void(0);" target="_blank"><img width="103" height="32" alt="经营性网站备案中心" src="themes/jingdong2015/images/108_40_zZOKnl.gif"></a> 

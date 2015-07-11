@@ -3,19 +3,19 @@
   <div id="footer-2013"> 
     <?php if ($this->_var['navigator_list']['bottom']): ?>
     <div class="links"> 
-      <?php $_from = $this->_var['navigator_list']['bottom']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'nav_0_62139400_1436437279');$this->_foreach['nav_bottom_list'] = array('total' => count($_from), 'iteration' => 0);
+      <?php $_from = $this->_var['navigator_list']['bottom']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'nav_0_15697300_1436583948');$this->_foreach['nav_bottom_list'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['nav_bottom_list']['total'] > 0):
-    foreach ($_from AS $this->_var['nav_0_62139400_1436437279']):
+    foreach ($_from AS $this->_var['nav_0_15697300_1436583948']):
         $this->_foreach['nav_bottom_list']['iteration']++;
 ?> 
-      <a href="<?php echo $this->_var['nav_0_62139400_1436437279']['url']; ?>" <?php if ($this->_var['nav_0_62139400_1436437279']['opennew'] == 1): ?> target="_blank" <?php endif; ?>><?php echo $this->_var['nav_0_62139400_1436437279']['name']; ?></a> 
+      <a href="<?php echo $this->_var['nav_0_15697300_1436583948']['url']; ?>" <?php if ($this->_var['nav_0_15697300_1436583948']['opennew'] == 1): ?> target="_blank" <?php endif; ?>><?php echo $this->_var['nav_0_15697300_1436583948']['name']; ?></a> 
       <?php if (! ($this->_foreach['nav_bottom_list']['iteration'] == $this->_foreach['nav_bottom_list']['total'])): ?> | <?php endif; ?> 
       <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?> 
     </div>
     <?php endif; ?>
     
     <div class="copyright"> 
-     copyright2015 银河众联版权所有<br />
+     copyright2015 银河众联(北京)信息科技有限公司版权所有</br>公司地址:北京市海淀区中关村东路66号1号楼21层2507<br />
      <?php if ($this->_var['shop_address']): ?> 
      <?php echo $this->_var['shop_address']; ?> <br /> 
      <?php endif; ?> 
@@ -27,14 +27,15 @@ if ($this->_foreach['nav_bottom_list']['total'] > 0):
       <?php endif; ?> 
       <?php if ($this->_var['service_email']): ?> 
       E-mail: <?php echo $this->_var['service_email']; ?><br />
-      <?php endif; ?> 
+      <?php endif; ?>
+      	联系电话：010-58772933&nbsp;&nbsp;&nbsp;
       <?php $_from = $this->_var['qq']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'im');if (count($_from)):
     foreach ($_from AS $this->_var['im']):
 ?> 
       <?php if ($this->_var['im']): ?> 
-      <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=<?php echo $this->_var['im']; ?>&amp;Site=<?php echo $this->_var['shop_name']; ?>&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:<?php echo $this->_var['im']; ?>:4" height="16" border="0" alt="QQ" /> <?php echo $this->_var['im']; ?></a> 
+      <a href="http://wpa.qq.com/msgrd?V=3&uin=<?php echo $this->_var['im']; ?>&Site=<?php echo $this->_var['shop_name']; ?>&Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:<?php echo $this->_var['im']; ?>:4" height="16" border="0" alt="QQ" /> <?php echo $this->_var['im']; ?></a> 
       <?php endif; ?> 
-      <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?> 
+      <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
       <?php $_from = $this->_var['ww']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'im');if (count($_from)):
     foreach ($_from AS $this->_var['im']):
 ?> 
@@ -69,7 +70,6 @@ if ($this->_foreach['nav_bottom_list']['total'] > 0):
       <?php endif; ?> 
       
     </div>
-    <div align="center"><a href=" http://www.ecmoban.com" target="_blank"><img src="themes/jingdong2015/images/ecmoban.gif" alt="ECShop模板" /></a></div><br />
     
     <div class="authentication">
      <a href="javascript:void(0);" target="_blank"><img width="103" height="32" alt="经营性网站备案中心" src="themes/jingdong2015/images/108_40_zZOKnl.gif"></a> 

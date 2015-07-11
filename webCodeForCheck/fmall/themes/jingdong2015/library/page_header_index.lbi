@@ -56,7 +56,7 @@
             <!-- {/foreach} -->
             <!--{/if}-->
             <!--<li class="fore3 ld menu" id="app-jd">
-            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机京东</a><b></b></div>
+            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机众联</a><b></b></div>
                 <div class="dd lh">
                 	<div class="qr-info"></div>
                     <div class="qr-item qr-jd-app">
@@ -80,7 +80,7 @@
 </div>
 <div id="o-header-2013">
 	<div class="w" id="header-2013">
-    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><img src="images/logo.gif" alt="京东"></a></div>
+    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><img src="images/logo.gif" alt="众联"></a></div>
         <!--logo end-->
         <div id="search-2013">
         	<div class="i-search ld">
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <!--{if $searchkeywords}-->
-            <div id="hotwords">
+            <div id="hotwords" style="display:none">
             	<!--{foreach from=$searchkeywords item=val name=foo}-->
                 <!--{if $smarty.foreach.foo.first}-->
                 <a href="search.php?keywords={$val|escape:url}" target="_blank" style="color:#ff0000">{$val}</a>
@@ -106,9 +106,9 @@
         <!--search end-->
         <div id="my360buy-2013" class="hide">
         	<dl>
-            	<dt class="ld"><s></s><a href="user.php">我的京东</a><b></b></dt>
+            	<dt class="ld"><s></s><a href="user.php">我的众联</a><b></b></dt>
                 <dd>
-                	<div class="prompt"> <span class="fl"><strong></strong></span> <span class="fr"><a href="user.php">去我的京东首页&nbsp;&gt;</a></span> </div>
+                	<div class="prompt"> <span class="fl"><strong></strong></span> <span class="fr"><a href="user.php">去我的众联首页&nbsp;&gt;</a></span> </div>
                     <div id="jduc-orderlist">
                     	<div class="orderlist">
                         	<div class="smt">

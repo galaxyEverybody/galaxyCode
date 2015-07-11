@@ -1021,7 +1021,7 @@
     </div>
     <div class="left">
     	<div id="myjd" class="m">
-        	<div class="mt"><h2><a href="user.php">我的京东</a></h2></div>
+        	<div class="mt"><h2><a href="user.php">我的众联</a></h2></div>
             <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
         </div>
     </div>

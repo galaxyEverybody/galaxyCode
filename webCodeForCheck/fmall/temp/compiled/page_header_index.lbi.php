@@ -74,7 +74,7 @@ if ($this->_foreach['nav_top_list']['total'] > 0):
             <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
             <?php endif; ?>
             <!--<li class="fore3 ld menu" id="app-jd">
-            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机京东</a><b></b></div>
+            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机众联</a><b></b></div>
                 <div class="dd lh">
                 	<div class="qr-info"></div>
                     <div class="qr-item qr-jd-app">
@@ -98,7 +98,7 @@ if ($this->_foreach['nav_top_list']['total'] > 0):
 </div>
 <div id="o-header-2013">
 	<div class="w" id="header-2013">
-    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><img src="themes/jingdong2015/images/logo.gif" alt="京东"></a></div>
+    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><img src="themes/jingdong2015/images/logo.gif" alt="众联"></a></div>
         
         <div id="search-2013">
         	<div class="i-search ld">
@@ -110,7 +110,7 @@ if ($this->_foreach['nav_top_list']['total'] > 0):
                 </div>
             </div>
             <?php if ($this->_var['searchkeywords']): ?>
-            <div id="hotwords">
+            <div id="hotwords" style="display:none">
             	<?php $_from = $this->_var['searchkeywords']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'val');$this->_foreach['foo'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['foo']['total'] > 0):
     foreach ($_from AS $this->_var['val']):
@@ -128,9 +128,9 @@ if ($this->_foreach['foo']['total'] > 0):
         
         <div id="my360buy-2013" class="hide">
         	<dl>
-            	<dt class="ld"><s></s><a href="user.php">我的京东</a><b></b></dt>
+            	<dt class="ld"><s></s><a href="user.php">我的众联</a><b></b></dt>
                 <dd>
-                	<div class="prompt"> <span class="fl"><strong></strong></span> <span class="fr"><a href="user.php">去我的京东首页&nbsp;&gt;</a></span> </div>
+                	<div class="prompt"> <span class="fl"><strong></strong></span> <span class="fr"><a href="user.php">去我的众联首页&nbsp;&gt;</a></span> </div>
                     <div id="jduc-orderlist">
                     	<div class="orderlist">
                         	<div class="smt">

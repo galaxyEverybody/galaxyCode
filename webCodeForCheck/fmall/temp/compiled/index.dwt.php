@@ -241,7 +241,7 @@ if ($this->_foreach['no']['total'] > 0):
 <span class="clr"></span>
 </div>
 
-<div class="service2015">
+<div class="service2015" style="display:none">
 	<div class="service2015Box">
         <div class="slogen">
             <ul>
