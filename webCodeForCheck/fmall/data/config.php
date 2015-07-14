@@ -3,7 +3,7 @@
 $db_host   = "localhost:3306";
 
 // database name
-$db_name   = "fmallReal";
+$db_name   = "fmallDB";
 
 // database username
 $db_user   = "root";
@@ -30,6 +30,6 @@ define('AUTH_KEY', 'this is a key');
 
 define('OLD_AUTH_KEY', '');
 
-define('API_TIME', '2015-07-11 11:05:48');
+define('API_TIME', '2015-07-14 08:55:42');
 
 ?>
