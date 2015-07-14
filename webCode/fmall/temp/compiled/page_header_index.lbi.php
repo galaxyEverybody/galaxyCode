@@ -217,7 +217,7 @@ if ($this->_foreach['foo2']['total'] > 0):
         $this->_foreach['foo2']['iteration']++;
 ?>
                                     <dl class="fore<?php echo $this->_foreach['foo2']['iteration']; ?>">
-                                        <dt style="width:70px;"><a href="<?php echo $this->_var['child']['url']; ?>"><?php echo htmlspecialchars($this->_var['child']['name']); ?><i>></i></a></dt>
+                                        <dt style="width:80px;"><a href="<?php echo $this->_var['child']['url']; ?>"><?php echo htmlspecialchars($this->_var['child']['name']); ?><i>></i></a></dt>
                                         <dd><?php $_from = $this->_var['child']['cat_id']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'childer');if (count($_from)):
     foreach ($_from AS $this->_var['childer']):
 ?><a href="<?php echo $this->_var['childer']['url']; ?>"><?php echo htmlspecialchars($this->_var['childer']['name']); ?></a><?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?></dd>

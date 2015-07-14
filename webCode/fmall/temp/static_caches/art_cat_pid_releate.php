@@ -80,8 +80,34 @@ $data = array (
   ),
   6 => 
   array (
+    'cat_id' => '10',
+    'cat_name' => '会员中心',
+    'cat_type' => '5',
+    'keywords' => '',
+    'cat_desc' => '',
+    'sort_order' => '50',
+    'show_in_nav' => '0',
+    'parent_id' => '3',
+    'has_children' => '0',
+    'aricle_num' => '3',
+  ),
+  7 => 
+  array (
+    'cat_id' => '5',
+    'cat_name' => '新手上路 ',
+    'cat_type' => '5',
+    'keywords' => '',
+    'cat_desc' => '',
+    'sort_order' => '50',
+    'show_in_nav' => '0',
+    'parent_id' => '3',
+    'has_children' => '0',
+    'aricle_num' => '3',
+  ),
+  8 => 
+  array (
     'cat_id' => '6',
-    'cat_name' => '手机常识 ',
+    'cat_name' => '基金常识 ',
     'cat_type' => '5',
     'keywords' => '',
     'cat_desc' => '手机常识 ',
@@ -91,10 +117,10 @@ $data = array (
     'has_children' => '0',
     'aricle_num' => '3',
   ),
-  7 => 
+  9 => 
   array (
     'cat_id' => '7',
-    'cat_name' => '配送与支付 ',
+    'cat_name' => '支付功能',
     'cat_type' => '5',
     'keywords' => '',
     'cat_desc' => '配送与支付 ',
@@ -104,7 +130,7 @@ $data = array (
     'has_children' => '0',
     'aricle_num' => '3',
   ),
-  8 => 
+  10 => 
   array (
     'cat_id' => '8',
     'cat_name' => '服务保证 ',
@@ -117,39 +143,13 @@ $data = array (
     'has_children' => '0',
     'aricle_num' => '3',
   ),
-  9 => 
+  11 => 
   array (
     'cat_id' => '9',
     'cat_name' => '联系我们 ',
     'cat_type' => '5',
     'keywords' => '',
     'cat_desc' => '联系我们 ',
-    'sort_order' => '50',
-    'show_in_nav' => '0',
-    'parent_id' => '3',
-    'has_children' => '0',
-    'aricle_num' => '3',
-  ),
-  10 => 
-  array (
-    'cat_id' => '10',
-    'cat_name' => '会员中心',
-    'cat_type' => '5',
-    'keywords' => '',
-    'cat_desc' => '',
-    'sort_order' => '50',
-    'show_in_nav' => '0',
-    'parent_id' => '3',
-    'has_children' => '0',
-    'aricle_num' => '3',
-  ),
-  11 => 
-  array (
-    'cat_id' => '5',
-    'cat_name' => '新手上路 ',
-    'cat_type' => '5',
-    'keywords' => '',
-    'cat_desc' => '',
     'sort_order' => '50',
     'show_in_nav' => '0',
     'parent_id' => '3',

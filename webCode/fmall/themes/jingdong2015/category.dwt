@@ -100,7 +100,6 @@
     <!-- {/if} -->
     
     <!--组合搜索 开始-->
-    <!--{if $brands_old.1 || $price_grade.1 || $filter_attr_list}-->
     <div id="select" class="m">
     	<div class="mt">
         	<h1>{$cat_info.cat_name} <strong>&nbsp;{$lang.goods_filter}</strong></h1>
@@ -203,7 +202,7 @@
             </div>
         </div>
     </div>
-    <!-- {/if} -->
+
     <!--组合搜索 结束-->
     
     <div class="right-extra">
@@ -239,8 +238,8 @@
         <div id="da211x261-1" class="m"></div>
     </div>
     <span class="clr"></span>
-    <div class="J_goods_best"><!-- #BeginLibraryItem "/library/recommend_best.lbi" --><!-- #EndLibraryItem --></div>
-    <div class="mayLike"><!-- #BeginLibraryItem "/library/browse_related.lbi" --><!-- #EndLibraryItem --></div>
+    <div class="J_goods_best" style="display:none"><!-- #BeginLibraryItem "/library/recommend_best.lbi" --><!-- #EndLibraryItem --></div>
+    <div class="mayLike" style="display:none"><!-- #BeginLibraryItem "/library/browse_related.lbi" --><!-- #EndLibraryItem --></div>
     <div class="recentView"><!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem --></div>
 </div>
 

@@ -6,7 +6,7 @@
         	<ul>
             	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
             	<!--{foreach from=$goods_cat.goods_level2 item=goods_level2 name=foo}-->
-                <!--{if $smarty.foreach.foo.iteration <2}-->
+                <!--{if $smarty.foreach.foo.iteration <9}-->
             	<li><a href="javascript:;">{$goods_level2.name}<i></i></a></li>
                 <!--{/if}-->
                 <!--{/foreach}-->
@@ -20,18 +20,12 @@
             	<ul>
                     <!--{foreach from=$goods_cat.cat_clild item=cat name=foo}-->
                     <!--{if $smarty.foreach.foo.iteration < 7}-->
-                    <!--<li class="fore{$smarty.foreach.foo.iteration}"><a href="{$cat.url}"><i></i><span>{$cat.name}</span></a></li>-->
+                    <li class="fore{$smarty.foreach.foo.iteration}"><a href="{$cat.url}"><i></i><span>{$cat.name}</span></a></li>
                     <!--{/if}-->
                     <!--{/foreach}-->
                 </ul>
             </div>
-            <div class="words">
-            	<ul>
-                	
-                    <div class="text">{$goods_cat.des}</div>
-                    
-                </ul>
-            </div>
+            
         </div>
         <div class="bd_box">
         	<!--<div class="bdBox bdBox01">
@@ -69,8 +63,7 @@
                     <a class="bdSliderQh prev_bd" href="javascript:void(0)"><</a>
                     <a class="bdSliderQh next_bd" href="javascript:void(0)">></a>
                 </div>
-            </div>
-            -->
+            </div>-->
         	<!--{foreach from=$goods_cat.goods_level2 item=goods_level2 name=foo}-->
             <!--{if $smarty.foreach.foo.iteration < 9}-->
         	<div class="bdBox bdBoxPro">

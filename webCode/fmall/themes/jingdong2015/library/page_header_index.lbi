@@ -177,7 +177,7 @@
                                 <div class="subitem">
                                     <!--{foreach from=$cat.cat_id item=child name=foo2}-->
                                     <dl class="fore{$smarty.foreach.foo2.iteration}">
-                                        <dt style="width:70px;"><a href="{$child.url}">{$child.name|escape:html}<i>></i></a></dt>
+                                        <dt style="width:80px;"><a href="{$child.url}">{$child.name|escape:html}<i>></i></a></dt>
                                         <dd><!--{foreach from=$child.cat_id item=childer}--><a href="{$childer.url}">{$childer.name|escape:html}</a><!--{/foreach}--></dd>
                                     </dl>
                                     <!--{/foreach}--> 

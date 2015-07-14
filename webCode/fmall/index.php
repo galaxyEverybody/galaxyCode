@@ -139,7 +139,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
         $ad = $db->getRow($sql, true);
         $smarty->assign('ad', $ad);
     }
-
+	
 
 	/*周欢改 start*/
 
@@ -185,7 +185,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     }
 
     /* 页面中的动态内容 */
-    assign_dynamic('index');
+  	assign_dynamic('index');
 }
 
 $smarty->display('index.dwt', $cache_id);

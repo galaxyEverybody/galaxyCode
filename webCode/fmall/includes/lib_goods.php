@@ -1132,7 +1132,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         " WHERE filename = 'index' AND type = 1 AND remarks ='' AND id = $cat_id ";
     $sort_order = $GLOBALS['db']->getOne($sql);
 	$cat['sort_order'] = $sort_order;
-	 
+
     $children = get_children($cat_id);
 
     $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, ' .
@@ -1146,12 +1146,13 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 
     $order_rule = empty($order_rule) ? 'ORDER BY g.sort_order, g.goods_id DESC' : $order_rule;
     $sql .= $order_rule;
+
     if ($num > 0)
     {
         $sql .= ' LIMIT ' . $num;
     }
     $res = $GLOBALS['db']->getAll($sql);
-
+   
     $goods = array();
     foreach ($res AS $idx => $row)
     {
@@ -1175,8 +1176,8 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         $goods[$idx]['thumb']        = get_image_path($row['goods_id'], $row['goods_thumb'], true);
         $goods[$idx]['goods_img']    = get_image_path($row['goods_id'], $row['goods_img']);
         $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
-    }
-
+    }	
+	
     if ($from == 'web')
     {
         $GLOBALS['smarty']->assign('cat_goods_' . $cat_id, $goods);
@@ -1194,9 +1195,10 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
     $cat['url']  = build_uri('category', array('cid' => $cat_id), $cat['name']);
     $cat['id']   = $cat_id;
 	$cat['cat_clild'] = get_clild_list($cat_id);
+	
 	//获取二级分类下的商品
 	$cat_list_arr  = cat_list($cat_id, 0 , false);
-
+	
 	foreach($cat_list_arr as $key=>$value)
 	{
 		if($value['level'] == 1)
@@ -1208,6 +1210,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 					'LEFT JOIN ' . $GLOBALS['ecs']->table('member_price') . ' AS mp '.
 					"ON mp.goods_id = g.goods_id AND mp.user_rank = '$_SESSION[user_rank]' ".					
 					'WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND is_delete = 0 AND ' . get_children($value['cat_id']) . ' ORDER BY g.sort_order, g.goods_id DESC';
+
 			if ($num > 0)
 			{
 				$sql .= ' LIMIT ' . $num;
@@ -1240,13 +1243,12 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 			unset($cat_list_arr[$key]);
 		}
 	}
-	
+
 	$cat['goods_level2'] = $cat_list_arr;
-	
 	
 	// 获取分类下品牌
 
-	$sql = "SELECT b.brand_id, b.brand_name, brand_logo , COUNT(*) AS goods_num ".
+	/*$sql = "SELECT b.brand_id, b.brand_name, brand_logo , COUNT(*) AS goods_num ".
 			"FROM " . $GLOBALS['ecs']->table('brand') . "AS b, ".
 			$GLOBALS['ecs']->table('goods') . " AS g LEFT JOIN ". $GLOBALS['ecs']->table('goods_cat') . " AS gc ON g.goods_id = gc.goods_id " .
 			"WHERE g.brand_id = b.brand_id AND ($children OR " . 'gc.cat_id ' . db_create_in(array_unique(array_merge(array($cat_id), array_keys(cat_list($cat_id, 0, false))))) . ") AND b.is_show = 1 " .
@@ -1261,8 +1263,8 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 		$brands[$key]['url']  = build_uri('brand', array('bid' => $val['brand_id']), $val['brand_name']);
 		$brands[$key]['logo'] = 'data/brandlogo/'.$val['brand_logo'];
 	}			
-	$cat['brands'] = $brands;
-	
+	$cat['brands'] = $brands;*/
+
     return $cat;
 }
 
