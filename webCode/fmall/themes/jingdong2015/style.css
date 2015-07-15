@@ -1233,6 +1233,32 @@ h2,h3{font-size:14px}
 .sa2{background-position:-154px -239px}
 .sa1{background-position:-169px -239px}
 .sa0{background-position:-184px -239px}
+.bondinfo_middle{ width:60%;height:auto;float:left;border-right:1px solid #ddd;}
+.bond_middle_big{ width:80%;height:150px;}
+.bond_middle_big ul{ list-style:none;}
+.bond_middle_big .bond_big_one{ float:left;margin-left:30px;margin-top:50px;}
+.bond_middle_big .bond_big_one span{ font-size:34px;color:red;}
+.bond_middle_big .bond_big_two{ float:left;margin-left:70px;margin-top:50px;text-align:center;}
+.bond_middle_big .bond_big_two span{ font-size:34px;}
+.bondinfo_middle_middle{ width:75%;margin-left:20px;}
+.bondinfo_middle_middle #divProgressbar{ width:100%;height:20px;border:1px solid #ddd;background-color:#ddd;margin-top:10px;}
+.bondinfo_middle_middle #divProgressbarblue{ height:20px;background-color:blue;float:left;}
+.bondinfo_middle_bottom{ width:100%;height:auto;margin-top:10px;line-height:40px;}
+.bondinfo_middle_bottom li{ float:left;margin-left:20px;}
+.bondinfo_middle_bottom span{ font-weight:bold;font-size:16px;}
+.bondinfo_left{ width:35%;height:auto;float:right;}
+.bondinfo_leftdiv{ width:80%;height:auto;}
+.bondinfo_left_top{ line-height:40px;margin-top:10px;}
+.bondinfo_left_top span{ font-size:18px;}
+.bondinfo_recharge{ background-color:#ff500b;width:40px;height:30px;float:right;text-align:center;color:#fff;}
+.bondinfo_left_middle{ width:100%;height:40px;border:1px solid #ddd;}
+.recharge_input{ width:170px;height:35px;border-style:none;font-size:16px;outline:none;}
+.bondinfo_num{ height:auto;margin-top:30px;line-height:25px;}
+.bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #ddd;float:left;margin-left:10px;cursor:pointer;}
+.bondinfo_first{ margin-left:0px;float:left;}
+.showhidnum{ display:none;}
+.bondinfo_change{ margin-top:120px;}
+.bondinfo_tz_bnt{ width:200px;height:35px;background-color:#ddd;text-align:center;line-height:35px;}
 #summary-grade .star{float:left;margin:1px 5px 0 0}
 #summary #summary-stock{overflow:visible;margin-top:15px}
 .hl_red,a.hl_red,.hl_red:hover,.hl_red:visited,#summary .hl_red{color:#ff500b}

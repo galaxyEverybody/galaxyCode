@@ -12,14 +12,14 @@
         <ul id="mcart-gift">
         </ul>
         <ul id="mcart-mj">
-          <?php $_from = $this->_var['cart_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'goods_0_82484900_1436871602');if (count($_from)):
-    foreach ($_from AS $this->_var['goods_0_82484900_1436871602']):
+          <?php $_from = $this->_var['cart_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'goods');if (count($_from)):
+    foreach ($_from AS $this->_var['goods']):
 ?>
           <li>
-            <div class="p-img fl"><a href="<?php echo $this->_var['goods_0_82484900_1436871602']['url']; ?>" target="_blank"><img src="<?php echo $this->_var['goods_0_82484900_1436871602']['thumb']; ?>" width="50" height="50" alt=""></a></div>
-            <div class="p-name fl"><span></span><a href="<?php echo $this->_var['goods_0_82484900_1436871602']['url']; ?>" title="<?php echo $this->_var['goods_0_82484900_1436871602']['name']; ?>" target="_blank"><?php echo $this->_var['goods_0_82484900_1436871602']['short_name']; ?></a></div>
-            <div class="p-detail fr ar"> <span class="p-price"><strong><?php echo $this->_var['goods_0_82484900_1436871602']['shop_price']; ?></strong>×<?php echo $this->_var['goods_0_82484900_1436871602']['goods_number']; ?></span> <br>
-              <a class="delete" href="javascript:deleteCartGoods(<?php echo $this->_var['goods_0_82484900_1436871602']['rec_id']; ?>);">删除</a> </div>
+            <div class="p-img fl"><a href="<?php echo $this->_var['goods']['url']; ?>" target="_blank"><img src="<?php echo $this->_var['goods']['thumb']; ?>" width="50" height="50" alt=""></a></div>
+            <div class="p-name fl"><span></span><a href="<?php echo $this->_var['goods']['url']; ?>" title="<?php echo $this->_var['goods']['name']; ?>" target="_blank"><?php echo $this->_var['goods']['short_name']; ?></a></div>
+            <div class="p-detail fr ar"> <span class="p-price"><strong><?php echo $this->_var['goods']['shop_price']; ?></strong>×<?php echo $this->_var['goods']['goods_number']; ?></span> <br>
+              <a class="delete" href="javascript:deleteCartGoods(<?php echo $this->_var['goods']['rec_id']; ?>);">删除</a> </div>
           </li>
           <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
         </ul>

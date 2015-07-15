@@ -25,22 +25,22 @@
 <div id="shortcut-2013" class="pageHeaderFlow">
     <div class="w">
         <ul class="fl lh">
-            <li class="fore1 ld" clstag="homepage|keycount|home2013|01a"><b></b><a href="javascript:addToFavorite()" rel="nofollow">收藏京东</a></li>
+            <li class="fore1 ld" clstag="homepage|keycount|home2013|01a"><b></b><a href="javascript:addToFavorite()" rel="nofollow">收藏联众</a></li>
         </ul>
         <ul class="fr lh">
             {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
             <!--{if $navigator_list.top}-->
             <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
-            <li class="fore2 ld"><div class="dt"><s></s> <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a></div></li>
+            <li class="fore2 ld" style="display:none"><div class="dt"><s></s> <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a></div></li>
             <!-- {/foreach} -->
             <!--{/if}-->
-            <li class="fore3 ld menu" id="app-jd">
-                <div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机京东</a><b></b></div>
+            <li class="fore3 ld menu" id="app-jd" style="display:none;">
+                <div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机联众</a><b></b></div>
                 <div class="dd lh">
                     <div class="qr-info"></div>
                     <div class="qr-item qr-jd-app">
-                        <div class="qr-img"><img id="app-qrcode-img" src="images/538557daNd249a428.png" class="err-product" width="76" height="76" alt="手机京东" src="images/blank.gif"></div>
-                        <div class="qr-ext"><strong>京东客户端</strong><a href="#" target="_blank" class="btn-app-apple"></a><a href="#" target="_blank" class="btn-app-android"></a></div>
+                        <div class="qr-img"><img id="app-qrcode-img" src="images/538557daNd249a428.png" class="err-product" width="76" height="76" alt="手机联众" src="images/blank.gif"></div>
+                        <div class="qr-ext"><strong>联众客户端</strong><a href="#" target="_blank" class="btn-app-apple"></a><a href="#" target="_blank" class="btn-app-android"></a></div>
                     </div>
                 </div>
             </li>
@@ -54,7 +54,7 @@
                     <div><a href="#" target="_blank">客服邮箱</a></div>
                 </div>
             </li>
-            <li class="fore4 ld menu myJd" id="biz-service">
+            <li class="fore4 ld menu myJd" id="biz-service" style="display:none">
                 <div class="dt"><s></s> <span class="outline"></span> <span class="blank"></span> 网站导航 <b></b></div>
                 <div class="dd headNav">
                     <div class="fore fore1">
@@ -63,14 +63,14 @@
                             <dd><a href="">品牌街</a></dd>
                             <dd><a href="">天天低价</a></dd>
                             <dd><a href="">好东西</a></dd>
-                            <dd><a href="">京东预售</a></dd>
+                            <dd><a href="">联众预售</a></dd>
                             <dd><a href="">金融精选</a></dd>
-                            <dd><a href="">京东首发</a></dd>
+                            <dd><a href="">联众首发</a></dd>
                             <dd><a href="">今日团购</a></dd>
                             <dd><a href="">优惠券</a></dd>
                             <dd><a href="">闪购</a></dd>
                             <dd><a href="">会员俱乐部</a></dd>
-                            <dd><a href="">京东京选</a></dd>
+                            <dd><a href="">联众京选</a></dd>
                             <dd><a href="">定期送</a></dd>
                             <dd><a href="">装机大师</a></dd>
                             <dd><a href="">搭配购</a></dd>
@@ -86,14 +86,14 @@
                             <dd><a href="">品牌街</a></dd>
                             <dd><a href="">天天低价</a></dd>
                             <dd><a href="">好东西</a></dd>
-                            <dd><a href="">京东预售</a></dd>
+                            <dd><a href="">联众预售</a></dd>
                             <dd><a href="">金融精选</a></dd>
-                            <dd><a href="">京东首发</a></dd>
+                            <dd><a href="">联众首发</a></dd>
                             <dd><a href="">今日团购</a></dd>
                             <dd><a href="">优惠券</a></dd>
                             <dd><a href="">闪购</a></dd>
                             <dd><a href="">会员俱乐部</a></dd>
-                            <dd><a href="">京东京选</a></dd>
+                            <dd><a href="">联众京选</a></dd>
                             <dd><a href="">定期送</a></dd>
                         </dl>
                     </div>
@@ -103,14 +103,14 @@
                             <dd><a href="">品牌街</a></dd>
                             <dd><a href="">天天低价</a></dd>
                             <dd><a href="">好东西</a></dd>
-                            <dd><a href="">京东预售</a></dd>
+                            <dd><a href="">联众预售</a></dd>
                             <dd><a href="">金融精选</a></dd>
-                            <dd><a href="">京东首发</a></dd>
+                            <dd><a href="">联众首发</a></dd>
                             <dd><a href="">今日团购</a></dd>
                             <dd><a href="">优惠券</a></dd>
                             <dd><a href="">闪购</a></dd>
                             <dd><a href="">会员俱乐部</a></dd>
-                            <dd><a href="">京东京选</a></dd>
+                            <dd><a href="">联众京选</a></dd>
                             <dd><a href="">定期送</a></dd>
                         </dl>
                     </div>
@@ -120,14 +120,14 @@
                             <dd><a href="">品牌街</a></dd>
                             <dd><a href="">天天低价</a></dd>
                             <dd><a href="">好东西</a></dd>
-                            <dd><a href="">京东预售</a></dd>
+                            <dd><a href="">联众预售</a></dd>
                             <dd><a href="">金融精选</a></dd>
-                            <dd><a href="">京东首发</a></dd>
+                            <dd><a href="">联众首发</a></dd>
                             <dd><a href="">今日团购</a></dd>
                             <dd><a href="">优惠券</a></dd>
                             <dd><a href="">闪购</a></dd>
                             <dd><a href="">会员俱乐部</a></dd>
-                            <dd><a href="">京东京选</a></dd>
+                            <dd><a href="">联众京选</a></dd>
                             <dd><a href="">定期送</a></dd>
                             <dd><a href="">装机大师</a></dd>
                             <dd><a href="">搭配购</a></dd>
@@ -140,7 +140,7 @@
 </div>
 <div id="nav">
 	<div class="w">
-    	<div class="logo"><a href="./index.php" hidefocus="true" ><b></b><img src="images/user_logo.gif" width="270" height="48" alt="京东"></a></div>
+    	<div class="logo"><a href="./index.php" hidefocus="true" ><b></b><img src="images/user_logo.gif" width="270" height="48" alt="联众"></a></div>
         <div class="navitems">
         	<ul>
             	<li class="fore"><a href="./index.php">首页</a></li>
@@ -156,7 +156,7 @@
                 </li>
             </ul>
         </div>
-        <div class="nav-r">
+        <div class="nav-r" style="display:none;">
         	<div id="search-2013">
                 <div class="i-search ld">
                     <ul id="shelper" class="hide"></ul>
@@ -484,25 +484,14 @@ var select_spe = "{$lang.select_spe}";
 <!--*缺货登记列表页面 start-->
 <!--{if $action eq 'booking_list'} -->
 <div class="boxCenterList">
-<h5 class="mc"><span>{$lang.label_booking}</span></h5>
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-<tr align="center">
-<td width="20%" bgcolor="#ffffff">{$lang.booking_goods_name}</td>
-<td width="10%" bgcolor="#ffffff">{$lang.booking_amount}</td>
-<td width="20%" bgcolor="#ffffff">{$lang.booking_time}</td>
-<td width="35%" bgcolor="#ffffff">{$lang.process_desc}</td>
-<td width="15%" bgcolor="#ffffff">{$lang.handle}</td>
-</tr>
-<!-- {foreach from=$booking_list item=item} -->
-<tr>
-<td align="left" bgcolor="#ffffff"><a href="{$item.url}" target="_blank" class="f6">{$item.goods_name}</a></td>
-<td align="center" bgcolor="#ffffff">{$item.goods_number}</td>
-<td align="center" bgcolor="#ffffff">{$item.booking_time}</td>
-<td align="left" bgcolor="#ffffff">{$item.dispose_note}</td>
-<td align="center" bgcolor="#ffffff"><a href="javascript:if (confirm('{$lang.confirm_remove_account}')) location.href='user.php?act=act_del_booking&id={$item.rec_id}'" class="f6">{$lang.drop}</a> </td>
-</tr>
-<!--{/foreach}-->
-</table>
+<h5 class="mc"><span>我的投资</span></h5>
+	<div style="width:100%;height:40px;border:1px solid red;text-align:center;line-height:40px;">
+		<ul style="width:100%">
+			<li style="width:33%;border:1px solid #ddd">回收中的债券</li>
+			<li style="width:33%;border:1px solid #ddd">已结清的债券</li>
+			<li style="width:33%;border:1px solid #ddd">投标中的债券</li>
+		</ul>
+	</div>
 </div>
 <!--{/if} -->
 <!--*缺货登记列表页面 end-->
@@ -745,7 +734,7 @@ clip.setData(trans,null,clipid.kGlobalClipboard);
 	</div>
 	<div class="left">
 		<div id="myjd" class="m">
-        	<div class="mt"><h2><a href="user.php">我的京东</a></h2></div>
+        	<div class="mt"><h2><a href="user.php">我的联众</a></h2></div>
             <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
         </div>
     </div>

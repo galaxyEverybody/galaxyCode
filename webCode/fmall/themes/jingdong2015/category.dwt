@@ -211,7 +211,7 @@
         <div class="blank20"></div>
         <div class="blank20"></div>
     </div>
-    <div class="left">
+    <div class="left" style="border:1px solid red;">
     	<div id="sortlist_cat" class="m hide">
         	<div class="mt"><h2>{$cat.name}</h2></div>
             <div class="mc"> 

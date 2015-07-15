@@ -10,7 +10,7 @@ $k = array (
 echo $this->_echash . $k['name'] . '|' . serialize($k) . $this->_echash;
 ?>
             <li class="fore3 ld menu myJd" id="app-jd">
-            	<div class="dt"><span class="outline"></span><span class="blank"></span><s></s><a href="user.php" target="_blank">我的富猫</a><b></b></div>
+            	<div class="dt"><span class="outline"></span><span class="blank"></span><s></s><a href="user.php" target="_blank">用户中心</a><b></b></div>
                 <div class="dd myJdCon">
                 	<div class="userInfo">
                     	<div class="uPic"><a href="user.php"><img src="themes/jingdong2015/images/no-img_mid_.jpg"></a></div>

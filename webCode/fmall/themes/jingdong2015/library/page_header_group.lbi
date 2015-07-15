@@ -10,10 +10,10 @@
         	{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
             <!--{if $navigator_list.top}-->
             <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
-            <li class="fore2 ld"><div class="dt"><s></s> <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a></div></li>
+            <li class="fore2 ld" style="display:none"><div class="dt"><s></s> <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a></div></li>
             <!-- {/foreach} -->
             <!--{/if}-->
-            <li class="fore3 ld menu" id="app-jd">
+            <li class="fore3 ld menu" id="app-jd" style="display:none;">
             	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机京东</a><b></b></div>
                 <div class="dd lh">
                     <div class="qr-info"></div>

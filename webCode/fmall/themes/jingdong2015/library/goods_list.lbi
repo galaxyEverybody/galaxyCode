@@ -14,7 +14,7 @@
           
           
         </dl>
-        <div class="pagin pagin-m"><span class="text">  <!--{foreach from=$pager.page_number key=key item=item}-->
+        <div class="pagin pagin-m" ><span class="text">  <!--{foreach from=$pager.page_number key=key item=item}-->
       <!-- {if $pager.page eq $key} -->
       <i>{$key}</i>
       <!-- {/if} -->

@@ -353,7 +353,9 @@ else
 $db->query('UPDATE ' . $ecs->table('goods') . " SET click_count = click_count + 1 WHERE goods_id = '$_REQUEST[id]'");
 
 $smarty->assign('now_time',  gmtime());           // 当前系统时间
-$smarty->display('goods.dwt',      $cache_id);
+//根据大类id判断到不同的详情页面
+//$smarty->display('goods.dwt',      $cache_id);
+$smarty->display('goodsdetail.dwt',      $cache_id);
 
 /*------------------------------------------------------ */
 //-- PRIVATE FUNCTION
