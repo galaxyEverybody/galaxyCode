@@ -1229,10 +1229,10 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 					{
 						$goods_res[$idx]['promote_price'] = '';
 					}
-					$goods_res[$idx]['market_price']  = price_format($row['market_price']);
-					$goods_res[$idx]['shop_price']    = price_format($row['shop_price']);
-					$goods_res[$idx]['promote_price'] = $promote_price > 0 ? price_format($promote_price) : '';
-					$goods_res[$idx]['shop_price']   = price_format($row['shop_price']);
+					$goods_res[$idx]['market_price']  = $row['market_price'];
+					$goods_res[$idx]['shop_price']    = price_format($row['shop_price'],false);
+					$goods_res[$idx]['promote_price'] = $promote_price > 0 ? price_format($promote_price,false) : '';
+					$goods_res[$idx]['shop_price']   = price_format($row['shop_price'],false);
 					$goods_res[$idx]['short_name']   = $GLOBALS['_CFG']['goods_name_length'] > 0 ? sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
 					$goods_res[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
 			 }
@@ -1243,9 +1243,8 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 			unset($cat_list_arr[$key]);
 		}
 	}
-
-	$cat['goods_level2'] = $cat_list_arr;
 	
+	$cat['goods_level2'] = $cat_list_arr;
 	// 获取分类下品牌
 
 	/*$sql = "SELECT b.brand_id, b.brand_name, brand_logo , COUNT(*) AS goods_num ".

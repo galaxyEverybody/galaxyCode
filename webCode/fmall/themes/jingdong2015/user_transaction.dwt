@@ -196,7 +196,6 @@
 <div class="boxCenterList">
     <h5 class="mc"><span>{$lang.label_order}</span></h5>
     <div class="blank"></div>
-    <!--{foreach from=$orders item=item}-->
     <div class="goods_list_fund">
     	<div class="goods_list_goodname">
     		<em><a href="user.php?act=order_detail&order_id={$item.order_id}" class="f6">产品名称</a></em>
@@ -214,7 +213,6 @@
     		</li>
     	</ul>
     </div>
-    <!--{/foreach}-->
     
     <div class="blank10"></div>
     <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->

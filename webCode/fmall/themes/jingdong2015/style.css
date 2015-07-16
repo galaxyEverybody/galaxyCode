@@ -1869,17 +1869,21 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #categorys-2013 .mc{ top:46px; background:#ff500b; height:466px; padding:0; margin:0; border:0; width:100%;}
 #categorys-2013 .item{border:0; border-left:1px solid #ff500b; z-index:1; height:31px; color:#fff; width:auto;}
 #categorys-2013 span{ width:100%; height:31px; position:relative;}
+#categorys-2013 span a{ }
 #categorys-2013 s{ width:5px; height:7px; top:13px;}
 #categorys-2013 h3{ width:auto; height:31px; padding:0 10px; line-height:31px; font-family:"microsoft yahei"; font-size:14px; color:#fff; display:inline-block;}
 #categorys-2013 h3 a:link, #categorys-2013 h3 a:visited{ color:#fff;}
 #categorys-2013 h3 a:hover{ font-weight:normal;}
-#categorys-2013 .item .i-mc{ display: none; position: absolute; left:209px; top:-1px; width: 779px; background: #f7f7f7; border:1px solid #ff500b; overflow: hidden; -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; min-height:none;}
-#categorys-2013 .subitem{ min-height:inherit; padding:20px 0 20px 20px;}
+#categorys-2013 .item .i-mc{ display: none; position: absolute; left:209px; top:-1px; width: 470px; background: #f7f7f7; border:1px solid #ff500b; overflow: hidden; -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; min-height:none;}
+#categorys-2013 .subitem{ min-height:inherit; padding:20px 0 20px 20px;width:470px;}
+#categorys-2013 .subitem_top{ width:470px;height:30px;border-bottom:1px solid #ddd;}
+#categorys-2013 .subitem_middle{ width:470px;height:80px;margin-top:10px;}
+#categorys-2013 .subitemimg{ width:400px;height:300px;float:left;margin-left:20px;}
 #categorys-2013 .subitem .itemChannels{ overflow:hidden; padding-bottom:6px;}
 #categorys-2013 .subitem .itemChannels a{ float:left; padding:0 0 0 8px; margin-right:10px; background:#7C7171; white-space:nowrap; color:#fff; height:24px; line-height:24px;}
 #categorys-2013 .subitem .itemChannels a i{ display: inline-block; _display: inline; margin-left: 8px; width: 23px; height: 24px; font: 400 9px/24px consolas; background: #5c5251; text-align: center; cursor: pointer;}
 #categorys-2013 .subitem dl{ padding:0; border:0;}
-#categorys-2013 .subitem dt{ padding:8px 30px 0 0; position:relative; width:54px; float:left; text-align:right; font-weight:700; color:#666;}
+#categorys-2013 .subitem dt{ padding:8px 30px 0 0; position:relative; width:80px; float:left; text-align:right; font-weight:700; color:#666;}
 #categorys-2013 .subitem dt a{ color:#666; text-decoration:none;}
 #categorys-2013 .subitem dt i{ position:absolute; top:12px; right:18px; width:4px; height:14px; font:400 9px/14px consolas;}
 #categorys-2013 .subitem dd{ float: left; width:390px; padding: 6px 0; border-top: 1px solid #eee;}
@@ -1895,7 +1899,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #categorys-2013 .fr dl.categorys-promotions dd{ padding:0;}
 #categorys-2013 .fr dl.categorys-promotions dd a{ display:block; margin-bottom:1px;}
 #categorys-2013 .fr img{ margin:0;}
-.root61 #categorys-2013 .item .i-mc{ width:999px;}
+.root61 #categorys-2013 .item .i-mc{ width:470px;}
 .root61 #categorys-2013 .subitem{ width:704px;}
 .root61 #categorys-2013 .subitem dd{ width:620px;}
 #categorys-2013 .hover h3{ background:none; border:0; -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none;}

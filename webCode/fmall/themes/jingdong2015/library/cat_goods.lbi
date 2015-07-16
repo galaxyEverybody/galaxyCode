@@ -72,7 +72,7 @@
                 	<li>
                     	<div class="pImg"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}"><img width="100" height="100" alt="{$goods.goods_name}" src="{$goods.goods_thumb}"></a></div>
                         <div class="pName"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}">{$goods.short_name}</a></div>
-                        <div class="pPrice">{if $goods.promote_price > 0}{$goods.promote_price}{else}{$goods.shop_price}{/if}</div>
+                        <div class="pPrice">{if $goods.promote_price > 0}{$goods.promote_price}{else}{$goods.market_price}{/if}%</div>
                     </li>
                     <!--{/foreach}-->
                 </ul>

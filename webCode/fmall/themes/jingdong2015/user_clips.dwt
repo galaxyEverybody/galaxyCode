@@ -485,12 +485,110 @@ var select_spe = "{$lang.select_spe}";
 <!--{if $action eq 'booking_list'} -->
 <div class="boxCenterList">
 <h5 class="mc"><span>我的投资</span></h5>
-	<div style="width:100%;height:40px;border:1px solid red;text-align:center;line-height:40px;">
+	<div id="userinfo_band" style="width:100%;height:35px;text-align:center;line-height:35px;">
 		<ul style="width:100%">
-			<li style="width:33%;border:1px solid #ddd">回收中的债券</li>
-			<li style="width:33%;border:1px solid #ddd">已结清的债券</li>
-			<li style="width:33%;border:1px solid #ddd">投标中的债券</li>
+			<li id="userinfo_band1" style="width:33%;border:0px solid #ddd;cursor:pointer;" onclick="bandinfo_showhid1();">回收中的债券</li>
+			<li id="userinfo_band2" style="width:33%;border:1px solid #ddd;cursor:pointer;" onclick="bandinfo_showhid2();">已结清的债券</li>
+			<li id="userinfo_band3" style="width:33%;border:1px solid #ddd;cursor:pointer;" onclick="bandinfo_showhid3();">投标中的债券</li>
 		</ul>
+	</div>
+	<script>
+		function bandinfo_showhid1(){
+			var overband1 = document.getElementById('userinfo_band1');
+			var overband2 = document.getElementById('userinfo_band2');
+			var overband3 = document.getElementById('userinfo_band3');
+			var overbanddiv1 = document.getElementById('overbanddiv1');
+			var overbanddiv2 = document.getElementById('overbanddiv2');
+			var overbanddiv3 = document.getElementById('overbanddiv3');
+			overband1.style.border="0px";
+			overband2.style.border="1px solid #ddd";
+			overband3.style.border="1px solid #ddd";
+			overbanddiv1.style.display="block";
+			overbanddiv2.style.display="none";
+			overbanddiv3.style.display="none";
+		}
+		function bandinfo_showhid2(){
+			var overband1 = document.getElementById('userinfo_band1');
+			var overband2 = document.getElementById('userinfo_band2');
+			var overband3 = document.getElementById('userinfo_band3');
+			var overbanddiv1 = document.getElementById('overbanddiv1');
+			var overbanddiv2 = document.getElementById('overbanddiv2');
+			var overbanddiv3 = document.getElementById('overbanddiv3');
+			overband1.style.border="1px solid #ddd";
+			overband2.style.border="0px";
+			overband3.style.border="1px solid #ddd";
+			overbanddiv1.style.display="none";
+			overbanddiv2.style.display="block";
+			overbanddiv3.style.display="none";
+		}
+		function bandinfo_showhid3(){
+			var overband1 = document.getElementById('userinfo_band1');
+			var overband2 = document.getElementById('userinfo_band2');
+			var overband3 = document.getElementById('userinfo_band3');
+			var overbanddiv1 = document.getElementById('overbanddiv1');
+			var overbanddiv2 = document.getElementById('overbanddiv2');
+			var overbanddiv3 = document.getElementById('overbanddiv3');
+			overband1.style.border="1px solid #ddd";
+			overband2.style.border="1px solid #ddd";
+			overband3.style.border="0px";
+			overbanddiv1.style.display="none";
+			overbanddiv2.style.display="none";
+			overbanddiv3.style.display="block";
+		}
+	</script>
+	<div id="overbanddiv1" style="width:100%;height:300px;">
+		<table width="100%" border="0" style="margin-top:5px;">
+			<thead>
+				<tr>
+					<th>债券ID</th>
+					<th>原始投资金额</th>
+					<th>年利率</th>
+					<th>待收本息</th>
+					<th>月收本息</th>
+					<th>期数</th>
+					<th>下个还款日</th>
+					<th>状态</th>
+				<tr>
+			</thead>
+			<tbody>
+			
+			</tbody>
+		</table>
+	</div>
+	<div id="overbanddiv2" style="width:100%;height:300px;border:1px solid red;display:none;">
+		<table width="100%" border="0" style="margin-top:5px;">
+			<thead>
+				<tr>
+					<th>债券ID</th>
+					<th>投资金额</th>
+					<th>年利率</th>
+					<th>回收金额</th>
+					<th>已赚金额</th>
+					<th>结清日期</th>
+					<th>结清方式</th>
+				<tr>
+			</thead>
+			<tbody>
+			
+			</tbody>
+		</table>
+	</div>
+	<div id="overbanddiv3" style="width:100%;height:300px;border:1px solid red;display:none;">
+		<table width="100%" border="0" style="margin-top:5px;">
+			<thead>
+				<tr>
+					<th>债券ID</th>
+					<th>原始投资金额</th>
+					<th>年利率</th>
+					<th>期限</th>
+					<th>剩余时间</th>
+					<th>投标进度</th>
+				<tr>
+			</thead>
+			<tbody>
+			
+			</tbody>
+		</table>
 	</div>
 </div>
 <!--{/if} -->
