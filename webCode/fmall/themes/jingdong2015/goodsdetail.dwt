@@ -59,8 +59,8 @@ function reg(str){
 	                	<li>
 	                    	<div class="bond_middle_big">
 	                        	<ul>
-	                        		<li class="bond_big_one"><span>18</span>%<br>年化利率</li>
-	                        		<li class="bond_big_two"><span>{$goods.shop_price_formated}</span>元<br/>借款金额</li>
+	                        		<li class="bond_big_one"><span>{$goods.market_price}</span>%<br>年化利率</li>
+	                        		<li class="bond_big_two"><span>{$goods.shop_price}</span>元<br/>借款金额</li>
 	                        	</ul>
 	                        </div>
 	                    </li>
@@ -78,19 +78,30 @@ function reg(str){
 	                <!--summary end-->
 	                <ul class="bondinfo_middle_bottom">
 	                    <li>
-	                    	还款方式：<span>到期还本息</span>
+	                    	还款方式：<span>{if goods.warn_number==1}按月等额本息{elseif goods.warn_number==2}按月还息到期还本{else}到期还本息{/if}</span>
 	                    </li>
 	                    <li>
-	                    	还款期限：<span>到期还本息</span>
+	                    	还款期限：<span>{goods.warn_number}</span>
 	                    </li>
 	                    <li>
 	                    	保障方式：<span>本金+利息</span>
 	                    </li>
 	                    <li>
-	                    	剩余时间：<span>到期还本息</span>
+	                    	剩余时间：<em id="loan_time_dis"></em><div style="display:none;" id="loan_time_hid">5000000</div>
 	                    </li>
 	                </ul>
                 </div>
+                <script>
+                	$(function(){
+                		var loan_time = $('#loan_time_hid').html();
+
+                		var minite = Math.floor((loan_time/60)%60);
+                		var hour = Math.floor((loan_time/3600)%24);
+                		var day = Math.floor((loan_time/3600)/24);
+                		
+                		$('#loan_time_dis').html('<span style="color:red">'+day+'</span>&nbsp;天&nbsp;<span style="color:red">'+hour+'</span>&nbsp;时&nbsp;<span style="color:red">'+minite+'</span>&nbsp;分');
+                	});
+                </script>
             	<div class="bondinfo_left">
             		<div class="bondinfo_leftdiv">
 	            		<ul class="bondinfo_left_top">

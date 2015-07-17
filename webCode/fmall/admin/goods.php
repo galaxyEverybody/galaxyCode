@@ -432,6 +432,7 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
     $smarty->assign('cat_list', cat_list(0, $goods['cat_id']));
     $smarty->assign('brand_list', get_brand_list());
     $smarty->assign('unit_list', get_unit_list());
+    $smarty->assign('repay_list', get_repay_list());
     $smarty->assign('user_rank_list', get_user_rank_list());
     $smarty->assign('weight_unit', $is_add ? '1' : ($goods['goods_weight'] >= 1 ? '1' : '0.001'));
     $smarty->assign('cfg', $_CFG);
@@ -818,15 +819,15 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     $is_promote = empty($promote_price) ? 0 : 1;
     $promote_start_date = ($is_promote && !empty($_POST['promote_start_date'])) ? local_strtotime($_POST['promote_start_date']) : 0;
     $promote_end_date = ($is_promote && !empty($_POST['promote_end_date'])) ? local_strtotime($_POST['promote_end_date']) : 0;
-    $goods_weight = !empty($_POST['goods_weight']) ? $_POST['goods_weight'] * $_POST['weight_unit'] : 0;
+    $goods_weight = !empty($_POST['goods_weight']) ? local_strtotime($_POST['loan_date']) : 0;
     $is_best = isset($_POST['is_best']) ? 1 : 0;
     $is_new = isset($_POST['is_new']) ? 1 : 0;
     $is_hot = isset($_POST['is_hot']) ? 1 : 0;
     $is_on_sale = isset($_POST['is_on_sale']) ? 1 : 0;
     $is_alone_sale = isset($_POST['is_alone_sale']) ? 1 : 0;
     $is_shipping = isset($_POST['is_shipping']) ? 1 : 0;
-    $goods_number = isset($_POST['goods_number']) ? $_POST['goods_number'] : 0;
-    $warn_number = isset($_POST['warn_number']) ? $_POST['warn_number'] : 0;
+    $goods_number = isset($_POST['goods_number']) ? local_strtotime($_POST['repay_date']) : 0;
+    $warn_number = isset($_POST['warn_number']) ? $_POST['repay_type'] : 0;
     $goods_type = isset($_POST['goods_type']) ? $_POST['goods_type'] : 0;
     $give_integral = isset($_POST['give_integral']) ? intval($_POST['give_integral']) : '-1';
     $rank_integral = isset($_POST['rank_integral']) ? intval($_POST['rank_integral']) : '-1';

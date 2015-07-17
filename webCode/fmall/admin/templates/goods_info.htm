@@ -210,24 +210,27 @@
       <table width="90%" id="mix-table" style="display:none" align="center">
         {if $code eq ''}
         <tr>
-          <td class="label">{$lang.lab_goods_weight}</td>
-          <td><input type="text" name="goods_weight" value="{$goods.goods_weight_by_unit}" size="20" />
-            <select name="weight_unit">
-              {html_options options=$unit_list selected=$weight_unit}
-            </select></td>
+          <td class="label">{$lang.lab_loan_date}</td>
+          <td><input id="promote_loan_date" type="text" name="loan_date" value="{$goods.goods_weight_by_unit}" size="20" />
+          	<input name="selbtn3" type="button" id="selbtn3" onclick="return showCalendar('promote_loan_date', '%Y-%m-%d', false, false, 'selbtn3');" value="{$lang.btn_select}" class="button"/>
+          </td>
         </tr>
         {/if}
         {if $cfg.use_storage}
         <tr>
-          <td class="label"><a href="javascript:showNotice('noticeStorage');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_goods_number}</td>
+          <td class="label"><a href="javascript:showNotice('noticeStorage');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_repay_date}</td>
           <!--            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" {if $code neq '' || $goods._attribute neq ''}readonly="readonly"{/if} /><br />-->
-          <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" />
+          <td><input type="text" id="promote_repay_date" name="repay_date" value="{$goods.goods_number}" size="20" />
+            <input name="selbtn4" type="button" id="selbtn4" onclick="return showCalendar('promote_repay_date', '%Y-%m-%d', false, false, 'selbtn4');" value="{$lang.btn_select}" class="button"/>
             <br />
             <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeStorage">{$lang.notice_storage}</span></td>
         </tr>
         <tr>
-          <td class="label">{$lang.lab_warn_number}</td>
-          <td><input type="text" name="warn_number" value="{$goods.warn_number}" size="20" /></td>
+          <td class="label">{$lang.lab_repay_type}</td>
+          <td>
+          	<select name="repay_type">
+          		{html_options options=$repay_list selected=$weight_unit}
+          	</select>
         </tr>
         {/if}
         <tr>

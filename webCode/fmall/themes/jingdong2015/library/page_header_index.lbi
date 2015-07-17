@@ -183,7 +183,7 @@
                             <div class="i-mc">
                             	
                                 <div class="subitem" style="width:470px;">
-                                	<div class="subitem_top"><dt>理财,只因梦想</dt></div>
+                                	<div class="subitem_top"><dt style="text-align:left;">理财</dt></div>
                                 	<div class="subitem_middle">
                                     <!--{foreach from=$cat.cat_id item=child name=foo2}-->
                                     <dl class="fore{$smarty.foreach.foo2.iteration}" style="float:left;">

@@ -383,7 +383,7 @@
                     <div class="pImg"><a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"></a></div>
                     <div class="pInfo">
                         <h2><a href="{$goods.url}" target="_blank">{$goods.short_style_name}</a></h2>
-                        <p><!-- {if $goods.promote_price neq ""} -->{$goods.promote_price}<!-- {else}-->{$goods.shop_price}<!--{/if}--></p>
+                        <p><!-- {if $goods.promote_price neq ""} -->{$goods.promote_price}<!-- {else}-->{$goods.market_price}<!--{/if}-->%</p>
                     </div>
                 </li>
                 <!--{/foreach}-->

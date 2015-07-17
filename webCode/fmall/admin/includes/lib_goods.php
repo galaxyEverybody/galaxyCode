@@ -46,6 +46,19 @@ function get_unit_list()
 }
 
 /**
+ * 取得还款方式列表
+ * @return  array   还款方式列表
+ */
+function get_repay_list()
+{
+	return array(
+			'1' => $GLOBALS['_LANG']['repay_one'],
+			'2' => $GLOBALS['_LANG']['repay_two'],
+			'3' => $GLOBALS['_LANG']['repay_three'],
+	);
+}
+
+/**
  * 取得会员等级列表
  * @return  array   会员等级列表
  */

@@ -288,7 +288,7 @@ function insert_history()
 			$str .= '<li style="float:left;">
               <div class="p-img"><a target="_blank" title="'.$goods['goods_name'].'" href="'.$goods['url'].'"><img height="50" width="50" alt="" src="'.$goods['goods_thumb'].'"></a></div>
               <div class="p-name"><a target="_blank" title="'.$goods['goods_name'].'" href="'.$goods['url'].'">'.$goods['short_name'].'</a></div>
-              <div class="p-price"><strong class="J-p-1044476">'.$goods['shop_price'].'</strong></div>
+              <div class="p-price"><strong class="J-p-1044476">'.$goods['market_price'].'</strong>%</div>
             </li>';
 
         }

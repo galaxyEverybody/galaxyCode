@@ -48,12 +48,12 @@
               <!-- {/if} -->
               <!-- {/if} -->
             </div>
-            <div class="p-price"><strong> <!--{if $goods.promote_price neq "" } -->{$goods.promote_price} <!--{else}-->{$goods.shop_price}<!--{/if}--></strong><span id="p647948"></span></div>
+            <div class="p-price"><strong>利率： <!--{if $goods.promote_price neq "" } -->{$goods.promote_price} <!--{else}-->{$goods.market_price}<!--{/if}-->%</strong><span id="p647948"></span>期限：</div>
             <div class="p-name"><a target="_blank" href="{$goods.url}" title="{$goods.goods_name}"><p>{$goods.goods_name}</p><p class="promoWords">{$goods.goods_brief}</p></a></div>
-            <div class="extra"><span class="evaluate">已有<a target="_blank" href="{$goods.url}">{$goods.comments_number}</a>人评价</span></div>
-            <div class="stocklist" style="display:none;"><span class="st33">上海有货</span></div>
+            <div class="extra"><span class="evaluate">金额：<a target="_blank" href="{$goods.url}">{$goods.comments_number}</a></span></div>
+            <div class="stocklist"><span class="st33">进度条</span></div>
             <div class="btns">
-            	<a href="javascript:addToCart({$goods.goods_id})" class="btn-buy"><span></span>加入购物车</a>
+            	<a href="javascript:addToCart({$goods.goods_id})" class="btn-buy" style="display:none;"><span></span>加入购物车</a>
                 <a id="coll647948" href="javascript:collect({$goods.goods_id});" class="btn-coll"><span></span>关注</a>
                 <a id="comp_{$goods.goods_id}" onClick="Compare.add({$goods.goods_id},'{$goods.goods_name|escape:"html"}','{$goods.type}')" class="btn-compare btn-compare-s"><span></span>对比</a>
             </div>
