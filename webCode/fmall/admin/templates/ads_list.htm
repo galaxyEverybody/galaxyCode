@@ -26,7 +26,14 @@
     </td>
     <td align="left"><span>{if $list.position_id eq 0}{$lang.outside_posit}{else}{$list.position_name}{/if}</span>
     </td>
-    <td align="left"><span>{$list.type}</span></td>
+    <td valign="middle"><span>
+	<div style="float:left;margin-right:10px;line-height:40px;">{$list.type}</div>
+	{if ($list.type == '图片')}
+	<div style="float:left;height:40px;max-width:200px;*width:200px;overflow:hidden;">
+	<img {if strpos($list.ad_code,'www') }src="{$list.ad_code}"{else}src="../data/afficheimg/{$list.ad_code}" {/if} height="40px" />
+	</div>
+	{/if}
+	</span></td>
     <td align="center"><span>{$list.start_date}</span></td>
     <td align="center"><span>{$list.end_date}</span></td>
     <td align="right"><span>{$list.click_count}</span></td>

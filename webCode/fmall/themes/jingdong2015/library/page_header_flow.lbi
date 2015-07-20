@@ -37,7 +37,7 @@
     </div>
 </div>
 <div class="w w1 header clearfix">
-	<div id="logo"><a href="./index.php"><img src="images/logo.gif" title="返回京东商城首页" alt="返回京东商城首页"></a></div>
+	<div id="logo"><a href="./index.php"><img src="images/logo.png" title="返回京东商城首页" alt="返回京东商城首页"></a></div>
     
 	<div class="progress clearfix">
 		<ul <!-- {if $step eq "cart"} -->class="progress-1"<!-- {/if} -->  <!-- {if $step eq "consignee"} -->class="progress-2"<!-- {/if} -->       <!-- {if $step eq "checkout"} 开始订单确认界面 -->class="progress-2"<!-- {/if} -->         <!-- {if $step eq "done"} -->class="progress-3"<!-- {/if} -->   <!-- {if $step eq "login"} -->class="progress-2"<!-- {/if} -->>

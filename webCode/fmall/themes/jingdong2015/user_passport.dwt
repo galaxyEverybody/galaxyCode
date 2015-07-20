@@ -25,7 +25,7 @@
 <!--#登录界面 start--> 
 <!-- {if $action eq 'login'} -->
 <div class="userLoginHeader">
-	<div class="w"><a href="./"><img src="images/logo.gif" /></a><b>欢迎登录</b></div>
+	<div class="w"><a href="./"><img src="images/logo.png" /></a><b>欢迎登录</b></div>
 </div>
 <div id="content" class="userLogin">
 	<div class="login-wrap">

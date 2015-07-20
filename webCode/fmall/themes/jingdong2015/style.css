@@ -511,7 +511,7 @@ em{font-style:normal}
 #categorys-2013 .subitem dd{overflow:hidden;*zoom:1}
 #categorys-2013 .subitem em{float:left;height:14px;margin:4px 0;line-height:14px;padding:0 8px;border-left:1px solid #ccc}
 #categorys-2013 .subitem dd a{white-space:nowrap}
-#navitems-2013{background:#fb552f;}
+#navitems-2013{background:#fb552f;width:1204px;}
 #navitems-2013,#navitems-2013 li,#navitems-2013 li a{height:40px}
 #navitems-2013 li{float:left;position:relative;width:83px}
 #navitems-2013 .curr,#navitems-2013 .hover{z-index:1}
@@ -1242,9 +1242,9 @@ h2,h3{font-size:14px}
 .bond_middle_big .bond_big_two span{ font-size:34px;}
 .bondinfo_middle_middle{ width:75%;margin-left:20px;}
 .bondinfo_middle_middle #divProgressbar{ width:100%;height:20px;border:1px solid #ddd;background-color:#ddd;margin-top:10px;}
-.bondinfo_middle_middle #divProgressbarblue{ height:20px;background-color:blue;float:left;}
-.bondinfo_middle_bottom{ width:100%;height:auto;margin-top:10px;line-height:40px;}
-.bondinfo_middle_bottom li{ float:left;margin-left:20px;}
+.bondinfo_middle_middle #divProgressbarblue{ height:15px;background-color:#FF852F;float:left;border-radius:5px;}
+.bondinfo_middle_bottom{ width:100%;height:auto;margin-top:10px;line-height:60px;}
+.bondinfo_middle_bottom li{ float:left;margin-left:40px;}
 .bondinfo_middle_bottom span{ font-weight:bold;font-size:16px;}
 .bondinfo_left{ width:35%;height:auto;float:right;}
 .bondinfo_leftdiv{ width:80%;height:auto;}
@@ -1253,12 +1253,11 @@ h2,h3{font-size:14px}
 .bondinfo_recharge{ background-color:#ff500b;width:40px;height:30px;float:right;text-align:center;color:#fff;}
 .bondinfo_left_middle{ width:100%;height:40px;border:1px solid #ddd;}
 .recharge_input{ width:170px;height:35px;border-style:none;font-size:16px;outline:none;}
-.bondinfo_num{ height:auto;margin-top:30px;line-height:25px;}
-.bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #ddd;float:left;margin-left:10px;cursor:pointer;}
-.bondinfo_first{ margin-left:0px;float:left;}
+.bondinfo_num{ height:100px;margin-top:30px;line-height:25px;}
+.bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #ddd;float:left;cursor:pointer;}
+.bondinfo_first{ margin-left:15px;float:left;}
 .showhidnum{ display:none;}
-.bondinfo_change{ margin-top:120px;}
-.bondinfo_tz_bnt{ width:200px;height:35px;background-color:#ddd;text-align:center;line-height:35px;}
+.bondinfo_tz_bnt{ width:260px;height:35px;background-color:#ddd;text-align:center;line-height:35px;}
 #summary-grade .star{float:left;margin:1px 5px 0 0}
 #summary #summary-stock{overflow:visible;margin-top:15px}
 .hl_red,a.hl_red,.hl_red:hover,.hl_red:visited,#summary .hl_red{color:#ff500b}
@@ -1867,7 +1866,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #categorys-2013{ height:44px; background:#ff500b;}
 #categorys-2013 .mt a{ height:44px; line-height:44px; padding:0 10px; font:400 15px/44px "microsoft yahei"; color:#fff;}
 #categorys-2013 .mc{ top:46px; background:#ff500b; height:466px; padding:0; margin:0; border:0; width:100%;}
-#categorys-2013 .item{border:0; border-left:1px solid #ff500b; z-index:1; height:31px; color:#fff; width:auto;}
+#categorys-2013 .item{border:0; border-left:1px solid #F8F8F8; z-index:1; height:31px; color:#fff; width:auto;}
 #categorys-2013 span{ width:100%; height:31px; position:relative;}
 #categorys-2013 span a{ }
 #categorys-2013 s{ width:5px; height:7px; top:13px;}
@@ -2679,7 +2678,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #shortcut-2013.pageHeaderFlow .hover .headNav .fore{ width:215px;}
 #shortcut-2013.pageHeaderFlow .hover .headNav .fore1{ width:260px;}
 
-.userLoginHeader{ height:80px; background:#fff;}
+.userLoginHeader{ height:90px; background:#fff;}
 .userLoginHeader .w{ padding-top:14px;}
 .userLoginHeader .w b{ font-weight:400; line-height:52px; color:#3a3a3a; font-size:22px; font-family:'microsoft yahei'; padding-left:20px; vertical-align:middle;}
 .userLogin{}
@@ -2687,7 +2686,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .userLogin .login-wrap .w{ position:relative; z-index:5;}
 .userLogin .login-wrap .login-form{ position:absolute; top:0; right:0;}
 .userLogin .login-box{ position: relative; z-index: 4; width: 306px; background: #fff; padding: 20px; overflow: visible; float:right; top:40px;}
-.userLogin .login-banner{ background:#070960;}
+.userLogin .login-banner{ background:#FF852F;}
 .userLogin .login-banner a{ width:990px; display:block; margin:0 auto;}
 .userLogin .login-box .mt{ overflow: visible; height: 27px;}
 .userLogin .login-box .mt h1{ osition: relative; height: 27px; line-height: 27px; top: -5px; float: left; color: #666; font-family: '\5fae\8f6f\96c5\9ed1'; font-size: 20px; font-weight:400;}

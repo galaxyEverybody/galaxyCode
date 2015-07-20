@@ -47,7 +47,7 @@ function reg(str){
 <div class="w">
 	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
     <div id="product-intro">
-    	<div id="name">
+    	<div id="name" style="margin-left:-100px;">
         	<h1>{$goods.goods_style_name}</h1>
             <strong>{$goods.goods_brief}</strong>
         </div>
@@ -59,35 +59,35 @@ function reg(str){
 	                	<li>
 	                    	<div class="bond_middle_big">
 	                        	<ul>
-	                        		<li class="bond_big_one"><span>{$goods.market_price}</span>%<br>年化利率</li>
-	                        		<li class="bond_big_two"><span>{$goods.shop_price}</span>元<br/>借款金额</li>
+	                        		<li class="bond_big_one"><span>{$goods.market_price}</span>&nbsp;%<br>年化利率</li>
+	                        		<li class="bond_big_two"><span>{$goods.shop_price}</span>&nbsp;元<br/>借款金额</li>
 	                        	</ul>
 	                        </div>
 	                    </li>
 	                </ul>
 	                <ul class="bondinfo_middle_middle">
-	                	<div id="divProgressbar" style="width:100%;height:20px;border:1px solid #ddd;background-color:#ddd;margin-top:10px;">
-	                		<div id="divProgressbarblue"></div>
+	                	<div id="divProgressbar" style="width:85%;height:15px;border:1px solid #ddd;background-color:#ddd;margin-top:10px;border-radius:5px;">
+	                		<div id="divProgressbarblue"></div><span>15%</span>
 	                	</div>
 	                </ul>
 	                <script>
 	                	$(function(){
-	                		$("#divProgressbarblue").width(50*2);
+	                		$("#divProgressbarblue").width(50*6);
 	                	});
 	                </script>
 	                <!--summary end-->
 	                <ul class="bondinfo_middle_bottom">
 	                    <li>
-	                    	还款方式：<span>{if goods.warn_number==1}按月等额本息{elseif goods.warn_number==2}按月还息到期还本{else}到期还本息{/if}</span>
+	                    	还款方式：<span>{if $goods.warn_number==1}按月等额本息{elseif $goods.warn_number==2}按月还息到期还本{else}到期还本息{/if}</span>
 	                    </li>
 	                    <li>
-	                    	还款期限：<span>{goods.warn_number}</span>
+	                    	还款期限：<span>{$goods.goods_number}天</span>
 	                    </li>
 	                    <li>
 	                    	保障方式：<span>本金+利息</span>
 	                    </li>
 	                    <li>
-	                    	剩余时间：<em id="loan_time_dis"></em><div style="display:none;" id="loan_time_hid">5000000</div>
+	                    	剩余时间：<em id="loan_time_dis"></em><div style="display:none;" id="loan_time_hid">{$goods.goods_weight}</div>
 	                    </li>
 	                </ul>
                 </div>
@@ -99,7 +99,7 @@ function reg(str){
                 		var hour = Math.floor((loan_time/3600)%24);
                 		var day = Math.floor((loan_time/3600)/24);
                 		
-                		$('#loan_time_dis').html('<span style="color:red">'+day+'</span>&nbsp;天&nbsp;<span style="color:red">'+hour+'</span>&nbsp;时&nbsp;<span style="color:red">'+minite+'</span>&nbsp;分');
+                		$('#loan_time_dis').html('<span style="color:red;font-size:24px;">'+day+'</span>&nbsp;天&nbsp;<span style="color:red;font-size:24px;">'+hour+'</span>&nbsp;时&nbsp;<span style="color:red;font-size:24px;">'+minite+'</span>&nbsp;分');
                 	});
                 </script>
             	<div class="bondinfo_left">
@@ -121,17 +121,17 @@ function reg(str){
 	            			</li>
 	            		</ul>
 	            		<ul class="bondinfo_num">
-	            			<li class="bondinfo_first">500元</li>
-	            			<li>1000元</li>
+	            			<li>500元</li>
+	            			<li class="bondinfo_first">1000元</li>
 	            			<div class="showhidnum">
-	            			<li>2000元</li>
-	            			<li>4000元</li>
+	            			<li class="bondinfo_first">2000元</li>
+	            			<li class="bondinfo_first">4000元</li>
 	            			<li style="width:100%;height:1px;border:0px"></li>
-	            			<li class="bondinfo_first">8000元</li>
-	            			<li>10000元</li>
-	            			<li>20000元</li>
+	            			<li >8000元</li>
+	            			<li class="bondinfo_first">10000元</li>
+	            			<li class="bondinfo_first">20000元</li>
 	            			</div>
-	            			<li>全部</li>
+	            			<li class="bondinfo_first">全部</li>
 	            		</ul>
 	            		<ul class="bondinfo_change">
 	            			<div class="bondinfo_tz_bnt">立即投资</div>
@@ -251,6 +251,7 @@ function reg(str){
 			var chargenum = $(this).text();
 			if(chargenum == '全部'){
 				$(".showhidnum").show();
+				$(this).hide();
 			}else{
 				chargenum = chargenum.substring(0,chargenum.length-1);
 				$(".recharge_input").val(chargenum);

@@ -77,7 +77,7 @@
 </div>
 <div id="o-header-2013">
 	<div class="w" id="header-2013">
-    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><img src="images/logo.gif" alt="银河众联"></a></div>
+    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><img src="images/logo.png" alt="银河众联"></a></div>
         <!--logo end-->
         <div id="search-2013">
         	<div class="i-search ld">
@@ -162,16 +162,13 @@
         <!--settleup end-->
     </div>
     
-    <div class="navBox">
+    <div class="navBox" style="width:100%;background-color:#FF500B;">
         <div class="w">
             <div id="nav-2013">
                 <div id="categorys-2013" class="categorys-2014 {if $script_name neq 'index'}no_index{/if}">
-                    <div class="mt ld" style="background:#b73213;">
-                        <h2><a href="javascript:;">全部商品分类<b></b></a></h2>
-                    </div>
-                    <div id="_JD_ALLSORT" class="mc">
+                    <div id="_JD_ALLSORT" class="mc" style="background-color:#ddd;">
                         <!--{foreach from=$categories item=cat name=foo}-->
-                        <div class="item fore{$smarty.foreach.foo.iteration}" style="height:100px;border-bottom:1px solid #ddd;">
+                        <div class="item fore{$smarty.foreach.foo.iteration}" style="height:100px;border-bottom:1px solid #FFF;">
                             <span><h3 style="font-size:20px;"><a href="{$cat.url}">{$cat.name|escape:html}</a></h3><s></s></span>
                             <span style="margin-top:25px;margin-left:10px;font-size:14px;">
 	                            <!--{foreach from=$cat.cat_id item=child name=foo2}-->
@@ -227,13 +224,23 @@
 						});
 					});
                     </script>
-                </div>
                 <ul id="navitems-2013">
-                    <li class="fore1 {if $navigator_list.config.index eq 1}curr{/if}"><a href="./index.php">{$lang.home}</a></li>
+                    <li class="fore1 {if $navigator_list.config.index eq 1}curr{/if}" style="float:left;"><a href="./index.php">{$lang.home}</a></li>
                     <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav name=foo} -->
                     <li class="fore{$smarty.foreach.foo.iteration} {if $nav.active eq 1}curr{/if}"><a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li>
                     <!-- {/foreach} -->
                 </ul>
+                <script>
+                	$(function(){
+                		$("#navitems-2013 li").mouseover(
+                			function(){
+                				$(this).css("background","#B73213");
+                		}).mouseout(
+                			function(){
+                				$(this).css("background","#FF500B");
+                		});
+                	});
+                </script>
             </div>
         </div>
     </div>

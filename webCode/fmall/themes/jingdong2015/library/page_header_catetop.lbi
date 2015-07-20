@@ -44,7 +44,7 @@
         <div style="position:absolute;top:0px;right:0px;width:25px;height:25px;background:#fff;filter:alpha(opacity=0);opacity:0;cursor:pointer" onclick="document.getElementById('top-banner').style.display='none'"></div>
     </div>
     <div class="w" id="header-2013">
-    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.gif" width="295" height="52" alt="众联"></a></div>
+    	<div id="logo-2013" class="ld"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.png" width="295" height="52" alt="众联"></a></div>
         <!--logo end-->
         <div id="search-2013">
         	<div class="i-search ld">

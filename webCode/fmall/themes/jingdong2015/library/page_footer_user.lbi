@@ -27,7 +27,6 @@
             E-mail: {$service_email}<br />
             <!-- 结束邮件{/if} --> 
         </div>
-        <div align="center"><a href=" http://www.ecmoban.com" target="_blank"><img src="images/ecmoban.gif" alt="ECShop模板" /></a></div><br />
     </div>
 </div>
 

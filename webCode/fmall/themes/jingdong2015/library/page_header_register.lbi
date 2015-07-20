@@ -37,5 +37,5 @@
   </div>
 </div>
 <div class="w w1 header clearfix">
-	<div id="logo"><a href="./index.php"><img src="images/logo.gif" title="返回{$shop_name}首页" alt="返回{$shop_name}首页"></a></div>
+	<div id="logo"><a href="./index.php"><img src="images/logo.png" title="返回{$shop_name}首页" alt="返回{$shop_name}首页"></a></div>
 </div>

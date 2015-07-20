@@ -1,0 +1,11 @@
+shop_price(本店价格)=》投资金额
+
+market_price(市场价格)=》投资利率
+
+goods_weight(商品重量)=》借款时间(int)
+
+goods_number(商品数量)=》还款时间(int)
+
+warn_number(商品报警数量)=》还款方式(tinyint) {1=>按月等额本息,2=>按月还息到期还本,3=>到期还本息}
+
+			

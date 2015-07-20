@@ -55,7 +55,7 @@ var select_spe = "{$lang.select_spe}";
                 <!-- {/foreach} -->
               </tr>
               <!-- {if $smarty.foreach.goods_list.total gt 2} -->
-              <tr>
+              <tr style="display:none;">
                 <td bgcolor="#ffffff">&nbsp;</td>
                 <!-- {foreach name="goods_list" from=$goods_list item=goods} -->
                 <th bgcolor="#ffffff">
@@ -63,19 +63,19 @@ var select_spe = "{$lang.select_spe}";
                 <!-- {/foreach} -->
               </tr>
               <!-- {/if} -->
-              <tr>
+              <tr style="display:none;">
                 <th align="left" bgcolor="#ffffff">&nbsp;&nbsp;{$lang.brand}</th>
                 <!-- {foreach name="goods_list" from=$goods_list item=goods} -->
                 <td bgcolor="#ffffff">&nbsp;&nbsp;{$goods.brand_name}</td>
                 <!-- {/foreach} -->
               </tr>
               <tr>
-                <th align="left" bgcolor="#ffffff">&nbsp;&nbsp;{$lang.shop_price}</th>
+                <th align="left" bgcolor="#ffffff">&nbsp;&nbsp;金额</th>
                 <!-- {foreach name="goods_list" from=$goods_list item=goods} -->
                 <td bgcolor="#ffffff">&nbsp;&nbsp;{$goods.rank_price}</td>
                 <!-- {/foreach} -->
               </tr>
-              <tr>
+              <tr style="display:none;">
                 <th align="left" bgcolor="#ffffff">&nbsp;&nbsp;{$lang.goods_weight}</th>
                 <!-- {foreach name="goods_list" from=$goods_list item=goods} -->
                 <td bgcolor="#ffffff">&nbsp;&nbsp;{$goods.goods_weight}</td>
@@ -115,7 +115,7 @@ var select_spe = "{$lang.select_spe}";
                 
                 
   
-                <div id="choose-btn-append" class="btn"> <a class="btn-append " id="InitCartUrl" href="javascript:addToCart({$goods.goods_id})" title="">{$lang.add_to_cart}<b></b></a> </div><div id="choose-btn-collent" class="btn"> <a class="btn-append " id="InitCartUrl" href="javascript:collect({$goods.goods_id})" title="">          {$lang.collect}<b></b></a> </div>
+                <div id="choose-btn-append" class="btn"> <a href="goods.php?id={$goods.goods_id}">查看详情</a></div><div style="display:none;" id="choose-btn-collent" class="btn"> <a class="btn-append " id="InitCartUrl" href="javascript:collect({$goods.goods_id})" title="">          {$lang.collect}<b></b></a> </div>
                 </div>
                 </td>
                 <!-- {/foreach} -->

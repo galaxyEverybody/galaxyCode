@@ -873,7 +873,7 @@ function get_goods_info($goods_id)
             "WHERE g.goods_id = '$goods_id' AND g.is_delete = 0 " .
             "GROUP BY g.goods_id";
     $row = $GLOBALS['db']->getRow($sql);
-
+	
     if ($row !== false)
     {
         /* 用户评论级别取整 */
@@ -923,9 +923,9 @@ function get_goods_info($goods_id)
 
         /* 修正借款倒计时 */
         $row['goods_weight']  = $row['goods_weight']-time();
-
+		
         /* 修正还款期限*/
-        $row['goods_number'] = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
+        $row['goods_number'] = ceil(($row['goods_number']-$row['goods_weight'])/(1000*60*60*24));
         
         /* 修正上架时间显示 */
         $row['add_time']      = local_date($GLOBALS['_CFG']['date_format'], $row['add_time']);
@@ -1236,6 +1236,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 					$goods_res[$idx]['shop_price']   = price_format($row['shop_price'],false);
 					$goods_res[$idx]['short_name']   = $GLOBALS['_CFG']['goods_name_length'] > 0 ? sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
 					$goods_res[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
+					
 			 }
 			 $cat_list_arr[$key]['goods'] = $goods_res;
 		}
@@ -1264,7 +1265,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 		$brands[$key]['logo'] = 'data/brandlogo/'.$val['brand_logo'];
 	}			
 	$cat['brands'] = $brands;*/
-
+	//print_r($cat);exit;
     return $cat;
 }
 
