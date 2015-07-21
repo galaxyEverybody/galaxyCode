@@ -47,62 +47,105 @@ function reg(str){
 <div class="w">
 	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
     <div id="product-intro">
-    	<div class="goods_detail">
-	    	<div id="name">
-	        	<h1>{$goods.goods_style_name}</h1>
-	        </div> 
-	        <div id="summary-grade">
-	        		<p style="height:42px;line-height:42px;font-size:14px;">基金代码<span class="goods_lists">000000</span>|&nbsp;&nbsp;基金类型<span class="goods_lists">股票型</span></p>
-	                <ul class="goods_color">
-	                    <li class="goods_colorleft"><h3>最新净值（）</h3><span>12346</span></li>
-	                    <li class="goods_colorright"><h3>净值增长率</h3><span>12346</span></li>
-	                </ul>
-	                <ul class="summarymiddle">
-	                    <li>
-							<div>申够费率：</div>
-	                    </li>
-	                    <li>
-	                    	<div>起购金额：</div>   
-	                    </li>
-	                    <li style="display:none;">
-	                    	<div>赎回说明：</div>
-	                    </li>
-	                   	<li>
-	                    	<div>赎回时长：</div>   
-	                    </li>
-	                    <li>
-	                    	<div>投资风险：</div>
-	                    </li>
-	                </ul>
-	                <div id="chooseBtns">
-	                	<div class="choosesubnums">
-	                		<span>投资金额</span>：<input onblur=num() id="moneynum"></input><em>元<em>
-	                		<span id="minmoney">低于起购额度1000元</span>
-	                	</div>
-	                    <div id="choose-btn-append" class="btn"> <a class="btn-append " id="InitCartUrl" href="javascript:addToCart({$goods.goods_id})" title="">立即申购<b></b></a></div>
-	                </div>
-	                <script>
-	                	
-	                	function num(){
-	                		var num = document.getElementById('moneynum').value;
-	                		var block = document.getElementById('minmoney');
-	                		if(num < 1000){
-	                			block.style.display="block";
-	                		}else{
-	                			block.style.display="none";
-	                		}
-	                	}
-	                	
-	                </script>
-	            <!--choose end--> 
-	            <span class="clr"></span>
-	        </div>
+    	<div id="name" style="margin-left:-100px;">
+        	<h1>{$goods.goods_style_name}</h1>
+            <strong>{$goods.goods_brief}</strong>
         </div>
-        <div class="detail_table">
-        	<p style="margin-top:20px;margin-left:30px;">七日年化率</p>
-        	<!-- #BeginLibraryItem "/library/goods_table.lbi" --><!-- #EndLibraryItem -->
+        <!--name end-->
+            
+        <div class="clearfix" style="margin-left:-100px;">
+        	<div class="bondinfo_middle">
+	                <ul>
+	                	<li>
+	                    	<div class="bond_middle_big">
+	                        	<ul>
+	                        		<li class="bond_big_one"><span>{$goods.market_price}</span>&nbsp;%<br>年化利率</li>
+	                        		<li class="bond_big_two"><span>{$goods.shop_price}</span>&nbsp;元<br/>借款金额</li>
+	                        	</ul>
+	                        </div>
+	                    </li>
+	                </ul>
+	                <ul class="bondinfo_middle_middle">
+	                	<div id="divProgressbar" style="width:85%;height:15px;border:1px solid #ddd;background-color:#ddd;margin-top:10px;border-radius:5px;">
+	                		<div id="divProgressbarblue"></div><span>15%</span>
+	                	</div>
+	                </ul>
+	                <script>
+	                	$(function(){
+	                		$("#divProgressbarblue").width(50*6);
+	                	});
+	                </script>
+	                <!--summary end-->
+	                <ul class="bondinfo_middle_bottom">
+	                    <li>
+	                    	还款方式：<span>{if $goods.warn_number==1}按月等额本息{elseif $goods.warn_number==2}按月还息到期还本{else}到期还本息{/if}</span>
+	                    </li>
+	                    <li>
+	                    	还款期限：<span>{$goods.goods_number}天</span>
+	                    </li>
+	                    <li>
+	                    	保障方式：<span>本金+利息</span>
+	                    </li>
+	                    <li>
+	                    	剩余时间：<em id="loan_time_dis"></em><div style="display:none;" id="loan_time_hid">{$goods.goods_weight}</div>
+	                    </li>
+	                </ul>
+                </div>
+                <script>
+                	$(function(){
+                		var loan_time = $('#loan_time_hid').html();
+
+                		var minite = Math.floor((loan_time/60)%60);
+                		var hour = Math.floor((loan_time/3600)%24);
+                		var day = Math.floor((loan_time/3600)/24);
+                		
+                		$('#loan_time_dis').html('<span style="color:red;font-size:24px;">'+day+'</span>&nbsp;天&nbsp;<span style="color:red;font-size:24px;">'+hour+'</span>&nbsp;时&nbsp;<span style="color:red;font-size:24px;">'+minite+'</span>&nbsp;分');
+                	});
+                </script>
+            	<div class="bondinfo_left">
+            		<div class="bondinfo_leftdiv">
+	            		<ul class="bondinfo_left_top">
+	            			<li>
+	            				可投金额：<span>{$goods.shop_price_formated}</span>元
+	            			</li>
+	            			<li>
+	            				可用金额：<span>{$goods.shop_price_formated}</span>元
+	            				<div class="bondinfo_recharge"><a href="">充值</a></div>
+	            			</li>
+	            			<li>
+	            				<div class="bondinfo_left_middle">
+	            				<form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+	            					<span>投资金额：</span><input class="recharge_input" type="text" name=""/>
+	            				</form>
+	            				</div>
+	            			</li>
+	            		</ul>
+	            		<ul class="bondinfo_num">
+	            			<li>500元</li>
+	            			<li class="bondinfo_first">1000元</li>
+	            			<div class="showhidnum">
+	            			<li class="bondinfo_first">2000元</li>
+	            			<li class="bondinfo_first">4000元</li>
+	            			<li style="width:100%;height:1px;border:0px"></li>
+	            			<li >8000元</li>
+	            			<li class="bondinfo_first">10000元</li>
+	            			<li class="bondinfo_first">20000元</li>
+	            			</div>
+	            			<li class="bondinfo_first">全部</li>
+	            		</ul>
+	            		<ul class="bondinfo_change">
+	            			<div class="bondinfo_tz_bnt">立即投资</div>
+			            </ul>
+		             </div>
+                </div>
+            <!--choose end-->
+            	
+            
+             
+            <span class="clr"></span>
         </div>
         <!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem --> 
+        <!--preview end--> 
     </div>
     <!--product-intro end-->
 </div>
@@ -115,11 +158,9 @@ function reg(str){
       <div class="float-nav-wrap" style="height: 30px; ">
         <div class="mt" style="height: 30px;">
           <ul class="tab">
-            <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">产品介绍</a></li>
-            <li id="p-con-attr"><a href="javascript:;" class="toggle-link" style="display:none;">规格参数</a></li>
-            <li id="p-con-list"><a href="javascript:;" class="toggle-link" style="display:none;">包装清单</a></li>
-            <li id="p-con-comm"><a href="javascript:;" class="toggle-link">产品评价</a></li>
-            <li id="p-con-guar"><a href="javascript:;" class="toggle-link" style="display:none;">售后保障</a></li>
+            <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">基本情况</a></li>
+            <li id="p-con-attr"><a href="javascript:;" class="toggle-link">投标记录</a></li>
+            <li id="p-con-list"><a href="javascript:;" class="toggle-link">还款记录</a></li>
           </ul>
         </div>
       </div>
@@ -166,133 +207,36 @@ function reg(str){
     </div>
     <DIV class="clr"></DIV>
 		<div id="comment" class="m m2">
-  <div class="mt">
-    <h2>商品评价</h2>
-  </div>
-  <div class="mc">
-    <div id="i-comment">
-      <div class="rate"> <strong>{$comment_percent.haoping_percent}<span>%</span></strong> <br>
-        <span>好评度</span> </div>
-      <div class="percent">
-        <dl>
-          <dt>好评<span>({$comment_percent.haoping_percent}%)</span></dt>
-          <dd>
-            <div style="width: {$comment_percent.haoping_percent}%;"></div>
-          </dd>
-        </dl>
-        <dl>
-          <dt>中评<span>({$comment_percent.zhongping_percent}%)</span></dt>
-          <dd class="d1">
-            <div style="width: {$comment_percent.zhongping_percent}%;"> </div>
-          </dd>
-        </dl>
-        <dl>
-          <dt>差评<span>({$comment_percent.chaping_percent}%)</span></dt>
-          <dd class="d1">
-            <div style="width: {$comment_percent.chaping_percent}%;"> </div>
-          </dd>
-        </dl>
-      </div>
-      <div class="btns">
-        <div>{if $factor eq 0}所有用户都可以对该商品<br />
-          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 1}只有登陆的用户才可以对该商品<br />
-          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 2}在本站购买过一次其他商品的用户才可以对该商品<br />
-          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 3}购买过此{$goods_name}的顾客，在收到商品才可以对该商品<br />
-          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{/if} </div>
-      </div>
-    </div>
-  </div>
 </div>
         <!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
       
   </div>
   <div class="left">
     <!-- {if $related_cat} -->
-    <div id="related-sorts" class="m m2" style="display:none;">
+    <div id="related-sorts" class="m m2">
       <div class="mt">
-        <h2>相关分类</h2>
+        <h2>相关推荐</h2>
       </div>
       <div class="mc">
         <ul class="lh">
-   		 <!-- {foreach from=$related_cat item=cat} -->
-          <li><a href="{$cat.url}" title="{$cat.cat_name}">{$cat.cat_name}</a></li>
-             <!-- {/foreach} -->
-
-        </ul>
-      </div>
-    </div>
-    
-    <!-- {/if} -->
-    
-        <!-- {if $related_brand} -->
-    <div id="related-brands" class="m m2">
-      <div class="mt">
-        <h2>同类其他品牌</h2>
-      </div>
-      <div class="mc">
-        <ul class="lh">
-          <!--{foreach from=$related_brand item=brands}-->
-          <li><a href="{$brands.url}" title="{$brands.brand_name}">{$brands.brand_name}</a></li>
-          <!--{/foreach}-->
-          
-        </ul>
-      </div>
-    </div>
-       <!-- {/if} -->
-    
-    <!-- {if $$top10_price || $top10_brand || $top10_category}-->
-    <div id="ranklist" class="m m2" style="display:none;">
-      <div class="mt">
-        <h2>排行榜</h2>
-      </div>
-      <div class="mc">
-        <ul class="tab">
-          <li class="curr">同价位</li>
-          <li>同品牌</li>
-          <li>同类别</li>
-        </ul>
-        <ul class="tabcon">
-          <!--{foreach from=$top10_price item=goods name=top10_price}-->
-          <li class="fore{$smarty.foreach.top10_price.iteration}"><span>{$smarty.foreach.top10_price.iteration}</span>
-            <div class="p-img"><a href="{$goods.url}"><img height="50" width="50" src="{$goods.thumb}"></a></div>
-            <div class="p-name"><a href="{$goods.url}" title="{$goods.short_name}">{$goods.short_name}</a></div>
-            <div class="p-price"><strong class="J-p-942510">{$goods.price}</strong></div>
-          </li>
-          <!--{/foreach}-->
-        </ul>
-        <ul class="tabcon hide">
-          <!--{foreach from=$top10_brand item=goods name=top10_brand}-->
-          <li class="fore{$smarty.foreach.top10_brand.iteration}"><span>{$smarty.foreach.top10_brand.iteration}</span>
-            <div class="p-img"><a href="{$goods.url}"><img data-img="1" height="50" width="50" src="{$goods.thumb}" class="err-product"></a></div>
-            <div class="p-name"><a href="{$goods.url}" title="{$goods.short_name}">{$goods.short_name}</a></div>
-            <div class="p-price"><strong class="J-p-1029670">{$goods.price}</strong></div>
-          </li>
-          <!--{/foreach}-->
-        </ul>
-        <ul class="tabcon hide">
-          <!--{foreach from=$top10_category item=goods name=top10_category}-->
+   		 <!--{foreach from=$top10_category item=goods name=top10_category}-->
           <li class="fore{$smarty.foreach.top10_category.iteration}"><span>{$smarty.foreach.top10_category.iteration}</span>
             <div class="p-img"><a href="{$goods.url}"><img height="50" width="50" src="{$goods.thumb}" class="err-product"></a></div>
             <div class="p-name"><a href="{$goods.url}" title="{$goods.short_name}">{$goods.short_name}</a></div>
             <div class="p-price"><strong class="J-p-1094930">{$goods.price}</strong></div>
           </li>
           <!--{/foreach}-->
+
         </ul>
       </div>
     </div>
-     <!-- {/if} -->
-    <!-- TemplateBeginEditable name="购买了该商品的用户还购买了区域" --> <!-- #BeginLibraryItem "/library/bought_goods.lbi" --><!-- #EndLibraryItem --> <!-- TemplateEndEditable --></div>
+    
+    <!-- {/if} -->
+    </div>
 </div>
 <div class="clr"></div>
 <div class="w">
-  <div id="product-track">
-    <div class="right">
-            	<!-- #BeginLibraryItem "/library/browse_related.lbi" --><!-- #EndLibraryItem --> 
-    </div>
-    <div class="left">
-      	<!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem --> 
-    </div>
-    <span class="clr"></span></div>
+  <div class="recentView"><!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem --></div>
 </div>
 <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 
@@ -300,6 +244,22 @@ function reg(str){
 
 </body>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script>
+	<!--点击金额到金额输入框-->
+	$(function(){
+		$(".bondinfo_num li").click(function(){
+			var chargenum = $(this).text();
+			if(chargenum == '全部'){
+				$(".showhidnum").show();
+				$(this).hide();
+			}else{
+				chargenum = chargenum.substring(0,chargenum.length-1);
+				$(".recharge_input").val(chargenum);
+			}
+			
+		});
+	});
+</script>
 
 <script type="text/javascript">
 var goods_id = {$goods_id};

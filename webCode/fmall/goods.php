@@ -182,8 +182,8 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'gotopage')
 //-- PROCESSOR
 /*------------------------------------------------------ */
 
-$cache_id = $goods_id . '-' . $_SESSION['user_rank'].'-'.$_CFG['lang'];
-$cache_id = sprintf('%X', crc32($cache_id));
+//$cache_id = $goods_id . '-' . $_SESSION['user_rank'].'-'.$_CFG['lang'];
+//$cache_id = sprintf('%X', crc32($cache_id));
 if (!$smarty->is_cached('goods.dwt', $cache_id))
 {
     $smarty->assign('image_width',  $_CFG['image_width']);
@@ -198,7 +198,11 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 
     /* 获得商品的信息 */
     $goods = get_goods_info($goods_id);
-	//print_r($goods);exit;
+	/* 获取所属大类的名称*/
+    $sql = 'select a.cat_name from'.$ecs->table("category").' as a,'.$ecs->table("category").' as b where a.cat_id = b.parent_id and b.cat_id='.$goods["cat_id"];
+    $goods_row = $db->getRow($sql);
+    $goods_row_catname = $goods_row['cat_name'];
+    
     if ($goods === false)
     {
         /* 如果没有找到任何记录则跳回到首页 */
@@ -354,8 +358,29 @@ $db->query('UPDATE ' . $ecs->table('goods') . " SET click_count = click_count + 
 
 $smarty->assign('now_time',  gmtime());           // 当前系统时间
 //根据大类id判断到不同的详情页面
-//$smarty->display('goods.dwt',      $cache_id);
-$smarty->display('goodsdetail.dwt',      $cache_id);
+
+if($goods_row_catname == '债券')
+{
+	$smarty->display('goods.dwt',      $cache_id);
+}
+elseif($goods_row_catname == '基金')
+{
+	$smarty->display('goods_fund.dwt',      $cache_id);
+}
+elseif($goods_row_catname == '保险')
+{
+	$smarty->display('goods_safe.dwt',      $cache_id);
+}
+elseif($goods_row_catname == '我要贷款')
+{
+	$smarty->display('goods_loan.dwt',      $cache_id);
+}
+else
+{
+	/* 如果没有找到任何记录则跳回到首页 */
+    ecs_header("Location: ./\n");
+    exit;
+}
 
 /*------------------------------------------------------ */
 //-- PRIVATE FUNCTION

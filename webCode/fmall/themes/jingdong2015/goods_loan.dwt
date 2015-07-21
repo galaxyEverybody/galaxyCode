@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript">
+function $id(element) {
+  return document.getElementById(element);
+}
+//切屏--是按钮，_v是内容平台，_h是内容库
+function reg(str){
+  var bt=$id(str+"_b").getElementsByTagName("h2");
+  for(var i=0;i<bt.length;i++){
+    bt[i].subj=str;
+    bt[i].pai=i;
+    bt[i].style.cursor="pointer";
+    bt[i].onclick=function(){
+      $id(this.subj+"_v").innerHTML=$id(this.subj+"_h").getElementsByTagName("blockquote")[this.pai].innerHTML;
+      for(var j=0;j<$id(this.subj+"_b").getElementsByTagName("h2").length;j++){
+        var _bt=$id(this.subj+"_b").getElementsByTagName("h2")[j];
+        var ison=j==this.pai;
+        _bt.className=(ison?"":"h2bg");
+      }
+    }
+  }
+  $id(str+"_h").className="none";
+  $id(str+"_v").innerHTML=$id(str+"_h").getElementsByTagName("blockquote")[0].innerHTML;
+}
+
+</script>
+</head>
+<body>
+<div class="GoodsPageHeader"><!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --></div>{insert_scripts files='magiczoomplus.js,jd_goods.js'}
+<div class="rootNav">
+<div class="w">
+	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+    <div id="product-intro">
+    	<div class="goods_detail">
+	    	<div id="name">
+	        	<h1>{$goods.goods_style_name}</h1>
+	        </div> 
+	        <div id="summary-grade">
+	        		<p style="height:42px;line-height:42px;font-size:14px;">基金代码<span class="goods_lists">000000</span>|&nbsp;&nbsp;基金类型<span class="goods_lists">股票型</span></p>
+	                <ul class="goods_color">
+	                    <li class="goods_colorleft"><h3>最新净值（）</h3><span>12346</span></li>
+	                    <li class="goods_colorright"><h3>净值增长率</h3><span>12346</span></li>
+	                </ul>
+	                <ul class="summarymiddle">
+	                    <li>
+							<div>申够费率：</div>
+	                    </li>
+	                    <li>
+	                    	<div>起购金额：</div>   
+	                    </li>
+	                    <li style="display:none;">
+	                    	<div>赎回说明：</div>
+	                    </li>
+	                   	<li>
+	                    	<div>赎回时长：</div>   
+	                    </li>
+	                    <li>
+	                    	<div>投资风险：</div>
+	                    </li>
+	                </ul>
+	                <div id="chooseBtns">
+	                	<div class="choosesubnums">
+	                		<span>投资金额</span>：<input onblur=num() id="moneynum"></input><em>元<em>
+	                		<span id="minmoney">低于起购额度1000元</span>
+	                	</div>
+	                    <div id="choose-btn-append" class="btn"> <a class="btn-append " id="InitCartUrl" href="javascript:addToCart({$goods.goods_id})" title="">立即申购<b></b></a></div>
+	                </div>
+	                <script>
+	                	
+	                	function num(){
+	                		var num = document.getElementById('moneynum').value;
+	                		var block = document.getElementById('minmoney');
+	                		if(num < 1000){
+	                			block.style.display="block";
+	                		}else{
+	                			block.style.display="none";
+	                		}
+	                	}
+	                	
+	                </script>
+	            <!--choose end--> 
+	            <span class="clr"></span>
+	        </div>
+        </div>
+        <div class="detail_table">
+        	<p style="margin-top:20px;margin-left:30px;">七日年化率</p>
+        	<!-- #BeginLibraryItem "/library/goods_table.lbi" --><!-- #EndLibraryItem -->
+        </div>
+        <!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem --> 
+    </div>
+    <!--product-intro end-->
+</div>
+</div>
+<div class="w goodsW">
+	<!-- #BeginLibraryItem "/library/goods_fittings.lbi" --><!-- #EndLibraryItem -->
+    <div class="clr"></div>
+  <div class="right"> 
+    <div id="product-detail" class="m m1">
+      <div class="float-nav-wrap" style="height: 30px; ">
+        <div class="mt" style="height: 30px;">
+          <ul class="tab">
+            <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">产品介绍</a></li>
+            <li id="p-con-attr"><a href="javascript:;" class="toggle-link" style="display:none;">规格参数</a></li>
+            <li id="p-con-list"><a href="javascript:;" class="toggle-link" style="display:none;">包装清单</a></li>
+            <li id="p-con-comm"><a href="javascript:;" class="toggle-link">产品评价</a></li>
+            <li id="p-con-guar"><a href="javascript:;" class="toggle-link" style="display:none;">售后保障</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc" id="p-con-detail-con">
+        <ul class="detail-list">
+          <li>商品名称：{$goods.goods_name}</li>
+          <!-- {foreach from=$properties item=property_group key=key} --> 
+          <!-- {foreach from=$property_group item=property} -->
+          <li>{$property.name|escape:html}：{$property.value}</li>
+          <!-- {/foreach}--> 
+          
+          <!-- {/foreach}-->
+          
+        </ul>
+        <div class="ac" style="height:10px;"></div>
+        <div class="detail-content"> {$goods.goods_desc} </div>
+      </div>
+      <div class="mc hide" id="p-con-attr-con">
+        <div class="detail-correction"> </div>
+        <table cellpadding="0" cellspacing="1" width="100%" border="0" class="Ptable">
+          <tbody>
+            <!-- {foreach from=$properties item=property_group key=key} -->
+            <tr>
+              <th class="tdTitle" colspan="2">{$key|escape}</th>
+            </tr>
+            <tr> </tr>
+            
+            <!-- {foreach from=$property_group item=property} -->
+            <tr>
+              <td class="tdTitle">{$property.name|escape:html}</td>
+              <td>{$property.value}</td>
+            </tr>
+            <!-- {/foreach}--> 
+            <!-- {/foreach}-->
+          </tbody>
+        </table>
+      </div>
+      <div class="mc hide" id="p-con-list-con">
+        <div class="item-detail">{$goods.packing_list}</div>
+      </div>
+      <div class="mc hide" id="p-con-guar-con">
+        <div class="item-detail">{$goods.customer_service}</div>
+      </div>
+    </div>
+    <DIV class="clr"></DIV>
+		<div id="comment" class="m m2">
+  <div class="mt">
+    <h2>商品评价</h2>
+  </div>
+  <div class="mc">
+    <div id="i-comment">
+      <div class="rate"> <strong>{$comment_percent.haoping_percent}<span>%</span></strong> <br>
+        <span>好评度</span> </div>
+      <div class="percent">
+        <dl>
+          <dt>好评<span>({$comment_percent.haoping_percent}%)</span></dt>
+          <dd>
+            <div style="width: {$comment_percent.haoping_percent}%;"></div>
+          </dd>
+        </dl>
+        <dl>
+          <dt>中评<span>({$comment_percent.zhongping_percent}%)</span></dt>
+          <dd class="d1">
+            <div style="width: {$comment_percent.zhongping_percent}%;"> </div>
+          </dd>
+        </dl>
+        <dl>
+          <dt>差评<span>({$comment_percent.chaping_percent}%)</span></dt>
+          <dd class="d1">
+            <div style="width: {$comment_percent.chaping_percent}%;"> </div>
+          </dd>
+        </dl>
+      </div>
+      <div class="btns">
+        <div>{if $factor eq 0}所有用户都可以对该商品<br />
+          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 1}只有登陆的用户才可以对该商品<br />
+          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 2}在本站购买过一次其他商品的用户才可以对该商品<br />
+          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 3}购买过此{$goods_name}的顾客，在收到商品才可以对该商品<br />
+          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{/if} </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
+      
+  </div>
+  <div class="left">
+    <!-- {if $related_cat} -->
+    <div id="related-sorts" class="m m2" style="display:none;">
+      <div class="mt">
+        <h2>相关分类</h2>
+      </div>
+      <div class="mc">
+        <ul class="lh">
+   		 <!-- {foreach from=$related_cat item=cat} -->
+          <li><a href="{$cat.url}" title="{$cat.cat_name}">{$cat.cat_name}</a></li>
+             <!-- {/foreach} -->
+
+        </ul>
+      </div>
+    </div>
+    
+    <!-- {/if} -->
+    
+        <!-- {if $related_brand} -->
+    <div id="related-brands" class="m m2">
+      <div class="mt">
+        <h2>同类其他品牌</h2>
+      </div>
+      <div class="mc">
+        <ul class="lh">
+          <!--{foreach from=$related_brand item=brands}-->
+          <li><a href="{$brands.url}" title="{$brands.brand_name}">{$brands.brand_name}</a></li>
+          <!--{/foreach}-->
+          
+        </ul>
+      </div>
+    </div>
+       <!-- {/if} -->
+    
+    <!-- {if $$top10_price || $top10_brand || $top10_category}-->
+    <div id="ranklist" class="m m2" style="display:none;">
+      <div class="mt">
+        <h2>排行榜</h2>
+      </div>
+      <div class="mc">
+        <ul class="tab">
+          <li class="curr">同价位</li>
+          <li>同品牌</li>
+          <li>同类别</li>
+        </ul>
+        <ul class="tabcon">
+          <!--{foreach from=$top10_price item=goods name=top10_price}-->
+          <li class="fore{$smarty.foreach.top10_price.iteration}"><span>{$smarty.foreach.top10_price.iteration}</span>
+            <div class="p-img"><a href="{$goods.url}"><img height="50" width="50" src="{$goods.thumb}"></a></div>
+            <div class="p-name"><a href="{$goods.url}" title="{$goods.short_name}">{$goods.short_name}</a></div>
+            <div class="p-price"><strong class="J-p-942510">{$goods.price}</strong></div>
+          </li>
+          <!--{/foreach}-->
+        </ul>
+        <ul class="tabcon hide">
+          <!--{foreach from=$top10_brand item=goods name=top10_brand}-->
+          <li class="fore{$smarty.foreach.top10_brand.iteration}"><span>{$smarty.foreach.top10_brand.iteration}</span>
+            <div class="p-img"><a href="{$goods.url}"><img data-img="1" height="50" width="50" src="{$goods.thumb}" class="err-product"></a></div>
+            <div class="p-name"><a href="{$goods.url}" title="{$goods.short_name}">{$goods.short_name}</a></div>
+            <div class="p-price"><strong class="J-p-1029670">{$goods.price}</strong></div>
+          </li>
+          <!--{/foreach}-->
+        </ul>
+        <ul class="tabcon hide">
+          <!--{foreach from=$top10_category item=goods name=top10_category}-->
+          <li class="fore{$smarty.foreach.top10_category.iteration}"><span>{$smarty.foreach.top10_category.iteration}</span>
+            <div class="p-img"><a href="{$goods.url}"><img height="50" width="50" src="{$goods.thumb}" class="err-product"></a></div>
+            <div class="p-name"><a href="{$goods.url}" title="{$goods.short_name}">{$goods.short_name}</a></div>
+            <div class="p-price"><strong class="J-p-1094930">{$goods.price}</strong></div>
+          </li>
+          <!--{/foreach}-->
+        </ul>
+      </div>
+    </div>
+     <!-- {/if} -->
+    <!-- TemplateBeginEditable name="购买了该商品的用户还购买了区域" --> <!-- #BeginLibraryItem "/library/bought_goods.lbi" --><!-- #EndLibraryItem --> <!-- TemplateEndEditable --></div>
+</div>
+<div class="clr"></div>
+<div class="w">
+  <div id="product-track">
+    <div class="right">
+            	<!-- #BeginLibraryItem "/library/browse_related.lbi" --><!-- #EndLibraryItem --> 
+    </div>
+    <div class="left">
+      	<!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem --> 
+    </div>
+    <span class="clr"></span></div>
+</div>
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+
+
+</body>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script type="text/javascript">
+var goods_id = {$goods_id};
+var goodsattr_style = {$cfg.goodsattr_style|default:1};
+var gmt_end_time = {$promote_end_time|default:0};
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var goodsId = {$goods_id};
+var now_time = {$now_time};
+
+<!-- {literal} -->
+onload = function(){
+  changePrice();
+  fixpng();
+  try { onload_leftTime(); }
+  catch (e) {}
+}
+
+/**
+ * 点选可选属性或改变数量时修改商品价格的函数
+ */
+function changePrice()
+{
+  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+
+  var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+
+  Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+}
+
+/**
+ * 接收返回的信息
+ */
+function changePriceResponse(res)
+{
+  if (res.err_msg.length > 0)
+  {
+    alert(res.err_msg);
+  }
+  else
+  {
+    document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+    if (document.getElementById('ECS_SHOPPRICE'))
+      document.getElementById('ECS_SHOPPRICE').innerHTML = res.result;
+    if (document.getElementById('ECS_GOODS_AMOUNT'))
+      document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+	
+  }
+}
+<!-- {/literal} -->
+</script>
+</html>

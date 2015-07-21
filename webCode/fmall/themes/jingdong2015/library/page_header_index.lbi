@@ -101,6 +101,8 @@
             <!--{/if}-->
         </div>
         <!--search end-->
+        <div class="loan_first"><a href="user.php?act=borrow_money"><img src="images/borrow_money.png"></a></div>
+        <!--loan end-->
         <div id="my360buy-2013" class="hide">
         	<dl>
             	<dt class="ld"><s></s><a href="user.php">我的银河众联</a><b></b></dt>

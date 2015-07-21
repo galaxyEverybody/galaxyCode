@@ -78,8 +78,9 @@ setcookie('ECS[display]', $display, gmtime() + 86400 * 7);
 //-- PROCESSOR
 /*------------------------------------------------------ */
 //判断是否顶级分类调用不同模板   by zhouhuan
-$sql = 'SELECT parent_id,is_top_style FROM '.$ecs->table("category")." WHERE cat_id=$cat_id";
+$sql = 'SELECT parent_id,is_top_style,cat_name FROM '.$ecs->table("category")." WHERE cat_id=$cat_id";
 $cat_row = $db->getRow($sql);
+$smarty->assign('cat_name',		$cat_row['cat_name']);//大类名称
 
 if($cat_row['parent_id'] == 0 && $cat_row['is_top_style'] != 0)
 {

@@ -444,6 +444,7 @@ ol,ul{list-style:none}
 #my360buy-2013 dl.hover dt{height:32px;border:1px solid #e3e3e3;border-bottom:0;-moz-box-shadow:0 0 10px rgba(0,0,0,.12);-webkit-box-shadow:0 0 10px rgba(0,0,0,.12);box-shadow:0 0 10px rgba(0,0,0,.12);background-position:-116px -54px;background-color:#fff}
 #my360buy-2013 dl.hover dt b{top:7px;border-style:dashed dashed solid;border-color:transparent transparent #CCC}
 .settleup-2013{float:left;position:relative;z-index:9;margin-top:12px;width:141px;height:33px}
+.loan_first{float:left;position:relative;z-index:9;width:148px;height:62px;margin-left:50px;}
 .settleup-2013 dl{height:33px}
 .root61 .settleup-2013{float:left;}
 .settleup-2013 dt,.settleup-2013 dl.hover dt,.settleup-2013 .nogoods b{background-image:url(images/20130330A_1.png);background-repeat:no-repeat}
