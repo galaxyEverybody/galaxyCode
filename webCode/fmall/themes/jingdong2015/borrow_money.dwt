@@ -20,62 +20,61 @@
 {insert_scripts files='common.js,user.js'}
 {insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,jd_common_flow.js'}
 {insert_scripts files='transport_jquery.js,utils.js,jquery.SuperSlide.js'}
+{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
 
 <div class="w main">
 	<div class="blank10"></div>
-    <div class="m" style="width:80%">
-    	<div>
-    		<ul>
-    			<li style="float:left;border:1px solid #FF500B;font-size:16x;width:80px;height:30px;line-height:30px;">房产抵押贷</li>
-    			<li style="float:left;border:1px solid #FF500B;font-size:16x;width:80px;height:30px;line-height:30px;">车辆抵押贷</li>
-    		</ul>
+    <div class="m" style="width:90%">
+    	<div class="user_borrowinfo">
+    		<div class="borrowinfo_top">
+		    	<form action="index.php" name="formBorrow" method="post" onsubmit="return borrow_money();">
+		    	<table width="100%" cellpadding="10px" border="0px">
+		    		<tr>
+		    			<td class="borrowtd">姓名</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
+		    		</tr>
+		    		<tr>
+		    			<td class="borrowtd">手机号</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
+		    		</tr>
+		    		<tr>
+		    			<td class="borrowtd">验证码</td><td><input class="borrowinput" type="text" name="phoneverify" placeholder="输入短信验证码" onblur="borrowcheverify(this.value)"/><span id="phoneverify" style="color:red;margin-left:10px;"></span></td>
+		    		</tr>
+		    		<tr>
+		    			<td class="borrowtd">借款金额</td><td><input class="borrowinput" type="text" name="borrownum" placeholder="请输入借款金额" onblur="borrowchenum(this.value)"/><span id="borrownum" style="color:red;margin-left:10px;"></span></td>
+		    		</tr>
+		    		<tr>
+		    			<td class="borrowtd">所在城市</td>
+		    			<td>
+		    				<select class="borrowinput" name="provincename" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
+		                    <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+		                    <!-- {foreach from=$province_list.$sn item=province} -->
+		                    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+		                    <!-- {/foreach} -->
+		                </select>
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<td class="borrowtd"></td>
+		    			<td>
+		    				<select class="borrowinput" name="cityname" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
+		                    <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+		                    <!-- {foreach from=$city_list.$sn item=city} -->
+		                    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+		                    <!-- {/foreach} -->
+		                </select>
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<input type="hidden" name="act" value="insert_borrow_money" />
+		    			<td class="borrowtd"></td><td><input class="borrow_sub" type="submit" name="name" value="提交申请"/></td>
+		    		</tr>
+		    	</table>
+		    	</form>
+		    </div>
+	    	<div class="borrow-banner">{insert name='ads' id=37 num=1}</div>
     	</div>
-    	<form action="index.php" name="formBorrow" method="post" onsubmit="return borrow_money();">
-    	<table width="100%" cellpadding="10px" border="1px" style="font-size:16px;">
-    		<tr>
-    			<td style="width:80px;align:left;">姓名</td><td><input style="width:200px;height:35px;border-radius:5px;outline:none;" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
-    		</tr>
-    		<tr>
-    			<td style="width:80px;align:left;">手机号</td><td><input style="width:200px;height:35px;border-radius:5px;outline:none;" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
-    		</tr>
-    		<tr>
-    			<td style="width:80px;align:left;">验证码</td><td><input style="width:150px;height:35px;border-radius:5px;outline:none;" type="text" name="phoneverify" placeholder="输入短信验证码" onblur="borrowcheverify(this.value)"/><span id="phoneverify" style="color:red;margin-left:10px;"></span></td>
-    		</tr>
-    		<tr>
-    			<td style="width:80px;align:left;">借款金额</td><td><input style="width:200px;height:35px;border-radius:5px;outline:none;" type="text" name="borrownum" placeholder="请输入借款金额" onblur="borrowchenum(this.value)"/><span id="borrownum" style="color:red;margin-left:10px;"></span></td>
-    		</tr>
-    		<tr>
-    			<td style="width:80px;align:left;">所在城市</td>
-    			<td>
-    				<input style="width:200px;height:35px;border-radius:5px;outline:none;" type="text" name="provincename" />
-    				<select name="province" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
-                    <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
-                    <!-- {foreach from=$province_list.$sn item=province} -->
-                    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
-                    <!-- {/foreach} -->
-                </select>
-    			</td>
-    		</tr>
-    		<tr>
-    			<td style="width:80px;align:left;"></td>
-    			<td>
-    				<input style="width:200px;height:35px;border-radius:5px;outline:none;" type="text" name="cityname" />
-    				<select name="city" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
-                    <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
-                    <!-- {foreach from=$city_list.$sn item=city} -->
-                    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
-                    <!-- {/foreach} -->
-                </select>
-    			</td>
-    		</tr>
-    		<tr>
-    			<td style="width:80px;align:left;"></td><td><input style="width:200px;height:35px;border-radius:5px;outline:none;" type="submit" name="name" value="提交申请"/></td>
-    		</tr>
-    	</table>
-    	</form>
     </div>
  	
 </div>

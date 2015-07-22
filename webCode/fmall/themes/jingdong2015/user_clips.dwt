@@ -140,7 +140,7 @@
 </div>
 <div id="nav">
 	<div class="w">
-    	<div class="logo"><a href="./index.php" hidefocus="true" ><b></b><img src="images/user_logo.gif" width="270" height="48" alt="联众"></a></div>
+    	<div class="logo"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.png" width="201" height="78" alt="联众"></a></div>
         <div class="navitems">
         	<ul>
             	<li class="fore"><a href="./index.php">首页</a></li>

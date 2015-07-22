@@ -155,9 +155,10 @@ elseif ($_REQUEST['act'] == 'post')
                 if ($code == 'shop_logo')
                 {
                     include_once('includes/lib_template.php');
-                    $info = get_template_info($_CFG['template']);
-
+                    //$info = get_template_info($_CFG['template']);
+                    $info['logo'] = $_FILES["shop_logo"]["name"];
                     $file_name = str_replace('{$template}', $_CFG['template'], $file_var_list[$code]['store_dir']) . $info['logo'];
+                	
                 }
                 elseif ($code == 'watermark')
                 {

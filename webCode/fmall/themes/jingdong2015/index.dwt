@@ -695,8 +695,8 @@
 <!-- fanbo s 20150423 -->
 <div id="elevator" class="elevator" >
     <ul>
-        <li ><span class="lou">1F</span><span class="text">基金</span></li>
-        <li ><span class="lou">2F</span><span class="text">债券</span></li>
+        <li ><span class="lou">1F</span><span class="text">债券</span></li>
+        <li ><span class="lou">2F</span><span class="text">基金</span></li>
         <li ><span class="lou">3F</span><span class="text">保险</span></li>
         <li ><span class="lou">4F</span><span class="text">贷款</span></li>
         <!--<li ><span class="lou">5F</span><span class="text">信贷</span></li>-->

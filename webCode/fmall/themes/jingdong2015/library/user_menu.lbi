@@ -21,5 +21,11 @@
       <div class="item {if $action eq 'account_log'}curr{/if}"><a href="user.php?act=bang_payment">{$lang.label_bang_paymoney}</a></div>
     </dd>
   </dl>
+  <dl>
+    <dt>安全中心<b></b></dt>
+    <dd>
+      <div class="item {if $action eq 'withdraw_wp'}curr{/if}"><a href="user.php?act=order_list">{$lang.label_withdraw_pw}</a></div>
+      <div class="item {if $action eq 'bang_ka'}curr{/if}"><a href="user.php?act=bang_ka">{$lang.label_bang_ka}</a></div>
+    </dd>
   </dl>
 </div>

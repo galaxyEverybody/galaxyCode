@@ -35,7 +35,7 @@ $not_login_arr =
 array('login','act_login','register','act_register','act_edit_password','act_edit_paypassword','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
 
 /* 显示页面的action列表 */
-$ui_arr = array('register', 'login','borrow_money', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
+$ui_arr = array('register', 'login','borrow_money','insert_borrow_money','withdraw_pw','bang_ka', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
@@ -607,6 +607,22 @@ elseif ($action == 'act_login')
     }
 }
 
+/* 设置提现密码*/
+elseif ($action == 'withdraw_pw')
+{
+	$smarty->display('user_transation.dwt');
+}
+
+/* 设置提现密码*/
+elseif ($action == 'bang_ka')
+{
+	/* 取得国家的省列表 */
+	$province_list[$region_id] = get_regions(1, 1);
+	$smarty->assign('province_list',    $province_list);
+	
+	$smarty->display('user_transaction.dwt');
+}
+
 /* 处理 ajax 的登录请求 */
 elseif ($action == 'signin')
 {
@@ -677,22 +693,36 @@ elseif ($action == 'logout')
     $ucdata = empty($user->ucdata)? "" : $user->ucdata;
     show_message($_LANG['logout'] . $ucdata, array($_LANG['back_up_page'], $_LANG['back_home_lnk']), array($back_act, 'index.php'), 'info');
 }
+
+/* 申请借款页面*/
 elseif ($action == 'borrow_money')
 {
-	include_once(ROOT_PATH . 'includes/lib_transaction.php');
-	include_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/shopping_flow.php');
-	$smarty->assign('lang',  $_LANG);
-	
-	/* 取得国家列表、商店所在国家、商店所在国家的省列表 */
-	$province_list = get_regions(1, 0);
-    $city_list[$region_id]     = get_regions(2, 0);
-    $district_list[$region_id] = get_regions(3, 0);
-	print_r($province_list);exit;
+	/* 取得国家的省列表 */
+	$province_list[$region_id] = get_regions(1, 1);
 	$smarty->assign('province_list',    $province_list);
-	$smarty->assign('city_list',        $city_list);
 	
 	$smarty->display('borrow_money.dwt');
 }
+
+/* 添加借款信息*/
+elseif($action == 'insert_borrow_money')
+{
+	$borrow_money = array(
+		'user_id'			=> $user_id,
+		'add_time'			=> time(),
+		'borrow_province'	=> isset($_POST['provincename'])? intval($_POST['provincename']):0,
+		'borrow_city'		=> isset($_POST['cityname'])? intval($_POST['cityname']):0,
+		'borrow_phone'		=> isset($_POST['borrowphone'])? intval($_POST['borrowphone']):0,
+		'borrow_verify'		=> isset($_POST['phoneverify'])? intval($_POST['phoneverify']):0,
+		'borrow_num'		=> isset($_POST['borrownum'])? compile_str(trim($_POST['borrownum'])):0,
+		'borrow_truename'	=> isset($_POST['borrowname'])? compile_str(trim($_POST['borrowname'])):'',
+	);
+	
+	if(insert_borrow($borrow_money)){
+		header("Location:/");
+	}
+}
+
 /* 个人资料页面 */
 elseif ($action == 'profile')
 {

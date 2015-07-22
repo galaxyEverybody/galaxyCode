@@ -641,3 +641,29 @@ function checksubmitorder(){
 		sub_btn.style.color="#B4B4B4";
 	}
 }
+
+/*
+ * 绑定银行卡验证
+ */
+function bangkainfo()
+{
+	var bangtruename = $("input[name='bangtruename']").value;
+	var cardwang = $("input[name='cardwang']").value;
+	var cardnum = $("input[name='cardnum']").value;
+	
+	if(bangtruename ==''){
+		$("#bangtruename").html("请输入您的真实姓名");
+		return false;
+	}
+	if(cardwang ==''){
+		$("#cardwang").html("请输入开户网点");
+		return false;
+	}
+	if(cardnum ==''){
+		$("#cardnum").html("请输入银行卡号");
+		return false;
+	}
+	
+	return true;
+	
+}

@@ -254,6 +254,15 @@ h6 span{float:left;padding-left:15px}
 .group li{float:left;background:#fff;padding:8px;width:auto}
 
 /* ====================
+  借款信息
+==================== */
+.user_borrowinfo{ width:100%;height:auto;font-size:16px;}
+.borrowinfo_top{ width:60%;float:left;border-left:2px solid #FF852F;}
+.borrowtd{ width:80px;align:left;}
+.borrowinput{ width:260px;height:35px;border-radius:5px;outline:none;}
+.borrow_sub{ width:260px;height:40px;border-radius:5px;outline:none;background-color:#FF852F;font-size:14px;font-weight:bold;}
+.borrow-banner{ width:400px;height:300px;float:right;margin-right:20px;margin-top:50px;}
+/* ====================
      购物流程
 ==================== */
 .flowBox table{margin:5px auto}
@@ -392,7 +401,7 @@ ol,ul{list-style:none}
 #shortcut-2013 .hover .headNav .fore1{width:260px;border-left:0}
 .root61 #shortcut-2013 .hover .headNav .fore1{ width:347px;}
 #header-2013{height:70px;padding:15px 0;position:relative; z-index:7;}
-#logo-2013{float:left;width:330px;padding-top:5px}
+#logo-2013{float:left;width:330px;padding-top:0px}
 .root61 #logo-2013{width:362px}
 #logo-2013 a b{display:none}
 #logo-2013 a:link b,#logo-2013 a:visited b{top:12px;left:168px;width:100px;height:38px;cursor:pointer}
@@ -512,7 +521,7 @@ em{font-style:normal}
 #categorys-2013 .subitem dd{overflow:hidden;*zoom:1}
 #categorys-2013 .subitem em{float:left;height:14px;margin:4px 0;line-height:14px;padding:0 8px;border-left:1px solid #ccc}
 #categorys-2013 .subitem dd a{white-space:nowrap}
-#navitems-2013{background:#fb552f;width:1204px;}
+#navitems-2013{background:#fb552f;width:1204px;top:0px;}
 #navitems-2013,#navitems-2013 li,#navitems-2013 li a{height:40px}
 #navitems-2013 li{float:left;position:relative;width:83px}
 #navitems-2013 .curr,#navitems-2013 .hover{z-index:1}
@@ -2778,8 +2787,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .money_account{ width:100%;height:50px;line-height:50px;}
 .deposit_account{ width:100%;height:35px;border-bottom:1px solid #ddd;}
 
-#nav{ height:80px; background:#e45050;}
-#nav .logo{ float:left; padding-top:15px;}
+#nav{ height:80px; background:#dddddd;}
+#nav .logo{ float:left; padding-top:0px;}
 #nav .navitems{ float: left; height: 36px; width: 342px; line-height: 36px; padding: 22px 0; margin: 0 0 0 30px; font-size: 14px;}
 #nav .navitems ul{}
 #nav .navitems ul li{ float:left; margin: 0 20px 0 0;}

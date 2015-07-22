@@ -565,6 +565,22 @@ function drop_consignee($id)
 }
 
 /**
+ *  添加借款信息
+ *
+ * @access  public
+ * @param   array       $borrow_money
+ * @return  bool
+ */
+function insert_borrow($borrow_money)
+{
+	/* 插入一条新记录 */
+	$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('user_borrow'), $borrow_money, 'INSERT');
+	
+	return true;
+}
+
+
+/**
  *  添加或更新指定用户收货地址
  *
  * @access  public
