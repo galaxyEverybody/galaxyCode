@@ -647,10 +647,10 @@ function checksubmitorder(){
  */
 function bangkainfo()
 {
-	var bangtruename = $("input[name='bangtruename']").value;
-	var cardwang = $("input[name='cardwang']").value;
-	var cardnum = $("input[name='cardnum']").value;
-	
+	var bangtruename = $("input[name='bangtruename']")[0].value;
+	var cardwang = $("input[name='cardwang']")[0].value;
+	var cardnum = $("input[name='cardnum']")[0].value;
+
 	if(bangtruename ==''){
 		$("#bangtruename").html("请输入您的真实姓名");
 		return false;
@@ -666,4 +666,115 @@ function bangkainfo()
 	
 	return true;
 	
+}
+
+/*
+ * 绑定银行卡检测真实姓名
+ */
+function chekbangtruename(bangtruename)
+{
+	if(bangtruename == ''){
+		$("#bangtruename").html("请输入您的真实姓名");
+		return false;
+	}else{
+		if(bangtruename.match(/[^\u4e00-\u9fa5]/)){
+			$("#bangtruename").html("输入姓名错误");
+			return false;
+		}else{
+			$("#bangtruename").html("good");
+		}
+	}
+}
+
+/*
+ * 绑定银行卡检测开户网点
+ */
+function checkcardwang(cardwang)
+{
+	if(cardwang == ''){
+		$("#cardwang").html("请输入您的银行卡开户网点");
+		return false;
+	}else{
+		if(cardwang.match(/[^\u4e00-\u9fa5]/)){
+			$("#cardwang").html("输入开户网点错误");
+			return false;
+		}else{
+			$("#cardwang").html("good");
+		}
+	}
+}
+
+/*
+ * 绑定银行卡检测真实姓名
+ */
+function chekcardnum(cardnum)
+{
+	if(cardnum == ''){
+		$("#cardnum").html("请输入您的银行卡号");
+		return false;
+	}else{
+		if(cardnum.match(/^[0-9]{10,30}$/)){
+			$("#cardnum").html("good");
+		}else{
+			$("#cardnum").html("输入银行卡号错误");
+			return false;
+		}
+	}
+}
+
+/*
+ * 设定提现密码验证
+ */
+function withdrawinfo()
+{
+	var withdrawverify = $("input[name='withdrawverify']")[0].value;
+	var withdrawpassword = $("input[name='withdrawpassword']")[0].value;
+
+	if(withdrawverify ==''){
+		$("#withdrawverify").html("");
+		return false;
+	}
+	if(withdrawpassword ==''){
+		$("#withdrawpassword").html("请输入提现密码");
+		return false;
+	}
+	
+	return true;
+	
+}
+
+/*
+ * 设定提现密码验证码检测
+ */
+function chekwithdrawverify(withdrawverify)
+{
+	if(withdrawverify == ''){
+		$("#withdrawverify").html("请输入短信验证码");
+		return false;
+	}else{
+		if(withdrawverify.match(/^[0-9]{4}$/)){
+			$("#withdrawverify").html("good");
+		}else{
+			$("#withdrawverify").html("短信验证码错误");
+			return false;
+		}
+	}
+}
+
+/*
+ * 设定提现密码验证密码
+ */
+function chekwithdrawpassword(withdrawpassword)
+{
+	if(withdrawpassword == ''){
+		$("#withdrawpassword").html("请输入您的提现密码");
+		return false;
+	}else{
+		if(withdrawpassword.match(/^[0-9a-zA-Z]{6}$/)){
+			$("#withdrawpassword").html("good");
+		}else{
+			$("#withdrawpassword").html("提现密码格式错误");
+			return false;
+		}
+	}
 }

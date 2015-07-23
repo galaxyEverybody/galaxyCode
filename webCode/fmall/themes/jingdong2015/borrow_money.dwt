@@ -73,7 +73,7 @@
 		    	</table>
 		    	</form>
 		    </div>
-	    	<div class="borrow-banner">{insert name='ads' id=37 num=1}</div>
+	    	<div class="borrow-banner">{insert name='ads' id=38 num=1}</div>
     	</div>
     </div>
  	

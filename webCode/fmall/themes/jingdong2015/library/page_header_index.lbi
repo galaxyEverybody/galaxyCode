@@ -101,7 +101,7 @@
             <!--{/if}-->
         </div>
         <!--search end-->
-        <div class="loan_first"><a href="user.php?act=borrow_money"><img src="images/borrow_money.png"></a></div>
+        <div class="loan_first">{insert name='ads' id=37 num=1}</div>
         <!--loan end-->
         <div id="my360buy-2013" class="hide">
         	<dl>

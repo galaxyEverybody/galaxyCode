@@ -137,8 +137,48 @@
 <!--{/if}-->
 <!--#用户信息界面 end-->
 
+<!--设置提现密码 start-->
+<!-- {if $action eq 'withdraw_password'}-->
+{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
+<div style="widht:100%;">
+	<div class="bangcardtitle">
+		<h3>设置提现密码</h3>
+	</div>
+	<div class="withdraw_verify">
+		<form action="user.php" method="post" onsubmit="return withdrawinfo()">
+		<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+			<tr>
+				<td class="bangcardtd">手机号：</td>
+				<td>{$mobilestr}<input type="hidden" value="{$mobile_phone}"></td>
+			</tr>
+			<tr>
+				<td class="bangcardtd">验证码：</td>
+				<td>
+					<input style="width:150px;height:35px;" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
+					<button>点击获取短信验证码</button>
+					<span id="withdrawverify" style="color:#FF852F;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="bangcardtd">提现密码</td>
+				<td>
+					<input class="bangcardinput" name="withdrawpassword" type="text" placeholder="请输入您的提现密码" onblur="chekwithdrawpassword(this.value);">
+					<span id="withdrawpassword" style="color:#FF852F;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="bangcardtd"><input type="hidden" name="act" value="withdraw_pwadd"></td>
+				<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</div>
+<!-- {/if}-->
+<!--设置提现密码 end-->
+
 <!--绑定银行卡 start-->
-<!-- {if $action eq 'bang_ka'}-->
+<!-- {if $action eq 'bangcard'}-->
 {* 包含脚本文件 *}
 {insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
 <script type="text/javascript">
@@ -154,36 +194,45 @@
 	}
 	{/literal}
 </script>
-<div style="width:100%;height:400px;border:1px solid blue;">
-	<div style="width:100%;height:30px;line-height:30px;border-bottom:1px solid #ddd;">
+<div>
+	<div class="bangcardtitle">
 		<h3>绑定银行卡</h3>
 	</div>
-	<form action="" method="post" onsubmit="return bangkainfo()">
+	<form action="user.php" method="post" onsubmit="return bangkainfo()">
 	<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:10px;font-size:16px;">
 		<tr>
-			<td style="width:100px;text-align:center;">真实姓名</td><td><input style="width:260px;height:35px;" name="bangtruename" type="text"><span id="bangtruename"></span></td>
+			<td class="bangcardtd">真实姓名</td>
+			<td><input class="bangcardinput" name="bangtruename" type="text" placeholder="请输入您的真实姓名" onblur="chekbangtruename(this.value);"><span id="bangtruename" style="color:#FF852F;"></span></td>
 		</tr>
 		<tr>
-			<td style="width:100px;text-align:center;">开户银行</td><td><input style="width:260px;height:35px;" type="text"></td>
-		</tr>
-		<tr>
-			<td style="width:100px;text-align:center;">开户地区</td>
+			<td class="bangcardtd">开户银行</td>
 			<td>
-				<select style="width:130px;height:35px;" name="provincename" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
+				<select class="bangcardinput" name="bankname">
+				<option value="0">{$lang.please_select}</option>
+                <!-- {foreach from=$lang.bank_name item=bankname key=key} -->
+                <option value="{$key}">{$bankname}</option>
+                <!-- {/foreach} -->
+                </select>
+			</td>
+		</tr>
+		<tr>
+			<td class="bangcardtd">开户地区</td>
+			<td>
+				<select class="bangcardadd" name="provincename" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
                 <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
                 <!-- {foreach from=$province_list.$sn item=province} -->
                 <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
                 <!-- {/foreach} -->
                 </select>
                 
-                <select style="width:130px;height:35px;margin-left:10px;" name="cityname" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
+                <select class="bangcardaddleft" name="cityname" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
                 <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
                 <!-- {foreach from=$city_list.$sn item=city} -->
                 <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
                 <!-- {/foreach} -->
                 </select>
                 
-                <select style="width:130px;height:35px;margin-left:10px;display:none;" name="district" id="selDistricts_{$sn}" {if !$district_list.$sn}style="display:none"{/if}>
+                <select class="bangcardaddleft" style="display:none;" name="countyname" id="selDistricts_{$sn}">
                     <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
                     <!-- {foreach from=$district_list.$sn item=district} -->
                     <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
@@ -192,13 +241,16 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="width:100px;text-align:center;">开户网点</td><td><input style="width:260px;height:35px;" name="cardwang" type="text"><span id="cardwang"></span></td>
+			<td class="bangcardtd">开户网点</td>
+			<td><input class="bangcardinput" name="cardwang" type="text" placeholder="请输入银行卡开户网点" onblur="checkcardwang(this.value);"><span id="cardwang" style="color:#FF852F;"></span></td>
 		</tr>
 		<tr>
-			<td style="width:100px;text-align:center;">银行卡号</td><td><input style="width:260px;height:35px;" name="cardnum" type="text"><span id="cardnum"></span></td>
+			<td class="bangcardtd">银行卡号</td>
+			<td><input class="bangcardinput" name="cardnum" type="text" placeholder="请输入您的银行卡号" onblur="chekcardnum(this.value);"><span id="cardnum" style="color:#FF852F;"></span></td>
 		</tr>
 		<tr>
-			<td></td><td><input style="width:260px;height:40px;background-color:#FF852F;margin-top:20px;" type="submit" value="确认提交"></td>
+			<td><input type="hidden" name="act" value="bangcardadd"></td>
+			<td><input class="bangcardsub" type="submit" value="确认提交"></td>
 		</tr>
 	</table>
 	</form>

@@ -940,7 +940,7 @@ class cls_template
             eval($key);
         }
     }
-
+    
     /**
      * 处理smarty开头的预定义变量
      *

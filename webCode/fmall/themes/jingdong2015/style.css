@@ -94,6 +94,17 @@ h6 span{float:left;padding-left:15px}
 /*注册*/
 .reg_phoneverify{ width:120px;text-align:center;margin-left:10px;width:110px;backgound-color:#ddd;border:1px solid #dedede;}
 
+/*绑定银行卡*/
+.bangcardtitle{ width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF852F;}
+.bangcardtd{ width:100px;text-align:center;}
+.bangcardinput{ width:260px;height:35px;}
+.bangcardadd{ width:130px;height:35px;}
+.bangcardaddleft{ width:130px;height:35px;margin-left:10px;}
+.bangcardsub{ width:260px;height:40px;background-color:#FF852F;margin-top:20px;}
+
+/*设置提现密码*/
+.withdraw_verify{ width:80%;border:1px solid #ddd;}
+.withdraw_verify button{ width:100px;height:35px;background-color:#FF852F;}
 /* ====================
      模块
 ==================== */

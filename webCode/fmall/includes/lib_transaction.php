@@ -579,6 +579,28 @@ function insert_borrow($borrow_money)
 	return true;
 }
 
+/**
+ *  添加绑定银行卡信息
+ *
+ * @access  public
+ * @param   array       $bangcardinfo
+ * @return  bool
+ */
+function insert_bangcard($bangcardinfo)
+{
+	
+	$sql = 'select * from '.$ecs->table('bang_card').' where userid ='.$bangcardinfo['user_id'];
+	$row = $db->getRow($sql);
+	if(empty($row)){
+		/* 插入一条新记录 */
+		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('bang_card'), $bangcardinfo, 'INSERT');
+	}else{
+		/* 更新指定目录*/
+		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('bang_card'), $bangcardinfo, 'UPDATE', 'cardid = ' .$row['cardid'] . ' AND user_id = ' . $bangcardinfo['user_id']);
+	}
+	
+	return true;
+}
 
 /**
  *  添加或更新指定用户收货地址
