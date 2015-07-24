@@ -28,8 +28,8 @@
                 <div class="dd">
                 	<div><a href="#" target="_blank">帮助中心</a></div>
                     <div><a href="#" target="_blank" rel="nofollow">售后服务</a></div>
-                    <div><a href="#" target="_blank" rel="nofollow">在线客服</a></div>
-                    <div><a href="#" target="_blank" rel="nofollow">投诉中心</a></div>
+                    <div><a href="#" target="_blank" rel="nofollow" style="display:none">在线客服</a></div>
+                    <div><a href="http://www.jnz360.com/fmall/user.php?act=message_list" target="_blank" rel="nofollow">建议中心</a></div>
                     <div><a href="#" target="_blank">客服邮箱</a></div>
                 </div>
             </li>

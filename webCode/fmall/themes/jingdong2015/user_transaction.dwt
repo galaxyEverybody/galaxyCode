@@ -18,8 +18,8 @@
 <!-- #BeginLibraryItem "/library/page_header_user.lbi" --><!-- #EndLibraryItem --> 
 <div class="hide"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
 <div class="JD_userMain">
-<div class="w main">
-	<div class="right">
+<div class="w main" style="width:1080px;">
+	<div class="right" style="border:1px solid red;">
     	<Div class="ordercontainer">
         	<div class="userCenterBox clearfix" style="_height:1%;">
 

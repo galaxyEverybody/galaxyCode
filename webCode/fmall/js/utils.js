@@ -222,6 +222,7 @@ function RemainTime(){
 	if (iTime >= 0){
 		if(iTime==0){
 			clearTimeout(Account);
+			iTime = '<a onclick=getphoneverify()>点击获取验证码</a>';
 		}else{
 			iTime=iTime-1;
 			document.getElementById('doutimeinp').value = iTime;
@@ -231,5 +232,7 @@ function RemainTime(){
 		sTime='没有倒计时';
 	}
 	
-	document.getElementById('phone_notice').innerHTML = iTime;
+	document.getElementById('click_time').innerHTML = iTime;
+	document.getElementById('click_time').style.color = '#FF852F';
+	
 }

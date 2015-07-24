@@ -44,7 +44,7 @@ $(function(){
 		$(this).removeClass("hover");
 	})
 	
-	$(".no_index").mouseenter(function(){
+	$(".no_index").click(function(){
 		$(this).addClass("hover");
 	})
 	

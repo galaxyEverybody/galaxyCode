@@ -161,9 +161,10 @@
                     </div>
                     <div class="item">
                         <span class="label"><b class="ftx04">*</b>{$lang.label_telephone_verify}：</span>
-                        <div class="fl item-ifo">
+                        <div class="fl item-ifo" style="width:500px;">
                             <input type="text" style="width:100px;float:left;" id="phoneverify" onblur="checkphoneverify(this.value);" name="verify" class="text" onpaste="return  false" autocomplete="off">
-                            <label class="reg_phoneverify"><a onclick=getphoneverify()>点击获取验证码</a></label>
+                            <label class="reg_phoneverify" id="click_time"><a onclick=getphoneverify()>点击获取验证码</a></label>
+                            <label id="verify_notice"></label>
                             <input type="text" id="doutimeinp" value='60' style="display:none;"></input>
                         </div>
                     </div>

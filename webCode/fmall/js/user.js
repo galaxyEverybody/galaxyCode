@@ -665,34 +665,32 @@ function checkphoneverify(phoneverify)
 	var submit_disabled = false;
 	if (phoneverify == '')
 	  {
-		alert('短信验证码不能为空');
-	    //document.getElementById('phoneverify_notice').innerHTML = '验证码不能为空';
-		if($("#phoneverify_notice").hasClass("focus"))
+	    document.getElementById('verify_notice').innerHTML = '验证码不能为空';
+		if($("#verify_notice").hasClass("focus"))
 		{
-			$("#phoneverify_notice").removeClass("focus");
+			$("#verify_notice").removeClass("focus");
 		}
-		$("#phoneverify_notice").addClass("error");
+		$("#verify_notice").addClass("verifyerror");
 	    submit_disabled = true;
 	  }
 	  else if (!Utils.isTelverify(phoneverify))
 	  {
-		 alert('短信验证码格式不正确')
-	    //document.getElementById('phoneverify_notice').innerHTML = '验证码格式不正确';
-		if($("#phoneverify_notice").hasClass("focus"))
+	    document.getElementById('verify_notice').innerHTML = '验证码格式不正确';
+		if($("#verify_notice").hasClass("focus"))
 		{
-			$("#phoneverify_notice").removeClass("focus");
+			$("#verify_notice").removeClass("focus");
 		}
-		$("#phoneverify_notice").addClass("error");
+		$("#verify_notice").addClass("verifyerror");
 	    submit_disabled = true;
 	  }
 	 
 	  if( submit_disabled )
 	  {
-		if($("#phoneverify_notice").hasClass("focus"))
+		if($("#verify_notice").hasClass("focus"))
 		{
-			$("#phoneverify_notice").removeClass("focus");
+			$("#verify_notice").removeClass("focus");
 		}
-		$("#phoneverify_notice").addClass("error");
+		$("#verify_notice").addClass("verifyerror");
 	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
 	    return false;
 	  }
@@ -702,23 +700,22 @@ function check_phoneverify_callback(result)
 {
 	if ( result == 'ok' )
 	  {
-		if($("#phoneverify_notice").hasClass("error"))
+		if($("#verify_notice").hasClass("error"))
 		{
-			$("#phoneverify_notice").removeClass("error");
+			$("#verify_notice").removeClass("error");
 		}
-		$("#phoneverify_notice").addClass("focus");
-	    //document.getElementById('phone_notice').innerHTML = '输入正确';
+		$("#verify_notice").addClass("verifyfocus");
+	    document.getElementById('verify_notice').innerHTML = '输入正确';
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
 	  {
-		alert('短信验证码输入错误');
-	    //document.getElementById('phone_notice').innerHTML = '输入错误';
-		if($("#phoneverify_notice").hasClass("focus"))
+	    document.getElementById('verify_notice').innerHTML = '输入错误';
+		if($("#verify_notice").hasClass("verifyfocus"))
 		{
-			$("#phoneverify_notice").removeClass("focus");
+			$("#verify_notice").removeClass("verifyfocus");
 		}
-		$("#phoneverify_notice").addClass("error");
+		$("#verify_notice").addClass("verifyerror");
 	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
 	  }
 }

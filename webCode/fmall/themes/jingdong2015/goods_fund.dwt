@@ -47,7 +47,7 @@ function reg(str){
 <div class="w">
 	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
     <div id="product-intro">
-    	<div class="goods_detail">
+    	<div class="goods_detail" style="margin-left:240px;">
 	    	<div id="name">
 	        	<h1>{$goods.goods_style_name}</h1>
 	        </div> 

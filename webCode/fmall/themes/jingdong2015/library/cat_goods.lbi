@@ -8,7 +8,7 @@
             	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
             	<!--{foreach from=$goods_cat.cat_clild item=cat name=foo}-->
                 <!--{if $smarty.foreach.foo.iteration <9}-->
-            	<li><a href="javascript:">{$cat.name}<i></i></a></li>
+            	<li><a href="http://www.jnz360.com/fmall/user.php?act=borrow_money">{$cat.name}<i></i></a></li>
                 <!--{/if}-->
                 <!--{/foreach}-->
             </ul>
