@@ -729,18 +729,20 @@ function withdrawinfo()
 {
 	var withdrawverify = $("input[name='withdrawverify']")[0].value;
 	var withdrawpassword = $("input[name='withdrawpassword']")[0].value;
-
+	var msg="";
 	if(withdrawverify ==''){
-		$("#withdrawverify").html("");
-		return false;
+		msg = '验证码不可以为空\n';
 	}
 	if(withdrawpassword ==''){
-		$("#withdrawpassword").html("请输入提现密码");
-		return false;
+		msg += '提现密码不可以为空';
 	}
 	
-	return true;
-	
+	if(msg.length > 0){
+		alert(msg);
+		return false
+	}else{
+		return true;
+	}
 }
 
 /*
@@ -753,7 +755,7 @@ function chekwithdrawverify(withdrawverify)
 		return false;
 	}else{
 		if(withdrawverify.match(/^[0-9]{4}$/)){
-			$("#withdrawverify").html("good");
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + withdrawverify, check_withdrawphoneverify_callback , 'GET', 'TEXT', true, true );
 		}else{
 			$("#withdrawverify").html("短信验证码错误");
 			return false;
@@ -777,4 +779,68 @@ function chekwithdrawpassword(withdrawpassword)
 			return false;
 		}
 	}
+}
+
+/* 点击获取验证码*/
+function getwithdrawphoneverify()
+{
+	var phone = document.getElementById('truephone').value;
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, withdraw_phoneverify_callback , 'GET', 'TEXT', true, true );
+}
+
+function withdraw_phoneverify_callback(result)
+{
+	if ( result == 'ok' )
+	  { 
+		RemainwithdrawTime();
+		$('#withdrawverify').html('验证码已发送');
+	  }
+	  else
+	  {
+		$('#withdraw_click').html('0');
+		$('#withdrawverify').html('验证码发送失败请重新点击');
+		$('#withdrawform').submit(function(){ return false;});
+	  }
+}
+
+function check_withdrawphoneverify_callback(result)
+{
+	if ( result == 'ok' )
+	  {
+		$('#withdrawverify').html('输入正确');
+	  }
+	  else
+	  {
+		  $('#withdrawverify').html('输入错误');
+		  $('#withdrawform').submit(function(){ return false;});
+	  }
+}
+
+/*设置提现密码倒计时*/
+function RemainwithdrawTime(){
+	var iTime = 59;
+	var Account;
+	var timenum = document.getElementById('doutimeinp').value;
+
+	if(timenum < iTime){
+		iTime = timenum
+	}
+
+	var sTime="";
+	if (iTime >= 0){
+		if(iTime==0){
+			clearTimeout(Account);
+			iTime = '<a onclick=getwithdrawphoneverify()>获取验证码</a>';
+		}else{
+			iTime=iTime-1;
+			document.getElementById('doutimeinp').value = iTime;
+			Account = setTimeout("RemainTime()",1000);
+		}
+	}else{
+		sTime='没有倒计时';
+	}
+	
+	document.getElementById('get_withdraw_time').innerHTML = iTime;
+	document.getElementById('click_time').style.color = '#FF852F';
+	
 }

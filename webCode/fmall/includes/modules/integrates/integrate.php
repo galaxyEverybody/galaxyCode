@@ -681,7 +681,7 @@ class integrate
        {
             $cfg['type'] = PWD_MD5;
        }
-
+		
        switch ($cfg['type'])
        {
            case PWD_MD5 :

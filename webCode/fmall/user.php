@@ -35,7 +35,7 @@ $not_login_arr =
 array('login','act_login','register','act_register','act_edit_password','act_edit_paypassword','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
 
 /* 显示页面的action列表 */
-$ui_arr = array('register', 'login','borrow_money','insert_borrow_money','withdraw_password','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
+$ui_arr = array('register','ajax_checkoldpassword', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','upda_login_pw','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
@@ -620,6 +620,41 @@ elseif ($action == 'withdraw_password')
 	$smarty->assign('mobilestr',$str);
 	
 	$smarty->display('user_transaction.dwt');
+}
+
+/* 添加提现密码*/
+elseif ($action == 'withdraw_pwadd')
+{
+	$withdrawpw = trim($_POST['withdrawpassword']);
+	$rule = '/[0-9a-z-A-Z]{6,30}/';
+	if(!preg_match($rule,$withdrawpw)){
+		show_message($_LANG['login_failure'], '提现密码设置错误', 'user.php', 'error');
+	}
+}
+
+/* 修改登录密码页面*/
+elseif ($action == 'upda_login_pw')
+{
+
+	$smarty->display('user_transaction.dwt');
+}
+
+/* ajax登录密码中原密码的验证*/
+elseif($action == 'ajax_checkoldpassword')
+{
+	include_once('includes/cls_json.php');
+
+	$json = new JSON;
+	$oldpassword = md5(md5(trim($_POST['oldpassword'])).'4252');
+	$userid = $user_id;
+	$sql = 'SELECT password from '.$ecs->table('users').' where user_id ='.$userid;
+	$row = $db->getRow($sql);
+	if($oldpassword == $row['password']){
+		$result['status'] = 1;
+	}else{
+		$result['status'] = 0;
+	}
+	die($json->encode($result));
 }
 
 /* 银行卡绑定页面*/

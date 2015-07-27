@@ -111,51 +111,81 @@ function callback_checkidcard(result)
 		
 }
 
-/* 会员修改密码 */
+/*
+ *  会员修改密码 
+ */
 function editPassword()
 {
-  var frm              = document.forms['formPassword'];
-  var old_password     = frm.elements['old_password'].value;
-  var new_password     = frm.elements['new_password'].value;
-  var confirm_password = frm.elements['comfirm_password'].value;
-
-  var msg = '';
-  var reg = null;
-
-  if (old_password.length == 0)
-  {
-    msg += old_password_empty + '\n';
-  }
-
-  if (new_password.length == 0)
-  {
-    msg += new_password_empty + '\n';
-  }
-
-  if (confirm_password.length == 0)
-  {
-    msg += confirm_password_empty + '\n';
-  }
-
-  if (new_password.length > 0 && confirm_password.length > 0)
-  {
-    if (new_password != confirm_password)
-    {
-      msg += both_password_error + '\n';
-    }
-  }
-
-  if (msg.length > 0)
-  {
-    alert(msg);
-    return false;
-  }
-  else
-  {
-    return true;
-  }
+	var msg='';
+	var oldpassword = $("input[name='old_password']")[0].value;
+	var newpassword = $("input[name='new_password']")[0].value;
+	var confirmpassword = $("input[name='confirm_password']")[0].value;
+	if(oldpassword == ''){
+		msg = '原密码不可以为空 \n';
+	}
+	if(newpassword == ''){
+		msg += '新密码不可以为空 \n';
+	}
+	if(newpassword != confirmpassword){
+		msg += '两次密码输入不一致 \n';
+	}
+	
+	if(msg.length > 0){
+		alert(msg);
+		return false;
+	}else{
+		return true;
+	}
+}
+/* 检测输入的原密码是否正确*/
+function chekold_password(oldpassword)
+{
+	if(oldpassword == ''){
+		$('#old_password').html('请输入您的原密码');
+	}else{
+		if(oldpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
+			Ajax.call('user.php?act=ajax_checkoldpassword','oldpassword=' + oldpassword,old_pwcallback,'POST','JSON');
+		}else{
+			$('#old_password').html('输入的格式错误');
+		}
+	}
 }
 
+function old_pwcallback(result)
+{
+	if(result['status']==0){
+		$('#old_password').html('原密码输入错误');
+		$('#formPassword').submit(function(){ return false;});
+	}else{
+		$('#old_password').html('输入正确');
+	}
+}
+
+function cheknew_password(newpassword)
+{
+	if(newpassword == ''){
+		$('#new_password').html('请输入您的新密码');
+	}else{
+		if(newpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
+			$('#new_password').html('输入正确');
+		}else{
+			$('#new_password').html('输入的格式错误');
+		}
+	}
+}
+
+function chekconfirm_password(confirmpassword)
+{
+	if(confirmpassword == ''){
+		$('#confirm_password').html('请输入您的新密码');
+	}else{
+		if(confirmpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
+			$('#confirm_password').html('输入正确');
+		}else{
+			$('#confirm_password').html('输入的格式错误');
+		}
+	}
+}
 /* *
  * 对会员的留言输入作处理
  */

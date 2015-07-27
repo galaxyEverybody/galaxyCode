@@ -9,6 +9,14 @@
     </dd>
   </dl>
   <dl>
+    <dt>安全中心<b></b></dt>
+    <dd>
+      <div class="item {if $action eq 'withdraw_password'}curr{/if}"><a href="user.php?act=withdraw_password">{$lang.label_withdraw_pw}</a></div>
+      <div class="item {if $action eq 'bangcard'}curr{/if}"><a href="user.php?act=bangcard">{$lang.label_bang_ka}</a></div>
+      <div class="item {if $action eq 'upda_login_pw'}curr{/if}"><a href="user.php?act=upda_login_pw">{$lang.label_pw_up}</a></div>
+    </dd>
+  </dl>
+  <dl>
     <dt>会员中心<b></b></dt>
     <dd>
       <div class="item {if $action eq 'profile'}curr{/if}"><a href="user.php?act=profile">{$lang.label_profile}</a></div>
@@ -18,14 +26,6 @@
       <div class="item {if $action eq 'message_list'}curr{/if}"><a href="user.php?act=message_list">{$lang.label_message}</a></div>
       <div class="item {if $action eq 'affiliate'}curr{/if}"><a href="user.php?act=affiliate">{$lang.label_affiliate}</a></div>
       <div class="item {if $action eq 'comment_list'}curr{/if}"><a href="user.php?act=comment_list">{$lang.label_comment}</a></div>
-      <div class="item {if $action eq 'account_log'}curr{/if}"><a href="user.php?act=bang_payment">{$lang.label_bang_paymoney}</a></div>
-    </dd>
-  </dl>
-  <dl>
-    <dt>安全中心<b></b></dt>
-    <dd>
-      <div class="item {if $action eq 'withdraw_password'}curr{/if}"><a href="user.php?act=withdraw_password">{$lang.label_withdraw_pw}</a></div>
-      <div class="item {if $action eq 'bangcard'}curr{/if}"><a href="user.php?act=bangcard">{$lang.label_bang_ka}</a></div>
     </dd>
   </dl>
 </div>

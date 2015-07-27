@@ -15,11 +15,11 @@
 {insert_scripts files='common.js,user.js'}
 </head>
 <body class="user_center JD_userCenter">
-<!-- #BeginLibraryItem "/library/page_header_user.lbi" --><!-- #EndLibraryItem --> 
+<!-- #BeginLibraryItem "/library/page_header_user.lbi" --><!-- #EndLibraryItem -->
 <div class="hide"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
 <div class="JD_userMain">
 <div class="w main" style="width:1080px;">
-	<div class="right" style="border:1px solid red;">
+	<div class="right">
     	<Div class="ordercontainer">
         	<div class="userCenterBox clearfix" style="_height:1%;">
 
@@ -108,31 +108,6 @@
     </table>
 </form>
 <!--修改登录密码end-->
-<!--修改提取密码start-->
-<h5 class="mc"><span>{$lang.label_update_tempass}</span></h5>
-<form name="formPassword" action="user.php" method="post" onSubmit="return editPassword()" >
-    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.old_password}：</td>
-            <td width="76%" align="left" bgcolor="#FFFFFF"><input name="old_password" type="password" size="25"  class="inputBg" /></td>
-        </tr>
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.new_password}：</td>
-            <td align="left" bgcolor="#FFFFFF"><input name="new_password" type="password" size="25"  class="inputBg" /></td>
-        </tr>
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.confirm_password}：</td>
-            <td align="left" bgcolor="#FFFFFF"><input name="comfirm_password" type="password" size="25"  class="inputBg" /></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center" bgcolor="#FFFFFF">
-            	<input name="act" type="hidden" value="act_edit_paypassword" />
-            	<input name="submit" type="submit" class="bnt_blue_1" style="border:none;" value="{$lang.confirm_edit}" />
-            </td>
-        </tr>
-    </table>
-</form>
-<!--修改提取密码end-->
 </div>
 <!--{/if}-->
 <!--#用户信息界面 end-->
@@ -145,17 +120,17 @@
 		<h3>设置提现密码</h3>
 	</div>
 	<div class="withdraw_verify">
-		<form action="user.php" method="post" onsubmit="return withdrawinfo()">
+		<form id="withdrawform" action="user.php" method="post" onsubmit="return withdrawinfo()">
 		<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
 			<tr>
-				<td class="bangcardtd">手机号：</td>
-				<td>{$mobilestr}<input type="hidden" value="{$mobile_phone}"></td>
+				<td class="bangcardtd">手机号</td>
+				<td>{$mobilestr}<input id="truephone" type="hidden" value="{$mobile_phone}"></td>
 			</tr>
 			<tr>
-				<td class="bangcardtd">验证码：</td>
+				<td class="bangcardtd">验证码</td>
 				<td>
-					<input style="width:150px;height:35px;" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
-					<button>点击获取短信验证码</button>
+					<input style="width:150px;height:30px;float:left;" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
+					<div class="widthdraw_button_time" id="get_withdraw_time"><a onclick="getwithdrawphoneverify()">获取验证码</a></div>
 					<span id="withdrawverify" style="color:#FF852F;"></span>
 				</td>
 			</tr>
@@ -176,6 +151,52 @@
 </div>
 <!-- {/if}-->
 <!--设置提现密码 end-->
+
+<!--修改登录密码start-->
+<!-- {if $action eq 'upda_login_pw'}-->
+{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
+<div style="widht:100%;">
+	<div class="bangcardtitle">
+		<h3>修改登录密码</h3>
+	</div>
+	<div class="withdraw_verify">
+		<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
+		<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+			<tr>
+				<td class="bangcardtd">账户名</td>
+				<td>{$mobilestr}</td>
+			</tr>
+			<tr>
+				<td class="bangcardtd">原密码</td>
+				<td>
+					<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您以前的密码" onblur="chekold_password(this.value);">
+					<span id="old_password" style="color:#FF852F;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="bangcardtd">新密码</td>
+				<td>
+					<input class="bangcardinput" name="new_password" type="text" placeholder="请输入您的新密码" onblur="cheknew_password(this.value);">
+					<span id="new_password" style="color:#FF852F;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="bangcardtd">确认密码</td>
+				<td>
+					<input class="bangcardinput" name="confirm_password" type="text" placeholder="请输入您的新密码" onblur="chekconfirm_password(this.value);">
+					<span id="confirm_password" style="color:#FF852F;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+				<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</div>
+<!-- {/if}-->
+<!--修改登录密码 end-->
 
 <!--绑定银行卡 start-->
 <!-- {if $action eq 'bangcard'}-->

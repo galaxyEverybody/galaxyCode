@@ -208,7 +208,7 @@ function cleanWhitespace(element)
    }
 }
 
-/*倒计时*/
+/*注册倒计时*/
 function RemainTime(){
 	var iTime = 59;
 	var Account;

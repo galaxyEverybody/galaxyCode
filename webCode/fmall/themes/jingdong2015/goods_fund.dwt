@@ -46,32 +46,29 @@ function reg(str){
 <div class="rootNav">
 <div class="w">
 	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
-    <div id="product-intro">
-    	<div class="goods_detail" style="margin-left:240px;">
+    <div id="product-intro" style="border-top:2px solid #FF500B;">
+    	<div class="goods_detail" style="margin-left:200px;border-right:1px solid #dddddd;">
 	    	<div id="name">
-	        	<h1>{$goods.goods_style_name}</h1>
+	        	<h1>{$goods.goods_style_name}<span class="namespan">(3456789)</span><span class="namespan">股票型</span></h1>
 	        </div> 
 	        <div id="summary-grade">
-	        		<p style="height:42px;line-height:42px;font-size:14px;">基金代码<span class="goods_lists">000000</span>|&nbsp;&nbsp;基金类型<span class="goods_lists">股票型</span></p>
 	                <ul class="goods_color">
-	                    <li class="goods_colorleft"><h3>最新净值（）</h3><span>12346</span></li>
-	                    <li class="goods_colorright"><h3>净值增长率</h3><span>12346</span></li>
+	                    <li class="goods_colorleft"><h4>最新净值</h4><div class="goods_colordiv">2.346<em>元</em></div></li>
+	                    <li class="goods_colormiddle"><h4>净值增长率</h4><div class="goods_colordiv">3.54%</div></li>
+	                    <li class="goods_colorright"><h4>赎回时长</h4><div class="goods_colordiv">123<em>天</em></div></li>
 	                </ul>
 	                <ul class="summarymiddle">
 	                    <li>
-							<div>申够费率：</div>
+							<div>申够费率：1.5%</div>
 	                    </li>
 	                    <li>
-	                    	<div>起购金额：</div>   
+	                    	<div>起购金额：100.00元</div>   
 	                    </li>
 	                    <li style="display:none;">
 	                    	<div>赎回说明：</div>
 	                    </li>
-	                   	<li>
-	                    	<div>赎回时长：</div>   
-	                    </li>
 	                    <li>
-	                    	<div>投资风险：</div>
+	                    	<div>投资风险：中高</div>
 	                    </li>
 	                </ul>
 	                <div id="chooseBtns">
