@@ -36,7 +36,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','upda_login_pw','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
-'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'add_booking', 'account_raply',
+'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 未登录处理 */
@@ -628,14 +628,25 @@ elseif ($action == 'withdraw_pwadd')
 	$withdrawpw = trim($_POST['withdrawpassword']);
 	$rule = '/[0-9a-z-A-Z]{6,30}/';
 	if(!preg_match($rule,$withdrawpw)){
-		show_message($_LANG['login_failure'], '提现密码设置错误', 'user.php', 'error');
+		show_message($_LANG['login_failure'], '提现密码格式错误', 'user.php', 'error');
+	}
+	
+	$withdrawinfo = array('user_id'=>$user_id,'withdrawpw'=>$withdrawpw);
+	
+	if(add_withdrawpw($withdrawinfo)){
+		header("Location:/");
+	}else{
+		show_message($_LANG['login_failure'], '提现密码设置失败！', 'user.php', 'error');
 	}
 }
 
 /* 修改登录密码页面*/
 elseif ($action == 'upda_login_pw')
 {
-
+	$sql = 'select user_name from '.$ecs->table('users').' where user_id='.$user_id;
+	$username = $db->getRow($sql);
+	
+	$smarty->assign('user_name',$username['user_name']);
 	$smarty->display('user_transaction.dwt');
 }
 
@@ -792,7 +803,7 @@ elseif ($action == 'profile')
     include_once(ROOT_PATH . 'includes/lib_transaction.php');
 
     $user_info = get_profile($user_id);
-
+	$user_info['mobile_phone'] = str_replace(substr($user_info['mobile_phone'],3,5),'*****',$user_info['mobile_phone']);
     /* 取出注册扩展字段 */
     $sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
     $extend_info_list = $db->getAll($sql);
@@ -1568,7 +1579,7 @@ elseif ($action == 'act_del_tag')
 }
 
 /* 显示绑定支付宝页面*/
-elseif($action == 'bang_payment')
+elseif ($action == 'bang_payment')
 {
 	$smarty->display('user_bang.dwt');
 }
@@ -1592,6 +1603,13 @@ elseif ($action == 'booking_list')
     $smarty->assign('pager',        $pager);
     $smarty->display('user_clips.dwt');
 }
+
+/* 我的贷款页面*/
+elseif ($action == 'loan_list')
+{
+	$smarty->display('user_clips.dwt');
+}
+
 /* 添加缺货登记页面 */
 elseif ($action == 'add_booking')
 {

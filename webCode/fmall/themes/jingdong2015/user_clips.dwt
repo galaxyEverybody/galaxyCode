@@ -177,7 +177,7 @@
 <div class="hide"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
 
 <div class="JD_userMain">
-<div class="w main" style="width:1080px;">
+<div class="w main" style="width:1100px;">
 	<div class="right">
     	<div class="ordercontainer">
         	<div class="userCenterBox clearfix" style="_height:1%;">
@@ -190,7 +190,7 @@
         	<div class="u-pic"><img src="images/no-img_mid_.jpg" alt="用户头像" /><i></i></div>
             <div class="info-m">
             	<div class="u-name">{$info.username}</div>
-                <div class="u-level">{$rank_name}，{$next_rank_name}</div>
+                <div class="u-level">{$rank_name}</div>
                 <div class="u-safe"><!--{if $info.is_validate eq 0} -->{$lang.not_validated}<br /><a href="javascript:sendHashMail()" style="color:#006bd0;">{$lang.resend_hash_mail}</a><!--{/if} --></div>
                 <div class="info-line">
                 	<span class="top-icon"></span>
@@ -206,7 +206,6 @@
                     <!-- {if $info.credit_line gt 0} 如果有信用额度 -->
                     <p>{$lang.credit_line}：{$info.formated_credit_line}</p>
                     <!-- {/if} -->
-                    <p>{$lang.your_bonus}：<a href="user.php?act=bonus" style="color:#006bd0;">{$info.bonus}</a></p>
                     <p>{$lang.your_integral}：{$info.integral}</p>
                     <p>{$lang.last_month_order}{$info.order_count}{$lang.order_unit}</p>
                 </div>
@@ -214,7 +213,8 @@
         </div>
     </div>
 </div>
-<div class="lyt-c-1"><img src="images/note.gif" alt="note" />&nbsp;&nbsp;{$user_notice}</div>
+<div style="width:100%;height:200px;border:1px solid #ddd;background:#fff;"></div>
+<div class="lyt-c-1" style="margin-top:20px;"><img src="images/note.gif" alt="note" />&nbsp;&nbsp;{$user_notice}</div>
 <div class="lyt-c-2"><!-- #BeginLibraryItem "/library/history_user.lbi" --><!-- #EndLibraryItem --></div>
 <!-- {/if} -->
 <!-- #用户中心默认显示页面 end-->
@@ -222,7 +222,9 @@
 <!-- *我的留言 start-->
 <!-- {if $action eq 'message_list'} -->
 <div class="boxCenterList">
-<h5 class="mc"><span>{$lang.label_message}</span></h5>
+<div style="width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF500B;">
+	<h5 class="mc"><span>{$lang.label_message}</span></h5>
+</div>
 <!--{foreach from=$message_list item=message key=key} -->
 <div class="f_l">
 <b>{$message.msg_type}:</b>&nbsp;&nbsp;<font class="f4">{$message.msg_title}</font> ({$message.msg_time})
@@ -251,7 +253,7 @@
 <!-- {/if}-->
 <div class="blank"></div>
 <form action="user.php" method="post" enctype="multipart/form-data" name="formMsg" onSubmit="return submitMsg()">
-<table width="100%" border="0" cellpadding="3">
+<table width="100%" border="0" cellpadding="10px">
 {if $order_info}
 <tr>
 <td align="right">{$lang.order_number}</td>
@@ -265,15 +267,11 @@
 <tr>
 <td align="right">{$lang.message_type}：</td>
 <td><input name="msg_type" type="radio" value="0" checked="checked" />
-{$lang.type[0]}
+页面美化
 <input type="radio" name="msg_type" value="1" />
-{$lang.type[1]}
+没有提示
 <input type="radio" name="msg_type" value="2" />
-{$lang.type[2]}
-<input type="radio" name="msg_type" value="3" />
-{$lang.type[3]}
-<input type="radio" name="msg_type" value="4" />
-{$lang.type[4]} </td>
+跳转错误
 </tr>
 {/if}
 <tr>
@@ -310,12 +308,14 @@
 <!-- *我的评论 start-->
 <!-- {if $action eq 'comment_list'} -->
 <div class="boxCenterList">
-<h5 class="mc"><span>{$lang.label_comment}</span></h5>
+<div style="width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF500B;">
+	<h5 class="mc"><span>{$lang.label_comment}</span></h5>
+</div>
 <!--{foreach from=$comment_list item=comment} -->
-<div class="f_l">
+<div class="f_l" style="margin-top:20px;">
 <b>{if $comment.comment_type eq '0'}{$lang.goods_comment}{else}{$lang.article_comment}{/if}: </b><font class="f4">{$comment.cmt_name}</font>&nbsp;&nbsp;({$comment.formated_add_time})
 </div>
-<div class="f_r">
+<div class="f_r" style="margin-top:20px;">
 <a href="user.php?act=del_cmt&amp;id={$comment.comment_id}" title="{$lang.drop}" onclick="if (!confirm('{$lang.confirm_remove_msg}')) return false;" class="f6">{$lang.drop}</a>
 </div>
 <div class="msgBottomBorder">
@@ -354,12 +354,14 @@
 <!--{if $action eq 'collection_list'} -->
 {insert_scripts files='transport_jquery.js,utils.js'}
 <div class="boxCenterList">
-<h5 class="mc"><span>{$lang.label_collection}</span></h5>
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+<div style="width:100%;height:30px;border-bottom:1px solid #FF500B;">	
+	<h5 class="mc"><span>{$lang.label_collection}</span></h5>
+</div>
+<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd" style="margin-top:20px;">
 <tr align="center">
-<th width="35%" bgcolor="#ffffff">{$lang.goods_name}</th>
-<th width="30%" bgcolor="#ffffff">{$lang.price}</th>
-<th width="35%" bgcolor="#ffffff">{$lang.handle}</th>
+<th width="35%" >{$lang.goods_name}</th>
+<th width="30%" >{$lang.price}</th>
+<th width="35%" >{$lang.handle}</th>
 </tr>
 <!--{foreach from=$goods_list item=goods}-->
 <tr>
@@ -383,7 +385,7 @@
 <div class="blank10"></div>
 <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
 </div>
-<div class="boxCenterList">
+<div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span>{$lang.label_affiliate}</span></h5>
 <form name="theForm" method="post" action="">
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
@@ -481,19 +483,76 @@ var select_spe = "{$lang.select_spe}";
 <!--{/if} -->
 <!--#收藏商品列表页面 end-->
 
-<!--*缺货登记列表页面 start-->
+<!--*我的债券页面 start-->
 <!--{if $action eq 'booking_list'} -->
 <div class="boxCenterList">
-	<div style="border-bottom:1px solid #ddd;width:100%;height:30px;line-height:30px;">
-		<h3 class="mc"><span>我的投资</span></h3>
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">我的债券</span>
 	</div>
-	<div id="userinfo_band" style="width:100%;height:35px;text-align:center;line-height:35px;margin-top:20px;">
-		<ul style="width:100%;height:35px;border:1px solid #ddd;border-bottom:0px;over-flow:hidden;">
-			<li id="userinfo_band1" style="width:279px;cursor:pointer;border-bottom:0px" onclick="bandinfo_showhid1();">回收中的债券</li>
-			<li id="userinfo_band2" style="width:279px;border:1px solid #ddd;cursor:pointer;" onclick="bandinfo_showhid2();">已结清的债券</li>
-			<li id="userinfo_band3" style="width:278px;border:1px solid #ddd;cursor:pointer;" onclick="bandinfo_showhid3();">投标中的债券</li>
+	<div id="userinfo_band" class="bond_title">
+		<ul>
+			<li id="userinfo_band1" style="background:#FF8A00;color:#FFFFFF;" onclick="bandinfo_showhid1();">回收中的债券</li>
+			<li id="userinfo_band2" onclick="bandinfo_showhid2();">已结清的债券</li>
+			<li id="userinfo_band3" onclick="bandinfo_showhid3();">投标中的债券</li>
 		</ul>
 	</div>
+	<div style="border:1px solid #ddd;width:836px;height:300px;border-top:3px solid #FF8A00;">
+		<div id="overbanddiv1" style="width:100%;height:300px;">
+			<table width="100%" border="0">
+				<thead>
+					<tr class="capitaltr">
+						<th>债券ID</th>
+						<th>原始投资金额</th>
+						<th>年利率</th>
+						<th>待收本息</th>
+						<th>月收本息</th>
+						<th>期数</th>
+						<th>下个还款日</th>
+						<th>状态</th>
+					<tr>
+				</thead>
+				<tbody>
+				
+				</tbody>
+			</table>
+		</div>
+		<div id="overbanddiv2" style="width:100%;height:300px;border:0px solid red;display:none;">
+			<table width="100%" border="0" style="margin-top:3px;">
+				<thead>
+					<tr class="capitaltr">
+						<th>债券ID</th>
+						<th>投资金额</th>
+						<th>年利率</th>
+						<th>回收金额</th>
+						<th>已赚金额</th>
+						<th>结清日期</th>
+						<th>结清方式</th>
+					<tr>
+				</thead>
+				<tbody>
+				
+				</tbody>
+			</table>
+		</div>
+		<div id="overbanddiv3" style="width:100%;height:300px;border:0px solid red;display:none;">
+			<table width="100%" border="0" style="margin-top:3px;">
+				<thead>
+					<tr class="capitaltr">
+						<th>债券ID</th>
+						<th>原始投资金额</th>
+						<th>年利率</th>
+						<th>期限</th>
+						<th>剩余时间</th>
+						<th>投标进度</th>
+					<tr>
+				</thead>
+				<tbody>
+				
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
 	<script>
 		function bandinfo_showhid1(){
 			var overband1 = document.getElementById('userinfo_band1');
@@ -502,9 +561,12 @@ var select_spe = "{$lang.select_spe}";
 			var overbanddiv1 = document.getElementById('overbanddiv1');
 			var overbanddiv2 = document.getElementById('overbanddiv2');
 			var overbanddiv3 = document.getElementById('overbanddiv3');
-			overband1.style.border="0px";
-			overband2.style.border="1px solid #ddd";
-			overband3.style.border="1px solid #ddd";
+			overband1.style.background="#FF8A00";
+			overband1.style.color="#FFFFFF";
+			overband2.style.background="#F7F7F7";
+			overband2.style.color="#545454";
+			overband3.style.background="#F7F7F7";
+			overband3.style.color="#545454";
 			overbanddiv1.style.display="block";
 			overbanddiv2.style.display="none";
 			overbanddiv3.style.display="none";
@@ -516,10 +578,12 @@ var select_spe = "{$lang.select_spe}";
 			var overbanddiv1 = document.getElementById('overbanddiv1');
 			var overbanddiv2 = document.getElementById('overbanddiv2');
 			var overbanddiv3 = document.getElementById('overbanddiv3');
-			overband1.style.border="1px solid #ddd";
-			overband2.style.border="0px";
-			overband3.style.border="1px solid #ddd";
-			overband3.style.left='2px';
+			overband2.style.background="#FF8A00";
+			overband2.style.color="#FFFFFF";
+			overband1.style.background="#F7F7F7";
+			overband1.style.color="#545454";
+			overband3.style.background="#F7F7F7";
+			overband3.style.color="#545454";
 			overbanddiv1.style.display="none";
 			overbanddiv2.style.display="block";
 			overbanddiv3.style.display="none";
@@ -531,71 +595,38 @@ var select_spe = "{$lang.select_spe}";
 			var overbanddiv1 = document.getElementById('overbanddiv1');
 			var overbanddiv2 = document.getElementById('overbanddiv2');
 			var overbanddiv3 = document.getElementById('overbanddiv3');
-			overband1.style.border="1px solid #ddd";
-			overband2.style.border="1px solid #ddd";
-			overband3.style.border="0px";
+			overband3.style.background="#FF8A00";
+			overband3.style.color="#FFFFFF";
+			overband1.style.background="#F7F7F7";
+			overband1.style.color="#545454";
+			overband2.style.background="#F7F7F7";
+			overband2.style.color="#545454";
 			overbanddiv1.style.display="none";
 			overbanddiv2.style.display="none";
 			overbanddiv3.style.display="block";
 		}
 	</script>
-	<div id="overbanddiv1" style="width:100%;height:300px;">
-		<table width="100%" border="0" style="margin-top:20px;">
-			<thead>
-				<tr>
-					<th>债券ID</th>
-					<th>原始投资金额</th>
-					<th>年利率</th>
-					<th>待收本息</th>
-					<th>月收本息</th>
-					<th>期数</th>
-					<th>下个还款日</th>
-					<th>状态</th>
-				<tr>
-			</thead>
-			<tbody>
-			
-			</tbody>
-		</table>
+	
+</div>
+<!--{/if} -->
+<!--*我的债券列表页面 end-->
+
+<!--*我的贷款列表页面 start-->
+<!--{if $action eq 'loan_list'}-->
+<div class="boxCenterList">
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">我的贷款</span>
 	</div>
-	<div id="overbanddiv2" style="width:100%;height:300px;border:0px solid red;display:none;margin-top:20px;">
-		<table width="100%" border="0" style="margin-top:5px;">
-			<thead>
-				<tr>
-					<th>债券ID</th>
-					<th>投资金额</th>
-					<th>年利率</th>
-					<th>回收金额</th>
-					<th>已赚金额</th>
-					<th>结清日期</th>
-					<th>结清方式</th>
-				<tr>
-			</thead>
-			<tbody>
-			
-			</tbody>
-		</table>
-	</div>
-	<div id="overbanddiv3" style="width:100%;height:300px;border:0px solid red;display:none;margin-top:20px;">
-		<table width="100%" border="0" style="margin-top:5px;">
-			<thead>
-				<tr>
-					<th>债券ID</th>
-					<th>原始投资金额</th>
-					<th>年利率</th>
-					<th>期限</th>
-					<th>剩余时间</th>
-					<th>投标进度</th>
-				<tr>
-			</thead>
-			<tbody>
-			
-			</tbody>
+	<div style="margin-top:20px;">
+		<table style="width:100%;border:1px solid #ddd;">
+			<tr class="capitaltr">
+				<th>借款金额</th><th>借款期限</th><th>还款方式</th><th>最终还款金额</th><th>状态</th>
+			</tr>
 		</table>
 	</div>
 </div>
 <!--{/if} -->
-<!--*缺货登记列表页面 end-->
+<!--*我的贷款列表页面 end-->
 
 <!--#缺货登记详细页面 -->
 <!--{if $action eq 'add_booking'} -->
@@ -652,13 +683,14 @@ var {$key} = "{$item}";
 <!-- {if $affiliate.on eq 1} -->
 <!-- {if $action eq 'affiliate'} -->
 <!-- {if !$goodsid || $goodsid eq 0} -->
-<div class="boxCenterList">
+<div style="font-size:16px;margin-left:20px;color:red;">本栏目暂时没有开放</div>
+<div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span>{$lang.affiliate_detail}</span></h5>
 <div style="border-top:1px solid #ccc; padding-top:10px;">{$affiliate_intro}</div>
 </div>
 <!-- {if $affiliate.config.separate_by eq 0} -->
 <!-- 下线人数、分成 -->
-<div class="boxCenterList">
+<div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span><a name="myrecommend">{$lang.affiliate_member}</a></span></h5>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
 <tr align="center">
@@ -683,7 +715,7 @@ var {$key} = "{$item}";
 <!-- {/if} -->
 <!-- 我的推荐清单 -->
 </div>
-<div class="boxCenterList">
+<div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span>分成规则</span></h5>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
 <tr align="center">
@@ -732,7 +764,7 @@ sel.form.submit();
 //-->
 </script>
 <!-- /我的推荐清单 -->
-<div class="boxCenterList">
+<div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span>{$lang.affiliate_code}</span></h5>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
 <tr>
@@ -834,8 +866,8 @@ clip.setData(trans,null,clipid.kGlobalClipboard);
 		</div>
 	</div>
 	<div class="left">
-		<div id="myjd" class="m">
-        	<div class="mt"><h2><a href="user.php">我的联众</a></h2></div>
+		<div id="myjd" class="m" style="background:#ddd;margin-left:10px;margin-top:20px;width:190px;padding-bottom:20px;">
+        	<div class="mt"><h2><a href="user.php">我的联众</a></h2><div style="position:absolute;background:#FF8A00;width:80px;height:3px;margin-top:10px;z-index:999;float:left;margin-left:0px;"></div></div>
             <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
         </div>
     </div>

@@ -1271,14 +1271,14 @@ class cls_template
             $endyear = $now + 3;
         }
 
-        $out = "<select name=\"{$pre}Year\">";
+        $out = "<select style='width:80px;height:30px;' name=\"{$pre}Year\">";
         for ($i = $startyear; $i <= $endyear; $i++)
         {
             $out .= $i == $year ? "<option value=\"$i\" selected>$i</option>" : "<option value=\"$i\">$i</option>";
         }
         if ($arr['display_months'] != 'false')
         {
-            $out .= "</select>&nbsp;<select name=\"{$pre}Month\">";
+            $out .= "</select>&nbsp;<select style='width:80px;height:30px;' name=\"{$pre}Month\">";
             for ($i = 1; $i <= 12; $i++)
             {
                 $out .= $i == $month ? "<option value=\"$i\" selected>" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>" : "<option value=\"$i\">" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>";
@@ -1286,7 +1286,7 @@ class cls_template
         }
         if ($arr['display_days'] != 'false')
         {
-            $out .= "</select>&nbsp;<select name=\"{$pre}Day\">";
+            $out .= "</select>&nbsp;<select style='width:80px;height:30px;' name=\"{$pre}Day\">";
             for ($i = 1; $i <= 31; $i++)
             {
                 $out .= $i == $day ? "<option value=\"$i\" selected>" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>" : "<option value=\"$i\">" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>";

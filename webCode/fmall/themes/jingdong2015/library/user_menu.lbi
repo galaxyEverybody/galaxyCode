@@ -6,6 +6,7 @@
       <div class="item {if $action eq 'order_list'|| $action eq 'order_detail'}curr{/if}"><a href="user.php?act=order_list">{$lang.label_order_fund}</a></div>
       <div class="item {if $action eq 'address_list'}curr{/if}"><a href="user.php?act=address_list">{$lang.label_order_secure}</a></div>
       <div class="item {if $action eq 'booking_list'}curr{/if}"><a href="user.php?act=booking_list">{$lang.label_order_invest}</a></div>
+      <div class="item {if $action eq 'loan_list'}curr{/if}"><a href="user.php?act=loan_list">{$lang.label_order_loan}</a></div>
     </dd>
   </dl>
   <dl>
@@ -20,7 +21,6 @@
     <dt>会员中心<b></b></dt>
     <dd>
       <div class="item {if $action eq 'profile'}curr{/if}"><a href="user.php?act=profile">{$lang.label_profile}</a></div>
-      <div class="item {if $action eq 'account_log'}curr{/if}"><a href="user.php?act=account_log">{$lang.label_user_surplus}</a></div>
       <div class="item {if $action eq 'collection_list'}curr{/if}"><a href="user.php?act=collection_list">{$lang.label_collection}</a></div>
       <div class="item {if $action eq 'tag_list'}curr{/if}"><a href="user.php?act=tag_list">{$lang.label_tag}</a></div>
       <div class="item {if $action eq 'message_list'}curr{/if}"><a href="user.php?act=message_list">{$lang.label_message}</a></div>

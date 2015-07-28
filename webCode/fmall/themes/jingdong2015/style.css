@@ -33,7 +33,7 @@ h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,form,img,p{margin:0;padding:0;border:0;list-sty
 .word{word-break:break-all}
 .B_blue{border:1px solid #c5e4ff}
 .B_input{border:1px solid #0f97ed}
-.inputBg{border:1px solid #b3b3b3;background:url(images/inputbg.gif) repeat-x left top;height:18px}
+.inputBg{border:1px solid #b3b3b3;background:url(images/inputbg.gif) repeat-x left top;width:200px;height:30px;}
 .f1{color:#f66}
 .f2{color:#006bd0;font-weight:bold;margin-right:15px}
 .f3{color:#9e9e9e}
@@ -94,6 +94,14 @@ h6 span{float:left;padding-left:15px}
 /*注册*/
 .reg_phoneverify{ width:120px;text-align:center;margin-left:10px;width:110px;backgound-color:#ddd;border:1px solid #dedede;}
 
+/*用户中心*/
+.capitaldiv{ margin-top:10px;}
+.capitalleft{ width:5px;height:20px;background:#FF8A00;float:left;}
+.capitalright{ font-size:16px;color:#545454;margin-left:8px;font-weight:bold;}
+.capitaltr{ height:35px;line-height:35px;background:#F7F7F7;}
+.bond_title{ width:100%;height:35px;text-align:center;line-height:35px;margin-top:15px;}
+.bond_title li{ min-width:278px;_width:278px;border:1px solid #ddd;cursor:pointer;background:#F7F7F7;border-bottom:0px;}
+
 /*绑定银行卡*/
 .bangcardtitle{ width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF852F;}
 .bangcardtd{ width:100px;text-align:right;align:right;}
@@ -103,7 +111,7 @@ h6 span{float:left;padding-left:15px}
 .bangcardsub{ width:260px;height:40px;background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;}
 
 /*设置提现密码*/
-.withdraw_verify{ width:80%;border:1px solid #ddd;}
+.withdraw_verify{ width:80%;border:0px solid #ddd;}
 .widthdraw_button_time{ cursor:pointer;text-align:center;border:1px solid #FF852F;width:100px;line-height:30px;height:30px;background:#FF852F;float:left;margin-left:5px;}
 /* ====================
      模块
@@ -2773,14 +2781,14 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 
 .JD_userCenter #header-2013{ height:60px;}
 .JD_userCenter .JD_userMain{ background:#f5f5f5;}
-.JD_userMain .left{ width:190px; margin:0;}
-.JD_userMain #myjd .mt{ height:32px; border:0; padding:0; background:none; border:0; padding:10px 0;}
+.JD_userMain .left{ width:210px;background:#fff; margin:0;}
+.JD_userMain #myjd .mt{ height:42px; border:0; padding:15px 0px 0px 15px; background:none; border:0;border-bottom:3px solid #D0CECF; }
 .JD_userMain #myjd .mt h2{ float:none; line-height: 32px; font-size: 20px; font-family: "microsoft yahei"; margin-right: 15px; font-weight:400;}
 .JD_userMain #myjd .mt h2 a{ color:#333;}
 .JD_userMain #myjd .mt h2 a:hover{ text-decoration:underline; color:#ff500b;}
 .JD_userMain #myjd .mc{ border:0; width:160px; padding:0 10px; margin:0;background-color:#DDDDDD;}
-.JD_userMain #myjd dl{ padding-bottom:30px;}
-.JD_userMain #myjd dl dt{ height:40px; line-height:40px; margin:0; background:none; padding:0;border-bottom:1px solid #fff;}
+.JD_userMain #myjd dl{ padding-bottom:15px;}
+.JD_userMain #myjd dl dt{ color:#185283;height:40px; line-height:40px; margin:0; background:none; padding:0px 0px 0px 25px;background:url(images/user_clickone.gif) no-repeat;background-position:3px 10px;}
 .JD_userMain #myjd dl dt b{ left:auto; right:5px; top:10px;}
 .JD_userMain #myjd dl.close dt b{ background-position:-64px -6px;}
 .JD_userMain #myjd dl dd{ padding:0px 0px 0px 20px;}
@@ -2798,9 +2806,9 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .goods_list_fund ul{ list-style:none;}
 .goods_list_fund ul li{ float:left;width:30%;height:100px;margin-left:15px;text-align:center;}
 .goods_list_fund ul h3{ margin-top:20px;}
-.goods_list_fund .goods_list_money{ color:#fb552f;margin-top:10px;}
+.goods_list_money{ color:#fb552f;margin-top:15px;font-size:2em;}
 .goods_list_goodname{ border-bottom:1px solid #ddd;width:100%;height：35px;line-height:35px;}
-.goods_list_goodname em{ font-size:16px;font-weight:bold;}
+.goods_list_goodname em{ font-size:14px;font-weight:bold;}
 .goods_list_goodname p{ margin-right:10px;float:right;}
 .goods_list_goodname p span{ margin-right:10px;margin-right；10px;}
 

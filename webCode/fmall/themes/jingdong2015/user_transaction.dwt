@@ -32,31 +32,33 @@
     {/foreach}
 </script>
 <div class="boxCenterList">
-<h5 class="mc"><span>{$lang.profile}</span></h5>
+	<div style="width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF500B;">
+	<h5 class="mc"><span>{$lang.profile}</span></h5>
+	</div>
 <form name="formEdit" action="user.php" method="post" onSubmit="return userEdit()">
-    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+    <table width="100%" border="0" cellpadding="5" cellspacing="5px" style="font-size:16px">
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_username}： </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF">账号</td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_username} </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.user_name}</td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_phone}： </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF">手机</td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_phone} </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.mobile_phone}</td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_truename}： </td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_truename} </td>
             <td width="72%" align="left" bgcolor="#FFFFFF"><input type="text" name="truename" value="" class="inputBg"/><span style="color:#FF0000"> *</span></td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_idcard}： </td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_idcard}</td>
             <td width="72%" align="left" bgcolor="#FFFFFF"><input type="text" name="idcard" value="" class="inputBg" onblur="truenamecheck(this);"/><span style="color:#FF0000"> *</span><span id="checknameid" style="display:none;color:red;">实名认证未通过</span></td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.birthday}： </td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.birthday} </td>
             <td width="72%" align="left" bgcolor="#FFFFFF"> {html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=+1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday} </td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.sex}： </td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.sex} </td>
             <td width="72%" align="left" bgcolor="#FFFFFF"><input type="radio" name="sex" value="0" {if $profile.sex==0}checked="checked"{/if} />
                 {$lang.secrecy}&nbsp;&nbsp;
                 <input type="radio" name="sex" value="1" {if $profile.sex==1}checked="checked"{/if} />
@@ -66,16 +68,12 @@
             </td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.email}： </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="email" type="text" value="{$profile.email}" size="25" class="inputBg" /><span style="color:#FF0000"> *</span></td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.label_bang_money} </td>
+            <td width="72%" align="left" bgcolor="#FFFFFF"><a style="color:#FF500B" href="user.php?act=bangcard">去绑定银行卡</a></td>
         </tr>
         <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.label_bang_money}： </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="label_bang_money" type="text" value="{$profile.label_bang_money}" size="25" class="inputBg" /><span style="color:#FF0000"> *</span><b style="margin-left:10px;font-size:16px;"><a href="">绑定</a></b><em style="color:blue;margin-left:10px;">[用于产品的购买与收益的提取]</em></td>
-        </tr>
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.label_zlpassword}： </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="zlpassword" type="text" value="{$profile.zlpassword}" size="25" class="inputBg" /><span style="color:#FF0000"> *</span><em style="color:blue;margin-left:10px;">[用于平台账号的提取与充值]</em></td>
+            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.email}</td>
+            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="email" type="text" value="{$profile.email}" class="inputBg" /><span style="color:#FF0000"> *</span></td>
         </tr>
         <tr>
             <td colspan="2" align="center" bgcolor="#FFFFFF"><input name="act" type="hidden" value="act_edit_profile" /><input name="submit" type="submit" value="{$lang.confirm_edit}" class="bnt_blue_1" style="border:none;" /></td>
@@ -83,31 +81,6 @@
     </table>
 </form>
 <div class="blank10"></div>
-<!--修改登录密码start-->
-<h5 class="mc"><span>{$lang.label_update_loginpass}</span></h5>
-<form name="formPassword" action="user.php" method="post" onSubmit="return editPassword()" >
-    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.old_password}：</td>
-            <td width="76%" align="left" bgcolor="#FFFFFF"><input name="old_password" type="password" size="25"  class="inputBg" /></td>
-        </tr>
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.new_password}：</td>
-            <td align="left" bgcolor="#FFFFFF"><input name="new_password" type="password" size="25"  class="inputBg" /></td>
-        </tr>
-        <tr>
-            <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.confirm_password}：</td>
-            <td align="left" bgcolor="#FFFFFF"><input name="comfirm_password" type="password" size="25"  class="inputBg" /></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center" bgcolor="#FFFFFF">
-            	<input name="act" type="hidden" value="act_edit_password" />
-            	<input name="submit" type="submit" class="bnt_blue_1" style="border:none;" value="{$lang.confirm_edit}" />
-            </td>
-        </tr>
-    </table>
-</form>
-<!--修改登录密码end-->
 </div>
 <!--{/if}-->
 <!--#用户信息界面 end-->
@@ -164,7 +137,7 @@
 		<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
 			<tr>
 				<td class="bangcardtd">账户名</td>
-				<td>{$mobilestr}</td>
+				<td>{$user_name}</td>
 			</tr>
 			<tr>
 				<td class="bangcardtd">原密码</td>
@@ -220,7 +193,7 @@
 		<h3>绑定银行卡</h3>
 	</div>
 	<form action="user.php" method="post" onsubmit="return bangkainfo()">
-	<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:10px;font-size:16px;">
+	<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:10px;font-size:16px;margin-left:100px;">
 		<tr>
 			<td class="bangcardtd">真实姓名</td>
 			<td><input class="bangcardinput" name="bangtruename" type="text" placeholder="请输入您的真实姓名" onblur="chekbangtruename(this.value);"><span id="bangtruename" style="color:#FF852F;"></span></td>
@@ -275,6 +248,14 @@
 		</tr>
 	</table>
 	</form>
+	<div style="width:300px;height:auto;border:1px solid #ddd;margin-top:30px;float:left;margin-left:150px;">
+		<div class="bangcardtitle">
+			<h3>成功绑定的卡号</h3>
+		</div>
+		<ul style="list-style:none;height:auto;">
+			<li style="height:40px;line-height:40px;"> 银行账号 <a style="color:#FF500B" href="#">解绑</a></li>
+		</ul>
+	</div>
 </div>
 <!--{/if}-->
 <!--绑定银行卡 end-->
@@ -543,95 +524,22 @@
 <!--#收货地址页面 -->
 <!--{if $action eq 'address_list'} -->
 <div class="boxCenterList">
-<h5 class="mc"><span>{$lang.consignee_info}</span></h5>
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">我的保险</span>
+	</div>
 {* 包含脚本文件 *}
 {insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
-<script type="text/javascript">
-	region.isAdmin = false;
-	{foreach from=$lang.flow_js item=item key=key}
-		var {$key} = "{$item}";
-	{/foreach}
-	{literal}
-	onload = function() {
-		if (!document.all){
-		document.forms['theForm'].reset();
-		}
-	}
-	{/literal}
-</script>
-<!-- {foreach from=$consignee_list item=consignee key=sn} -->
-<form action="user.php" method="post" name="theForm" onsubmit="return checkConsignee(this)">
-    <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-        <tr>
-            <td align="right" bgcolor="#ffffff">{$lang.country_province}：</td>
-            <td colspan="3" align="left" bgcolor="#ffffff">
-                <select name="country" id="selCountries_{$sn}" onchange="region.changed(this, 1, 'selProvinces_{$sn}')">
-                    <option value="0">{$lang.please_select}{$name_of_region[0]}</option>
-                    <!-- {foreach from=$country_list item=country} -->
-                    <option value="{$country.region_id}" {if $consignee.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
-                    <!-- {/foreach} -->
-                </select>
-                <select name="province" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
-                    <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
-                    <!-- {foreach from=$province_list.$sn item=province} -->
-                    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
-                    <!-- {/foreach} -->
-                </select>
-                <select name="city" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
-                    <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
-                    <!-- {foreach from=$city_list.$sn item=city} -->
-                    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
-                    <!-- {/foreach} -->
-                </select>
-                <select name="district" id="selDistricts_{$sn}" {if !$district_list.$sn}style="display:none"{/if}>
-                    <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
-                    <!-- {foreach from=$district_list.$sn item=district} -->
-                    <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
-                    <!-- {/foreach} -->
-                </select>
-                {$lang.require_field}
-            </td>
-        </tr>
-        <tr>
-            <td align="right" bgcolor="#ffffff">{$lang.consignee_name}：</td>
-            <td align="left" bgcolor="#ffffff"><input name="consignee" type="text" class="inputBg" id="consignee_{$sn}" value="{$consignee.consignee|escape}" />{$lang.require_field} </td>
-            <td align="right" bgcolor="#ffffff">{$lang.email_address}：</td>
-            <td align="left" bgcolor="#ffffff"><input name="email" type="text" class="inputBg" id="email_{$sn}" value="{$consignee.email|escape}" />{$lang.require_field}</td>
-        </tr>
-        <tr>
-            <td align="right" bgcolor="#ffffff">{$lang.detailed_address}：</td>
-            <td align="left" bgcolor="#ffffff"><input name="address" type="text" class="inputBg" id="address_{$sn}" value="{$consignee.address|escape}" />{$lang.require_field}</td>
-            <td align="right" bgcolor="#ffffff">{$lang.postalcode}：</td>
-            <td align="left" bgcolor="#ffffff"><input name="zipcode" type="text" class="inputBg" id="zipcode_{$sn}" value="{$consignee.zipcode|escape}" /></td>
-        </tr>
-        <tr>
-            <td align="right" bgcolor="#ffffff">{$lang.phone}：</td>
-            <td align="left" bgcolor="#ffffff"><input name="tel" type="text" class="inputBg" id="tel_{$sn}" value="{$consignee.tel|escape}" />{$lang.require_field}</td>
-            <td align="right" bgcolor="#ffffff">{$lang.backup_phone}：</td>
-            <td align="left" bgcolor="#ffffff"><input name="mobile" type="text" class="inputBg" id="mobile_{$sn}" value="{$consignee.mobile|escape}" /></td>
-        </tr>
-        <tr>
-            <td align="right" bgcolor="#ffffff">{$lang.sign_building}：</td>
-            <td align="left" bgcolor="#ffffff"><input name="sign_building" type="text" class="inputBg" id="sign_building_{$sn}" value="{$consignee.sign_building|escape}" /></td>
-            <td align="right" bgcolor="#ffffff">{$lang.deliver_goods_time}：</td>
-            <td align="left" bgcolor="#ffffff"><input name="best_time" type="text"  class="inputBg" id="best_time_{$sn}" value="{$consignee.best_time|escape}" /></td>
-        </tr>
-        <tr>
-            <td align="right" bgcolor="#ffffff">&nbsp;</td>
-            <td colspan="3" align="center" bgcolor="#ffffff"><!-- {if $consignee.consignee && $consignee.email} -->
-                <input type="submit" name="submit" class="bnt_blue_1" value="{$lang.confirm_edit}" />
-                <input name="button" type="button" class="bnt_blue"  onclick="if (confirm('{$lang.confirm_drop_address}'))location.href='user.php?act=drop_consignee&id={$consignee.address_id}'" value="{$lang.drop}" />
-                <!-- {else} -->
-                <input type="submit" name="submit" class="bnt_blue_2"  value="{$lang.add_address}"/>
-                <!-- {/if} -->
-                <input type="hidden" name="act" value="act_edit_address" />
-                <input name="address_id" type="hidden" value="{$consignee.address_id}" />
-            </td>
+    <table width="100%" cellspacing="1" bgcolor="#dddddd" style="margin-top:10px;">
+        <tr class="capitaltr">
+            <th>保险产品</th><th>保障期限</th><th>金额(元)</th><th>状态</th><th>渠道</th>
         </tr>
     </table>
-</form>
+    
+    <div style="width:100%;height:50px;border:1px dashed #ddd;line-height:50px;text-align:center;font-size:14px;margin-top:20px;">
+    	您还没有享受保障吗？快去&nbsp;<a style="color:#FF500B;" href="category.php?id=1012">逛逛</a>&nbsp;吧~
+    </div>
+    
 <div class="blank10"></div>
-<!-- {/foreach} -->
 </div>
 <!--{/if} -->
 <!--#收货地址添加页面 -->
@@ -825,7 +733,7 @@
     </div>
     <div class="left">
     	<div id="myjd" class="m">
-        	<div class="mt"><h2><a href="user.php">我的众联</a></h2></div>
+        	<div class="mt"><h2><a href="user.php">我的联众</a></h2></div>
             <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
         </div>
     </div>

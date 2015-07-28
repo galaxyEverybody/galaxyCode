@@ -57,9 +57,9 @@ function reg(str){
                 	<div class="bond_middle_big">
                 		<div class="bond_middle_middle">
 	                    	<ul>
-	                    		<li class="bond_big_one"><h4>年化利率</h4><div class="bond_big_num">{$goods.market_price}<span>%</span></div></li>
-	                    		<li class="bond_big_two"><h4>借款期限</h4><div class="bond_big_num">{$goods.market_price}<span>天</span></div></li>
-	                    		<li class="bond_big_three"><h4>借款金额</h4><div class="bond_big_num">{$goods.shop_price}<span>元</span></div></li>
+	                    		<li class="bond_big_one"><h4><img src="./images/bondyear.gif">&nbsp;年化利率</h4><div class="bond_big_num">{$goods.market_price}<span>%</span></div></li>
+	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;借款期限</h4><div class="bond_big_num">{$goods.market_price}<span>天</span></div></li>
+	                    		<li class="bond_big_three"><h4><img src="./images/bondnum.jpg">&nbsp;借款金额</h4><div class="bond_big_num">{$goods.shop_price}<span>元</span></div></li>
 	                    	</ul>
 	                    </div>
 	                	<div id="divProgressbar">
