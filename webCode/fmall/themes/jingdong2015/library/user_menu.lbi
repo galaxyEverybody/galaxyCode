@@ -1,31 +1,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div class="mc">
   <dl>
-    <dt>资产中心<b></b></dt>
+    <dt>资产中心</dt>
     <dd>
-      <div class="item {if $action eq 'order_list'|| $action eq 'order_detail'}curr{/if}"><a href="user.php?act=order_list">{$lang.label_order_fund}</a></div>
-      <div class="item {if $action eq 'address_list'}curr{/if}"><a href="user.php?act=address_list">{$lang.label_order_secure}</a></div>
-      <div class="item {if $action eq 'booking_list'}curr{/if}"><a href="user.php?act=booking_list">{$lang.label_order_invest}</a></div>
-      <div class="item {if $action eq 'loan_list'}curr{/if}"><a href="user.php?act=loan_list">{$lang.label_order_loan}</a></div>
+      <div class="item {if $action eq 'order_list'|| $action eq 'order_detail'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'order_list'|| $action eq 'order_detail'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=order_list">{$lang.label_order_fund}</a></div>
+      <div class="item {if $action eq 'address_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'address_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=address_list">{$lang.label_order_secure}</a></div>
+      <div class="item {if $action eq 'booking_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'booking_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=booking_list">{$lang.label_order_invest}</a></div>
+      <div class="item {if $action eq 'loan_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'loan_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=loan_list">{$lang.label_order_loan}</a></div>
     </dd>
   </dl>
   <dl>
-    <dt>安全中心<b></b></dt>
+    <dt>安全中心</dt>
     <dd>
-      <div class="item {if $action eq 'withdraw_password'}curr{/if}"><a href="user.php?act=withdraw_password">{$lang.label_withdraw_pw}</a></div>
-      <div class="item {if $action eq 'bangcard'}curr{/if}"><a href="user.php?act=bangcard">{$lang.label_bang_ka}</a></div>
-      <div class="item {if $action eq 'upda_login_pw'}curr{/if}"><a href="user.php?act=upda_login_pw">{$lang.label_pw_up}</a></div>
+      <div class="item {if $action eq 'bangcard'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'bangcard'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=bangcard">{$lang.label_bang_ka}</a></div>
+      <div class="item {if $action eq 'auth_center'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'auth_center'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=auth_center">{$lang.label_auth_center}</a></div>
+      <div class="item {if $action eq 'withdraw_password'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'withdraw_password'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=withdraw_password">{$lang.label_withdraw_pw}</a></div>
+      <div class="item {if $action eq 'upda_login_pw'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'upda_login_pw'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=upda_login_pw">{$lang.label_pw_up}</a></div>
     </dd>
   </dl>
   <dl>
-    <dt>会员中心<b></b></dt>
+    <dt>会员中心</dt>
     <dd>
-      <div class="item {if $action eq 'profile'}curr{/if}"><a href="user.php?act=profile">{$lang.label_profile}</a></div>
-      <div class="item {if $action eq 'collection_list'}curr{/if}"><a href="user.php?act=collection_list">{$lang.label_collection}</a></div>
-      <div class="item {if $action eq 'tag_list'}curr{/if}"><a href="user.php?act=tag_list">{$lang.label_tag}</a></div>
-      <div class="item {if $action eq 'message_list'}curr{/if}"><a href="user.php?act=message_list">{$lang.label_message}</a></div>
-      <div class="item {if $action eq 'affiliate'}curr{/if}"><a href="user.php?act=affiliate">{$lang.label_affiliate}</a></div>
-      <div class="item {if $action eq 'comment_list'}curr{/if}"><a href="user.php?act=comment_list">{$lang.label_comment}</a></div>
+      <div class="item {if $action eq 'profile'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'profile'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=profile">{$lang.label_profile}</a></div>
+      <div class="item {if $action eq 'collection_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'collection_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=collection_list">{$lang.label_collection}</a></div>
+      <div class="item {if $action eq 'tag_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'tag_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=tag_list">{$lang.label_tag}</a></div>
+      <div class="item {if $action eq 'message_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'message_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=message_list">{$lang.label_message}</a></div>
+      <div class="item {if $action eq 'affiliate'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'affiliate'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=affiliate">{$lang.label_affiliate}</a></div>
+      <div class="item {if $action eq 'comment_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'comment_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=comment_list">{$lang.label_comment}</a></div>
     </dd>
   </dl>
 </div>

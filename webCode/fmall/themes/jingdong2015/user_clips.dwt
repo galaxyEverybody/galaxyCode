@@ -177,7 +177,7 @@
 <div class="hide"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
 
 <div class="JD_userMain">
-<div class="w main" style="width:1100px;">
+<div class="w main">
 	<div class="right">
     	<div class="ordercontainer">
         	<div class="userCenterBox clearfix" style="_height:1%;">
@@ -191,7 +191,12 @@
             <div class="info-m">
             	<div class="u-name">{$info.username}</div>
                 <div class="u-level">{$rank_name}</div>
-                <div class="u-safe"><!--{if $info.is_validate eq 0} -->{$lang.not_validated}<br /><a href="javascript:sendHashMail()" style="color:#006bd0;">{$lang.resend_hash_mail}</a><!--{/if} --></div>
+                <div class="u-safe">
+                	{if $info.phonestatus == 1}<img src="images/phoneauth01.png" alt="已认证" title="已认证">{else}<img src="images/phoneauth02.png" alt="还没有手机认证" title="还没有手机认证">{/if}
+                	{if $info.phonestatus == 1}<img class="u-safeimg" src="images/idcardauth01.png" alt="已认证" title="已认证">{else}<img class="u-safeimg" src="images/idcardauth02.png" alt="还没有实名认证" title="还没有实名认证">{/if}
+                	{if $info.phonestatus == 1}<img class="u-safeimg" src="images/bangcardauth01.png" alt="已认证" title="已认证">{else}<img class="u-safeimg" src="images/bangcardauth02.png" alt="还没有绑定银行卡" title="还没有绑定银行卡">{/if}
+                	{if $info.phonestatus == 1}<img class="u-safeimg" src="images/emailauth01.png" alt="已认证" title="已认证">{else}<img class="u-safeimg" style="margin-top:10px;" src="images/emailauth02.png" alt="还没有邮箱认证" title="还没有邮箱认证">{/if}
+                </div>
                 <div class="info-line">
                 	<span class="top-icon"></span>
                     <span class="bottom-icon"></span>
@@ -209,11 +214,47 @@
                     <p>{$lang.your_integral}：{$info.integral}</p>
                     <p>{$lang.last_month_order}{$info.order_count}{$lang.order_unit}</p>
                 </div>
+                <div class="rewithdraw">
+                	<img src="images/recharge.png" alt="充值"><br/><br/>
+                	<img src="images/withdraw.png" alt="提现">
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div style="width:100%;height:200px;border:1px solid #ddd;background:#fff;"></div>
+<div class="user_apicity">
+	<ul>
+		<li class="user_apicity_num">
+			<p>总资产（元）</p>
+			<div>50000.00</div>
+			<em>(赢)</em><span>30.00</span>
+		</li>
+		<li class="user_apicity_sign">=</li>
+		<li class="user_apicity_num">
+			<p>我的债券（元）</p>
+			<div>50000.00</div>
+			<em>(赢)</em><span>30.00</span>
+		</li>
+		<li class="user_apicity_sign">+</li>
+		<li class="user_apicity_num">
+			<p>我的基金（元）</p>
+			<div>50000.00</div>
+			<em>(赢)</em><span>30.00</span>
+		</li>
+		<li class="user_apicity_sign">+</li>
+		<li class="user_apicity_num">
+			<p>我的保险（元）</p>
+			<div>50000.00</div>
+			<em>(赢)</em><span>30.00</span>
+		</li>
+		<li class="user_apicity_sign">—</li>
+		<li class="user_apicity_num">
+			<p>我的贷款（元）</p>
+			<div>50000.00</div>
+			<em>(赢)</em><span>30.00</span>
+		</li>
+	</ul>
+</div>
 <div class="lyt-c-1" style="margin-top:20px;"><img src="images/note.gif" alt="note" />&nbsp;&nbsp;{$user_notice}</div>
 <div class="lyt-c-2"><!-- #BeginLibraryItem "/library/history_user.lbi" --><!-- #EndLibraryItem --></div>
 <!-- {/if} -->
@@ -222,9 +263,9 @@
 <!-- *我的留言 start-->
 <!-- {if $action eq 'message_list'} -->
 <div class="boxCenterList">
-<div style="width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF500B;">
-	<h5 class="mc"><span>{$lang.label_message}</span></h5>
-</div>
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">建议中心</span>
+	</div>
 <!--{foreach from=$message_list item=message key=key} -->
 <div class="f_l">
 <b>{$message.msg_type}:</b>&nbsp;&nbsp;<font class="f4">{$message.msg_title}</font> ({$message.msg_time})
@@ -265,7 +306,7 @@
 </tr>
 {else}
 <tr>
-<td align="right">{$lang.message_type}：</td>
+<td align="right">{$lang.message_type}</td>
 <td><input name="msg_type" type="radio" value="0" checked="checked" />
 页面美化
 <input type="radio" name="msg_type" value="1" />
@@ -275,21 +316,21 @@
 </tr>
 {/if}
 <tr>
-<td align="right">{$lang.message_title}：</td>
-<td><input name="msg_title" type="text" size="30" class="inputBg" /></td>
+<td align="right">{$lang.message_title}</td>
+<td><input name="msg_title" type="text" class="inputBg" /></td>
 </tr>
 <tr>
-<td align="right" valign="top">{$lang.message_content}：</td>
+<td align="right" valign="top">{$lang.message_content}</td>
 <td><textarea name="msg_content" cols="50" rows="4" wrap="virtual" class="B_blue"></textarea></td>
 </tr>
 <tr>
-<td align="right">{$lang.upload_img}：</td>
+<td align="right">{$lang.upload_img}</td>
 <td><input type="file" name="message_img"  size="45"  class="inputBg" /></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td><input type="hidden" name="act" value="act_add_message" />
-<input type="submit" value="{$lang.submit}" class="bnt_bonus" />
+<input type="submit" value="{$lang.submit}" class="bangcardsub" />
 </td>
 </tr>
 <tr>
@@ -308,9 +349,9 @@
 <!-- *我的评论 start-->
 <!-- {if $action eq 'comment_list'} -->
 <div class="boxCenterList">
-<div style="width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF500B;">
-	<h5 class="mc"><span>{$lang.label_comment}</span></h5>
-</div>
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">我的评论</span>
+	</div>
 <!--{foreach from=$comment_list item=comment} -->
 <div class="f_l" style="margin-top:20px;">
 <b>{if $comment.comment_type eq '0'}{$lang.goods_comment}{else}{$lang.article_comment}{/if}: </b><font class="f4">{$comment.cmt_name}</font>&nbsp;&nbsp;({$comment.formated_add_time})
@@ -318,7 +359,7 @@
 <div class="f_r" style="margin-top:20px;">
 <a href="user.php?act=del_cmt&amp;id={$comment.comment_id}" title="{$lang.drop}" onclick="if (!confirm('{$lang.confirm_remove_msg}')) return false;" class="f6">{$lang.drop}</a>
 </div>
-<div class="msgBottomBorder">
+<div class="msgBottomBorder" style="padding:5px;">
 {$comment.content|escape}<br />
 <!--{if $comment.reply_content}-->
 <b>{$lang.reply_comment}：</b><br />
@@ -354,17 +395,17 @@
 <!--{if $action eq 'collection_list'} -->
 {insert_scripts files='transport_jquery.js,utils.js'}
 <div class="boxCenterList">
-<div style="width:100%;height:30px;border-bottom:1px solid #FF500B;">	
-	<h5 class="mc"><span>{$lang.label_collection}</span></h5>
-</div>
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd" style="margin-top:20px;">
-<tr align="center">
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">我的关注</span>
+	</div>
+<table width="100%" border="0" cellspacing="1" bgcolor="#dddddd" style="margin-top:20px;">
+<tr align="center" class="capitaltr">
 <th width="35%" >{$lang.goods_name}</th>
 <th width="30%" >{$lang.price}</th>
 <th width="35%" >{$lang.handle}</th>
 </tr>
 <!--{foreach from=$goods_list item=goods}-->
-<tr>
+<tr class="capitaltr">
 <td bgcolor="#ffffff"><a href="{$goods.url}" class="f6">{$goods.goods_name|escape:html}</a></td>
 <td bgcolor="#ffffff"><!-- {if $goods.promote_price neq ""} -->
 {$lang.promote_price}<span class="goods-price">{$goods.promote_price}</span>
@@ -377,7 +418,7 @@
 <!-- {else} -->
 <a href="javascript:if (confirm('{$lang.add_to_attention}')) location.href='user.php?act=add_to_attention&rec_id={$goods.rec_id}'" class="f6">{$lang.attention}</a>
 <!-- {/if} -->
-<a href="javascript:addToCart({$goods.goods_id})" class="f6">{$lang.add_to_cart}</a> <a href="javascript:if (confirm('{$lang.remove_collection_confirm}')) location.href='user.php?act=delete_collection&collection_id={$goods.rec_id}'" class="f6">{$lang.drop}</a>
+<a href="javascript:addToCart({$goods.goods_id})" class="f6" style="display:none;">{$lang.add_to_cart}</a> <as style="padding:0px 0px 0px 20px;" href="javascript:if (confirm('{$lang.remove_collection_confirm}')) location.href='user.php?act=delete_collection&collection_id={$goods.rec_id}'" class="f6">{$lang.drop}</a>
 </td>
 </tr>
 <!--{/foreach} -->
@@ -388,8 +429,8 @@
 <div class="boxCenterList" style="display:none;">
 <h5 class="mc"><span>{$lang.label_affiliate}</span></h5>
 <form name="theForm" method="post" action="">
-<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-<tr>
+<table width="100%" border="0" cellspacing="1" bgcolor="#dddddd">
+<tr class="capitaltr">
 <td align="right" bgcolor="#ffffff">{$lang.label_need_image}</td>
 <td bgcolor="#ffffff">
 <select name="need_image" id="need_image" class="inputBg">
@@ -866,8 +907,8 @@ clip.setData(trans,null,clipid.kGlobalClipboard);
 		</div>
 	</div>
 	<div class="left">
-		<div id="myjd" class="m" style="background:#ddd;margin-left:10px;margin-top:20px;width:190px;padding-bottom:20px;">
-        	<div class="mt"><h2><a href="user.php">我的联众</a></h2><div style="position:absolute;background:#FF8A00;width:80px;height:3px;margin-top:10px;z-index:999;float:left;margin-left:0px;"></div></div>
+		<div id="myjd" class="m">
+        	<div class="mt"><h2><a href="user.php">我的联众</a></h2><div class="myjdtitle"></div></div>
             <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
         </div>
     </div>

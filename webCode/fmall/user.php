@@ -35,7 +35,7 @@ $not_login_arr =
 array('login','act_login','register','act_register','act_edit_password','act_edit_paypassword','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
 
 /* 显示页面的action列表 */
-$ui_arr = array('register','ajax_checkoldpassword', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','upda_login_pw','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
+$ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','upda_login_pw','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
@@ -695,6 +695,12 @@ elseif ($action == 'bangcardadd')
 	if(insert_bangcard($bangcardinfo)){
 		header("Location:/");
 	}
+}
+
+/* 安全认证中心页面*/
+elseif ($action == 'auth_center')
+{
+	$smarty->display('user_transaction.dwt');
 }
 
 /* 处理 ajax 的登录请求 */

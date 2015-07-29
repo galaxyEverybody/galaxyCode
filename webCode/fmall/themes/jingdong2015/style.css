@@ -338,7 +338,7 @@ ol,ul{list-style:none}
 .lh{overflow:hidden;zoom:1}
 .lh li,.lh dl,.lh .item{float:left}
 .ld s,.ld b,.ld .block{position:absolute;overflow:hidden}
-.w{width:990px;margin:0 auto}
+.w{width:1100px;margin:0 auto}
 .root61 .banner_w{display:block}
 .root61 .banner_s{display:none}
 .banner_w{display:none}
@@ -2782,25 +2782,36 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .JD_userCenter #header-2013{ height:60px;}
 .JD_userCenter .JD_userMain{ background:#f5f5f5;}
 .JD_userMain .left{ width:210px;background:#fff; margin:0;}
+.JD_userMain #myjd{ background:#ddd;margin-left:10px;margin-top:20px;width:190px;padding-bottom:20px;}
+.JD_userMain .myjdtitle{ position:absolute;background:#FF8A00;width:80px;height:3px;margin-top:10px;z-index:999;float:left;margin-left:0px;}
 .JD_userMain #myjd .mt{ height:42px; border:0; padding:15px 0px 0px 15px; background:none; border:0;border-bottom:3px solid #D0CECF; }
 .JD_userMain #myjd .mt h2{ float:none; line-height: 32px; font-size: 20px; font-family: "microsoft yahei"; margin-right: 15px; font-weight:400;}
 .JD_userMain #myjd .mt h2 a{ color:#333;}
 .JD_userMain #myjd .mt h2 a:hover{ text-decoration:underline; color:#ff500b;}
-.JD_userMain #myjd .mc{ border:0; width:160px; padding:0 10px; margin:0;background-color:#DDDDDD;}
+.JD_userMain #myjd .mc{ border:0; width:100%; padding:0 0px; margin:0;background-color:#DDDDDD;}
 .JD_userMain #myjd dl{ padding-bottom:15px;}
-.JD_userMain #myjd dl dt{ color:#185283;height:40px; line-height:40px; margin:0; background:none; padding:0px 0px 0px 25px;background:url(images/user_clickone.gif) no-repeat;background-position:3px 10px;}
+.JD_userMain #myjd dl dt{ color:#185283;height:40px; line-height:40px; margin:0; background:none; padding:0px 0px 0px 25px;background:url(images/user_clicktwo.gif) no-repeat;background-position:3px 10px;}
 .JD_userMain #myjd dl dt b{ left:auto; right:5px; top:10px;}
 .JD_userMain #myjd dl.close dt b{ background-position:-64px -6px;}
-.JD_userMain #myjd dl dd{ padding:0px 0px 0px 20px;}
+.JD_userMain #myjd dl dd{ padding:0px 0px 0px 0px;width:100%;}
 .JD_userMain #myjd dd .item{ padding:0; line-height:30px;height:30px;;margin-top:5px;letter-spacing:5px;}
 .JD_userMain #myjd dl .item a{ color:#777;}
+.JD_userMain #myjd .myjdshowdiv{ width:25px;height:30px;line-height:30px;float:left;}
+.JD_userMain #myjd .myjdshowleft{ width:5px;height:30px;background:#FE8A00;float:left;}
 .JD_userMain #myjd dl .item a:hover{ color:#ff500b; text-decoration:underline;}
-.JD_userMain #myjd dl dd .curr a{ color:#ff500b;}
+.JD_userMain #myjd dl dd .curr{ color:#ff500b;background:#EDEBEC;}
 .JD_userMain .right{ width:880px; margin-top:56px;}
 .JD_userMain .boxCenterList{ padding:10px 20px 20px; background:#fff; margin-bottom:10px;}
 .JD_userMain .boxCenterList .mc{ padding:10px 0; display:block; border:0; height:auto; line-height:normal; margin:0;}
 .JD_userMain .boxCenterList .mc span{ font-size: 12px; color: #666; font-family: '\5b8b\4f53'; line-height: 18px; padding:0; background:none;}
 .JD_userCenter #service-2013{ border:0; padding-top:0;}
+.boxCenterList .authcenterdiv{ width:100%;height:auto;margin-top:20px;}
+.authcenterdiv p{ line-height:80px;height:80px;border-bottom:1px solid #ddd;}
+.authcenterdiv img{ margin-left:20px;}
+.authcenterdiv .capitalauthphone{ margin-left:50px;font-size:20px;}
+.authcenterdiv .capitalauthnum{ margin-left:100px;}
+.authcenterdiv .capitalauthupda{ float:right;margin-right:20px;color:#185283;}
+
 /* 我的订单*/
 .goods_list_fund{ width:100%;height:auto;height:140px;border-bottom:1px solid #ddd;}
 .goods_list_fund ul{ list-style:none;}
@@ -2857,8 +2868,9 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .JD_userMain .info-lcol .u-pic i{ background: url(images/myjd-bg.png) 0 0; width: 104px; height: 104px; position: absolute; left: 0; top: 0; z-index: 2;}
 .JD_userMain .info-lcol .info-m{ float: left; width: 180px; position: relative; padding-right:8px;}
 .JD_userMain .info-lcol .u-name{ font-size: 18px; font-family: "microsoft yahei"; line-height: 28px; margin-bottom: 5px; color:#000;}
-.JD_userMain .info-lcol .u-level{ margin-bottom: 10px; line-height:18px;}
+.JD_userMain .info-lcol .u-level{ margin-bottom: 10px; line-height:30px;}
 .JD_userMain .info-lcol .u-safe{}
+.JD_userMain .info-lcol .u-safeimg{margin-left:5px;}
 .JD_userMain .info-lcol .info-line{ position: absolute; height: 180px; right: 0; top: -37px; border-left: 1px dotted #ddd; z-index: 1;}
 .JD_userMain .info-lcol .top-icon,.JD_userMain .info-lcol .bottom-icon{ display: block; position: absolute; overflow: hidden; width: 18px; height: 8px; left: -9px;}
 .JD_userMain .info-lcol .top-icon{ top: 0; background: url(images/info-top.png) no-repeat;}
@@ -2866,7 +2878,16 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .JD_userMain .info-lcol .left-icon{ position: absolute; overflow: hidden; width: 88px; height: 180px; left: -318px; background: url(images/info-left.png) 0 0 no-repeat;}
 .JD_userMain .info-rcol{ float: left; width: 99.19%; margin-left: -319px; padding-top: 5px;}
 .JD_userMain .info-rcol .acco-info{ background:#f5f5f5; padding:20px 0 10px; margin:0 0 0 3%; height:110px;}
-.JD_userMain .info-rcol .acco-item{ padding:0 20px; line-height:24px;}
+.JD_userMain .info-rcol .acco-item{ padding:0 20px; line-height:30px;font-size:14px;width:200px;float:left;}
+.JD_userMain .info-rcol .rewithdraw{ width:200px;height:100px;float:right;text-align:center;}
+.JD_userMain .user_apicity{ width:100%;height:130px;border:1px solid #ddd;background:#fff;}
+.JD_userMain .user_apicity ul{ list-style:none;}
+.JD_userMain .user_apicity p{ margin-top:20px;font-size:14px;}
+.JD_userMain .user_apicity div{ width:100%;height:60px;line-height:60px;font-size:24px;overflow:hidden;}
+.JD_userMain .user_apicity span{ font-size:16px;}
+.JD_userMain .user_apicity .user_apicity_num{ width:150px;height:130px;float:left;text-align:center;}
+.JD_userMain .user_apicity .user_apicity_sign{ width:30px;height:130px;line-height:130px;float:left;font-size:28px;text-align:center;}
+
 .JD_userMain .lyt-c-1{ padding:20px; background:#fff; margin-bottom:20px;}
 .JD_userMain .lyt-c-1 img{ vertical-align:text-top; margin-top:1px;}
 .JD_userMain .lyt-c-2{ padding:10px; background:#fff; margin-bottom:20px;}

@@ -59,8 +59,24 @@ $(function(){
 		$(this).removeClass("hover");
 	})
 	
+	/* 用户中心左侧菜单类点击*/
 	$("#myjd dt").click(function(){
-	
+		
+		var ima = $(this).css("background-image");
+		var ima1 = ima.substr(-18);
+		var path = window.document.location.href;
+		var pathnum = path.lastIndexOf('/');
+		var path1 = path.substr(0,pathnum);
+
+		if(ima1 == 'user_clickone.gif)')
+		{
+			$(this).css("background-image","url("+path1+"/themes/jingdong2015/images/user_clicktwo.gif)");
+		}
+		else
+		{
+			$(this).css("background-image","url("+path1+"/themes/jingdong2015/images/user_clickone.gif)");
+		}
+		
 		if($(this).parents("dl").hasClass("close"))
 		{
 			$(this).parents("dl").removeClass("close");

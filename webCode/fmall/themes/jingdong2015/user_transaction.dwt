@@ -18,7 +18,7 @@
 <!-- #BeginLibraryItem "/library/page_header_user.lbi" --><!-- #EndLibraryItem -->
 <div class="hide"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
 <div class="JD_userMain">
-<div class="w main" style="width:1080px;">
+<div class="w main">
 	<div class="right">
     	<Div class="ordercontainer">
         	<div class="userCenterBox clearfix" style="_height:1%;">
@@ -32,8 +32,8 @@
     {/foreach}
 </script>
 <div class="boxCenterList">
-	<div style="width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF500B;">
-	<h5 class="mc"><span>{$lang.profile}</span></h5>
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">基本信息</span>
 	</div>
 <form name="formEdit" action="user.php" method="post" onSubmit="return userEdit()">
     <table width="100%" border="0" cellpadding="5" cellspacing="5px" style="font-size:16px">
@@ -88,9 +88,9 @@
 <!--设置提现密码 start-->
 <!-- {if $action eq 'withdraw_password'}-->
 {insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
-<div style="widht:100%;">
-	<div class="bangcardtitle">
-		<h3>设置提现密码</h3>
+<div class="boxCenterList">
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">设置提现密码</span>
 	</div>
 	<div class="withdraw_verify">
 		<form id="withdrawform" action="user.php" method="post" onsubmit="return withdrawinfo()">
@@ -128,9 +128,9 @@
 <!--修改登录密码start-->
 <!-- {if $action eq 'upda_login_pw'}-->
 {insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
-<div style="widht:100%;">
-	<div class="bangcardtitle">
-		<h3>修改登录密码</h3>
+<div class="boxCenterList">
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">修改登录密码</span>
 	</div>
 	<div class="withdraw_verify">
 		<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
@@ -188,9 +188,9 @@
 	}
 	{/literal}
 </script>
-<div>
-	<div class="bangcardtitle">
-		<h3>绑定银行卡</h3>
+<div class="boxCenterList">
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">绑定银行卡</span>
 	</div>
 	<form action="user.php" method="post" onsubmit="return bangkainfo()">
 	<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:10px;font-size:16px;margin-left:100px;">
@@ -317,7 +317,9 @@
 <!--#订单列表界面 start-->
 <!-- {if $action eq 'order_list'} -->
 <div class="boxCenterList">
-    <h5 class="mc"><span>{$lang.label_order}</span></h5>
+    <div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">我的基金</span>
+	</div>
     <div class="blank"></div>
     <div class="goods_list_fund">
     	<div class="goods_list_goodname">
@@ -521,7 +523,7 @@
 
 <!--#会员余额 end-->
 
-<!--#收货地址页面 -->
+<!--#我的保险页面 start-->
 <!--{if $action eq 'address_list'} -->
 <div class="boxCenterList">
 	<div class="capitaldiv">
@@ -542,7 +544,146 @@
 <div class="blank10"></div>
 </div>
 <!--{/if} -->
-<!--#收货地址添加页面 -->
+<!--#我的保险页面end -->
+
+<!--#安全认证中心页面end -->
+<!--{if $action eq 'auth_center'} -->
+<div class="boxCenterList">
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">安全认证中心</span>
+	</div>
+	<div class="authcenterdiv">
+		<p><img src="images/phoneauth01.png"><span class="capitalauthphone">绑定手机</span><span class="capitalauthnum">13146278834</span> <span onclick="authcenterphone()" id="capitalupdaphone" class="capitalauthupda">修改</span></p>
+		<div id="authphonediv" style="width:60%;height:200px;display:none;">
+			
+		</div>
+		<p><img src="images/emailauth01.png"><span class="capitalauthphone">绑定邮箱</span><span class="capitalauthnum">13146278834</span> <span onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">修改</span></p>
+		<div id="authemaildiv" style="width:60%;height:200px;display:none;">
+			<div class="withdraw_verify">
+				<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
+				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+					<tr>
+						<td class="bangcardtd">邮箱账号</td>
+						<td>
+							<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您的真实姓名" onblur="chekold_password(this.value);">
+							<span id="old_password" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+						<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+					</tr>
+				</table>
+				</form>
+			</div>
+		</div>
+		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">实名认证</span><span class="capitalauthnum">13146278834</span> <span onclick="authcenteridcard()" id="capitalupdaidcard" class="capitalauthupda">修改</span></p>
+		<div id="authidcarddiv" style="width:60%;height:200px;display:none;">
+			<div class="withdraw_verify">
+				<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
+				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+					<tr>
+						<td class="bangcardtd">真实姓名</td>
+						<td>
+							<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您的真实姓名" onblur="chekold_password(this.value);">
+							<span id="old_password" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd">身份证号</td>
+						<td>
+							<input class="bangcardinput" name="new_password" type="text" placeholder="请输入您的身份证号" onblur="cheknew_password(this.value);">
+							<span id="new_password" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+						<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+					</tr>
+				</table>
+				</form>
+			</div>
+		</div>
+		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">登录密码</span><span class="capitalauthnum">已设置</span> <span onclick="authcenterpwss()" id="capitalupdapwss" class="capitalauthupda">修改</span></p>
+		<div id="authpwssdiv" style="width:60%;height:260px;display:none;">
+			<div class="withdraw_verify">
+				<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
+				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+					<tr>
+						<td class="bangcardtd">原密码</td>
+						<td>
+							<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您以前的密码" onblur="chekold_password(this.value);">
+							<span id="old_password" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd">新密码</td>
+						<td>
+							<input class="bangcardinput" name="new_password" type="text" placeholder="请输入您的新密码" onblur="cheknew_password(this.value);">
+							<span id="new_password" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd">确认密码</td>
+						<td>
+							<input class="bangcardinput" name="confirm_password" type="text" placeholder="请输入您的新密码" onblur="chekconfirm_password(this.value);">
+							<span id="confirm_password" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+						<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+					</tr>
+				</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		function authcenterphone(){
+			var phonenum = $('#capitalupdaphone').html();
+			if(phonenum == '修改'){
+				$("#authphonediv").slideToggle(500);
+				$('#capitalupdaphone').html('取消修改');
+			}else{
+				$("#authphonediv").slideToggle(500);
+				$('#capitalupdaphone').html('修改');
+			}
+		}
+		function authcenteremail(){
+			var phonenum = $('#capitalupdaemial').html();
+			if(phonenum == '修改'){
+				$("#authemaildiv").slideToggle(500);
+				$('#capitalupdaemial').html('取消修改');
+			}else{
+				$("#authemaildiv").slideToggle(500);
+				$('#capitalupdaemial').html('修改');
+			}
+		}
+		function authcenteridcard(){
+			var phonenum = $('#capitalupdaidcard').html();
+			if(phonenum == '修改'){
+				$("#authidcarddiv").slideToggle(500);
+				$('#capitalupdaidcard').html('取消修改');
+			}else{
+				$("#authidcarddiv").slideToggle(500);
+				$('#capitalupdaidcard').html('修改');
+			}
+		}
+		function authcenterpwss(){
+			var phonenum = $('#capitalupdapwss').html();
+			if(phonenum == '修改'){
+				$("#authpwssdiv").slideToggle(500);
+				$('#capitalupdapwss').html('取消修改');
+			}else{
+				$("#authpwssdiv").slideToggle(500);
+				$('#capitalupdapwss').html('修改');
+			}
+		}
+	</script>
+</div>
+<!--{/if} -->
+<!--#安全认证中心页面end -->
 
 <!--* 积分兑换-->
 <!--{if $action eq 'transform_points'} -->
@@ -733,7 +874,7 @@
     </div>
     <div class="left">
     	<div id="myjd" class="m">
-        	<div class="mt"><h2><a href="user.php">我的联众</a></h2></div>
+        	<div class="mt"><h2><a href="user.php">我的联众</a></h2><div class="myjdtitle"></div></div>
             <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
         </div>
     </div>

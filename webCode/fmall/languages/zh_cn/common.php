@@ -651,7 +651,7 @@ $_LANG['specifications'] = '规格';
 
 /* 相册JS语言项 */
 $_LANG['gallery_js']['close_window'] = '您是否关闭当前窗口';
-$_LANG['submit'] = '提 交';
+$_LANG['submit'] = '确定提 交';
 $_LANG['reset'] = '重 置';
 $_LANG['order_query'] = '订单查询';
 $_LANG['shipping_query'] = '发货查询';
@@ -725,7 +725,7 @@ $_LANG['heart_buy'] = '心动不如行动';
 $_LANG['label_regist'] = '用户注册';
 $_LANG['label_login'] = '用户登录';
 $_LANG['label_profile'] = '用户信息';
-$_LANG['label_collection'] = '我的收藏';
+$_LANG['label_collection'] = '我的关注';
 $_LANG['article_list'] = '文章列表';
 $_LANG['preferences_price'] = "优惠价格";
 $_LANG['divided_into'] = '分成规则';
