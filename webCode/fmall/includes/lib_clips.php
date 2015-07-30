@@ -565,7 +565,7 @@ function get_user_default($user_id)
 {
     $user_bonus = get_user_bonus();
 
-    $sql = "SELECT pay_points, user_money, credit_line, last_login, is_validated ,phonestatus ,emailstatus, idcardstatus, bangcardstatus FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id = '$user_id'";
+    $sql = "SELECT pay_points, user_money, credit_line, last_login, is_validated FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id = '$user_id'";
     $row = $GLOBALS['db']->getRow($sql);
     $info = array();
     $info['username']  = stripslashes($_SESSION['user_name']);

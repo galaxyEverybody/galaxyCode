@@ -268,13 +268,6 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
 
 	$smarty->assign('brands_old', $brands);
 
-	
-	
-	
-	
-
-
-		
     /* 属性筛选 */
     $ext = ''; //商品查询条件扩展
     if ($cat['filter_attr'] > 0)

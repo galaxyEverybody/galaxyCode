@@ -214,17 +214,14 @@
     	<h2><i></i><span></span><font>{$goods_cat.name}</font></h2>
         <div class="hd_box">
         	<ul>
-            	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
-            	<!--{foreach from=$goods_cat.cat_clild item=cat name=foo}-->
-                <!--{if $smarty.foreach.foo.iteration <9}-->
-            	<li><a href="javascript:">{$cat.name}<i></i></a></li>
-                <!--{/if}-->
-                <!--{/foreach}-->
+            	<li><a href="http://www.jnz360.com/fmall/user.php?act=borrow_money">车辆抵押贷款<i></i></a></li>
+            	<li><a href="http://www.jnz360.com/fmall/user.php?act=borrow_money">房屋抵押贷款<i></i></a></li>
             </ul>
         </div>
     	</div>
-    	<div class="mc" style="height:200px;">
-    		<img src="images/daikuan.gif" width="100%" height="180px">
+    	<div style="width:100%;margin-top:5px;">
+    		<img src="images/cardaikuan.jpg" width="100%" height="183px" >
+    		<img src="images/housedaikuan.jpg" width="100%" height="183px" style="display:none;">
     	</div>
 	{else}
 	<div class="mt">
@@ -424,18 +421,21 @@
     	<h2><i></i><span></span><font>{$goods_cat.name}</font></h2>
         <div class="hd_box">
         	<ul>
-            	<!--<li><a href="javascript:;">热门<i></i></a></li>-->
-            	<!--{foreach from=$goods_cat.cat_clild item=cat name=foo}-->
-                <!--{if $smarty.foreach.foo.iteration <9}-->
-            	<li><a href="javascript:">{$cat.name}<i></i></a></li>
-                <!--{/if}-->
-                <!--{/foreach}-->
+            	<li><a href="javascript:" onmouseenter="loanfirstdwt()">车辆抵押贷款<i></i></a></li>
+            	<li><a href="javascript:">房产抵押贷款<i></i></a></li>
             </ul>
         </div>
     	</div>
-    	<div class="mc" style="height:200px;">
-    		<img src="images/daikuan.gif" width="100%" height="180px">
+    	<div style="width:100%;">
+    		<img src="images/cardaikuan.jpg" width="100%" height="183px" id="carloanshow">
+    		<img src="images/housedaikuan.jpg" width="100%" height="183px" id="houseloanshow">
     	</div>
+    	<script>
+    		function loanfirstdwt(){
+    			$('#carloanshow').show();
+    			$('#carloanshow').show();
+    		}
+    	</script>
 	{else}
 	<div class="mt">
     	<h2><i></i><span></span><font>{$goods_cat.name}</font></h2>
@@ -682,11 +682,8 @@
 <div class="service2015">
 	<div class="service2015Box">
         <div class="slogen">
-            <ul>
-                <li class="item fore1"><i></i></li>
-                <li class="item fore2"><i></i></li>
-                <li class="item fore3"><i></i></li>
-                <li class="item fore4"><i></i></li>
+        	<ul>
+            	<img src="images/lzjrtitle.jpg" alt="联众金融" width="1206px" height="90px">
             </ul>
         </div>
     </div>

@@ -126,8 +126,8 @@
     </div>
     <div class="w">
     	<div id="nav-2013">
-        	<div id="categorys-2013" class="categorys-2014 {if $script_name neq 'index'}no_index{/if} hover">
-            	<div class="mt ld"><h2><a href="javascript:;">全部商品分类<b></b></a></h2></div>
+        	<div id="categorys-2013" class="categorys-2014 {if $script_name neq 'index'}no_index{/if}">
+            	<div class="mt ld"><h2><a href="javascript:;">点击进入其它分类<b></b></a></h2></div>
                 <div id="_JD_ALLSORT" class="mc">
                 	<!--{foreach from=$categories item=cat name=foo}-->
                     <div class="item fore{$smarty.foreach.foo.iteration}"><span><h3><a href="{$cat.url}">{$cat.name|escape:html}</a></h3><s></s></span>
@@ -186,10 +186,10 @@
 				});
 				</script>
             </div>
-            <ul id="navitems-2013">
+            <ul id="navitems-2013" style="padding-left:210px;width:900px;">
             	<li class="fore1 {if $navigator_list.config.index eq 1}curr{/if}"><a href="./index.php">{$lang.home}</a></li>
                 <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav name=foo} -->
-                <li class="fore{$smarty.foreach.foo.iteration} {if $nav.active eq 1}curr{/if}"><a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li>
+                <li class="fore{$smarty.foreach.foo.iteration} {if $nav.active eq 1}curr{/if}"><a href="{if $nav.name == '我要贷款'}http://www.jnz360.com/fmall/user.php?act=borrow_money{else}{$nav.url}{/if}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li>
                 <!-- {/foreach} -->
             </ul>
         </div>

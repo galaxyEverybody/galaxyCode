@@ -2175,7 +2175,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #share2 .mc .sw ul li .pDetail .iconR{ font-size: 38px; line-height: 38px; color: #aaa; vertical-align: -24px; font-family: Arial;}
 
 .service2015{ position:relative; height: 54px; padding: 20px 0; margin-bottom: 14px; background: #F5F5F5; overflow:hidden;}
-.service2015Box{ position:absolute; top:20px; left:50%; width:100%;}
+.service2015Box{ position:absolute; top:0px; left:50%; width:100%;}
 .service2015 .slogen{ float:left; display:inline;}
 .service2015 .slogen ul{ margin-left:-50%; float:left;}
 .service2015 .slogen .item{ float:left; margin:0 40px;}
@@ -2237,7 +2237,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 
 .PageHeader #nav-2013{ height:40px; background:#ff500b; padding:0;}
 .PageHeader .nav-2013{ position:relative; z-index:6;}
-.PageHeader #navitems-2013{ height:40px; padding-left:210px; overflow:hidden;}
+.PageHeader #navitems-2013{ height:40px; overflow:hidden;}
 .PageHeader #navitems-2013 li{ height:40px; line-height:40px;}
 .PageHeader #navitems-2013 li a{ font:700 15px/40px "microsoft yahei"; color:#fff; text-align:center; height:40px; line-height:40px; white-space:nowrap; overflow:visible;}
 .PageHeader #navitems-2013 li a:hover,.PageHeader #navitems-2013 li.curr a{ background:url(images/back30.png);}
@@ -2811,6 +2811,11 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv .capitalauthphone{ margin-left:50px;font-size:20px;}
 .authcenterdiv .capitalauthnum{ margin-left:100px;}
 .authcenterdiv .capitalauthupda{ float:right;margin-right:20px;color:#185283;}
+.authcenterdiv #authphonediv{ width:60%;height:auto;display:none;}
+.authcenterdiv #phoneauthupshow{ width:214px;height:30px;float:left;text-align:center;background:url(images/auth_centerphone01.png);}
+.authcenterdiv #idcardauthshow{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;}
+.authcenterdiv .verifyauthinput{ width:150px;height:30px;float:left;}
+.authcenterdiv #authphonediv .nextnewdiv{ width:150px;height:40px;line-height:40px;text-align:center;float:left;background:#FF852F;color:#fff;font-weight:bold;}
 
 /* 我的订单*/
 .goods_list_fund{ width:100%;height:auto;height:140px;border-bottom:1px solid #ddd;}
@@ -3195,7 +3200,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #sortlist_atc .current ul li a{ color:#333;}
 #sortlist_atc .current ul li a:hover,#sortlist_atc .current ul li.sell a{ color:#7dd589; font-weight:700;}
 .JD_article #sortlist_atc .current h4 b{ border-width:0 5px 5px;}
-.JD_article .right{ width:770px;}
+.JD_article .right{ width:870px;}
 .JD_article .urHere{ height: 39px; line-height: 39px; font-size: 14px; font-family: "microsoft yahei"; background: #eaeaea; padding-left: 13px;}
 .JD_article .urHere .w{ width:auto;}
 .JD_article .breadcrumb{ padding:11px 0;}

@@ -553,10 +553,81 @@
 		<span class="capitalleft"></span><span class="capitalright">安全认证中心</span>
 	</div>
 	<div class="authcenterdiv">
+		<!--手机修改start-->
 		<p><img src="images/phoneauth01.png"><span class="capitalauthphone">绑定手机</span><span class="capitalauthnum">13146278834</span> <span onclick="authcenterphone()" id="capitalupdaphone" class="capitalauthupda">修改</span></p>
-		<div id="authphonediv" style="width:60%;height:200px;display:none;">
-			
+		<div id="authphonediv">
+			<div style="width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;">
+				<div onclick = "phoneauthupshow()" id="phoneauthupshow">依据原手机修改</div>
+				<div onclick = "idcardauthshow()"  id="idcardauthshow">依据身份信息修改</div>
+			</div>
+			<div style="width:600px;height:200px;">
+				<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
+				<table id="formauthphone" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+					<tr>
+						<td class="bangcardtd">验证码</td>
+						<td>
+							<input class="verifyauthinput" name="old_password" type="text" placeholder="请输入验证码" onblur="chekold_password(this.value);">
+							<div class="widthdraw_button_time" id="get_withdraw_time"><a onclick="getwithdrawphoneverify()">获取验证码</a></div>
+							<span id="withdrawverify" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd">提现密码</td>
+						<td>
+							<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您的提现密码" onblur="chekold_password(this.value);">
+							<span id="old_password" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+						<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
+					</tr>
+				</table>
+				<table id="formauthidcard" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;display:none;">
+					<tr>
+						<td class="bangcardtd">身份证号</td>
+						<td>
+							<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您的身份证号" onblur="chekold_password(this.value);">
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd">提现密码</td>
+						<td>
+							<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您的提现密码" onblur="chekold_password(this.value);">
+							<span id="old_password" style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+						<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
+					</tr>
+				</table>
+				<table id="newphoneform" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;display:none;">
+					<tr>
+						<td class="bangcardtd">新手机号</td>
+						<td>
+							<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您的新手机号" onblur="chekold_password(this.value);">
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd">验证码</td>
+						<td>
+							<input class="verifyauthinput" name="old_password" type="text" placeholder="请输入验证码" onblur="chekold_password(this.value);">
+							<div class="widthdraw_button_time"><a onclick="getwithdrawphoneverify()">获取验证码</a></div>
+							<span style="color:#FF852F;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+						<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+					</tr>
+				</table>
+				
+				</form>
+			</div>
 		</div>
+		<!--手机修改end-->
+		<!--邮箱修改start-->
 		<p><img src="images/emailauth01.png"><span class="capitalauthphone">绑定邮箱</span><span class="capitalauthnum">13146278834</span> <span onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">修改</span></p>
 		<div id="authemaildiv" style="width:60%;height:200px;display:none;">
 			<div class="withdraw_verify">
@@ -577,6 +648,8 @@
 				</form>
 			</div>
 		</div>
+		<!--邮箱修改end-->
+		<!--进行实名认证start-->
 		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">实名认证</span><span class="capitalauthnum">13146278834</span> <span onclick="authcenteridcard()" id="capitalupdaidcard" class="capitalauthupda">修改</span></p>
 		<div id="authidcarddiv" style="width:60%;height:200px;display:none;">
 			<div class="withdraw_verify">
@@ -604,6 +677,8 @@
 				</form>
 			</div>
 		</div>
+		<!--进行实名认证end-->
+		<!--修改登录密码start-->
 		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">登录密码</span><span class="capitalauthnum">已设置</span> <span onclick="authcenterpwss()" id="capitalupdapwss" class="capitalauthupda">修改</span></p>
 		<div id="authpwssdiv" style="width:60%;height:260px;display:none;">
 			<div class="withdraw_verify">
@@ -638,8 +713,36 @@
 				</form>
 			</div>
 		</div>
+		<!--修改登录密码end-->
 	</div>
 	<script>
+		<!--手机账号的修改start-->
+		function phoneauthupshow(){
+			$('#formauthphone').show();
+			$('#formauthidcard').hide();
+			$('#newphoneform').hide();
+			var path = window.document.location.href;
+			var pathnum = path.lastIndexOf('/');
+			var path1 = path.substr(0,pathnum);
+			$('#phoneauthupshow').css("background-image","url("+path1+"/themes/jingdong2015/images/auth_centerphone01.png)");
+			$('#idcardauthshow').css("background-image","url("+path1+"/themes/jingdong2015/images/authcenteridcard02.png)");
+		}
+		function idcardauthshow(){
+			$('#formauthphone').hide();
+			$('#formauthidcard').show();
+			$('#newphoneform').hide();
+			var path = window.document.location.href;
+			var pathnum = path.lastIndexOf('/');
+			var path1 = path.substr(0,pathnum);
+			$('#phoneauthupshow').css("background-image","url("+path1+"/themes/jingdong2015/images/auth_centerphone02.png)");
+			$('#idcardauthshow').css("background-image","url("+path1+"/themes/jingdong2015/images/authcenteridcard01.png)");
+		}
+		function nextnewphone(){
+			$('#formauthphone').hide();
+			$('#formauthidcard').hide();
+			$('#newphoneform').show();
+		}
+		<!--安全认证中心start-->
 		function authcenterphone(){
 			var phonenum = $('#capitalupdaphone').html();
 			if(phonenum == '修改'){

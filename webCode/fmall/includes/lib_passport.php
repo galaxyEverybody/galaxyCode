@@ -29,7 +29,7 @@ if (!defined('IN_ECS'))
  *
  * @return  bool         $bool
  */
-function register($username, $password, $email, $other = array())
+function register($username, $password,  $other = array())
 {
     /* 检查注册是否关闭 */
     if (!empty($GLOBALS['_CFG']['shop_reg_closed']))
@@ -49,24 +49,6 @@ function register($username, $password, $email, $other = array())
         }
     }
 
-    /* 检查email */
-    if (empty($email))
-    {
-        $GLOBALS['err']->add($GLOBALS['_LANG']['email_empty']);
-    }
-    else
-    {
-        if (!is_email($email))
-        {
-            $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['email_invalid'], htmlspecialchars($email)));
-        }
-    }
-	
-    if ($GLOBALS['err']->error_no > 0)
-    {
-        return false;
-    }
-
     /* 检查是否和管理员重名 */
     if (admin_registered($username))
     {
@@ -74,7 +56,7 @@ function register($username, $password, $email, $other = array())
         return false;
     }
 
-    if (!$GLOBALS['user']->add_user($username, $password, $email))
+    if (!$GLOBALS['user']->add_user($username, $password))
     {
         if ($GLOBALS['user']->error == ERR_INVALID_USERNAME)
         {

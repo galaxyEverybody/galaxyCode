@@ -144,14 +144,6 @@
                         </div>
                     </div>
                     <div class="item">
-                        <span class="label"><b class="ftx04">*</b>{$lang.label_email}：</span>
-                        <div class="fl item-ifo">
-                            <input type="text" id="email" onblur="checkEmail(this.value);" name="email" class="text" tabindex="4" onpaste="return  false" autocomplete="off">
-                            <i class="i-pass"></i>
-                            <label id="email_notice"></label>
-                        </div>
-                    </div>
-                    <div class="item">
                         <span class="label"><b class="ftx04">*</b>{$lang.label_telephone}：</span>
                         <div class="fl item-ifo">
                             <input type="text" id="phone" onblur="checkPhone(this.value);" name="mobile_phone" class="text" tabindex="5" onpaste="return  false" autocomplete="off">

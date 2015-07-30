@@ -15,7 +15,6 @@
       <div class="item {if $action eq 'bangcard'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'bangcard'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=bangcard">{$lang.label_bang_ka}</a></div>
       <div class="item {if $action eq 'auth_center'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'auth_center'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=auth_center">{$lang.label_auth_center}</a></div>
       <div class="item {if $action eq 'withdraw_password'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'withdraw_password'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=withdraw_password">{$lang.label_withdraw_pw}</a></div>
-      <div class="item {if $action eq 'upda_login_pw'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'upda_login_pw'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=upda_login_pw">{$lang.label_pw_up}</a></div>
     </dd>
   </dl>
   <dl>

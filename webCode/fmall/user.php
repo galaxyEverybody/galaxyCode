@@ -35,7 +35,7 @@ $not_login_arr =
 array('login','act_login','register','act_register','act_edit_password','act_edit_paypassword','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
 
 /* 显示页面的action列表 */
-$ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','upda_login_pw','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
+$ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
@@ -155,19 +155,19 @@ elseif ($action == 'act_register')
 
         $username = isset($_POST['username']) ? trim($_POST['username']) : '';
         $password = isset($_POST['password']) ? trim($_POST['password']) : '';
-        $email    = isset($_POST['email']) ? trim($_POST['email']) : '';
+        //$email    = isset($_POST['email']) ? trim($_POST['email']) : '';
+        $phoneverify = isset($_POST['verify']) ? trim($_POST['verify']) : '';
         $other['mobile_phone']    = isset($_POST['mobile_phone']) ? trim($_POST['mobile_phone']) : '';
-        //$other['msn'] = isset($_POST['msn']) ? $_POST['msn'] : '';
         $other['qq'] = isset($_POST['extend_field2']) ? $_POST['extend_field2'] : '';
         $other['office_phone'] = isset($_POST['extend_field3']) ? $_POST['extend_field3'] : '';
         $other['home_phone'] = isset($_POST['extend_field4']) ? $_POST['extend_field4'] : '';
-        //$other['mobile_phone'] = isset($_POST['extend_field5']) ? $_POST['extend_field5'] : '';
         $sel_question = empty($_POST['sel_question']) ? '' : compile_str($_POST['sel_question']);
         $passwd_answer = isset($_POST['passwd_answer']) ? compile_str(trim($_POST['passwd_answer'])) : '';
 
 
         $back_act = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
-
+		
+        
         if(empty($_POST['agreement']))
         {
             show_message($_LANG['passport_js']['agreement']);
@@ -186,7 +186,10 @@ elseif ($action == 'act_register')
         {
             show_message($_LANG['passwd_balnk']);
         }
-		
+        if(empty($phoneverify))
+        {
+        	show_message($_LANG['passport_js']['phone_verify']);
+        }
         /* 验证码检查 */
         if ((intval($_CFG['captcha']) & CAPTCHA_REGISTER) && gd_version() > 0)
         {
@@ -205,7 +208,7 @@ elseif ($action == 'act_register')
             }
         }
 
-        if (register($username, $password, $email, $other) !== false)
+        if (register($username, $password, $other) !== false)
         {
             /*把新注册用户的扩展信息插入数据库*/
             $sql = 'SELECT id FROM ' . $ecs->table('reg_fields') . ' WHERE type = 0 AND display = 1 ORDER BY dis_order, id';   //读出所有自定义扩展字段的id
@@ -638,16 +641,6 @@ elseif ($action == 'withdraw_pwadd')
 	}else{
 		show_message($_LANG['login_failure'], '提现密码设置失败！', 'user.php', 'error');
 	}
-}
-
-/* 修改登录密码页面*/
-elseif ($action == 'upda_login_pw')
-{
-	$sql = 'select user_name from '.$ecs->table('users').' where user_id='.$user_id;
-	$username = $db->getRow($sql);
-	
-	$smarty->assign('user_name',$username['user_name']);
-	$smarty->display('user_transaction.dwt');
 }
 
 /* ajax登录密码中原密码的验证*/
