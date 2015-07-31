@@ -844,3 +844,245 @@ function RemainwithdrawTime(){
 	document.getElementById('click_time').style.color = '#FF852F';
 	
 }
+
+/* 安全认证中心手机更换倒计时*/
+function RemainauthcenterphoneTime(){
+	var iTime = 59;
+	var Account;
+	var timenum = document.getElementById('doutimeinp').value;
+
+	if(timenum < iTime){
+		iTime = timenum
+	}
+
+	var sTime="";
+	if (iTime >= 0){
+		if(iTime==0){
+			clearTimeout(Account);
+			iTime = '<a onclick=getwithdrawphoneverify()>获取验证码</a>';
+		}else{
+			iTime=iTime-1;
+			document.getElementById('doutimeinp').value = iTime;
+			Account = setTimeout("RemainTime()",1000);
+		}
+	}else{
+		sTime='没有倒计时';
+	}
+	
+	document.getElementById('get_authcenterphone_time').innerHTML = iTime;
+	document.getElementById('get_authcenterphone_time').style.color = '#FF852F';
+	
+}
+
+/* 安全认证中心新手机点击倒计时*/
+function RemainauthcenternewphoneTime(){
+	var iTime = 59;
+	var Account;
+	var timenum = document.getElementById('doutimeinp').value;
+
+	if(timenum < iTime){
+		iTime = timenum
+	}
+
+	var sTime="";
+	if (iTime >= 0){
+		if(iTime==0){
+			clearTimeout(Account);
+			iTime = '<a onclick=getwithdrawphoneverify()>获取验证码</a>';
+		}else{
+			iTime=iTime-1;
+			document.getElementById('doutimeinp').value = iTime;
+			Account = setTimeout("RemainTime()",1000);
+		}
+	}else{
+		sTime='没有倒计时';
+	}
+	
+	$("input[name='authnewphone_verify']").html(iTime);
+	$("input[name='authnewphone_verify']").color = '#FF852F';
+	
+}
+
+/* 安全认证中心手机更换手机获取验证码*/
+function getauthcenter_phone(){
+	var phone = document.getElementById('truephone').value;
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_phoneverify_callback , 'GET', 'TEXT', true, true );
+}
+function authcenter_phoneverify_callback(result){
+	if(result == 'ok'){
+		RemainauthcenterphoneTime();
+		$('#callauthphone_verify').html('验证码已发送');
+	}else{
+		$('#callauthphone_verify').html('-验证码发送失败');
+	}
+	
+}
+
+/* 安全认证中心手机修改验证码验证*/
+function chekauthcenter_verify(phoneveri){
+	if(phoneveri == ''){
+		$('#callauthphone_verify').html('-请输入您收到的验证码');
+	}else{
+		if(phoneveri.match(/[0-9]{4}/)){
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_authcenterphoneverify_callback , 'GET', 'TEXT', true, true );
+		}else{
+			$('#callauthphone_verify').html('-验证码格式错误！');
+		}
+	}
+}
+/*function check_authcenterphoneverify_callback(result){
+	if（result == 'ok'){
+		$('#callauthphone_verify').html('输入正确');
+	}else{
+		$('#callauthphone_verify').html('输入错误');
+	}
+}*/
+
+/* 安全认证中心提现密码手机的验证*/
+function chewithdrawauthcenter_password(widthdrawpassword){
+	if(widthdrawpassword == ''){
+		$('#withdrawerror_authcenter').html('-请输入您的提现密码');
+	}else{
+		if(!widthdrawpassword.match(/[0-9a-zA-Z]{6,30}/)){
+			$('#withdrawerror_authcenter').html('-输入的格式错误');
+		}
+	}
+}
+
+/* 安全认证中心提现密码身份证的验证*/
+function chewithdrawidcardauthcenter_password(widthdrawpassword){
+	if(widthdrawpassword == ''){
+		$('#withdrawidcard_authcenter').html('-请输入您的提现密码');
+	}else{
+		if(!widthdrawpassword.match(/[0-9a-zA-Z]{6,30}/)){
+			$('#withdrawidcard_authcenter').html('-输入的格式错误');
+		}
+	}
+}
+
+/* 安全认证中心身份证号的验证*/
+function chekauthcenter_idcard(idcard){
+	if(idcard == ''){
+		$('#idcarderror_authcenter').html('-请输入您的身份证号');
+	}else{
+		if(idcard.match(/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/)){
+			/* 未完验证*/
+			$('#idcarderror_authcenter').html('-输入正确');
+		}else{
+			$('#idcarderror_authcenter').html('-身份证号格式错误');
+		}
+	}
+}
+
+/* 安全认证中心新手机号的验证*/
+function authcenter_newphone(newphone){
+	if(newphone == ''){
+		$('#newphone_authcenter').html('-请输入您的新手机号');
+	}else{
+		if(newphone.match(/^1[3,5,8,7]\/d{9}$/)){
+			/*未完验证手机号是否存在*/
+			$('#newphone_authcenter').html('输入正确');
+		}else{
+			$('#newphone_authcenter').html('-手机号格式错误');
+		}
+	}
+}
+
+/* 安全认证中心新手机号获取验证码*/
+function getwithdrawnewphoneverify(){
+	var phone = $("input[name='authcenter_newphonename']")[0].value();
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_newphoneverify_callback , 'GET', 'TEXT', true, true );
+}
+
+function authcenter_newphoneverify_callback(result){
+	if(result == 'ok'){
+		$('#newphonemsg_authcenter').html('验证码已发送');
+	}else{
+		$('#newphonemsg_authcenter').html('-验证码发送失败');
+	}
+}
+
+/*新手机号验证码的验证*/
+function cheauthcenter_newverify(verify){
+	if(verify == ''){
+		$('#newphonemsg_authcenter').html('-请输入验证码');
+	}else{
+		if(verify.match(/[0-9]{4}/)){
+			RemainauthcenternewphoneTime();
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_authcenternewphoneverify_callback , 'GET', 'TEXT', true, true );
+		}else{
+			$('#newphonemsg_authcenter').html('-输入格式错误');
+		}
+	}
+}
+
+/*安全认证中心修改手机号的提交*/
+function authcentereditphone(){
+	var phoneverify = $("input[name='authcenter_phoneverify']")[0].value();
+	var withdrawps = $("input[name='withdrawauthcenter_password']")[0].value();
+	var idcard = $("input[name='authcenter_idcard']")[0].value();
+	var idcardwithdrawpw = $("input[name='withdrawauthidcardcenter_password']")[0].value();
+	var newphone = $("input[name='authcenter_newphonename']")[0].value();
+	var newphoneverify = $("input[name='authnewphone_verify']")[0].value();
+	if(empty(phoneverify)){
+		if(empty(idcard)||empty(idcardwithdrawpw)||empty(newphone)||empty(newphoneverify)){
+			$('#formauthcenterphone').submit(function(){return false;})
+		}
+	}else{
+		if(empty(phoneverify)||empty(withdrawps)||empty(newphone)||empty(newphoneverify)){
+			$('#formauthcenterphone').submit(function(){return false;})
+		}
+	}
+}
+
+/*安全认证中心邮箱的验证*/
+function chekauthcenteremail(email){
+	if(email == ''){
+		$('#emailmsg_authcenter').html('-请输入您的邮箱账号');
+		$('#formauthcenteremail').submit(function(){return false;});
+	}else{
+		if(email.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)){
+			/*未完检测邮箱是否存在*/
+			
+		}else{
+			$('#emailmsg_authcenter').html('-请输入正确的邮箱');
+			$('#formauthcenteremail').submit(function(){return false;});
+		}
+	}
+}
+
+/*安全中心实名认证姓名检测*/
+function chekauthcenter_truename(truename){
+	if(truename == ''){
+		$('#truenamemsg_authcenter').html('-请输入您的真实姓名');
+	}else{
+		if(truename.match()){
+			
+		}else{
+			$('#truenamemsg_authcenter').html('-输入格式错误');
+		}
+	}
+}
+
+/*安全中心实名认证身份证号的检测*/
+function chekauthcenter_idcardname(truename){
+	if(truename == ''){
+		$('#idcardnamemsg_authcenter').html('-请输入您的身份证号');
+	}else{
+		if(truename.match(/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/)){
+			
+		}else{
+			$('#idcardnamemsg_authcenter').html('-输入格式错误');
+		}
+	}
+}
+
+/*安全认证中心实名认证的提交*/
+function authcentertruename(){
+	var truename = $("input[name='truename_authcenter']")[0].value();
+	var trueidcard = $("input[name='authcenter_idcardname']")[0].value();
+	
+	if(empty(truename)&&empty(trueidcard)){
+		$('#formauthcentertruename').submit(function(){return false;});
+	}
+}

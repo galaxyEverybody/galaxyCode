@@ -227,7 +227,7 @@
 					});
                     </script>
                 <ul id="navitems-2013">
-                    <li class="fore1 {if $navigator_list.config.index eq 1}curr{/if}" style="float:left;"><a href="./index.php">{$lang.home}</a></li>
+                    <li class="fore1 {if $navigator_list.config.index eq 1}curr{/if}" style="float:left;background:#DE4509;"><a href="./index.php">{$lang.home}</a></li>
                     <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav name=foo} -->
                     
                     <li class="fore{$smarty.foreach.foo.iteration} {if $nav.active eq 1}curr{/if}"><a href="{if $nav.name == '我要贷款'}http://www.jnz360.com/fmall/user.php?act=borrow_money{else}{$nav.url}{/if}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li>

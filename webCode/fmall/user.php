@@ -458,8 +458,8 @@ elseif ($action == 'validate_email')
         }
     }
     show_message($_LANG['validate_fail']);
-}
 
+/
 /* 验证用户注册用户名是否可以注册 */
 elseif ($action == 'is_registered')
 {
