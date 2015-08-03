@@ -357,30 +357,7 @@ else
 $db->query('UPDATE ' . $ecs->table('goods') . " SET click_count = click_count + 1 WHERE goods_id = '$_REQUEST[id]'");
 
 $smarty->assign('now_time',  gmtime());           // 当前系统时间
-//根据大类id判断到不同的详情页面
-
-if($goods_row_catname == '债券')
-{
-	$smarty->display('goods.dwt',      $cache_id);
-}
-elseif($goods_row_catname == '基金')
-{
-	$smarty->display('goods_fund.dwt',      $cache_id);
-}
-elseif($goods_row_catname == '保险')
-{
-	$smarty->display('goods_safe.dwt',      $cache_id);
-}
-elseif($goods_row_catname == '我要贷款')
-{
-	$smarty->display('goods_loan.dwt',      $cache_id);
-}
-else
-{
-	/* 如果没有找到任何记录则跳回到首页 */
-    ecs_header("Location: ./\n");
-    exit;
-}
+$smarty->display('goods.dwt',      $cache_id);
 
 /*------------------------------------------------------ */
 //-- PRIVATE FUNCTION

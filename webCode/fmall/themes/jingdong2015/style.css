@@ -2070,6 +2070,21 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 @keyframes scaleDisc{0%{opacity:0;height:0}100%{opacity:1;height:25px}}
 /* fanbo e 20150423 */
 .catGoodsBox .mt .hd_box{}
+.catGoodsBox .mt .hd_box_two{ width:100%;height:550px;border:1px solid #fff;}
+.hd_box_two .hd_box_twoul{ list-style:none;width:100%;height:490px;margin-top:60px;}
+.hd_box_two .hd_box_twolione{ float:left;}
+.hd_box_two .hd_box_twolitwo{ float:left;margin-left:80px;text-align:center;}
+.hd_box_two .hd_box_twolithree{ float:right;}
+.hd_box_two .hd_box_two_div{ width:100%;height:100px;text-align:center;}
+.hd_box_two .hd_box_two_imga{ width:345px;height:346px;background:url(images/hd_box_twoa.jpg);}
+.hd_box_two .hd_box_two_imgb{ width:345px;height:346px;background:url(images/hd_box_twob.jpg);}
+.hd_box_two .hd_box_two_imgc{ width:345px;height:346px;background:url(images/hd_box_twoc.jpg);}
+.hd_box_two .hd_box_two_one_one{ font-size:18px;color:#D5CC2D;}
+.hd_box_two .hd_box_two_one_six{ font-size:18px;color:#38746E;}
+.hd_box_two .hd_box_two_one_twenf{ font-size:18px;color:#7F668B;}
+.hd_box_two .hd_box_two_two{ margin-top:8px;}
+.hd_box_two .hd_box_two_three{ color:#FE7E01;font-weight:bold;margin-top:15px;}
+.hd_box_two .hd_box_two_three span{ font-size:34px;}
 .catGoodsBox .mt .hd_box ul{ float:right; display:inline; border: solid 1px #ededed; border-bottom: 0 none; height: 34px; line-height: 34px; z-index: 1;}
 .catGoodsBox .mt .hd_box ul li{ float:left; display: inline; height: 34px; position: relative; z-index: 2;}
 .catGoodsBox .mt .hd_box ul li a{ float: left; height: 34px; padding: 0 16px; text-decoration: none; line-height: 34px; overflow: hidden; background: #fff; border-left: solid 1px #fff; border-right: solid 1px #fff; white-space: nowrap;}

@@ -1995,10 +1995,21 @@ function get_navigator($ctype = '', $catlist = array())
             'cid'       =>  $row['cid'],
             );
     }
-
+	
     /*遍历自定义是否存在currentPage*/
     foreach($navlist['middle'] as $k=>$v)
     {
+    	/* 更改导航分类的url gao*/
+		if($v['ctype'] == 'c'){
+			$sql = 'select g.goods_id,c.is_standalone from '.$GLOBALS['ecs']->table('category').' as c,'.$GLOBALS['ecs']->table('goods').' as g where c.cat_id=g.cat_id and c.cat_id='.$v['cid'];
+			$goodcid = $GLOBALS['db']->getAll($sql);
+			foreach($goodcid as $vid){
+				if($vid['is_standalone'] ==1){
+					$navlist['middle'][$k]['url'] = 'goods.php?id='.$vid['goods_id'];
+				}
+			}
+		}
+		/* 更改导航分类的url gao*/
         $condition = empty($ctype) ? (strpos($cur_url, $v['url']) === 0) : (strpos($cur_url, $v['url']) === 0 && strlen($cur_url) == strlen($v['url']));
         if ($condition)
         {

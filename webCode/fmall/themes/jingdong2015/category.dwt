@@ -206,15 +206,7 @@
     <!--组合搜索 结束-->
     
     <div class="right-extra">
-    	<!--{if $cat_name == '债券'}-->
 		<!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem -->
-		<!--{elseif $cat_name == '基金'}-->
-		<!-- #BeginLibraryItem "/library/goods_fund_list.lbi" --><!-- #EndLibraryItem -->
-		<!--{elseif $cat_name == '保险'}-->
-		<!-- #BeginLibraryItem "/library/goods_safe_list.lbi" --><!-- #EndLibraryItem -->
-		<!--{elseif $cat_name == '我要贷款'}-->
-		<!-- #BeginLibraryItem "/library/goods_loan_list.lbi" --><!-- #EndLibraryItem -->
-		<!--{/if}-->
         <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
         <div class="blank20"></div>
         <div class="blank20"></div>
