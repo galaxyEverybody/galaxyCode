@@ -47,11 +47,10 @@
             <li class="fore4 ld menu myJd" id="biz-service">
                 <div class="dt"><s></s> <span class="outline"></span> <span class="blank"></span> 客户服务 <b></b></div>
                 <div class="dd">
-                    <div><a href="#" target="_blank">帮助中心</a></div>
-                    <div><a href="#" target="_blank" rel="nofollow">售后服务</a></div>
-                    <div><a href="#" target="_blank" rel="nofollow" style="display:none">在线客服</a></div>
-                    <div><a href="http://www.jnz360.com/fmall/user.php?act=message_list" target="_blank" rel="nofollow">建议中心</a></div>
-                    <div><a href="#" target="_blank">客服邮箱</a></div>
+	                <div><a href="article.php?id=9">帮助中心</a></div>
+	                <div><a href="http://wpa.qq.com/msgrd?V=1&amp;uin=729797175&amp;Site=联众金融&amp;Menu=yes" target="_blank" rel="nofollow">在线客服</a></div>
+	                <div><a href="user.php?act=message_list" rel="nofollow">建议中心</a></div>
+	                <div><a href="#" target="_blank">客服邮箱</a></div>
                 </div>
             </li>
             <li class="fore4 ld menu myJd" id="biz-service" style="display:none">
@@ -225,33 +224,23 @@
 <div class="user_apicity">
 	<ul>
 		<li class="user_apicity_num">
-			<p>总资产（元）</p>
+			<p>账户净资产（元）</p>
 			<div>50000.00</div>
-			<em>(赢)</em><span>30.00</span>
 		</li>
 		<li class="user_apicity_sign">=</li>
 		<li class="user_apicity_num">
-			<p>我的债券（元）</p>
+			<p>理财资产（元）</p>
 			<div>50000.00</div>
-			<em>(赢)</em><span>30.00</span>
 		</li>
 		<li class="user_apicity_sign">+</li>
 		<li class="user_apicity_num">
-			<p>我的基金（元）</p>
-			<div>50000.00</div>
-			<em>(赢)</em><span>30.00</span>
+			<p>借款负债（元）</p>
+			<div style="color:red;">-50000.00</div>
 		</li>
 		<li class="user_apicity_sign">+</li>
 		<li class="user_apicity_num">
-			<p>我的保险（元）</p>
+			<p>账户余额（元）</p>
 			<div>50000.00</div>
-			<em>(赢)</em><span>30.00</span>
-		</li>
-		<li class="user_apicity_sign">—</li>
-		<li class="user_apicity_num">
-			<p>我的贷款（元）</p>
-			<div>50000.00</div>
-			<em>(赢)</em><span>30.00</span>
 		</li>
 	</ul>
 </div>

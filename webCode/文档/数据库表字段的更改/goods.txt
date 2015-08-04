@@ -8,4 +8,6 @@ goods_number(商品数量)=》还款时间(int)
 
 warn_number(商品报警数量)=》还款方式(tinyint) {1=>按月等额本息,2=>按月还息到期还本,3=>到期还本息}
 
+增加：surplus(可投金额)(decimal)
+
 			

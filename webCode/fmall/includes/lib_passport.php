@@ -29,7 +29,7 @@ if (!defined('IN_ECS'))
  *
  * @return  bool         $bool
  */
-function register($username, $password,  $other = array())
+function register($username, $password,  $mobile_phone)
 {
     /* 检查注册是否关闭 */
     if (!empty($GLOBALS['_CFG']['shop_reg_closed']))
@@ -56,7 +56,7 @@ function register($username, $password,  $other = array())
         return false;
     }
 
-    if (!$GLOBALS['user']->add_user($username, $password))
+    if (!$GLOBALS['user']->add_user($username, $password, $mobile_phone))
     {
         if ($GLOBALS['user']->error == ERR_INVALID_USERNAME)
         {
@@ -78,10 +78,6 @@ function register($username, $password,  $other = array())
         {
             $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['email_not_allow'], $email));
         }
-        elseif ($GLOBALS['user']->error == ERR_EMAIL_EXISTS)
-        {
-            $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['email_exist'], $email));
-        }
         elseif ($GLOBALS['user']->error == ERR_PHONE_EXISTS)
         {
         	$GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['phone_exist'],$phone));
@@ -102,13 +98,13 @@ function register($username, $password,  $other = array())
         $GLOBALS['user']->set_session($username);
         $GLOBALS['user']->set_cookie($username);
 
-        /* 注册送积分 */
+        /* 注册送积分 
         if (!empty($GLOBALS['_CFG']['register_points']))
         {
             log_account_change($_SESSION['user_id'], 0, 0, $GLOBALS['_CFG']['register_points'], $GLOBALS['_CFG']['register_points'], $GLOBALS['_LANG']['register_points']);
         }
 
-        /*推荐处理*/
+        /*推荐处理
         $affiliate  = unserialize($GLOBALS['_CFG']['affiliate']);
         if (isset($affiliate['on']) && $affiliate['on'] == 1)
         {
@@ -143,7 +139,7 @@ function register($username, $password,  $other = array())
         }
 
         //定义other合法的变量数组
-        $other_key_array = array('msn', 'qq', 'office_phone', 'home_phone', 'mobile_phone');
+        /*$other_key_array = array('msn', 'qq', 'office_phone', 'home_phone', 'mobile_phone');
         $update_data['reg_time'] = local_strtotime(local_date('Y-m-d H:i:s'));
         if ($other)
         {
@@ -164,7 +160,7 @@ function register($username, $password,  $other = array())
         $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('users'), $update_data, 'UPDATE', 'user_id = ' . $_SESSION['user_id']);
 
         update_user_info();      // 更新用户信息
-        recalculate_price();     // 重新计算购物车中的商品价格
+        recalculate_price();     // 重新计算购物车中的商品价格*/
 
         return true;
     }

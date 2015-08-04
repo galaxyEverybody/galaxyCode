@@ -259,12 +259,16 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         $_attribute = get_goods_specifications_list($goods['goods_id']);
         $goods['_attribute'] = empty($_attribute) ? '' : 1;
 
-        /* 根据商品重量的单位重新计算 */
+        /* 借款时间的处理 */
         if ($goods['goods_weight'] > 0)
         {
-            $goods['goods_weight_by_unit'] = ($goods['goods_weight'] >= 1) ? $goods['goods_weight'] : ($goods['goods_weight'] / 0.001);
+            $goods['goods_weight'] = local_date('Y-m-d',$goods['goods_weight']);
         }
-
+        /* 还款时间的处理 */
+        if($goods['goods_number'] > 0)
+        {
+        	$goods['goods_number'] = local_date('Y-m-d',$goods['goods_number']);
+        }
         if (!empty($goods['goods_brief']))
         {
             //$goods['goods_brief'] = trim_right($goods['goods_brief']);
@@ -840,7 +844,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
 
     $goods_thumb = (empty($goods_thumb) && !empty($_POST['goods_thumb_url']) && goods_parse_url($_POST['goods_thumb_url'])) ? htmlspecialchars(trim($_POST['goods_thumb_url'])) : $goods_thumb;
     $goods_thumb = (empty($goods_thumb) && isset($_POST['auto_thumb']))? $goods_img : $goods_thumb;
-
+	
     /* 入库 */
     if ($is_insert)
     {
@@ -848,12 +852,12 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
         {
 			
             $sql = "INSERT INTO " . $ecs->table('goods') . " (goods_name, goods_name_style, goods_sn, " .
-                    "cat_id, brand_id, shop_price, market_price, is_promote, promote_price, " .
+                    "cat_id, brand_id, shop_price, surplus_price, market_price, is_promote, promote_price, " .
                     "promote_start_date, promote_end_date, goods_img, goods_thumb, original_img, keywords, goods_brief, " .
                     "seller_note, goods_weight, goods_number, warn_number, integral, give_integral, is_best, is_new, is_hot, " .
                     "is_on_sale, is_alone_sale, is_shipping, goods_desc, packing_list, customer_service, add_time, last_update, goods_type, rank_integral, suppliers_id)" .
                 "VALUES ('$_POST[goods_name]', '$goods_name_style', '$goods_sn', '$catgory_id', " .
-                    "'$brand_id', '$shop_price', '$market_price', '$is_promote','$promote_price', ".
+                    "'$brand_id', '$shop_price','$shop_price', '$market_price', '$is_promote','$promote_price', ".
                     "'$promote_start_date', '$promote_end_date', '$goods_img', '$goods_thumb', '$original_img', ".
                     "'$_POST[keywords]', '$_POST[goods_brief]', '$_POST[seller_note]', '$goods_weight', '$goods_number',".
                     " '$warn_number', '$_POST[integral]', '$give_integral', '$is_best', '$is_new', '$is_hot', '$is_on_sale', '$is_alone_sale', $is_shipping, ".
@@ -862,12 +866,12 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
         else
         {
             $sql = "INSERT INTO " . $ecs->table('goods') . " (goods_name, goods_name_style, goods_sn, " .
-                    "cat_id, brand_id, shop_price, market_price, is_promote, promote_price, " .
+                    "cat_id, brand_id, shop_price, surplus_price, market_price, is_promote, promote_price, " .
                     "promote_start_date, promote_end_date, goods_img, goods_thumb, original_img, keywords, goods_brief, " .
                     "seller_note, goods_weight, goods_number, warn_number, integral, give_integral, is_best, is_new, is_hot, is_real, " .
                     "is_on_sale, is_alone_sale, is_shipping, goods_desc, packing_list, customer_service,add_time, last_update, goods_type, extension_code, rank_integral)" .
                 "VALUES ('$_POST[goods_name]', '$goods_name_style', '$goods_sn', '$catgory_id', " .
-                    "'$brand_id', '$shop_price', '$market_price', '$is_promote','$promote_price', ".
+                    "'$brand_id', '$shop_price', '$shop_price', '$market_price', '$is_promote','$promote_price', ".
                     "'$promote_start_date', '$promote_end_date', '$goods_img', '$goods_thumb', '$original_img', ".
                     "'$_POST[keywords]', '$_POST[goods_brief]', '$_POST[seller_note]', '$goods_weight', '$goods_number',".
                     " '$warn_number', '$_POST[integral]', '$give_integral', '$is_best', '$is_new', '$is_hot', 0, '$is_on_sale', '$is_alone_sale', $is_shipping, ".

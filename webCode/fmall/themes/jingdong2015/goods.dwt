@@ -58,7 +58,7 @@ function reg(str){
                 		<div class="bond_middle_middle">
 	                    	<ul>
 	                    		<li class="bond_big_one"><h4><img src="./images/bondyear.gif">&nbsp;年化利率</h4><div class="bond_big_num">{$goods.market_price}<span>%</span></div></li>
-	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;借款期限</h4><div class="bond_big_num">{$goods.market_price}<span>天</span></div></li>
+	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;还款期限</h4><div class="bond_big_num">{$goods.goods_number}<span>天</span></div></li>
 	                    		<li class="bond_big_three"><h4><img src="./images/bondnum.jpg">&nbsp;借款金额</h4><div class="bond_big_num">{$goods.shop_price}<span>元</span></div></li>
 	                    	</ul>
 	                    </div>
@@ -74,16 +74,20 @@ function reg(str){
 	                
 	                <!--summary end-->
 	                <div class="bondinfo_middle_bottom">
-	                <ul>
-	                    <li>
-	                    	还款方式：<span>{if $goods.warn_number==1}按月等额本息{elseif $goods.warn_number==2}按月还息到期还本{else}到期还本息{/if}</span>
-	                    	<em style="margin-left:100px;">还款期限：</em><span>{$goods.goods_number}天</span>
-	                    </li>
-	                    <li>
-	                    	保障方式：<span>本金+利息</span>
-	                    	<span style="margin-left:100px;">剩余时间：<span><em id="loan_time_dis"></em><div style="display:none;" id="loan_time_hid">{$goods.goods_weight}</div>
-	                    </li>
-	                </ul>
+	                	<table>
+	                		<tr>
+	                			<td>还款方式：</td>
+	                			<td class="bondinfotd">{if $goods.warn_number==1}按月等额本息{elseif $goods.warn_number==2}按月还息到期还本{else}到期还本息{/if}</td>
+	                			<td>借款期限：</td>
+	                			<td class="bondinfotd">{$goods.goods_weight_day}天</td>
+	                		</tr>
+	                		<tr>
+	                			<td>保障方式：</td>
+	                			<td class="bondinfotd">本金+利息</td>
+	                			<td>剩余时间：</td>
+	                			<td class="bondinfotd"><em id="loan_time_dis"></em><div style="display:none;" id="loan_time_hid">{$goods.goods_weight}</div></td>
+	                		</tr>
+	                	</table>
 	                </div>
 	         </div>
 	            <script>
@@ -102,10 +106,10 @@ function reg(str){
     		<div class="bondinfo_leftdiv">
         		<ul class="bondinfo_left_top">
         			<li>
-        				<b>可投金额：</b><span class="bond_left_topsize">{$goods.shop_price_formated}</span>&nbsp;元
+        				<b>可投金额：</b><span class="bond_left_topsize">{$goods.surplus_price}</span>&nbsp;元
         			</li>
         			<li>
-        				<b>可用金额：</b><span class="bond_left_topsize">{$goods.shop_price_formated}</span>&nbsp;元
+        				<b>账户余额：</b><span class="bond_left_topsize" >{if $goods.user_price == 0}<a style="font-size:14px;" href='user.php'>登录后可见</a>{else}{$goods.user_money}</span>&nbsp;元{/if}
         				<div class="bondinfo_recharge"><a href="">充值</a></div>
         			</li>
         			<li>

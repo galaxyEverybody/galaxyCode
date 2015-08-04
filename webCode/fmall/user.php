@@ -131,7 +131,7 @@ if ($action == 'register')
     }
 
     /* 密码提示问题 */
-    $smarty->assign('passwd_questions', $_LANG['passwd_questions']);
+    //$smarty->assign('passwd_questions', $_LANG['passwd_questions']);
 
     /* 增加是否关闭注册 */
     $smarty->assign('shop_reg_closed', $_CFG['shop_reg_closed']);
@@ -155,14 +155,14 @@ elseif ($action == 'act_register')
 
         $username = isset($_POST['username']) ? trim($_POST['username']) : '';
         $password = isset($_POST['password']) ? trim($_POST['password']) : '';
-        //$email    = isset($_POST['email']) ? trim($_POST['email']) : '';
         $phoneverify = isset($_POST['verify']) ? trim($_POST['verify']) : '';
-        $other['mobile_phone']    = isset($_POST['mobile_phone']) ? trim($_POST['mobile_phone']) : '';
-        $other['qq'] = isset($_POST['extend_field2']) ? $_POST['extend_field2'] : '';
-        $other['office_phone'] = isset($_POST['extend_field3']) ? $_POST['extend_field3'] : '';
-        $other['home_phone'] = isset($_POST['extend_field4']) ? $_POST['extend_field4'] : '';
-        $sel_question = empty($_POST['sel_question']) ? '' : compile_str($_POST['sel_question']);
-        $passwd_answer = isset($_POST['passwd_answer']) ? compile_str(trim($_POST['passwd_answer'])) : '';
+        $mobile_phone = isset($_POST['mobile_phone']) ? trim($_POST['mobile_phone']) : '';
+        //$email    = isset($_POST['email']) ? trim($_POST['email']) : '';
+        //$other['qq'] = isset($_POST['extend_field2']) ? $_POST['extend_field2'] : '';
+        //$other['office_phone'] = isset($_POST['extend_field3']) ? $_POST['extend_field3'] : '';
+        //$other['home_phone'] = isset($_POST['extend_field4']) ? $_POST['extend_field4'] : '';
+        //$sel_question = empty($_POST['sel_question']) ? '' : compile_str($_POST['sel_question']);
+        //$passwd_answer = isset($_POST['passwd_answer']) ? compile_str(trim($_POST['passwd_answer'])) : '';
 
 
         $back_act = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
@@ -190,6 +190,10 @@ elseif ($action == 'act_register')
         {
         	show_message($_LANG['passport_js']['phone_verify']);
         }
+        if(!preg_match("/1[34578]{1}\d{9}$/",$mobile_phone))
+        {
+        	show_message($_LANG['passport_js']['mobile_phone_invalid']);
+        }
         /* 验证码检查 */
         if ((intval($_CFG['captcha']) & CAPTCHA_REGISTER) && gd_version() > 0)
         {
@@ -208,9 +212,10 @@ elseif ($action == 'act_register')
             }
         }
 
-        if (register($username, $password, $other) !== false)
+        if (register($username, $password, $mobile_phone) !== false)
         {
-            /*把新注册用户的扩展信息插入数据库*/
+        	header("Location:./index.php");
+            /*把新注册用户的扩展信息插入数据库
             $sql = 'SELECT id FROM ' . $ecs->table('reg_fields') . ' WHERE type = 0 AND display = 1 ORDER BY dis_order, id';   //读出所有自定义扩展字段的id
             $fields_arr = $db->getAll($sql);
 
@@ -232,19 +237,20 @@ elseif ($action == 'act_register')
                 $db->query($sql);
             }
 
-            /* 写入密码提示问题和答案 */
+            /* 写入密码提示问题和答案 
             if (!empty($passwd_answer) && !empty($sel_question))
             {
                 $sql = 'UPDATE ' . $ecs->table('users') . " SET `passwd_question`='$sel_question', `passwd_answer`='$passwd_answer'  WHERE `user_id`='" . $_SESSION['user_id'] . "'";
                 $db->query($sql);
             }
-            /* 判断是否需要自动发送注册邮件 */
+            /* 判断是否需要自动发送注册邮件 
             if ($GLOBALS['_CFG']['member_email_validate'] && $GLOBALS['_CFG']['send_verify_email'])
             {
                 send_regiter_hash($_SESSION['user_id']);
             }
             $ucdata = empty($user->ucdata)? "" : $user->ucdata;
             show_message(sprintf($_LANG['register_success'], $username . $ucdata), array($_LANG['back_up_page'], $_LANG['profile_lnk']), array($back_act, 'user.php'), 'info');
+        	*/
         }
         else
         {

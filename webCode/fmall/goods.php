@@ -198,6 +198,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 
     /* 获得商品的信息 */
     $goods = get_goods_info($goods_id);
+    //print_r($goods);exit;
 	/* 获取所属大类的名称*/
     $sql = 'select a.cat_name from'.$ecs->table("category").' as a,'.$ecs->table("category").' as b where a.cat_id = b.parent_id and b.cat_id='.$goods["cat_id"];
     $goods_row = $db->getRow($sql);
@@ -222,7 +223,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $goods['goods_style_name'] = add_style($goods['goods_name'], $goods['goods_name_style']);
 
         /* 购买该商品可以得到多少钱的红包 */
-        if ($goods['bonus_type_id'] > 0)
+        /*if ($goods['bonus_type_id'] > 0)
         {
             $time = gmtime();
             $sql = "SELECT type_money FROM " . $ecs->table('bonus_type') .
@@ -235,7 +236,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
             {
                 $goods['bonus_money'] = price_format($goods['bonus_money']);
             }
-        }
+        }*/
 
         $smarty->assign('goods',              $goods);
         $smarty->assign('goods_id',           $goods['goods_id']);
@@ -285,10 +286,10 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('attribute_linked',    get_same_attribute_goods($properties));           // 相同属性的关联商品
         $smarty->assign('related_goods',       $linked_goods);                                   // 关联商品
         $smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章
-        $smarty->assign('fittings',            get_goods_fittings(array($goods_id)));                   // 配件
+        //$smarty->assign('fittings',            get_goods_fittings(array($goods_id)));                   // 配件
         $smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
-        $smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
-        $smarty->assign('bought_goods',        get_also_bought($goods_id));                      // 购买了该商品的用户还购买了哪些商品
+        //$smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
+        //$smarty->assign('bought_goods',        get_also_bought($goods_id));                      // 购买了该商品的用户还购买了哪些商品
         $smarty->assign('goods_rank',          get_goods_rank($goods_id));                       // 商品的销售排名
 		$smarty->assign('related_cat',         get_related_cat($goods['cat_id'])); 
 		

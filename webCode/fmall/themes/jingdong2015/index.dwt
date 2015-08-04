@@ -222,7 +222,7 @@
             	<!--{foreach from=$goods_cat.goods_level2 item=goods name=foo}-->
                 	{count(goods)}
                 	<li>
-                    	<div class="pImg"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}"><img width="100" height="100" alt="{$goods.goods_name}" src="{$goods.goods_thumb}"></a></div>
+                    	<div class="pImg"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}"><img width="100" height="100" alt="{$goods.goods_name}" src="{$goods.thumb}"></a></div>
                         <div class="pName"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}">{$goods.short_name}</a></div>
                         <div class="pPrice">{if $goods.promote_price > 0}{$goods.promote_price}{else}{$goods.market_price}{/if}%</div>
                     </li>
@@ -245,7 +245,7 @@
         				<div>
         				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
         				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-        					<p class="hd_box_two_one_one">1个月理财<p>
+        					<p class="hd_box_two_one_one">{$goods.name}<p>
         					<p class="hd_box_two_two">近七日年化收益率<p>
         					<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
         				<!--{/foreach}-->
@@ -261,7 +261,7 @@
 	    				<div>
 	    				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 	    				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-	    					<p class="hd_box_two_one_six">6个月理财<p>
+	    					<p class="hd_box_two_one_six">{$goods.name}<p>
 	    					<p class="hd_box_two_two">近七日年化收益率<p>
 	    					<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
 	    				<!--{/foreach}-->
@@ -274,7 +274,7 @@
 						<div>
 						<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 						<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-							<p class="hd_box_two_one_twenf">12个月理财<p>
+							<p class="hd_box_two_one_twenf">{$goods.name}<p>
 							<p class="hd_box_two_two">近七日年化收益率<p>
 							<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
 						<!--{/foreach}-->

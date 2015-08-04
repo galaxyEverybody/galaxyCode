@@ -6,19 +6,19 @@
     	<ul class="fr lh">
         	{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
             <li class="fore3 ld menu myJd" id="app-jd">
-            	<div class="dt"><span class="outline"></span><span class="blank"></span><s></s><a href="user.php" target="_blank">用户中心</a><b></b></div>
+            	<div class="dt"><span class="outline"></span><span class="blank"></span><s></s><a href="user.php">用户中心</a><b></b></div>
                 <div class="dd myJdCon">
                 	<div class="userInfo">
                     	<div class="uPic"><a href="user.php"><img src="images/no-img_mid_.jpg"></a></div>
                         <div class="uName">{* ECSHOP 提醒您：根据用户id来调用member_info_index.lbi显示不同的界面  *}{insert name='member_info_index'}</div>
                     </div>
                     <div class="otherList">
-                        <p><a target="_blank" href="user.php?act=message_list">我的留言</a></p>
-                        <p><a target="_blank" href="user.php?act=comment_list">我的评论</a></p>
-                        <p><a target="_blank" href="user.php?act=bonus">我的红包</a></p>
-                        <p><a target="_blank" href="user.php?act=collection_list">我的收藏</a></p>
-                        <p><a target="_blank" href="user.php?act=bonus">资金管理</a></p>
-                        <p><a target="_blank" href="user.php?act=profile">用户信息</a></p>
+                        <p><a href="user.php?act=message_list">建议中心</a></p>
+                        <p><a href="user.php?act=comment_list">我的评论</a></p>
+                        <p><a href="user.php?act=tag_list">我的标签</a></p>
+                        <p><a href="user.php?act=collection_list">我的关注</a></p>
+                        <p><a href="user.php?act=affiliate">我的推荐</a></p>
+                        <p><a href="user.php?act=profile">用户信息</a></p>
                     </div>
                     <div class="viewList" id="history_div">
                     	<div class="smt"><h4>最近浏览</h4></div>
@@ -66,9 +66,9 @@
             <li class="fore4 ld menu myJd" id="biz-service">
             	<div class="dt"><s></s> <span class="outline"></span> <span class="blank"></span> 客户服务 <b></b></div>
                 <div class="dd">
-                	<div><a href="#" target="_blank">帮助中心</a></div>
-                    <div><a href="#" target="_blank" rel="nofollow">在线客服</a></div>
-                    <div><a href="http://www.jnz360.com/fmall/user.php?act=message_list" target="_blank" rel="nofollow">建议中心</a></div>
+                	<div><a href="article.php?id=9">帮助中心</a></div>
+                    <div><a href="http://wpa.qq.com/msgrd?V=1&amp;uin=729797175&amp;Site=联众金融&amp;Menu=yes" target="_blank" rel="nofollow">在线客服</a></div>
+                    <div><a href="user.php?act=message_list" rel="nofollow">建议中心</a></div>
                     <div><a href="#" target="_blank">客服邮箱</a></div>
                 </div>
             </li>

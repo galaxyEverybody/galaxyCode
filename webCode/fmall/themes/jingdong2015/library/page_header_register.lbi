@@ -26,11 +26,10 @@
             <li class="fore4 ld menu myJd" id="biz-service">
             	<div class="dt"><s></s> <span class="outline"></span> <span class="blank"></span> 客户服务 <b></b></div>
                 <div class="dd">
-                	<div><a href="#" target="_blank">帮助中心</a></div>
-                    <div><a href="#" target="_blank" rel="nofollow">售后服务</a></div>
-                    <div><a href="#" target="_blank" rel="nofollow">在线客服</a></div>
-                    <div><a href="#" target="_blank" rel="nofollow">投诉中心</a></div>
-                    <div><a href="#" target="_blank">客服邮箱</a></div>
+	                <div><a href="#" target="_blank">帮助中心</a></div>
+	                <div><a href="http://wpa.qq.com/msgrd?V=1&amp;uin=729797175&amp;Site=联众金融&amp;Menu=yes" target="_blank" rel="nofollow">在线客服</a></div>
+	                <div><a href="http://www.jnz360.com/fmall/user.php?act=message_list" target="_blank" rel="nofollow">建议中心</a></div>
+	                <div><a href="#" target="_blank">客服邮箱</a></div>
                 </div>
             </li>
     </ul>
@@ -38,4 +37,5 @@
 </div>
 <div class="w w1 header clearfix">
 	<div id="logo"><a href="./index.php"><img src="images/logo.png" title="返回{$shop_name}首页" alt="返回{$shop_name}首页"></a></div>
+	<div class="registerbanner">{insert name='ads' id=40 num=1}</div>
 </div>

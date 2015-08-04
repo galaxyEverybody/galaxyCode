@@ -93,6 +93,7 @@ h6 span{float:left;padding-left:15px}
 
 /*注册*/
 .reg_phoneverify{ width:120px;text-align:center;margin-left:10px;width:110px;backgound-color:#ddd;border:1px solid #dedede;}
+.registerbanner{ width:770px;height:95px;float:right;margin-right:20px;}
 
 /*用户中心*/
 .capitaldiv{ margin-top:10px;}
@@ -1274,7 +1275,7 @@ h2,h3{font-size:14px}
 .bond_middle_big #divProgressbar{ width:60%;height:15px;border:1px solid #dddddd;border-radius:5px;background-color:#ddd;}
 .bond_middle_big #divProgressbarblue{ height:15px;background-color:#FF500B;float:left;border-radius:5px;}
 .bondinfo_middle_bottom{ width:100%;height:auto;margin-top:20px;line-height:40px;}
-.bondinfo_middle_bottom span{ font-weight:bold;font-size:16px;}
+.bondinfo_middle_bottom .bondinfotd{ font-weight:bold;width:230px;font-size:18px;}
 .bond_middle_middle{ width:100%;height:120px;margin-top:10px;}
 .bond_middle_middle span{ font-size:16px;color:#708090;margin-left:5px;}
 .bondinfo_left{ width:33%;height:auto;float:right;margin-right:5px;background-color:#F1F0F2;height:380px;margin-top:5px;}
@@ -1282,7 +1283,7 @@ h2,h3{font-size:14px}
 .bondinfo_left_top{ line-height:40px;margin-top:30px;}
 .bondinfo_left_top span{ font-size:18px;}
 .bondinfo_left .bond_left_topsize{ font-size:24px;color:#FF500B;}
-.bondinfo_recharge{ background-color:#ff500b;width:40px;height:30px;line-height:30px;float:right;margin-right:50px;text-align:center;color:#fff;}
+.bondinfo_recharge{ font-size:14px;background-color:#ff500b;width:40px;height:30px;line-height:30px;float:right;margin-right:50px;text-align:center;color:#fff;}
 .bondinfo_left_middle{ width:80%;height:35px;margin-top:20px;background-color:#fff;float:left;}
 .bondinfo_left_middle em{ float:right;margin-right:5px;font-size:16px;color:#c0c0c0;}
 .recharge_input{ width:95%;height:35px;border-style:none;font-size:16px;outline:none;}
@@ -1759,7 +1760,7 @@ a.btn:hover,a.btn:hover span{text-decoration:none}
 #entry .item-ifo .ico{position:absolute;right:12px;z-index:5}
 #entry .item-ifo .i-name{background:url(images/login-all-bg.png) no-repeat -373px -111px #fff;width:16px;height:16px;top:8px}
 #entry .item-ifo .i-pass{background:url(images/login-all-bg.png) no-repeat -346px -108px #fff;width:14px;height:19px;top:8px}
-.register_warp .w1{width:990px}
+.register_warp .w1{ }
 #entry #autoentry{height:37px;color:#333}
 #entry .checkbox{margin-top:3px;*margin-top:2px}
 @-moz-document url-prefix(){#entry .checkbox{margin-top:7px}}@media all and (-webkit-min-device-pixel-ratio:0){#entry .checkbox{margin-top:7px;vertical-align:middle}}
@@ -2900,13 +2901,13 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .JD_userMain .info-rcol .acco-info{ background:#f5f5f5; padding:20px 0 10px; margin:0 0 0 3%; height:110px;}
 .JD_userMain .info-rcol .acco-item{ padding:0 20px; line-height:30px;font-size:14px;width:200px;float:left;}
 .JD_userMain .info-rcol .rewithdraw{ width:200px;height:100px;float:right;text-align:center;}
-.JD_userMain .user_apicity{ width:100%;height:130px;border:1px solid #ddd;background:#fff;}
+.JD_userMain .user_apicity{ width:100%;height:100px;border:1px solid #ddd;background:#fff;}
 .JD_userMain .user_apicity ul{ list-style:none;}
 .JD_userMain .user_apicity p{ margin-top:20px;font-size:14px;}
 .JD_userMain .user_apicity div{ width:100%;height:60px;line-height:60px;font-size:24px;overflow:hidden;}
 .JD_userMain .user_apicity span{ font-size:16px;}
-.JD_userMain .user_apicity .user_apicity_num{ width:150px;height:130px;float:left;text-align:center;}
-.JD_userMain .user_apicity .user_apicity_sign{ width:30px;height:130px;line-height:130px;float:left;font-size:28px;text-align:center;}
+.JD_userMain .user_apicity .user_apicity_num{ width:160px;height:130px;float:left;text-align:center;}
+.JD_userMain .user_apicity .user_apicity_sign{ width:60px;height:130px;line-height:130px;float:left;font-size:28px;text-align:center;}
 
 .JD_userMain .lyt-c-1{ padding:20px; background:#fff; margin-bottom:20px;}
 .JD_userMain .lyt-c-1 img{ vertical-align:text-top; margin-top:1px;}

@@ -124,10 +124,10 @@ $_LANG['lab_goods_type'] = '商品类型：';
 $_LANG['lab_picture_url'] = '商品图片外部URL';
 $_LANG['lab_thumb_url'] = '商品缩略图外部URL';
 
-$_LANG['lab_loan_date'] = '借款时间：';
+$_LANG['lab_loan_date'] = '借款到期时间：';
 $_LANG['unit_g'] = '克';
 $_LANG['unit_kg'] = '千克';
-$_LANG['lab_repay_date'] = '还款时间：';
+$_LANG['lab_repay_date'] = '还款到期时间：';
 $_LANG['lab_repay_type'] = '还款方式：';
 $_LANG['repay_one'] = '按月等额本息';
 $_LANG['repay_two'] = '按月还息到期还本';

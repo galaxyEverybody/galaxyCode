@@ -183,7 +183,7 @@ class integrate
      *
      * @return int
      */
-    function add_user($username, $password, $gender = -1, $bday = 0, $reg_date=0, $md5password='')
+    function add_user($username, $password, $mobile_phone, $gender = -1, $bday = 0, $reg_date=0, $md5password='')
     {
         /* 将用户添加到整合方 */
         if ($this->check_user($username) > 0)
@@ -195,10 +195,10 @@ class integrate
         /* 检查email是否重复 */
         $sql = "SELECT " . $this->field_id .
                " FROM " . $this->table($this->user_table).
-               " WHERE " . $this->field_email . " = '$email'";
+               " WHERE " . $this->field_phone . " = '$mobile_phone'";
         if ($this->db->getOne($sql, true) > 0)
         {
-            $this->error = ERR_EMAIL_EXISTS;
+            $this->error = ERR_PHONE_EXISTS;
 
             return false;
         }
@@ -214,8 +214,8 @@ class integrate
             $post_password = $this->compile_password(array('password'=>$password));
         }
 
-        $fields = array($this->field_name, $this->field_email, $this->field_pass);
-        $values = array($post_username, $email, $post_password);
+        $fields = array($this->field_name, $this->field_phone, $this->field_pass);
+        $values = array($post_username, $mobile_phone, $post_password);
 
         if ($gender > -1)
         {
@@ -227,9 +227,10 @@ class integrate
             $fields[] = $this->field_bday;
             $values[] = $bday;
         }
-        if ($reg_date)
+        if (!$reg_date)
         {
             $fields[] = $this->field_reg_date;
+            $reg_date = time();
             $values[] = $reg_date;
         }
 

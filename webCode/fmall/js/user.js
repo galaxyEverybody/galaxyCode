@@ -645,7 +645,7 @@ function check_phone_callback(result){
 			$("#phone_notice").removeClass("error");
 		}
 		$("#phone_notice").addClass("focus");
-	    document.getElementById('phone_notice').innerHTML = "可以注册";
+	    document.getElementById('phone_notice').innerHTML = "*可以注册";
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
@@ -756,115 +756,54 @@ function register()
 {
   var frm  = document.forms['formUser'];
   var username  = Utils.trim(frm.elements['username'].value);
-  var email  = frm.elements['email'].value;
   var password  = Utils.trim(frm.elements['password'].value);
   var confirm_password = Utils.trim(frm.elements['confirm_password'].value);
+  var verify  = Utils.trim(frm.elements['verify'].value);
+  var mobile_phone  = Utils.trim(frm.elements['mobile_phone'].value);
   var checked_agreement = frm.elements['agreement'].checked;
-  var msn = frm.elements['extend_field1'] ? Utils.trim(frm.elements['extend_field1'].value) : '';
-  var qq = frm.elements['extend_field2'] ? Utils.trim(frm.elements['extend_field2'].value) : '';
-  var home_phone = frm.elements['extend_field4'] ? Utils.trim(frm.elements['extend_field4'].value) : '';
-  var office_phone = frm.elements['extend_field3'] ? Utils.trim(frm.elements['extend_field3'].value) : '';
-  var mobile_phone = frm.elements['extend_field5'] ? Utils.trim(frm.elements['extend_field5'].value) : '';
-  var passwd_answer = frm.elements['passwd_answer'] ? Utils.trim(frm.elements['passwd_answer'].value) : '';
-  var sel_question =  frm.elements['sel_question'] ? Utils.trim(frm.elements['sel_question'].value) : '';
 
-
-  var msg = "";
   // 检查输入
   var msg = '';
   if (username.length == 0)
   {
-    msg += username_empty + '\n';
+    msg += '- 用户名不能为空。\n';
   }
   else if (username.match(/^\s*$|^c:\\con\\con$|[%,\'\*\"\s\t\<\>\&\\]/))
   {
-    msg += username_invalid + '\n';
+    msg += '- 用户名只能是由字母数字以及下划线组成。\n';
   }
   else if (username.length < 3)
   {
-    //msg += username_shorter + '\n';
+    msg += '- 用户名长度不能少于 3 个字符。\n';
   }
 
-  if (email.length == 0)
-  {
-    msg += email_empty + '\n';
-  }
-  else
-  {
-    if ( ! (Utils.isEmail(email)))
-    {
-      msg += email_invalid + '\n';
-    }
-  }
   if (password.length == 0)
   {
-    msg += password_empty + '\n';
+    msg += '- 登录密码不能为空。\n';
   }
   else if (password.length < 6)
   {
-    msg += password_shorter + '\n';
+    msg += '- 登录密码不能少于 6 个字符。\n';
   }
   if (/ /.test(password) == true)
   {
-	msg += passwd_balnk + '\n';
+	msg += '- 密码中不能包含空格\n';
   }
   if (confirm_password != password )
   {
-    msg += confirm_password_invalid + '\n';
+    msg += '- 两次输入密码不一致\n';
   }
   if(checked_agreement != true)
   {
-    msg += agreement + '\n';
-  }
-
-  if (msn.length > 0 && (!Utils.isEmail(msn)))
-  {
-    msg += msn_invalid + '\n';
-  }
-
-  if (qq.length > 0 && (!Utils.isNumber(qq)))
-  {
-    msg += qq_invalid + '\n';
-  }
-
-  if (office_phone.length>0)
-  {
-    var reg = /^[\d|\-|\s]+$/;
-    if (!reg.test(office_phone))
-    {
-      msg += office_phone_invalid + '\n';
-    }
-  }
-  if (home_phone.length>0)
-  {
-    var reg = /^[\d|\-|\s]+$/;
-
-    if (!reg.test(home_phone))
-    {
-      msg += home_phone_invalid + '\n';
-    }
+    msg += '- 您没有接受协议\n';
   }
   if (mobile_phone.length>0)
   {
     var reg = /^[\d|\-|\s]+$/;
     if (!reg.test(mobile_phone))
     {
-      msg += mobile_phone_invalid + '\n';
+      msg += '- 手机号码不是一个有效号码\n';
     }
-  }
-  if (passwd_answer.length > 0 && sel_question == 0 || document.getElementById('passwd_quesetion') && passwd_answer.length == 0)
-  {
-    msg += no_select_question + '\n';
-  }
-
-  for (i = 4; i < frm.elements.length - 4; i++)	// 从第五项开始循环检查是否为必填项
-  {
-	needinput = document.getElementById(frm.elements[i].name + 'i') ? document.getElementById(frm.elements[i].name + 'i') : '';
-
-	if (needinput != '' && frm.elements[i].value.length == 0)
-	{
-	  msg += '- ' + needinput.innerHTML + msg_blank + '\n';
-	}
   }
 
   if (msg.length > 0)

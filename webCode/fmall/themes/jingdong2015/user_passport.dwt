@@ -103,7 +103,7 @@
   </div>
 </div>
 <!-- {else} --> 
-{insert_scripts files='utils.js'}
+{insert_scripts files='utils.js,user.js'}
 <DIV id="regist" class="w">
 	<div class="mt">
     	<ul class="tab">

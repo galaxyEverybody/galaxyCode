@@ -881,7 +881,14 @@ function get_goods_info($goods_id)
             "WHERE g.goods_id = '$goods_id' AND g.is_delete = 0 " .
             "GROUP BY g.goods_id";
     $row = $GLOBALS['db']->getRow($sql);
-	
+
+    /* 获取用户的可用余额 gao*/
+    $user_id = $_SESSION['user_id'];
+    $sql = 'select user_money from '.$GLOBALS['ecs']->table('users').' where user_id='.$user_id;
+    $user_money = $GLOBALS['db']->query($sql);
+    $row['user_money'] = $user_money;
+    /* 获取用户的可用余额 gao*/
+    
     if ($row !== false)
     {
         /* 用户评论级别取整 */
@@ -929,11 +936,12 @@ function get_goods_info($goods_id)
         $row['promote_price_org'] =  $promote_price;
         $row['promote_price'] =  price_format($promote_price);
 
-        /* 修正借款倒计时 */
-        $row['goods_weight']  = $row['goods_weight']-time();
-		
-        /* 修正还款期限*/
-        $row['goods_number'] = ceil(($row['goods_number']-$row['goods_weight'])/(1000*60*60*24));
+        /* 修正还款期限 gao*/
+        $row['goods_number'] = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
+        
+        /* 修正借款倒计时 gao*/
+        $row['goods_weight']  = $row['goods_weight']-gmtime();
+        $row['goods_weight_day'] = ceil(($row['goods_weight'])/(60*60*24));
         
         /* 修正上架时间显示 */
         $row['add_time']      = local_date($GLOBALS['_CFG']['date_format'], $row['add_time']);
@@ -1207,7 +1215,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
     $cat['id']   = $cat_id;
 	$cat['cat_clild'] = get_clild_list($cat_id);
 	$cat['isalone'] = $theRow['is_standalone'];
-	
+
 	//获取二级分类下的商品
 	/*$cat_list_arr  = cat_list($cat_id, 0 , false);
 
