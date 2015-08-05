@@ -40,24 +40,43 @@
     				<table style="width:100%;border:0px;">
     					<thead>
     						<tr class = "cart_good_th">
-    							<th>{$lang.goods_name}</th>
-    							<th>{$lang.goods_type}</th>
-    							<th>{$lang.goods_return_time}</th>
-    							<th>{$lang.goods_risk_revel}</th>
+    							<th>产品</th>
+    							<th>利率</th>
+    							<th>申购金额</th>
     						</tr>
     					</thead>
     					<tbody>
-    					<!-- {foreach from=$goods_list item=goods name=foo} -->
     						<tr class = "cart_good_td">
-    							<td><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name}</a></td>
     							<td>aaaaaaaaaaaa</td>
     							<td>aaaaaaaaaaaa</td>
     							<td>aaaaaaaaaaaa</td>
     						</tr>
-    					<!-- {/foreach} -->
     					</tbody>
     				</table>
     			</div>
+    		</div>
+    		<div>
+	    		<div class="cart_order_tz">
+					<h3>选择支付方式</h3>
+				</div>
+				<div class = "cart_order_good">
+				<div class="payment-list">
+                <div class="list-cont">
+                    <ul>
+                    	<!-- {foreach from=$payment_list item=payment name=foo} 循环支付方式 --> 
+                        <li>
+                            <div class="payment-item hoverInput">
+                            	<label for="payment_{$smarty.foreach.foo.iteration}"><b></b>{$payment.pay_name}</label>
+                                <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_{$smarty.foreach.foo.iteration}" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/>
+                                <div class="text"><span><i></i></span>{$lang.pay_fee}：{$payment.format_pay_fee}</div>
+                            </div>
+                        </li>
+                        <!-- {/foreach} 循环支付方式 -->
+                    </ul>
+                    <div class="blank0"></div>
+                </div>
+                </div>
+				</div>
     		</div>
     		<div class = "cart_good_sub">
     			<div class = "cart_good_money">
@@ -77,6 +96,52 @@
     	
         <div class="blank20"></div>
     </div>
+    <script>
+	var payment=$(".hoverInput");
+	payment.each(function(){
+		if($(this).find("input").is(":checked")){
+			$(this).addClass("cur")
+		}
+	});
+	payment.click(function(){
+		if($(this).find("input").is(":checked")){
+			$(this).addClass("cur").parent("li").siblings("li").find("div").removeClass("cur")
+		}
+	});
+	payment.hover(function(){
+		$(this).addClass("hover").parent("li").siblings("li").find("div").removeClass("hover")
+	},function(){
+		$(this).removeClass("hover")
+	});
+	//
+	postscript=$("#postscript");
+	if(postscript.val()==""){
+		postscript.siblings("span").show();
+	}else{
+		postscript.siblings("span").hide();
+	};
+	$("#postscript").focus(function(){
+		$(this).siblings("span").hide();
+	});
+	$("#postscriptText").click(function(){
+		$(this).hide().siblings("input").focus();
+	});
+	$("#postscript").blur(function(){
+		if($(this).val()==""){
+			$(this).siblings("span").show();
+		}else{
+			$(this).siblings("span").hide();
+		}
+	});
+	//
+	$(".orderCoupon h3 a").click(function(){
+		if( $(this).parent().hasClass("on") ){
+			$(this).parent().removeClass("on").next().hide();
+		}else{
+			$(this).parent().addClass("on").next().show();
+		}
+	});
+</script>
   <!-- {if $smarty.session.user_id gt 0} --> 
   {insert_scripts files='transport_jquery.js'} 
   <script type="text/javascript" charset="utf-8">
@@ -309,13 +374,12 @@
   <!-- {/if} --> 
   
 <!-- {if $step eq "checkout"} 开始订单确认界面 -->
-<div class="flowCheckoutBox">
+<div class="flowCheckoutBox" >
     <div class="flowBox_cart">
         <div id="content">
             <div class="mt"><h2>确认支付页面</h2></div>
             <div class="mc" style="border-bottom:1px solid #DDD;">
                 <form action="flow.php" method="post" name="theForm" id="theForm" onsubmit="return checkOrderForm(this)">
-                    <!-- {foreach from=$goods_list item=goods name=foo} -->
                     <div class="checkout-steps">
                         <h3>{$lang.consignee_good_name}：{$goods.goods_name}</h3>
                         <div class="extra-r"><a href="flow.php?step=consignee" class="f6">{$lang.modify}收货地址</a></div>
@@ -325,22 +389,17 @@
                             <div class="consignee-cont">
                                 <ul style="font-size:18px;">
                                     <li>
-                                    	<h4>投资(元)</h4>
+                                    	<h4>利率</h4>
                                     	<div>{$goods.formated_goods_price}</div>
                                     </li>
                                     <li>
-                                    	<h4>近七日年化收益率</h4>
-                                    	<div>{$goods.formated_goods_price}</div>
-                                    </li>
-                                    <li>
-                                    	<h4>万份收益(元)</h4>
+                                    	<h4>申购金额(元)</h4>
                                     	<div>{$goods.formated_goods_price}</div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <!-- {/foreach} -->
                     <!--{if $is_exchange_goods neq 1 || $total.real_goods_count neq 0}-->
                     <div class="checkout-steps">
                         <h3>{$lang.payment_method}</h3>

@@ -660,19 +660,20 @@ elseif ($_REQUEST['step'] == 'drop_consignee')
 }
 elseif ($_REQUEST['step'] == 'checkout')
 {
+	
     /*------------------------------------------------------ */
     //-- 订单确认
     /*------------------------------------------------------ */
 
-    /* 取得购物类型 */
+    /* 取得购物类型 
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 
-    /* 团购标志 */
+    /* 团购标志 
     if ($flow_type == CART_GROUP_BUY_GOODS)
     {
         $smarty->assign('is_group_buy', 1);
     }
-    /* 积分兑换商品 */
+    /* 积分兑换商品 
     elseif ($flow_type == CART_EXCHANGE_GOODS)
     {
         $smarty->assign('is_exchange_goods', 1);
@@ -683,7 +684,7 @@ elseif ($_REQUEST['step'] == 'checkout')
         $_SESSION['flow_order']['extension_code'] = '';
     }
 
-    /* 检查购物车中是否有商品 */
+    /* 检查购物车中是否有商品 
     $sql = "SELECT COUNT(*) FROM " . $ecs->table('cart') .
         " WHERE session_id = '" . SESS_ID . "' " .
         "AND parent_id = 0 AND is_gift = 0 AND rec_type = '$flow_type'";
@@ -698,19 +699,19 @@ elseif ($_REQUEST['step'] == 'checkout')
      * 如果用户已经登录了则检查是否有默认的收货地址
      * 如果没有登录则跳转到登录和注册页面
      */
-    if (empty($_SESSION['direct_shopping']) && $_SESSION['user_id'] == 0)
+    /*if (empty($_SESSION['direct_shopping']) && $_SESSION['user_id'] == 0)
     {
-        /* 用户没有登录且没有选定匿名购物，转向到登录页面 */
+        /* 用户没有登录且没有选定匿名购物，转向到登录页面 
         ecs_header("Location: flow.php?step=login\n");
         exit;
     }
 
     $consignee = get_consignee($_SESSION['user_id']);
-
-    /* 检查收货人信息是否完整 */
+	
+    /* 检查收货人信息是否完整 
     if (!check_consignee_info($consignee, $flow_type))
     {
-        /* 如果不完整则转向到收货人信息填写界面 */
+        /* 如果不完整则转向到收货人信息填写界面 
         ecs_header("Location: flow.php?step=consignee\n");
         exit;
     }
@@ -736,7 +737,7 @@ elseif ($_REQUEST['step'] == 'checkout')
     $cart_goods = cart_goods($flow_type); // 取得商品列表，计算合计
     $smarty->assign('goods_list', $cart_goods);
 
-    /* 对是否允许修改购物车赋值 */
+    /* 对是否允许修改购物车赋值 
     if ($flow_type != CART_GENERAL_GOODS || $_CFG['one_step_buy'] == '1')
     {
         $smarty->assign('allow_edit_cart', 0);
@@ -756,7 +757,7 @@ elseif ($_REQUEST['step'] == 'checkout')
     $order = flow_order_info();
     $smarty->assign('order', $order);
 
-    /* 计算折扣 */
+    /* 计算折扣 
     if ($flow_type != CART_EXCHANGE_GOODS && $flow_type != CART_GROUP_BUY_GOODS)
     {
         $discount = compute_discount();
@@ -767,14 +768,14 @@ elseif ($_REQUEST['step'] == 'checkout')
 
     /*
      * 计算订单的费用
-     */
+     
     $total = order_fee($order, $cart_goods, $consignee);
 
     $smarty->assign('total', $total);
     $smarty->assign('shopping_money', sprintf($_LANG['shopping_money'], $total['formated_goods_price']));
     $smarty->assign('market_price_desc', sprintf($_LANG['than_market_price'], $total['formated_market_price'], $total['formated_saving'], $total['save_rate']));
 
-    /* 取得配送列表 */
+    /* 取得配送列表 
     $region            = array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district']);
     $shipping_list     = available_shipping_list($region);
     $cart_weight_price = cart_weight_price($flow_type);
@@ -797,7 +798,7 @@ elseif ($_REQUEST['step'] == 'checkout')
         $shipping_list[$key]['insure_formated']     = strpos($val['insure'], '%') === false ?
             price_format($val['insure'], false) : $val['insure'];
 
-        /* 当前的配送方式是否支持保价 */
+        /* 当前的配送方式是否支持保价 
         if ($val['shipping_id'] == $order['shipping_id'])
         {
             $insure_disabled = ($val['insure'] == 0);
@@ -859,7 +860,7 @@ elseif ($_REQUEST['step'] == 'checkout')
     }
 
     // 给货到付款的手续费加<span id>，以便改变配送的时候动态显示
-    $payment_list = available_payment_list(1, $cod_fee);
+    /*$payment_list = available_payment_list(1, $cod_fee);
     if(isset($payment_list))
     {
         foreach ($payment_list as $key => $payment)
@@ -868,15 +869,15 @@ elseif ($_REQUEST['step'] == 'checkout')
             {
                 $payment_list[$key]['format_pay_fee'] = '<span id="ECS_CODFEE">' . $payment['format_pay_fee'] . '</span>';
             }
-            /* 如果有易宝神州行支付 如果订单金额大于300 则不显示 */
+            /* 如果有易宝神州行支付 如果订单金额大于300 则不显示 
             if ($payment['pay_code'] == 'yeepayszx' && $total['amount'] > 300)
             {
                 unset($payment_list[$key]);
             }
-            /* 如果有余额支付 */
+            /* 如果有余额支付 
             if ($payment['pay_code'] == 'balance')
             {
-                /* 如果未登录，不显示 */
+                /* 如果未登录，不显示 
                 if ($_SESSION['user_id'] == 0)
                 {
                     unset($payment_list[$key]);
@@ -893,17 +894,17 @@ elseif ($_REQUEST['step'] == 'checkout')
     }
     $smarty->assign('payment_list', $payment_list);
 
-    /* 取得包装与贺卡 */
+    /* 取得包装与贺卡 
     if ($total['real_goods_count'] > 0)
     {
-        /* 只有有实体商品,才要判断包装和贺卡 */
+        /* 只有有实体商品,才要判断包装和贺卡 
         if (!isset($_CFG['use_package']) || $_CFG['use_package'] == '1')
         {
-            /* 如果使用包装，取得包装列表及用户选择的包装 */
+            /* 如果使用包装，取得包装列表及用户选择的包装 
             $smarty->assign('pack_list', pack_list());
         }
 
-        /* 如果使用贺卡，取得贺卡列表及用户选择的贺卡 */
+        /* 如果使用贺卡，取得贺卡列表及用户选择的贺卡 
         if (!isset($_CFG['use_card']) || $_CFG['use_card'] == '1')
         {
             $smarty->assign('card_list', card_list());
@@ -922,7 +923,7 @@ elseif ($_REQUEST['step'] == 'checkout')
         $smarty->assign('your_surplus', $user_info['user_money']);
     }
 
-    /* 如果使用积分，取得用户可用积分及本订单最多可以使用的积分 */
+    /* 如果使用积分，取得用户可用积分及本订单最多可以使用的积分 
     if ((!isset($_CFG['use_integral']) || $_CFG['use_integral'] == '1')
         && $_SESSION['user_id'] > 0
         && $user_info['pay_points'] > 0
@@ -934,7 +935,7 @@ elseif ($_REQUEST['step'] == 'checkout')
         $smarty->assign('your_integral',      $user_info['pay_points']); // 用户积分
     }
 
-    /* 如果使用红包，取得用户可以使用的红包及用户选择的红包 */
+    /* 如果使用红包，取得用户可以使用的红包及用户选择的红包 
     if ((!isset($_CFG['use_bonus']) || $_CFG['use_bonus'] == '1')
         && ($flow_type != CART_GROUP_BUY_GOODS && $flow_type != CART_EXCHANGE_GOODS))
     {
@@ -953,7 +954,7 @@ elseif ($_REQUEST['step'] == 'checkout')
         $smarty->assign('allow_use_bonus', 1);
     }
 
-    /* 如果使用缺货处理，取得缺货处理列表 */
+    /* 如果使用缺货处理，取得缺货处理列表 
     if (!isset($_CFG['use_how_oos']) || $_CFG['use_how_oos'] == '1')
     {
         if (is_array($GLOBALS['_LANG']['oos']) && !empty($GLOBALS['_LANG']['oos']))
@@ -962,7 +963,7 @@ elseif ($_REQUEST['step'] == 'checkout')
         }
     }
 
-    /* 如果能开发票，取得发票内容列表 */
+    /* 如果能开发票，取得发票内容列表 
     if ((!isset($_CFG['can_invoice']) || $_CFG['can_invoice'] == '1')
         && isset($_CFG['invoice_content'])
         && trim($_CFG['invoice_content']) != '' && $flow_type != CART_EXCHANGE_GOODS)
@@ -1562,13 +1563,45 @@ elseif ($_REQUEST['step'] == 'check_integral')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['step'] == 'done')
 {
+	
     include_once('includes/lib_clips.php');
     include_once('includes/lib_payment.php');
-
-    /* 取得购物类型 */
+	
+    $investprice = trim($_POST['investamount']);
+    $goods_id = trim($_POST['goods_id']);
+ 	
+    /* 取得商品信息 */
+    $sql = "SELECT goods_name, goods_sn, is_on_sale, is_real, market_price, shop_price,
+             goods_weight, integral, extension_code, goods_number, is_alone_sale, is_shipping FROM " .$GLOBALS['ecs']->table('goods')."
+             WHERE goods_id = ".$goods_id. " AND is_delete = 0";
+    
+    $goods = $GLOBALS['db']->getRow($sql);
+    
+    /* 初始化要插入订单的基本件数据 */
+    $parent = array(
+    		'user_id'       => $_SESSION['user_id'],
+    		'session_id'    => SESS_ID,
+    		'goods_number'	=>$goods['goods_number'],
+    		'goods_id'      => $goods_id,
+    		'goods_sn'      => addslashes($goods['goods_sn']),
+    		'product_id'    => $product_info['product_id'],
+    		'goods_name'    => addslashes($goods['goods_name']),
+    		'market_price'  => $goods['market_price'],
+    		'goods_price'  => $investprice,
+    		'goods_attr'    => addslashes($goods_attr),
+    		'goods_attr_id' => $goods_attr_id,
+    		'is_real'       => $goods['is_real'],
+    		'extension_code'=> $goods['extension_code'],
+    		'is_gift'       => 0,
+    		'is_shipping'   => $goods['is_shipping'],
+    		'rec_type'      => CART_GENERAL_GOODS
+    );
+    
+    $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('cart'), $parent, 'INSERT');
+    /* 取得购物类型 
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 
-    /* 检查购物车中是否有商品 */
+    /* 检查购物车中是否有商品 
     $sql = "SELECT COUNT(*) FROM " . $ecs->table('cart') .
         " WHERE session_id = '" . SESS_ID . "' " .
         "AND parent_id = 0 AND is_gift = 0 AND rec_type = '$flow_type'";
@@ -1578,7 +1611,7 @@ elseif ($_REQUEST['step'] == 'done')
     }
 
     /* 检查商品库存 */
-    /* 如果使用库存，且下订单时减库存，则减少库存 */
+    /* 如果使用库存，且下订单时减库存，则减少库存 
     if ($_CFG['use_storage'] == '1' && $_CFG['stock_dec_time'] == SDT_PLACE)
     {
         $cart_goods_stock = get_cart_goods();
@@ -1605,11 +1638,11 @@ elseif ($_REQUEST['step'] == 'done')
 
     $consignee = get_consignee($_SESSION['user_id']);
 
-    /* 检查收货人信息是否完整 */
+    /* 检查收货人信息是否完整 
     if (!check_consignee_info($consignee, $flow_type))
     {
         /* 如果不完整则转向到收货人信息填写界面 */
-        ecs_header("Location: flow.php?step=consignee\n");
+        /*ecs_header("Location: flow.php?step=consignee\n");
         exit;
     }
 
@@ -1644,7 +1677,7 @@ elseif ($_REQUEST['step'] == 'done')
         'agency_id'       => get_agency_by_regions(array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district']))
         );
 
-    /* 扩展信息 */
+    /* 扩展信息 
     if (isset($_SESSION['flow_type']) && intval($_SESSION['flow_type']) != CART_GENERAL_GOODS)
     {
         $order['extension_code'] = $_SESSION['extension_code'];
@@ -1656,7 +1689,7 @@ elseif ($_REQUEST['step'] == 'done')
         $order['extension_id'] = 0;
     }
 
-    /* 检查积分余额是否合法 */
+    /* 检查积分余额是否合法 
     $user_id = $_SESSION['user_id'];
     if ($user_id > 0)
     {
@@ -1684,7 +1717,7 @@ elseif ($_REQUEST['step'] == 'done')
         $order['integral'] = 0;
     }
 
-    /* 检查红包是否存在 */
+    /* 检查红包是否存在 
     if ($order['bonus_id'] > 0)
     {
         $bonus = bonus_info($order['bonus_id']);
@@ -1714,7 +1747,7 @@ elseif ($_REQUEST['step'] == 'done')
         }
     }
 
-    /* 订单中的商品 */
+    /* 订单中的商品 
     $cart_goods = cart_goods($flow_type);
 
     if (empty($cart_goods))
@@ -1722,22 +1755,22 @@ elseif ($_REQUEST['step'] == 'done')
         show_message($_LANG['no_goods_in_cart'], $_LANG['back_home'], './', 'warning');
     }
 
-    /* 检查商品总额是否达到最低限购金额 */
+    /* 检查商品总额是否达到最低限购金额 
     if ($flow_type == CART_GENERAL_GOODS && cart_amount(true, CART_GENERAL_GOODS) < $_CFG['min_goods_amount'])
     {
         show_message(sprintf($_LANG['goods_amount_not_enough'], price_format($_CFG['min_goods_amount'], false)));
     }
 
-    /* 收货人信息 */
+    /* 收货人信息 
     foreach ($consignee as $key => $value)
     {
         $order[$key] = addslashes($value);
     }
 
-   /* 判断是不是实体商品 */
+   /* 判断是不是实体商品 
     foreach ($cart_goods AS $val)
     {
-        /* 统计实体商品的个数 */
+        /* 统计实体商品的个数 
         if ($val['is_real'])
         {
             $is_real_good=1;
@@ -1751,7 +1784,7 @@ elseif ($_REQUEST['step'] == 'done')
            show_message($_LANG['flow_no_shipping']);
         }
     }
-    /* 订单中的总额 */
+    /* 订单中的总额 
     $total = order_fee($order, $cart_goods, $consignee);
     $order['bonus']        = $total['bonus'];
     $order['goods_amount'] = $total['goods_price'];
@@ -1768,7 +1801,7 @@ elseif ($_REQUEST['step'] == 'done')
         $order['bonus_id'] = 0;
     }
 
-    /* 配送方式 */
+    /* 配送方式 
     if ($order['shipping_id'] > 0)
     {
         $shipping = shipping_info($order['shipping_id']);
@@ -1777,7 +1810,7 @@ elseif ($_REQUEST['step'] == 'done')
     $order['shipping_fee'] = $total['shipping_fee'];
     $order['insure_fee']   = $total['shipping_insure'];
 
-    /* 支付方式 */
+    /* 支付方式 
     if ($order['pay_id'] > 0)
     {
         $payment = payment_info($order['pay_id']);
@@ -1786,7 +1819,7 @@ elseif ($_REQUEST['step'] == 'done')
     $order['pay_fee'] = $total['pay_fee'];
     $order['cod_fee'] = $total['cod_fee'];
 
-    /* 商品包装 */
+    /* 商品包装 
     if ($order['pack_id'] > 0)
     {
         $pack               = pack_info($order['pack_id']);
@@ -1794,7 +1827,7 @@ elseif ($_REQUEST['step'] == 'done')
     }
     $order['pack_fee'] = $total['pack_fee'];
 
-    /* 祝福贺卡 */
+    /* 祝福贺卡 
     if ($order['card_id'] > 0)
     {
         $card               = card_info($order['card_id']);
@@ -1804,7 +1837,7 @@ elseif ($_REQUEST['step'] == 'done')
 
     $order['order_amount']  = number_format($total['amount'], 2, '.', '');
 
-    /* 如果全部使用余额支付，检查余额是否足够 */
+    /* 如果全部使用余额支付，检查余额是否足够 
     if ($payment['pay_code'] == 'balance' && $order['order_amount'] > 0)
     {
         if($order['surplus'] >0) //余额支付里如果输入了一个金额
@@ -1823,7 +1856,7 @@ elseif ($_REQUEST['step'] == 'done')
         }
     }
 
-    /* 如果订单金额为0（使用余额或积分或红包支付），修改订单状态为已确认、已付款 */
+    /* 如果订单金额为0（使用余额或积分或红包支付），修改订单状态为已确认、已付款 
     if ($order['order_amount'] <= 0)
     {
         $order['order_status'] = OS_CONFIRMED;
@@ -1845,7 +1878,7 @@ elseif ($_REQUEST['step'] == 'done')
     $order['from_ad']          = !empty($_SESSION['from_ad']) ? $_SESSION['from_ad'] : '0';
     $order['referer']          = !empty($_SESSION['referer']) ? addslashes($_SESSION['referer']) : '';
 
-    /* 记录扩展信息 */
+    /* 记录扩展信息 
     if ($flow_type != CART_GENERAL_GOODS)
     {
         $order['extension_code'] = $_SESSION['extension_code'];

@@ -136,7 +136,7 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'gotopage')
         $GLOBALS['smarty']->caching = false;
         $GLOBALS['smarty']->force_compile = true;
 
-        /* 商品购买记录 */
+        /* 商品购买记录 
         $sql = 'SELECT u.user_name, og.goods_number, oi.add_time, IF(oi.order_status IN (2, 3, 4), 0, 1) AS order_status ' .
                'FROM ' . $ecs->table('order_info') . ' AS oi LEFT JOIN ' . $ecs->table('users') . ' AS u ON oi.user_id = u.user_id, ' . $ecs->table('order_goods') . ' AS og ' .
                'WHERE oi.order_id = og.order_id AND ' . time() . ' - oi.add_time < 2592000 AND og.goods_id = ' . $goods_id . ' ORDER BY oi.add_time DESC LIMIT ' . (($page > 1) ? ($page-1) : 0) * 5 . ',5';
@@ -153,7 +153,7 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'gotopage')
         $count = $db->getOne($sql);
 
 
-        /* 商品购买记录分页样式 */
+        /* 商品购买记录分页样式 
         $pager = array();
         $pager['page']         = $page;
         $pager['size']         = $size = 5;
@@ -174,7 +174,8 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'gotopage')
         $GLOBALS['smarty']->force_compile = $need_compile;
     }
 
-    die($json->encode($res));
+    die($json->encode($res));*/
+    }
 }
 
 
@@ -192,12 +193,15 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
     $smarty->assign('id',           $goods_id);
     $smarty->assign('type',         0);
     $smarty->assign('cfg',          $_CFG);
-    $smarty->assign('promotion',       get_promotion_info($goods_id));//促销信息
-	$smarty->assign('comment_percent',     comment_percent($goods_id));  //获取评分
+    //$smarty->assign('promotion',       get_promotion_info($goods_id));//促销信息
+	//$smarty->assign('comment_percent',     comment_percent($goods_id));  //获取评分
     $smarty->assign('promotion_info', get_promotion_info());
 
-    /* 获得商品的信息 */
-    $goods = get_goods_info($goods_id);
+    
+    $goods = get_goods_info($goods_id);			//获得商品的信息 
+    $bidrecord = get_goods_bid($goods_id);		//获得投标记录
+   	$repayrecord = get_goods_repay($goods_id);	//获得还款记录
+    
     //print_r($goods);exit;
 	/* 获取所属大类的名称*/
     $sql = 'select a.cat_name from'.$ecs->table("category").' as a,'.$ecs->table("category").' as b where a.cat_id = b.parent_id and b.cat_id='.$goods["cat_id"];
@@ -240,7 +244,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 
         $smarty->assign('goods',              $goods);
         $smarty->assign('goods_id',           $goods['goods_id']);
-        $smarty->assign('promote_end_time',   $goods['gmt_end_time']);
+        //$smarty->assign('promote_end_time',   $goods['gmt_end_time']);
         $smarty->assign('categories',         get_categories_tree());  // 分类树
 
         /* meta */
@@ -248,7 +252,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('description',        htmlspecialchars($goods['goods_brief']));
 
 
-        $catlist = array();
+        /*$catlist = array();
         foreach(get_parent_cats($goods['cat_id']) as $k=>$v)
         {
             $catlist[] = $v['cat_id'];
@@ -257,7 +261,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         assign_template('c', $catlist);
 
          /* 上一个商品下一个商品 */
-        $prev_gid = $db->getOne("SELECT goods_id FROM " .$ecs->table('goods'). " WHERE cat_id=" . $goods['cat_id'] . " AND goods_id > " . $goods['goods_id'] . " AND is_on_sale = 1 AND is_alone_sale = 1 AND is_delete = 0 LIMIT 1");
+        /*$prev_gid = $db->getOne("SELECT goods_id FROM " .$ecs->table('goods'). " WHERE cat_id=" . $goods['cat_id'] . " AND goods_id > " . $goods['goods_id'] . " AND is_on_sale = 1 AND is_alone_sale = 1 AND is_delete = 0 LIMIT 1");
         if (!empty($prev_gid))
         {
             $prev_good['url'] = build_uri('goods', array('gid' => $prev_gid), $goods['goods_name']);
@@ -287,26 +291,26 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('related_goods',       $linked_goods);                                   // 关联商品
         $smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章
         //$smarty->assign('fittings',            get_goods_fittings(array($goods_id)));                   // 配件
-        $smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
+        //$smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
         //$smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
         //$smarty->assign('bought_goods',        get_also_bought($goods_id));                      // 购买了该商品的用户还购买了哪些商品
-        $smarty->assign('goods_rank',          get_goods_rank($goods_id));                       // 商品的销售排名
-		$smarty->assign('related_cat',         get_related_cat($goods['cat_id'])); 
+        //$smarty->assign('goods_rank',          get_goods_rank($goods_id));                       // 商品的销售排名
+		//$smarty->assign('related_cat',         get_related_cat($goods['cat_id'])); 
 		
-		$smarty->assign('related_brand',         get_related_brand($goods['cat_id'])); 
+		//$smarty->assign('related_brand',         get_related_brand($goods['cat_id'])); 
 		
-		$smarty->assign('top10_brand',          get_top10_brand($goods['brand_id'])); 
+		//$smarty->assign('top10_brand',          get_top10_brand($goods['brand_id'])); 
 		
 		$smarty->assign('top10_category',       get_top10($goods['cat_id'])); 
 		
-		$smarty->assign('top10_price',       get_top10_price($goods['shop_price'])); 
+		//$smarty->assign('top10_price',       get_top10_price($goods['shop_price'])); 
 		
 
 	
 
 		//by mike start
         //组合套餐名
-        $comboTabIndex = array(' ','一', '二', '三','四','五','六','七','八','九','十');
+        /*$comboTabIndex = array(' ','一', '二', '三','四','五','六','七','八','九','十');
         $smarty->assign('comboTab',$comboTabIndex);
         //组合套餐组
         $fittings_list = get_goods_fittings(array($goods_id));
@@ -329,7 +333,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 
         assign_dynamic('goods');
         $volume_price_list = get_volume_price_list($goods['goods_id'], '1');
-        $smarty->assign('volume_price_list',$volume_price_list);    // 商品优惠价格区间
+        $smarty->assign('volume_price_list',$volume_price_list);    // 商品优惠价格区间*/
     }
 }
 

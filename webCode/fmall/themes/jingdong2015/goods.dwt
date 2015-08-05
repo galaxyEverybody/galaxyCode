@@ -59,15 +59,20 @@ function reg(str){
 	                    	<ul>
 	                    		<li class="bond_big_one"><h4><img src="./images/bondyear.gif">&nbsp;年化利率</h4><div class="bond_big_num">{$goods.market_price}<span>%</span></div></li>
 	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;还款期限</h4><div class="bond_big_num">{$goods.goods_number}<span>天</span></div></li>
-	                    		<li class="bond_big_three"><h4><img src="./images/bondnum.jpg">&nbsp;借款金额</h4><div class="bond_big_num">{$goods.shop_price}<span>元</span></div></li>
+	                    		<li class="bond_big_three"><h4><img src="./images/bondnum.jpg">&nbsp;借款金额</h4><div class="bond_big_num"><em id="totalnumprice">{$goods.shop_price}</em><span>元</span></div></li>
 	                    	</ul>
 	                    </div>
 	                	<div id="divProgressbar">
-	                		<div id="divProgressbarblue"></div><span>15%</span>
+	                		<div id="divProgressbarblue"></div><span id="divpercent">15%</span>
 	                	</div>
 		                <script>
 		                	$(function(){
-		                		$("#divProgressbarblue").width(50*6);
+		                		var totalprice = $('#totalnumprice').html();
+		                		var useprice = $('#usenumprice').html();
+		                		var percent = (totalprice-useprice)/totalprice;
+		                		$('#divpercent').html(percent*100+'%');
+		                		var divwidth = 400*percent;
+		                		$("#divProgressbarblue").width(divwidth);
 		                	});
 		                </script>
                     </div>
@@ -100,24 +105,24 @@ function reg(str){
 	            		
 	            		$('#loan_time_dis').html('<span style="color:red;font-size:24px;">'+day+'</span>&nbsp;天&nbsp;<span style="color:red;font-size:24px;">'+hour+'</span>&nbsp;时&nbsp;<span style="color:red;font-size:24px;">'+minite+'</span>&nbsp;分');
 	            	});
+	            	
 	            </script>
         </div>
     	<div class="bondinfo_left">
     		<div class="bondinfo_leftdiv">
+    			<form action="flow.php?step=done" method="post" onsubmit="return checkgoodsform();">
         		<ul class="bondinfo_left_top">
         			<li>
-        				<b>可投金额：</b><span class="bond_left_topsize">{$goods.surplus_price}</span>&nbsp;元
+        				<b>可投金额：</b><span class="bond_left_topsize" id="usenumprice">{$goods.surplus_price}</span>&nbsp;元
         			</li>
         			<li>
-        				<b>账户余额：</b><span class="bond_left_topsize" >{if $goods.user_price == 0}<a style="font-size:14px;" href='user.php'>登录后可见</a>{else}{$goods.user_money}</span>&nbsp;元{/if}
+        				<b>账户余额：</b><span class="bond_left_topsize" >{if $goods.user_money == 'null'}<a style="font-size:14px;" href='user.php'>登录后可见</a>{else}{$goods.user_money}</span>&nbsp;元{/if}
         				<div class="bondinfo_recharge"><a href="">充值</a></div>
         			</li>
         			<li>
         				<div class="bondinfo_left_middle">
 	        				<div style="float:left;">
-	        				<form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
-	        					<input class="recharge_input" type="text" name="" placeholder="投资金额"/>
-	        				</form>
+	        					<input class="recharge_input" id="investamount" type="text" name="investamount" placeholder="投资金额为50的倍数"/>
 	        				</div>
         					<em>元</em>
         				</div>
@@ -137,9 +142,31 @@ function reg(str){
         			<li class="bondinfo_first">全部</li>
         		</ul>
         		<ul class="bondinfo_change">
-        			<div class="bondinfo_tz_bnt">立即投资</div>
+        			<input type="hidden" name="goods_id" id="hidgoodsid" value="{$goods.goods_id}">
+        			<input type="submit" class="bondinfo_tz_bnt" value="立即投资">
 	            </ul>
+	            </form>
              </div>
+             <script>
+             	function checkgoodsform()
+	         	{
+	         		var investnum = $("#investamount").val();
+	         		var goodsid = $("#hidgoodsid").val();
+	         		if(investnum == ''){
+	         			alert('请输入投资金额');
+	         			return false;
+	         		}else{
+	         			if(investnum%50 != 0){
+	         				alert('输入金额必须为50的倍数');
+	         				return false;
+	         			}
+	         		}
+	         		if(goodsid == ''){
+	         			return false;
+	         		}
+	         		return true;
+	         	}
+             </script>
         </div>
             <!--choose end-->
             <span class="clr"></span> 
@@ -177,27 +204,26 @@ function reg(str){
         <div class="detail-content"> {$goods.goods_desc} </div>
       </div>
       <div class="mc hide" id="p-con-attr-con">
-        <div class="detail-correction"> </div>
+        <div class="detail-correction"></div>
         <table cellpadding="0" cellspacing="1" width="100%" border="0" class="Ptable">
           <tbody>
-            <!-- {foreach from=$properties item=property_group key=key} -->
             <tr>
-              <th class="tdTitle" colspan="2">{$key|escape}</th>
+              <th class="tdTitle">序号</th>
+              <th class="tdTitle">投标人</th>
+              <th class="tdTitle">投标金额</th>
+              <th class="tdTitle">投标时间</th>
             </tr>
-            <tr> </tr>
-            
             <!-- {foreach from=$property_group item=property} -->
             <tr>
               <td class="tdTitle">{$property.name|escape:html}</td>
               <td>{$property.value}</td>
             </tr>
             <!-- {/foreach}--> 
-            <!-- {/foreach}-->
           </tbody>
         </table>
       </div>
       <div class="mc hide" id="p-con-list-con">
-        <div class="item-detail">{$goods.packing_list}</div>
+        <div class="item-detail">{$goods.packing_list}aaaaaaaa</div>
       </div>
       <div class="mc hide" id="p-con-guar-con">
         <div class="item-detail">{$goods.customer_service}</div>

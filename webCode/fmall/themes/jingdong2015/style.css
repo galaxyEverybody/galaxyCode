@@ -1272,7 +1272,7 @@ h2,h3{font-size:14px}
 .bond_middle_big .bond_big_num{ font-size:34px;color:#FF500B;margin-top:25px;}
 .bond_middle_big .bond_big_two{ float:left;margin-left:30px;width:150px;height:100px;text-align:center;}
 .bond_middle_big .bond_big_three{ float:left;margin-left:80px;text-align:center;}
-.bond_middle_big #divProgressbar{ width:60%;height:15px;border:1px solid #dddddd;border-radius:5px;background-color:#ddd;}
+.bond_middle_big #divProgressbar{ width:400px;height:15px;border:1px solid #dddddd;border-radius:5px;background-color:#ddd;}
 .bond_middle_big #divProgressbarblue{ height:15px;background-color:#FF500B;float:left;border-radius:5px;}
 .bondinfo_middle_bottom{ width:100%;height:auto;margin-top:20px;line-height:40px;}
 .bondinfo_middle_bottom .bondinfotd{ font-weight:bold;width:230px;font-size:18px;}
@@ -1291,7 +1291,7 @@ h2,h3{font-size:14px}
 .bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #fff;float:left;cursor:pointer;background-color:#fff;}
 .bondinfo_first{ margin-left:15px;float:left;}
 .showhidnum{ display:none;}
-.bondinfo_tz_bnt{ float:left;width:260px;height:35px;background-color:#FF500B;text-align:center;line-height:35px;margin-top:20px;color:#fff;font-weight:bold;font-size:14px;cursor:pointer;}
+.bondinfo_tz_bnt{ border:0px;letter-spacing:2px;float:left;width:260px;height:40px;background-color:#FF500B;text-align:center;line-height:40px;margin-top:20px;color:#fff;font-weight:bold;font-size:14px;cursor:pointer;}
 #summary-grade .star{float:left;margin:1px 5px 0 0}
 #summary #summary-stock{overflow:visible;margin-top:15px}
 .hl_red,a.hl_red,.hl_red:hover,.hl_red:visited,#summary .hl_red{color:#ff500b}
@@ -2545,7 +2545,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .flowBox .cart-hd{ height:auto; padding-top:10px; border-bottom:1px solid #e0e0e0;}
 .flowBox .cart-hd h2{ font-weight: 700; font-size: 16px; height: 26px; line-height: 26px; text-align: center; padding: 0 0 5px; cursor: pointer; margin:0; background:none; border-bottom:2px solid #ff500b; width:auto; color:#ff500b; display:inline-block; float:none; margin-bottom:-2px;}
 .flowBox .cart-hd h2 span{ font-family: verdana; font-size: 14px; float:none; padding-left:5px;}
-.flowBox .cart_order_info{ width:925px;margin:0px auto;padding:25px 30px;background:#F5F5F5 none repeat scroll 0% 0%;box-shadow:1px 1px 3px 0px rgba(0,0,0,0.2)}
+.flowBox .cart_order_info{ width:100%;margin:0px auto;padding:25px 30px;background:#F5F5F5 none repeat scroll 0% 0%;box-shadow:1px 1px 3px 0px rgba(0,0,0,0.2)}
 .flowBox .cart_order_info a{ color:blue;cursor:pointer;}
 .flowBox .cart_order_tz{ border-bottom:2px solid #DEDEDE;line-height:30px;height:30px;}
 .flowBox .cart_order_good{ padding:40px 20px 70px;margin-top:10px;text-align:center;}

@@ -884,9 +884,11 @@ function get_goods_info($goods_id)
 
     /* 获取用户的可用余额 gao*/
     $user_id = $_SESSION['user_id'];
-    $sql = 'select user_money from '.$GLOBALS['ecs']->table('users').' where user_id='.$user_id;
-    $user_money = $GLOBALS['db']->query($sql);
-    $row['user_money'] = $user_money;
+    if(!empty($user_id)){
+	    $sql = 'select user_money from '.$GLOBALS['ecs']->table('users').' where user_id='.$user_id;
+	    $user_money = $GLOBALS['db']->getOne($sql);
+	    $row['user_money'] = $user_money;
+    }
     /* 获取用户的可用余额 gao*/
     
     if ($row !== false)
@@ -940,13 +942,17 @@ function get_goods_info($goods_id)
         $row['goods_number'] = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
         
         /* 修正借款倒计时 gao*/
+        $row['goods_weight_day'] = ceil(($row['goods_weight']-$row['add_time'])/(60*60*24));
         $row['goods_weight']  = $row['goods_weight']-gmtime();
-        $row['goods_weight_day'] = ceil(($row['goods_weight'])/(60*60*24));
+        
         
         /* 修正上架时间显示 */
         $row['add_time']      = local_date($GLOBALS['_CFG']['date_format'], $row['add_time']);
-
-        /* 促销时间倒计时 */
+		
+        /* 账户金额的显示*/
+        $row['user_money'] = isset($row['user_money'])?$row['user_money']:'null';
+        
+        /* 促销时间倒计时 
         $time = gmtime();
         if ($time >= $row['promote_start_date'] && $time <= $row['promote_end_date'])
         {
@@ -961,10 +967,10 @@ function get_goods_info($goods_id)
         $row['goods_number']  = ($GLOBALS['_CFG']['use_storage'] == 1) ? $row['goods_number'] : '';
 
         /* 修正积分：转换为可使用多少积分（原来是可以使用多少钱的积分） */
-        $row['integral']      = $GLOBALS['_CFG']['integral_scale'] ? round($row['integral'] * 100 / $GLOBALS['_CFG']['integral_scale']) : 0;
+        //$row['integral']      = $GLOBALS['_CFG']['integral_scale'] ? round($row['integral'] * 100 / $GLOBALS['_CFG']['integral_scale']) : 0;
 
         /* 修正优惠券 */
-        $row['bonus_money']   = ($row['bonus_money'] == 0) ? 0 : price_format($row['bonus_money'], false);
+        //$row['bonus_money']   = ($row['bonus_money'] == 0) ? 0 : price_format($row['bonus_money'], false);
 
         /* 修正商品图片 */
         $row['goods_img']   = get_image_path($goods_id, $row['goods_img']);
@@ -976,6 +982,33 @@ function get_goods_info($goods_id)
     {
         return false;
     }
+}
+
+/**
+ * 获得商品的投标记录
+ *
+ * @access  public
+ * @param   integer $goods_id
+ * @return  array
+ */
+function get_goods_bid($goods_id)
+{
+	$sql = 'select u.user_name,g.invest_price,o.add_time from '.$GLOBALS['ecs']->table('order_goods').' as g,'.$GLOBALS['ecs']->table('order_info').' as o,'.
+	$GLOBALS['ecs']->table('users').'as u where g.order_id = o.order_id and o.user_id = u.user_id and o.pay_status=1';
+	$goodsbidrecord = $GLOBALS['db']->getAll($sql);
+	/*未完*/
+}
+
+/**
+ * 获得商品的还款记录
+ *
+ * @access  public
+ * @param   integer $goods_id
+ * @return  array
+ */
+function get_goods_repay($goods_id)
+{
+	$sql = 'select where ';
 }
 
 /**

@@ -165,7 +165,7 @@ $_LANG['profile_js']['idcard_error'] = '您输入的身份证号码格式不正�
 $_LANG['pay_name'] = '名称';
 $_LANG['pay_desc'] = '描述';
 $_LANG['pay_fee'] = '手续费';
-$_LANG['consignee_good_name'] = '您选择的基金是';
+$_LANG['consignee_good_name'] = '您申购的产品是';
 
 /* 绑定支付宝*/
 $_LANG['bang_payname'] = '绑定支付宝';
