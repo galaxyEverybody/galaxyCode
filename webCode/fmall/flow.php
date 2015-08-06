@@ -1565,7 +1565,7 @@ elseif ($_REQUEST['step'] == 'done')
 {
 	
     include_once('includes/lib_clips.php');
-    include_once('includes/lib_payment.php');
+    //include_once('includes/lib_payment.php');
 	
     $investprice = trim($_POST['investamount']);
     $goods_id = trim($_POST['goods_id']);
@@ -1578,26 +1578,48 @@ elseif ($_REQUEST['step'] == 'done')
     $goods = $GLOBALS['db']->getRow($sql);
     
     /* 初始化要插入订单的基本件数据 */
-    $parent = array(
+    $order = array(
     		'user_id'       => $_SESSION['user_id'],
-    		'session_id'    => SESS_ID,
     		'goods_number'	=>$goods['goods_number'],
     		'goods_id'      => $goods_id,
     		'goods_sn'      => addslashes($goods['goods_sn']),
     		'product_id'    => $product_info['product_id'],
     		'goods_name'    => addslashes($goods['goods_name']),
     		'market_price'  => $goods['market_price'],
-    		'goods_price'  => $investprice,
+    		'goods_price'  	=> $goods['shop_price'],
+    		'invest_price'  => $investprice,
+    		'order_price'	=> $investprice*0.95,
     		'goods_attr'    => addslashes($goods_attr),
     		'goods_attr_id' => $goods_attr_id,
     		'is_real'       => $goods['is_real'],
     		'extension_code'=> $goods['extension_code'],
     		'is_gift'       => 0,
+    		'parent_id'		=>$goods['cat_id'],
     		'is_shipping'   => $goods['is_shipping'],
-    		'rec_type'      => CART_GENERAL_GOODS
+    		'add_time'      => gmtime(),
+    		'pay_id'		=> 0,
+    		'pay_time'		=>0,
     );
     
-    $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('cart'), $parent, 'INSERT');
+    $new_order_id = $db->insert_id();
+    $order['order_id'] = $new_order_id;
+    /* 插入订单商品 */
+    $error_no = 0;
+    do
+    {
+        $order['order_sn'] = get_order_sn(); //获取新订单号
+        $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('order_goods'), $order, 'INSERT');
+
+        $error_no = $GLOBALS['db']->errno();
+
+        if ($error_no > 0 && $error_no != 1062)
+        {
+            die($GLOBALS['db']->errorMsg());
+        }
+    }
+    while ($error_no == 1062); //如果是订单号重复则重新提交数据
+
+    
     /* 取得购物类型 
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 
@@ -1629,10 +1651,10 @@ elseif ($_REQUEST['step'] == 'done')
      * 如果用户已经登录了则检查是否有默认的收货地址
      * 如果没有登录则跳转到登录和注册页面
      */
-    if (empty($_SESSION['direct_shopping']) && $_SESSION['user_id'] == 0)
+    /*if (empty($_SESSION['direct_shopping']) && $_SESSION['user_id'] == 0)
     {
         /* 用户没有登录且没有选定匿名购物，转向到登录页面 */
-        ecs_header("Location: flow.php?step=login\n");
+       /* ecs_header("Location: flow.php?step=login\n");
         exit;
     }
 
@@ -1907,7 +1929,7 @@ elseif ($_REQUEST['step'] == 'done')
     }
     $order['parent_id'] = $parent_id;
 
-    /* 插入订单表 */
+    /* 插入订单表 
     $error_no = 0;
     do
     {
@@ -1926,7 +1948,7 @@ elseif ($_REQUEST['step'] == 'done')
     $new_order_id = $db->insert_id();
     $order['order_id'] = $new_order_id;
 
-    /* 插入订单商品 */
+    /* 插入订单商品 
     $sql = "INSERT INTO " . $ecs->table('order_goods') . "( " .
                 "order_id, goods_id, goods_name, goods_sn, product_id, goods_number, market_price, ".
                 "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, goods_attr_id) ".
@@ -1935,14 +1957,14 @@ elseif ($_REQUEST['step'] == 'done')
             " FROM " .$ecs->table('cart') .
             " WHERE session_id = '".SESS_ID."' AND rec_type = '$flow_type'";
     $db->query($sql);
-    /* 修改拍卖活动状态 */
+    /* 修改拍卖活动状态 
     if ($order['extension_code']=='auction')
     {
         $sql = "UPDATE ". $ecs->table('goods_activity') ." SET is_finished='2' WHERE act_id=".$order['extension_id'];
         $db->query($sql);
     }
 
-    /* 处理余额、积分、红包 */
+    /* 处理余额、积分、红包 
     if ($order['user_id'] > 0 && $order['surplus'] > 0)
     {
         log_account_change($order['user_id'], $order['surplus'] * (-1), 0, 0, 0, sprintf($_LANG['pay_order'], $order['order_sn']));
@@ -1958,7 +1980,7 @@ elseif ($_REQUEST['step'] == 'done')
         use_bonus($order['bonus_id'], $new_order_id);
     }
 
-    /* 如果使用库存，且下订单时减库存，则减少库存 */
+    /* 如果使用库存，且下订单时减库存，则减少库存 
     if ($_CFG['use_storage'] == '1' && $_CFG['stock_dec_time'] == SDT_PLACE)
     {
         change_order_goods_storage($order['order_id'], true, SDT_PLACE);
@@ -1987,7 +2009,7 @@ elseif ($_REQUEST['step'] == 'done')
         $sms->send($_CFG['sms_shop_mobile'], sprintf($msg, $order['consignee'], $order['tel']),'', 13,1);
     }
 
-    /* 如果订单金额为0 处理虚拟卡 */
+    /* 如果订单金额为0 处理虚拟卡 
     if ($order['order_amount'] <= 0)
     {
         $sql = "SELECT goods_id, goods_name, goods_number AS num FROM ".
@@ -2005,30 +2027,30 @@ elseif ($_REQUEST['step'] == 'done')
 
         if ($virtual_goods AND $flow_type != CART_GROUP_BUY_GOODS)
         {
-            /* 虚拟卡发货 */
+            /* 虚拟卡发货 
             if (virtual_goods_ship($virtual_goods,$msg, $order['order_sn'], true))
             {
-                /* 如果没有实体商品，修改发货状态，送积分和红包 */
+                /* 如果没有实体商品，修改发货状态，送积分和红包 
                 $sql = "SELECT COUNT(*)" .
                         " FROM " . $ecs->table('order_goods') .
                         " WHERE order_id = '$order[order_id]' " .
                         " AND is_real = 1";
                 if ($db->getOne($sql) <= 0)
                 {
-                    /* 修改订单状态 */
+                    /* 修改订单状态 
                     update_order($order['order_id'], array('shipping_status' => SS_SHIPPED, 'shipping_time' => gmtime()));
 
-                    /* 如果订单用户不为空，计算积分，并发给用户；发红包 */
+                    /* 如果订单用户不为空，计算积分，并发给用户；发红包 
                     if ($order['user_id'] > 0)
                     {
-                        /* 取得用户信息 */
+                        /* 取得用户信息 
                         $user = user_info($order['user_id']);
 
-                        /* 计算并发放积分 */
+                        /* 计算并发放积分 
                         $integral = integral_to_give($order);
                         log_account_change($order['user_id'], 0, 0, intval($integral['rank_points']), intval($integral['custom_points']), sprintf($_LANG['order_gift_integral'], $order['order_sn']));
 
-                        /* 发放红包 */
+                        /* 发放红包 
                         send_order_bonus($order['order_id']);
                     }
                 }
@@ -2037,16 +2059,16 @@ elseif ($_REQUEST['step'] == 'done')
 
     }
 
-    /* 清空购物车 */
+    /* 清空购物车 
     clear_cart($flow_type);
     /* 清除缓存，否则买了商品，但是前台页面读取缓存，商品数量不减少 */
     clear_all_files();
 
     /* 插入支付日志 */
-    $order['log_id'] = insert_pay_log($new_order_id, $order['order_amount'], PAY_ORDER);
+    $order['log_id'] = insert_pay_log($order['order_sn'], $order['order_price'], PAY_ORDER);
 
     /* 取得支付信息，生成支付代码 */
-    if ($order['order_amount'] > 0)
+    /*if ($order['order_amount'] > 0)
     {
         $payment = payment_info($order['pay_id']);
 
@@ -2066,15 +2088,16 @@ elseif ($_REQUEST['step'] == 'done')
     }
 
     /* 订单信息 */
-    $smarty->assign('order',      $order);
-    $smarty->assign('total',      $total);
-    $smarty->assign('goods_list', $cart_goods);
-    $smarty->assign('order_submit_back', sprintf($_LANG['order_submit_back'], $_LANG['back_home'], $_LANG['goto_user_center'])); // 返回提示
-
-    user_uc_call('add_feed', array($order['order_id'], BUY_GOODS)); //推送feed到uc
-    unset($_SESSION['flow_consignee']); // 清除session中保存的收货人信息
-    unset($_SESSION['flow_order']);
-    unset($_SESSION['direct_shopping']);
+    $smarty->assign('ordername',      $order['goods_name']);
+    $smarty->assign('market_price',      intval($order['market_price']));
+    $smarty->assign('invest_price',      $order['invest_price']);
+    //user_uc_call('add_feed', array($order['order_id'], BUY_GOODS)); //推送feed到uc
+    //$smarty->assign('total',      $total);
+    //$smarty->assign('goods_list', $cart_goods);
+    //$smarty->assign('order_submit_back', sprintf($_LANG['order_submit_back'], $_LANG['back_home'], $_LANG['goto_user_center'])); // 返回提示
+    //unset($_SESSION['flow_consignee']); // 清除session中保存的收货人信息
+    //unset($_SESSION['flow_order']);
+    //unset($_SESSION['direct_shopping']);
 }
 elseif ($_REQUEST['step'] == 'ajax_drop_goods')
 {

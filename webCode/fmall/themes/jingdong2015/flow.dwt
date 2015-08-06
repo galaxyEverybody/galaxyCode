@@ -373,7 +373,7 @@
     <img style="float:left" src="images/flow_bottom.gif"> </div>
   <!-- {/if} --> 
   
-<!-- {if $step eq "checkout"} 开始订单确认界面 -->
+<!-- {if $step eq "done"} 开始订单确认界面 -->
 <div class="flowCheckoutBox" >
     <div class="flowBox_cart">
         <div id="content">
@@ -381,47 +381,56 @@
             <div class="mc" style="border-bottom:1px solid #DDD;">
                 <form action="flow.php" method="post" name="theForm" id="theForm" onsubmit="return checkOrderForm(this)">
                     <div class="checkout-steps">
-                        <h3>{$lang.consignee_good_name}：{$goods.goods_name}</h3>
-                        <div class="extra-r"><a href="flow.php?step=consignee" class="f6">{$lang.modify}收货地址</a></div>
+                        
+                        <div class="extra-r" style="display:none;"><a href="flow.php?step=consignee" class="f6">{$lang.modify}收货地址</a></div>
                     </div>
                     <div class="step-cont">
                         <div id="consignee-addr">
+                        	<div class="consigneetop">
+                        	<div class="consigneemiddle"></div>
                             <div class="consignee-cont">
-                                <ul style="font-size:18px;">
+                            	<h3>{$lang.consignee_good_name}：{$ordername}</h3>
+                                <ul>
                                     <li>
-                                    	<h4>利率</h4>
-                                    	<div>{$goods.formated_goods_price}</div>
+                                    	<div class="consigneenum">{$market_price}<span>%</span></div>
+                                    	<p class="consigneechin">利率</p>
                                     </li>
                                     <li>
-                                    	<h4>申购金额(元)</h4>
-                                    	<div>{$goods.formated_goods_price}</div>
+                                    	<div class="consigneenum">{$invest_price}<span>.00</span></div>
+                                    	<p class="consigneechin">申购金额</p>
                                     </li>
                                 </ul>
+                            </div>
                             </div>
                         </div>
                     </div>
                     <!--{if $is_exchange_goods neq 1 || $total.real_goods_count neq 0}-->
-                    <div class="checkout-steps">
+                    <div class="checkout-steps" style="margin-top:70px;">
                         <h3>{$lang.payment_method}</h3>
                     </div>
-                    <div class="step-cont">
+                    <div class="step-cont" style="padding-bottom:70px;">
                         <div class="payment-list">
                             <div class="list-cont">
                                 <ul>
-                                	<!-- {foreach from=$payment_list item=payment name=foo} 循环支付方式 --> 
                                     <li>
-                                        <div class="payment-item hoverInput">
-                                        	<label for="payment_{$smarty.foreach.foo.iteration}"><b></b>{$payment.pay_name}</label>
-                                            <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_{$smarty.foreach.foo.iteration}" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/>
+                                        <div class="payment-item hoverInput" style="color:blue;">
+                                        	<label for="payment_style"><b></b>余额支付</label>
+                                            <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_style" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/>
                                             <div class="text"><span><i></i></span>{$lang.pay_fee}：{$payment.format_pay_fee}</div>
                                         </div>
                                     </li>
-                                    <!-- {/foreach} 循环支付方式 -->
+                                    <li>
+	                                    <div class="payment-item hoverInput" style="color:blue;">
+	                                    	<label for="payment_style"><b></b>网银快捷通道</label>
+	                                        <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_style" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/>
+	                                        <div class="text"><span><i></i></span>{$lang.pay_fee}：{$payment.format_pay_fee}</div>
+	                                    </div>
+	                                </li>
                                 </ul>
                                 <div class="blank0"></div>
                             </div>
                         </div>
-                        <div class="step-sub"><button>提交</button></div>
+                        <div class="step-sub"><input type="submit" value="确认支付"></div>
                     </div>
                     <!--{else}-->
                     <input name = "payment" type="radio" value = "-1" checked="checked"  style="display:none"/>
@@ -480,47 +489,6 @@
 </script>
 <!-- {/if} --> 
   
-  <!-- {if $step eq "done"} --> 
-  <!-- 订单提交成功 -->
-  <div class="flowBox" style="margin:30px auto 70px auto;">
-    <h6 style="text-align:center; height:30px; line-height:30px;">{$lang.remember_order_number}: <font style="color:red">{$order.order_sn}</font></h6>
-    <table width="99%" align="center" border="0" cellpadding="15" cellspacing="0" bgcolor="#fff" style="border:1px solid #ddd; margin:20px auto;" >
-      <tr>
-        <td align="center" bgcolor="#FFFFFF"><!--{if $order.shipping_name}-->{$lang.select_shipping}: <strong>{$order.shipping_name}</strong>，<!--{/if}-->{$lang.select_payment}: <strong>{$order.pay_name}</strong>。{$lang.order_amount}: <strong>{$total.amount_formated}</strong></td>
-      </tr>
-      <tr>
-        <td align="center" bgcolor="#FFFFFF">{$order.pay_desc}</td>
-      </tr>
-      <!-- {if $pay_online} --> 
-      <!-- 如果是线上支付则显示支付按钮 -->
-      <tr>
-        <td align="center" bgcolor="#FFFFFF">{$pay_online}</td>
-      </tr>
-      <!-- {/if} -->
-    </table>
-    <!--{if $virtual_card}-->
-    <div style="text-align:center;overflow:hidden;border:1px solid #E2C822;background:#FFF9D7;margin:10px;padding:10px 50px 30px;"> 
-      <!--{foreach from=$virtual_card item=vgoods}-->
-      <h3 style="color:#2359B1; font-size:12px;">{$vgoods.goods_name}</h3>
-      <!--{foreach from=$vgoods.info item=card}-->
-      <ul style="list-style:none;padding:0;margin:0;clear:both">
-        <!--{if $card.card_sn}-->
-        <li style="margin-right:50px;float:left;"> <strong>{$lang.card_sn}:</strong><span style="color:red;">{$card.card_sn}</span> </li>
-        <!--{/if}--> 
-        <!--{if $card.card_password}-->
-        <li style="margin-right:50px;float:left;"> <strong>{$lang.card_password}:</strong><span style="color:red;">{$card.card_password}</span> </li>
-        <!--{/if}--> 
-        <!--{if $card.end_date}-->
-        <li style="float:left;"> <strong>{$lang.end_date}:</strong>{$card.end_date} </li>
-        <!--{/if}-->
-      </ul>
-      <!--{/foreach}--> 
-      <!--{/foreach}--> 
-    </div>
-    <!--{/if}-->
-    <p style="text-align:center; margin-bottom:20px;">{$order_submit_back}</p>
-  </div>
-  <!-- {/if} --> 
   <!-- {if $step eq "login"} --> 
   {insert_scripts files='utils.js,user.js'} 
   <script type="text/javascript">

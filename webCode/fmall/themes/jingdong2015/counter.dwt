@@ -17,10 +17,7 @@
 <link href="{$cat_style}" rel="stylesheet" type="text/css" />
 <!-- {/if} -->
 {* 包含脚本文件 *}
-{insert_scripts files='common.js,user.js'}
-{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,jd_common_flow.js'}
-{insert_scripts files='transport_jquery.js,utils.js,jquery.SuperSlide.js'}
-{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
+{insert_scripts files='transport_jquery.js,utils.js,transport.js'}
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
@@ -34,16 +31,16 @@
 			<table style="width:100%;height:300px;margin-top:30px;font-size:16px;font-weight:bold;" border="0">
 				<tr>
 					<td style="width:120px;text-align:center;">出借金额:</td>
-					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="countersum" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">元</span></div></td>
+					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="countersum" id="countersum" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">元</span></div></td>
 					<td style="width:120px;text-align:center;">年化利率:</td>
-					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="counterrate" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">%</span></div></td>
+					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="counterrate" id="counterrate" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">%</span></div></td>
 				</tr>
 				<tr>
 					<td style="width:120px;text-align:center;">借款期限:</td>
-					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="countertime" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">月</span></div></td>
+					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="countertime" id="countertime" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">月</span></div></td>
 					<td style="width:120px;text-align:center;">还款方式:</td>
 					<td style="width:440px">
-						<select name = "countertype" style="width:390px;height:35px;">
+						<select name = "countertype" id="countertype" style="width:390px;height:35px;">
 							<option value=1>按月等额本息</option>
 							<option value=2>按月还息到期还本</option>
 							<option value=3>到期还本息</option>
@@ -55,7 +52,7 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="center">
-					<input onclick="counterajax();" style="margin-top:20px;width:180px;height:40px;background:#FF8201;border:1px solid #FF8201;color:#fff;font-weight:bold;font-size:18px;border-radius:3px;" type="submit" value="开始计算"/>
+					<input onclick="counterajax();" style="margin-top:20px;width:180px;height:40px;background:#FF8201;border:0px solid #FF8201;color:#fff;font-weight:bold;font-size:18px;border-radius:3px;" type="submit" value="开始计算"/>
 					<input style="margin-top:20px;margin-left:20px;width:180px;height:40px;background:#ADABAC;border:1px solid #ADABAC;color:#fff;font-weight:bold;font-size:18px;border-radius:3px;" type="reset" value="重置"/>
 					</td>
 				</tr>
@@ -65,7 +62,7 @@
 		<div style="width:100%;height:40px;line-height:40px;"><div style="width:6px;height:40px;background:#FF500B;float:left;"></div><span style="font-size:26px;font-weight:bold;float:left;">还款时间表</span></div>
 		<div style="width:100%;height:auto;">
 			<table width="100%" style="margin-bottom:50px;">
-				<tr style="height:40px;background:#F7F7F7;"><th>期号</th><th>本期待收</th><th>含：利息</th><th>含：本金</th><th>到期日期</th><th>星期</th><th>净利息</th><th>净待收</th></tr>
+				<tr style="height:40px;background:#F7F7F7;"><th>月份</th><th>月收本息</th><th>月收本金</th><th>月收利息</th><th>待收本息</th></tr>
 			</table>
 		</div>
 	</div>
@@ -74,11 +71,12 @@
 <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 <script>
 	function counterajax(){
-		var csum = $("input[name='countersum']")[0].value();
-		var crate = $("input[name='counterrate']")[0].value();
-		var ctime = $("input[name='countertime']")[0].value();
-		var ctype = $("input[name='countertime']")[0].value();
-		Ajax.call("user.php?act='countercount'",'csum=' + csum + '&crate=' + crate + '&ctime=' + ctime + '&ctype=' + ctype, counter_callback , 'GET', 'TEXT', true, true );
+		var csum = $("#countersum").val();
+		var crate = $("#counterrate").val();
+		var ctime = $("#countertime").val();
+		var ctype = $("#countertype").val();
+
+		Ajax.call( 'counter.php?act=countercount','csum=' + csum + '&crate=' + crate + '&ctime=' + ctime + '&ctype=' + ctype, counter_callback , 'GET', 'TEXT', true, true );
 	}
 	function counter_callback(result){
 		alert(result);

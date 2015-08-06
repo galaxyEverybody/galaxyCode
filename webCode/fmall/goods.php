@@ -250,7 +250,16 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         /* meta */
         $smarty->assign('keywords',           htmlspecialchars($goods['keywords']));
         $smarty->assign('description',        htmlspecialchars($goods['goods_brief']));
-
+        $smarty->assign('navigator_list',        get_navigator($ctype, $catlist));  //自定义导航栏
+        if (!empty($GLOBALS['_CFG']['search_keywords']))
+        {
+        	$searchkeywords = explode(',', trim($GLOBALS['_CFG']['search_keywords']));
+        }
+        else
+        {
+        	$searchkeywords = array();
+        }
+        $smarty->assign('searchkeywords', $searchkeywords);	//热搜关键词
 
         /*$catlist = array();
         foreach(get_parent_cats($goods['cat_id']) as $k=>$v)

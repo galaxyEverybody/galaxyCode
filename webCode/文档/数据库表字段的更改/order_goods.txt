@@ -1,0 +1,13 @@
+增加:user_id (mediumint) {会员id}
+
+增加:order_sn (mediumint) {订单号}
+
+增加:invest_price (mecimal) {投标金额}
+
+增加:order_price (mecimal) {订单金额}
+
+增加:add_time (int) {添加时间}
+
+增加:pay_time (int) {支付时间}
+
+增加:pay_id (tinyint) {支付方式}
