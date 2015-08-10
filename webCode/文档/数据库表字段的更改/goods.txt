@@ -10,6 +10,6 @@ warn_number(商品报警数量)=》还款方式(tinyint) {1=>按月等额本息,
 
 增加：surplus_price(可投金额)(decimal)
 
-增加:good_status(产品状态)(tinyint){0=>发布状态需要审核,1=>投标中,2=>不可投}
+增加:good_status(产品状态)(tinyint){0=>发布状态需要审核,1=>投标中,2=>已投满还款中,3=>已结清}
 
 			

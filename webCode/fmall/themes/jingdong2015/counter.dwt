@@ -24,22 +24,22 @@
 
 <div class="w main">
 	<div class="blank10"></div>
-    <div style="width:100%;height:auto;margin-bottom:50px;">
-		<div style="width:100%;height:60px;line-height:60px;background:#F7F7F7;background:url(images/tubiao.png) no-repeat 10px;"><span style="font-size:26px;font-weight:bold;float:left;margin-left:50px;">理财计算器</span></div>
+    <div class="miancounter">
+		<div class="countercont"><span>理财计算器</span></div>
 		<div style="width:90%;height:360px;">
 			<form action="#" post="" onsubmit="return false">
-			<table style="width:100%;height:300px;margin-top:30px;font-size:16px;font-weight:bold;" border="0">
+			<table class="countertable" border="0">
 				<tr>
-					<td style="width:120px;text-align:center;">出借金额:</td>
-					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="countersum" id="countersum" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">元</span></div></td>
-					<td style="width:120px;text-align:center;">年化利率:</td>
-					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="counterrate" id="counterrate" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">%</span></div></td>
+					<td class="countertablefirst">出借金额:</td>
+					<td class="countertabletd"><div class="tableinputdiv"><input type="text" name="countersum" id="countersum" placeholder="请输入10的倍数" class="tableinput"><span>元</span></div></td>
+					<td class="countertablefirst">年化利率:</td>
+					<td class="countertabletd"><div class="tableinputdiv"><input type="text" name="counterrate" id="counterrate" placeholder="请输入1-30的整数" class="tableinput"><span>%</span></div></td>
 				</tr>
 				<tr>
-					<td style="width:120px;text-align:center;">借款期限:</td>
-					<td style="width:440px"><div style="width:390px;height:35px;border:1px solid #ddd;float:left;"><input type="text" name="countertime" id="countertime" style="width:360px;height:30px;float:left;border:none;outline:none;font-size:14px;"><span style="float:left;line-height:35px;height:35px;margin-left:5px;">月</span></div></td>
-					<td style="width:120px;text-align:center;">还款方式:</td>
-					<td style="width:440px">
+					<td class="countertablefirst">借款期限:</td>
+					<td class="countertabletd"><div class="tableinputdiv"><input type="text" name="countertime" id="countertime" placeholder="请输入1-36的整数" class="tableinput"><span>月</span></div></td>
+					<td class="countertablefirst">还款方式:</td>
+					<td class="countertabletd">
 						<select name = "countertype" id="countertype" style="width:390px;height:35px;">
 							<option value=1>按月等额本息</option>
 							<option value=2>按月还息到期还本</option>
@@ -52,22 +52,21 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="center">
-					<input onclick="counterajax();" style="margin-top:20px;width:180px;height:40px;background:#FF8201;border:0px solid #FF8201;color:#fff;font-weight:bold;font-size:18px;border-radius:3px;" type="submit" value="开始计算"/>
-					<input style="margin-top:20px;margin-left:20px;width:180px;height:40px;background:#ADABAC;border:1px solid #ADABAC;color:#fff;font-weight:bold;font-size:18px;border-radius:3px;" type="reset" value="重置"/>
+					<input onclick="counterajax();" class="countersubmit" type="submit" value="开始计算"/>
+					<input class="counterreset" type="reset" value="重置"/>
 					</td>
 				</tr>
 			</table>
 			</form>
 		</div>
-		<div style="width:100%;height:40px;line-height:40px;"><div style="width:6px;height:40px;background:#FF500B;float:left;"></div><span style="font-size:26px;font-weight:bold;float:left;">还款时间表</span></div>
+		<div class="tabletime"><div class="tabletimeleft"></div><span>还款时间表</span></div>
 		<div style="width:100%;height:auto;">
-			<table width="100%" style="margin-bottom:50px;">
-				<tr style="height:40px;background:#F7F7F7;"><th>月份</th><th>月收本息</th><th>月收本金</th><th>月收利息</th><th>待收本息</th></tr>
+			<table width="100%" class="repaymenttable" id="countertable">
+				<tr class="repaymenttabletr"><th>月份</th><th>月收本息</th><th>月收本金</th><th>月收利息</th><th>待收本息</th></tr>
 			</table>
 		</div>
 	</div>
 </div>
-
 <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 <script>
 	function counterajax(){
@@ -76,11 +75,51 @@
 		var ctime = $("#countertime").val();
 		var ctype = $("#countertype").val();
 
+		if(csum == ''){
+			alert('出借金额不可以为空');
+			return false;
+		}else{
+			if(csum%10 != 0){
+				alert('出借金额为10的倍数');
+				return false;
+			}
+		}
+		if(crate == ''){
+			alert('年化利率不可以为空');
+			return false;
+		}else{
+			if(crate < 1 || crate > 30){
+				alert('年化利率的范围是1-30的正整数');
+				return false;
+			}
+			var re = /^[0-9]*[1-9][0-9]*$/ ;
+			if(!re.test(crate)){
+				alert('请输入正整数');
+				return false;
+			}
+		}
+		if(ctime == ''){
+			alert('借款时间不可以为空');
+			return false;
+		}else{
+			if(ctime<1 || ctime>36){
+				alert('借款时间的范围是1-36的正整数');
+				return false;
+			}
+			var re = /^[0-9]*[1-9][0-9]*$/ ;
+			if(!re.test(ctime)){
+				alert('请输入正整数');
+				return false;
+			}
+		}
+		
+		
 		Ajax.call( 'counter.php?act=countercount','csum=' + csum + '&crate=' + crate + '&ctime=' + ctime + '&ctype=' + ctype, counter_callback , 'GET', 'TEXT', true, true );
 	}
 	function counter_callback(result){
-		alert(result);
+		$("#countertable").html(result);
 	}
+
 </script>
 </body>
 </html>

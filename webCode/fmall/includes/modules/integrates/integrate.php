@@ -64,6 +64,9 @@ class integrate
 
     /* 会员生日 */
     var $field_bday = '';
+    
+    /* 会员的手机状态*/
+    var $field_telestatus = '';
 
     /* 注册日期的字段名 */
     var $field_reg_date = '';
@@ -230,10 +233,15 @@ class integrate
         if (!$reg_date)
         {
             $fields[] = $this->field_reg_date;
-            $reg_date = time();
+            $reg_date = gmtime();
             $values[] = $reg_date;
         }
-
+		
+        if (!$field_telestatus)
+        {
+        	$fields[] = $this->field_telestatus;
+        	$values[] = 1;
+        }
         $sql = "INSERT INTO " . $this->table($this->user_table).
                " (" . implode(',', $fields) . ")".
                " VALUES ('" . implode("', '", $values) . "')";

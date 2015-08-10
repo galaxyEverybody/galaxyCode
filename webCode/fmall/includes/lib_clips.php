@@ -248,20 +248,25 @@ function delete_tag($tag_words, $user_id)
 }
 
 /**
- *  获取某用户的缺货登记列表
+ *  获取我的债券列表
  *
  * @access  public
  * @param   int     $user_id        用户ID
  * @param   int     $num            列表最大数量
- * @param   int     $start          列表其实位置
+ * @param   int     $start          列表起始位置
+ * @param   int     $type           债券的类型
  *
  * @return  array   $booking
  */
-function get_booking_list($user_id, $num, $start)
+function get_booking_list($user_id, $num, $start, $type)
 {
     $booking = array();
-    $sql = "SELECT bg.rec_id, bg.goods_id, bg.goods_number, bg.booking_time, bg.dispose_note, g.goods_name ".
-           "FROM " .$GLOBALS['ecs']->table('booking_goods')." AS bg , " .$GLOBALS['ecs']->table('goods')." AS g". " WHERE bg.goods_id = g.goods_id AND bg.user_id = '$user_id' ORDER BY bg.booking_time DESC";
+    //echo $type;exit;
+    
+    $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
+            "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
+                     $GLOBALS['ecs']->table('order_goods') . " AS o " .
+            "WHERE g.goods_id = o.goods_id AND o.pay_status = 1 AND g.good_status = ".$type." AND user_id = '$user_id' order by o.rec_id desc";
     $res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
 
     while ($row = $GLOBALS['db']->fetchRow($res))
@@ -270,12 +275,36 @@ function get_booking_list($user_id, $num, $start)
         {
             $row['dispose_note'] = 'N/A';
         }
-        $booking[] = array('rec_id'       => $row['rec_id'],
-                           'goods_name'   => $row['goods_name'],
-                           'goods_number' => $row['goods_number'],
-                           'booking_time' => local_date($GLOBALS['_CFG']['date_format'], $row['booking_time']),
-                           'dispose_note' => $row['dispose_note'],
-                           'url'          => build_uri('goods', array('gid'=>$row['goods_id']), $row['goods_name']));
+        if($type == 1){
+        	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
+        					'market_price'  => $row['market_price'].'%',	//年利率
+                           'surprice'   	=> ($row['shop_price'] - $row['surplus_price'])/$row['shop_price'].'%',	//进度
+                           'limit_time' 	=> ceil(($row['goods_number'] - $row['add_time'])/(60*60*24)),	//到期时间
+                           'overplus_time'  => ceil(($row['goods_number'] - gmtime())/(60*60*24)),			//剩余时间
+        					'good_id'		=> $row['goods_sn']		//债券id
+        				);
+        }
+        if($type == 2){
+        	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
+        			'market_price'  => $row['market_price'],	//年利率
+        			'collect_interest'   	=> ($row['shop_price']*$row['market_price'])/365*(($row['goods_number'] - $row['add_time'])/60*60*24),	//待收本息
+        			'month_interest' 	=> ($row['shop_price']*$row['market_price'])/365*(date('t',gmtime())),	//月收本息
+        			'overplus_time'  => ($row['goods_number'] - gmtime())/60*60*24,			//下个还款日
+        			'overplus_time'  => ($row['goods_number'] - gmtime())/60*60*24,			//状态
+        			'good_id'		=> $row['goods_sn']		//债券id
+        	);
+        }
+        if($type == 3){
+        	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
+        			'market_price'  => $row['market_price'],	//年利率
+        			'shop_price'   	=> ($row['shop_price'] - $row['surplus_price'])/$row['shop_price'],	//回收金额
+        			'limit_time' 	=> ($row['goods_number'] - $row['add_time'])/(60*60*24),	//已转金额
+        			'overplus_time'  => local_getdate($row['goods_number']),			//结清日期
+        			'overplus_time'  => ($row['goods_number'] - gmtime())/60*60*24,			//结清方式
+        			'good_id'		=> $row['goods_sn']		//债券id
+        	);
+        }
+        
     }
 
     return $booking;
@@ -565,12 +594,17 @@ function get_user_default($user_id)
 {
     $user_bonus = get_user_bonus();
 
-    $sql = "SELECT pay_points, user_money, credit_line, last_login, is_validated FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id = '$user_id'";
+    $sql = "SELECT pay_points, user_money, credit_line, last_login, is_validated, phonestatus, emailstatus, idcardstatus, bangcardstatus FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id = '$user_id'";
     $row = $GLOBALS['db']->getRow($sql);
     $info = array();
     $info['username']  = stripslashes($_SESSION['user_name']);
     $info['shop_name'] = $GLOBALS['_CFG']['shop_name'];
     $info['integral']  = $row['pay_points'] . $GLOBALS['_CFG']['integral_name'];
+    $info['phonestatus'] = $row['phonestatus'];
+    $info['emailstatus'] = $row['emailstatus'];
+    $info['idcardstatus'] = $row['idcardstatus'];
+    $info['bangcardstatus'] = $row['bangcardstatus'];
+    
     /* 增加是否开启会员邮件验证开关 */
     $info['is_validate'] = ($GLOBALS['_CFG']['member_email_validate'] && !$row['is_validated'])?0:1;
     $info['credit_line'] = $row['credit_line'];
@@ -586,17 +620,33 @@ function get_user_default($user_id)
 
     $info['last_time'] = local_date($GLOBALS['_CFG']['time_format'], $last_time);
     $info['surplus']   = price_format($row['user_money'], false);
+    $info['frozen']   = price_format($row['frozen_money'], false);
     $info['bonus']     = sprintf($GLOBALS['_LANG']['user_bonus_info'], $user_bonus['bonus_count'], price_format($user_bonus['bonus_value'], false));
 
-    $sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('order_info').
+    $sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('order_goods').
             " WHERE user_id = '" .$user_id. "' AND add_time > '" .local_strtotime('-1 months'). "'";
     $info['order_count'] = $GLOBALS['db']->getOne($sql);
-
+    /* 理财资产*/
+    $sqlsum = "SELECT SUM(invest_price) FROM ".$GLOBALS['ecs']->table('order_goods')." where pay_status = 1 and user_id =".$user_id;
+    $info['order_sum'] = $GLOBALS['db']->getOne($sqlsum);
+    
+    $info['order_sum'] = empty($info['order_sum'])?'0.00':$info['order_sum'];
+    /* 借款负债*/
+    $sqlborrow = "SELECT SUM(borrow_num) FROM ".$GLOBALS['ecs']->table('user_borrow')." where borrow_status = 1 and user_id =".$user_id;
+    $info['borrow_sum'] = $GLOBALS['db']->getOne($sqlborrow);
+    
+    $info['borrow_sum'] = empty($info['borrow_sum'])?'0.00':$info['borrow_sum'];
+    /* 账户净资产*/
+    $info['account_sum'] = $info['order_sum'] - $info['borrow_sum'] + $info['surplus'];
+    $info['account_sum'] = empty($info['account_sum'])?'0.00':$info['account_sum'];
+    
     include_once(ROOT_PATH . 'includes/lib_order.php');
     $sql = "SELECT order_id, order_sn ".
             " FROM " .$GLOBALS['ecs']->table('order_info').
             " WHERE user_id = '" .$user_id. "' AND shipping_time > '" .$last_time. "'". order_query_sql('shipped');
     $info['shipped_order'] = $GLOBALS['db']->getAll($sql);
+    
+    
 
     return $info;
 }

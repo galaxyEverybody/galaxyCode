@@ -1399,6 +1399,7 @@ function addto_cart_combo($goods_id, $num = 1, $spec = array(), $parent = 0, $gr
         'is_real'       => $goods['is_real'],
         'extension_code'=> $goods['extension_code'],
         'is_gift'       => 0,
+    	'pay_stauts'	=> 0,
         'is_shipping'   => $goods['is_shipping'],
         'rec_type'      => CART_GENERAL_GOODS,
         'group_id'      => $group

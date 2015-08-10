@@ -1596,15 +1596,27 @@ elseif ($action == 'booking_list')
 
     $page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
 
-    /* 获取缺货登记的数量 */
-    $sql = "SELECT COUNT(*) " .
-            "FROM " .$ecs->table('booking_goods'). " AS bg, " .
-                     $ecs->table('goods') . " AS g " .
-            "WHERE bg.goods_id = g.goods_id AND user_id = '$user_id'";
-    $record_count = $db->getOne($sql);
+    /* 我的债券 */
+    $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
+            "FROM " .$ecs->table('goods'). " AS g, " .
+                     $ecs->table('order_goods') . " AS o " .
+            "WHERE g.goods_id = o.goods_id AND o.pay_status = 1 AND user_id = '$user_id'";
+    $bonds_info = $db->getAll($sql);
+    
+    foreach($bonds_info as $bondinfo){
+    	if($bondinfo['good_status'] == 1){
+    		$bid_info[] = $bondinfo;
+    	}elseif($bondinfo['good_status'] == 2){
+    		$recover_info[] = $bondinfo;
+    	}elseif($bondinfo['good_status'] == 3){
+    		$bond_over[] = $bondinfo;
+    	}
+    } 
+    
     $pager = get_pager('user.php', array('act' => $action), $record_count, $page);
-
-    $smarty->assign('booking_list', get_booking_list($user_id, $pager['size'], $pager['start']));
+    $smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], 1));
+    $smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], 2));
+    $smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], 3));
     $smarty->assign('pager',        $pager);
     $smarty->display('user_clips.dwt');
 }
