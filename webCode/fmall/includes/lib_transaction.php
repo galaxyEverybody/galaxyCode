@@ -589,8 +589,9 @@ function insert_borrow($borrow_money)
 function insert_bangcard($bangcardinfo)
 {
 	
-	$sql = 'select * from '.$ecs->table('bang_card').' where userid ='.$bangcardinfo['user_id'];
-	$row = $db->getRow($sql);
+	$sql = 'SELECT * from '.$GLOBALS['ecs']->table('bang_card').' where user_id ='.$bangcardinfo['user_id'].' AND cardnum ='.$bangcardinfo['cardnum'];
+	$row = $GLOBALS['db']->getRow($sql);
+	
 	if(empty($row)){
 		/* 插入一条新记录 */
 		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('bang_card'), $bangcardinfo, 'INSERT');

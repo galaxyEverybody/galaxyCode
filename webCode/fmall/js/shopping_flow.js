@@ -713,7 +713,7 @@ function chekcardnum(cardnum)
 		$("#cardnum").html("请输入您的银行卡号");
 		return false;
 	}else{
-		if(cardnum.match(/^[0-9]{10,30}$/)){
+		if(cardnum.match(/^[0-9]{15,20}$/)){
 			$("#cardnum").html("good");
 		}else{
 			$("#cardnum").html("输入银行卡号错误");
@@ -1051,12 +1051,27 @@ function chekauthcenteremail(email){
 	}
 }
 
+/*安全认证中心绑定邮箱提交的验证*/
+function authcenteremailform(){
+
+	var email = $("input[name='authcenter_email']")[0].value;
+	if(email == ''){
+		$('#emailmsg_authcenter').html('-请输入您的邮箱账号');
+		return false;
+	}else{
+		if(!email.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)){
+			$('#emailmsg_authcenter').html('-请输入正确的邮箱');
+			return false;
+		}
+	}
+}
+
 /*安全中心实名认证姓名检测*/
 function chekauthcenter_truename(truename){
 	if(truename == ''){
 		$('#truenamemsg_authcenter').html('-请输入您的真实姓名');
 	}else{
-		if(truename.match()){
+		if(truename.match(/[^/u4e00-/u9fa5]/)){
 			
 		}else{
 			$('#truenamemsg_authcenter').html('-输入格式错误');
@@ -1065,11 +1080,11 @@ function chekauthcenter_truename(truename){
 }
 
 /*安全中心实名认证身份证号的检测*/
-function chekauthcenter_idcardname(truename){
-	if(truename == ''){
+function chekauthcenter_idcardname(idcardnum){
+	if(idcardnum == ''){
 		$('#idcardnamemsg_authcenter').html('-请输入您的身份证号');
 	}else{
-		if(truename.match(/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/)){
+		if(idcardnum.match(/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/)){
 			
 		}else{
 			$('#idcardnamemsg_authcenter').html('-输入格式错误');
@@ -1078,11 +1093,17 @@ function chekauthcenter_idcardname(truename){
 }
 
 /*安全认证中心实名认证的提交*/
-function authcentertruename(){
-	var truename = $("input[name='truename_authcenter']")[0].value();
-	var trueidcard = $("input[name='authcenter_idcardname']")[0].value();
+function authcentertruenamefrom(){
+	var truename = $("input[name='truename_authcenter']")[0].value;
+	var trueidcard = $("input[name='authcenter_idcardname']")[0].value;
 	
-	if(empty(truename)&&empty(trueidcard)){
-		$('#formauthcentertruename').submit(function(){return false;});
+	if(truename == ''){
+		$('#truenamemsg_authcenter').html('-请输入您的真实姓名');
+		return false;
 	}
+	if(trueidcard == ''){
+		$('#idcardnamemsg_authcenter').html('-请输入您的身份证号');
+		return false;
+	}
+	return true;
 }

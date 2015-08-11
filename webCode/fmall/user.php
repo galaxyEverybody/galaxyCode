@@ -36,7 +36,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
-'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
+'message_list', 'act_bang_email', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 未登录处理 */
@@ -674,32 +674,103 @@ elseif ($action == 'bangcard')
 	$province_list[$region_id] = get_regions(1, 1);
 	$smarty->assign('province_list',    $province_list);
 	
+	/* 查询已绑定的银行卡*/
+	$sql = 'SELECT cardnum from '.$GLOBALS['ecs']->table('bang_card').' where bangstatus = 1 AND user_id = '.$user_id;
+	$cardinfo = $GLOBALS['db']->getAll($sql);
+	
+	$smarty->assign('cardinfotrue',$cardinfo);
+	foreach($cardinfo as $key=>$cinfo){
+		$str1 = substr($cinfo['cardnum'],0,4);
+		$str2 = substr($cinfo['cardnum'],-4);
+		$str = $str1.'*********'.$str2;
+		$cardinfo[$key]['cardnum'] = $str;
+	}
+
+	$smarty->assign('cardinfo',$cardinfo);
 	$smarty->display('user_transaction.dwt');
 }
 
 /* 绑定银行卡信息的添加*/
 elseif ($action == 'bangcardadd')
 {
+	include_once('includes/lib_transaction.php');
+	include_once('includes/cls_mysql.php');
+	
 	$bangcardinfo = array(
 		'user_id'		=>	$user_id,
-		'addtime'		=>	time(),
+		'addtime'		=>	gmtime(),
 		'cardnum'		=>	isset($_POST['cardnum'])?trim($_POST['cardnum']):0,
 		'cardprovince'	=>	isset($_POST['provincename'])?$_POST['provincename']:0,
 		'cardcity'		=>	isset($_POST['cityname'])?trim($_POST['cityname']):0,
 		'cardcounty'	=>	isset($_POST['countyname'])?trim($_POST['countyname']):0,
 		'cardbank'		=>	isset($_POST['bankname'])?trim($_POST['bankname']):0,
 		'cardshop'		=>	isset($_POST['cardwang'])?trim($_POST['cardwang']):'',
+		'idcard'		=>	'0',
+		'bangstatus'	=>	0
 	);
 
 	if(insert_bangcard($bangcardinfo)){
-		header("Location:/");
+		header("Location:./user.php?act=bangcard");
 	}
 }
 
 /* 安全认证中心页面*/
 elseif ($action == 'auth_center')
 {
+	$sql='SELECT mobile_phone,email,idcard,phonestatus,emailstatus,idcardstatus FROM'.$GLOBALS['ecs']->table('users').' where user_id='.$user_id;
+	$userinfo = $GLOBALS['db']->getRow($sql);
+	
+	$smarty->assign('userinfostatus',$userinfo);
 	$smarty->display('user_transaction.dwt');
+}
+
+/* 安全认证中邮箱的绑定*/
+elseif($action == 'act_bang_email')
+{
+	$email = trim($_POST['authcenter_email']);
+	if(empty($email)){
+		show_message($_LANG['passport_js']['email_empty']);
+	}elseif(ereg("/^[a-z]([a-z0-9]*[-_\.]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i; ",$email)){
+		show_message($_LANG['passport_js']['email_invalid']);
+	}
+	/* 查询邮箱是否存在*/
+	$sql='SELECT * FROM '.$GLOBALS['ecs']->table('users').' where email="'.$email.'"';
+	$result = $GLOBALS['db']->getOne($sql);
+	if(empty($result)){
+		$sql='UPDATE '.$GLOBALS['ecs']->table('users').' SET email="'.$email.'",emailstatus=1 where user_id='.$user_id;
+		$res = $GLOBALS['db']->query($sql);
+		header("location:user.php?act=auth_center");
+	}else{
+		show_message($_LANG['passport_js']['email_confirm']);
+	}
+}
+
+/* 安全认证中心实名的认证*/
+elseif($action = 'act_bang_truename')
+{
+	$name = trim($_POST['truename_authcenter']);
+	$idcard = trim($_POST['authcenter_idcardname']);
+	
+	if(empty($name)){
+		show_message($_LANG['passport_js']['truename_empty']);
+	}elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/",$name)){
+		show_message($_LANG['passport_js']['truename_invalid']);
+	}elseif(empty($idcard)){
+		show_message($_LANG['passport_js']['idcard_empty']);
+	}elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/",$idcard)){
+		show_message($_LANG['passport_js']['idcard_invalid']);
+	}
+	/* 查询身份证号是否存在*/
+	$sql='SELECT * FROM '.$GLOBALS['ecs']->table('users').' where idcard="'.$idcard.'"';
+	$result = $GLOBALS['db']->getOne($sql);
+	if(empty($result)){
+		$sql='UPDATE '.$GLOBALS['ecs']->table('users').' SET idcard="'.$idcard.'",realname="'.$name.'",idcardstatus=1 where user_id='.$user_id;
+		$res = $GLOBALS['db']->query($sql);
+		header("location:user.php?act=auth_center");
+	}else{
+		show_message($_LANG['passport_js']['idcard_confirm']);
+	}
+	
 }
 
 /* 处理 ajax 的登录请求 */

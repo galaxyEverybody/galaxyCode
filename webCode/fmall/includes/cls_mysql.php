@@ -609,10 +609,11 @@ class cls_mysql
     function autoExecute($table, $field_values, $mode = 'INSERT', $where = '', $querymode = '')
     {
         $field_names = $this->getCol('DESC ' . $table);
-
+        
         $sql = '';
         if ($mode == 'INSERT')
         {
+        	
             $fields = $values = array();
             foreach ($field_names AS $value)
             {
@@ -622,7 +623,7 @@ class cls_mysql
                     $values[] = "'" . $field_values[$value] . "'";
                 }
             }
-
+            
             if (!empty($fields))
             {
                 $sql = 'INSERT INTO ' . $table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $values) . ')';
