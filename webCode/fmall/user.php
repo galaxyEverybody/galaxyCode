@@ -524,7 +524,8 @@ elseif($action == 'check_phone')
 /* 获取短信验证码*/
 elseif($action == 'get_phoneverify')
 {
-	$mobile = trim($_GET['phone']);
+	echo 'ok';
+	/*$mobile = trim($_GET['phone']);
 	if($user->get_phoneverify($mobile))
 	{
 		echo 'ok';
@@ -532,19 +533,20 @@ elseif($action == 'get_phoneverify')
 	else
 	{
 		echo 'false';
-	}
+	}*/
 	
 }
 /* 验证短信验证码*/
 elseif($action == 'check_phoneverify')
 {	
-	$phoneverify = trim($_GET['phoneverify']);
+	echo 'ok';
+	/*$phoneverify = trim($_GET['phoneverify']);
 	if($_SESSION['mobile_code'] == $phoneverify)
 	{
 		echo 'ok';
 	}else{
 		echo 'false';
-	}
+	}*/
 }
 /* 用户登录界面 */
 elseif ($action == 'login')
@@ -640,10 +642,13 @@ elseif ($action == 'withdraw_pwadd')
 		show_message($_LANG['login_failure'], '提现密码格式错误', 'user.php', 'error');
 	}
 	
-	$withdrawinfo = array('user_id'=>$user_id,'withdrawpw'=>$withdrawpw);
+	$withdrawpw = $user->compile_password(array('password'=>$withdrawpw));
 	
-	if(add_withdrawpw($withdrawinfo)){
-		header("Location:/");
+	$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET paypassword = "'.$withdrawpw.'" where user_id='.$user_id;
+	$result = $GLOBALS['db']->query($sql);
+	
+	if($result){
+		header("Location:./user.php?act=withdraw_password");
 	}else{
 		show_message($_LANG['login_failure'], '提现密码设置失败！', 'user.php', 'error');
 	}
@@ -653,17 +658,12 @@ elseif ($action == 'withdraw_pwadd')
 elseif($action == 'ajax_checkoldpassword')
 {
 	include_once('includes/cls_json.php');
-
 	$json = new JSON;
-	$oldpassword = md5(md5(trim($_POST['oldpassword'])).'4252');
-	$userid = $user_id;
-	$sql = 'SELECT password from '.$ecs->table('users').' where user_id ='.$userid;
-	$row = $db->getRow($sql);
-	if($oldpassword == $row['password']){
-		$result['status'] = 1;
-	}else{
-		$result['status'] = 0;
-	}
+	
+	$password = isset($_POST['oldpassword'])?trim($_POST['oldpassword']):NULL;
+	
+	$result = $user->check_user($_SESSION['user_name'], $password);
+	
 	die($json->encode($result));
 }
 
@@ -771,6 +771,35 @@ elseif($action = 'act_bang_truename')
 		show_message($_LANG['passport_js']['idcard_confirm']);
 	}
 	
+}
+
+/* 注册手机号的更改*/
+elseif ($action == 'act_edit_userphone')
+{
+	$withdrawpw = trim($_POST['withdrawauthcenter_password']);
+	$newphone = trim($_POST['newmobile_phone']);
+	$idcard = trim($_POST['authcenter_idcard']);
+	$idcardwithpw = trim($_POST['withdrawauthidcardcenter_password']);
+	if(empty($newphone)){
+		show_message($_LANG['passport_js']['newphone_empty']);
+	}elseif(ereg("/^1[3|5|8|7]\d{9}$/",$newphone)){
+		show_message($_LANG['passport_js']['newphone_invalid']);
+	}
+	if(empty($idcard)){
+	/* 依据已有手机号更换手机号*/
+		if(!$user->check_phone($newphone)){
+			$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET mobile_phone ='.$newphone.' where user_id='.$user_id;
+			$res = $GLOBALS['db']->query($sql);
+		}
+	}else{
+		$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET mobile_phone ='.$newphone.' WHERE idcard="'.$idcard.'" AND user_id='.$user_id;
+		$res = $GLOBALS['db']->query($sql);
+	}
+	if($res){
+		header('location:user.php?act=auth_center');
+	}else{
+		show_message($_LANG['passport_js']['newphone_invalid']);
+	}
 }
 
 /* 处理 ajax 的登录请求 */

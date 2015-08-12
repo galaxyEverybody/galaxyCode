@@ -792,8 +792,8 @@ function withdraw_phoneverify_callback(result)
 {
 	if ( result == 'ok' )
 	  { 
-		RemainwithdrawTime();
 		$('#withdrawverify').html('验证码已发送');
+		RemainwithdrawTime();
 	  }
 	  else
 	  {
@@ -834,7 +834,7 @@ function RemainwithdrawTime(){
 		}else{
 			iTime=iTime-1;
 			document.getElementById('doutimeinp').value = iTime;
-			Account = setTimeout("RemainTime()",1000);
+			Account = setTimeout("RemainwithdrawTime()",1000);
 		}
 	}else{
 		sTime='没有倒计时';
@@ -847,10 +847,10 @@ function RemainwithdrawTime(){
 
 /* 安全认证中心手机更换倒计时*/
 function RemainauthcenterphoneTime(){
-	var iTime = 59;
+	var iTime = 61;
 	var Account;
-	var timenum = document.getElementById('doutimeinp').value;
-
+	var timenum = document.getElementById('oldphone_verify_time').value;
+	
 	if(timenum < iTime){
 		iTime = timenum
 	}
@@ -862,23 +862,23 @@ function RemainauthcenterphoneTime(){
 			iTime = '<a onclick=getwithdrawphoneverify()>获取验证码</a>';
 		}else{
 			iTime=iTime-1;
-			document.getElementById('doutimeinp').value = iTime;
-			Account = setTimeout("RemainTime()",1000);
+			document.getElementById('oldphone_verify_time').value = iTime;
+			Account = setTimeout("RemainauthcenterphoneTime()",1000);
 		}
 	}else{
 		sTime='没有倒计时';
 	}
-	
+
 	document.getElementById('get_authcenterphone_time').innerHTML = iTime;
-	document.getElementById('get_authcenterphone_time').style.color = '#FF852F';
+	document.getElementById('click_time').style.color = '#FF852F';
 	
 }
 
 /* 安全认证中心新手机点击倒计时*/
 function RemainauthcenternewphoneTime(){
-	var iTime = 59;
+	var iTime = 61;
 	var Account;
-	var timenum = document.getElementById('doutimeinp').value;
+	var timenum = document.getElementById('newphone_verify_time').value;
 
 	if(timenum < iTime){
 		iTime = timenum
@@ -891,27 +891,27 @@ function RemainauthcenternewphoneTime(){
 			iTime = '<a onclick=getwithdrawphoneverify()>获取验证码</a>';
 		}else{
 			iTime=iTime-1;
-			document.getElementById('doutimeinp').value = iTime;
-			Account = setTimeout("RemainTime()",1000);
+			document.getElementById('newphone_verify_time').value = iTime;
+			Account = setTimeout("RemainauthcenternewphoneTime()",1000);
 		}
 	}else{
 		sTime='没有倒计时';
 	}
 	
-	$("input[name='authnewphone_verify']").html(iTime);
-	$("input[name='authnewphone_verify']").color = '#FF852F';
+	document.getElementById('get_newauthcenterphone_time').innerHTML = iTime;
+	document.getElementById('click_time').style.color = '#FF852F';
 	
 }
 
 /* 安全认证中心手机更换手机获取验证码*/
 function getauthcenter_phone(){
-	var phone = document.getElementById('truephone').value;
+	var phone = document.getElementById('oldmobile_phone').value;
 	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_phoneverify_callback , 'GET', 'TEXT', true, true );
 }
 function authcenter_phoneverify_callback(result){
 	if(result == 'ok'){
-		RemainauthcenterphoneTime();
 		$('#callauthphone_verify').html('验证码已发送');
+		RemainauthcenterphoneTime();
 	}else{
 		$('#callauthphone_verify').html('-验证码发送失败');
 	}
@@ -975,13 +975,13 @@ function chekauthcenter_idcard(idcard){
 }
 
 /* 安全认证中心新手机号的验证*/
-function authcenter_newphone(newphone){
+function authcenteruser_newphone(newphone){
+	var reg = /^1[3|5|8|7]\d{9}$/;
 	if(newphone == ''){
 		$('#newphone_authcenter').html('-请输入您的新手机号');
 	}else{
-		if(newphone.match(/^1[3,5,8,7]\/d{9}$/)){
-			/*未完验证手机号是否存在*/
-			$('#newphone_authcenter').html('输入正确');
+		if(reg.test(newphone)){
+			$('#newphone_authcenter').html('+可以使用');
 		}else{
 			$('#newphone_authcenter').html('-手机号格式错误');
 		}
@@ -990,13 +990,23 @@ function authcenter_newphone(newphone){
 
 /* 安全认证中心新手机号获取验证码*/
 function getwithdrawnewphoneverify(){
-	var phone = $("input[name='authcenter_newphonename']")[0].value();
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_newphoneverify_callback , 'GET', 'TEXT', true, true );
+	var reg = /^1[3|5|8|7]\d{9}$/;
+	var phone = document.getElementById('newmobile_phone').value;
+	if(phone == ''){
+		$('#newphone_authcenter').html('-请输入您的新手机号');
+	}else{
+		if(reg.test(phone)){
+			Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_newphoneverify_callback , 'GET', 'TEXT', true, true );
+		}else{
+			$('#newphone_authcenter').html('-手机号格式错误');
+		}
+	}
 }
 
 function authcenter_newphoneverify_callback(result){
 	if(result == 'ok'){
 		$('#newphonemsg_authcenter').html('验证码已发送');
+		RemainauthcenternewphoneTime();
 	}else{
 		$('#newphonemsg_authcenter').html('-验证码发送失败');
 	}
@@ -1008,7 +1018,6 @@ function cheauthcenter_newverify(verify){
 		$('#newphonemsg_authcenter').html('-请输入验证码');
 	}else{
 		if(verify.match(/[0-9]{4}/)){
-			RemainauthcenternewphoneTime();
 			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_authcenternewphoneverify_callback , 'GET', 'TEXT', true, true );
 		}else{
 			$('#newphonemsg_authcenter').html('-输入格式错误');
@@ -1068,11 +1077,12 @@ function authcenteremailform(){
 
 /*安全中心实名认证姓名检测*/
 function chekauthcenter_truename(truename){
+	var reg=/^[\u4e00-\u9fa5]+$/;
 	if(truename == ''){
 		$('#truenamemsg_authcenter').html('-请输入您的真实姓名');
 	}else{
-		if(truename.match(/[^/u4e00-/u9fa5]/)){
-			
+		if(reg.test(truename)){
+			$('#truenamemsg_authcenter').html('+输入正确');
 		}else{
 			$('#truenamemsg_authcenter').html('-输入格式错误');
 		}
@@ -1081,11 +1091,12 @@ function chekauthcenter_truename(truename){
 
 /*安全中心实名认证身份证号的检测*/
 function chekauthcenter_idcardname(idcardnum){
+	reg=/^(\d{15}|\d{17}[\dXx])$/;
 	if(idcardnum == ''){
 		$('#idcardnamemsg_authcenter').html('-请输入您的身份证号');
 	}else{
-		if(idcardnum.match(/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/)){
-			
+		if(reg.test(idcardnum)){
+			$('#idcardnamemsg_authcenter').html('+输入正确');
 		}else{
 			$('#idcardnamemsg_authcenter').html('-输入格式错误');
 		}

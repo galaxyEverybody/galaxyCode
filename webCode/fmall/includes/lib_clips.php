@@ -632,12 +632,12 @@ function get_user_default($user_id)
     
     $info['order_sum'] = empty($info['order_sum'])?'0.00':$info['order_sum'];
     /* 借款负债*/
-    $sqlborrow = "SELECT SUM(borrow_num) FROM ".$GLOBALS['ecs']->table('user_borrow')." where borrow_status = 1 and user_id =".$user_id;
-    $info['borrow_sum'] = $GLOBALS['db']->getOne($sqlborrow);
+    //$sqlborrow = "SELECT SUM(borrow_num) FROM ".$GLOBALS['ecs']->table('user_borrow')." where borrow_status = 1 and user_id =".$user_id;
+    //$info['borrow_sum'] = $GLOBALS['db']->getOne($sqlborrow);
     
-    $info['borrow_sum'] = empty($info['borrow_sum'])?'0.00':$info['borrow_sum'];
+    //$info['borrow_sum'] = empty($info['borrow_sum'])?'0.00':$info['borrow_sum'];
     /* 账户净资产*/
-    $info['account_sum'] = $info['order_sum'] - $info['borrow_sum'] + $info['surplus'];
+    //$info['account_sum'] = $info['order_sum'] - $info['borrow_sum'] + $info['surplus'];
     $info['account_sum'] = empty($info['account_sum'])?'0.00':$info['account_sum'];
     
     include_once(ROOT_PATH . 'includes/lib_order.php');

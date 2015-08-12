@@ -604,26 +604,6 @@ function insert_bangcard($bangcardinfo)
 }
 
 /**
- *  设置提现密码
- *
- * @access  public
- * @param   array       $withdrawinfo
- * @return  bool
- */
-function add_withdrawpw($withdrawinfo)
-{
-	/* 更新指定目录*/
-	$newwithdraw = md5(md5($withdrawinfo['withdrawpw']).'4252');
-	$sql = "UPDATE ".$GLOBALS['ecs']->table("users")." SET paypassword='".$newwithdraw." where user_id =".$withdrawinfo['user_id'];
-	$bool = $GLOBALS['db']->query($sql);
-	if($bool){
-		return true;
-	}else{
-		return false;
-	}
-}
-
-/**
  *  添加或更新指定用户收货地址
  *
  * @access  public

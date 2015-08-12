@@ -153,11 +153,11 @@ function chekold_password(oldpassword)
 
 function old_pwcallback(result)
 {
-	if(result['status']==0){
+	if(result > 0){
+		$('#old_password').html('输入正确');
+	}else{
 		$('#old_password').html('原密码输入错误');
 		$('#formPassword').submit(function(){ return false;});
-	}else{
-		$('#old_password').html('输入正确');
 	}
 }
 

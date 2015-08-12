@@ -104,7 +104,8 @@
 				<td>
 					<input style="width:150px;height:30px;float:left;" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
 					<div class="widthdraw_button_time" id="get_withdraw_time"><a onclick="getwithdrawphoneverify()">获取验证码</a></div>
-					<span id="withdrawverify" style="color:#FF852F;"></span>
+					<span id="withdrawverify" style="color:#FF852F;margin-left:5px;line-height:30px;height:30px;"></span>
+					<div id="doutimeinp"></div>
 				</td>
 			</tr>
 			<tr>
@@ -560,7 +561,7 @@
 	<div class="authcenterdiv">
 		
 		<!--手机修改start-->
-		<p><img src="images/phoneauth01.png"><span class="capitalauthphone">绑定手机</span><span class="capitalauthnum">{$userinfostatus.mobile_phone}</span> <span onclick="authcenterphone()" id="capitalupdaphone" class="capitalauthupda">修改</span></p>
+		<p><img src="images/phoneauth01.png"><span class="capitalauthphone">绑定手机</span><span class="capitalauthnum" id="oldmobile_phone">{$userinfostatus.mobile_phone}</span> <span onclick="authcenterphone()" id="capitalupdaphone" class="capitalauthupda">修改</span></p>
 		<div id="authphonediv">
 			<div style="width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;">
 				<div onclick = "phoneauthupshow()" id="phoneauthupshow">依据原手机修改</div>
@@ -573,8 +574,9 @@
 						<td class="bangcardtd">验证码</td>
 						<td>
 							<input class="verifyauthinput" name="authcenter_phoneverify" type="text" placeholder="请输入验证码" onblur="chekauthcenter_verify(this.value);">
-							<div class="widthdraw_button_time" id="get_authcenterphone_time"><a onclick="getwithdrawphoneverify()">获取验证码</a></div>
+							<div class="widthdraw_button_time" id="get_authcenterphone_time"><a onclick="getauthcenter_phone()">获取验证码</a></div>
 							<div id="callauthphone_verify" style="color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:10px;"></div>
+							<input id="oldphone_verify_time" type="text" value='60' style="display:none;"/>
 						</td>
 					</tr>
 					<tr>
@@ -613,20 +615,21 @@
 					<tr>
 						<td class="bangcardtd">新手机号</td>
 						<td>
-							<input class="bangcardinput" name="authcenter_newphonename" type="text" placeholder="请输入您的新手机号" onblur="authcenter_newphone(this.value);">
+							<input class="bangcardinput" id="newmobile_phone" name="newmobile_phone" type="text" placeholder="请输入您的新手机号" onblur="authcenteruser_newphone(this.value);">
 							<div id="newphone_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<input type="text" id="newphone_verify_time" value='60' style="display:none;">
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd">验证码</td>
 						<td>
 							<input class="verifyauthinput" name="authnewphone_verify" type="text" placeholder="请输入验证码" onblur="cheauthcenter_newverify(this.value);">
-							<div class="widthdraw_button_time"><a onclick="getwithdrawnewphoneverify()">获取验证码</a></div>
+							<div class="widthdraw_button_time" id="get_newauthcenterphone_time"><a onclick="getwithdrawnewphoneverify()">获取验证码</a></div>
 							<div id="newphonemsg_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
 						</td>
 					</tr>
 					<tr>
-						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_userphone" /></td>
 						<td><input class="bangcardsub" type="submit" value="确认提交"></td>
 					</tr>
 				</table>
@@ -637,7 +640,7 @@
 		<!--手机修改end-->
 		
 		<!--邮箱修改start-->
-		<p><img src="images/emailauth01.png"><span class="capitalauthphone">绑定邮箱</span><span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]{else}{$userinfostatus.email}{/if}</span> <span onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</span></p>
+		<p><img src="images/emailauth01.png" width="25px"><span class="capitalauthphone">绑定邮箱</span><span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]{else}{$userinfostatus.email}{/if}</span> <span onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</span></p>
 		<div id="authemaildiv" style="width:650px;height:200px;display:none;margin-left:200px;">
 				<form id="formauthcenteremail" action="user.php" method="post" onSubmit="return authcenteremailform();">
 				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
