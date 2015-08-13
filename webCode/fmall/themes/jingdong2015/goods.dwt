@@ -110,7 +110,7 @@ function reg(str){
         </div>
     	<div class="bondinfo_left">
     		<div class="bondinfo_leftdiv">
-    			<form action="flow.php?step=done" method="post" onsubmit="return checkgoodsform();">
+    			<form action="flow.php" method="post" onsubmit="return checkgoodsform();">
         		<ul class="bondinfo_left_top">
         			<li>
         				<b>可投金额：</b><span class="bond_left_topsize" id="usenumprice">{$goods.surplus_price}</span>&nbsp;元
@@ -142,9 +142,14 @@ function reg(str){
         			<li class="bondinfo_first">全部</li>
         		</ul>
         		<ul class="bondinfo_change">
+        			{if $goods.good_status eq 1}
         			<input type="hidden" name="goods_id" id="hidgoodsid" value="{$goods.goods_id}">
         			<input type="submit" class="bondinfo_tz_bnt" value="立即投资">
-	            </ul>
+        			{else if $goods.good_status eq 2}
+        			<input class="bondinfo_tz_bnt" style="background:#ddd;color:#FF500B;" value="已投满">
+        			{/if}
+        			<input type="text" name="step" value="done" style="display:none;">
+        		</ul>
 	            </form>
              </div>
              <script>
@@ -185,7 +190,7 @@ function reg(str){
           <ul class="tab">
             <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">基本情况</a></li>
             <li id="p-con-attr"><a href="javascript:;" class="toggle-link">投标记录</a></li>
-            <li id="p-con-list"><a href="javascript:;" class="toggle-link">还款记录</a></li>
+            <li id="p-con-list"><a href="javascript:;" class="toggle-link">风控措施</a></li>
           </ul>
         </div>
       </div>
@@ -205,38 +210,72 @@ function reg(str){
       </div>
       <div class="mc hide" id="p-con-attr-con">
         <div class="detail-correction"></div>
-        <table cellpadding="0" cellspacing="1" width="100%" border="0" class="Ptable">
+        <table cellpadding="1px" cellspacing="1px" width="100%" border="1px" class="Ptable">
           <tbody>
             <tr>
               <th class="tdTitle">序号</th>
               <th class="tdTitle">投标人</th>
-              <th class="tdTitle">投标金额</th>
+              <th class="tdTitle">投标金额（元）</th>
               <th class="tdTitle">投标时间</th>
             </tr>
-            <!-- {foreach from=$property_group item=property} -->
+            <!-- {foreach from=$bid_record item=bidrecord} -->
             <tr>
-              <td class="tdTitle">{$property.name|escape:html}</td>
-              <td>{$property.value}</td>
+              <td>{$bidrecord.rec_id}</td>
+              <td>{$bidrecord.user_name}</td>
+              <td>{$bidrecord.invest_price}</td>
+              <td>{$bidrecord.add_time}</td>
             </tr>
             <!-- {/foreach}--> 
           </tbody>
         </table>
       </div>
       <div class="mc hide" id="p-con-list-con">
-        <div class="item-detail">{$goods.packing_list}aaaaaaaa</div>
-      </div>
-      <div class="mc hide" id="p-con-guar-con">
-        <div class="item-detail">{$goods.customer_service}</div>
+        <div class="item-detail">{$goods.packing_list}</div>
       </div>
     </div>
     <DIV class="clr"></DIV>
 		<div id="comment" class="m m2">
+	<div class="mt">
+	    <h2>商品评价</h2>
+	  </div>
+	  <div class="mc">
+	    <div id="i-comment">
+	      <div class="rate"> <strong>{$comment_percent.haoping_percent}<span>%</span></strong> <br>
+	        <span>好评度</span> </div>
+	      <div class="percent">
+	        <dl>
+	          <dt>好评<span>({$comment_percent.haoping_percent}%)</span></dt>
+	          <dd>
+	            <div style="width: {$comment_percent.haoping_percent}%;"></div>
+	          </dd>
+	        </dl>
+	        <dl>
+	          <dt>中评<span>({$comment_percent.zhongping_percent}%)</span></dt>
+	          <dd class="d1">
+	            <div style="width: {$comment_percent.zhongping_percent}%;"> </div>
+	          </dd>
+	        </dl>
+	        <dl>
+	          <dt>差评<span>({$comment_percent.chaping_percent}%)</span></dt>
+	          <dd class="d1">
+	            <div style="width: {$comment_percent.chaping_percent}%;"> </div>
+	          </dd>
+	        </dl>
+	      </div>
+	      <div class="btns">
+	        <div>{if $factor eq 0}所有用户都可以对该商品<br />
+	          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 1}只有登陆的用户才可以对该商品<br />
+	          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 2}在本站购买过一次其他商品的用户才可以对该商品<br />
+	          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 3}购买过此{$goods_name}的顾客，在收到商品才可以对该商品<br />
+	          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{/if} </div>
+	      </div>
+	    </div>
+	  </div>
 </div>
         <!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
       
   </div>
   <div class="left">
-    <!-- {if $related_cat} -->
     <div id="related-sorts" class="m m2">
       <div class="mt">
         <h2>相关推荐</h2>
@@ -252,10 +291,9 @@ function reg(str){
           <!--{/foreach}-->
 
         </ul>
+        
       </div>
     </div>
-    
-    <!-- {/if} -->
     </div>
 </div>
 <div class="clr"></div>
@@ -271,6 +309,9 @@ function reg(str){
 <script>
 	<!--点击金额到金额输入框-->
 	$(function(){
+		
+		$(".Ptable tr:even").css("background","#EDEBEC");
+
 		$(".bondinfo_num li").click(function(){
 			var chargenum = $(this).text();
 			if(chargenum == '全部'){

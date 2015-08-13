@@ -943,7 +943,11 @@ function get_goods_info($goods_id)
         
         /* 修正借款倒计时 gao*/
         $row['goods_weight_day'] = ceil(($row['goods_weight']-$row['add_time'])/(60*60*24));
+        
         $row['goods_weight']  = $row['goods_weight']-gmtime();
+        if($row['goods_weight'] <= '0'){
+        	$row['goods_weight'] = 0;
+        }
         
         
         /* 修正上架时间显示 */
@@ -993,9 +997,11 @@ function get_goods_info($goods_id)
  */
 function get_goods_bid($goods_id)
 {
-	$sql = 'select u.user_name,g.invest_price,o.add_time from '.$GLOBALS['ecs']->table('order_goods').' as g,'.$GLOBALS['ecs']->table('order_info').' as o,'.
-	$GLOBALS['ecs']->table('users').'as u where g.order_id = o.order_id and o.user_id = u.user_id and o.pay_status=1';
+	$sql = 'select g.rec_id,u.user_name,g.invest_price,g.add_time from '.$GLOBALS['ecs']->table('order_goods').' as g,'.
+	$GLOBALS['ecs']->table('users').'as u where g.user_id=u.user_id and g.pay_status=1 and g.goods_id='.$goods_id;
 	$goodsbidrecord = $GLOBALS['db']->getAll($sql);
+	
+	return $goodsbidrecord;
 	/*未完*/
 }
 

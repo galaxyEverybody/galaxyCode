@@ -1563,6 +1563,11 @@ elseif ($_REQUEST['step'] == 'check_integral')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['step'] == 'done')
 {
+	/* 未登录处理 */
+	if (empty($_SESSION['user_id'])){
+		header('location:user.php?act=login');
+	}
+	
 	
     include_once('includes/lib_clips.php');
     //include_once('includes/lib_payment.php');
@@ -1599,6 +1604,7 @@ elseif ($_REQUEST['step'] == 'done')
     		'add_time'      => gmtime(),
     		'pay_id'		=> 0,
     		'pay_time'		=>0,
+    		'pay_status'	=>0,
     );
     
     $new_order_id = $db->insert_id();

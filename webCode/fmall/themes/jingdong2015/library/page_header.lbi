@@ -128,7 +128,7 @@
                 <div id="_JD_ALLSORT" class="mc">
                 	<!--{foreach from=$categories item=cat name=foo}-->
                     <div class="item fore{$smarty.foreach.foo.iteration}"><span><h3><a href="{$cat.url}">{$cat.name|escape:html}</a></h3><s></s></span>
-                    	<div class="i-mc" style="top: 3px;border:1px solid red;width:470px; ">
+                    	<div class="i-mc" style="top: 3px;border:1px solid red;width:470px;display:none; ">
                         	<div onclick="$(this).parent().parent().removeClass('hover')" class="close">×</div>
                             <div class="subitem" style="width:470px;">
                             	<div class="subitem_top"><dt style="text-align:left;margin-left:25px;">理财</dt></div>

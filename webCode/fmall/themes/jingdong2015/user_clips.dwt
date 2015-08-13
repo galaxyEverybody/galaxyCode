@@ -314,7 +314,7 @@
 </tr>
 <tr>
 <td align="right">{$lang.upload_img}</td>
-<td><input type="file" name="message_img"  size="45"  class="inputBg" /></td>
+<td><input type="file" name="message_img"  size="45" /></td>
 </tr>
 <tr>
 <td>&nbsp;</td>

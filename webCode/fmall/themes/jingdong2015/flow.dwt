@@ -17,7 +17,7 @@
 {insert_scripts files='common.js,shopping_flow.js'}
 </head>
 <body>
-<!-- #BeginLibraryItem "/library/page_header_flow.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_flow.js'} 
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_flow.js'} 
 <!-- {if $step eq "cart"} --> 
 <!-- 购物车内容 --> 
 {* 包含脚本文件 *}
@@ -376,18 +376,14 @@
 <!-- {if $step eq "done"} 开始订单确认界面 -->
 <div class="flowCheckoutBox" >
     <div class="flowBox_cart">
-        <div id="content">
-            <div class="mt"><h2>确认支付页面</h2></div>
-            <div class="mc" style="border-bottom:1px solid #DDD;">
+        <div id="content" style="width:70%;margin-top:50px;">
+            <div class="mt"><img src="images/pay_menttop.jpg" alt="联众金融" style="float:left;padding-right:10px;"><h2>确认支付页面</h2></div>
+            <div class="mc" style="border-bottom:1px solid #DDD;margin-top:35px;">
                 <form action="flow.php" method="post" name="theForm" id="theForm" onsubmit="return checkOrderForm(this)">
-                    <div class="checkout-steps">
-                        
-                        <div class="extra-r" style="display:none;"><a href="flow.php?step=consignee" class="f6">{$lang.modify}收货地址</a></div>
-                    </div>
                     <div class="step-cont">
                         <div id="consignee-addr">
                         	<div class="consigneetop">
-                        	<div class="consigneemiddle"></div>
+                        	<div class="consigneemiddle"><img src="images/pay_mentmiddle.png" alt="联众金融" width="200px" height="200px"></div>
                             <div class="consignee-cont">
                             	<h3>{$lang.consignee_good_name}：{$ordername}</h3>
                                 <ul>
@@ -396,7 +392,7 @@
                                     	<p class="consigneechin">利率</p>
                                     </li>
                                     <li>
-                                    	<div class="consigneenum">{$invest_price}<span>.00</span></div>
+                                    	<div class="consigneenum" style="margin-left:30px;">{$invest_price}<span>.00</span></div>
                                     	<p class="consigneechin">申购金额</p>
                                     </li>
                                 </ul>
@@ -405,10 +401,10 @@
                         </div>
                     </div>
                     <!--{if $is_exchange_goods neq 1 || $total.real_goods_count neq 0}-->
-                    <div class="checkout-steps" style="margin-top:70px;">
+                    <div class="checkout-steps" style="margin-top:120px;">
                         <h3>{$lang.payment_method}</h3>
                     </div>
-                    <div class="step-cont" style="padding-bottom:70px;">
+                    <div class="step-cont" style="padding-bottom:70px;margin-top:10px;">
                         <div class="payment-list">
                             <div class="list-cont">
                                 <ul>

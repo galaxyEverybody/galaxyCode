@@ -47,11 +47,11 @@
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_truename} </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input type="text" name="truename" value="" class="inputBg"/><span style="color:#FF0000"> *</span></td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.realname eq 0}<a style="color:#FF500B" href="user.php?act=auth_center">去实名认证</a>{else}{$profile.realname}{/if}</td>
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_idcard}</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input type="text" name="idcard" value="" class="inputBg" onblur="truenamecheck(this);"/><span style="color:#FF0000"> *</span><span id="checknameid" style="display:none;color:red;">实名认证未通过</span></td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.idard eq 0}<a style="color:#FF500B" href="user.php?act=auth_center">去实名认证</a>{else}{$profile.idcard}{/if}</td>
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.birthday} </td>
@@ -73,7 +73,7 @@
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.email}</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><input name="email" type="text" value="{$profile.email}" class="inputBg" /><span style="color:#FF0000"> *</span></td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.email eq 0}<a style="color:#FF500B" href="user.php?act=auth_center">去进行邮箱认证</a>{else}{$profile.email}{/if}</td>
         </tr>
         <tr>
             <td colspan="2" align="center" bgcolor="#FFFFFF"><input name="act" type="hidden" value="act_edit_profile" /><input name="submit" type="submit" value="{$lang.confirm_edit}" class="bnt_blue_1" style="border:none;" /></td>
@@ -125,52 +125,6 @@
 </div>
 <!-- {/if}-->
 <!--设置提现密码 end-->
-
-<!--修改登录密码start-->
-<!-- {if $action eq 'upda_login_pw'}-->
-{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
-<div class="boxCenterList">
-	<div class="capitaldiv">
-		<span class="capitalleft"></span><span class="capitalright">修改登录密码</span>
-	</div>
-	<div class="withdraw_verify">
-		<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
-		<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
-			<tr>
-				<td class="bangcardtd">账户名</td>
-				<td>{$user_name}</td>
-			</tr>
-			<tr>
-				<td class="bangcardtd">原密码</td>
-				<td>
-					<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您以前的密码" onblur="chekold_password(this.value);">
-					<span id="old_password" style="color:#FF852F;"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="bangcardtd">新密码</td>
-				<td>
-					<input class="bangcardinput" name="new_password" type="text" placeholder="请输入您的新密码" onblur="cheknew_password(this.value);">
-					<span id="new_password" style="color:#FF852F;"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="bangcardtd">确认密码</td>
-				<td>
-					<input class="bangcardinput" name="confirm_password" type="text" placeholder="请输入您的新密码" onblur="chekconfirm_password(this.value);">
-					<span id="confirm_password" style="color:#FF852F;"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
-				<td><input class="bangcardsub" type="submit" value="确认提交"></td>
-			</tr>
-		</table>
-		</form>
-	</div>
-</div>
-<!-- {/if}-->
-<!--修改登录密码 end-->
 
 <!--绑定银行卡 start-->
 <!-- {if $action eq 'bangcard'}-->
@@ -689,7 +643,7 @@
 		<!--进行实名认证end-->
 		
 		<!--修改登录密码start-->
-		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">登录密码</span><span class="capitalauthnum">已设置</span> <span onclick="authcenterpwss()" id="capitalupdapwss" class="capitalauthupda">修改</span></p>
+		<p><img src="images/password01.jpg"><span class="capitalauthphone">登录密码</span><span class="capitalauthnum">已设置</span> <span onclick="authcenterpwss()" id="capitalupdapwss" class="capitalauthupda">修改</span></p>
 		<div id="authpwssdiv" style="width:750px;height:260px;display:none;">
 			<div class="withdraw_verify">
 				<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">

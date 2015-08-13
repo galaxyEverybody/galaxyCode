@@ -1311,7 +1311,7 @@ h2,h3{font-size:14px}
 .bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #fff;float:left;cursor:pointer;background-color:#fff;}
 .bondinfo_first{ margin-left:15px;float:left;}
 .showhidnum{ display:none;}
-.bondinfo_tz_bnt{ border:0px;letter-spacing:2px;float:left;width:260px;height:40px;background-color:#FF500B;text-align:center;line-height:40px;margin-top:20px;color:#fff;font-weight:bold;font-size:14px;cursor:pointer;}
+.bondinfo_tz_bnt{ border:0px;letter-spacing:2px;float:left;width:260px;height:40px;background-color:#FF500B;text-align:center;line-height:40px;margin-top:20px;color:#fff;font-weight:bold;font-size:16px;cursor:pointer;}
 #summary-grade .star{float:left;margin:1px 5px 0 0}
 #summary #summary-stock{overflow:visible;margin-top:15px}
 .hl_red,a.hl_red,.hl_red:hover,.hl_red:visited,#summary .hl_red{color:#ff500b}
@@ -1520,9 +1520,9 @@ h2,h3{font-size:14px}
 #product-detail .detail-list{padding:8px;border:solid #dedfde;border-width:0 1px 1px;overflow:hidden;zoom:1}
 #product-detail .detail-list li{float:left;width:33%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:2px 0}
 .ac{text-align:center}
-.Ptable{background:#CCC;margin:10px 0}
+.Ptable{margin:10px 0}
+.Ptable tr{ height:35px;text-align:center;}
 .Ptable th{background:#eef7fe;padding:5px;font-size:12px}
-.Ptable td{background:none repeat scroll 0 0 #FFF;padding:2px 5px;font-size:12px}
 .Ptable .tdTitle{background:none repeat scroll 0 0 #f5fafe;text-align:right;width:110px}
 .Ptable th.tdTitle{text-align:center}
 .item-detail{padding:10px}
@@ -2644,14 +2644,14 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .flowCheckoutBox #content .checkout-steps .extra-r a{ color:#005ea7;}
 .flowCheckoutBox #content .checkout-steps .extra-r a:hover{ color:#ff500b; text-decoration:underline;}
 .flowCheckoutBox #content .step-cont{ margin-bottom:10px;}
-.flowCheckoutBox #content .step-cont .step-sub{ margin-left:40px;margin-top:20px;}
+.flowCheckoutBox #content .step-cont .step-sub{ margin-left:40px;margin-top:30px;}
 .flowCheckoutBox #content .step-cont .step-sub input{ border-radius:3px;font-weight:bold;border:0px;width:100px;height:35px;background-color:#FF500B;color:#fff;margin-left:20px;cursor:pointer;}
 .flowCheckoutBox #content #consignee-addr{width:100%;height:150px;}
-.flowCheckoutBox #content .consigneetop{ border:1px solid #ddd;width:600px;height:150px;float:left;}
-.flowCheckoutBox #content .consigneemiddle{ width:150px;height:150px;border:1px solid blue;float:left;}
-.flowCheckoutBox #content .consignee-cont{ margin: 0 45px 0 40px; overflow: hidden;}
+.flowCheckoutBox #content .consigneetop{ width:700px;height:200px;float:left;}
+.flowCheckoutBox #content .consigneemiddle{ width:200px;height:200px;float:left;}
+.flowCheckoutBox #content .consignee-cont{ margin: 10px 45px 0 40px; overflow: hidden;}
 .flowCheckoutBox #content .consignee-cont h3{ margin-left:60px;margin-top:20px;}
-.flowCheckoutBox #content .consignee-cont ul{ list-style:none;font-size:18px;width:500px;height:80px;text-align:center;margin-top:30px;}
+.flowCheckoutBox #content .consignee-cont ul{ list-style:none;font-size:18px;width:500px;height:80px;text-align:center;margin-top:60px;}
 .flowCheckoutBox #content .consignee-cont ul div,h4{ margin-top:10px;}
 .flowCheckoutBox #content .consignee-cont ul li{ width:30%;height:100px;border:1px solid #F5F5F5;margin-left:10px;float:left;text-align:center;}
 .flowCheckoutBox #content .consignee-cont span{ font-size:20px;}

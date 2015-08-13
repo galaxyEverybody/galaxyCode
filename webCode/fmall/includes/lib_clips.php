@@ -261,7 +261,6 @@ function delete_tag($tag_words, $user_id)
 function get_booking_list($user_id, $num, $start, $type)
 {
     $booking = array();
-    //echo $type;exit;
     
     $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
             "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .

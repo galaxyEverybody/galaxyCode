@@ -11,3 +11,5 @@
 增加:pay_time (int) {支付时间}
 
 增加:pay_id (tinyint) {支付方式}
+
+增加：pay_status(tinyint) {支付状态}

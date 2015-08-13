@@ -111,7 +111,7 @@ if ($action == 'default')
 }
 
 /* 显示会员注册界面 */
-if ($action == 'register')
+elseif ($action == 'register')
 {
     if ((!isset($back_act)||empty($back_act)) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
     {
@@ -214,7 +214,7 @@ elseif ($action == 'act_register')
 
         if (register($username, $password, $mobile_phone) !== false)
         {
-        	header("Location:./index.php");
+        	//header("Location:./index.php");
             /*把新注册用户的扩展信息插入数据库
             $sql = 'SELECT id FROM ' . $ecs->table('reg_fields') . ' WHERE type = 0 AND display = 1 ORDER BY dis_order, id';   //读出所有自定义扩展字段的id
             $fields_arr = $db->getAll($sql);
@@ -247,10 +247,9 @@ elseif ($action == 'act_register')
             if ($GLOBALS['_CFG']['member_email_validate'] && $GLOBALS['_CFG']['send_verify_email'])
             {
                 send_regiter_hash($_SESSION['user_id']);
-            }
+            }*/
             $ucdata = empty($user->ucdata)? "" : $user->ucdata;
             show_message(sprintf($_LANG['register_success'], $username . $ucdata), array($_LANG['back_up_page'], $_LANG['profile_lnk']), array($back_act, 'user.php'), 'info');
-        	*/
         }
         else
         {
@@ -725,7 +724,7 @@ elseif ($action == 'auth_center')
 }
 
 /* 安全认证中邮箱的绑定*/
-elseif($action == 'act_bang_email')
+elseif ($action == 'act_bang_email')
 {
 	$email = trim($_POST['authcenter_email']);
 	if(empty($email)){
@@ -743,34 +742,6 @@ elseif($action == 'act_bang_email')
 	}else{
 		show_message($_LANG['passport_js']['email_confirm']);
 	}
-}
-
-/* 安全认证中心实名的认证*/
-elseif($action = 'act_bang_truename')
-{
-	$name = trim($_POST['truename_authcenter']);
-	$idcard = trim($_POST['authcenter_idcardname']);
-	
-	if(empty($name)){
-		show_message($_LANG['passport_js']['truename_empty']);
-	}elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/",$name)){
-		show_message($_LANG['passport_js']['truename_invalid']);
-	}elseif(empty($idcard)){
-		show_message($_LANG['passport_js']['idcard_empty']);
-	}elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/",$idcard)){
-		show_message($_LANG['passport_js']['idcard_invalid']);
-	}
-	/* 查询身份证号是否存在*/
-	$sql='SELECT * FROM '.$GLOBALS['ecs']->table('users').' where idcard="'.$idcard.'"';
-	$result = $GLOBALS['db']->getOne($sql);
-	if(empty($result)){
-		$sql='UPDATE '.$GLOBALS['ecs']->table('users').' SET idcard="'.$idcard.'",realname="'.$name.'",idcardstatus=1 where user_id='.$user_id;
-		$res = $GLOBALS['db']->query($sql);
-		header("location:user.php?act=auth_center");
-	}else{
-		show_message($_LANG['passport_js']['idcard_confirm']);
-	}
-	
 }
 
 /* 注册手机号的更改*/
@@ -910,7 +881,7 @@ elseif ($action == 'profile')
     $user_info = get_profile($user_id);
 	$user_info['mobile_phone'] = str_replace(substr($user_info['mobile_phone'],3,5),'*****',$user_info['mobile_phone']);
     /* 取出注册扩展字段 */
-    $sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
+    /*$sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
     $extend_info_list = $db->getAll($sql);
 
     $sql = 'SELECT reg_field_id, content ' .
@@ -940,7 +911,7 @@ elseif ($action == 'profile')
     $smarty->assign('extend_info_list', $extend_info_list);
 
     /* 密码提示问题 */
-    $smarty->assign('passwd_questions', $_LANG['passwd_questions']);
+    //$smarty->assign('passwd_questions', $_LANG['passwd_questions']);
 
     $smarty->assign('profile', $user_info);
     $smarty->display('user_transaction.dwt');
@@ -3275,6 +3246,38 @@ elseif ($action == 'act_transform_ucenter_points')
         show_message($_LANG['exchange_error_1'], $_LANG['transform_points'], 'user.php?act=transform_points');
     }
 }
+
+/* 安全认证中心实名的认证*/
+elseif ($action = 'act_bang_truename')
+{
+	$name = trim($_POST['truename_authcenter']);
+	$idcard = trim($_POST['authcenter_idcardname']);
+
+	if(empty($name)){
+		show_message($_LANG['passport_js']['truename_empty']);
+	}
+	elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/",$name)){
+		show_message($_LANG['passport_js']['truename_invalid']);
+	}
+	elseif(empty($idcard)){
+		show_message($_LANG['passport_js']['idcard_empty']);
+	}
+	elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/",$idcard)){
+		show_message($_LANG['passport_js']['idcard_invalid']);
+	}
+	/* 查询身份证号是否存在*/
+	$sql='SELECT * FROM '.$GLOBALS['ecs']->table('users').' where idcard="'.$idcard.'"';
+	$result = $GLOBALS['db']->getOne($sql);
+	if(empty($result)){
+		$sql='UPDATE '.$GLOBALS['ecs']->table('users').' SET idcard="'.$idcard.'",realname="'.$name.'",idcardstatus=1 where user_id='.$user_id;
+		$res = $GLOBALS['db']->query($sql);
+		header("location:user.php?act=auth_center");
+	}else{
+		show_message($_LANG['passport_js']['idcard_confirm']);
+	}
+
+}
+
 /* 清除商品浏览历史 */
 elseif ($action == 'clear_history')
 {

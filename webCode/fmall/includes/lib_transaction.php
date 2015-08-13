@@ -111,16 +111,17 @@ function get_profile($user_id)
     $info  = array();
     $infos = array();
     $sql  = "SELECT user_name, birthday, sex, question, answer, rank_points, pay_points,user_money, user_rank,".
-             " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer ".
+             " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer, realname ,idcard ".
            "FROM " .$GLOBALS['ecs']->table('users') . " WHERE user_id = '$user_id'";
     $infos = $GLOBALS['db']->getRow($sql);
     $infos['user_name'] = addslashes($infos['user_name']);
+    $infos['realname'] = addslashes($infos['realname']);
 
     $row = $user->get_profile_by_name($infos['user_name']); //获取用户帐号信息
     $_SESSION['email'] = $row['email'];    //注册SESSION
 
     /* 会员等级 */
-    if ($infos['user_rank'] > 0)
+    /*if ($infos['user_rank'] > 0)
     {
         $sql = "SELECT rank_id, rank_name, discount FROM ".$GLOBALS['ecs']->table('user_rank') .
                " WHERE rank_id = '$infos[user_rank]'";
@@ -144,7 +145,7 @@ function get_profile($user_id)
     $cur_date = date('Y-m-d H:i:s');
 
     /* 会员红包 */
-    $bonus = array();
+    /*$bonus = array();
     $sql = "SELECT type_name, type_money ".
            "FROM " .$GLOBALS['ecs']->table('bonus_type') . " AS t1, " .$GLOBALS['ecs']->table('user_bonus') . " AS t2 ".
            "WHERE t1.type_id = t2.bonus_type_id AND t2.user_id = '$user_id' AND t1.use_start_date <= '$cur_date' ".
@@ -156,9 +157,9 @@ function get_profile($user_id)
         {
             $bonus[$i]['type_money'] = price_format($bonus[$i]['type_money'], false);
         }
-    }
+    }*/
 
-    $info['discount']    = $_SESSION['discount'] * 100 . "%";
+    /*$info['discount']    = $_SESSION['discount'] * 100 . "%";
     $info['email']       = $_SESSION['email'];
     $info['user_name']   = $_SESSION['user_name'];
     $info['rank_points'] = isset($infos['rank_points']) ? $infos['rank_points'] : '';
@@ -177,7 +178,15 @@ function get_profile($user_id)
     $info['home_phone']   = $infos['home_phone'];
     $info['mobile_phone'] = $infos['mobile_phone'];
     $info['passwd_question'] = $infos['passwd_question'];
-    $info['passwd_answer'] = $infos['passwd_answer'];
+    $info['passwd_answer'] = $infos['passwd_answer'];*/
+    
+    $info['email']       = $_SESSION['email'];
+    $info['user_name']   = $_SESSION['user_name'];
+    $info['sex']         = isset($infos['sex'])      ? $infos['sex']      : 0;
+    $info['birthday']    = isset($infos['birthday']) ? $infos['birthday'] : '';
+    $info['mobile_phone'] = $infos['mobile_phone'];
+    $info['realname'] = $infos['realname'];
+    $info['idcard'] = $infos['idcard'];
 
     return $info;
 }

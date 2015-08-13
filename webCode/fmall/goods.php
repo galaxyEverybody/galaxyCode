@@ -244,6 +244,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 
         $smarty->assign('goods',              $goods);
         $smarty->assign('goods_id',           $goods['goods_id']);
+        $smarty->assign('bid_record',           $bidrecord);
         //$smarty->assign('promote_end_time',   $goods['gmt_end_time']);
         $smarty->assign('categories',         get_categories_tree());  // 分类树
 
