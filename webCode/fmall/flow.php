@@ -1106,18 +1106,58 @@ elseif ($_REQUEST['step'] == 'select_payment')
     /*------------------------------------------------------ */
     //-- 改变支付方式
     /*------------------------------------------------------ */
-
-    include_once('includes/cls_json.php');
+	include_once('includes/lib_payment.php');
+	
+	$market_trueprice = trim($_POST['market_trueprice']);
+	$money = trim($_POST['investnum']);
+	$payment = trim($_POST['payment']);
+	$code = trim($_POST['code']);
+	$log_id = trim($_POST['log_id']);
+	
+	if(empty($payment) || empty($investnum) || empty($market_trueprice) || empty($log_id) || empty($code)){
+		show_message($_LANG['submit_payment_error'], $_LANG['back_up_page'], 'flow.php');
+		exit;
+	}
+	$paystyle = get_payment($code);		//检查支付方式
+	
+	if(empty($paystyle)){
+		show_message($_LANG['submit_payment_style'], $_LANG['back_up_page'], 'flow.php');
+		exit;
+	}
+	$moneystatus = check_money($log_id, $money);	//检查支付的金额是否与订单相符
+	
+	if(!$moneystatus){
+		show_message($_LANG['submit_payment_num'], $_LANG['back_up_page'], 'flow.php');
+		exit;
+	}
+	
+	
+	/*支付方式的选择
+	if($payment == '0'){
+		
+	}elseif($payment == '1'){
+		
+	}*/
+	
+	//支付成功
+	if(true){
+		order_paid($log_id, $pay_status = PS_PAYED, $note = '');	//修改订单的支付状态
+		
+		header('location:user.php?act=default');
+	}
+	
+	
+    /*include_once('includes/cls_json.php');
     $json = new JSON;
     $result = array('error' => '', 'content' => '', 'need_insure' => 0, 'payment' => 1);
 
-    /* 取得购物类型 */
+    /* 取得购物类型 
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 
-    /* 获得收货人信息 */
+    /* 获得收货人信息 *
     $consignee = get_consignee($_SESSION['user_id']);
 
-    /* 对商品信息赋值 */
+    /* 对商品信息赋值 *
     $cart_goods = cart_goods($flow_type); // 取得商品列表，计算合计
 
     if (empty($cart_goods) || !check_consignee_info($consignee, $flow_type))
@@ -1126,38 +1166,38 @@ elseif ($_REQUEST['step'] == 'select_payment')
     }
     else
     {
-        /* 取得购物流程设置 */
+        /* 取得购物流程设置 *
         $smarty->assign('config', $_CFG);
 
-        /* 取得订单信息 */
+        /* 取得订单信息 *
         $order = flow_order_info();
 
         $order['pay_id'] = intval($_REQUEST['payment']);
         $payment_info = payment_info($order['pay_id']);
         $result['pay_code'] = $payment_info['pay_code'];
 
-        /* 保存 session */
+        /* 保存 session *
         $_SESSION['flow_order'] = $order;
 
-        /* 计算订单的费用 */
+        /* 计算订单的费用 *
         $total = order_fee($order, $cart_goods, $consignee);
         $smarty->assign('total', $total);
 
-        /* 取得可以得到的积分和红包 */
+        /* 取得可以得到的积分和红包 
         $smarty->assign('total_integral', cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money']);
         $smarty->assign('total_bonus',    price_format(get_total_bonus(), false));
 
-        /* 团购标志 */
+        /* 团购标志 
         if ($flow_type == CART_GROUP_BUY_GOODS)
         {
             $smarty->assign('is_group_buy', 1);
         }
 
         $result['content'] = $smarty->fetch('library/order_total.lbi');
-    }
+    }*/
 
-    echo $json->encode($result);
-    exit;
+    //echo $json->encode($result);
+    //exit;
 }
 elseif ($_REQUEST['step'] == 'select_pack')
 {
@@ -1566,6 +1606,7 @@ elseif ($_REQUEST['step'] == 'done')
 	/* 未登录处理 */
 	if (empty($_SESSION['user_id'])){
 		header('location:user.php?act=login');
+		exit;
 	}
 	
 	
@@ -1593,7 +1634,7 @@ elseif ($_REQUEST['step'] == 'done')
     		'market_price'  => $goods['market_price'],
     		'goods_price'  	=> $goods['shop_price'],
     		'invest_price'  => $investprice,
-    		'order_price'	=> $investprice*0.95,
+    		'order_price'	=> $investprice,
     		'goods_attr'    => addslashes($goods_attr),
     		'goods_attr_id' => $goods_attr_id,
     		'is_real'       => $goods['is_real'],
@@ -1602,9 +1643,10 @@ elseif ($_REQUEST['step'] == 'done')
     		'parent_id'		=>$goods['cat_id'],
     		'is_shipping'   => $goods['is_shipping'],
     		'add_time'      => gmtime(),
-    		'pay_id'		=> 0,
-    		'pay_time'		=>0,
-    		'pay_status'	=>0,
+    		'pay_id'		=> 4,
+    		'pay_time'		=> 0,
+    		'pay_status'	=> PS_UNPAYED,
+    		'order_status'	=> OS_UNCONFIRMED,
     );
     
     $new_order_id = $db->insert_id();
@@ -1625,6 +1667,11 @@ elseif ($_REQUEST['step'] == 'done')
     }
     while ($error_no == 1062); //如果是订单号重复则重新提交数据
 
+    //取得支付配送方式
+    $sql = 'select pay_id,pay_code,pay_name from '.$GLOBALS['ecs']->table('payment');
+    $payment_list = $GLOBALS['db']->getAll($sql);
+    
+    $smarty->assign('payment_list',$payment_list);
     
     /* 取得购物类型 
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
@@ -2094,7 +2141,9 @@ elseif ($_REQUEST['step'] == 'done')
     }
 
     /* 订单信息 */
+    $smarty->assign('log_id',      $order['log_id']);
     $smarty->assign('ordername',      $order['goods_name']);
+    $smarty->assign('payid',      $order['pay_id']);
     $smarty->assign('market_price',      intval($order['market_price']));
     $smarty->assign('invest_price',      $order['invest_price']);
     //user_uc_call('add_feed', array($order['order_id'], BUY_GOODS)); //推送feed到uc

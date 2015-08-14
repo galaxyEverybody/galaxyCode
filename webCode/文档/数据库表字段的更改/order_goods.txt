@@ -13,3 +13,5 @@
 增加:pay_id (tinyint) {支付方式}
 
 增加：pay_status(tinyint) {支付状态}
+
+增加：order_status(tinyint) {订单状态}

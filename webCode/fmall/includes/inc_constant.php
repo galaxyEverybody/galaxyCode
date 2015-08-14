@@ -91,6 +91,11 @@ define('PS_UNPAYED',                0); // 未付款
 define('PS_PAYING',                 1); // 付款中
 define('PS_PAYED',                  2); // 已付款
 
+/* 产品状态*/
+define('GD_INVING',                 1); // 投标中
+define('GD_FULL',                   2); // 已投满
+define('GD_OVER',                   3); // 已结清
+
 /* 综合状态 */
 define('CS_AWAIT_PAY',              100); // 待付款：货到付款且已发货且未付款，非货到付款且未付款
 define('CS_AWAIT_SHIP',             101); // 待发货：货到付款且未发货，非货到付款且已付款且未发货

@@ -261,11 +261,12 @@ function delete_tag($tag_words, $user_id)
 function get_booking_list($user_id, $num, $start, $type)
 {
     $booking = array();
+    $pay_status = PS_PAYED;
     
     $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
             "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
                      $GLOBALS['ecs']->table('order_goods') . " AS o " .
-            "WHERE g.goods_id = o.goods_id AND o.pay_status = 1 AND g.good_status = ".$type." AND user_id = '$user_id' order by o.rec_id desc";
+            "WHERE g.goods_id = o.goods_id AND o.pay_status = ".$pay_status." AND g.good_status = ".$type." AND user_id = '$user_id' order by o.rec_id desc";
     $res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
 
     while ($row = $GLOBALS['db']->fetchRow($res))
@@ -274,7 +275,7 @@ function get_booking_list($user_id, $num, $start, $type)
         {
             $row['dispose_note'] = 'N/A';
         }
-        if($type == 1){
+        if($type == GD_INVING){
         	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
         					'market_price'  => $row['market_price'].'%',	//年利率
                            'surprice'   	=> ($row['shop_price'] - $row['surplus_price'])/$row['shop_price'].'%',	//进度
@@ -283,7 +284,7 @@ function get_booking_list($user_id, $num, $start, $type)
         					'good_id'		=> $row['goods_sn']		//债券id
         				);
         }
-        if($type == 2){
+        if($type == GD_FULL){
         	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
         			'market_price'  => $row['market_price'],	//年利率
         			'collect_interest'   	=> ($row['shop_price']*$row['market_price'])/365*(($row['goods_number'] - $row['add_time'])/60*60*24),	//待收本息
@@ -293,7 +294,7 @@ function get_booking_list($user_id, $num, $start, $type)
         			'good_id'		=> $row['goods_sn']		//债券id
         	);
         }
-        if($type == 3){
+        if($type == GD_OVER){
         	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
         			'market_price'  => $row['market_price'],	//年利率
         			'shop_price'   	=> ($row['shop_price'] - $row['surplus_price'])/$row['shop_price'],	//回收金额
@@ -592,6 +593,7 @@ function get_user_surplus($user_id)
 function get_user_default($user_id)
 {
     $user_bonus = get_user_bonus();
+    $paystatus = PS_PAYED ;
 
     $sql = "SELECT pay_points, user_money, credit_line, last_login, is_validated, phonestatus, emailstatus, idcardstatus, bangcardstatus FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id = '$user_id'";
     $row = $GLOBALS['db']->getRow($sql);
@@ -626,7 +628,7 @@ function get_user_default($user_id)
             " WHERE user_id = '" .$user_id. "' AND add_time > '" .local_strtotime('-1 months'). "'";
     $info['order_count'] = $GLOBALS['db']->getOne($sql);
     /* 理财资产*/
-    $sqlsum = "SELECT SUM(invest_price) FROM ".$GLOBALS['ecs']->table('order_goods')." where pay_status = 1 and user_id =".$user_id;
+    $sqlsum = "SELECT SUM(invest_price) FROM ".$GLOBALS['ecs']->table('order_goods')." where pay_status =".$paystatus." and user_id =".$user_id;
     $info['order_sum'] = $GLOBALS['db']->getOne($sqlsum);
     
     $info['order_sum'] = empty($info['order_sum'])?'0.00':$info['order_sum'];
@@ -636,7 +638,7 @@ function get_user_default($user_id)
     
     //$info['borrow_sum'] = empty($info['borrow_sum'])?'0.00':$info['borrow_sum'];
     /* 账户净资产*/
-    //$info['account_sum'] = $info['order_sum'] - $info['borrow_sum'] + $info['surplus'];
+    $info['account_sum'] = $info['order_sum'] - $info['borrow_sum'] + $info['surplus'];
     $info['account_sum'] = empty($info['account_sum'])?'0.00':$info['account_sum'];
     
     include_once(ROOT_PATH . 'includes/lib_order.php');

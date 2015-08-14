@@ -1009,6 +1009,7 @@ function order_action($order_sn, $order_status, $shipping_status, $pay_status, $
             'SELECT ' .
                 "order_id, '$username', '$order_status', '$shipping_status', '$pay_status', '$place', '$note', '" .gmtime() . "' " .
             'FROM ' . $GLOBALS['ecs']->table('order_info') . " WHERE order_sn = '$order_sn'";
+
     $GLOBALS['db']->query($sql);
 }
 

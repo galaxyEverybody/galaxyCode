@@ -497,8 +497,8 @@ $_LANG['goods_num_must_over_0'] = '商品数量应该大于0';
 $_LANG['rows_num_must_be_int'] = '排列显示条目数应该是整数';
 $_LANG['rows_num_must_over_0'] = '排列显示条目数应该大于0';
 
-$_LANG['last_month_order'] = '您最近30天内提交了';
-$_LANG['order_unit'] = '个订单';
+$_LANG['last_month_order'] = '您最近30天内进行了';
+$_LANG['order_unit'] = '次投资';
 $_LANG['please_received'] = '以下订单已发货，请注意查收';
 $_LANG['your_auction'] = '您竟拍到了<strong>%s</strong> ，现在去 <a href="auction.php?act=view&amp;id=%s"><span style="color:#06c;text-decoration:underline;">购买</span></a>';
 $_LANG['your_snatch'] = '您夺宝奇兵竟拍到了<strong>%s</strong> ，现在去 <a href="snatch.php?act=main&amp;id=%s"><span style="color:#06c;text-decoration:underline;">购买</span></a>';

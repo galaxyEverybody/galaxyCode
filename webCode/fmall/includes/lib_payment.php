@@ -158,28 +158,31 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
             if ($pay_log['order_type'] == PAY_ORDER)
             {
                 /* 取得订单信息 */
-                $sql = 'SELECT order_id, user_id, order_sn, consignee, address, tel, shipping_id, extension_code, extension_id, goods_amount ' .
-                        'FROM ' . $GLOBALS['ecs']->table('order_info') .
-                       " WHERE order_id = '$pay_log[order_id]'";
+                $sql = 'SELECT user_id, order_sn, goods_price, order_price, goods_id ' .
+                        'FROM ' . $GLOBALS['ecs']->table('order_goods') .
+                       " WHERE order_sn = '$pay_log[order_id]'";
                 $order    = $GLOBALS['db']->getRow($sql);
-                $order_id = $order['order_id'];
-                $order_sn = $order['order_sn'];
+                $order_id = $order['order_sn'];
+                $goodid = $order['goods_id'];
+                $invest_price = $order['goods_price'] - $order['order_price'];	//产品的可投资金额
 
                 /* 修改订单状态为已付款 */
-                $sql = 'UPDATE ' . $GLOBALS['ecs']->table('order_info') .
+                $sql = 'UPDATE ' . $GLOBALS['ecs']->table('order_goods') .
                             " SET order_status = '" . OS_CONFIRMED . "', " .
-                                " confirm_time = '" . gmtime() . "', " .
                                 " pay_status = '$pay_status', " .
-                                " pay_time = '".gmtime()."', " .
-                                " money_paid = order_amount," .
-                                " order_amount = 0 ".
-                       "WHERE order_id = '$order_id'";
-                $GLOBALS['db']->query($sql);
+                                " pay_time = '".gmtime()."' " .
+                       "WHERE order_sn = '$order_id'";
 
-                /* 记录订单操作记录 */
+                $GLOBALS['db']->query($sql);
+                
+                /* 修改商品的可投资金额*/
+                $sql = 'UPDATE '.$GLOBALS['ecs']->table('goods').' SET surplus_price ="'.$invest_price.'" where goods_id ='.$goodid;
+                $GLOBALS['db']->query($sql);
+                
+                /* 记录订单操作记录 
                 order_action($order_sn, OS_CONFIRMED, SS_UNSHIPPED, $pay_status, $note, $GLOBALS['_LANG']['buyer']);
 
-                /* 如果需要，发短信 */
+                /* 如果需要，发短信 
                 if ($GLOBALS['_CFG']['sms_order_payed'] == '1' && $GLOBALS['_CFG']['sms_shop_mobile'] != '')
                 {
                     include_once(ROOT_PATH.'includes/cls_sms.php');
@@ -188,7 +191,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                         sprintf($GLOBALS['_LANG']['order_payed_sms'], $order_sn, $order['consignee'], $order['tel']),'', 13,1);
                 }
 
-                /* 对虚拟商品的支持 */
+                /* 对虚拟商品的支持 
                 $virtual_goods = get_virtual_goods($order_id);
                 if (!empty($virtual_goods))
                 {
@@ -198,21 +201,21 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                         $GLOBALS['_LANG']['pay_success'] .= '<div style="color:red;">'.$msg.'</div>'.$GLOBALS['_LANG']['virtual_goods_ship_fail'];
                     }
 
-                    /* 如果订单没有配送方式，自动完成发货操作 */
+                    /* 如果订单没有配送方式，自动完成发货操作 
                     if ($order['shipping_id'] == -1)
                     {
-                        /* 将订单标识为已发货状态，并记录发货记录 */
+                        /* 将订单标识为已发货状态，并记录发货记录 
                         $sql = 'UPDATE ' . $GLOBALS['ecs']->table('order_info') .
                                " SET shipping_status = '" . SS_SHIPPED . "', shipping_time = '" . gmtime() . "'" .
                                " WHERE order_id = '$order_id'";
                         $GLOBALS['db']->query($sql);
 
-                         /* 记录订单操作记录 */
+                         /* 记录订单操作记录 
                         order_action($order_sn, OS_CONFIRMED, SS_SHIPPED, $pay_status, $note, $GLOBALS['_LANG']['buyer']);
                         $integral = integral_to_give($order);
                         log_account_change($order['user_id'], 0, 0, intval($integral['rank_points']), intval($integral['custom_points']), sprintf($GLOBALS['_LANG']['order_gift_integral'], $order['order_sn']));
                     }
-                }
+                }*/
 
             }
             elseif ($pay_log['order_type'] == PAY_SURPLUS)

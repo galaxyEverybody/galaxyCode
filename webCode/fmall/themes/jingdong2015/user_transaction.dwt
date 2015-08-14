@@ -594,7 +594,9 @@
 		<!--手机修改end-->
 		
 		<!--邮箱修改start-->
-		<p><img src="images/emailauth01.png" width="25px"><span class="capitalauthphone">绑定邮箱</span><span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]{else}{$userinfostatus.email}{/if}</span> <span onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</span></p>
+		<p><img src="images/emailauth01.png" width="25px"><span class="capitalauthphone">绑定邮箱</span>
+			<span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]<span onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</span>
+			{else}{$userinfostatus.email}{/if}</span> <span class="capitalauthupda">已绑定</span></p>
 		<div id="authemaildiv" style="width:650px;height:200px;display:none;margin-left:200px;">
 				<form id="formauthcenteremail" action="user.php" method="post" onSubmit="return authcenteremailform();">
 				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
@@ -615,7 +617,9 @@
 		<!--邮箱修改end-->
 		
 		<!--进行实名认证start-->
-		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">实名认证</span><span class="capitalauthnum">{if $userinfostatus.idcardstatus eq 0}未认证[用于账户余额的提现与充值]{else}{$userinfostatus.idcard}{/if}</span> <span onclick="authcenteridcard()" id="capitalupdaidcard" class="capitalauthupda">认证</span></p>
+		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">实名认证</span><span class="capitalauthnum">
+			{if $userinfostatus.idcardstatus eq 0}未认证[用于账户余额的提现与充值]<span onclick="authcenteridcard()" id="capitalupdaidcard" class="capitalauthupda">认证</span>
+			{else}{$userinfostatus.idcard}{/if}</span> <span class="capitalauthupda">已认证</span></p>
 		<div id="authidcarddiv" style="width:750px;height:200px;display:none;margin-left:200px;">
 				<form id="formauthcentertruename" action="user.php" method="post" onSubmit="return authcentertruenamefrom()">
 				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">

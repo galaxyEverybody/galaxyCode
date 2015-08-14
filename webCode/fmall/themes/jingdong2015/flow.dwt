@@ -389,10 +389,12 @@
                                 <ul>
                                     <li>
                                     	<div class="consigneenum">{$market_price}<span>%</span></div>
+                                    	<input type="hidden" name="market_trueprice" value="{$market_price}">
                                     	<p class="consigneechin">利率</p>
                                     </li>
                                     <li>
                                     	<div class="consigneenum" style="margin-left:30px;">{$invest_price}<span>.00</span></div>
+                                    	<input type="hidden" name="investnum" value="{$invest_price}">
                                     	<p class="consigneechin">申购金额</p>
                                     </li>
                                 </ul>
@@ -408,25 +410,24 @@
                         <div class="payment-list">
                             <div class="list-cont">
                                 <ul>
+                                	{foreach from=$payment_list item=payment}
                                     <li>
                                         <div class="payment-item hoverInput" style="color:blue;">
-                                        	<label for="payment_style"><b></b>余额支付</label>
-                                            <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_style" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/>
-                                            <div class="text"><span><i></i></span>{$lang.pay_fee}：{$payment.format_pay_fee}</div>
+                                        	<label for="payment_style"><b></b>{$payment.pay_name}</label>
+                                            <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_style" {if $payid eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/>
+                                            <input type="hidden" name="code" value="{$payment.pay_code}">
                                         </div>
                                     </li>
-                                    <li>
-	                                    <div class="payment-item hoverInput" style="color:blue;">
-	                                    	<label for="payment_style"><b></b>网银快捷通道</label>
-	                                        <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_style" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/>
-	                                        <div class="text"><span><i></i></span>{$lang.pay_fee}：{$payment.format_pay_fee}</div>
-	                                    </div>
-	                                </li>
+                                    {/foreach}
                                 </ul>
                                 <div class="blank0"></div>
                             </div>
                         </div>
-                        <div class="step-sub"><input type="submit" value="确认支付"></div>
+                        <div class="step-sub">
+                        	<input type="hidden" name="log_id" value="{$log_id}">
+                        	<input type="hidden" name="step" value="select_payment">
+                        	<input type="submit" value="确认支付">
+                        </div>
                     </div>
                     <!--{else}-->
                     <input name = "payment" type="radio" value = "-1" checked="checked"  style="display:none"/>

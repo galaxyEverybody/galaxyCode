@@ -705,10 +705,13 @@ elseif ($action == 'bangcardadd')
 		'cardbank'		=>	isset($_POST['bankname'])?trim($_POST['bankname']):0,
 		'cardshop'		=>	isset($_POST['cardwang'])?trim($_POST['cardwang']):'',
 		'idcard'		=>	'0',
-		'bangstatus'	=>	0
+		'bangstatus'	=>	'1'
 	);
 
 	if(insert_bangcard($bangcardinfo)){
+		/* 更改绑定银行卡认证状态*/
+		$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET bangcardstatus =1 WHERE user_id ='.$user_id;
+		$GLOBALS['db']->query($sql);
 		header("Location:./user.php?act=bangcard");
 	}
 }
@@ -1666,12 +1669,13 @@ elseif ($action == 'booking_list')
     include_once(ROOT_PATH . 'includes/lib_clips.php');
 
     $page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
-
+	$pay_status = PS_PAYED;
+    
     /* 我的债券 */
     $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
             "FROM " .$ecs->table('goods'). " AS g, " .
                      $ecs->table('order_goods') . " AS o " .
-            "WHERE g.goods_id = o.goods_id AND o.pay_status = 1 AND user_id = '$user_id'";
+            "WHERE g.goods_id = o.goods_id AND o.pay_status = ".$pay_status." AND user_id = '$user_id'";
     $bonds_info = $db->getAll($sql);
     
     foreach($bonds_info as $bondinfo){
@@ -1685,9 +1689,9 @@ elseif ($action == 'booking_list')
     } 
     
     $pager = get_pager('user.php', array('act' => $action), $record_count, $page);
-    $smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], 1));
-    $smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], 2));
-    $smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], 3));
+    $smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], GD_INVING));
+    $smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], GD_FULL));
+    $smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], GD_OVER));
     $smarty->assign('pager',        $pager);
     $smarty->display('user_clips.dwt');
 }
