@@ -27,6 +27,8 @@ $_LANG['label_update_loginpass'] = '修改账号密码';
 $_LANG['label_update_tempass'] = '修改提取密码';
 $_LANG['label_order_fund'] = '我的基金';
 $_LANG['label_withdraw_pw'] = '设置提现密码';
+$_LANG['label_account_withdrawals'] = '账户提现';
+$_LANG['label_account_rechanger'] = '账户充值';
 $_LANG['label_bang_ka'] = '绑定银行卡';
 $_LANG['label_auth_center'] = '安全认证中心';
 $_LANG['label_pw_up'] = '修改登录密码';
@@ -49,6 +51,12 @@ $_LANG['label_transform_points'] = '积分兑换';
 $_LANG['label_logout'] = '退出';
 
 /* 会员余额(预付款) */
+$_LANG['add_kindly_reminder'] = '温馨提示:';
+$_LANG['add_reminder_one'] = '1. 联众金融禁止信用卡套现、虚假交易等行为,一经发现将予以冻结账户、暂停交易等操作。';
+$_LANG['add_reminder_two'] = '2. 为了您的资金安全，请在充值前进行实名认证及交易密码设置。';
+$_LANG['add_reminder_three'] = '3. 请注意您的银行卡充值限制，以免造成不便。';
+$_LANG['add_withdrawals_reminder'] = '提现资费说明:';
+$_LANG['add_withdrawals_one'] = '0-10000元，手续费3元；10001-50000元，手续费5元。提现手续费率(其他银行)手续费3元；提现手续费率(其他银行)手续费5元。';
 $_LANG['add_surplus_log'] = '查看帐户明细';
 $_LANG['view_application'] = '查看申请记录';
 $_LANG['surplus_pro_type'] = '类型';

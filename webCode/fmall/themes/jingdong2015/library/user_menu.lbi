@@ -15,7 +15,9 @@
       <div class="item {if $action eq 'bangcard'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'bangcard'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=bangcard">{$lang.label_bang_ka}</a></div>
       <div class="item {if $action eq 'auth_center'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'auth_center'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=auth_center">{$lang.label_auth_center}</a></div>
       <div class="item {if $action eq 'withdraw_password'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'withdraw_password'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=withdraw_password">{$lang.label_withdraw_pw}</a></div>
-    </dd>
+      <div class="item {if $action eq 'account_withdrawals'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'account_withdrawals'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=account_withdrawals">{$lang.label_account_withdrawals}</a></div>
+      <div class="item {if $action eq 'account_rechanger'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'account_rechanger'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=account_rechanger">{$lang.label_account_rechanger}</a></div>
+     </dd>
   </dl>
   <dl>
     <dt>会员中心</dt>

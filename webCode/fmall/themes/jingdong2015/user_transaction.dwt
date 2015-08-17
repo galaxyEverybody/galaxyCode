@@ -126,6 +126,66 @@
 <!-- {/if}-->
 <!--设置提现密码 end-->
 
+<!--账户充值 start-->
+<!-- {if $action eq 'account_rechanger'}-->
+<div class="boxCenterList">
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">账户充值</span>
+	</div>
+	<div class="rechangermiddle">
+		<table border="0px" cellspadding="10px" cellpadding="10px">
+			<tr><td width="100px;">充值金额</td><td><input type="text" name="rechargenum" class="bangcardinput"></td></tr>
+			<tr><td width="100px;">充值渠道</td><td></td></tr>
+			<tr><td width="100px;">手续费</td><td></td></tr>
+			<tr><td width="100px;">实际到账金额</td><td></td></tr>
+			<tr><td></td><td><input type="text" value="充值" class="rechangersub"></td></tr>
+		</table>
+	</div>
+	<div class="rechangerreminder">
+		<p>{$lang.add_kindly_reminder}</p>
+		<p>{$lang.add_reminder_one}</p>
+		<p>{$lang.add_reminder_two}</p>
+		<p>{$lang.add_reminder_three}</p>
+	</div>
+</div>
+<!-- {/if}-->
+<!--账户充值 end-->
+
+<!--账户提现 start-->
+<!-- {if $action eq 'account_withdrawals'}-->
+<div class="boxCenterList">
+	<div class="capitaldiv">
+		<span class="capitalleft"></span><span class="capitalright">账户提现</span>
+	</div>
+	<div class="rechangermiddle">
+		<table border="0px" cellspadding="10px" cellpadding="10px">
+			<tr><td width="100px;">真实姓名</td><td>{$withinfos.name}<td></td></tr>
+			<tr><td width="100px;">账户可用余额</td><td>{$withinfos.money}</td></tr>
+			<tr><td width="100px;">可提现额度</td><td></td></tr>
+			<tr>
+				<td width="100px;">绑定的银行卡</td>
+				<td>
+				<select class="bangcardaddleft" style="display:none;" name="countyname" id="selDistricts_{$sn}">
+	                <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+	                <!-- {foreach from=$cards item=card} -->
+	                <option value="" {if $consignee.district eq $district.region_id}selected{/if}>{$card.cardnum}</option>
+	                <!-- {/foreach} -->
+                </select>
+				</td>
+			</tr>
+			<tr><td width="100px;">提现金额</td><td><input type="text" name="rechargenum" class="bangcardinput"></td></tr>
+			<tr><td width="100px;">实际到账金额</td><td></td></tr>
+			<tr><td></td><td><input type="text" value="提现" class="rechangersub"></td></tr>
+		</table>
+	</div>
+	<div class="withdrawalsreminder">
+		<p>{$lang.add_withdrawals_reminder}</p>
+		<p>{$lang.add_withdrawals_one}</p>
+	</div>
+</div>
+<!--{/if}-->
+<!--账户提现 end-->
+
 <!--绑定银行卡 start-->
 <!-- {if $action eq 'bangcard'}-->
 {* 包含脚本文件 *}

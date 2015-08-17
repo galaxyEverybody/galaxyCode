@@ -37,7 +37,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'act_bang_email', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
-'account_deposit','bang_payment','account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
+'account_deposit','bang_payment','account_log', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 未登录处理 */
 if (empty($_SESSION['user_id']))
@@ -1879,6 +1879,34 @@ elseif ($action == 'account_detail')
     $smarty->assign('account_log',    $account_log);
     $smarty->assign('pager',          $pager);
     $smarty->display('user_transaction.dwt');
+}
+
+/* 会员账户充值页面*/
+elseif ($action == 'account_rechanger')
+{
+	$smarty->display('user_transaction.dwt');
+}
+
+/* 会员账户充值页面*/
+elseif ($action == 'account_withdrawals')
+{
+	$sql = "select u.realname,u.user_money,b.cardnum from ".$GLOBALS['ecs']->table('users')." as u,".$GLOBALS['ecs']->table('bang_card')." as b where ".
+	"u.user_id = b.user_id and b.bangstatus =1 and u.user_id =".$user_id;
+	$withinfo = $GLOBALS['db']->getAll($sql);
+	$withinfos = array();
+	$cards = array();
+	foreach($withinfo as $with){
+		$withinfos['name'] = $with['realname'];
+		$withinfos['money'] = $with['money'];
+		array_push($cards,$with['cardnum']);
+	}
+	
+	$withinfos['money'] = empty($withinfos['money'])?'0.00':$withinfos['money'];
+	$withinfos['name'] = str_replace(substr($withinfos['name'],3),'****',$withinfos['name']);
+	
+	$smarty->assign('cards',$cards);
+	$smarty->assign('withinfos',$withinfos);
+	$smarty->display('user_transaction.dwt');
 }
 
 /* 会员充值和提现申请记录 */
