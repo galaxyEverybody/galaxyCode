@@ -34,6 +34,9 @@ $_LANG['label_auth_center'] = '安全认证中心';
 $_LANG['label_pw_up'] = '修改登录密码';
 $_LANG['label_order_secure'] = '我的保险';
 $_LANG['label_order_invest'] = '我的债券';
+$_LANG['label_order_month'] = '月能赚';
+$_LANG['label_order_quarter'] = '季能赚';
+$_LANG['label_order_year'] = '聚能赚';
 $_LANG['label_order_loan'] = '我的贷款';
 $_LANG['label_address'] = '收货地址';
 $_LANG['label_message'] = '建议中心';
@@ -115,6 +118,8 @@ $_LANG['booking_rec_exist'] = '此商品您已经进行过缺货登记了！';
 $_LANG['back_booking_list'] = '返回缺货登记列表';
 $_LANG['not_dispose'] = '未处理';
 $_LANG['no_goods_id'] = '请指定商品ID';
+$_LANG['no_withdrawals_num'] = '-提现金额大于您的账户余额';
+$_LANG['no_num'] = '-输入的金额不合法';
 
 //JS语言项
 $_LANG['booking_js']['booking_amount_empty'] = '请输入您要订购的商品数量！';

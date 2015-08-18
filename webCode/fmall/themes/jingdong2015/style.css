@@ -117,6 +117,7 @@ h6 span{float:left;padding-left:15px}
 
 /* 用户中心充值提现*/
 .rechangermiddle{ width:75%;height:auto;font-size:16px;margin-top:20px;}
+.rechangermiddle span{ line-height:40px;height:40px;margin-left:5px;color:#F68A1D;}
 .rechangerreminder{ width:75%;height:120px;background:#F68A1D;color:#fff;margin-top:50px;}
 .rechangerreminder p{ margin-top:7px;margin-left:10px;}
 .rechangermiddle .rechangersub{ text-align:center;width:260px;height:40px;background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;border:0px;cursor:pointer;}

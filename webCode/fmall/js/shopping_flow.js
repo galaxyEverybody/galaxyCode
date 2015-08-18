@@ -1118,3 +1118,75 @@ function authcentertruenamefrom(){
 	}
 	return true;
 }
+
+/* 充值页面表单的验证*/
+function formrechanger(){
+	var num = $("#rechargernum").val();
+	var reg = /^[0-9]{2,10}$/;
+	if(num == ''){	
+		$("#rechargernumspan").html('-请输入您要充值的金额');
+		return false;
+	}else{
+		if(!reg.test(num) ){
+			$("#rechargernumspan").html('-请输入您要充值的金额');
+			return false;
+		}else if(num%50 != 0){
+			$("#rechargernumspan").html('-充值的金额必须为50的倍数');
+			return false;
+		}else{
+			$("#rechargernumspan").html('+输入正确');
+			return true;
+		}
+	}
+}
+
+function chekrechargernum(num){
+	var reg = /^[0-9]{2,10}$/;
+	if(num == ''){
+		$("#rechargernumspan").html('-请输入您要充值的金额');
+	}else{
+		if(!reg.test(num)){
+			$("#rechargernumspan").html('-请输入您要充值的金额');
+		}else if(num%50 != 0){
+			$("#rechargernumspan").html('-充值的金额必须为50的倍数');
+		}else{
+			$("#rechargernumspan").html('+输入正确');
+		}
+	}
+}
+
+/* 提现页面表单的验证*/
+function formwithdrawals(){
+	var num = $("#withdrawalsnum").val();
+	var reg = /^[0-9]{1,10}$/;
+	if(num == ''){
+		$("#withdrawalsnumspan").html('-请输入您要提现的金额');
+		return false;
+	}else{
+		if(!reg.test(num)){
+			$("#withdrawalsnumspan").html('-输入的金额不合法');
+			return false;
+		}else if(num < 5){
+			$("#withdrawalsnumspan").html('-提现的金额小于最小金额');
+			return false;
+		}else{
+			$("#withdrawalsnumspan").html('+输入正确');
+			return true;
+		}
+	}
+}
+
+function chekwithdrawalsnum(num){
+	var reg = /^[0-9]{1,10}$/;
+	if(num == ''){
+		$("#withdrawalsnumspan").html('-请输入您要提现的金额');
+	}else{
+		if(!reg.test(num)){
+			$("#withdrawalsnumspan").html('-输入的金额不合法');
+		}else if(num < 5){
+			$("#withdrawalsnumspan").html('-提现的金额小于最小金额');
+		}else{
+			$("#withdrawalsnumspan").html('+输入正确');
+		}
+	}
+}

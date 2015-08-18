@@ -6,6 +6,9 @@
       <div style="display:none;" class="item {if $action eq 'order_list'|| $action eq 'order_detail'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'order_list'|| $action eq 'order_detail'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=order_list">{$lang.label_order_fund}</a></div>
       <div style="display:none;" class="item {if $action eq 'address_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'address_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=address_list">{$lang.label_order_secure}</a></div>
       <div class="item {if $action eq 'booking_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'booking_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=booking_list">{$lang.label_order_invest}</a></div>
+      <div class="item {if $action eq 'booking_list_month'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'booking_list_month'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=booking_list_month">{$lang.label_order_month}</a></div>
+      <div class="item {if $action eq 'booking_list_quarter'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'booking_list_quarter'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=booking_list_quarter">{$lang.label_order_quarter}</a></div>
+      <div class="item {if $action eq 'booking_list_year'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'booking_list_year'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=booking_list_year">{$lang.label_order_year}</a></div>
       <div style="display:none;" class="item {if $action eq 'loan_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'loan_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=loan_list">{$lang.label_order_loan}</a></div>
     </dd>
   </dl>

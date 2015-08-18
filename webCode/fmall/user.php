@@ -36,8 +36,8 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
-'message_list', 'act_bang_email', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
-'account_deposit','bang_payment','account_log', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
+'message_list', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
+'account_deposit','bang_payment','account_log', 'booking_list_month', 'booking_list_quarter', 'booking_list_year', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 未登录处理 */
 if (empty($_SESSION['user_id']))
@@ -1663,37 +1663,108 @@ elseif ($action == 'bang_payment')
 	$smarty->display('user_bang.dwt');
 }
 
-/* 显示缺货登记列表 */
+/* 显示我的债券列表 */
 elseif ($action == 'booking_list')
 {
     include_once(ROOT_PATH . 'includes/lib_clips.php');
-
+    
+    $catstatus = isset($catstatus)?$catstatus:0;
+    
+    
     $page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
 	$pay_status = PS_PAYED;
     
     /* 我的债券 */
-    $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
+    $sql = "SELECT count(*) " .
             "FROM " .$ecs->table('goods'). " AS g, " .
-                     $ecs->table('order_goods') . " AS o " .
-            "WHERE g.goods_id = o.goods_id AND o.pay_status = ".$pay_status." AND user_id = '$user_id'";
-    $bonds_info = $db->getAll($sql);
-    
-    foreach($bonds_info as $bondinfo){
-    	if($bondinfo['good_status'] == 1){
-    		$bid_info[] = $bondinfo;
-    	}elseif($bondinfo['good_status'] == 2){
-    		$recover_info[] = $bondinfo;
-    	}elseif($bondinfo['good_status'] == 3){
-    		$bond_over[] = $bondinfo;
-    	}
-    } 
+                     $ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
+            "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = ".$catstatus." AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+    $record_count = $db->getOne($sql);
     
     $pager = get_pager('user.php', array('act' => $action), $record_count, $page);
-    $smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], GD_INVING));
-    $smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], GD_FULL));
-    $smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], GD_OVER));
+    $smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
+    $smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
+    $smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
     $smarty->assign('pager',        $pager);
     $smarty->display('user_clips.dwt');
+}
+
+/* 显示月能赚列表*/
+elseif ($action == 'booking_list_month')
+{
+	include_once(ROOT_PATH . 'includes/lib_clips.php');
+
+	$catstatus = isset($catstatus)?$catstatus:1;
+
+
+	$page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
+	$pay_status = PS_PAYED;
+
+	/* 我的债券 */
+	$sql = "SELECT count(*) " .
+			"FROM " .$ecs->table('goods'). " AS g, " .
+			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = ".$catstatus." AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+	$record_count = $db->getOne($sql);
+
+	$pager = get_pager('user.php', array('act' => $action), $record_count, $page);
+	$smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
+	$smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
+	$smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
+	$smarty->assign('pager',        $pager);
+	$smarty->display('user_clips.dwt');
+}
+
+/* 显示月能赚列表*/
+elseif ($action == 'booking_list_quarter')
+{
+	include_once(ROOT_PATH . 'includes/lib_clips.php');
+
+	$catstatus = isset($catstatus)?$catstatus:2;
+
+
+	$page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
+	$pay_status = PS_PAYED;
+
+	/* 我的债券 */
+	$sql = "SELECT count(*) " .
+			"FROM " .$ecs->table('goods'). " AS g, " .
+			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = ".$catstatus." AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+	$record_count = $db->getOne($sql);
+
+	$pager = get_pager('user.php', array('act' => $action), $record_count, $page);
+	$smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
+	$smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
+	$smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
+	$smarty->assign('pager',        $pager);
+	$smarty->display('user_clips.dwt');
+}
+
+/* 显示聚能赚列表*/
+elseif ($action == 'booking_list_year')
+{
+	include_once(ROOT_PATH . 'includes/lib_clips.php');
+
+	$catstatus = isset($catstatus)?$catstatus:3;
+
+
+	$page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
+	$pay_status = PS_PAYED;
+
+	/* 我的债券 */
+	$sql = "SELECT count(*) " .
+			"FROM " .$ecs->table('goods'). " AS g, " .
+			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = ".$catstatus." AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+	$record_count = $db->getOne($sql);
+
+	$pager = get_pager('user.php', array('act' => $action), $record_count, $page);
+	$smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
+	$smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
+	$smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
+	$smarty->assign('pager',        $pager);
+	$smarty->display('user_clips.dwt');
 }
 
 /* 我的贷款页面*/
@@ -1887,7 +1958,7 @@ elseif ($action == 'account_rechanger')
 	$smarty->display('user_transaction.dwt');
 }
 
-/* 会员账户充值页面*/
+/* 会员账户提现页面*/
 elseif ($action == 'account_withdrawals')
 {
 	$sql = "select u.realname,u.user_money,b.cardnum from ".$GLOBALS['ecs']->table('users')." as u,".$GLOBALS['ecs']->table('bang_card')." as b where ".
@@ -1907,6 +1978,34 @@ elseif ($action == 'account_withdrawals')
 	$smarty->assign('cards',$cards);
 	$smarty->assign('withinfos',$withinfos);
 	$smarty->display('user_transaction.dwt');
+}
+
+/* 会员进行充值*/
+elseif ($action == 'act_rechanger')
+{
+	$number = trim($_POST['rechargernum']);
+	if(!is_numeric($number)){
+		show_message($_LANG['no_num'],$_LANG['back_up_page'], 'user.php?act=account_rechanger', 'info');
+	}
+}
+
+/* 会员进行提现*/
+elseif ($action == 'act_withdrawals')
+{
+	$number = trim($_POST['withdrawalsnum']);
+	if(!is_numeric($number)){
+		show_message($_LANG['no_num'],$_LANG['back_up_page'], 'user.php?act=account_withdrawals', 'info');
+	}
+	/* 查询账户余额*/
+	$sql = "select user_money from ".$GLOBALS['ecs']->table('users')." where user_id =".$user_id;
+	$money = $GLOBALS['db']->getOne($sql);
+	
+	if($number > $money){
+		show_message($_LANG['no_withdrawals_num'],$_LANG['back_up_page'], 'user.php?act=account_withdrawals', 'info');
+	}
+	
+	
+	
 }
 
 /* 会员充值和提现申请记录 */

@@ -128,18 +128,28 @@
 
 <!--账户充值 start-->
 <!-- {if $action eq 'account_rechanger'}-->
+{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
 <div class="boxCenterList">
 	<div class="capitaldiv">
 		<span class="capitalleft"></span><span class="capitalright">账户充值</span>
 	</div>
 	<div class="rechangermiddle">
+		<form action="user.php" method="post" onsubmit="return formrechanger()">
 		<table border="0px" cellspadding="10px" cellpadding="10px">
-			<tr><td width="100px;">充值金额</td><td><input type="text" name="rechargenum" class="bangcardinput"></td></tr>
+			<tr>
+				<td width="100px;">充值金额</td>
+				<td><input type="text" id="rechargernum" name="rechargernum" class="bangcardinput" placeholder="充值金额为50的倍数" onblur="chekrechargernum(this.value)">
+					<span id="rechargernumspan"></span></td>
+				</tr>
 			<tr><td width="100px;">充值渠道</td><td></td></tr>
 			<tr><td width="100px;">手续费</td><td></td></tr>
 			<tr><td width="100px;">实际到账金额</td><td></td></tr>
-			<tr><td></td><td><input type="text" value="充值" class="rechangersub"></td></tr>
+			<tr>
+				<td><input type="hidden" name="act" value="act_rechanger"></td>
+				<td><input type="submit" value="充值" class="rechangersub"></td>
+			</tr>
 		</table>
+		</form>
 	</div>
 	<div class="rechangerreminder">
 		<p>{$lang.add_kindly_reminder}</p>
@@ -153,11 +163,13 @@
 
 <!--账户提现 start-->
 <!-- {if $action eq 'account_withdrawals'}-->
+{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
 <div class="boxCenterList">
 	<div class="capitaldiv">
 		<span class="capitalleft"></span><span class="capitalright">账户提现</span>
 	</div>
 	<div class="rechangermiddle">
+		<form action="user.php" method="post" onsubmit="return formwithdrawals()">
 		<table border="0px" cellspadding="10px" cellpadding="10px">
 			<tr><td width="100px;">真实姓名</td><td>{$withinfos.name}<td></td></tr>
 			<tr><td width="100px;">账户可用余额</td><td>{$withinfos.money}</td></tr>
@@ -173,10 +185,18 @@
                 </select>
 				</td>
 			</tr>
-			<tr><td width="100px;">提现金额</td><td><input type="text" name="rechargenum" class="bangcardinput"></td></tr>
+			<tr>
+				<td width="100px;">提现金额</td>
+				<td><input type="text" name="withdrawalsnum" id="withdrawalsnum" class="bangcardinput" onblur="chekwithdrawalsnum(this.value)">
+				<span id="withdrawalsnumspan"></span></td>
+			</tr>
 			<tr><td width="100px;">实际到账金额</td><td></td></tr>
-			<tr><td></td><td><input type="text" value="提现" class="rechangersub"></td></tr>
+			<tr>
+				<td><input type="hidden" name="act" value="act_withdrawals"></td>
+				<td><input type="submit" value="提现" class="rechangersub"></td>
+			</tr>
 		</table>
+		</form>
 	</div>
 	<div class="withdrawalsreminder">
 		<p>{$lang.add_withdrawals_reminder}</p>
