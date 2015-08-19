@@ -1590,7 +1590,7 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
                   'auid'  => 0,
                   'sort'  => '',
                   'order' => '',
- 				  'alone' => 0,
+ 				  'isalone' => 0,
                 );
 
     extract(array_merge($args, $params));
@@ -1639,10 +1639,10 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
                 }
                 else
                 {
-                	if($alone == 1){
-                		$uri = 'goods.php?id=' .$cid;
+                	if($isalone == 0){
+                		$uri = 'category.php?id=' . $cid;
                 	}else{
-                    	$uri = 'category.php?id=' . $cid;
+                		$uri = 'goods.php?id=' .$cid;
                 	}
                     if (!empty($bid))
                     {

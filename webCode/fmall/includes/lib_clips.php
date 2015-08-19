@@ -263,13 +263,13 @@ function get_booking_list($user_id, $num, $start, $catstatus, $type)
     $booking = array();
     $pay_status = PS_PAYED;
     
-    $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
+    $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.goods_weight,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
             "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
                      $GLOBALS['ecs']->table('order_goods') . " AS o, " .$GLOBALS['ecs']->table('category') . " AS c " .
             "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND g.good_status = ".$type." AND".
     		" o.user_id = '$user_id' AND c.is_standalone =".$catstatus." order by o.rec_id desc";
     $res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
-
+	
     while ($row = $GLOBALS['db']->fetchRow($res))
     {
         if (empty($row['dispose_note']))
@@ -279,19 +279,23 @@ function get_booking_list($user_id, $num, $start, $catstatus, $type)
         if($type == GD_INVING){
         	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
         					'market_price'  => $row['market_price'].'%',	//年利率
-                           'surprice'   	=> ($row['shop_price'] - $row['surplus_price'])/$row['shop_price'].'%',	//进度
+                           'surprice'   	=> round(100*(($row['shop_price'] - $row['surplus_price'])/$row['shop_price']),2).'%',	//进度
                            'limit_time' 	=> ceil(($row['goods_number'] - $row['add_time'])/(60*60*24)),	//到期时间
                            'overplus_time'  => ceil(($row['goods_number'] - gmtime())/(60*60*24)),			//剩余时间
         					'good_id'		=> $row['goods_sn']		//债券id
         				);
         }
         if($type == GD_FULL){
+        	$monthnum = ceil(($row['goods_number']-$row['goods_weight'])/3600*24*30) - ceil((($row['goods_number']-$row['goods_weight'])/3600*24*30)/((gmtime()-$row['goods_weight'])/3600*24*30));
+        	$nextmonth = local_date('Y-m-d',$row['goods_weight']+3600*24*30*$monthnum);
+        	if($nextmonth-gmtime()>0){$orstatus = '未付款';}else{$orstatus = '已付款';}
+        	
         	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
         			'market_price'  => $row['market_price'],	//年利率
         			'collect_interest'   	=> ($row['shop_price']*$row['market_price'])/365*(($row['goods_number'] - $row['add_time'])/60*60*24),	//待收本息
         			'month_interest' 	=> ($row['shop_price']*$row['market_price'])/365*(date('t',gmtime())),	//月收本息
-        			'overplus_time'  => ($row['goods_number'] - gmtime())/60*60*24,			//下个还款日
-        			'overplus_time'  => ($row['goods_number'] - gmtime())/60*60*24,			//状态
+        			'overplus_time'  => $nextmonth,			//下个还款日
+        			'over_status'  => $orstatus,			//状态
         			'good_id'		=> $row['goods_sn']		//债券id
         	);
         }
@@ -301,7 +305,7 @@ function get_booking_list($user_id, $num, $start, $catstatus, $type)
         			'shop_price'   	=> ($row['shop_price'] - $row['surplus_price'])/$row['shop_price'],	//回收金额
         			'limit_time' 	=> ($row['goods_number'] - $row['add_time'])/(60*60*24),	//已转金额
         			'overplus_time'  => local_getdate($row['goods_number']),			//结清日期
-        			'overplus_time'  => ($row['goods_number'] - gmtime())/60*60*24,			//结清方式
+        			'over_style'  => ($row['goods_number'] - gmtime())/60*60*24,			//结清方式
         			'good_id'		=> $row['goods_sn']		//债券id
         	);
         }
@@ -375,6 +379,28 @@ function add_booking($booking)
     $GLOBALS['db']->query($sql) or die ($GLOBALS['db']->errorMsg());
 
     return $GLOBALS['db']->insert_id();
+}
+
+/**
+ * 充值的余额变动与记录的添加
+ *
+ * @access  public
+ * @param   array     $surplus  会员余额信息
+ * @param   string    $amount   余额
+ *
+ * @return  int
+ */
+function updateuser_account($surplus, $amount ,$type)
+{
+	//更改余额
+	if($type == 2){
+		$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET user_money = user_money +'.$amount.' where user_id ='.$surplus['user_id'];
+	}elseif($type == 3){
+		$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET user_money = user_money -'.$amount.' where user_id ='.$surplus['user_id'];
+	}
+	
+	$GLOBALS['db']->query($sql);
+	
 }
 
 /**

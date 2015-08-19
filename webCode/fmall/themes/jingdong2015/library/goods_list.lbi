@@ -48,8 +48,8 @@
               <!-- {/if} -->
               <!-- {/if} -->
             </div>
-            <div class="p-price"><strong>利率： <!--{if $goods.promote_price neq "" } -->{$goods.promote_price} <!--{else}-->{$goods.market_price}<!--{/if}-->%</strong><span id="p647948"></span></div>
-            <div class="extra"><span class="evaluate">金额：<a target="_blank" href="{$goods.url}">{$goods.shop_price}元</a></span></div>
+            <div class="p-price"><strong>年化利率： <!--{if $goods.promote_price neq "" } -->{$goods.promote_price} <!--{else}-->{$goods.market_price}<!--{/if}-->%</strong><span id="p647948"></span></div>
+            <div class="extra"><span class="evaluate">借款金额：<a target="_blank" href="{$goods.url}">{$goods.shop_price}元</a></span></div>
             <div class="p-name"><a target="_blank" href="{$goods.url}" title="{$goods.goods_name}"><p>{$goods.goods_name}</p><p class="promoWords">{$goods.goods_brief}</p></a></div> 
             <div class="stocklist" style="display:none;"><span class="st33">进度条</span></div>
             <div class="btns">

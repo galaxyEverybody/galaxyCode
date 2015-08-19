@@ -1622,7 +1622,7 @@ elseif ($_REQUEST['step'] == 'done')
              WHERE goods_id = ".$goods_id. " AND is_delete = 0";
     
     $goods = $GLOBALS['db']->getRow($sql);
-    
+
     /* 初始化要插入订单的基本件数据 */
     $order = array(
     		'user_id'       => $_SESSION['user_id'],
@@ -2144,7 +2144,7 @@ elseif ($_REQUEST['step'] == 'done')
     $smarty->assign('log_id',      $order['log_id']);
     $smarty->assign('ordername',      $order['goods_name']);
     $smarty->assign('payid',      $order['pay_id']);
-    $smarty->assign('market_price',      intval($order['market_price']));
+    $smarty->assign('market_price',      $order['market_price']);
     $smarty->assign('invest_price',      $order['invest_price']);
     //user_uc_call('add_feed', array($order['order_id'], BUY_GOODS)); //推送feed到uc
     //$smarty->assign('total',      $total);

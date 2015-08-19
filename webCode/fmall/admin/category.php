@@ -110,7 +110,18 @@ if ($_REQUEST['act'] == 'insert')
     $cat['grade']        = !empty($_POST['grade'])        ? intval($_POST['grade'])      : 0;
     $cat['filter_attr']  = !empty($_POST['filter_attr'])  ? implode(',', array_unique(array_diff($_POST['filter_attr'],array(0)))) : 0;
 
-    $cat['cat_recommend']  = !empty($_POST['cat_recommend'])  ? $_POST['cat_recommend'] : array();
+    $cat['cat_recommend'] = !empty($_POST['cat_recommend'])  ? $_POST['cat_recommend'] : array();
+    
+    if($cat['cat_name'] == '月能赚'){
+    	$cat['is_standalone'] = 1;
+    }elseif($cat['cat_name'] == '季能赚'){
+    	$cat['is_standalone'] = 2;
+    }elseif($cat['cat_name'] == '聚能赚'){
+    	$cat['is_standalone'] = 3;
+    }else{
+    	$cat['is_standalone'] = 0;
+    }
+    
 
     if (cat_exists($cat['cat_name'], $cat['parent_id']))
     {

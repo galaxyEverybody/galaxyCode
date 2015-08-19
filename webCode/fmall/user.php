@@ -1983,15 +1983,41 @@ elseif ($action == 'account_withdrawals')
 /* 会员进行充值*/
 elseif ($action == 'act_rechanger')
 {
-	$number = trim($_POST['rechargernum']);
-	if(!is_numeric($number)){
+	include_once(ROOT_PATH . 'includes/lib_clips.php');
+	
+	$amount = trim($_POST['rechargernum']);
+	
+	if(!is_numeric($amount)){
 		show_message($_LANG['no_num'],$_LANG['back_up_page'], 'user.php?act=account_rechanger', 'info');
+	}
+	
+	/* 调用支付接口进行充值*/
+	
+	/* 变量初始化 */
+	$surplus = array(
+			'user_id'      => $user_id,
+			'rec_id'       => !empty($_POST['rec_id'])      ? intval($_POST['rec_id'])       : 0,
+			'process_type' => 2,
+			'payment_id'   => isset($_POST['payment_id'])   ? intval($_POST['payment_id'])   : 0,
+			'user_note'    => '',
+			'amount'       => $amount
+	);
+	
+	//更改用户的余额
+	updateuser_account($surplus, $amount , 2);
+	
+	//记录日志
+	$accountid = insert_user_account($surplus, $amount);
+	if($accountid > 0){
+		header('location:user.php?act=default');
 	}
 }
 
 /* 会员进行提现*/
 elseif ($action == 'act_withdrawals')
 {
+	include_once(ROOT_PATH . 'includes/lib_clips.php');
+	
 	$number = trim($_POST['withdrawalsnum']);
 	if(!is_numeric($number)){
 		show_message($_LANG['no_num'],$_LANG['back_up_page'], 'user.php?act=account_withdrawals', 'info');
@@ -2004,6 +2030,16 @@ elseif ($action == 'act_withdrawals')
 		show_message($_LANG['no_withdrawals_num'],$_LANG['back_up_page'], 'user.php?act=account_withdrawals', 'info');
 	}
 	
+	/* 调用支付接口*/
+	
+	//更改用户的余额
+	updateuser_account($surplus, $amount , 3);
+	
+	//记录日志
+	$accountid = insert_user_account($surplus, $amount);
+	if($accountid > 0){
+		header('location:user.php?act=default');
+	}
 	
 	
 }

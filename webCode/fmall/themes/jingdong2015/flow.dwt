@@ -385,7 +385,7 @@
                         	<div class="consigneetop">
                         	<div class="consigneemiddle"><img src="images/pay_mentmiddle.png" alt="联众金融" width="200px" height="200px"></div>
                             <div class="consignee-cont">
-                            	<h3>{$lang.consignee_good_name}：{$ordername}</h3>
+                            	<h3 style="margin-left:30px;">{$lang.consignee_good_name}：{$ordername}</h3>
                                 <ul>
                                     <li>
                                     	<div class="consigneenum">{$market_price}<span>%</span></div>

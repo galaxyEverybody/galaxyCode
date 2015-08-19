@@ -274,12 +274,12 @@ function get_categories_tree($cat_id = 0)
                 $cat_arr[$row['cat_id']]['name'] = $row['cat_name'];
                 $cat_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $row['cat_id']), $row['cat_name']);
                 /* 独立分类的连接更改start*/
-                if($row['is_standalone'] == 1)
+                if($row['is_standalone'] != 0)
                 {
                 	/* 查询商品的id*/
                 	$sql = 'select goods_id from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$row['cat_id'];
                 	$gooddetail = $GLOBALS['db']->getOne($sql);
-                	$cat_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $gooddetail,'alone'=>1), $row['cat_name']);
+                	$cat_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $gooddetail,'isalone'=>$row['is_standalone']), $row['cat_name']);
                 }
                 /* 独立分类的连接更改end*/
                 if (isset($row['cat_id']) != NULL)
@@ -897,7 +897,7 @@ function get_goods_info($goods_id)
         $row['comment_rank']  = ceil($row['comment_rank']) == 0 ? 5 : ceil($row['comment_rank']);
 
         /* 获得商品的销售价格 */
-        $row['market_price']        = price_format($row['market_price']);
+        $row['market_price']        = number_format($row['market_price'],2,'.','.');
         $row['shop_price_formated'] = price_format($row['shop_price']);
 
         /* 修正促销价格 */
@@ -1250,10 +1250,14 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
     $theRow= $GLOBALS['db']->getRow($sql);
     $cat['name'] =$theRow['cat_name'];
     $cat['des'] =$theRow['cat_desc'];
-    $cat['url']  = build_uri('category', array('cid' => $cat_id), $cat['name']);
     $cat['id']   = $cat_id;
 	$cat['cat_clild'] = get_clild_list($cat_id);
 	$cat['isalone'] = $theRow['is_standalone'];
+	if($cat['isalone'] == 0){
+		$cat['url']  = build_uri('category', array('cid' => $cat_id,'isalone' => $cat['isalone']), $cat['name']);
+	}else{
+		$cat['url']  = build_uri('category', array('cid' => $cat_id,'isalone' => $cat['isalone']), $cat['name']);
+	}
 
 	//获取二级分类下的商品
 	/*$cat_list_arr  = cat_list($cat_id, 0 , false);

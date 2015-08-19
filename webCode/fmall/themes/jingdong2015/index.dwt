@@ -245,23 +245,23 @@
         				<div>
         				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
         				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-        					<p class="hd_box_two_one_one">{$goods.name}<p>
+        					<p class="hd_box_two_one_one"><a href="{$goods.url}">{$goods.name}</a><p>
         					<p class="hd_box_two_two">近七日年化收益率<p>
         					<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
         				<!--{/foreach}-->
         				<!-- #EndLibraryItem -->
         				</div>
         			</div>
-        			<div class="hd_box_two_imga"></div>
+        			<a href="{$goods.url}"><div class="hd_box_two_imga"></div></a>
         		</div>
         		<!-- #EndLibraryItem -->
         		<div class="hd_box_twolitwo">
-        			<div class="hd_box_two_imgb"></div>
+        			<a href="{$goods.url}"><div class="hd_box_two_imgb"></div></a>
         			<div class="hd_box_two_div">
 	    				<div>
 	    				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 	    				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-	    					<p class="hd_box_two_one_six">{$goods.name}<p>
+	    					<p class="hd_box_two_one_six"><a href="{$goods.url}">{$goods.name}</a><p>
 	    					<p class="hd_box_two_two">近七日年化收益率<p>
 	    					<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
 	    				<!--{/foreach}-->
@@ -274,14 +274,14 @@
 						<div>
 						<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 						<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-							<p class="hd_box_two_one_twenf">{$goods.name}<p>
+							<p class="hd_box_two_one_twenf"><a href="{$goods.url}">{$goods.name}</a><p>
 							<p class="hd_box_two_two">近七日年化收益率<p>
 							<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
 						<!--{/foreach}-->
 						<!-- #EndLibraryItem -->
 						</div>
 					<div>
-					<div class="hd_box_two_imgc"></div>
+					<a href="{$goods.url}"><div class="hd_box_two_imgc"></div></a>
 	        	</div>
         	</div>
         </div>

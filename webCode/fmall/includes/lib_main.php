@@ -2004,7 +2004,7 @@ function get_navigator($ctype = '', $catlist = array())
 			$sql = 'select g.goods_id,c.is_standalone from '.$GLOBALS['ecs']->table('category').' as c,'.$GLOBALS['ecs']->table('goods').' as g where c.cat_id=g.cat_id and c.cat_id='.$v['cid'];
 			$goodcid = $GLOBALS['db']->getAll($sql);
 			foreach($goodcid as $vid){
-				if($vid['is_standalone'] ==1){
+				if($vid['is_standalone'] !=0){
 					$navlist['middle'][$k]['url'] = 'goods.php?id='.$vid['goods_id'];
 				}
 			}

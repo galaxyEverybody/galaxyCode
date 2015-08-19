@@ -1824,7 +1824,7 @@ a.btn:hover,a.btn:hover span{text-decoration:none}
 #myjd dl dd a:hover{color:#ff500b}
 #myjd dl.close dd{display:none}
 .user_center .right{width:830px;float:right;font-family:Verdana}
-.article .left{width:165px;overflow:hidden;margin-right:10px;float:left;padding-bottom:5px}
+.article .left{width:200px;overflow:hidden;margin-right:10px;float:left;padding-bottom:5px}
 .help_side{border:1px solid #b9e8f9}
 .help_side h4{background:#eff9fe;height:32px;line-height:32px;padding-left:25px;color:#4a4a4a;font-size:14px;font-family:"microsoft yahei"}
 #sortlist_atc h4{cursor:pointer}
@@ -1837,7 +1837,7 @@ a.btn:hover,a.btn:hover span{text-decoration:none}
 .help_side ul li{background:url(images/helpcenter_icon1.gif) no-repeat 20px 10px;padding-left:32px;height:32px;line-height:32px;overflow:hidden;border-top:1px dotted #cbecf8}
 .help_side ul li.li1{border-top:medium none}
 .help_side ul li a:link,.help_side ul li a:visited{color:#2398d1;text-decoration:none}
-.article .right{width:815px;overflow:hidden;_float:right;font-size:12px;line-height:150%}
+.article .right{width:880px;overflow:hidden;_float:right;font-size:12px;line-height:150%}
 .exchange_order{float:left;line-height:26px;zoom:1}
 .exchange_order span{float:left;line-height:26px;zoom:1}
 .exchange_listform{float:right}
@@ -2109,7 +2109,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .hd_box_two .hd_box_two_imga{ width:345px;height:346px;background:url(images/hd_box_twoa.jpg);}
 .hd_box_two .hd_box_two_imgb{ width:345px;height:346px;background:url(images/hd_box_twob.jpg);}
 .hd_box_two .hd_box_two_imgc{ width:345px;height:346px;background:url(images/hd_box_twoc.jpg);}
-.hd_box_two .hd_box_two_one_one{ font-size:18px;color:#D5CC2D;}
+.hd_box_two .hd_box_two_one_one{ font-size:18px;color:#D5CC2D;cursor:pointer;}
 .hd_box_two .hd_box_two_one_six{ font-size:18px;color:#38746E;}
 .hd_box_two .hd_box_two_one_twenf{ font-size:18px;color:#7F668B;}
 .hd_box_two .hd_box_two_two{ margin-top:8px;}
@@ -2168,10 +2168,10 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .catGoodsBox .mc .bd_box .bdBoxPro ul li{ float: left; width: 185px; height: 230px; padding: 6px 17px 0; border-bottom: 1px solid #ededed; border-right: 1px solid #ededed; overflow: hidden;}
 .catGoodsBox .mc .bd_box .bdBoxPro ul li .pImg{ height: 140px; margin-bottom: 4px; text-align: center; padding-top: 15px;}
 .catGoodsBox .mc .bd_box .bdBoxPro ul li .pImg img{ width:130px; height:130px;}
-.catGoodsBox .mc .bd_box .bdBoxPro ul li .pName{ height:36px; margin-bottom: 3px; overflow:hidden;}
+.catGoodsBox .mc .bd_box .bdBoxPro ul li .pName{ height:36px; margin-bottom: 3px; overflow:hidden; text-align:center;}
 .catGoodsBox .mc .bd_box .bdBoxPro ul li .pName a{ color:#666;}
 .catGoodsBox .mc .bd_box .bdBoxPro ul li .pName a:hover{ color:#ff500b;}
-.catGoodsBox .mc .bd_box .bdBoxPro ul li .pPrice{ font-size: 15px; font-family: Verdana; color: #ff500b;}
+.catGoodsBox .mc .bd_box .bdBoxPro ul li .pPrice{ font-size: 15px; font-family: Verdana; color: #ff500b; text-align:center;}
 .catGoodsBox .cat_brands{ background: #f7f7f7; padding: 13px 0; margin-top: 10px; overflow:hidden;}
 .catGoodsBox .cat_brands ul{ height: 40px; overflow: hidden; margin-left:-1px;}
 .catGoodsBox .cat_brands ul li{ float: left; width: 120px; height: 40px; border-left: 1px dotted #ccc; text-align: center;}

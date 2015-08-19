@@ -54,85 +54,6 @@
                 </div>
             </li>
             <li class="fore4 ld menu myJd" id="biz-service" style="display:none">
-                <div class="dt"><s></s> <span class="outline"></span> <span class="blank"></span> 网站导航 <b></b></div>
-                <div class="dd headNav">
-                    <div class="fore fore1">
-                        <dl>
-                            <dt>特色主题</dt>
-                            <dd><a href="">品牌街</a></dd>
-                            <dd><a href="">天天低价</a></dd>
-                            <dd><a href="">好东西</a></dd>
-                            <dd><a href="">联众预售</a></dd>
-                            <dd><a href="">金融精选</a></dd>
-                            <dd><a href="">联众首发</a></dd>
-                            <dd><a href="">今日团购</a></dd>
-                            <dd><a href="">优惠券</a></dd>
-                            <dd><a href="">闪购</a></dd>
-                            <dd><a href="">会员俱乐部</a></dd>
-                            <dd><a href="">联众京选</a></dd>
-                            <dd><a href="">定期送</a></dd>
-                            <dd><a href="">装机大师</a></dd>
-                            <dd><a href="">搭配购</a></dd>
-                            <dd><a href="">美妆试用</a></dd>
-                            <dd><a href="">礼品购</a></dd>
-                            <dd><a href="">智能馆</a></dd>
-                            <dd><a href="">玩逼格</a></dd>
-                        </dl>
-                    </div>
-                    <div class="fore">
-                        <dl>
-                            <dt>特色主题</dt>
-                            <dd><a href="">品牌街</a></dd>
-                            <dd><a href="">天天低价</a></dd>
-                            <dd><a href="">好东西</a></dd>
-                            <dd><a href="">联众预售</a></dd>
-                            <dd><a href="">金融精选</a></dd>
-                            <dd><a href="">联众首发</a></dd>
-                            <dd><a href="">今日团购</a></dd>
-                            <dd><a href="">优惠券</a></dd>
-                            <dd><a href="">闪购</a></dd>
-                            <dd><a href="">会员俱乐部</a></dd>
-                            <dd><a href="">联众京选</a></dd>
-                            <dd><a href="">定期送</a></dd>
-                        </dl>
-                    </div>
-                    <div class="fore">
-                        <dl>
-                            <dt>特色主题</dt>
-                            <dd><a href="">品牌街</a></dd>
-                            <dd><a href="">天天低价</a></dd>
-                            <dd><a href="">好东西</a></dd>
-                            <dd><a href="">联众预售</a></dd>
-                            <dd><a href="">金融精选</a></dd>
-                            <dd><a href="">联众首发</a></dd>
-                            <dd><a href="">今日团购</a></dd>
-                            <dd><a href="">优惠券</a></dd>
-                            <dd><a href="">闪购</a></dd>
-                            <dd><a href="">会员俱乐部</a></dd>
-                            <dd><a href="">联众京选</a></dd>
-                            <dd><a href="">定期送</a></dd>
-                        </dl>
-                    </div>
-                    <div class="fore">
-                        <dl>
-                            <dt>特色主题</dt>
-                            <dd><a href="">品牌街</a></dd>
-                            <dd><a href="">天天低价</a></dd>
-                            <dd><a href="">好东西</a></dd>
-                            <dd><a href="">联众预售</a></dd>
-                            <dd><a href="">金融精选</a></dd>
-                            <dd><a href="">联众首发</a></dd>
-                            <dd><a href="">今日团购</a></dd>
-                            <dd><a href="">优惠券</a></dd>
-                            <dd><a href="">闪购</a></dd>
-                            <dd><a href="">会员俱乐部</a></dd>
-                            <dd><a href="">联众京选</a></dd>
-                            <dd><a href="">定期送</a></dd>
-                            <dd><a href="">装机大师</a></dd>
-                            <dd><a href="">搭配购</a></dd>
-                        </dl>
-                    </div>
-                </div>
             </li>
         </ul>
     </div>
@@ -214,8 +135,8 @@
                     <p>{$lang.last_month_order}{$info.order_count}{$lang.order_unit}</p>
                 </div>
                 <div class="rewithdraw">
-                	<img src="images/recharge.png" alt="充值"><br/><br/>
-                	<img src="images/withdraw.png" alt="提现">
+                	<a href="user.php?act=account_rechanger"><img src="images/recharge.png" alt="充值"></a><br/><br/>
+                	<a href="./user.php?act=account_withdrawals"><img src="images/withdraw.png" alt="提现"></a>
                 </div>
             </div>
         </div>
