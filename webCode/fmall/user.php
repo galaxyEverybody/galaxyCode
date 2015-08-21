@@ -860,19 +860,33 @@ elseif ($action == 'borrow_money')
 /* 添加借款信息*/
 elseif($action == 'insert_borrow_money')
 {
+	include_once(ROOT_PATH . 'includes/lib_transaction.php');
+	
+	$borrowname = compile_str(trim($_POST['borrowname']));
+	$borrownum = compile_str(trim($_POST['borrownum']));
+	$borrowphone = compile_str(trim($_POST['borrowphone']));
+	$phoneverify = intval(trim($_POST['phoneverify']));
+	$provincename = intval(trim($_POST['provincename']));
+	$cityname = intval($_POST['cityname']);
+	
+	if(empty($borrowname) || empty($borrownum) || empty($borrowphone) || empty($phoneverify) || empty($provincename) || empty($cityname)){
+		show_message($_LANG['borrow_parameter'],$_LANG['back_up_page'],'user.php?act=borrow_money');
+	}
+	
 	$borrow_money = array(
 		'user_id'			=> $user_id,
-		'add_time'			=> time(),
+		'add_time'			=> gmtime(),
 		'borrow_province'	=> isset($_POST['provincename'])? intval($_POST['provincename']):0,
 		'borrow_city'		=> isset($_POST['cityname'])? intval($_POST['cityname']):0,
 		'borrow_phone'		=> isset($_POST['borrowphone'])? intval($_POST['borrowphone']):0,
 		'borrow_verify'		=> isset($_POST['phoneverify'])? intval($_POST['phoneverify']):0,
 		'borrow_num'		=> isset($_POST['borrownum'])? compile_str(trim($_POST['borrownum'])):0,
 		'borrow_truename'	=> isset($_POST['borrowname'])? compile_str(trim($_POST['borrowname'])):'',
+		'borrow_status'		=> 1,
 	);
 	
 	if(insert_borrow($borrow_money)){
-		header("Location:/");
+		show_message($_LANG['borrow_success'],$_LANG['back_up_page'],'index.php');
 	}
 }
 

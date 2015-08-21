@@ -308,7 +308,8 @@ h6 span{float:left;padding-left:15px}
 .user_borrowinfo{ width:100%;height:auto;font-size:16px;}
 .borrowinfo_top{ width:60%;float:left;border-left:2px solid #FF852F;}
 .borrowtd{ width:80px;align:left;}
-.borrowinput{ width:260px;height:35px;border-radius:5px;outline:none;}
+.borrowinput{ width:260px;height:35px;border-radius:5px;outline:none;border:1px solid #ddd;}
+.borrowinputnum{ width:235px;height:35px;border-radius:5px;border:0px;outline:none;}
 .borrow_sub{ width:260px;height:40px;border-radius:5px;outline:none;background-color:#FF852F;font-size:14px;font-weight:bold;}
 .borrow-banner{ width:400px;height:300px;float:right;margin-right:20px;margin-top:50px;}
 /* ====================

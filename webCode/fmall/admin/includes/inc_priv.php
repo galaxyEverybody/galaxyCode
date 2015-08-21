@@ -106,6 +106,7 @@ if (!defined('IN_ECS'))
     $purview['08_add_order']         = 'order_edit';
     $purview['09_delivery_order']    = 'delivery_view';
     $purview['10_back_order']        = 'back_view';
+    $purview['11_borrow_list']        = 'borrow_view';
 
 //报表统计权限
     $purview['flow_stats']           = 'client_flow_stats';

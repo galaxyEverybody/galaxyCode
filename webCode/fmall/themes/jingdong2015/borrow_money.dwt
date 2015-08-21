@@ -30,7 +30,7 @@
     <div class="m" style="width:90%">
     	<div class="user_borrowinfo">
     		<div class="borrowinfo_top">
-		    	<form action="index.php" name="formBorrow" method="post" onsubmit="return borrow_money();">
+		    	<form action="user.php" name="formBorrow" method="post" onsubmit="return borrow_money();">
 		    	<table width="100%" cellpadding="10px" border="0px">
 		    		<tr>
 		    			<td class="borrowtd">姓名</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
@@ -42,7 +42,7 @@
 		    			<td class="borrowtd">验证码</td><td><input class="borrowinput" type="text" name="phoneverify" placeholder="输入短信验证码" onblur="borrowcheverify(this.value)"/><span id="phoneverify" style="color:red;margin-left:10px;"></span></td>
 		    		</tr>
 		    		<tr>
-		    			<td class="borrowtd">借款金额</td><td><input class="borrowinput" type="text" name="borrownum" placeholder="请输入借款金额" onblur="borrowchenum(this.value)"/><span id="borrownum" style="color:red;margin-left:10px;"></span></td>
+		    			<td class="borrowtd">借款金额</td><td><div class="borrowinput" style="float:left;height:37px;"><input class="borrowinputnum" type="text" name="borrownum" placeholder="请输入借款金额" onblur="borrowchenum(this.value)"/>元</div><span id="borrownum" style="color:red;margin-left:10px;"></span></td>
 		    		</tr>
 		    		<tr>
 		    			<td class="borrowtd">所在城市</td>

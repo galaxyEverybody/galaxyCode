@@ -92,6 +92,12 @@ $_LANG['attradd_succed'] = '操作成功!';
 $_LANG['todolist'] = '记事本';
 $_LANG['n_a'] = 'N/A';
 
+/* 借款列表*/
+$_LANG['cs'][OS_UNCONFIRMED] = '待确认';
+$_LANG['cs'][CS_AWAIT_PAY] = '投标中';
+$_LANG['cs'][CS_AWAIT_SHIP] = '还款中';
+$_LANG['cs'][CS_FINISHED] = '已结清';
+
 /* 提示 */
 $_LANG['sys']['wrong'] = '错误：';
 
@@ -206,6 +212,7 @@ $_LANG['06_undispose_booking'] = '缺货登记';
 $_LANG['08_add_order'] = '添加订单';
 $_LANG['09_delivery_order'] = '发货单列表';
 $_LANG['10_back_order'] = '退货单列表';
+$_LANG['11_borrow_list'] = '借款列表';
 
 /* 广告管理 */
 $_LANG['ad_position'] = '广告位置';

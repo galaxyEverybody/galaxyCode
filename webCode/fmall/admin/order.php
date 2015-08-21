@@ -58,7 +58,7 @@ if ($_REQUEST['act'] == 'order_query')
 elseif ($_REQUEST['act'] == 'list')
 {
     /* 检查权限 */
-    admin_priv('order_view');
+    admin_priv('borrow_view');
 
     /* 模板赋值 */
     $smarty->assign('ur_here', $_LANG['02_order_list']);

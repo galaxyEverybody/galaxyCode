@@ -60,6 +60,7 @@ $modules['04_order']['06_undispose_booking']        = 'goods_booking.php?act=lis
 $modules['04_order']['08_add_order']                = 'order.php?act=add';
 $modules['04_order']['09_delivery_order']           = 'order.php?act=delivery_list';
 $modules['04_order']['10_back_order']               = 'order.php?act=back_list';
+$modules['04_order']['11_borrow_list']               = 'borrow.php?act=list';
 
 $modules['05_banner']['ad_position']                = 'ad_position.php?act=list';
 $modules['05_banner']['ad_list']                    = 'ads.php?act=list';

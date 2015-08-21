@@ -28,6 +28,11 @@ $_LANG['cs'][OS_INVALID] = '无效';
 $_LANG['cs'][OS_RETURNED] = '退货';
 $_LANG['cs'][OS_SHIPPED_PART] = '部分发货';
 
+/* 借款搜索*/
+$_LANG['borrow_sn'] = '借款号';
+$_LANG['borrower'] = '借款人';
+$_LANG['borrow_status'] = '借款状态';
+
 /* 订单状态 */
 $_LANG['os'][OS_UNCONFIRMED] = '未确认';
 $_LANG['os'][OS_CONFIRMED] = '已确认';
