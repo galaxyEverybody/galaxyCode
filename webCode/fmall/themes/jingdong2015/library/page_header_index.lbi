@@ -174,7 +174,7 @@
                             <span><div class="icon">{insert name='ads_pro' cat_name=$cat.name type='左侧导航图标'}</div><h3 style="font-size:20px;"><a href="{$cat.url}">{$cat.name|escape:html}</a></h3></span>
                             <span style="margin-top:15px;margin-left:10px;font-size:14px;color:#545454;">
 	                            <!--{foreach from=$cat.cat_id item=child name=foo2}-->
-	                            {if $smarty.foreach.foo2.index <2}
+	                            {if $smarty.foreach.foo2.index <3}
 								({$child.name|escape:html})
 								<!--{/if}-->
 								<!--{/foreach}-->

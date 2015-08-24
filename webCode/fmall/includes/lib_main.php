@@ -1999,6 +1999,7 @@ function get_navigator($ctype = '', $catlist = array())
     /*遍历自定义是否存在currentPage*/
     foreach($navlist['middle'] as $k=>$v)
     {
+    	
     	/* 更改导航分类的url gao*/
 		if($v['ctype'] == 'c'){
 			$sql = 'select g.goods_id,c.is_standalone from '.$GLOBALS['ecs']->table('category').' as c,'.$GLOBALS['ecs']->table('goods').' as g where c.cat_id=g.cat_id and c.cat_id='.$v['cid'];
@@ -2007,6 +2008,12 @@ function get_navigator($ctype = '', $catlist = array())
 				if($vid['is_standalone'] !=0){
 					$navlist['middle'][$k]['url'] = 'goods.php?id='.$vid['goods_id'];
 				}
+			}
+			if($v['name'] == '季能赚'){
+				$sql = 'SELECT g.goods_id FROM '.$GLOBALS['ecs']->table('category').' as c,'.$GLOBALS['ecs']->table('goods').' 
+					as g where g.cat_id=c.cat_id and parent_id ='.$v['cid'].' order by c.sort_order asc';
+				$good_id = $GLOBALS['db']->getOne($sql);
+				$navlist['middle'][$k]['url'] = 'goods.php?id='.$good_id;
 			}
 		}
 		/* 更改导航分类的url gao*/

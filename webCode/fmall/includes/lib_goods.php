@@ -267,7 +267,7 @@ function get_categories_tree($cat_id = 0)
 			}
 
 			$cat_arr[$row['cat_id']]['brands'] = $brands;
-				
+
             if ($row['is_show'])
             {
                 $cat_arr[$row['cat_id']]['id']   = $row['cat_id'];
@@ -276,11 +276,20 @@ function get_categories_tree($cat_id = 0)
                 /* 独立分类的连接更改start*/
                 if($row['is_standalone'] != 0)
                 {
+                	
                 	/* 查询商品的id*/
-                	$sql = 'select goods_id from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$row['cat_id'];
+                	if($row['cat_name'] == '季能赚'){
+                		$sql = 'SELECT cat_id FROM '.$GLOBALS['ecs']->table('category'). 'where parent_id ='.$row['cat_id']. ' order by sort_order asc';
+                		$catethreeid = $GLOBALS['db']->getOne($sql);
+                		$sql = 'select goods_id from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$catethreeid;
+                	}else{
+                		$sql = 'select goods_id from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$row['cat_id'];
+                	}
                 	$gooddetail = $GLOBALS['db']->getOne($sql);
                 	$cat_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $gooddetail,'isalone'=>$row['is_standalone']), $row['cat_name']);
                 }
+                
+                
                 /* 独立分类的连接更改end*/
                 if (isset($row['cat_id']) != NULL)
                 {
@@ -292,6 +301,7 @@ function get_categories_tree($cat_id = 0)
 			
         }
     }
+
     if(isset($cat_arr))
     {
         return $cat_arr;
@@ -1015,6 +1025,30 @@ function get_goods_bid($goods_id)
 function get_goods_repay($goods_id)
 {
 	$sql = 'select where ';
+}
+
+/**
+ * 季能赚中获得同类的产品id
+ *
+ * @access  public
+ * @param   integer $goods_id
+ * @return  array
+ */
+function get_twolevel_repay($parentid)
+{
+	/* 根据父类id查询同级别的产品*/
+     
+    $sql = 'SELECT cat_id from '.$GLOBALS['ecs']->table('category').' where parent_id ='.$parentid;
+    $cat_id = $GLOBALS['db']->getAll($sql);
+
+    $goodurl =array();
+    foreach($cat_id as $catid){
+    	$sql = 'SELECT goods_id,goods_name from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$catid['cat_id'];
+    	$goodid = $GLOBALS['db']->getAll($sql);
+    	array_push($goodurl,$goodid[0]);
+    }
+
+    return $goodurl;
 }
 
 /**

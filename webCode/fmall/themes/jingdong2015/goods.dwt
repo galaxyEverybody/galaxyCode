@@ -48,8 +48,12 @@ function reg(str){
 	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
     <div id="product-intro">
     	<div class="productinfo_left">
-	    	<div id="name" class="productinfo_name" style="border-bottom:1px solid #dddddd;">
-	        	<h1>{$goods.goods_style_name}</h1>
+	    	<div class="productinfo_name" style="border-bottom:1px solid #dddddd;height:40px;">
+	        	<ul>
+	        	<!--{foreach from=$goodslevel item=level}-->
+	        		<li class={if $level.goods_name eq $goods.goods_style_name}goodcurr{else}levelcurr{/if}><a style="color:#fff;" href='goods.php?id={$level.goods_id}'>{$level.goods_name}</a></li>
+	        	<!--{/foreach}-->
+	        	</ul>
 	            <strong>{$goods.goods_brief}</strong>
 	        </div>
 	        <!--name end-->

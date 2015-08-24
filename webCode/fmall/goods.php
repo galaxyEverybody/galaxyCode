@@ -204,9 +204,9 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
     
     //print_r($goods);exit;
 	/* 获取所属大类的名称*/
-    $sql = 'select a.cat_name from'.$ecs->table("category").' as a,'.$ecs->table("category").' as b where a.cat_id = b.parent_id and b.cat_id='.$goods["cat_id"];
+    /*$sql = 'select a.cat_name from'.$ecs->table("category").' as a,'.$ecs->table("category").' as b where a.cat_id = b.parent_id and b.cat_id='.$goods["cat_id"];
     $goods_row = $db->getRow($sql);
-    $goods_row_catname = $goods_row['cat_name'];
+    $goods_row_catname = $goods_row['cat_name'];*/
     
     if ($goods === false)
     {
@@ -262,6 +262,19 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         }
         $smarty->assign('searchkeywords', $searchkeywords);	//热搜关键词
 
+        /* 或得顶级分类产品名称*/
+        $sql = 'SELECT cat_id FROM '.$GLOBALS['ecs']->table('goods').' where goods_id ='.$goods['goods_id'];
+        $parentid = $GLOBALS['db']->getOne($sql);
+        $sql = 'SELECT parent_id from '.$GLOBALS['ecs']->table('category').' where cat_id ='.$parentid;
+        $parentid = $GLOBALS['db']->getOne($sql);
+        $sql = 'SELECT cat_name FROM '.$GLOBALS['ecs']->table('category').' where cat_id ='.$parentid;
+        $parentcatname = $GLOBALS['db']->getOne($sql);
+        
+        if($parentcatname == '季能赚'){
+        	$levelinfo = get_twolevel_repay($parentid);//查询分类下产品id
+        	$smarty->assign('goodslevel',$levelinfo);
+        }
+ 
         /*$catlist = array();
         foreach(get_parent_cats($goods['cat_id']) as $k=>$v)
         {
@@ -283,7 +296,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         {
             $next_good['url'] = build_uri('goods', array('gid' => $next_gid), $goods['goods_name']);
             $smarty->assign('next_good', $next_good);//下一个商品
-        }
+        }*/
 
         $position = assign_ur_here($goods['cat_id'], $goods['goods_name']);
 
@@ -296,7 +309,6 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('properties',          $properties['pro']);                              // 商品属性
         $smarty->assign('specification',       $properties['spe']);                              // 商品规格
 		
-		//print_r($properties['spe']);
         $smarty->assign('attribute_linked',    get_same_attribute_goods($properties));           // 相同属性的关联商品
         $smarty->assign('related_goods',       $linked_goods);                                   // 关联商品
         $smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章

@@ -21,140 +21,54 @@
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jquery.SuperSlide.js,jd_index.js'}
 <div class="w">
 	<div id="o-slide"> <!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem --></div>
+	<div class="m _520_a_lifeandjourney_1 hover" id="virtuals-2014" style="margin-top:10px;height:233px;text-align:center;">
+		<a href='user.php'><img src='images/indexlogin.jpg' alt='联众金融'></a>
+		<div class="registerdiv"><a href="user.php?act=register">立即注册>></a></div>
+	</div>
+  
+  <!--virtuals end-->
   
   <div id="jdnews" class="m m1"> <!-- TemplateBeginEditable name="新闻快报文章区域" -->
-<!-- #BeginLibraryItem "/library/cat_articles.lbi" -->
+  <!-- #BeginLibraryItem "/library/cat_articles.lbi" -->
 
-<!-- {if $script_name eq 'index'} -->
-<div class="mt">
-	<h2>{$articles_cat.name|escape:html}</h2>
-    <div class="extra"><a href="{$articles_cat.url}" target="_blank">更多&nbsp;&gt;</a></div>
-</div>
-<div class="mc">
-	<ul>
-    	<!--{foreach from=$articles item=article_item}-->
-        <li {if $smarty.foreach.foo.iteration mod 2 eq 1}class="odd"{/if}><a href="{$article_item.url}" target="_blank" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
-        <!--{/foreach}-->
-    </ul>
-</div>
-<!-- {elseif $script_name eq 'category'}-->
-<div id="market">
-	<div class="mt">{$articles_cat.name|escape:html}</div>
-    <div class="mc">
-    	<ul>
-        	<!--{foreach from=$articles item=article_item}-->
-            <li>·<a href="{$article_item.url}" target="_blank">{$article_item.short_title}</a></li>
-            <!--{/foreach}-->
-        </ul>
-    </div>
-</div>
-<!-- {else} -->
-<div class="mt">
-	<h2>{$articles_cat.name|escape:html}</h2>
-</div>
-<div class="mc">
-	<ul>
-    	<!--{foreach from=$articles item=article_item}-->
-        <li>·<a target="_blank" href="{$article_item.url}" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
-        <!--{/foreach}-->
-    </ul>
-</div>
-<!-- {/if} -->
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable --> </div>
-  <!--jdnews-->
-  
-  <div class="m _520_a_lifeandjourney_1 hover" id="virtuals-2014">
-    <div class="mt">
-    	<h2>其它服务</h2>
-        <ul class="fore1 lh">
-        	<li class="fore1 abtest_huafei current"><a href="javascript:void(0);"><s></s>活动<i></i></a></li>
-            <!--<li class="fore2 abtest_lvxing"><a href="javascript:void(0);"><s></s>发货单<i></i></a></li>
-            <li class="fore3 abtest_caipiao"><a href="javascript:void(0);"><s></s>订单<i></i></a></li>
-            <li class="fore4 abtest_youxi"><a href="javascript:void(0);"><s></s>投票<i></i></a></li>-->
-        </ul>
-    </div>
-    <div class="mc" style="position:absolute;">
-      <div class="virtuals-iframes">
-        <div class="virtuals-w"> <!-- TemplateBeginEditable name="活动区域（宽）" -->
-<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
-
-{insert name='ads' id=$ads_id num=$ads_num}
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable --> </div>
-        <div class="virtuals-s"> <!-- TemplateBeginEditable name="活动区域（窄）" -->
-<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
-
-{insert name='ads' id=$ads_id num=$ads_num}
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable --> </div>
-      </div>
-      <div class="virtuals-iframes" id="txtMarquee-top"> <!-- TemplateBeginEditable name="发货单区域" -->
-<!-- #BeginLibraryItem "/library/invoice_query.lbi" -->
-
-<!--{if $invoice_list}-->
-<ul  id="brtup1ul" >
-<!--{foreach from=$invoice_list item=invoice} -->
-<li style="padding-top:6px;">
- <table width="100%" cellpadding="0" cellspacing="0" border="0">
-		  <tr>
-			  <td width="45%" align="left">&nbsp;{$lang.order_number}:&nbsp;</td>
-			  <td>{$invoice.order_sn}</td>
-		  </tr>
-		  <tr >
-			  <td  align="left">&nbsp;{$lang.consignment}:&nbsp;</td>
-			  <td >{$invoice.invoice_no}</td>
-		  </tr>
-	  </table>
-   <div style="height:10px; border-bottom:1px dashed #ccc; width:100%;"></div>
-
-</li>
-<!--{/foreach}-->
-</ul>
-
-
-<!-- {/if} -->
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable --> </div>
-      <div class="virtuals-iframes"> <!-- TemplateBeginEditable name="订单查询区域" -->
-<!-- #BeginLibraryItem "/library/order_query.lbi" -->
-
-<!--{if empty($order_query)}-->
-<script>var invalid_order_sn = "{$lang.invalid_order_sn}"</script>
-<div style="padding:8px; ">
-    <form name="ecsOrderQuery">
-    <input type="text" name="order_sn" class="inputBg" /><br />
-    <div class="blank5"></div>
-    <input type="button" value="{$lang.query_order}" class="bnt_blue_2" onclick="orderQuery()" />
-    </form>
-    <div id="ECS_ORDER_QUERY" style="margin-top:8px;">
-      <!--{else}-->
-      <!--{if $order_query.user_id}-->
-<b>{$lang.order_number}：</b><a href="user.php?act=order_detail&order_id={$order_query.order_id}" class="f6">{$order_query.order_sn}</a><br>
-  <!--{else}-->
-<b>{$lang.order_number}：</b>{$order_query.order_sn}<br>
-  <!--{/if}-->
-<b>{$lang.order_status}：</b><br><font class="f1" style="font-weight:bold; color:#D00;">{$order_query.order_status}</font><br>
-  <!--{if $order_query.invoice_no }-->
-<b>{$lang.consignment}：</b>{$order_query.invoice_no}<br>
-  <!--{/if}-->
-      {if $order_query.shipping_date}：{$lang.shipping_date} {$order_query.shipping_date}<br>
-  <!--{/if}-->
-  <!--{/if}-->
-    </div>
-</div>
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable --> </div>
-      <div class="virtuals-iframes"> <!-- TemplateBeginEditable name="投票区域" -->
-<!-- #BeginLibraryItem "/library/vote_list.lbi" -->
-
-{insert name='vote'}
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable --> </div>
-    </div>
+  <!-- {if $script_name eq 'index'} -->
+  <div class="mt">
+  	<h2>{$articles_cat.name|escape:html}</h2>
+      <div class="extra"><a href="{$articles_cat.url}" target="_blank">更多&nbsp;&gt;</a></div>
   </div>
-  
-  <!--virtuals end--> 
+  <div class="mc">
+  	<ul>
+      	<!--{foreach from=$articles item=article_item}-->
+          <li {if $smarty.foreach.foo.iteration mod 2 eq 1}class="odd"{/if}><a href="{$article_item.url}" target="_blank" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
+          <!--{/foreach}-->
+      </ul>
+  </div>
+  <!-- {elseif $script_name eq 'category'}-->
+  <div id="market">
+  	<div class="mt">{$articles_cat.name|escape:html}</div>
+      <div class="mc">
+      	<ul>
+          	<!--{foreach from=$articles item=article_item}-->
+              <li>·<a href="{$article_item.url}" target="_blank">{$article_item.short_title}</a></li>
+              <!--{/foreach}-->
+          </ul>
+      </div>
+  </div>
+  <!-- {else} -->
+  <div class="mt">
+  	<h2>{$articles_cat.name|escape:html}</h2>
+  </div>
+  <div class="mc">
+  	<ul>
+      	<!--{foreach from=$articles item=article_item}-->
+          <li>·<a target="_blank" href="{$article_item.url}" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
+          <!--{/foreach}-->
+      </ul>
+  </div>
+  <!-- {/if} -->
+   <!-- #EndLibraryItem -->
+  <!-- TemplateEndEditable --> </div>
+    <!--jdnews-->
 </div>
 <Div class="clear"></Div>
 

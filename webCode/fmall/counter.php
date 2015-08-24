@@ -33,20 +33,30 @@ if ($action == 'countercount')
 	switch($ctype){
 		//按月等额本息
 		case 1:
-			for($i=1;$i<$ctime+1;$i++){
-				$prininter = ($csum*($crate/12)*pow((1+$crate/12),$ctime))/(pow((1+$crate/12),$ctime)-1);	//月收本息
-				$csum = $csum - $princital;
-				$interest = $csum*$crate/12;	//月收利息
-				$princital = $prininter - $interest;	//月收本金
-				$overprininter = ($csum+($csum*$crate/12*$ctime)) - $prininter;	//待收本息
+			$prininter = ($csum*($crate/12)*pow((1+$crate/12),$ctime))/(pow((1+$crate/12),$ctime)-1);	//月收本息
+				for($i=1;$i<$ctime;$i++){
+					$csum = $csum - $princital;
+					$interest = $csum*$crate/12;	//月收利息
+					$princital = $prininter - $interest;	//月收本金
+					$overprininter = ($csum+($csum*$crate/12*$ctime)) - $prininter;	//待收本息
+					
+					$backinfo.= '<tr class="'.($i%2==0?tableone:tabletwo).'"><td >'.$i.'月</td>';
+					$backinfo.= '<td >'.sprintf("%.2f",$prininter).'</td>';
+					$backinfo.= '<td >'.sprintf("%.2f",$princital).'</td>';
+					$backinfo.= '<td >'.sprintf("%.2f",$interest).'</td>';
+					$backinfo.= '<td >'.sprintf("%.2f",$overprininter).'</td></tr>';
 				
-				$backinfo.= '<tr class="'.($i%2==0?tableone:tabletwo).'"><td >'.$i.'月</td>';
-				$backinfo.= '<td >'.sprintf("%.2f",$prininter).'</td>';
-				$backinfo.= '<td >'.sprintf("%.2f",$princital).'</td>';
-				$backinfo.= '<td >'.sprintf("%.2f",$interest).'</td>';
-				$backinfo.= '<td >'.sprintf("%.2f",$overprininter).'</td></tr>';
+				}
+				if($i = $ctime){
+					$interest = $csum*$crate/12;	//月收利息
+					$princital = $overprininter - $interest;	//月收本金
 				
-			}
+					$backinfo.= '<tr class="'.($i%2==0?tableone:tabletwo).'"><td >'.$i.'月</td>';
+					$backinfo.= '<td >'.sprintf("%.2f",$overprininter).'</td>';
+					$backinfo.= '<td >'.sprintf("%.2f",$princital).'</td>';
+					$backinfo.= '<td >'.sprintf("%.2f",$interest).'</td>';
+					$backinfo.= '<td >'.sprintf("%.2f",0).'</td></tr>';
+				}
 			break;
 		//按月还息到期还本
 		case 2:
