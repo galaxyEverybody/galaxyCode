@@ -403,11 +403,12 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
         $smarty->assign('vote',        $vote['content']);
     }
 
-    $smarty->assign('best_goods',      get_category_recommend_goods('best', $dwt_name ,$children, $brand, $price_min, $price_max, $ext));
-    $smarty->assign('promotion_goods', get_category_recommend_goods('promote', $dwt_name, $children, $brand, $price_min, $price_max, $ext));
+    $smarty->assign('best_goods',      get_recommend_goods('best'));
+    
+    //$smarty->assign('promotion_goods', get_category_recommend_goods('promote', $dwt_name, $children, $brand, $price_min, $price_max, $ext));
 	
     $smarty->assign('hot_goods',       get_category_recommend_goods('hot', $dwt_name, $children, $brand, $price_min, $price_max, $ext));
-	$smarty->assign('new_goods',       get_category_recommend_goods('new', $dwt_name, $children, $brand, $price_min, $price_max, $ext));
+	//$smarty->assign('new_goods',       get_category_recommend_goods('new', $dwt_name, $children, $brand, $price_min, $price_max, $ext));
 
     $count = get_cagtegory_goods_count($children, $brand, $price_min, $price_max, $ext);
     $max_page = ($count> 0) ? ceil($count / $size) : 1;

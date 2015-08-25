@@ -86,7 +86,7 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'getGoodsInfo')
     	$goods = get_goods_info($goods_id);
 		
 		$res['result'] = $goods;
-		//print_r();
+
 		$res['short_name'] = $GLOBALS['_CFG']['goods_name_length'] > 0 ? sub_str($goods['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $goods['goods_name'];
 		$res['goods_name'] = $goods['goods_name'];
 		$res['goods_img'] = $goods['goods_img'];
@@ -194,13 +194,13 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
     $smarty->assign('type',         0);
     $smarty->assign('cfg',          $_CFG);
     //$smarty->assign('promotion',       get_promotion_info($goods_id));//促销信息
-	//$smarty->assign('comment_percent',     comment_percent($goods_id));  //获取评分
+	$smarty->assign('comment_percent',     comment_percent($goods_id));  //获取评分
     $smarty->assign('promotion_info', get_promotion_info());
 
     
     $goods = get_goods_info($goods_id);			//获得商品的信息 
     $bidrecord = get_goods_bid($goods_id);		//获得投标记录
-   	$repayrecord = get_goods_repay($goods_id);	//获得还款记录
+   	//$repayrecord = get_goods_repay($goods_id);	//获得还款记录
     
     //print_r($goods);exit;
 	/* 获取所属大类的名称*/
@@ -274,7 +274,8 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         	$levelinfo = get_twolevel_repay($parentid);//查询分类下产品id
         	$smarty->assign('goodslevel',$levelinfo);
         }
- 
+ 		
+        
         /*$catlist = array();
         foreach(get_parent_cats($goods['cat_id']) as $k=>$v)
         {
@@ -312,6 +313,8 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('attribute_linked',    get_same_attribute_goods($properties));           // 相同属性的关联商品
         $smarty->assign('related_goods',       $linked_goods);                                   // 关联商品
         $smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章
+        $smarty->assign('recommend_goods',		get_recommend_goods('hot'));						//获得相关推荐商品
+        //print_r(get_recommend_goods('hot'));exit;
         //$smarty->assign('fittings',            get_goods_fittings(array($goods_id)));                   // 配件
         //$smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
         //$smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
@@ -323,7 +326,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 		
 		//$smarty->assign('top10_brand',          get_top10_brand($goods['brand_id'])); 
 		
-		$smarty->assign('top10_category',       get_top10($goods['cat_id'])); 
+		//$smarty->assign('top10_category',       get_top10($goods['cat_id'])); 
 		
 		//$smarty->assign('top10_price',       get_top10_price($goods['shop_price'])); 
 		

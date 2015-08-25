@@ -2,7 +2,7 @@
 <!-- {if $hot_goods} -->
 <!-- {if $script_name eq "category"} -->
 <div id="hotsale">
-	<div class="mt">热卖推荐</div>
+	<div class="mt">精品推荐</div>
     <div class="mc list-h"> 
     	<!--{foreach from=$hot_goods item=goods}-->
         <dl>
@@ -10,10 +10,9 @@
             <dd>
             	<div class="p-name">
                 	<a href="{$goods.url}" target="_blank">{$goods.short_style_name}<font color="#ff6600"></font></a>
-                    <font color="#ff6600"><a target="blank" href="{$goods.url}">{$goods.short_style_name}</a></font>
                 </div>
-                <div class="p-price">本店价：<strong> <!-- {if $goods.promote_price neq ""} --> {$goods.promote_price} <!-- {else}--> {$goods.shop_price} <!--{/if}--></strong></div>
-                <div class="btns"><a href="{$goods.url}" target="_blank">立即抢购</a></div>
+                <div class="p-price">借款金额：<strong> <!-- {if $goods.promote_price neq ""} --> {$goods.promote_price} <!-- {else}--> {$goods.shop_price} <!--{/if}--></strong>元</div>
+                <div class="p-price">年化利率：<a href="{$goods.url}" target="_blank"><strong>{$goods.market_price}</strong>%</a></div>
             </dd>
         </dl>
         <!--{/foreach}--> 

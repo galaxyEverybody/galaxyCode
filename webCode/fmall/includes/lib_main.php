@@ -2011,19 +2011,23 @@ function get_navigator($ctype = '', $catlist = array())
 			}
 			if($v['name'] == '季能赚'){
 				$sql = 'SELECT g.goods_id FROM '.$GLOBALS['ecs']->table('category').' as c,'.$GLOBALS['ecs']->table('goods').' 
-					as g where g.cat_id=c.cat_id and parent_id ='.$v['cid'].' order by c.sort_order asc';
+					as g where g.cat_id=c.cat_id and parent_id ='.$v['cid'].' order by c.sort_order asc,g.goods_id desc';
 				$good_id = $GLOBALS['db']->getOne($sql);
 				$navlist['middle'][$k]['url'] = 'goods.php?id='.$good_id;
 			}
 		}
+		if($cur_url == $navlist['middle'][$k]['url']){
+			$navlist['middle'][$k]['active'] = 1;
+		}
 		/* 更改导航分类的url gao*/
-        $condition = empty($ctype) ? (strpos($cur_url, $v['url']) === 0) : (strpos($cur_url, $v['url']) === 0 && strlen($cur_url) == strlen($v['url']));
+        /*$condition = empty($ctype) ? (strpos($cur_url, $v['url']) === 0) : (strpos($cur_url, $v['url']) === 0 && strlen($cur_url) == strlen($v['url']));
+
         if ($condition)
         {
             $navlist['middle'][$k]['active'] = 1;
             $noindex = true;
             $active += 1;
-        }
+        }*/
     }
 
     if(!empty($ctype) && $active < 1)

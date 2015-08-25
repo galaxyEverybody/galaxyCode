@@ -193,8 +193,8 @@
 <!--#会员注册界面 end--> 
 
 <!--*找回密码界面 --> 
-<!--{if $action eq 'get_password'} --> 
-{insert_scripts files='utils.js'} 
+<!--{if $action eq 'get_password'} -->
+{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
 <script type="text/javascript">
     {foreach from=$lang.password_js item=item key=key}
       var {$key} = "{$item}";
@@ -203,33 +203,115 @@
 
 <div class="usBox">
   <div class="usBox_2 clearfix">
-    <form action="user.php" method="post" name="getPassword" onsubmit="return submitPwdInfo();">
-      <br />
-      <table width="70%" border="0" align="center">
-        <tr>
-          <td colspan="2" align="center"><strong>{$lang.username_and_email}</strong></td>
-        </tr>
-        <tr>
-          <td width="29%" align="right">{$lang.username}</td>
-          <td width="61%"><input name="user_name" type="text" size="30" class="inputBg" /></td>
-        </tr>
-        <tr>
-          <td align="right">{$lang.email}</td>
-          <td><input name="email" type="text" size="30" class="inputBg" /></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><input type="hidden" name="act" value="send_pwd_email" />
-            <input type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />
-            <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" /></td>
-        </tr>
-      </table>
-      <br />
-    </form>
-  </div>
+		<div style="width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;">
+			<div onclick = "getpwphone()" id="getpwphone">依据注册手机号找回</div>
+			<div onclick = "getpwemail()"  id="getpwemail">根据绑定邮箱找回</div>
+		</div>
+		<div style="width:650px;height:200px;">
+			<form id="formauthcenterphone" action="user.php" method="post" onSubmit="return authcentereditphone()">
+			<table id="formgetpwphone" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+				<tr>
+					<td class="bangcardtd">账号</td>
+					<td>
+						<input class="bangcardinput" name="getpwphone_user" type="text" placeholder="请输入您的注册账号" onblur="chekgetpwphone_user(this.value);">
+						<div id="user_getpw" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd">手机号</td>
+					<td>
+						<input class="bangcardinput" name="getpwphone_phone" type="text" placeholder="请输入您注册时填写的手机号" onblur="chekgetpwphone_phone(this.value);">
+						<div id="phone_getpw" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd">验证码</td>
+					<td>
+						<input class="verifyauthinput" name="getpw_verify" type="text" placeholder="请输入验证码" onblur="chekgetpwphone_verify(this.value);">
+						<div class="widthdraw_button_time" id="get_authcenterphone_time"><a onclick="getauthcenter_phone()">获取验证码</a></div>
+						<div id="callauthphone_verify" style="color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:10px;"></div>
+						<input id="oldphone_verify_time" type="text" value='60' style="display:none;"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+					<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
+				</tr>
+			</table>
+			<table id="formgetpwemail" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;display:none;">
+				<tr>
+					<td class="bangcardtd">账号</td>
+					<td>
+						<input class="bangcardinput" name="authcenter_idcard" type="text" placeholder="请输入您的注册账号" onblur="chekauthcenter_idcard(this.value);">
+						<div id="idcarderror_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd">邮箱</td>
+					<td>
+						<input class="bangcardinput" name="withdrawauthidcardcenter_password" type="text" placeholder="请输入您绑定的邮箱" onblur="chewithdrawidcardauthcenter_password(this.value);">
+						<div id="withdrawidcard_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
+					<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
+				</tr>
+			</table>
+			<table id="formnewpw" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;display:none;">
+				<tr>
+					<td class="bangcardtd">新密码</td>
+					<td>
+						<input class="bangcardinput" id="newmobile_phone" name="newmobile_phone" type="text" placeholder="请输入您注册的账号" onblur="authcenteruser_newphone(this.value);">
+						<div id="newphone_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+						<input type="text" id="newphone_verify_time" value='60' style="display:none;">
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd">新密码</td>
+					<td>
+						<input class="bangcardinput" name="authnewphone_verify" type="text" placeholder="请输入新的密码" onblur="cheauthcenter_newverify(this.value);">
+						<div id="newphonemsg_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_userphone" /></td>
+					<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+				</tr>
+			</table>
+			
+			</form>
+		</div>
 </div>
 <!--{/if}--> 
-
+<script>
+	<!--手机账号的修改start-->
+	function getpwphone(){
+		$('#formgetpwphone').show();
+		$('#formgetpwemail').hide();
+		$('#formnewpw').hide();
+		var path = window.document.location.href;
+		var pathnum = path.lastIndexOf('/');
+		var path1 = path.substr(0,pathnum);
+		$('#getpwphone').css("background-image","url("+path1+"/themes/jingdong2015/images/auth_centerphone01.png)");
+		$('#getpwemail').css("background-image","url("+path1+"/themes/jingdong2015/images/authcenteridcard02.png)");
+	}
+	function getpwemail(){
+		$('#formgetpwphone').hide();
+		$('#formgetpwemail').show();
+		$('#formnewpw').hide();
+		var path = window.document.location.href;
+		var pathnum = path.lastIndexOf('/');
+		var path1 = path.substr(0,pathnum);
+		$('#getpwphone').css("background-image","url("+path1+"/themes/jingdong2015/images/auth_centerphone02.png)");
+		$('#getpwemail').css("background-image","url("+path1+"/themes/jingdong2015/images/authcenteridcard01.png)");
+	}
+	function nextnewphone(){
+		$('#formgetpwphone').hide();
+		$('#formgetpwemail').hide();
+		$('#formnewpw').show();
+	}
+</script>
 <!--*通过问题找回密码的确认找回账号界面 --> 
 <!--{if $action eq 'qpassword_name'} -->
 

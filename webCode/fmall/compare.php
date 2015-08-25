@@ -38,7 +38,7 @@ if (!empty($_REQUEST['goods']) && is_array($_REQUEST['goods']) && count($_REQUES
     }
 
     $where = db_create_in($_REQUEST['goods'], 'g.goods_id');
-    $sql = "SELECT g.goods_id, g.goods_type, g.goods_name, g.shop_price, g.goods_weight, g.goods_thumb, g.goods_brief, ".
+    $sql = "SELECT g.goods_id, g.goods_type, g.market_price, g.good_status, g.add_time, g.goods_name, g.shop_price, g.goods_weight, g.goods_thumb, g.goods_brief, ".
                 "a.attr_name, v.attr_value, a.attr_id, b.brand_name, ".
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS rank_price " .
             "FROM " .$ecs->table('goods'). " AS g ".
@@ -63,11 +63,20 @@ if (!empty($_REQUEST['goods']) && is_array($_REQUEST['goods']) && count($_REQUES
         $arr[$goods_id]['goods_name']   = $row['goods_name'];
         $arr[$goods_id]['shop_price']   = price_format($row['shop_price']);
         $arr[$goods_id]['rank_price']   = price_format($row['rank_price']);
-        $arr[$goods_id]['goods_weight'] = (intval($row['goods_weight']) > 0) ?
-                                           ceil($row['goods_weight']) . $_LANG['kilogram'] : ceil($row['goods_weight'] * 1000) . $_LANG['gram'];
+        $arr[$goods_id]['goods_weight'] = ceil(($row['goods_brief'] - $row['add_time'])/(3600*24));
+        if($arr[$goods_id]['goods_weight'] < 0){
+        	$arr[$goods_id]['goods_weight'] = 0;
+        }
+                                           
         $arr[$goods_id]['goods_thumb']  = get_image_path($row['goods_id'], $row['goods_thumb'], true);
         $arr[$goods_id]['goods_brief']  = $row['goods_brief'];
         $arr[$goods_id]['brand_name']   = $row['brand_name'];
+        $arr[$goods_id]['market_price']   = intval($row['market_price']);
+        if($row['good_status'] ==1){
+        	$arr[$goods_id]['good_status']   = '投标中';
+        }else{
+        	$arr[$goods_id]['good_status']   = '已投满';
+        }
 
         $arr[$goods_id]['properties'][$row['attr_id']]['name']  = $row['attr_name'];
         if (!empty($arr[$goods_id]['properties'][$row['attr_id']]['value']))

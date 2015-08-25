@@ -285,12 +285,12 @@ function reg(str){
         <h2>相关推荐</h2>
       </div>
       <div class="mc">
-        <ul class="lh">
-   		 <!--{foreach from=$top10_category item=goods name=top10_category}-->
-          <li class="fore{$smarty.foreach.top10_category.iteration}"><span>{$smarty.foreach.top10_category.iteration}</span>
-            <div class="p-img"><a href="{$goods.url}"><img height="50" width="50" src="{$goods.thumb}" class="err-product"></a></div>
-            <div class="p-name"><a href="{$goods.url}" title="{$goods.short_name}">{$goods.short_name}</a></div>
-            <div class="p-price"><strong class="J-p-1094930">{$goods.price}</strong></div>
+        <ul style='width:100%;height:auto;text-align:center;font-size:14px;'>
+   		 <!--{foreach from=$recommend_goods item=recgoods}-->
+          <li style="width:100%;height:auto;margin-top:10px;">
+            <div ><a href="{$recgoods.url}"><img height="150" width="150" src="{$recgoods.thumb}"></a></div>
+            <div ><a href="{$recgoods.url}" title="{$recgoods.short_name}">{$recgoods.short_name}</a></div>
+            <div >年化利率:<span style='color:#FF852F;'>{$recgoods.market_price}</span>%</div>
           </li>
           <!--{/foreach}-->
 

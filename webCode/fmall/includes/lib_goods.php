@@ -281,9 +281,9 @@ function get_categories_tree($cat_id = 0)
                 	if($row['cat_name'] == '季能赚'){
                 		$sql = 'SELECT cat_id FROM '.$GLOBALS['ecs']->table('category'). 'where parent_id ='.$row['cat_id']. ' order by sort_order asc';
                 		$catethreeid = $GLOBALS['db']->getOne($sql);
-                		$sql = 'select goods_id from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$catethreeid;
+                		$sql = 'select goods_id from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$catethreeid.' order by goods_id desc';
                 	}else{
-                		$sql = 'select goods_id from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$row['cat_id'];
+                		$sql = 'select goods_id from '.$GLOBALS['ecs']->table('goods').' where cat_id ='.$row['cat_id'].' order by goods_id desc';
                 	}
                 	$gooddetail = $GLOBALS['db']->getOne($sql);
                 	$cat_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $gooddetail,'isalone'=>$row['is_standalone']), $row['cat_name']);

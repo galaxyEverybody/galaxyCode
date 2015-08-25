@@ -33,7 +33,7 @@
 <!-- {if $hot_goods} -->
 <!-- {if $script_name eq "category"} -->
 <div id="hotsale">
-	<div class="mt">热卖推荐</div>
+	<div class="mt">精品推荐</div>
     <div class="mc list-h"> 
     	<!--{foreach from=$hot_goods item=goods}-->
         <dl>
@@ -41,10 +41,9 @@
             <dd>
             	<div class="p-name">
                 	<a href="{$goods.url}" target="_blank">{$goods.short_style_name}<font color="#ff6600"></font></a>
-                    <font color="#ff6600"><a target="blank" href="{$goods.url}">{$goods.short_style_name}</a></font>
                 </div>
-                <div class="p-price">本店价：<strong> <!-- {if $goods.promote_price neq ""} --> {$goods.promote_price} <!-- {else}--> {$goods.shop_price} <!--{/if}--></strong></div>
-                <div class="btns"><a href="{$goods.url}" target="_blank">立即抢购</a></div>
+                <div class="p-price">借款金额：<strong> <!-- {if $goods.promote_price neq ""} --> {$goods.promote_price} <!-- {else}--> {$goods.shop_price} <!--{/if}--></strong>元</div>
+                <div class="p-price">年化利率：<a href="{$goods.url}" target="_blank"><strong>{$goods.market_price}</strong>%</a></div>
             </dd>
         </dl>
         <!--{/foreach}--> 
@@ -55,8 +54,6 @@
 
  <!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
-      <!-- TemplateBeginEditable name="促销活动文章区域" -->
-<!-- #BeginLibraryItem "/library/cat_articles.lbi" -->
 
 <!-- {if $script_name eq 'index'} -->
 <div class="mt">
@@ -69,17 +66,6 @@
         <li {if $smarty.foreach.foo.iteration mod 2 eq 1}class="odd"{/if}><a href="{$article_item.url}" target="_blank" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
         <!--{/foreach}-->
     </ul>
-</div>
-<!-- {elseif $script_name eq 'category'}-->
-<div id="market">
-	<div class="mt">{$articles_cat.name|escape:html}</div>
-    <div class="mc">
-    	<ul>
-        	<!--{foreach from=$articles item=article_item}-->
-            <li>·<a href="{$article_item.url}" target="_blank">{$article_item.short_title}</a></li>
-            <!--{/foreach}-->
-        </ul>
-    </div>
 </div>
 <!-- {else} -->
 <div class="mt">
@@ -211,35 +197,25 @@
         <div class="blank20"></div>
         <div class="blank20"></div>
     </div>
-    <div class="left" style="border:1px solid red;">
-    	<div id="sortlist_cat" class="m hide">
-        	<div class="mt"><h2>{$cat.name}</h2></div>
-            <div class="mc"> 
-            	<!--{foreach from=$categories_left item=cat name=categories_left}-->
-                <div class="item  <!-- {if $cat.status eq 1} -->current<!-- {/if} -->">
-                	<h3><b></b>{$cat.name}</h3>
-                    <ul>
-                    	<!-- {foreach from=$cat.cat_id item=child} -->
-                        <li><a href="{$child.url}">{$child.name}</a></li>
-                        <!-- {/foreach} -->
-                    </ul>
-                </div>
-                <!-- {/foreach} --> 
-            </div>
+    <div class="left">
+    	<div class="j_box">
+    	  <div class="j_logo" style='border-bottom:1px solid #ddd;'>收益最佳</div>
+    	  <div class="j_boxcontent" '>
+    	        <ul class="clearfix" id="list1" style='width:100%;height:auto;text-align:center;font-size:14px;'>
+    	          <!--{foreach from=$best_goods item=goods}-->
+    	          <li >
+    	            <div class="p_img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" width="150" height="150"></a></div>
+    	            <div class="p_name"><a href="{$goods.url}" target="_blank">{$goods.short_style_name}</a></div>
+    	            <div class="p_price"><span style='color:#FF852F;'>年化利率:{$goods.market_price}%</span></div>
+    	            <div class="clr" ></div>
+    	          </li>
+    	          <!--{/foreach}-->
+    	        </ul>
+    	        <div class="blank20"></div>
+    	  </div>
+    	</div>
         </div>
-        <div id="ad_left" class="m m0 hide"></div>
-        <!-- #BeginLibraryItem "/library/recommend_promotion.lbi" --><!-- #EndLibraryItem -->
-        
-        <!--用户最终购买-->
-        <div id="finalbuy" class="hide m m0"></div>
-        <!-- #BeginLibraryItem "/library/top10.lbi" --><!-- #EndLibraryItem --> 
-        <!--浏览XXX还购买了-->
-        <div id="alsobuy" class="hide m m0"></div>
-        <div id="da211x261-1" class="m"></div>
-    </div>
     <span class="clr"></span>
-    <div class="J_goods_best" style="display:none"><!-- #BeginLibraryItem "/library/recommend_best.lbi" --><!-- #EndLibraryItem --></div>
-    <div class="mayLike" style="display:none"><!-- #BeginLibraryItem "/library/browse_related.lbi" --><!-- #EndLibraryItem --></div>
     <div class="recentView"><!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem --></div>
 </div>
 

@@ -3,8 +3,8 @@
 <div class="w">
     <div id="service2015">
         <!-- {foreach from=$helps item=help_cat name=foo} -->
-        <!-- {if $smarty.foreach.foo.iteration < 6} -->
-        <dl class="fore{$smarty.foreach.foo.iteration}">
+        <!-- {if $smarty.foreach.foo.iteration < 7} -->
+        <dl class="fore{$smarty.foreach.foo.iteration}" style='width:199px;'>
             <dt>{$help_cat.cat_name}</dt>
             <dd>
                 <!-- {foreach from=$help_cat.article item=item} -->
@@ -14,13 +14,6 @@
         </dl>
         <!-- {/if}  -->
         <!-- {/foreach} -->
-        <dl class="coverage">
-        	<dt>银河众联自营门店覆盖</dt>
-            <dd>
-            	<div class="text">银河众联更专业的基金购买平台。</div>
-                <a href="#" class="more">查看详情 ></a>
-            </dd>
-        </dl>
     </div>
 </div>
 <!--{/if}--> 
