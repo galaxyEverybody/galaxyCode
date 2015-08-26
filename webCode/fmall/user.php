@@ -32,10 +32,10 @@ $back_act='';
 
 // 不需要登录的操作或自己验证是否登录（如ajax处理）的act
 $not_login_arr =
-array('login','act_login','register','act_register','act_edit_password','act_edit_paypassword','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
+array('login','act_login','register','act_register','act_edit_password','act_edit_paypassword', 'act_editlogin_userphone','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
 
 /* 显示页面的action列表 */
-$ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
+$ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'booking_list_month', 'booking_list_quarter', 'booking_list_year', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
@@ -533,7 +533,6 @@ elseif($action == 'get_phoneverify')
 	{
 		echo 'false';
 	}*/
-	
 }
 /* 验证短信验证码*/
 elseif($action == 'check_phoneverify')
@@ -669,13 +668,12 @@ elseif($action == 'ajax_checkoldpassword')
 /* 银行卡绑定页面*/
 elseif ($action == 'bangcard')
 {
+	include_once('includes/lib_transaction.php');
 	/* 取得国家的省列表 */
 	$province_list[$region_id] = get_regions(1, 1);
 	$smarty->assign('province_list',    $province_list);
 	
-	/* 查询已绑定的银行卡*/
-	$sql = 'SELECT cardnum from '.$GLOBALS['ecs']->table('bang_card').' where bangstatus = 1 AND user_id = '.$user_id;
-	$cardinfo = $GLOBALS['db']->getAll($sql);
+	$cardinfo = getbangcard_success($user_id);	//查询已绑定的银行卡
 	
 	$smarty->assign('cardinfotrue',$cardinfo);
 	foreach($cardinfo as $key=>$cinfo){
@@ -687,6 +685,32 @@ elseif ($action == 'bangcard')
 
 	$smarty->assign('cardinfo',$cardinfo);
 	$smarty->display('user_transaction.dwt');
+}
+
+/* 解除绑定银行卡*/
+elseif ($action == 'unbundcard'){
+	include_once('includes/lib_transaction.php');
+	
+	$num = trim($_POST['con']);
+	$str1 = substr($num,0,4);
+	$str2 = substr($num,-4);
+	$cardinfo = getbangcard_success($user_id);	//查询已绑定的银行卡
+	foreach($cardinfo as $val){
+		$strnum .= $val['cardnum'].',';
+	}
+	$reg = '/'.$str1.'[0-9]{1,20}'.$str2.'/';
+	preg_match_all($reg,$strnum,$truenum);
+	
+	/* 更改银行卡的绑定状态*/
+	$sql = 'UPDATE '.$GLOBALS['ecs']->table('bang_card').' SET bangstatus = 0 where cardnum ='.$truenum[0][0];
+	$res = $GLOBALS['db']->query($sql);
+
+	if($res){
+		echo 'true';
+	}else{
+		echo 'false';
+	}
+	
 }
 
 /* 绑定银行卡信息的添加*/
@@ -721,6 +745,10 @@ elseif ($action == 'auth_center')
 {
 	$sql='SELECT mobile_phone,email,idcard,phonestatus,emailstatus,idcardstatus FROM'.$GLOBALS['ecs']->table('users').' where user_id='.$user_id;
 	$userinfo = $GLOBALS['db']->getRow($sql);
+	$smarty->assign('truephone',$userinfo['mobile_phone']);
+	$userinfo['phone'] = str_replace(substr($userinfo['mobile_phone'],3,5),'*****',$userinfo['mobile_phone']);
+	$userinfo['email'] = str_replace(substr($userinfo['email'],3,strlen($userinfo['email'])-10),'*****',$userinfo['email']);
+	$userinfo['idcard'] = str_replace(substr($userinfo['idcard'],3,strlen($userinfo['idcard'])-7),'********',$userinfo['idcard']);
 	
 	$smarty->assign('userinfostatus',$userinfo);
 	$smarty->display('user_transaction.dwt');
@@ -1069,6 +1097,40 @@ elseif ($action == 'qpassword_name')
     $smarty->display('user_passport.dwt');
 }
 
+/* 密码找回-->根据手机号*/
+elseif ($action == 'act_editlogin_userphone'){
+	include_once(ROOT_PATH . 'includes/lib_passport.php');
+	
+	$username = trim($_POST['getpwphone_user']);
+	$phone = trim($_POST['getpwphone_phone']);
+	$verify = trim($_POST['getpw_verify']);
+	$newpw = trim($_POST['newpw']);
+	$newpwconfirm = trim($_POST['newpwconfirm']);
+	
+	if(empty($username) || empty($phone) || empty($verify) || empty($newpw) || empty($newpwconfirm)){
+		show_message($_LANG['wrong_submit_info'], $_LANG['back_home_lnk'], './', 'info');
+	}
+	
+	//判断账号和手机号是否匹配
+	$user_info = $user->get_user_info($user_name);
+	if($user_info && $user_info['mobile_phone'] == $phone){
+		if ($user->edit_user(array('username'=> ($user_info['user_name']), 'password'=>$newpw)))
+        {
+			$sql="UPDATE ".$ecs->table('users'). "SET `ec_salt`='0' WHERE user_id= '".$user_id."'";
+			$db->query($sql);
+            $user->logout();
+            show_message($_LANG['edit_password_success'], $_LANG['relogin_lnk'], 'user.php?act=login', 'info');
+        }
+        else
+        {
+            show_message($_LANG['edit_password_failure'], $_LANG['back_page_up'], '', 'info');
+        }
+	}else{
+        //用户名与手机号不匹配
+        show_message($_LANG['username_no_phone'], $_LANG['back_page_up'], '', 'info');
+    }
+}
+
 /* 密码找回-->根据注册用户名取得密码提示问题界面 */
 elseif ($action == 'get_passwd_question')
 {
@@ -1150,8 +1212,8 @@ elseif ($action == 'send_pwd_email')
     include_once(ROOT_PATH . 'includes/lib_passport.php');
 
     /* 初始化会员用户名和邮件地址 */
-    $user_name = !empty($_POST['user_name']) ? trim($_POST['user_name']) : '';
-    $email     = !empty($_POST['email'])     ? trim($_POST['email'])     : '';
+    $user_name = !empty($_POST['getpwemail_user']) ? trim($_POST['getpwemail_user']) : '';
+    $email     = !empty($_POST['getpwemail_email'])     ? trim($_POST['getpwemail_email'])     : '';
 
     //用户名和邮件地址是否匹配
     $user_info = $user->get_user_info($user_name);

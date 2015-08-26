@@ -905,7 +905,7 @@ function RemainauthcenternewphoneTime(){
 
 /* 安全认证中心手机更换手机获取验证码*/
 function getauthcenter_phone(){
-	var phone = document.getElementById('oldmobile_phone').value;
+	var phone = document.getElementById('oldmobile_phone').innerHTML;
 	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_phoneverify_callback , 'GET', 'TEXT', true, true );
 }
 function authcenter_phoneverify_callback(result){
@@ -1190,3 +1190,192 @@ function chekwithdrawalsnum(num){
 		}
 	}
 }
+
+/* 登录忘记密码*/
+function getpwphoneform(){
+	var username = $("input[name='getpwphone_user']")[0].value;
+	var userphone = $("input[name='getpwphone_phone']")[0].value;
+	var userverify = $("input[name='getpw_verify']")[0].value;
+	var userpw = $("input[name='newpw']")[0].value;
+	var userpwconfirm = $("input[name='newpwconfirm']")[0].value;
+	
+	if(chekgetpwphone_user(username)&&chekgetpwphone_phone(userphone)&&chekgetpwphone_verify(userverify)&&
+			chekgetpw_newpw(userpw)&&chekgetpw_newpwconfirm(userpwconfirm)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+//账号验证
+function chekgetpwphone_user(username){
+	var reg = /^[0-9a-zA-Z]{3,30}$/;
+	if(username == ''){
+		$("#user_getpw").html('-请输入您注册的账号');
+		return false;
+	}else{
+		if(!reg.test(username)){
+			$("#user_getpw").html('-输入的账号不合法');
+			return false;
+		}else{
+			return true;
+		}
+	}
+}
+//手机号验证
+function chekgetpwphone_phone(phone){
+	var reg = /^1[3|5|8|7]\d{9}$/;
+	if(phone == ''){
+		$("#phone_getpw").html('-请输入您注册时的手机号');
+		return false;
+	}else{
+		if(!reg.test(phone)){
+			$("#phone_getpw").html('-输入的手机号不合法');
+			return false;
+		}else{
+			return true;
+		}
+	}
+}
+//短信验证码验证
+function chekgetpwphone_verify(verify){
+	var reg = /^[0-9]{4}$/;
+	if(verify == ''){
+		$("#verify_getpw").html('-请输入您收到的验证码');
+		return false;
+	}else if(!reg.test(verify)){
+		$("#verify_getpw").html('-输入的验证码不合法');
+		return false;
+	}else{
+		Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, checkgetpw_phoneverify_callback , 'GET', 'TEXT', true, true );
+	}
+}
+function checkgetpw_phoneverify_callback(result){
+	if(result == 'false'){
+		$('#verify_getpw').html('-验证码输入错误');
+	}else{
+		return true;
+	}
+}
+
+//邮箱找回密码的提交
+function emailgetpwform(){
+	var pwuser = $("input[name='getpwemail_user']")[0].value;
+	var pwemail = $("input[name='getpwemail_email']")[0].value;
+	if(chekgetpwemail_user(pwuser)&&chekgetpwemail_email(pwemail)){
+		return true;
+	}else{
+		return false;
+	}
+	
+}
+
+//邮箱账户验证
+function chekgetpwemail_user(username){
+	var reg = /^[0-9a-zA-Z]{3,30}$/;
+	if(username == ''){
+		$("#emailuser_getpw").html('-请输入您注册的账号');
+		return false;
+	}else{
+		if(!reg.test(username)){
+			$("#emailuser_getpw").html('-输入的账号不合法');
+			return false;
+		}else{
+			return true;
+		}
+	}
+}
+//邮箱验证
+function chekgetpwemail_email(email){
+	var reg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if(email == ''){
+		$('#emailemail_getpw').html('-请输入您的邮箱账号');
+		return false;
+	}else{
+		if(!reg.test(email)){
+			$('#emailemail_getpw').html('-输入的邮箱账号不合法');
+			return false;
+		}else{
+			return true;
+		}
+	}
+}
+//新密码的验证
+function chekgetpw_newpw(newpw){
+	var reg = /^[0-9a-zA-Z]{3,30}$/;
+	if(newpw == ''){
+		$("#newpw_getpw").html('-请输入新的密码');
+		return false;
+	}else{
+		if(!reg.test(newpw)){
+			$("#newpw_getpw").html('-输入的密码不合法');
+			return false;
+		}else{
+			return true;
+		}
+	}
+}
+//新密码的确认
+function chekgetpw_newpwconfirm(newpwconfirm){
+	var newpw = $('#newpw').val();
+	var reg = /^[0-9a-zA-Z]{3,30}$/;
+	if(newpwconfirm == ''){
+		$("#newpw_getpwconfirm").html('-请输入新的密码');
+		return false;
+	}else{
+		if(!reg.test(newpw)){
+			$("#newpw_getpwconfirm").html('-输入的密码不合法');
+			return false;
+		}
+	}
+	if(newpw != newpwconfirm){
+		$("#newpw_getpwconfirm").html('-两次密码输入不一致');
+		return false;
+	}else{
+		return true;
+	}
+}
+
+/* 点击获取验证码*/
+function getuserpw_phone()
+{
+	var phone = $("input[name='getpwphone_phone']")[0].value;
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, getpw_phoneverify_callback , 'GET', 'TEXT', true, true );
+}
+function getpw_phoneverify_callback(result)
+{
+	if(result == 'ok'){
+		$("#phone_getpw").html('-验证码已发送');
+		RemainTimegetpw();
+	}
+}
+
+/*显示倒计时*/
+function RemainTimegetpw(){
+	var iTime = 59;
+	var Account;
+	var timenum = document.getElementById('getpwtime').value;
+
+	if(timenum < iTime){
+		iTime = timenum
+	}
+
+	var sTime="";
+	if (iTime >= 0){
+		if(iTime==0){
+			clearTimeout(Account);
+			iTime = '<a onclick=getuserpw_phone()>点击获取验证码</a>';
+		}else{
+			iTime=iTime-1;
+			document.getElementById('getpwtime').value = iTime;
+			Account = setTimeout("RemainTimegetpw()",1000);
+		}
+	}else{
+		sTime='没有倒计时';
+	}
+	
+	document.getElementById('get_getpwphone_time').innerHTML = iTime;
+	document.getElementById('get_getpwphone_time').style.color = '#FF852F';
+	
+}
+

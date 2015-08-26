@@ -26,7 +26,7 @@ scrollAmount=3><U><FONT color=red>
 <P>咨询电话010-10124444  010-21252454 8465544</P></FONT></U></MARQUEE>',
   'shop_reg_closed' => '0',
   'lang' => 'zh_cn',
-  'icp_number' => '京ICP证070359号',
+  'icp_number' => '京ICP备15030430号-2',
   'icp_file' => '',
   'watermark' => '',
   'watermark_place' => '1',

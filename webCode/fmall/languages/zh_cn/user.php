@@ -229,6 +229,8 @@ $_LANG['get_question_username'] = '请输入您注册的用户名以取得您的
 $_LANG['no_passwd_question'] = '您没有设置密码提示问题，无法通过这种方式找回密码。';
 $_LANG['input_answer'] = '请根据您注册时设置的密码问题输入设置的答案';
 $_LANG['wrong_passwd_answer'] = '您输入的密码答案是错误的';
+$_LANG['wrong_submit_info'] = '您提交的数据不正确';
+$_LANG['username_no_phone'] = '用户名与手机号不匹配，请重新输入！';
 
 //JS语言项
 $_LANG['password_js']['user_name_empty'] = '请输入您的用户名！';

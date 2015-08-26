@@ -283,17 +283,36 @@
 		</tr>
 	</table>
 	</form>
-	<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:30px;padding-bottom:50px;">
+	<div class="bangcardsuccess">
 		<div class="capitaldiv">
 			<span class="capitalleft"></span><span class="capitalright">成功绑定的银行卡</span>
 		</div>
-		<div style="width:600px;height:auto;margin-left:150px;font-size:16px;margin-top:20px;padding-bottom:50px;">
-			<ul style="list-style:none;width:100%;">
+		<div class="bangcardnum">
+			<ul>
 				{foreach from=$cardinfo item=cardsinfo}
-				<li style="width:100%;height:40px;line-height:40px;"> 银行账号:<span style="margin-left:25px;">{$cardsinfo.cardnum}</span><a style="color:#FF500B;margin-left:35px;" href="#">解绑</a></li>
+				<li> 银行账号:<span>{$cardsinfo.cardnum}</span><a class="unbundcard">解绑</a></li>
 				{/foreach}
 			</ul>
 		</div>
+		<script>
+			$(function(){
+				var con = $(".unbundcard");
+				con.click(function(){
+					var num = $(this).prev().html();
+					Ajax.call('user.php?act=unbundcard', 'con='+num, unbundcard_callback, 'POST', 'TEXT',true,true);
+				});
+				
+				function unbundcard_callback(result){
+					if(result){
+						alert('您的银行卡解绑成功');
+						window.location.reload();//刷新当前页面
+					}else{
+						alert('您的银行卡'+result.content+'解绑失败');
+					}
+				}
+			
+			});
+		</script>
 	</div>
 </div>
 <!--{/if}-->
@@ -595,7 +614,10 @@
 	<div class="authcenterdiv">
 		
 		<!--手机修改start-->
-		<p><img src="images/phoneauth01.png"><span class="capitalauthphone">绑定手机</span><span class="capitalauthnum" id="oldmobile_phone">{$userinfostatus.mobile_phone}</span> <span onclick="authcenterphone()" id="capitalupdaphone" class="capitalauthupda">修改</span></p>
+		<p><img src="images/phoneauth01.png"><span class="capitalauthphone">绑定手机</span>
+			<span class="capitalauthnum" >{$userinfostatus.phone}</span>
+			<span id="oldmobile_phone" class='hide'>{$truephone}</span>
+			<span onclick="authcenterphone()" id="capitalupdaphone" class="capitalauthupda">修改</span></p>
 		<div id="authphonediv">
 			<div style="width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;">
 				<div onclick = "phoneauthupshow()" id="phoneauthupshow">依据原手机修改</div>
@@ -608,7 +630,7 @@
 						<td class="bangcardtd">验证码</td>
 						<td>
 							<input class="verifyauthinput" name="authcenter_phoneverify" type="text" placeholder="请输入验证码" onblur="chekauthcenter_verify(this.value);">
-							<div class="widthdraw_button_time" id="get_authcenterphone_time"><a onclick="getauthcenter_phone()">获取验证码</a></div>
+							<div class="widthdraw_button_time" id="get_authcenterphone_time" onclick="getauthcenter_phone()">获取验证码</div>
 							<div id="callauthphone_verify" style="color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:10px;"></div>
 							<input id="oldphone_verify_time" type="text" value='60' style="display:none;"/>
 						</td>

@@ -208,7 +208,7 @@
 			<div onclick = "getpwemail()"  id="getpwemail">根据绑定邮箱找回</div>
 		</div>
 		<div style="width:650px;height:200px;">
-			<form id="formauthcenterphone" action="user.php" method="post" onSubmit="return authcentereditphone()">
+			<form id="formauthcenterphone" action="user.php" method="post" onSubmit="return getpwphoneform()">
 			<table id="formgetpwphone" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
 				<tr>
 					<td class="bangcardtd">账号</td>
@@ -228,29 +228,9 @@
 					<td class="bangcardtd">验证码</td>
 					<td>
 						<input class="verifyauthinput" name="getpw_verify" type="text" placeholder="请输入验证码" onblur="chekgetpwphone_verify(this.value);">
-						<div class="widthdraw_button_time" id="get_authcenterphone_time"><a onclick="getauthcenter_phone()">获取验证码</a></div>
-						<div id="callauthphone_verify" style="color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:10px;"></div>
-						<input id="oldphone_verify_time" type="text" value='60' style="display:none;"/>
-					</td>
-				</tr>
-				<tr>
-					<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
-					<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
-				</tr>
-			</table>
-			<table id="formgetpwemail" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;display:none;">
-				<tr>
-					<td class="bangcardtd">账号</td>
-					<td>
-						<input class="bangcardinput" name="authcenter_idcard" type="text" placeholder="请输入您的注册账号" onblur="chekauthcenter_idcard(this.value);">
-						<div id="idcarderror_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
-					</td>
-				</tr>
-				<tr>
-					<td class="bangcardtd">邮箱</td>
-					<td>
-						<input class="bangcardinput" name="withdrawauthidcardcenter_password" type="text" placeholder="请输入您绑定的邮箱" onblur="chewithdrawidcardauthcenter_password(this.value);">
-						<div id="withdrawidcard_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+						<div class="widthdraw_button_time" id="get_getpwphone_time"><a onclick="getuserpw_phone()">获取验证码</a></div>
+						<div id="verify_getpw" style="color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:10px;"></div>
+						<input id="getpwtime" type="text" value='60' style="display:none;"/>
 					</td>
 				</tr>
 				<tr>
@@ -262,24 +242,45 @@
 				<tr>
 					<td class="bangcardtd">新密码</td>
 					<td>
-						<input class="bangcardinput" id="newmobile_phone" name="newmobile_phone" type="text" placeholder="请输入您注册的账号" onblur="authcenteruser_newphone(this.value);">
-						<div id="newphone_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+						<input class="bangcardinput" id="newpw" name="newpw" type="text" placeholder="请输入新密码" onblur="chekgetpw_newpw(this.value);">
+						<div id="newpw_getpw" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
 						<input type="text" id="newphone_verify_time" value='60' style="display:none;">
 					</td>
 				</tr>
 				<tr>
-					<td class="bangcardtd">新密码</td>
+					<td class="bangcardtd">新密码确认</td>
 					<td>
-						<input class="bangcardinput" name="authnewphone_verify" type="text" placeholder="请输入新的密码" onblur="cheauthcenter_newverify(this.value);">
-						<div id="newphonemsg_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+						<input class="bangcardinput" name="newpwconfirm" type="text" placeholder="再次输入新密码" onblur="chekgetpw_newpwconfirm(this.value);">
+						<div id="newpw_getpwconfirm" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
 					</td>
 				</tr>
 				<tr>
-					<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_userphone" /></td>
+					<td class="bangcardtd"><input name="act" type="hidden" value="act_editlogin_userphone" /></td>
 					<td><input class="bangcardsub" type="submit" value="确认提交"></td>
 				</tr>
 			</table>
-			
+			</form>
+			<form action='user.php' method='post' onsubmit='return emailgetpwform();'>
+			<table id="formgetpwemail" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;display:none;">
+				<tr>
+					<td class="bangcardtd">账号</td>
+					<td>
+						<input class="bangcardinput" name="getpwemail_user" type="text" placeholder="请输入您的注册账号" onblur="chekgetpwemail_user(this.value);">
+						<div id="emailuser_getpw" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd">邮箱</td>
+					<td>
+						<input class="bangcardinput" name="getpwemail_email" type="text" placeholder="请输入您绑定的邮箱" onblur="chekgetpwemail_email(this.value);">
+						<div id="emailemail_getpw" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd"><input type="hidden" name="act" value="send_pwd_email" /></td>
+					<td><input type='submit' class="nextnewdiv" value='提交'></td>
+				</tr>
+			</table>
 			</form>
 		</div>
 </div>

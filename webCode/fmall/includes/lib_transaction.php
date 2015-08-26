@@ -613,6 +613,20 @@ function insert_bangcard($bangcardinfo)
 }
 
 /**
+ *  查询绑定的银行卡信息
+ *
+ * @access  public
+ * @param   int       $user_id
+ * @return  array
+ */
+ function getbangcard_success($userid){
+ 	$sql = 'SELECT cardnum from '.$GLOBALS['ecs']->table('bang_card').' where bangstatus = 1 AND user_id = '.$userid;
+ 	$cardinfo = $GLOBALS['db']->getAll($sql);
+ 	
+ 	return $cardinfo;
+ }
+
+/**
  *  添加或更新指定用户收货地址
  *
  * @access  public

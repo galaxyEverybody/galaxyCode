@@ -163,7 +163,7 @@ h6 span{float:left;padding-left:15px}
 .top10List .samllimg{width:35px;height:35px;margin-bottom:4px}
 .top10List li{padding:3px 3px 3px 23px;float:left}
 .top10List li a,#mallNews .NewsList li a,.boxCenterList li a{color:#3f3f3f;text-decoration:none}
-.top10List li a:hover,#mallNews .NewsList li a:hover,.boxCenterList li a:hover{color:#f60;text-decoration:none}
+.top10List li a:hover,#mallNews .NewsList li a:hover{color:#f60;text-decoration:none}
 #focus{border-right:1px solid #c5e4ff;padding:8px;background:url(images/foucsBg.gif) repeat-x left top}
 #mallNews{width:230px;padding:8px 8px 0 8px;background:url(images/foucsBg.gif) repeat-x left top}
 #mallNews .NewsTit{background:url(images/bg.gif) 0 -132px;height:23px}
@@ -226,6 +226,12 @@ h6 span{float:left;padding-left:15px}
 .boxCenterList ul{height:1%;margin-bottom:5px}
 .boxCenterList li{float:left;width:120px}
 .boxCenterList li.goodsimg{width:48px;margin-right:10px}
+.bangcardsuccess{ width:100%;height:auto;border:1px solid #ddd;margin-top:30px;padding-bottom:50px;}
+.bangcardnum{ width:600px;height:auto;margin-left:150px;font-size:16px;margin-top:20px;padding-bottom:50px;}
+.bangcardnum ul{ list-style:none;width:100%;}
+.bangcardnum ul li{ width:100%;height:40px;line-height:40px;}
+.bangcardnum ul li span{ margin-left:25px;}
+.bangcardnum ul li a{ color:#FF500B;margin-left:35px;cursor:pointer;}
 .boxCenterList li.goodsimg img{width:48px;height:48px;display:block}
 .RelaArticle a,.alone{background:url(images/bg.gif) no-repeat 0 -170px;padding:0 0 0 10px;color:#3f3f3f;text-decoration:none}
 .RelaArticle a:hover{background:url(images/bg.gif) no-repeat 0 -170px;padding:0 0 0 10px;color:#f60;text-decoration:none}
@@ -2870,8 +2876,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv #phoneauthupshow{ width:214px;height:30px;float:left;text-align:center;background:url(images/auth_centerphone01.png);}
 .authcenterdiv #idcardauthshow{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;}
 .authcenterdiv .verifyauthinput{ width:150px;height:30px;float:left;}
-.authcenterdiv #authphonediv .nextnewdiv{ width:150px;height:40px;line-height:40px;text-align:center;float:left;background:#FF852F;color:#fff;font-weight:bold;}
-.nextnewdiv{ width:150px;height:40px;line-height:40px;text-align:center;float:left;background:#FF852F;color:#fff;font-weight:bold;}
+.authcenterdiv #authphonediv .nextnewdiv{ width:150px;height:40px;line-height:40px;text-align:center;float:left;background:#FF852F;color:#fff;font-weight:bold;cursor:pointer;}
+.nextnewdiv{ width:150px;height:40px;line-height:40px;text-align:center;float:left;background:#FF852F;color:#fff;font-weight:bold;cursor:pointer;}
 .usBox #getpwphone{ width:214px;height:30px;float:left;text-align:center;background:url(images/auth_centerphone01.png);cursor:pointer;} 
 .usBox #getpwemail{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;cursor:pointer;}
 .usBox .verifyauthinput{ width:150px;height:30px;float:left;}
