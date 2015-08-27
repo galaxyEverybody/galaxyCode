@@ -7,8 +7,10 @@
         <dl class="fore{$smarty.foreach.foo.iteration}" style='width:199px;'>
             <dt>{$help_cat.cat_name}</dt>
             <dd>
-                <!-- {foreach from=$help_cat.article item=item} -->
+                <!-- {foreach from=$help_cat.article item=item name=foo2} -->
+                <!-- {if $smarty.foreach.foo2.iteration <3 } -->
                 <p><a href="{$item.url}" target="_blank" title="{$item.title|escape:html}">{$item.short_title}</a></p>
+                <!--{/if}-->
                 <!-- {/foreach} -->
             </dd>
         </dl>

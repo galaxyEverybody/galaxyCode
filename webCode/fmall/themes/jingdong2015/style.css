@@ -117,6 +117,8 @@ h6 span{float:left;padding-left:15px}
 
 /* 用户中心充值提现*/
 .rechangermiddle{ width:75%;height:auto;font-size:16px;margin-top:20px;}
+.rechangernumdiv{ width:260px;height:32px;border:1px solid #A9A9A9;float:left;}
+.rechangernuminput{ width:240px;height:30px;border:0px;outline:none;}
 .rechangermiddle span{ line-height:40px;height:40px;margin-left:5px;color:#F68A1D;}
 .rechangerreminder{ width:75%;height:120px;background:#F68A1D;color:#fff;margin-top:50px;}
 .rechangerreminder p{ margin-top:7px;margin-left:10px;}
@@ -129,6 +131,7 @@ h6 span{float:left;padding-left:15px}
 .capitalleft{ width:5px;height:20px;background:#FF8A00;float:left;}
 .capitalright{ font-size:16px;color:#545454;margin-left:8px;font-weight:bold;}
 .capitaltr{ height:35px;line-height:35px;background:#F7F7F7;}
+.capitaltr .market_price{ color:#FF6969;}
 .bond_title{ width:100%;height:35px;text-align:center;line-height:35px;margin-top:15px;}
 .bond_title li{ min-width:278px;_width:278px;border:1px solid #ddd;cursor:pointer;background:#F7F7F7;border-bottom:0px;}
 
@@ -138,10 +141,14 @@ h6 span{float:left;padding-left:15px}
 .bangcardinput{ width:260px;height:30px;float:left;}
 .bangcardadd{ width:130px;height:35px;}
 .bangcardaddleft{ width:130px;height:35px;margin-left:10px;}
-.bangcardsub{ width:260px;height:40px;background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;}
+.bangcardsub{ width:260px;height:40px;background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;cursor:pointer;}
 
 /*设置提现密码*/
-.withdraw_verify{ width:80%;border:0px solid #ddd;}
+.withdraw_verify{ width:80%;border:0px solid #ddd;margin-top:20px;}
+.withdraw_verify #withdraw_uppass{ width:100%;height:230px;display:none;}
+.withdraw_verify .capitalauthphone{ margin-left:50px;font-size:20px;}
+.withdraw_verify .capitalauthnum{ margin-left:100px;}
+.withdraw_verify .capitalauthupda{ float:right;margin-right:20px;color:#185283;}
 .widthdraw_button_time{ cursor:pointer;text-align:center;border:1px solid #FF852F;width:100px;line-height:30px;height:30px;background:#FF852F;float:left;margin-left:5px;}
 /* ====================
      模块
@@ -2869,6 +2876,14 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .boxCenterList .authcenterdiv{ width:100%;height:auto;margin-top:20px;}
 .authcenterdiv p{ line-height:80px;height:80px;border-bottom:1px solid #ddd;}
 .authcenterdiv img{ margin-left:20px;}
+.authcenterdiv .authupstyle{ width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;}
+.authcenterdiv .authupphone{ width:650px;height:200px;}
+.authcenterdiv .autherrorinfo{ color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:5px;}
+.authcenterdiv #authemaildiv{ width:650px;height:200px;display:none;margin-left:200px;}
+.authcenterdiv #authidcarddiv{ width:750px;height:200px;display:none;margin-left:200px;}
+.authcenterdiv #authpwssdiv{ width:750px;height:260px;display:none;}
+.authcenterdiv .authtableshow{ margin-top:20px;font-size:16px;}
+.authcenterdiv .authtablehide{ margin-top:20px;font-size:16px;display:none;}
 .authcenterdiv .capitalauthphone{ margin-left:50px;font-size:20px;}
 .authcenterdiv .capitalauthnum{ margin-left:100px;}
 .authcenterdiv .capitalauthupda{ float:right;margin-right:20px;color:#185283;}
@@ -2881,6 +2896,11 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .usBox #getpwphone{ width:214px;height:30px;float:left;text-align:center;background:url(images/auth_centerphone01.png);cursor:pointer;} 
 .usBox #getpwemail{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;cursor:pointer;}
 .usBox .verifyauthinput{ width:150px;height:30px;float:left;}
+.usBox .authupstyle{ width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;}
+.usBox .autherrorinfo{ color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:5px;}
+.usBox .authtableshow{ margin-top:20px;font-size:16px;}
+.usBox .authtablehide{ margin-top:20px;font-size:16px;display:none;}
+
 
 /* 我的订单*/
 .goods_list_fund{ width:100%;height:auto;height:140px;border-bottom:1px solid #ddd;}
@@ -3256,21 +3276,21 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .JD_article{ background:#f9f9f9;}
 .JD_article .left{ width:210px;}
 .JD_article .help_side{ border:0;}
-.JD_article #sortlist_atc h3{ color: #fff; text-align: center; font-size: 18px; line-height: 40px; height: 40px; background-color: #7dd589; font-family: "microsoft yahei"; font-weight: normal;}
+.JD_article #sortlist_atc h3{ color: #fff; text-align: center; font-size: 18px; line-height: 40px; height: 40px; background-color: #FF852F; font-family: "microsoft yahei"; font-weight: normal;}
 .JD_article #sortlist_atc h4{ height: 40px; line-height: 40px; padding-left: 45px; background-color: #eaeaea; border-bottom: 1px solid #fff; font-size: 14px; font-family: "microsoft yahei"; position: relative; font-weight:400;}
 .JD_article #sortlist_atc h4:hover{ background-color:#dadada;}
 .JD_article #sortlist_atc b{ width:0; height:0; border-style: solid dashed solid dashed; border-color: #999 transparent #999 transparent; border-width: 5px 5px 0; position: absolute; top: 17px; right: 20px; font-size: 0; line-height: 0; height: 0; overflow: hidden; background:none; margin:0;}
 #sortlist_atc .current ul{ background:#fff;}
 #sortlist_atc .current ul li{ height: 30px; line-height: 30px; padding-left: 45px; border-bottom: 1px solid #faf8f9; background:none;}
 #sortlist_atc .current ul li a{ color:#333;}
-#sortlist_atc .current ul li a:hover,#sortlist_atc .current ul li.sell a{ color:#7dd589; font-weight:700;}
+#sortlist_atc .current ul li a:hover,#sortlist_atc .current ul li.sell a{ color:#FF852F; font-weight:700;}
 .JD_article #sortlist_atc .current h4 b{ border-width:0 5px 5px;}
 .JD_article .right{ width:870px;}
 .JD_article .urHere{ height: 39px; line-height: 39px; font-size: 14px; font-family: "microsoft yahei"; background: #eaeaea; padding-left: 13px;}
 .JD_article .urHere .w{ width:auto;}
 .JD_article .breadcrumb{ padding:11px 0;}
 .JD_article .articleCon{ padding:30px 60px; overflow: hidden; color: #000; background:#fff; min-height:745px;}
-.JD_article .articleCon .tit{ font-size: 20px; font-family: "microsoft yahei"; border-bottom: 1px dashed #eaeaea; margin-bottom: 25px; padding-top: 0; padding-bottom: 15px; font-weight:400; color:#7dd589;}
+.JD_article .articleCon .tit{ font-size: 20px; font-family: "microsoft yahei"; border-bottom: 1px dashed #eaeaea; margin-bottom: 25px; padding-top: 0; padding-bottom: 15px; font-weight:400; color:#FF852F;}
 .JD_article .boxCenterList{ padding:0; line-height:20px;}
 .articleBot{ background:#fff; margin-top:20px;}
 .articleBot #service-2013{ margin-top:-8px; border-top:0;}

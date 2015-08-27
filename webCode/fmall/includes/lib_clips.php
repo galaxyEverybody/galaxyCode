@@ -57,9 +57,9 @@ function get_collection_goods($user_id, $num = 10, $start = 0)
         $goods_list[$row['goods_id']]['is_attention']  = $row['is_attention'];
         $goods_list[$row['goods_id']]['goods_id']      = $row['goods_id'];
         $goods_list[$row['goods_id']]['goods_name']    = $row['goods_name'];
-        $goods_list[$row['goods_id']]['market_price']  = price_format($row['market_price']);
-        $goods_list[$row['goods_id']]['shop_price']    = price_format($row['shop_price']);
-        $goods_list[$row['goods_id']]['promote_price'] = ($promote_price > 0) ? price_format($promote_price) : '';
+        $goods_list[$row['goods_id']]['market_price']  = number_format($row['market_price'],2,'.','.');
+        $goods_list[$row['goods_id']]['shop_price']    = number_format($row['shop_price']);
+        $goods_list[$row['goods_id']]['promote_price'] = ($promote_price > 0) ? number_format($promote_price) : '';
         $goods_list[$row['goods_id']]['url']           = build_uri('goods', array('gid'=>$row['goods_id']), $row['goods_name']);
     }
 

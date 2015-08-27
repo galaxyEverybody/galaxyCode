@@ -43,15 +43,15 @@
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_phone} </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.mobile_phone}</td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.phone}</td>
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_truename} </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.realname eq 0}<a style="color:#FF500B" href="user.php?act=auth_center">去实名认证</a>{else}{$profile.realname}{/if}</td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.truename eq '0'}<a style="color:#FF500B" href="user.php?act=auth_center">去实名认证</a>{else}{$profile.truename}{/if}</td>
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_idcard}</td>
-            <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.idard eq 0}<a style="color:#FF500B" href="user.php?act=auth_center">去实名认证</a>{else}{$profile.idcard}{/if}</td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.idcard eq '0'}<a style="color:#FF500B" href="user.php?act=auth_center">去实名认证</a>{else}{$profile.idcard}{/if}</td>
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.birthday} </td>
@@ -69,7 +69,7 @@
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.label_bang_money} </td>
-            <td width="72%" align="left" bgcolor="#FFFFFF"><a style="color:#FF500B" href="user.php?act=bangcard">去绑定银行卡</a></td>
+            <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.card eq 0}<a style="color:#FF500B" href="user.php?act=bangcard">去绑定银行卡</a>{else}{$profile.card}{/if}</td>
         </tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.email}</td>
@@ -93,17 +93,50 @@
 		<span class="capitalleft"></span><span class="capitalright">设置提现密码</span>
 	</div>
 	<div class="withdraw_verify">
+		{if $sign eq 1}
+		<p><img src="images/password01.jpg"><span class="capitalauthphone">提现密码</span><span class="capitalauthnum">已设置</span> <span onclick="withdrawpwss()" id="withdrupdapwss" class="capitalauthupda">修改</span></p>
+		<div id="withdraw_uppass">
+			<form action="user.php" method="post" onsubmit="return withdrawinfo()">
+			<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+				<tr>
+					<td class="bangcardtd">手机号</td>
+					<td>{$mobilestr}<input id="truephone" type="hidden" value="{$phone}"></td>
+				</tr>
+				<tr>
+					<td class="bangcardtd">验证码</td>
+					<td>
+						<input style="width:150px;height:30px;float:left;" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
+						<div class="widthdraw_button_time" id="get_withdraw_time" onclick="getwithdrawphoneverify()">获取验证码</div>
+						<span id="withdrawverify" style="color:#FF852F;margin-left:5px;line-height:30px;height:30px;"></span>
+						<div id="doutimeinp"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd">提现密码</td>
+					<td>
+						<input class="bangcardinput" name="withdrawpassword" type="text" placeholder="请输入您的提现密码" onblur="chekwithdrawpassword(this.value);">
+						<span id="withdrawpassword" style="color:#FF852F;"></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd"><input type="hidden" name="act" value="withdraw_pwadd"></td>
+					<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+				</tr>
+			</table>
+			</form>
+		</div>
+		{else}
 		<form id="withdrawform" action="user.php" method="post" onsubmit="return withdrawinfo()">
 		<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
 			<tr>
 				<td class="bangcardtd">手机号</td>
-				<td>{$mobilestr}<input id="truephone" type="hidden" value="{$mobile_phone}"></td>
+				<td>{$mobilestr}<input id="truephone" type="hidden" value="{$phone}"></td>
 			</tr>
 			<tr>
 				<td class="bangcardtd">验证码</td>
 				<td>
 					<input style="width:150px;height:30px;float:left;" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
-					<div class="widthdraw_button_time" id="get_withdraw_time"><a onclick="getwithdrawphoneverify()">获取验证码</a></div>
+					<div class="widthdraw_button_time" id="get_withdraw_time" onclick="getwithdrawphoneverify()">获取验证码</div>
 					<span id="withdrawverify" style="color:#FF852F;margin-left:5px;line-height:30px;height:30px;"></span>
 					<div id="doutimeinp"></div>
 				</td>
@@ -121,7 +154,20 @@
 			</tr>
 		</table>
 		</form>
+		{/if}
 	</div>
+	<script>
+	function withdrawpwss(){
+		var phonenum = $('#withdrupdapwss').html();
+		if(phonenum == '修改'){
+			$("#withdraw_uppass").slideToggle(500);
+			$('#withdrupdapwss').html('取消修改');
+		}else{
+			$("#withdraw_uppass").slideToggle(500);
+			$('#withdrupdapwss').html('修改');
+		}
+	}
+	</script>
 </div>
 <!-- {/if}-->
 <!--设置提现密码 end-->
@@ -138,7 +184,7 @@
 		<table border="0px" cellspadding="10px" cellpadding="10px">
 			<tr>
 				<td width="100px;">充值金额</td>
-				<td><input type="text" id="rechargernum" name="rechargernum" class="bangcardinput" placeholder="充值金额为50的倍数" onblur="chekrechargernum(this.value)">
+				<td><div class='rechangernumdiv'><input type="text" id="rechargernum" class='rechangernuminput' name="rechargernum"  placeholder="充值金额为50的倍数" onblur="chekrechargernum(this.value)">元</div>
 					<span id="rechargernumspan"></span></td>
 				</tr>
 			<tr><td width="100px;">充值渠道</td><td></td></tr>
@@ -170,24 +216,24 @@
 	</div>
 	<div class="rechangermiddle">
 		<form action="user.php" method="post" onsubmit="return formwithdrawals()">
-		<table border="0px" cellspadding="10px" cellpadding="10px">
-			<tr><td width="100px;">真实姓名</td><td>{$withinfos.name}<td></td></tr>
-			<tr><td width="100px;">账户可用余额</td><td>{$withinfos.money}</td></tr>
+		<table border="0px" cellspadding="10px" cellpadding="10px" width='630px'>
+			<tr><td width="100px;">真实姓名</td><td>{$withinfos.name}</td></tr>
+			<tr><td width="100px;">账户可用余额</td><td>{$withinfos.money}<em style='margin-left:5px;'>元</em></td></tr>
 			<tr><td width="100px;">可提现额度</td><td></td></tr>
 			<tr>
 				<td width="100px;">绑定的银行卡</td>
 				<td>
-				<select class="bangcardaddleft" style="display:none;" name="countyname" id="selDistricts_{$sn}">
-	                <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+				<select class="bangcardinput" style='height:35px;font-size:16px;' name="bankcard">
+	                <option value="0">请选择</option>
 	                <!-- {foreach from=$cards item=card} -->
-	                <option value="" {if $consignee.district eq $district.region_id}selected{/if}>{$card.cardnum}</option>
+	                <option>{$card}</option>
 	                <!-- {/foreach} -->
                 </select>
 				</td>
 			</tr>
 			<tr>
 				<td width="100px;">提现金额</td>
-				<td><input type="text" name="withdrawalsnum" id="withdrawalsnum" class="bangcardinput" onblur="chekwithdrawalsnum(this.value)">
+				<td><div class='rechangernumdiv'><input type="text" name="withdrawalsnum" id="withdrawalsnum" class='rechangernuminput' onblur="chekwithdrawalsnum(this.value)">元</div>
 				<span id="withdrawalsnumspan"></span></td>
 			</tr>
 			<tr><td width="100px;">实际到账金额</td><td></td></tr>
@@ -619,19 +665,19 @@
 			<span id="oldmobile_phone" class='hide'>{$truephone}</span>
 			<span onclick="authcenterphone()" id="capitalupdaphone" class="capitalauthupda">修改</span></p>
 		<div id="authphonediv">
-			<div style="width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;">
+			<div class='authupstyle'>
 				<div onclick = "phoneauthupshow()" id="phoneauthupshow">依据原手机修改</div>
 				<div onclick = "idcardauthshow()"  id="idcardauthshow">依据身份信息修改</div>
 			</div>
-			<div style="width:650px;height:200px;">
+			<div class='authupphone'>
 				<form id="formauthcenterphone" action="user.php" method="post" onSubmit="return authcentereditphone()">
-				<table id="formauthphone" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+				<table id="formauthphone" border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
 					<tr>
 						<td class="bangcardtd">验证码</td>
 						<td>
 							<input class="verifyauthinput" name="authcenter_phoneverify" type="text" placeholder="请输入验证码" onblur="chekauthcenter_verify(this.value);">
 							<div class="widthdraw_button_time" id="get_authcenterphone_time" onclick="getauthcenter_phone()">获取验证码</div>
-							<div id="callauthphone_verify" style="color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:10px;"></div>
+							<div id="callauthphone_verify" class='autherrorinfo'></div>
 							<input id="oldphone_verify_time" type="text" value='60' style="display:none;"/>
 						</td>
 					</tr>
@@ -639,7 +685,7 @@
 						<td class="bangcardtd">提现密码</td>
 						<td>
 							<input class="bangcardinput" name="withdrawauthcenter_password" type="text" placeholder="请输入您的提现密码" onblur="chewithdrawauthcenter_password(this.value);">
-							<div id="withdrawerror_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<div id="withdrawerror_authcenter" class='autherrorinfo'></div>
 						</td>
 					</tr>
 					<tr>
@@ -647,19 +693,19 @@
 						<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
 					</tr>
 				</table>
-				<table id="formauthidcard" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;display:none;">
+				<table id="formauthidcard" border="0px" cellspadding="10px" cellspacing="10px" class='authtablehide' >
 					<tr>
 						<td class="bangcardtd">身份证号</td>
 						<td>
 							<input class="bangcardinput" name="authcenter_idcard" type="text" placeholder="请输入您的身份证号" onblur="chekauthcenter_idcard(this.value);">
-							<div id="idcarderror_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<div id="idcarderror_authcenter" class='autherrorinfo'></div>
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd">提现密码</td>
 						<td>
 							<input class="bangcardinput" name="withdrawauthidcardcenter_password" type="text" placeholder="请输入您的提现密码" onblur="chewithdrawidcardauthcenter_password(this.value);">
-							<div id="withdrawidcard_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<div id="withdrawidcard_authcenter" class='autherrorinfo'></div>
 						</td>
 					</tr>
 					<tr>
@@ -667,12 +713,12 @@
 						<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
 					</tr>
 				</table>
-				<table id="newphoneform" border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;display:none;">
+				<table id="newphoneform" border="0px" cellspadding="10px" cellspacing="10px" class='authtablehide' >
 					<tr>
 						<td class="bangcardtd">新手机号</td>
 						<td>
 							<input class="bangcardinput" id="newmobile_phone" name="newmobile_phone" type="text" placeholder="请输入您的新手机号" onblur="authcenteruser_newphone(this.value);">
-							<div id="newphone_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<div id="newphone_authcenter" class='autherrorinfo'></div>
 							<input type="text" id="newphone_verify_time" value='60' style="display:none;">
 						</td>
 					</tr>
@@ -681,7 +727,7 @@
 						<td>
 							<input class="verifyauthinput" name="authnewphone_verify" type="text" placeholder="请输入验证码" onblur="cheauthcenter_newverify(this.value);">
 							<div class="widthdraw_button_time" id="get_newauthcenterphone_time"><a onclick="getwithdrawnewphoneverify()">获取验证码</a></div>
-							<div id="newphonemsg_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<div id="newphonemsg_authcenter" class='autherrorinfo'></div>
 						</td>
 					</tr>
 					<tr>
@@ -699,14 +745,14 @@
 		<p><img src="images/emailauth01.png" width="25px"><span class="capitalauthphone">绑定邮箱</span>
 			<span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]<span onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</span>
 			{else}{$userinfostatus.email}{/if}</span> <span class="capitalauthupda">已绑定</span></p>
-		<div id="authemaildiv" style="width:650px;height:200px;display:none;margin-left:200px;">
+		<div id="authemaildiv">
 				<form id="formauthcenteremail" action="user.php" method="post" onSubmit="return authcenteremailform();">
-				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+				<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
 					<tr>
 						<td class="bangcardtd">邮箱账号</td>
 						<td>
 							<input class="bangcardinput" name="authcenter_email" type="text" placeholder="请输入您的邮箱账号" onblur="chekauthcenteremail(this.value);">
-							<div id="emailmsg_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<div id="emailmsg_authcenter" class='autherrorinfo'></div>
 						</td>
 					</tr>
 					<tr>
@@ -721,22 +767,22 @@
 		<!--进行实名认证start-->
 		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">实名认证</span><span class="capitalauthnum">
 			{if $userinfostatus.idcardstatus eq 0}未认证[用于账户余额的提现与充值]<span onclick="authcenteridcard()" id="capitalupdaidcard" class="capitalauthupda">认证</span>
-			{else}{$userinfostatus.idcard}{/if}</span> <span class="capitalauthupda">已认证</span></p>
-		<div id="authidcarddiv" style="width:750px;height:200px;display:none;margin-left:200px;">
+			{else}{$userinfostatus.idcard}</span> <span class="capitalauthupda">已认证</span>{/if}</p>
+		<div id="authidcarddiv">
 				<form id="formauthcentertruename" action="user.php" method="post" onSubmit="return authcentertruenamefrom()">
-				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+				<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
 					<tr>
 						<td class="bangcardtd">真实姓名</td>
 						<td>
 							<input class="bangcardinput" name="truename_authcenter" type="text" placeholder="请输入您的真实姓名" onblur="chekauthcenter_truename(this.value);">
-							<div id="truenamemsg_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<div id="truenamemsg_authcenter" class='autherrorinfo'></div>
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd">身份证号</td>
 						<td>
 							<input class="bangcardinput" name="authcenter_idcardname" type="text" placeholder="请输入您的身份证号" onblur="chekauthcenter_idcardname(this.value);">
-							<div id="idcardnamemsg_authcenter" style="color:#FF852F;float:left;width:200px;line-height:30px;height:30px;margin-left:5px;"></div>
+							<div id="idcardnamemsg_authcenter" class='autherrorinfo'></div>
 						</td>
 					</tr>
 					<tr>
@@ -750,10 +796,10 @@
 		
 		<!--修改登录密码start-->
 		<p><img src="images/password01.jpg"><span class="capitalauthphone">登录密码</span><span class="capitalauthnum">已设置</span> <span onclick="authcenterpwss()" id="capitalupdapwss" class="capitalauthupda">修改</span></p>
-		<div id="authpwssdiv" style="width:750px;height:260px;display:none;">
+		<div id="authpwssdiv">
 			<div class="withdraw_verify">
 				<form id="formPassword" action="user.php" method="post" onSubmit="return editPassword()">
-				<table border="0px" cellspadding="10px" cellspacing="10px" style="margin-top:20px;font-size:16px;">
+				<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
 					<tr>
 						<td class="bangcardtd">原密码</td>
 						<td>

@@ -308,20 +308,18 @@
 	<div class="capitaldiv">
 		<span class="capitalleft"></span><span class="capitalright">我的关注</span>
 	</div>
-<table width="100%" border="0" cellspacing="1" bgcolor="#dddddd" style="margin-top:20px;">
+<table width="100%" border="0" cellspacing="1" bgcolor="#dddddd" style="margin-top:20px;text-align:center;">
 <tr align="center" class="capitaltr">
-<th width="35%" >{$lang.goods_name}</th>
-<th width="30%" >{$lang.price}</th>
+<th width="25%" >标题</th>
+<th width="20%" >投资金额(元)</th>
+<th width="20%" >年化利率(%)</th>
 <th width="35%" >{$lang.handle}</th>
 </tr>
 <!--{foreach from=$goods_list item=goods}-->
 <tr class="capitaltr">
 <td bgcolor="#ffffff"><a href="{$goods.url}" class="f6">{$goods.goods_name|escape:html}</a></td>
-<td bgcolor="#ffffff"><!-- {if $goods.promote_price neq ""} -->
-{$lang.promote_price}<span class="goods-price">{$goods.promote_price}</span>
-<!-- {else}-->
-{$lang.shop_price}<span class="goods-price">{$goods.shop_price}</span>
-<!--{/if}-->        </td>
+<td bgcolor="#ffffff"><span class="goods-price">{$goods.shop_price}</span></td>
+<td bgcolor="#ffffff"><span class="market_price">{$goods.market_price}</span></td>
 <td align="center" bgcolor="#ffffff">
 <!-- {if $goods.is_attention} -->
 <a href="javascript:if (confirm('{$lang.del_attention}')) location.href='user.php?act=del_attention&rec_id={$goods.rec_id}'" class="f6">{$lang.no_attention}</a>

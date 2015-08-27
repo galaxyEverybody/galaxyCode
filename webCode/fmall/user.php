@@ -620,12 +620,15 @@ elseif ($action == 'act_login')
 elseif ($action == 'withdraw_password')
 {
 	//获取用户手机号
-	$sql = 'select mobile_phone from '.$ecs->table('users').' where user_id ='.$user_id;
+	$sql = 'select mobile_phone,paypassword from '.$ecs->table('users').' where user_id ='.$user_id;
 	$row = $db->getRow($sql);
 	$str1 = substr($row['mobile_phone'],0,3);
 	$str2 = substr($row['mobile_phone'],-3);
 	$str = $str1.'*****'.$str2;
-	$smarty->assign('mobile_phone',$row['mobile_phone']);
+	
+	$sign = empty($row['paypassword'])?0:1;
+	$smarty->assign('sign',$sign);
+	$smarty->assign('phone',$row['mobile_phone']);
 	$smarty->assign('mobilestr',$str);
 	
 	$smarty->display('user_transaction.dwt');
@@ -646,9 +649,9 @@ elseif ($action == 'withdraw_pwadd')
 	$result = $GLOBALS['db']->query($sql);
 	
 	if($result){
-		header("Location:./user.php?act=withdraw_password");
+		show_message($_LANG['withdrawpw_success'],$_LANG['back_up_page'], 'user.php?act=withdraw_password', 'info');
 	}else{
-		show_message($_LANG['login_failure'], '提现密码设置失败！', 'user.php', 'error');
+		show_message($_LANG['withdrawpw_fail'],$_LANG['back_up_page'], 'user.php?act=withdraw_password', 'info');
 	}
 }
 
@@ -924,8 +927,13 @@ elseif ($action == 'profile')
     include_once(ROOT_PATH . 'includes/lib_transaction.php');
 
     $user_info = get_profile($user_id);
-	$user_info['mobile_phone'] = str_replace(substr($user_info['mobile_phone'],3,5),'*****',$user_info['mobile_phone']);
-    /* 取出注册扩展字段 */
+	
+	$user_info['phone'] = str_replace(substr($user_info['mobile_phone'],3,5),'*****',$user_info['mobile_phone']);
+	$user_info['truename'] = $user_info['realname'] == '0'?0:substr($user_info['realname'],0,3).'****';
+	$user_info['idcard'] = $user_info['idcard'] == '0'?0:str_replace(substr($user_info['idcard'],4,strlen($user_info['idcard'])-8),'**********',$user_info['idcard']);
+	$user_info['card'] = $user_info['card'] == 0?0:substr($user_info['card'],0,4).'**********'.substr($user_info['card'],-4);
+
+	/* 取出注册扩展字段 */
     /*$sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
     $extend_info_list = $db->getAll($sql);
 
@@ -2031,20 +2039,41 @@ elseif ($action == 'account_detail')
 /* 会员账户充值页面*/
 elseif ($action == 'account_rechanger')
 {
+	$sql = "select bangcardstatus,paypassword from ".$GLOBALS['ecs']->table('users').' where user_id='.$user_id;
+	$withinfo = $GLOBALS['db']->getRow($sql);
+	
+	//体现密码与银行卡绑定的判断
+	if(empty($withinfo['paypassword'])){
+		show_message($_LANG['rechanger_password_fail'],$_LANG['back_up_page'], 'user.php?act=withdraw_password');
+	}elseif($withinfo['bangcardstatus'] != 1){
+		show_message($_LANG['withdraws_bangcard_fail'],$_LANG['back_up_page'], 'user.php?act=bangcard');
+	}
+	
 	$smarty->display('user_transaction.dwt');
 }
 
 /* 会员账户提现页面*/
 elseif ($action == 'account_withdrawals')
 {
-	$sql = "select u.realname,u.user_money,b.cardnum from ".$GLOBALS['ecs']->table('users')." as u,".$GLOBALS['ecs']->table('bang_card')." as b where ".
+	$sql = "select u.realname,u.user_money,u.idcardstatus,u.bangcardstatus,b.cardnum from ".$GLOBALS['ecs']->table('users')." as u,".$GLOBALS['ecs']->table('bang_card')." as b where ".
 	"u.user_id = b.user_id and b.bangstatus =1 and u.user_id =".$user_id;
 	$withinfo = $GLOBALS['db']->getAll($sql);
+
+	//实名与绑定卡的判断
+	if($withinfo[0]['idcardstatus'] != 1){
+		show_message($_LANG['withdraws_idcard_fail'],$_LANG['back_up_page'], 'user.php?act=auth_center');
+	}elseif($withinfo[0]['bangcardstatus'] != 1){
+		show_message($_LANG['withdraws_bangcard_fail'],$_LANG['back_up_page'], 'user.php?act=bangcard');
+	}
+	
 	$withinfos = array();
 	$cards = array();
 	foreach($withinfo as $with){
 		$withinfos['name'] = $with['realname'];
-		$withinfos['money'] = $with['money'];
+		$withinfos['money'] = $with['user_money'];
+		$cardstr1 = substr($with['cardnum'],0,4);
+		$cardstr2 = substr($with['cardnum'],-4);
+		$with['cardnum'] = $cardstr1.'***********'.$cardstr2;
 		array_push($cards,$with['cardnum']);
 	}
 	
@@ -2085,7 +2114,7 @@ elseif ($action == 'act_rechanger')
 	//记录日志
 	$accountid = insert_user_account($surplus, $amount);
 	if($accountid > 0){
-		header('location:user.php?act=default');
+		show_message($_LANG['rechanger_success'],$_LANG['back_up_page'], 'user.php', 'info');
 	}
 }
 
@@ -3514,9 +3543,9 @@ elseif ($action = 'act_bang_truename')
 	if(empty($result)){
 		$sql='UPDATE '.$GLOBALS['ecs']->table('users').' SET idcard="'.$idcard.'",realname="'.$name.'",idcardstatus=1 where user_id='.$user_id;
 		$res = $GLOBALS['db']->query($sql);
-		header("location:user.php?act=auth_center");
+		show_message($_LANG['passport_js']['idcard_success'],$_LANG['back_up_page'],'user.php?act=auth_center');
 	}else{
-		show_message($_LANG['passport_js']['idcard_confirm']);
+		show_message($_LANG['passport_js']['idcard_confirm'],$_LANG['back_up_page'],'user.php?act=auth_center');
 	}
 
 }

@@ -308,10 +308,9 @@
 <!-- fanbo s 20150423 -->
 <div id="elevator" class="elevator" >
     <ul>
-        <li ><span class="lou">1F</span><span class="text">随意</span></li>
-        <li ><span class="lou">2F</span><span class="text">定投</span></li>
+        <li ><span class="lou">1F</span><span class="text">理财</span></li>
+        <li ><span class="lou">2F</span><span class="text">定期</span></li>
         <li ><span class="lou">3F</span><span class="text">贷款</span></li>
-        <!--<li ><span class="lou">5F</span><span class="text">信贷</span></li>-->
     </ul>
 </div>
 <!-- fanbo e 20150423 -->

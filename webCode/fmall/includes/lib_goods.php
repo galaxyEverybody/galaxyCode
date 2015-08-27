@@ -1038,7 +1038,7 @@ function get_twolevel_repay($parentid)
 {
 	/* 根据父类id查询同级别的产品*/
      
-    $sql = 'SELECT cat_id from '.$GLOBALS['ecs']->table('category').' where parent_id ='.$parentid;
+    $sql = 'SELECT cat_id from '.$GLOBALS['ecs']->table('category').' where parent_id ='.$parentid.' order by sort_order asc';
     $cat_id = $GLOBALS['db']->getAll($sql);
 
     $goodurl =array();

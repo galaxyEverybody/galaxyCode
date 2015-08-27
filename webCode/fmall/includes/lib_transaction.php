@@ -120,6 +120,10 @@ function get_profile($user_id)
     $row = $user->get_profile_by_name($infos['user_name']); //获取用户帐号信息
     $_SESSION['email'] = $row['email'];    //注册SESSION
 
+    /* 银行卡信息*/
+    $sql = 'SELECT cardnum FROM'.$GLOBALS['ecs']->table('bang_card').' where bangstatus=1 AND user_id='.$user_id;
+    $card = $GLOBALS['db']->getRow($sql);
+    
     /* 会员等级 */
     /*if ($infos['user_rank'] > 0)
     {
@@ -187,6 +191,7 @@ function get_profile($user_id)
     $info['mobile_phone'] = $infos['mobile_phone'];
     $info['realname'] = $infos['realname'];
     $info['idcard'] = $infos['idcard'];
+    $info['card'] = $card['cardnum'];
 
     return $info;
 }
