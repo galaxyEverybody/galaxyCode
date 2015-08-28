@@ -49,12 +49,15 @@ function reg(str){
     <div id="product-intro">
     	<div class="productinfo_left">
 	    	<div class="productinfo_name" style="border-bottom:1px solid #dddddd;height:40px;">
-	        	<ul>
+	    		<!--{if $goodslevel neq 0}-->
+	    		<ul>
 	        	<!--{foreach from=$goodslevel item=level}-->
 	        		<li class={if $level.goods_name eq $goods.goods_style_name}goodcurr{else}levelcurr{/if}><a style="color:#fff;" href='goods.php?id={$level.goods_id}'>{$level.goods_name}</a></li>
 	        	<!--{/foreach}-->
 	        	</ul>
-	            <strong>{$goods.goods_brief}</strong>
+	        	<!--{else}-->
+	        	<h1>{$goods.goods_style_name}</h1>
+	        	<!--{/if}-->
 	        </div>
 	        <!--name end-->
 	    	<div class="bondinfo_middle">
@@ -121,7 +124,7 @@ function reg(str){
         			</li>
         			<li>
         				<b>账户余额：</b><span class="bond_left_topsize" >{if $goods.user_money == 'null'}<a style="font-size:14px;" href='user.php'>登录后可见</a>{else}{$goods.user_money}</span>&nbsp;元{/if}
-        				<div class="bondinfo_recharge"><a href="">充值</a></div>
+        				<div class="bondinfo_recharge"><a href="user.php?act=account_rechanger">充值</a></div>
         			</li>
         			<li>
         				<div class="bondinfo_left_middle">

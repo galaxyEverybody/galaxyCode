@@ -69,7 +69,7 @@ $_LANG['goods_name'] = '商品名称';
 $_LANG['goods_sn'] = '货号';
 $_LANG['shop_price'] = '价格';
 $_LANG['is_on_sale'] = '上架';
-$_LANG['goods_number'] = '库存';
+$_LANG['goods_number'] = '还款时间';
 
 $_LANG['copy'] = '复制';
 $_LANG['item_list'] = '货品列表';

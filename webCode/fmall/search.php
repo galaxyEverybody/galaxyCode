@@ -92,9 +92,12 @@ if ($_REQUEST['act'] == 'advanced_search')
     assign_template();
     assign_dynamic('search');
     $position = assign_ur_here(0, $_LANG['advanced_search']);
+    
+    
     $smarty->assign('page_title', $position['title']);    // 页面标题
     $smarty->assign('ur_here',    $position['ur_here']);  // 当前位置
 
+    
     $smarty->assign('categories', get_categories_tree()); // 分类树
     $smarty->assign('helps',      get_shop_help());       // 网店帮助
     $smarty->assign('top_goods',  get_top10());           // 销售排行
@@ -519,9 +522,11 @@ else
     $smarty->assign('page_title', $position['title']);    // 页面标题
     $smarty->assign('ur_here',    $position['ur_here']);  // 当前位置
     $smarty->assign('intromode',      $intromode);
+    
+    $smarty->assign('best_goods',      get_recommend_goods('best'));//收益最佳
     $smarty->assign('categories', get_categories_tree()); // 分类树
     $smarty->assign('helps',       get_shop_help());      // 网店帮助
-    $smarty->assign('top_goods',  get_top10());           // 销售排行
+    //$smarty->assign('top_goods',  get_top10());           // 销售排行
     $smarty->assign('promotion_info', get_promotion_info());
 
     $smarty->display('search.dwt');

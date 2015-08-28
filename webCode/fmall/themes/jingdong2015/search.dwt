@@ -22,30 +22,22 @@
 <div class="w main">
 	<div class="blank10"></div>
 	<div class="left">
-    	<div id="sortlist_cat" class="m hide">
-        	<div class="mt"><h2>{$cat.name}</h2></div>
-            <div class="mc"> 
-            	<!--{foreach from=$categories_left item=cat name=categories_left}-->
-                <div class="item  <!-- {if $cat.status eq 1} -->current<!-- {/if} -->">
-                	<h3><b></b>{$cat.name}</h3>
-                    <ul>
-                    	<!-- {foreach from=$cat.cat_id item=child} -->
-                        <li><a href="{$child.url}">{$child.name}</a></li>
-                        <!-- {/foreach} -->
-                    </ul>
-                </div>
-                <!-- {/foreach} --> 
-            </div>
-        </div>
-        <div id="ad_left" class="m m0 hide"></div>
-        <!-- #BeginLibraryItem "/library/recommend_promotion.lbi" --><!-- #EndLibraryItem -->
-        
-        <!--用户最终购买-->
-        <div id="finalbuy" class="hide m m0"></div>
-        <!-- #BeginLibraryItem "/library/top10.lbi" --><!-- #EndLibraryItem --> 
-        <!--浏览XXX还购买了-->
-        <div id="alsobuy" class="hide m m0"></div>
-        <div id="da211x261-1" class="m"></div>
+	<div class="j_box">
+	  <div class="j_logo" style='border-bottom:1px solid #ddd;'>收益最佳</div>
+	  	<div class="j_boxcontent" '>
+	        <ul class="clearfix" style='width:100%;height:auto;text-align:center;font-size:14px;'>
+	          <!--{foreach from=$best_goods item=goods}-->
+	          <li >
+	            <div class="p_img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" width="150" height="150"></a></div>
+	            <div class="p_name"><a href="{$goods.url}" target="_blank">{$goods.short_style_name}</a></div>
+	            <div class="p_price"><span style='color:#FF852F;'>年化利率:{$goods.market_price}%</span></div>
+	            <div class="clr" ></div>
+	          </li>
+	          <!--{/foreach}-->
+	        </ul>
+	        <div class="blank20"></div>
+	      </div>
+	    </div>
     </div>
     <div class="right-extra"> 
     <!-- {if $action eq "form"} -->
@@ -143,7 +135,7 @@
     <div class="blank5"></div>
     <!-- {/if} -->
     <!--{if $goods_list}-->
-    <DIV style="background: #F1F1F1; padding: 6px 8px; border-bottom: 1px solid #E7E3E7; border-top: 1px solid #DDD;"> 
+    <DIV style="background: #F1F1F1; padding: 6px 8px; border-bottom: 1px solid #E7E3E7; border-top: 1px solid #DDD;display:none;"> 
     
     
           <form action="search.php" method="post" class="sort" name="listform" id="form">
@@ -180,24 +172,11 @@
           <li>
             <div class="lh-wrap">
               <div class="p-img"><a target="_blank" href="{$goods.url}"><img width="220" height="220" alt="{$goods.goods_name}" src="{$goods.goods_thumb}" title="{$goods.goods_name}"></a>
-                <!-- {if $goods.is_new eq 1 || $goods.is_best eq 1 || $goods.is_hot eq 1 || $goods.org_promote_price > 0}-->
-            <!-- {if $goods.is_new eq 1}-->
-              <div class="picon pi1"></div>
-              <!-- {elseif $goods.is_hot eq 1} -->
-              <div class="picon pi2"></div>
-              <!-- {elseif $goods.is_best eq 1} -->
-                <div class="picon pi8"></div>
-               <!-- {elseif $goods.org_promote_price > 0} -->
-               <div class="picon pi3"></div>
-              <!-- {/if} -->
-              <!-- {/if} -->
               </div>
-              <div class="p-price"><strong> <!--{if $goods.promote_price neq "" } -->{$goods.promote_price} <!--{else}-->{$goods.shop_price}<!--{/if}--></strong><span></span></div>
-              <div class="p-name"><a target="_blank" href="{$goods.url}" title="{$goods.goods_name}">{$goods.goods_name}<font style="color: #ff0000;" class="adwords">{$goods.goods_brief}</font></a></div>
-              <div class="extra"><span class="evaluate">已有<a target="_blank" href="{$goods.url}">{$goods.comments_number}</a>人评价</span></div>
-              <div class="stocklist" style="display:none;"><span class="st33">上海有货</span></div>
+              <div class="p-price"><strong>年化利率： <!--{if $goods.promote_price neq "" } -->{$goods.promote_price} <!--{else}-->{$goods.market_price}<!--{/if}-->%</strong><span id="p647948"></span></div>
+              <div class="extra"><span class="evaluate">借款金额：<a target="_blank" href="{$goods.url}">{$goods.shop_price}元</a></span></div>
+              <div class="p-name"><a target="_blank" href="{$goods.url}" title="{$goods.goods_name}"><p>{$goods.goods_name}</p><p class="promoWords">{$goods.goods_brief}</p></a></div>
               <div class="btns">
-              	<a href="javascript:addToCart({$goods.goods_id})" class="btn-buy"><span></span>加入购物车</a>
                 <a id="coll647948" href="javascript:collect({$goods.goods_id});" class="btn-coll"><span></span>关注</a>
                 <a id="comp_647948" onClick="Compare.add({$goods.goods_id},'{$goods.goods_name|escape:"html"}','{$goods.type}')" class="btn-compare btn-compare-s"><span></span>对比</a>
               </div>

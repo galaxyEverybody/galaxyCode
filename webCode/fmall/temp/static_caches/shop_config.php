@@ -91,7 +91,7 @@ scrollAmount=3><U><FONT color=red>
   'name_of_region_2' => '省',
   'name_of_region_3' => '市',
   'name_of_region_4' => '区',
-  'search_keywords' => '稳健型,高收益,天天赚,低投入,基金,理财',
+  'search_keywords' => '一个月,三个月,六个月,九个月,十二个月',
   'related_goods_number' => '4',
   'help_open' => '1',
   'article_page_size' => '10',

@@ -32,15 +32,15 @@ abstract class GZ_Api
     public static $pagination = array();
 
     protected static $error = array(
-        6   => '密码错误',
+        6   => '用户名或者密码错误',
 		8 	=>	'处理失败',
 		11  => '用户名或email已使用',
 		13  => '不存在的信息',
 		14	=>	'购买失败',
-        100 => 'Invalid session',
-        101 => '错误的参数提交',
-        501 => '没有pagination结构',
-        502 => 'code错误',
+        100 => '您的帐号已过期',
+        101 => '协议格式错误',
+        501 => '协议格式错误',
+        502 => '协议格式错误',
         503 => '合同期终止',
 		10001=>'您必须选定一个配送方式',
 		10002=>'购物车中没有商品',
@@ -51,7 +51,6 @@ abstract class GZ_Api
 		10008=>'库存不足',
 		10009=>'订单无发货信息'
     );
-
 
     public static function init()
     {
@@ -74,7 +73,6 @@ abstract class GZ_Api
 
 	    /* 初始化session */
 	    include(EC_PATH . '/includes/cls_session.php');
-
 	    $sess = new GZ_session($GLOBALS['db'], $GLOBALS['ecs']->table('sessions'), $GLOBALS['ecs']->table('sessions_data'), 'ECS_ID', self::$session['sid']);
 
 	    define('SESS_ID', $sess->get_session_id());

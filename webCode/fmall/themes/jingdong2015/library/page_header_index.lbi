@@ -90,6 +90,7 @@
             </div>
             <!--{if $searchkeywords}-->
             <div id="hotwords">
+            	<strong>热门搜索：</strong>
             	<!--{foreach from=$searchkeywords item=val name=foo}-->
                 <!--{if $smarty.foreach.foo.first}-->
                 <a href="search.php?keywords={$val|escape:url}" target="_blank" style="color:#ff500b">{$val}</a>
@@ -179,6 +180,7 @@
 								<!--{/if}-->
 								<!--{/foreach}-->
 							</span>
+							
                             <div class="i-mc" style="border:1px solid #f8f8f8;display:none;">
                             	
                                 <div class="subitem" style="width:470px;">
@@ -215,6 +217,7 @@
                             </div>
                         </div>
                         <!--{/foreach}-->
+                        <span class='indexadshow'>积累自己的财富，让生活更美</span>
                     </div>
                     <script>
                     $(function(){

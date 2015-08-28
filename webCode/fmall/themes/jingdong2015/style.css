@@ -82,6 +82,7 @@ h6 span{float:left;padding-left:15px}
 #mainNav a:hover{display:block;height:26p;float:left;line-height:26px;text-align:center;padding:0 15px;background:url(images/NavBg.gif) no-repeat 0 0;position:relative;margin-right:2px;color:#fff;text-decoration:none}
 #mainNav .cur{display:block;height:26p;float:left;line-height:26px;text-align:center;padding:0 15px;background:url(images/NavBg.gif) no-repeat 0 0;position:relative;margin-right:2px;color:#fff;text-decoration:none;font-weight:bold}
 #mainNav a:hover span,#mainNav .cur span{width:3px;height:26px;background:url(images/NavBg.gif) no-repeat 0 -59px;position:absolute;top:0;right:0}
+.indexadshow{ width:100%;text-align:center;color:#FF500B;font-size:14px;font-style:italic;}
 
 /*搜索*/
 #search{border:1px solid #5cb4e6;background:url(images/searchBg.gif) repeat-x left top;width:918px;padding:0 20px;height:36px;line-height:36px}
@@ -134,6 +135,7 @@ h6 span{float:left;padding-left:15px}
 .capitaltr .market_price{ color:#FF6969;}
 .bond_title{ width:100%;height:35px;text-align:center;line-height:35px;margin-top:15px;}
 .bond_title li{ min-width:278px;_width:278px;border:1px solid #ddd;cursor:pointer;background:#F7F7F7;border-bottom:0px;}
+.usecentermenu{ color:#FF852F;font-size:16px;font-weight:bold;}
 
 /*绑定银行卡*/
 .bangcardtitle{ width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF852F;}
@@ -1324,12 +1326,12 @@ h2,h3{font-size:14px}
 .bondinfo_middle_bottom .bondinfotd{ font-weight:bold;width:230px;font-size:18px;}
 .bond_middle_middle{ width:100%;height:120px;margin-top:10px;}
 .bond_middle_middle span{ font-size:16px;color:#708090;margin-left:5px;}
-.bondinfo_left{ width:33%;height:auto;float:right;margin-right:5px;background-color:#F1F0F2;height:380px;margin-top:5px;}
+.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;background-color:#F1F0F2;height:380px;margin-top:5px;}
 .bondinfo_leftdiv{ width:80%;height:auto;float:left;margin-left:50px;}
 .bondinfo_left_top{ line-height:40px;margin-top:30px;}
 .bondinfo_left_top span{ font-size:18px;}
 .bondinfo_left .bond_left_topsize{ font-size:24px;color:#FF500B;}
-.bondinfo_recharge{ font-size:14px;background-color:#ff500b;width:40px;height:30px;line-height:30px;float:right;margin-right:50px;text-align:center;color:#fff;}
+.bondinfo_recharge{ font-size:14px;float:right;margin-right:60px;text-align:center;color:#fff;font-weight:bold;}
 .bondinfo_left_middle{ width:80%;height:35px;margin-top:20px;background-color:#fff;float:left;}
 .bondinfo_left_middle em{ float:right;margin-right:5px;font-size:16px;color:#c0c0c0;}
 .recharge_input{ width:95%;height:35px;border-style:none;font-size:16px;outline:none;}
@@ -2923,8 +2925,9 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #nav .navitems ul{}
 #nav .navitems ul li{ float:left; margin: 0 20px 0 0;}
 #nav .navitems ul li.fore{}
-#nav .navitems ul li.fore a{ color:#fff; font-size:14px;}
-#nav .navitems ul li.fore a:hover{ color:#fff; text-decoration:underline;}
+#nav .navitems ul li.fore a{ color:#fff;color:#FF852F;font-size:16px;font-weight:bold;}
+#nav .navitems .foreone{ border:1px solid #fff;height:20px;margin-top:7px;}
+#nav .navitems ul li.fore a:hover{ text-decoration:underline;}
 #nav .navitems ul li.fore1{ position:relative;}
 #nav .navitems ul li.fore1 .dt{ white-space: nowrap; height: 18px; line-height: 18px; padding: 9px 16px; width: 74px;}
 #nav .navitems ul li.fore1 .dt span{ color:#fff;}
