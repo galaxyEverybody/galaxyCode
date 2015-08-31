@@ -123,11 +123,11 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('brand_list',      get_brands());
     $smarty->assign('promotion_info',  get_promotion_info()); // 增加一个动态显示所有促销信息的标签栏
 
-    $smarty->assign('invoice_list',    index_get_invoice_query());  // 发货查询
-    $smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
-    $smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
-    $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
-    $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
+    //$smarty->assign('invoice_list',    index_get_invoice_query());  // 发货查询
+    //$smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
+    //$smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
+    //$smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
+    //$smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
 	$smarty->assign('script_name',     'index');  
 	$smarty->assign('index_comments',     get_comments($num));  
 

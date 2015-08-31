@@ -45,9 +45,8 @@
                         	<form name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
                             	<ul>
                                 	<li class="item">
-                                    	<input type="text" id="loginname" name="username" class="text" tabindex="1" autocomplete="off" sta="2">
-                                        <label for="loginname" class="icon icon01">&nbsp;</label>
-                                        <span class="con">用户名</span>
+                                    	<input type="text" id="loginname" name="username" class="text" tabindex="1" autocomplete="off" sta="2" value="{$user_name}" placeholder='用户名'>
+                                        <label for="loginname" class="icon icon01">&nbsp;</label>  
                                     </li>
                                     <li class="item">
                                     	<input type="password" id="nloginpwd" name="password" class="text" tabindex="2" autocomplete="off" sta="2">
@@ -228,9 +227,9 @@
 					<td class="bangcardtd">验证码</td>
 					<td>
 						<input class="verifyauthinput" name="getpw_verify" type="text" placeholder="请输入验证码" onblur="chekgetpwphone_verify(this.value);">
-						<div class="widthdraw_button_time" id="get_getpwphone_time"><a onclick="getuserpw_phone()">获取验证码</a></div>
+						<div class="widthdraw_button_time" id="getpwphone_time_phone" ><a onclick="getuserpw_phone()">获取验证码</a></div>
 						<div id="verify_getpw" class='autherrorinfo'></div>
-						<input id="getpwtime" type="text" value='60' style="display:none;"/>
+						</div><input id="getpwtime" type="hidden" value='60'/>
 					</td>
 				</tr>
 				<tr>

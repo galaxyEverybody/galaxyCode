@@ -450,6 +450,11 @@ $_LANG['confirm_login'] = '确认登录';
 $_LANG['profile_lnk'] = '查看我的个人信息';
 $_LANG['login_failure'] = '用户名或密码错误';
 $_LANG['relogin_lnk'] = '重新登录';
+$_LANG['withdraw_verify_fail'] = '-短信验证码输入错误';
+$_LANG['withdraw_pw_fail'] = '-提现密码输入错误';
+$_LANG['withdraw_pw_confirm'] = '-确认提现密码输入错误';
+$_LANG['withdraw_info_fail'] = '-数据错误请重新输入';
+$_LANG['withdraw_pw_equal'] = '-两次密码输入不一致请重新输入';
 
 $_LANG['sex'] = '性　别';
 $_LANG['male'] = '男';

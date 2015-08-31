@@ -232,7 +232,7 @@
 </tr>
 <tr>
 <td align="right" valign="top">{$lang.message_content}</td>
-<td><textarea name="msg_content" cols="50" rows="4" wrap="virtual" class="B_blue"></textarea></td>
+<td><textarea name="msg_content" cols="50" rows="4" wrap="virtual"></textarea></td>
 </tr>
 <tr>
 <td align="right">{$lang.upload_img}</td>

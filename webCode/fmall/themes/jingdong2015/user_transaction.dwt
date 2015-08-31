@@ -36,7 +36,14 @@
 		<span class="capitalleft"></span><span class="capitalright">基本信息</span>
 	</div>
 <form name="formEdit" action="user.php" method="post" onSubmit="return userEdit()">
-    <table width="100%" border="0" cellpadding="5" cellspacing="5px" style="font-size:16px">
+    <table width="100%" border="0" cellpadding="5" cellspacing="5px" style="font-size:16px" height="450px">
+    	<tr>
+    		<div style='width:160px;height:160px;border:1px solid red;border-radius:80px;'>
+    			<img src='./images/user_head_img.jpg' alt='联众金融' style='float:left;'>
+    			<div style='width:100%;height:30px;line-height:30px;background:#ddd;border:1px solid blue;text-align:center;'>
+    				<a href=''>修改头像</a></div>
+    		</div>
+    	</tr>
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_username} </td>
             <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.user_name}</td>
@@ -76,7 +83,10 @@
             <td width="72%" align="left" bgcolor="#FFFFFF">{if $profile.email eq 0}<a style="color:#FF500B" href="user.php?act=auth_center">去进行邮箱认证</a>{else}{$profile.email}{/if}</td>
         </tr>
         <tr>
-            <td colspan="2" align="center" bgcolor="#FFFFFF"><input name="act" type="hidden" value="act_edit_profile" /><input name="submit" type="submit" value="{$lang.confirm_edit}" class="bnt_blue_1" style="border:none;" /></td>
+            <td colspan="2" align="center" bgcolor="#FFFFFF">
+            	<input name="act" type="hidden" value="act_edit_profile" />
+            	<input name="submit" type="submit" value="{$lang.confirm_edit}" class="bnt_blue_1"/>
+            </td>
         </tr>
     </table>
 </form>
@@ -119,6 +129,13 @@
 					</td>
 				</tr>
 				<tr>
+					<td class="bangcardtd">确认密码</td>
+					<td>
+						<input class="bangcardinput" name="withdrawpwconfirm" type="text" placeholder="重新输入您的提现密码" onblur="chekwithdrawpwconfirm(this.value);">
+						<span id="withdrawpwconfirm" style="color:#FF852F;"></span>
+					</td>
+				</tr>
+				<tr>
 					<td class="bangcardtd"><input type="hidden" name="act" value="withdraw_pwadd"></td>
 					<td><input class="bangcardsub" type="submit" value="确认提交"></td>
 				</tr>
@@ -146,6 +163,13 @@
 				<td>
 					<input class="bangcardinput" name="withdrawpassword" type="text" placeholder="请输入您的提现密码" onblur="chekwithdrawpassword(this.value);">
 					<span id="withdrawpassword" style="color:#FF852F;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="bangcardtd">确认密码</td>
+				<td>
+					<input class="bangcardinput" name="withdrawpwconfirm" type="text" placeholder="重新输入您的提现密码" onblur="chekwithdrawpwconfirm(this.value);">
+					<span id="withdrawpwconfirm" style="color:#FF852F;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -743,8 +767,8 @@
 		
 		<!--邮箱修改start-->
 		<p><img src="images/emailauth01.png" width="25px"><span class="capitalauthphone">绑定邮箱</span>
-			<span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]<span onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</span>
-			{else}{$userinfostatus.email}{/if}</span> <span class="capitalauthupda">已绑定</span></p>
+			<span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]<a onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</a>
+			{else}{$userinfostatus.email}</span> <span class="capitalauthupda">已绑定</span>{/if}</p>
 		<div id="authemaildiv">
 				<form id="formauthcenteremail" action="user.php" method="post" onSubmit="return authcenteremailform();">
 				<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>

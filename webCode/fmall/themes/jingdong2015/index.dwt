@@ -226,18 +226,12 @@
     			$('#housedivshow').show();
     			$('#cardivshow').hide();
     		});
-    		$('#housedivli').mouseleave(function(){
-    			$('#housedivshow').hide();
-    			$('#cardivshow').show();
-    		});
+    		
     		$('#cardivli').mouseenter(function(){
     			$('#housedivshow').hide();
     			$('#cardivshow').show();
     		});
-    		$('#cardivli').mouseleave(function(){
-    			$('#housedivshow').show();
-    			$('#cardivshow').hide();
-    		});
+    		
     	});
     	</script>
 </div>

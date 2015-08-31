@@ -65,7 +65,7 @@ function reg(str){
                 		<div class="bond_middle_middle">
 	                    	<ul>
 	                    		<li class="bond_big_one"><h4><img src="./images/bondyear.gif">&nbsp;年化利率</h4><div class="bond_big_num">{$goods.market_price}<span>%</span></div></li>
-	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;还款期限</h4><div class="bond_big_num">{$goods.goods_number}<span>天</span></div></li>
+	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;借款期限</h4><div class="bond_big_num">{$goods.goods_number}<span>天</span></div></li>
 	                    		<li class="bond_big_three"><h4><img src="./images/bondnum.jpg">&nbsp;借款金额</h4><div class="bond_big_num"><em id="totalnumprice">{$goods.shop_price}</em><span>元</span></div></li>
 	                    	</ul>
 	                    </div>
@@ -91,7 +91,7 @@ function reg(str){
 	                			<td>还款方式：</td>
 	                			<td class="bondinfotd">{if $goods.warn_number==1}按月等额本息{elseif $goods.warn_number==2}按月还息到期还本{else}到期还本息{/if}</td>
 	                			<td>借款期限：</td>
-	                			<td class="bondinfotd">{$goods.goods_weight_day}天</td>
+	                			<td class="bondinfotd">{$goods.goods_number}天</td>
 	                		</tr>
 	                		<tr>
 	                			<td>保障方式：</td>
@@ -129,7 +129,7 @@ function reg(str){
         			<li>
         				<div class="bondinfo_left_middle">
 	        				<div style="float:left;">
-	        					<input class="recharge_input" id="investamount" type="text" name="investamount" placeholder="投资金额为50的倍数"/>
+	        					<input class="recharge_input" id="investamount" type="text" name="investamount" placeholder="投资金额为100的倍数"/>
 	        				</div>
         					<em>元</em>
         				</div>
@@ -168,8 +168,8 @@ function reg(str){
 	         			alert('请输入投资金额');
 	         			return false;
 	         		}else{
-	         			if(investnum%50 != 0){
-	         				alert('输入金额必须为50的倍数');
+	         			if(investnum%100 != 0){
+	         				alert('输入金额必须为100的倍数');
 	         				return false;
 	         			}
 	         		}
@@ -201,7 +201,7 @@ function reg(str){
           </ul>
         </div>
       </div>
-      <div class="mc" id="p-con-detail-con">
+      <div class="mc" id="p-con-detail-con" >
         <ul class="detail-list">
           <li>商品名称：{$goods.goods_name}</li>
           <!-- {foreach from=$properties item=property_group key=key} --> 
@@ -288,12 +288,12 @@ function reg(str){
         <h2>相关推荐</h2>
       </div>
       <div class="mc">
-        <ul style='width:100%;height:auto;text-align:center;font-size:14px;'>
+        <ul style='width:100%;height:auto;text-align:center;'>
    		 <!--{foreach from=$recommend_goods item=recgoods}-->
           <li style="width:100%;height:auto;margin-top:10px;">
             <div ><a href="{$recgoods.url}"><img height="150" width="150" src="{$recgoods.thumb}"></a></div>
-            <div ><a href="{$recgoods.url}" title="{$recgoods.short_name}">{$recgoods.short_name}</a></div>
-            <div >年化利率:<span style='color:#FF852F;'>{$recgoods.market_price}</span>%</div>
+            <div style='margin-top:5px;'><a href="{$recgoods.url}" title="{$recgoods.short_name}">{$recgoods.short_name}</a></div>
+            <div style='margin-top:5px;'>年化利率:<span style='color:#FF852F;'>{$recgoods.market_price}</span>%</div>
           </li>
           <!--{/foreach}-->
 

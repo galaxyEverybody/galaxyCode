@@ -201,12 +201,12 @@
     	<div class="j_box">
     	  <div class="j_logo" style='border-bottom:1px solid #ddd;'>收益最佳</div>
     	  <div class="j_boxcontent" '>
-    	        <ul class="clearfix" id="list1" style='width:100%;height:auto;text-align:center;font-size:14px;'>
+    	        <ul class="clearfix" id="list1" style='width:100%;height:auto;text-align:center;'>
     	          <!--{foreach from=$best_goods item=goods}-->
     	          <li >
     	            <div class="p_img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" width="150" height="150"></a></div>
-    	            <div class="p_name"><a href="{$goods.url}" target="_blank">{$goods.short_style_name}</a></div>
-    	            <div class="p_price"><span style='color:#FF852F;'>年化利率:{$goods.market_price}%</span></div>
+    	            <div class="p_name" style='margin-top:5px;'><a href="{$goods.url}" target="_blank">{$goods.short_style_name}</a></div>
+    	            <div class="p_price" style='margin-top:5px;'><span style='color:#FF852F;'>年化利率:{$goods.market_price}%</span></div>
     	            <div class="clr" ></div>
     	          </li>
     	          <!--{/foreach}-->

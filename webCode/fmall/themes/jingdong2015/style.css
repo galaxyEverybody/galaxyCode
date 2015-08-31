@@ -47,7 +47,7 @@ h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,form,img,p{margin:0;padding:0;border:0;list-sty
 .market_s{text-decoration:line-through}
 .shop_s{color:#fe596a}
 .bnt_blue{background:url(images/bg.gif) no-repeat 0 0;width:63px;height:25px;text-align:center;line-height:25px;color:#fff;border:0;cursor:pointer}
-.bnt_blue_1{background:url(images/bg.gif) no-repeat 0 -663px;width:77px;height:25px;text-align:center;line-height:21px;color:#fff;border:0;cursor:pointer}
+.bnt_blue_1{text-align:center;width:260px;height:40px;background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;border:0;cursor:pointer}
 .bnt_blue_2{background:url(images/bg.gif) 0 -696px no-repeat;width:139px;height:25px;text-align:center;line-height:25px;color:white;border:0;cursor:pointer}
 .bnt_bonus{background:url(images/bg.gif) no-repeat -68px 0;width:63px;height:25px;text-align:center;line-height:25px;color:#fff;border:0;cursor:pointer}
 .box{background:#f1f1f1;padding-bottom:2px;overflow:hidden}
@@ -143,7 +143,7 @@ h6 span{float:left;padding-left:15px}
 .bangcardinput{ width:260px;height:30px;float:left;}
 .bangcardadd{ width:130px;height:35px;}
 .bangcardaddleft{ width:130px;height:35px;margin-left:10px;}
-.bangcardsub{ width:260px;height:40px;background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;cursor:pointer;}
+.bangcardsub{ width:260px;height:40px;border:1px solid #FF852F; background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;cursor:pointer;}
 
 /*设置提现密码*/
 .withdraw_verify{ width:80%;border:0px solid #ddd;margin-top:20px;}
@@ -152,6 +152,7 @@ h6 span{float:left;padding-left:15px}
 .withdraw_verify .capitalauthnum{ margin-left:100px;}
 .withdraw_verify .capitalauthupda{ float:right;margin-right:20px;color:#185283;}
 .widthdraw_button_time{ cursor:pointer;text-align:center;border:1px solid #FF852F;width:100px;line-height:30px;height:30px;background:#FF852F;float:left;margin-left:5px;}
+.widthdraw_button_time a{ }
 /* ====================
      模块
 ==================== */
@@ -484,7 +485,7 @@ ol,ul{list-style:none}
 #search-2013 .text{height:22px;line-height:22px;padding:5px 4px;background:#fff;color:#333;font-family:"microsoft yahei";font-size:14px;outline:0}
 #search-2013 .text,#search-2013 .button{-webkit-appearance:none;-webkit-border-radius:0}
 .root61 #search-2013 .text{width:426px}
-.btn-img,.button{display:inline-block;margin:0;padding:0;border:0;text-align:center;cursor:pointer}
+.btn-img,.button{display:inline-block;margin:0;padding:0;border:0;text-align:center;cursor:pointer;border:1px solid #FF852F;}
 #search-2013 .button{width:80px;height:32px;line-height:32px;background:#ff500b;font-size:16px;color:#fff;font-family:Microsoft YaHei,"微软雅黑";outline:0; float:right;}
 #search-2013 .text,#search-2013 .button{-webkit-appearance:none;-webkit-border-radius:0}
 #hotwords{height:18px;color:#999;overflow:hidden}
@@ -1334,7 +1335,7 @@ h2,h3{font-size:14px}
 .bondinfo_recharge{ font-size:14px;float:right;margin-right:60px;text-align:center;color:#fff;font-weight:bold;}
 .bondinfo_left_middle{ width:80%;height:35px;margin-top:20px;background-color:#fff;float:left;}
 .bondinfo_left_middle em{ float:right;margin-right:5px;font-size:16px;color:#c0c0c0;}
-.recharge_input{ width:95%;height:35px;border-style:none;font-size:16px;outline:none;}
+.recharge_input{ width:95%;height:30px;border-style:none;font-size:14px;outline:none;}
 .bondinfo_num{ height:100px;margin-top:70px;line-height:25px;}
 .bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #fff;float:left;cursor:pointer;background-color:#fff;}
 .bondinfo_first{ margin-left:15px;float:left;}
@@ -2013,7 +2014,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .root61 #slide,.root61 #slide .slide-items,.root61 #slide .slide-items,.root61 #slide .slide-items li{ height:100%; width:100%;}
 .root61 #slide .slide-controls{ width:auto;}
 
-#jdnews{ width:248px; border:solid 1px #e4e4e4; border-bottom:0; height:200px; overflow:hidden; margin:12px 0 0 0;}
+#jdnews{ width:248px; border:solid 1px #e4e4e4; height:200px; overflow:hidden; margin:12px 0 0 0;}
 #jdnews .mt{ padding:0 15px; border-bottom:1px dotted #E8E8E7; height:43px; line-height:43px;}
 #jdnews .mt h2{ float:left; font-size:16px; font-family:"microsoft yahei"; font-weight:100;}
 #jdnews .mt .extra{ float:right; font-family:consolas;}
@@ -2249,7 +2250,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .service2015 .slogen .fore3 i{ background:url(images/service_items_3.png) no-repeat;}
 .service2015 .slogen .fore4 i{ background:url(images/service_items_4.png) no-repeat;}
 
-#service2015{ height:auto; overflow:hidden;}
+#service2015{ height:110px; overflow:hidden;}
 #service2015 dl{ float: left; width: 144px;}
 #service2015 dl dt{ padding: 6px 0; font: 400 16px/24px "microsoft yahei";}
 #service2015 dl dd{ line-height:20px;}
@@ -2681,7 +2682,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .flowCheckoutBox #content .consignee-cont h3{ margin-left:60px;margin-top:20px;}
 .flowCheckoutBox #content .consignee-cont ul{ list-style:none;font-size:18px;width:500px;height:80px;text-align:center;margin-top:60px;}
 .flowCheckoutBox #content .consignee-cont ul div,h4{ margin-top:10px;}
-.flowCheckoutBox #content .consignee-cont ul li{ width:30%;height:100px;border:1px solid #F5F5F5;margin-left:10px;float:left;text-align:center;}
+.flowCheckoutBox #content .consignee-cont ul li{ width:30%;height:100px;margin-left:10px;float:left;text-align:center;}
 .flowCheckoutBox #content .consignee-cont span{ font-size:20px;}
 .flowCheckoutBox #content .consignee-item{ float:left; list-style: none; position: relative; height: 18px; line-height: 18px; width: 90px; text-align: center; cursor: pointer; background-color: #fff; border: 2px solid #ff500b; padding: 4px 23px;}
 .flowCheckoutBox #content .consigneenum{ font-size:50px;color:#FF500B;font-weight:bold;}
@@ -2888,7 +2889,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv .authtablehide{ margin-top:20px;font-size:16px;display:none;}
 .authcenterdiv .capitalauthphone{ margin-left:50px;font-size:20px;}
 .authcenterdiv .capitalauthnum{ margin-left:100px;}
-.authcenterdiv .capitalauthupda{ float:right;margin-right:20px;color:#185283;}
+.authcenterdiv .capitalauthupda{ float:right;margin-right:20px;color:#185283;cursor:pointer;}
 .authcenterdiv #authphonediv{ width:60%;height:auto;display:none;}
 .authcenterdiv #phoneauthupshow{ width:214px;height:30px;float:left;text-align:center;background:url(images/auth_centerphone01.png);}
 .authcenterdiv #idcardauthshow{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;}

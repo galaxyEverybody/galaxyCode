@@ -729,20 +729,14 @@ function withdrawinfo()
 {
 	var withdrawverify = $("input[name='withdrawverify']")[0].value;
 	var withdrawpassword = $("input[name='withdrawpassword']")[0].value;
-	var msg="";
-	if(withdrawverify ==''){
-		msg = '验证码不可以为空\n';
-	}
-	if(withdrawpassword ==''){
-		msg += '提现密码不可以为空';
+	var withdrawpwconfirm = $("input[name='withdrawpwconfirm']")[0].value;
+	
+	if(chekwithdrawverify(withdrawverify) && chekwithdrawpassword(withdrawpassword) && chekwithdrawpwconfirm(pwconfirm)){
+		return true;
+	}else{
+		return false;
 	}
 	
-	if(msg.length > 0){
-		alert(msg);
-		return false
-	}else{
-		return true;
-	}
 }
 
 /*
@@ -756,6 +750,7 @@ function chekwithdrawverify(withdrawverify)
 	}else{
 		if(withdrawverify.match(/^[0-9]{4}$/)){
 			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + withdrawverify, check_withdrawphoneverify_callback , 'GET', 'TEXT', true, true );
+			return true;
 		}else{
 			$("#withdrawverify").html("短信验证码错误");
 			return false;
@@ -769,16 +764,41 @@ function chekwithdrawverify(withdrawverify)
 function chekwithdrawpassword(withdrawpassword)
 {
 	if(withdrawpassword == ''){
-		$("#withdrawpassword").html("请输入您的提现密码");
+		$("#withdrawpassword").html("-请输入您的提现密码");
 		return false;
 	}else{
-		if(withdrawpassword.match(/^[0-9a-zA-Z]{6}$/)){
-			$("#withdrawpassword").html("good");
+		if(withdrawpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
+			$("#withdrawpassword").html("+输入正确");
+			return true;
 		}else{
-			$("#withdrawpassword").html("提现密码格式错误");
+			$("#withdrawpassword").html("-提现密码格式错误");
 			return false;
 		}
 	}
+}
+
+/*
+ * 重复密码的验证
+ */
+function chekwithdrawpwconfirm(pwconfirm){
+	var pw = $("input[name = 'withdrawpassword']")[0].value;
+	
+	if(pwconfirm == ''){
+		$("#withdrawpwconfirm").html("-请输入您的提现密码");
+		return false;
+	}else{
+		if(!pwconfirm.match(/^[0-9a-zA-Z]{6,30}$/)){
+			$("#withdrawpwconfirm").html("-提现密码格式错误");
+			return false;
+		}else if(pw != pwconfirm){
+			$("#withdrawpwconfirm").html("-两次密码输入不一致");
+			return false;
+		}else{
+			$("#withdrawpwconfirm").html("+输入正确");
+			return true;
+		}
+	}
+	
 }
 
 /* 点击获取验证码*/
@@ -808,11 +828,13 @@ function check_withdrawphoneverify_callback(result)
 	if ( result == 'ok' )
 	  {
 		$('#withdrawverify').html('输入正确');
+		return true;
 	  }
 	  else
 	  {
 		  $('#withdrawverify').html('输入错误');
 		  $('#withdrawform').submit(function(){ return false;});
+		  return false;
 	  }
 }
 
@@ -1345,14 +1367,15 @@ function getuserpw_phone()
 function getpw_phoneverify_callback(result)
 {
 	if(result == 'ok'){
-		$("#phone_getpw").html('-验证码已发送');
+		$("#phone_getpw").html('+验证码已发送');
 		RemainTimegetpw();
 	}
 }
 
 /*显示倒计时*/
 function RemainTimegetpw(){
-	var iTime = 59;
+	
+	var iTime = 60;
 	var Account;
 	var timenum = document.getElementById('getpwtime').value;
 
@@ -1364,7 +1387,7 @@ function RemainTimegetpw(){
 	if (iTime >= 0){
 		if(iTime==0){
 			clearTimeout(Account);
-			iTime = '<a onclick=getuserpw_phone()>点击获取验证码</a>';
+			iTime = '<a onclick=getuserpw_phone()>获取验证码</a>';
 		}else{
 			iTime=iTime-1;
 			document.getElementById('getpwtime').value = iTime;
@@ -1374,8 +1397,7 @@ function RemainTimegetpw(){
 		sTime='没有倒计时';
 	}
 	
-	document.getElementById('get_getpwphone_time').innerHTML = iTime;
-	document.getElementById('get_getpwphone_time').style.color = '#FF852F';
+	document.getElementById("getpwphone_time_phone").innerHTML = iTime;
 	
 }
 

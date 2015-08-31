@@ -569,7 +569,8 @@ elseif ($action == 'login')
         $GLOBALS['smarty']->assign('enabled_captcha', 1);
         $GLOBALS['smarty']->assign('rand', mt_rand());
     }
-
+	
+    $smarty->assign('user_name',$_COOKIE['ECS']['username']);	//获取cookie中用户的昵称
     $smarty->assign('back_act', $back_act);
     $smarty->display('user_passport.dwt');
 }
@@ -600,12 +601,12 @@ elseif ($action == 'act_login')
             show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'user.php', 'error');
         }
     }
-
+	
     if ($user->login($username, $password,isset($_POST['remember'])))
     {
         update_user_info();
         recalculate_price();
-
+        
         $ucdata = isset($user->ucdata)? $user->ucdata : '';
         show_message($_LANG['login_success'] . $ucdata , array($_LANG['back_up_page'], $_LANG['profile_lnk']), array($back_act,'user.php'), 'info');
     }
@@ -637,10 +638,24 @@ elseif ($action == 'withdraw_password')
 /* 添加提现密码*/
 elseif ($action == 'withdraw_pwadd')
 {
-	$withdrawpw = trim($_POST['withdrawpassword']);
+	$withdrawpw = strip_tags(trim($_POST['withdrawpassword']));
+	$withdrawpwconfirm = strip_tags(trim($_POST['withdrawpwconfirm']));
+	$withdrawverify = intval(trim($_POST['withdrawverify']));
+	
+	if(empty($withdrawpw) && empty($withdrawpwconfirm) && empty($withdrawverify)){
+		show_message($_LANG['withdraw_info_fail'], $_LANG['back_up_page'], 'user.php?act=withdraw_password', 'error');
+	}
+	
 	$rule = '/[0-9a-z-A-Z]{6,30}/';
-	if(!preg_match($rule,$withdrawpw)){
-		show_message($_LANG['login_failure'], '提现密码格式错误', 'user.php', 'error');
+	$ruleverify = '/[0-9]{4}/';
+	if(!preg_match($ruleverify,$withdrawverify)){
+		show_message($_LANG['withdraw_verify_fail'], $_LANG['back_up_page'], 'user.php?act=withdraw_password', 'error');
+	}elseif(!preg_match($rule,$withdrawpw)){
+		show_message($_LANG['withdraw_pw_fail'], $_LANG['back_up_page'], 'user.php?act=withdraw_password', 'error');
+	}elseif(!preg_match($rule,$withdrawpw)){
+		show_message($_LANG['withdraw_pw_confirm'], $_LANG['back_up_page'], 'user.php?act=withdraw_password', 'error');
+	}elseif($withdrawpwconfirm != $withdrawpw){
+		show_message($_LANG['withdraw_pw_equal'], $_LANG['back_up_page'], 'user.php?act=withdraw_password', 'error');
 	}
 	
 	$withdrawpw = $user->compile_password(array('password'=>$withdrawpw));
