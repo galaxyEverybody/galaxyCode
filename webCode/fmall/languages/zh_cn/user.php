@@ -151,6 +151,8 @@ $_LANG['bonus_number'] = '红包序列号';
 $_LANG['old_password'] = '原密码';
 $_LANG['new_password'] = '新密码';
 $_LANG['confirm_password'] = '确认密码';
+$_LANG['userhead_img_fail'] = '-图片格式错误,请重新提交';
+$_LANG['userhead_imgsize_fail'] = '-上传图片过大,请重新上传';
 
 $_LANG['bonus_sn_exist'] = '此红包号码已经被占用了！';
 $_LANG['bonus_sn_not_exist'] = '此红包号码不存在！';

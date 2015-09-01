@@ -169,9 +169,9 @@
         <div class="w">
             <div id="nav-2013">
                 <div id="categorys-2013" class="categorys-2014 {if $script_name neq 'index'}no_index{/if}">
-                    <div id="_JD_ALLSORT" class="mc">
+                    <div id="_JD_ALLSORT" class="mc" style='background:#fff;'>
                         <!--{foreach from=$categories item=cat name=foo}-->
-                        <div class="item fore{$smarty.foreach.foo.iteration}" style="height:100px;border-bottom:1px solid #FFF;">
+                        <div class="item fore{$smarty.foreach.foo.iteration}" style="height:100px;border-bottom:1px solid #ddd;">
                             <span><div class="icon">{insert name='ads_pro' cat_name=$cat.name type='左侧导航图标'}</div><h3 style="font-size:20px;"><a href="{$cat.url}">{$cat.name|escape:html}</a></h3></span>
                             <span style="margin-top:15px;margin-left:10px;font-size:14px;color:#545454;">
 	                            <!--{foreach from=$cat.cat_id item=child name=foo2}-->

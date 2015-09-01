@@ -36,7 +36,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
-'message_list', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
+'message_list', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'booking_list_month', 'booking_list_quarter', 'booking_list_year', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 未登录处理 */
@@ -983,6 +983,24 @@ elseif ($action == 'profile')
 
     $smarty->assign('profile', $user_info);
     $smarty->display('user_transaction.dwt');
+}
+
+/* 个人头像的更改*/
+elseif ($action == 'user_head_img'){
+	 print_r($_FILES['filename']);
+	 $type = $_FILES['filename']['type'];	
+	 $name = $_FILES['filename']['name'];
+	 $size = $_FILES['filename']['size'];
+	 
+	 $imgarray = array('jpq','png','jpeg','gif');
+	 if(!in_array($type,$imgarray)){
+	 	show_message($_LANG['userhead_img_fail'], $_LANG['back_page_up'], 'user.php?act=profile', 'info');
+	 }elseif($size > 1024*1024*2){
+	 	show_message($_LANG['userhead_imgsize_fail'], $_LANG['back_page_up'], 'user.php?act=profile', 'info');
+	 }
+	 
+	 
+	 
 }
 
 /* 修改个人资料的处理 */

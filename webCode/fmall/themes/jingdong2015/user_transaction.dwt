@@ -25,25 +25,59 @@
 
 <!-- 用户信息界面 start-->
 <!--{if $action eq 'profile'}-->
-{insert_scripts files='utils.js'}
+{insert_scripts files='utils.js,transport_jquery.js'}
 <script type="text/javascript">
     {foreach from=$lang.profile_js item=item key=key}
     var {$key} = "{$item}";
     {/foreach}
 </script>
+<script type="text/javascript">
+$(function(){
+	$("#user_head").mouseenter(function(){
+		$('#update_headimg').fadeIn(500);
+	}).mouseleave(function(){
+		$('#update_headimg').fadeOut(500);
+	});
+});
+
+</script>
 <div class="boxCenterList">
 	<div class="capitaldiv">
 		<span class="capitalleft"></span><span class="capitalright">基本信息</span>
 	</div>
+	
+	<table width="100%" border="0" cellpadding="5" cellspacing="5px" style="font-size:16px">
+		<tr>
+			<div id='user_head' class="userinfo_head">
+				<img src='./images/user_head_img.jpg' alt='联众金融' style='float:left;width:150px;height:150px;'>
+				<a href='' id='update_headimg' >修改头像</a>
+			</div>
+			<form action='user.php' method='post' enctype='multipart/form-data' id='formuser_headimg'>
+			<div style='width:280px;height:50px;margin-top:10px;text-align:center;'>
+				<div style='width:200px;height:30px;border:1px solid #ddd;float:left;text-align:left;' id='pTitle'></div>
+				<div style='line-height:30px;float:right;width:65px;height:30px;background:#FF852F;overflow:hidden;color:#fff;position:relative;cursor:pointer;font-weight:bold;'><input type="file" name="filename" style='filter:alpha(opacity=50);opacity:0;position:absolute;right:0px;top:0px;' onChange="insertTitle(this.value);">选择文件</div>
+			</div>
+			<div style='text-align:center;width:200px;height:50px;'>
+				<input type='hidden' name='act' value='user_head_img'>
+				<input type='submit' value='上传' style='line-height:30px;float:left;width:70px;height:30px;background:#FF852F;border:0px;color:#fff;font-weight:bold;'>
+				<input type='reset' value='取消上传' style='line-height:30px;float:right;width:70px;height:30px;background:#FF852F;border:0px;color:#fff;font-weight:bold;'>
+			</div>
+			</form>
+			<script>
+			function insertTitle(tValue){ 
+			   var t1 = tValue.lastIndexOf("\\");  
+			   var t2 = tValue.lastIndexOf(".");  
+			   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
+				   $('#pTitle').html(tValue.substring(t1 + 1, t2));
+			   }
+			}
+			
+			</script>
+		</tr>
+	</table>
 <form name="formEdit" action="user.php" method="post" onSubmit="return userEdit()">
     <table width="100%" border="0" cellpadding="5" cellspacing="5px" style="font-size:16px" height="450px">
-    	<tr>
-    		<div style='width:160px;height:160px;border:1px solid red;border-radius:80px;'>
-    			<img src='./images/user_head_img.jpg' alt='联众金融' style='float:left;'>
-    			<div style='width:100%;height:30px;line-height:30px;background:#ddd;border:1px solid blue;text-align:center;'>
-    				<a href=''>修改头像</a></div>
-    		</div>
-    	</tr>
+    	
         <tr>
             <td width="28%" align="right" bgcolor="#FFFFFF">{$lang.user_username} </td>
             <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.user_name}</td>

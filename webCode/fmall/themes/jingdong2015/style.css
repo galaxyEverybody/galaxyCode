@@ -136,6 +136,8 @@ h6 span{float:left;padding-left:15px}
 .bond_title{ width:100%;height:35px;text-align:center;line-height:35px;margin-top:15px;}
 .bond_title li{ min-width:278px;_width:278px;border:1px solid #ddd;cursor:pointer;background:#F7F7F7;border-bottom:0px;}
 .usecentermenu{ color:#FF852F;font-size:16px;font-weight:bold;}
+.userinfo_head{ width:150px;height:150px;border:1px solid #ddd;}
+.userinfo_head #update_headimg{ display:none;width:160px;height:30px;background:#ddd;float:left;margin-top:-30px;text-align:center;line-height:30px;filter:alpha(opacity=70);opacity:0.7;}
 
 /*绑定银行卡*/
 .bangcardtitle{ width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF852F;}
@@ -1327,7 +1329,7 @@ h2,h3{font-size:14px}
 .bondinfo_middle_bottom .bondinfotd{ font-weight:bold;width:230px;font-size:18px;}
 .bond_middle_middle{ width:100%;height:120px;margin-top:10px;}
 .bond_middle_middle span{ font-size:16px;color:#708090;margin-left:5px;}
-.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;background-color:#F1F0F2;height:380px;margin-top:5px;}
+.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;background-color:#F9F9F9;height:380px;margin-top:5px;}
 .bondinfo_leftdiv{ width:80%;height:auto;float:left;margin-left:50px;}
 .bondinfo_left_top{ line-height:40px;margin-top:30px;}
 .bondinfo_left_top span{ font-size:18px;}
@@ -2853,13 +2855,13 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .JD_userCenter #header-2013{ height:60px;}
 .JD_userCenter .JD_userMain{ background:#f5f5f5;}
 .JD_userMain .left{ width:210px;background:#fff; margin:0;}
-.JD_userMain #myjd{ background:#ddd;margin-left:10px;margin-top:20px;width:190px;padding-bottom:20px;}
+.JD_userMain #myjd{ background:#F9F9F9;margin-left:10px;margin-top:20px;width:190px;padding-bottom:20px;}
 .JD_userMain .myjdtitle{ position:absolute;background:#FF8A00;width:80px;height:3px;margin-top:10px;z-index:999;float:left;margin-left:0px;}
 .JD_userMain #myjd .mt{ height:42px; border:0; padding:15px 0px 0px 15px; background:none; border:0;border-bottom:3px solid #D0CECF; }
 .JD_userMain #myjd .mt h2{ float:none; line-height: 32px; font-size: 20px; font-family: "microsoft yahei"; margin-right: 15px; font-weight:400;}
 .JD_userMain #myjd .mt h2 a{ color:#333;}
 .JD_userMain #myjd .mt h2 a:hover{ text-decoration:underline; color:#ff500b;}
-.JD_userMain #myjd .mc{ border:0; width:100%; padding:0 0px; margin:0;background-color:#DDDDDD;}
+.JD_userMain #myjd .mc{ border:0; width:100%; padding:0 0px; margin:0;background-color:#F9F9F9;}
 .JD_userMain #myjd dl{ padding-bottom:15px;}
 .JD_userMain #myjd dl dt{ color:#185283;height:40px; line-height:40px; margin:0; background:none; padding:0px 0px 0px 25px;background:url(images/user_clicktwo.gif) no-repeat;background-position:3px 10px;}
 .JD_userMain #myjd dl dt b{ left:auto; right:5px; top:10px;}
@@ -2920,7 +2922,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .money_account{ width:100%;height:50px;line-height:50px;}
 .deposit_account{ width:100%;height:35px;border-bottom:1px solid #ddd;}
 
-#nav{ height:80px; background:#dddddd;}
+#nav{ height:80px; background:#F9F9F9;}
 #nav .logo{ float:left; padding-top:0px;}
 #nav .navitems{ float: left; height: 36px; width: 342px; line-height: 36px; padding: 22px 0; margin: 0 0 0 30px; font-size: 14px;}
 #nav .navitems ul{}
