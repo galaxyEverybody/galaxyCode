@@ -987,19 +987,37 @@ elseif ($action == 'profile')
 
 /* 个人头像的更改*/
 elseif ($action == 'user_head_img'){
-	 print_r($_FILES['filename']);
+	include_once(ROOT_PATH . 'includes/lib_base.php');
+	include_once(ROOT_PATH . 'includes/lib_transaction.php');
+	
 	 $type = $_FILES['filename']['type'];	
 	 $name = $_FILES['filename']['name'];
 	 $size = $_FILES['filename']['size'];
-	 
-	 $imgarray = array('jpq','png','jpeg','gif');
+
+	 //判断图片的大小与格式
+	 $imgarray = array('image/jpq','image/png','image/jpeg','image/gif');
 	 if(!in_array($type,$imgarray)){
 	 	show_message($_LANG['userhead_img_fail'], $_LANG['back_page_up'], 'user.php?act=profile', 'info');
 	 }elseif($size > 1024*1024*2){
 	 	show_message($_LANG['userhead_imgsize_fail'], $_LANG['back_page_up'], 'user.php?act=profile', 'info');
 	 }
-	 
-	 
+	 /* 创建当月目录 */
+	 $dir = date('Ym');
+	 $path = ROOT_PATH.'images/'.$dir.'/head_img';
+	 if(!file_exists($path)){
+	 	make_dir($path);
+	 }
+	 /* 确定文件名*/
+	$img_name = $path.'/'.gmtime().$name;
+	
+	 if(move_uploaded_file($_FILES['filename']['tmp_name'],$img_name)){
+	 	//对用户信息进行更改
+	 	if(update_userhead_img($user_id,$img_name)){
+	 		show_message($_LANG['userhead_upload_success'], $_LANG['back_page_up'], 'user.php?act=profile', 'info');
+	 	}
+	 }else{
+	 	show_message($_LANG['userhead_upload_fail'], $_LANG['back_page_up'], 'user.php?act=profile', 'info');
+	 }
 	 
 }
 

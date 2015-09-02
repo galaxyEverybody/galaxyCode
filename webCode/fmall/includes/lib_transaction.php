@@ -102,6 +102,21 @@ function edit_profile($profile)
  *
  * @return void
  */
+ function update_userhead_img($user_id,$img_name){
+ 	$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET head_img="'.$img_name.'" WHERE user_id ='.$user_id;
+ 	if($GLOBALS['db']->query($sql)){
+ 		return true;
+ 	}
+ }
+
+/**
+ * 获取用户帐号信息
+ *
+ * @access  public
+ * @param   int       $user_id        用户user_id
+ *
+ * @return void
+ */
 function get_profile($user_id)
 {
     global $user;
