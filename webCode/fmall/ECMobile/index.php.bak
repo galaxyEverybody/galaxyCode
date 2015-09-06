@@ -26,36 +26,54 @@
  *  Mail:       info@geek-zoo.com
  */
 
-define('INIT_NO_USERS', true);
+error_reporting(E_ALL);
 
-require(EC_PATH . '/includes/init.php');
+define('GZ_PATH', dirname(__FILE__));
+define('EC_PATH', dirname(GZ_PATH));
 
-GZ_Api::authSession();
+// define('INIT_NO_SMARTY', true);
 
-include_once(EC_PATH . '/includes/lib_transaction.php');
-include_once(EC_PATH . '/includes/lib_payment.php');
-include_once(EC_PATH . '/includes/lib_order.php');
-include_once(EC_PATH . '/includes/lib_clips.php');
+require GZ_PATH.'/Library/function.php';
 
-$order_id = _POST('order_id', 0);
+spl_autoload_register('gz_autoload');
 
-if (!$order_id) {
-	GZ_Api::outPut(101);
+GZ_Api::init();
+
+$url = _GET('url');
+
+$controller = 'index';
+
+$tmp = $url ? array_filter(explode('/', $url)) : array();
+
+$path = GZ_PATH . '/controller';
+
+$tmp = array_values($tmp);
+
+//reset($tmp);
+    
+$count = count($tmp);
+for ($i = 0; $i < $count; $i++) {
+    if (!is_dir($path.'/'.$tmp[$i])) {
+        break;
+    }
+    $path .= '/'.$tmp[$i];
 }
 
-$user_id = $_SESSION['user_id'];
-
-/* 订单详情 */
-$order = get_order_detail($order_id, $user_id);
-
-if ($order === false)
-{
-	GZ_Api::outPut(8);
+if (isset($tmp[$i])) {
+    $controller = $tmp[$i];
+    $i++;
 }
 
-$base = sprintf('<base href="%s/" />', dirname($GLOBALS['ecs']->url()));
-$html = '<!DOCTYPE html><html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0">'.$base.'</head><body>%s</body></html>';
+$file = $path.'/'.$controller.'.php';
 
-GZ_Api::outPut(array('data' => sprintf($html, $order['pay_online'])));
+$i && $tmp = array_slice($tmp, $i);
 
-?>
+if (file_exists($file)) {
+    define('IN_ECS', true);
+    require $file;
+} else {
+    echo $file;
+    echo '<br>';
+    echo 'api: '.$url.' lost11111111111';
+    //echo $file;exit;
+}
