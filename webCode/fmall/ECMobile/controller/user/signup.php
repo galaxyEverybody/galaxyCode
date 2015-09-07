@@ -34,8 +34,7 @@ include_once(EC_PATH . '/includes/lib_passport.php');
 $username = _POST('name');
 $password = _POST('password');
 $email = _POST('email');
-// $fileld = _POST('fileld', array());
-$fileld = isset($_POST['field'])?$_POST['field']:array();
+$fileld = _POST('fileld', array());
 
 if ($_CFG['shop_reg_closed']) {
 	GZ_Api::outPut(11);
