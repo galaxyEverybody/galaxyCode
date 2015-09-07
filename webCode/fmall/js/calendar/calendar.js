@@ -1838,7 +1838,6 @@ function closeHandler(cal) {
 // It takes care of catching "mousedown" signals on document and hiding the
 // calendar if the click was outside.
 function showCalendar(id, format, showsTime, showsOtherMonths, selbtn) {
-  
   var el = typeof(id) == "object" ? id : document.getElementById(id);
   if (selbtn == '')
   {

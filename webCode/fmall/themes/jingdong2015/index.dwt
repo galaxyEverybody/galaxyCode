@@ -22,8 +22,14 @@
 <div class="w">
 	<div id="o-slide"> <!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem --></div>
 	<div class="m _520_a_lifeandjourney_1 hover" id="virtuals-2014" style="margin-top:10px;height:233px;text-align:center;">
+		{if $headimg eq '0'}
 		<a href='user.php'><img src='images/indexlogin.jpg' alt='联众金融'></a>
 		<div class="registerdiv"><a href="user.php?act=register">立即注册>></a></div>
+		{else}
+		<div style='width:150px;height:150px;margin-top:30px;border-radius:75px;'>
+		<a href="user.php?act=profile"><img src='{$headimg}' alt='用户头像' width='150px' height='150px'></a>
+		</div>
+		{/if}
 	</div>
   
   <!--virtuals end-->

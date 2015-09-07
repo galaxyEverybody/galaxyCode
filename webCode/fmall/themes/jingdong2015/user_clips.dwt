@@ -108,7 +108,13 @@
 <div class="lyt-c-0">
 	<div class="user-info">
     	<div class="info-lcol">
-        	<div class="u-pic"><img src="images/no-img_mid_.jpg" alt="用户头像" /><i></i></div>
+        	<div class="u-pic">
+        		{if $info.user_head_img eq '0'}
+        		<img src="images/no-img_mid_.jpg" alt="用户头像" /><i></i>
+        		{else}
+        		<img src="{$info.user_head_img}" alt="用户头像" width='100px' height='100px'/><i></i>
+        		{/if}
+        	</div>
             <div class="info-m">
             	<div class="u-name">{$info.username}</div>
                 <div class="u-level">{$rank_name}</div>

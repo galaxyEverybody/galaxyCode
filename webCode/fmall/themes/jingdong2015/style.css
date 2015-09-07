@@ -145,7 +145,7 @@ h6 span{float:left;padding-left:15px}
 .uploadheadbutton{ text-align:center;width:200px;height:50px;}
 .uploadheadsub{ line-height:30px;float:left;width:70px;height:30px;background:#FF852F;border:0px;color:#fff;font-weight:bold;}
 .uploadheadrest{ line-height:30px;float:right;width:70px;height:30px;background:#FF852F;border:0px;color:#fff;font-weight:bold;}
-.userinfo_head #update_headimg{ display:none;width:160px;height:30px;background:#ddd;float:left;margin-top:-30px;text-align:center;line-height:30px;filter:alpha(opacity=70);opacity:0.7;}
+.userinfo_head #update_headimg{ display:none;width:150px;height:30px;background:#ddd;float:left;margin-top:-30px;text-align:center;line-height:30px;filter:alpha(opacity=70);opacity:0.7;}
 
 /*绑定银行卡*/
 .bangcardtitle{ width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF852F;}
@@ -1337,17 +1337,17 @@ h2,h3{font-size:14px}
 .bondinfo_middle_bottom .bondinfotd{ font-weight:bold;width:230px;font-size:18px;}
 .bond_middle_middle{ width:100%;height:120px;margin-top:10px;}
 .bond_middle_middle span{ font-size:16px;color:#708090;margin-left:5px;}
-.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;background-color:#F9F9F9;height:380px;margin-top:5px;}
+.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;background-color:#F9F9F9;height:380px;margin-top:5px;border:1px solid #ddd;}
 .bondinfo_leftdiv{ width:80%;height:auto;float:left;margin-left:50px;}
 .bondinfo_left_top{ line-height:40px;margin-top:30px;}
 .bondinfo_left_top span{ font-size:18px;}
 .bondinfo_left .bond_left_topsize{ font-size:24px;color:#FF500B;}
 .bondinfo_recharge{ font-size:14px;float:right;margin-right:60px;text-align:center;color:#fff;font-weight:bold;}
-.bondinfo_left_middle{ width:80%;height:35px;margin-top:20px;background-color:#fff;float:left;}
+.bondinfo_left_middle{ width:80%;height:35px;margin-top:20px;background-color:#fff;float:left;border:1px solid #ddd;}
 .bondinfo_left_middle em{ float:right;margin-right:5px;font-size:16px;color:#c0c0c0;}
 .recharge_input{ width:95%;height:30px;border-style:none;font-size:14px;outline:none;}
 .bondinfo_num{ height:100px;margin-top:70px;line-height:25px;}
-.bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #fff;float:left;cursor:pointer;background-color:#fff;}
+.bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #fff;float:left;cursor:pointer;background-color:#fff;border:1px solid #ddd;}
 .bondinfo_first{ margin-left:15px;float:left;}
 .showhidnum{ display:none;}
 .bondinfo_tz_bnt{ border:0px;letter-spacing:2px;float:left;width:260px;height:40px;background-color:#FF500B;text-align:center;line-height:40px;margin-top:20px;color:#fff;font-weight:bold;font-size:16px;cursor:pointer;}
@@ -2880,8 +2880,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .JD_userMain #myjd .myjdshowdiv{ width:25px;height:30px;line-height:30px;float:left;}
 .JD_userMain #myjd .myjdshowleft{ width:5px;height:30px;background:#FE8A00;float:left;}
 .JD_userMain #myjd dl .item a:hover{ color:#ff500b; text-decoration:underline;}
-.JD_userMain #myjd dl dd .curr{ color:#ff500b;background:#EDEBEC;}
-.JD_userMain .right{ width:880px; margin-top:56px;}
+.JD_userMain #myjd dl dd .curr{ color:#ff500b;border:1px solid #DEDEDE;}
+.JD_userMain .right{ width:880px; margin-top:10px;}
 .JD_userMain .boxCenterList{ padding:10px 20px 20px; background:#fff; margin-bottom:10px;}
 .JD_userMain .boxCenterList .mc{ padding:10px 0; display:block; border:0; height:auto; line-height:normal; margin:0;}
 .JD_userMain .boxCenterList .mc span{ font-size: 12px; color: #666; font-family: '\5b8b\4f53'; line-height: 18px; padding:0; background:none;}

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<!-- {if $cat_style} -->
+<link href="{$cat_style}" rel="stylesheet" type="text/css" />
+<!-- {/if} -->
+{* 包含脚本文件 *}
+{insert_scripts files='transport_jquery.js,utils.js,transport.js'}
+<style>
+.quesanswer{ width:99%;height:auto;border:1px solid #ddd;}
+.quesanswerdiv{ 100%;height:auto;margin-bottom:50px;}
+.quesanswerdiv ul{ list-style:none;}
+.quesanswerdiv ul .quesborder{ height:25px;border-bottom:1px dashed #FF852F;margin-top:20px;}
+.quesborder_none{ border-bottom:0px;margin-top:10px;}
+.quesanswerdiv ul span{ color:red;font-size:20px;}
+.quesanswerdiv ul em{ font-weight:bold;letter-spacing:2px;}
+.clickpointer{ width:260px;height:40px;line-height:35px;background:#FF852F;color:#fff;font-weight:bold;font-size:16px;cursor:pointer;}
+.quesanswer #pageupper{ display:none;}
+.quesanswer #quesdiv_sub{ width:100%;text-align:center;margin-top:20px;display:none;}
+</style>
+</head>
+<body>
+<div class="w">
+	<div class="quesanswer">
+		<h1>联众金融平台试运营调查问卷</h1>
+		<div class="quesanswerdiv">
+		<form action='' method='post'>
+			<ul>
+				<div id="pagedown">
+				<li class="quesborder_none"><span>*</span><em>Q1.您的性别是？</em></li>
+				<li class="quesborder">
+					<input type='radio' name='sex' value='1'>男
+					<input type='radio' name='sex' value='2'>女
+				</li>
+				<li class="quesborder_none"><span>*</span><em>Q2.您的职业？</li>
+				<li class="quesborder">
+					<input type='radio' name='work' value='1'>事业单位
+					<input type='radio' name='work' value='2'>企业
+					<input type='radio' name='work' value='3'>学生
+					<input type='radio' name='work' value='4'>自由职业
+				</li>
+				<li class="quesborder_none"><span>*</span><em>Q3.页面跳转是否流畅？</li>
+				<li class="quesborder">
+					<input type='radio' name='skip' value='1'>比较流畅
+					<input type='radio' name='skip' value='2'>很不流畅
+					<input type='radio' name='skip' value='3'>一般
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q4.会员注册登录是否流畅？</li>
+				<li class="quesborder">
+					<input type='radio' name='login' value='1'>比较顺畅
+					<input type='radio' name='login' value='2'>登录过程太繁琐
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q5.支付方式是否顺畅？</li>
+				<li class="quesborder">
+					<input type='radio' name='paystyle' value='1'>比较顺畅
+					<input type='radio' name='paystyle' value='2'>支付方式太少，很不方便
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q6.整体风格？</li>
+				<li class="quesborder">
+					<input type='radio' name='overstyle' value='1'>明快活泼
+					<input type='radio' name='overstyle' value='2'>商务风格
+					<input type='radio' name='overstyle' value='3'>风格混乱，难以形容
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q7.图标是否美观易懂？</li>
+				<li class="quesborder">
+					<input type='radio' name='icon' value='1'>图标很容易识别
+					<input type='radio' name='icon' value='2'>完全看不懂
+					<input type='radio' name='icon' value='3'>有些需要分析才能明白
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q8.页面布局是否合理？</li>
+				<li class="quesborder">
+					<input type='radio' name='layout' value='1'>很合理
+					<input type='radio' name='layout' value='2'>页面看上去有点乱
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q9.广告位设置是否得当？</li>
+				<li class="quesborder">
+					<input type='radio' name='ads' value='1'>比较醒目
+					<input type='radio' name='ads' value='2'>广告位影响了页面的正常使用
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q10.按钮点击是否方便？</li>
+				<li class="quesborder">
+					<input type='radio' name='handy' value='1'>方便，简洁明了
+					<input type='radio' name='handy' value='2'>不方便，查找起来很麻烦
+				</li>
+				
+				<li class="quesborder_none"><span>*</span><em>Q11.产品分类是否得当？</li>
+				<li class="quesborder">
+					<input type='radio' name='category' value='1'>分类清楚，我很喜欢
+					<input type='radio' name='category' value='2'>分类不太清楚，但是仔细找找还可以找到
+					<input type='radio' name='category' value='3'>分类不得当，我找不到自己需要的产品
+				</li>
+				<li class="quesborder_none"><span>*</span><em>Q12.产品是否能满足您的需求？</li>
+				<li class="quesborder_none">
+					<input type='radio' name='demand' value='1'>可以满足
+					<input type='radio' name='demand' value='2'>还可以，能找到类似的产品
+					<input type='radio' name='demand' value='3'>我想要的产品在平台上找不到
+				</li>
+				<div style="width:100%;height:100px;text-align:center;margin-top:40px;">
+					<div onclick="turnoverpage()" class="clickpointer" >下一步</div>
+				</div>
+				</div>
+				<div id="pageupper">
+				<li class="quesborder_none"><span>*</span><em>Q13.促销活动是否具有吸引力？</li>
+				<li class="quesborder">
+					<input type='radio' name='appeal' value='1'>活动力度很大，我很满意
+					<input type='radio' name='appeal' value='2'>活动力度一般
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q14.各操作提示是否清楚？</li>
+				<li class="quesborder">
+					<input type='radio' name='operation' value='1'>清楚
+					<input type='radio' name='operation' value='2'>不太清楚
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q15.在线客服是否迅速专业？</li>
+				<li class="quesborder">
+					<input type='radio' name='custom' value='1'>专业但不迅速
+					<input type='radio' name='custom' value='2'>迅速但不专业
+					<input type='radio' name='custom' value='3'>专业又迅速
+					<input type='radio' name='custom' value='4'>既不专业又不迅速
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q16.各类资讯是否实用丰富？</li>
+				<li class="quesborder">
+					<input type='radio' name='advice' value='1'>比较实用
+					<input type='radio' name='advice' value='2'>这些资讯对我没有帮助
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q17.资讯信息更新是否及时？</li>
+				<li class="quesborder">
+					<input type='radio' name='adup' value='1'>更新的比较及时
+					<input type='radio' name='adup' value='2'>更新的太慢了，资讯失去了时效性
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q18.验证短信邮件是否便捷迅速？</li>
+				<li class="quesborder">
+					<input type='radio' name='smsset' value='1'>速度很快，很方便
+					<input type='radio' name='smsset' value='2'>有点慢，速度有待提高
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q19.常见问题解答是否通俗易懂？</li>
+				<li class="quesborder">
+					<input type='radio' name='daveques' value='1'>比较清楚，我能看明白
+					<input type='radio' name='daveques' value='2'>不够通俗易懂
+				</li>
+					
+				<li class="quesborder_none"><span>*</span><em>Q20.您对我们网站的整体印象？</li>
+				<li>
+					<textarea cols='150' rows="10" name="overimpression"></textarea>
+				</li>
+				</div>
+			</ul>
+			<div id="quesdiv_sub">
+				<input type="hidden" name='act' value='sub_quesion'>
+				<input class='bangcardsub' type='submit' name='submit' value='提交'>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>
+<script>
+	function turnoverpage(){
+		document.getElementById("pagedown").style.display = "none";
+		document.getElementById("pageupper").style.display = "block";
+		document.getElementById("quesdiv_sub").style.display = "block";
+	}
+</script>

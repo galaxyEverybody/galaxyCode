@@ -622,7 +622,7 @@ function get_user_default($user_id)
     $user_bonus = get_user_bonus();
     $paystatus = PS_PAYED ;
 
-    $sql = "SELECT pay_points, user_money, credit_line, last_login, is_validated, phonestatus, emailstatus, idcardstatus, bangcardstatus FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id = '$user_id'";
+    $sql = "SELECT pay_points, user_money, head_img, credit_line, last_login, is_validated, phonestatus, emailstatus, idcardstatus, bangcardstatus FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id = '$user_id'";
     $row = $GLOBALS['db']->getRow($sql);
     $info = array();
     $info['username']  = stripslashes($_SESSION['user_name']);
@@ -632,6 +632,7 @@ function get_user_default($user_id)
     $info['emailstatus'] = $row['emailstatus'];
     $info['idcardstatus'] = $row['idcardstatus'];
     $info['bangcardstatus'] = $row['bangcardstatus'];
+    $info['user_head_img'] = empty($row['head_img'])?'0':$row['head_img'];
     
     /* 增加是否开启会员邮件验证开关 */
     $info['is_validate'] = ($GLOBALS['_CFG']['member_email_validate'] && !$row['is_validated'])?0:1;
@@ -675,7 +676,6 @@ function get_user_default($user_id)
     $info['shipped_order'] = $GLOBALS['db']->getAll($sql);
     
     
-
     return $info;
 }
 

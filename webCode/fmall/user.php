@@ -942,12 +942,13 @@ elseif ($action == 'profile')
     include_once(ROOT_PATH . 'includes/lib_transaction.php');
 
     $user_info = get_profile($user_id);
-	
+
 	$user_info['phone'] = str_replace(substr($user_info['mobile_phone'],3,5),'*****',$user_info['mobile_phone']);
 	$user_info['truename'] = $user_info['realname'] == '0'?0:substr($user_info['realname'],0,3).'****';
 	$user_info['idcard'] = $user_info['idcard'] == '0'?0:str_replace(substr($user_info['idcard'],4,strlen($user_info['idcard'])-8),'**********',$user_info['idcard']);
 	$user_info['card'] = $user_info['card'] == 0?0:substr($user_info['card'],0,4).'**********'.substr($user_info['card'],-4);
-
+	$user_info['user_head_img'] = isset($user_info['user_head_img'])?$user_info['user_head_img']:0;
+	
 	/* 取出注册扩展字段 */
     /*$sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
     $extend_info_list = $db->getAll($sql);
@@ -980,7 +981,7 @@ elseif ($action == 'profile')
 
     /* 密码提示问题 */
     //$smarty->assign('passwd_questions', $_LANG['passwd_questions']);
-
+	
     $smarty->assign('profile', $user_info);
     $smarty->display('user_transaction.dwt');
 }
@@ -1003,12 +1004,14 @@ elseif ($action == 'user_head_img'){
 	 }
 	 /* 创建当月目录 */
 	 $dir = date('Ym');
-	 $path = ROOT_PATH.'images/'.$dir.'/head_img';
+	 $path = './images/'.$dir.'/head_img';
 	 if(!file_exists($path)){
 	 	make_dir($path);
 	 }
 	 /* 确定文件名*/
 	$img_name = $path.'/'.gmtime().$name;
+	
+	delete_head_img($user_id);	//删除原有的头像
 	
 	 if(move_uploaded_file($_FILES['filename']['tmp_name'],$img_name)){
 	 	//对用户信息进行更改

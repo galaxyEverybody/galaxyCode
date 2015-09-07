@@ -108,6 +108,27 @@ function edit_profile($profile)
  		return true;
  	}
  }
+ 
+ /**
+  * 删除原有头像图片
+  *
+  * @access  public
+  * @param   int       $user_id        用户user_id
+  * @return bool
+  */
+ function delete_head_img($user_id){
+ 	$sql = 'SELECT head_img FROM '.$GLOBALS['ecs']->table('users').' where user_id='.$user_id;
+ 	$img = $GLOBALS['db']->getRow($sql);
+ 	$headimg = $img['head_img'];
+ 	$headimg = substr($headimg,2);
+ 	
+ 	$path = ROOT_PATH.$headimg;
+ 	
+ 	if(file_exists($path)){
+ 		unlink($path);
+ 	}
+ 	
+ }
 
 /**
  * 获取用户帐号信息
@@ -125,7 +146,7 @@ function get_profile($user_id)
     /* 会员帐号信息 */
     $info  = array();
     $infos = array();
-    $sql  = "SELECT user_name, birthday, sex, question, answer, rank_points, pay_points,user_money, user_rank,".
+    $sql  = "SELECT user_name, birthday, sex, question, answer, head_img, rank_points, pay_points,user_money, user_rank,".
              " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer, realname ,idcard ".
            "FROM " .$GLOBALS['ecs']->table('users') . " WHERE user_id = '$user_id'";
     $infos = $GLOBALS['db']->getRow($sql);
@@ -206,6 +227,7 @@ function get_profile($user_id)
     $info['mobile_phone'] = $infos['mobile_phone'];
     $info['realname'] = $infos['realname'];
     $info['idcard'] = $infos['idcard'];
+    $info['user_head_img'] = $infos['head_img'];
     $info['card'] = $card['cardnum'];
 
     return $info;
