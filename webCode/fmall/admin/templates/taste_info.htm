@@ -1,0 +1,165 @@
+<!-- $Id: order_info.htm 17060 2010-03-25 03:44:42Z liuhui $ -->
+
+{include file="pageheader.htm"}
+{insert_scripts files="topbar.js,../js/utils.js,listtable.js,selectzone.js,../js/common.js"}
+<style>
+.activity_info{ width:100%;height:300px;}
+.activity_info tr{ height:35px;}
+.activity_info input{ margin-left:20px;}
+</style>
+<div>
+	{foreach from=$tasteinfo as item=list}
+  <table width="100%" border="1" class="activity_info">
+    <caption><strong> {$lang.buyer_info} </strong></caption>
+    <tr>
+      <td> {$lang.user_sex} </td>
+      <td>
+      	<input type='radio' {if $list.sex eq 1}checked="checked"{/if}>男
+      	<input type='radio' {if $list.sex eq 2}checked="checked"{/if}>女
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_work} </td>
+      <td>
+      	<input type='radio' {if $list.work eq 1}checked="checked"{/if}>事业单位
+      	<input type='radio' {if $list.work eq 2}checked="checked"{/if}>企业
+      	<input type='radio' {if $list.work eq 3}checked="checked"{/if}>学生
+      	<input type='radio' {if $list.work eq 4}checked="checked"{/if}>自由职业
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_adss} </td>
+      <td>
+		<input type='radio' {if $list.adss eq 1}checked="checked"{/if}>比较醒目
+      	<input type='radio' {if $list.adss eq 2}checked="checked"{/if}>广告位影响了页面的正常使用
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_skip} </td>
+      <td>
+      	<input type='radio' {if $list.skip eq 1}checked="checked"{/if}>比较流畅
+      	<input type='radio' {if $list.skip eq 2}checked="checked"{/if}>很不流畅
+      	<input type='radio' {if $list.skip eq 3}checked="checked"{/if}>一般
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_login} </td>
+      <td>
+      	<input type='radio' {if $list.login eq 1}checked="checked"{/if}>比较顺畅
+      	<input type='radio' {if $list.login eq 2}checked="checked"{/if}>登录过程太繁琐
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_pay} </td>
+      <td>
+      	<input type='radio' {if $list.paystyle eq 1}checked="checked"{/if}>比较顺畅
+      	<input type='radio' {if $list.paystyle eq 2}checked="checked"{/if}>支付方式太少，很不方便
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_over} </td>
+      <td>
+      	<input type='radio' {if $list.overstyle eq 1}checked="checked"{/if}>明快活泼
+      	<input type='radio' {if $list.overstyle eq 2}checked="checked"{/if}>商务风格
+      	<input type='radio' {if $list.overstyle eq 3}checked="checked"{/if}>风格混乱，难以形容
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_icon} </td>
+      <td>
+      	<input type='radio' {if $list.icon eq 1}checked="checked"{/if}>图标很容易识别
+      	<input type='radio' {if $list.icon eq 2}checked="checked"{/if}>完全看不懂
+      	<input type='radio' {if $list.icon eq 3}checked="checked"{/if}>有些需要分析才能明白
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_layout} </td>
+      <td>
+      	<input type='radio' {if $list.lay_out eq 1}checked="checked"{/if}>很合理
+      	<input type='radio' {if $list.lay_out eq 2}checked="checked"{/if}>页面看上去有点乱
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_handy} </td>
+      <td>
+      	<input type='radio' {if $list.handy eq 1}checked="checked"{/if}>方便，简洁明了
+      	<input type='radio' {if $list.handy eq 2}checked="checked"{/if}>不方便，查找起来很麻烦
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_category} </td>
+      <td>
+      	<input type='radio' {if $list.category eq 1}checked="checked"{/if}>分类清楚，我很喜欢
+      	<input type='radio' {if $list.category eq 2}checked="checked"{/if}>分类不太清楚，但是仔细找找还可以找到
+      	<input type='radio' {if $list.category eq 3}checked="checked"{/if}>分类不得当，我找不到自己需要的产品
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_demand} </td>
+      <td>
+      	<input type='radio' {if $list.demand eq 1}checked="checked"{/if}>可以满足
+      	<input type='radio' {if $list.demand eq 2}checked="checked"{/if}>还可以，能找到类似的产品
+      	<input type='radio' {if $list.demand eq 3}checked="checked"{/if}>我想要的产品在平台上找不到
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_appeal} </td>
+      <td>
+      	<input type='radio' {if $list.appeal eq 1}checked="checked"{/if}>活动力度很大，我很满意
+      	<input type='radio' {if $list.appeal eq 2}checked="checked"{/if}>活动力度一般
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_operation} </td>
+      <td>
+      	<input type='radio' {if $list.operation eq 1}checked="checked"{/if}>清楚
+      	<input type='radio' {if $list.operation eq 2}checked="checked"{/if}>不太清楚
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_custom} </td>
+      <td>
+      	<input type='radio' {if $list.custom eq 1}checked="checked"{/if}>专业但不迅速
+      	<input type='radio' {if $list.custom eq 2}checked="checked"{/if}>迅速但不专业
+      	<input type='radio' {if $list.custom eq 1}checked="checked"{/if}>专业又迅速
+      	<input type='radio' {if $list.custom eq 2}checked="checked"{/if}>既不专业又不迅速
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_advice} </td>
+      <td>
+      	<input type='radio' {if $list.advice eq 1}checked="checked"{/if}>比较实用
+      	<input type='radio' {if $list.advice eq 2}checked="checked"{/if}>这些资讯对我没有帮助
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_adup} </td>
+      <td>
+      	<input type='radio' {if $list.adup eq 1}checked="checked"{/if}>更新的比较及时
+      	<input type='radio' {if $list.adup eq 2}checked="checked"{/if}>更新的太慢了，资讯失去了时效性
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_smsset} </td>
+      <td>
+      	<input type='radio' {if $list.smsset eq 1}checked="checked"{/if}>速度很快，很方便
+      	<input type='radio' {if $list.smsset eq 2}checked="checked"{/if}>有点慢，速度有待提高
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_daveques} </td>
+      <td>
+      	<input type='radio' {if $list.daveques eq 1}checked="checked"{/if}>比较清楚，我能看明白
+      	<input type='radio' {if $list.daveques eq 2}checked="checked"{/if}>不够通俗易懂
+      </td>
+    </tr>
+    <tr>
+      <td> {$lang.user_pression} </td>
+      <td>
+      	<div>{$list.overimpression}</div>
+      </td>
+    </tr>
+  </table>
+	{/foreach}
+</div>
+{include file="pagefooter.htm"}

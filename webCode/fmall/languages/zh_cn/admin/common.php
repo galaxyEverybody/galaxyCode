@@ -225,10 +225,13 @@ $_LANG['report_order'] = '订单统计';
 $_LANG['report_sell'] = '销售概况';
 $_LANG['sell_stats'] = '销售排行';
 $_LANG['sale_list'] = '销售明细';
+$_LANG['taste_list'] = '体验金活动反馈表';
+$_LANG['taste_info'] = '体验金活动明细';
 $_LANG['report_guest'] = '客户统计';
 $_LANG['report_users'] = '会员排行';
 $_LANG['visit_buy_per'] = '访问购买率';
 $_LANG['z_clicks_stats'] = '站外投放JS';
+$_LANG['tastemoney'] = '体验金活动';
 
 /* 文章管理 */
 $_LANG['02_articlecat_list'] = '文章分类';

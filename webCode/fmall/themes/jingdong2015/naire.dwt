@@ -20,7 +20,7 @@
 {insert_scripts files='transport_jquery.js,utils.js,transport.js'}
 <style>
 .quesanswer{ width:99%;height:auto;border:1px solid #ddd;}
-.quesanswerdiv{ 100%;height:auto;margin-bottom:50px;}
+.quesanswerdiv{ 100%;height:auto;}
 .quesanswerdiv ul{ list-style:none;}
 .quesanswerdiv ul .quesborder{ height:25px;border-bottom:1px dashed #FF852F;margin-top:20px;}
 .quesborder_none{ border-bottom:0px;margin-top:10px;}

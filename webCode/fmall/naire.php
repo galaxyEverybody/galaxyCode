@@ -13,6 +13,12 @@ $act = !empty($_REQUEST['act']) ? $_REQUEST['act'] : 'default';
 $smarty->assign('helps',           get_shop_help());       // 网店帮助
 $smarty->assign('navigator_list',        get_navigator($ctype, $catlist));  //自定义导航栏
 
+/* 载入系统参数 */
+$_CFG = load_config();
+$qq = explode(',',$_CFG['qq']);
+$smarty->assign('qq',$qq);
+$smarty->assign('icp_number',$_CFG['icp_number']);
+
 if($act == 'default'){
 	$smarty->display('naire.dwt');
 }

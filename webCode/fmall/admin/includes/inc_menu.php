@@ -75,6 +75,7 @@ $modules['06_stats']['sale_list']                   = 'sale_list.php?act=list';
 $modules['06_stats']['sell_stats']                  = 'sale_order.php?act=goods_num';
 $modules['06_stats']['report_users']                = 'users_order.php?act=order_num';
 $modules['06_stats']['visit_buy_per']               = 'visit_sold.php?act=list';
+$modules['06_stats']['taste_list']               	= 'tastemoney.php?act=list';
 
 $modules['07_content']['03_article_list']           = 'article.php?act=list';
 $modules['07_content']['02_articlecat_list']        = 'articlecat.php?act=list';

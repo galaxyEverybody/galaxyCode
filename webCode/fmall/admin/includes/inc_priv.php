@@ -118,6 +118,7 @@ if (!defined('IN_ECS'))
     $purview['report_sell']          = 'sale_order_stats';
     $purview['sale_list']            = 'sale_order_stats';
     $purview['sell_stats']           = 'sale_order_stats';
+    $purview['taste_list']           = 'activity_stats';
 
 
 //模板管理

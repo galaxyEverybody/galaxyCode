@@ -1,3 +1,5 @@
 增加字段:realname(varchar 64)=>真实姓名
 
 增加字段:idcard(varchar 32)=>身份证号
+
+增加字段:head_img(varchar 124)=>头像的存储的路径

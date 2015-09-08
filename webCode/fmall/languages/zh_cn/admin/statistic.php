@@ -145,4 +145,34 @@ $_LANG['keywords'] = '关键字';
 $_LANG['date'] = '日期';
 $_LANG['hits'] = '搜索次数';
 
+/* 体验金活动*/
+$_LANG['user_name'] = '会员昵称';
+$_LANG['user_phone'] = '会员电话';
+$_LANG['user_realname'] = '真实姓名';
+$_LANG['sub_time'] = '提交时间';
+$_LANG['down_taste'] = '下载活动明细';
+
+/* 体验金详情*/
+$_LANG['user_sex'] = '性别?';
+$_LANG['user_work'] = '职业?';
+$_LANG['user_adss'] = '广告位的合理性?';
+$_LANG['user_skip'] = '页面跳转是否流畅?';
+$_LANG['user_login'] = '注册登录是否流畅?';
+$_LANG['user_pay'] = '支付顺畅?';
+$_LANG['user_over'] = '整体风格?';
+$_LANG['user_icon'] = '图标是否美观易懂?';
+$_LANG['user_layout'] = '页面布局是否合理?';
+$_LANG['user_handy'] = '按钮点击是否方便?';
+$_LANG['user_category'] = '产品分类是否得当?';
+$_LANG['user_demand'] = '产品是否能满足您的需求?';
+$_LANG['user_appeal'] = '促销活动是否具有吸引力?';
+$_LANG['user_operation'] = '操作提示是否清楚?';
+$_LANG['user_custom'] = '客服是否迅速专业?';
+$_LANG['user_advice'] = '咨询是否实用丰富?';
+$_LANG['user_adup'] = '咨询信息更新是否及时?';
+$_LANG['user_smsset'] = '短信邮件是否便捷迅速?';
+$_LANG['user_daveques'] = '常见问题解答是否通俗易懂?';
+$_LANG['user_pression'] = '整体印象?';
+
+
 ?>
