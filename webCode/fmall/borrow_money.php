@@ -74,15 +74,69 @@ elseif ($action == 'insert_borrow_money')
 		show_message($_LANG['borrow_success'],$_LANG['back_up_page'],'index.php');
 	}
 }
-/* 基本信息的提交*/
+
+/* 基本信息的提交页面*/
 elseif ($action == 'userinformation'){
 	
+	/* 取得国家的省列表 */
+	$province_list[$region_id] = get_regions(1, 1);
+	$smarty->assign('province_list',    $province_list);
+	$smarty->assign('act',	$action);
+	
+	$smarty->display('borrow_money.dwt');
+}
+
+/* 车辆信息提交的页面*/
+elseif ($action == 'carinfo'){
+	
+	$carinformation = array('一手车','二手车');			//车辆信息
+	$cartype = array('7座以下','9座以下','非以上两种情况');	//车辆类型
+	$carnature = array('营运','非营运');				//使用性质
+	$carhold = array('被抵押','没有抵押');				//车辆抵押
+	$carhistory = array('使用信用卡','曾经带过款(非民间)','上两者均有','上两者均没有');	//信用历史
+	$cartime = array('3个月以上','3-6个月','6个月以上');	//过户时间
+	/* 取得国家的省列表 */
+	$province_list[$region_id] = get_regions(1, 1);
+	$smarty->assign('province_list',    $province_list);
+	
+	$smarty->assign('carinformation',	$carinformation);
+	$smarty->assign('cartype',	$cartype);
+	$smarty->assign('carnature',	$carnature);
+	$smarty->assign('carhold',	$carhold);
+	$smarty->assign('carhistory',	$carhistory);
+	$smarty->assign('cartime',	$cartime);
+	
+	$smarty->assign('act',	$action);
+	$smarty->display('borrow_money.dwt');
+}
+
+/* 房产信息提交的页面*/
+elseif ($action == 'houseinfo'){
+	
+	$righttye = array('商品房','经济适用房','其它');			//产权类型
+	$decideloan = array('正在还房贷','房贷已还清','没有房贷');	//是否有房贷
+	$loanqi = array('3个月以上','3-6个月','6个月以上');		//已还款期数
+	/* 取得国家的省列表 */
+	$province_list[$region_id] = get_regions(1, 1);
+	$smarty->assign('province_list',    $province_list);
+	
+	$smarty->assign('righttye',	$righttye);
+	$smarty->assign('decideloan',	$decideloan);
+	$smarty->assign('loanqi',	$loanqi);
+	
+	$smarty->display('borrow_money.dwt');
+}
+
+/* 纯信用信息提交的页面*/
+elseif ($action == 'creditinfo'){
 	/* 取得国家的省列表 */
 	$province_list[$region_id] = get_regions(1, 1);
 	$smarty->assign('province_list',    $province_list);
 	
 	$smarty->display('borrow_money.dwt');
 }
+
+
 
 
 

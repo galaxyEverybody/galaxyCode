@@ -330,17 +330,6 @@ h6 span{float:left;padding-left:15px}
 .registerdiv{ height:35px;line-height:35px;text-align:right;margin-right:5px;}
 
 /* ====================
-  借款信息
-==================== */
-.user_borrowinfo{ width:100%;height:auto;font-size:16px;}
-.borrowinfo_top{ width:60%;float:left;border-left:2px solid #FF852F;}
-.borrowtd{ width:50px;align:left;height:40px;}
-.borrowtdinfo{ width:70px;align:left;height:40px;}
-.borrowinput{ width:260px;height:35px;border-radius:5px;outline:none;border:1px solid #ddd;}
-.borrowinputnum{ width:235px;height:35px;border-radius:5px;border:0px;outline:none;}
-.borrow_sub{ width:260px;height:40px;border-radius:5px;outline:none;background-color:#FF852F;font-size:14px;font-weight:bold;color:#fff;border:0px;cursor:pointer;}
-.borrow-banner{ width:400px;height:300px;float:right;margin-right:20px;margin-top:50px;}
-/* ====================
      购物流程
 ==================== */
 .flowBox table{margin:5px auto}
@@ -3313,3 +3302,51 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .boxCenterList ul.CenterList li{ float:none; line-height:22px; width:auto;}
 .boxCenterList ul.CenterList li b{ margin-right:4px;}
 .articleCon .fanYe .fr{ float:left;}
+
+/* 借款页面*/
+.borrow_titleinfo{ width:100%;height:30px;margin-top:10px;}
+.borrow-m{ width:1100px;height:auto;border:1px solid #F5F5F5;background:#fff;}
+.title_car_first{ width:20px;height:20px;border-radius:10px;background:#FF852F;float:left;margin-left:100px;}
+.title_car_default{ width:200px;height:2px;background:#ddd;float:left;margin-top:10px;margin-left:10px;}
+.title_car_div{ width:10px;height:10px;border-radius:5px;background:#ddd;float:left;margin-left:10px;margin-top:5px;}
+.title_car_info{ width:200px;height:2px;background:#FF852F;float:left;margin-top:10px;margin-left:10px;}
+.title_info_div{ width:20px;height:20px;border-radius:10px;background:#FF852F;float:left;margin-left:10px;}
+.borrow_string{ width:100%;height:20px;}
+.borrow_mar_first{ margin-left:80px;}
+.borrow_mar_second{ margin-left:150px;}
+.borrow_mar_three{ margin-left:180px;}
+.borrow_mar_four{ margin-left:190px;}
+.loan_des_info{ width:960px;height:auto;border:1px solid #ddd;margin-left:80px;}
+.loan_des_info tr{ height:50px;}
+.borrow_category{ width:100%;height:160px;margin-top:20px;}
+.borrow_category #category_car{ width:300px;height:150px;line-height:150px;border:1px solid #ddd;float:left;margin-left:80px;text-align:center;color:#1BB8E2;border-radius:5px;"><em style="font-size:28px;font-weight:blod;cursor:pointer;}
+.borrow_category #category_house{ width:300px;height:150px;line-height:150px;border:1px solid #ddd;float:left;margin-left:30px;text-align:center;color:#5CAD22;border-radius:5px;"><em style="font-size:28px;font-weight:blod;cursor:pointer;}
+.borrow_category #category_credit{ width:300px;height:150px;line-height:150px;border:1px solid #ddd;float:left;margin-left:30px;text-align:center;color:#FB5A00;border-radius:5px;"><em style="font-size:28px;font-weight:blod;cursor:pointer;}
+.category_car em,.category_house em,.category_credit em{ font-size:28px;font-weight:blod;}
+#borrow_car_term{ width:100%;height:150px;text-align:center;display:none;border:1px solid #ddd;width:960px;margin-left:80px;}
+#borrow_house_term{ width:100%;height:150px;text-align:center;display:none;border:1px solid #ddd;width:960px;margin-left:80px;}
+#borrow_credit_term{ width:100%;height:150px;text-align:center;display:none;border:1px solid #ddd;width:960px;margin-left:80px;}
+.car_term_div{ width:700px;height:140px;}
+.car_term_ulfir{ line-height:25px;margin-top:10px;list-style:disc;float:left;width:300px;}
+.car_term_ulsec{ line-height:25px;margin-top:10px;list-style:disc;float:right;width:300px;margin-right:50px;}
+.car_term_div li{ float:left;}
+
+
+.borrowinfo_top{ float:left;border:1px solid #ddd;width:100%;background:#fff;}
+.borrowinfo_top #car_tranfer_time{ display:none;}
+.userinfo_title{ margin-left:100px;margin-top:20px;height:30px;line-height:30px;}
+.userinfo_title_left{ width:5px;height:30px;background:#FF852F;float:left;}
+.userinfo_title span{ font-size:20px;font-weight:bold;margin-left:10px;margin-top:20px;}
+.user_info_table{ margin-left:100px;}
+.borrowtd{ width:50px;align:left;height:40px;}
+.borrowtdinfo{ width:70px;align:left;height:35px;}
+.borrowtdinfotime{ width:70px;align:left;height:35px;display:none;}
+.borrowinput{ width:260px;height:30px;border-radius:5px;outline:none;border:1px solid #ddd;}
+.borrowinputnum{ width:235px;height:35px;border-radius:5px;border:0px;outline:none;}
+.borrowinputadd{ width:160px;height:30px;border-radius:5px;outline:none;border:1px solid #ddd;}
+.borrow_sub{ width:260px;height:40px;border-radius:5px;outline:none;background-color:#FF852F;font-size:14px;font-weight:bold;color:#fff;border:0px;cursor:pointer;}
+.borrow-banner{ width:400px;height:300px;float:right;margin-right:20px;margin-top:50px;}
+
+
+
+

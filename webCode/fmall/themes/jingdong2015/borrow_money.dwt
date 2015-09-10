@@ -17,64 +17,117 @@
 <link href="{$cat_style}" rel="stylesheet" type="text/css" />
 <!-- {/if} -->
 {* 包含脚本文件 *}
-{insert_scripts files='common.js,user.js'}
 {insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,jd_common_flow.js'}
 {insert_scripts files='transport_jquery.js,utils.js,jquery.SuperSlide.js'}
-{insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
+{insert_scripts files='utils.js,transport_jquery.js,borrow.js'}
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
 
 <div class="w main">
 	<div class="blank10"></div>
-    <div class="m">
-    	<div style="width:100%;height:30px;margin-top:10px;">
-    		<div style="width:20px;height:20px;border-radius:10px;background:#FF852F;float:left;margin-left:100px;"></div>
+    <div class="m" style="background:#F9F9F9;">
+    <div class="borrow-m">
+    	<div class="borrow_titleinfo">
+    		<div class="title_car_first"></div>
 {if $act eq 'default'}
-    		<div style="width:200px;height:2px;background:#ddd;float:left;margin-top:10px;margin-left:10px;"></div>
-    		<div style="width:10px;height:10px;border-radius:5px;background:#ddd;float:left;margin-left:10px;margin-top:5px;"></div>
-{else if $act eq 'userinformation'}
-			<div style="width:200px;height:2px;background:#FF852F;float:left;margin-top:10px;margin-left:10px;"></div>
-			<div style="width:20px;height:20px;border-radius:10px;background:#FF852F;float:left;margin-left:10px;"></div>
+    		<div class="title_car_default"></div>
+    		<div class="title_car_div"></div>
 {/if}
-    		<div style="width:200px;height:2px;background:#ddd;float:left;margin-top:10px;margin-left:10px;"></div>
-    		<div style="width:10px;height:10px;border-radius:5px;background:#ddd;float:left;margin-left:10px;margin-top:5px;"></div>
-    		<div style="width:200px;height:2px;background:#ddd;float:left;margin-top:10px;margin-left:10px;"></div>
-    		<div style="width:10px;height:10px;border-radius:5px;background:#ddd;float:left;margin-left:10px;margin-top:5px;"></div>
-    		<div style="width:200px;height:2px;background:#ddd;float:left;margin-top:10px;margin-left:10px;"></div>
-    		<div style="width:10px;height:10px;border-radius:5px;background:#ddd;float:left;margin-left:10px;margin-top:5px;"></div>
+{if $act eq 'userinformation' || $act eq 'carinfo' || $act eq 'houseinfo' || $act eq 'creditinfo'}
+			<div class="title_car_info"></div>
+			<div class="title_info_div"></div>
+{/if}
+    		<div class="title_car_default"></div>
+    		<div class="title_car_div"></div>
+    		<div class="title_car_default"></div>
+    		<div class="title_car_div"></div>
+    		<div class="title_car_default"></div>
+    		<div class="title_car_div"></div>
     	</div>
-    	<div style="width:100%;height:20px;border:1px solid red;">
-    		<span style="margin-left:80px;">进入需求分类</span><span style="margin-left:150px;">填写借款信息</span>
-    		<span style="margin-left:180px;">审核</span><span style="margin-left:190px;">筹集借款</span>
-    		<span style="margin-left:190px;">获得借款</span>
+    	<div class="borrow_string">
+    		<span class="borrow_mar_first">进入需求分类</span><span class="borrow_mar_second">填写借款信息</span>
+    		<span class="borrow_mar_three">审核</span><span class="borrow_mar_four">筹集借款</span>
+    		<span class="borrow_mar_four">获得借款</span>
     	</div>
 {if $act eq 'default'}
-    	<div style="width:100%;height:160px;border:1px solid blue;margin-top:20px;">
-    		<div style="width:300px;height:150px;line-height:150px;border:1px solid #ddd;float:left;margin-left:80px;text-align:center;color:#1BB8E2;border-radius:5px;"><em style="font-size:28px;font-weight:blod;">车贷</em><span>(适用在北京工作有车)</span></div>
-    		<div style="width:300px;height:150px;line-height:150px;border:1px solid #ddd;float:left;margin-left:30px;text-align:center;color:#5CAD22;border-radius:5px;"><em style="font-size:28px;font-weight:blod;">房贷</em><span>(适用在北京工作有房)</span></div>
-    		<div style="width:300px;height:150px;line-height:150px;border:1px solid #ddd;float:left;margin-left:30px;text-align:center;color:#FB5A00;border-radius:5px;"><em style="font-size:28px;font-weight:blod;">信用贷</em><span>(适用工薪阶层)</span></div>
+    	<div class="borrow_category">
+    		<div id="category_car" onclick="carshowhidcon();"><em>车贷</em><span>(适用在北京工作有车)</span></div>
+    		<div id="category_house" onclick="houseshowhidcon();"><em>房贷</em><span>(适用在北京工作有房)</span></div>
+    		<div id="category_credit" onclick="creditshowhidcon();"><em>信用贷</em><span>(适用工薪阶层)</span></div>
     	</div>
-    	<div style='width:100%;height:150px;border:1px solid red;text-align:center;'>
-    		<div style="width:900px;height:140px;border:1px solid blue;">
+    	<div id="borrow_car_term">
+    		<div class="car_term_div">
     			<p style='margin-top:10px;'>申请条件</p>
-    			<ul style="line-height:25px;margin-top:10px;">
-    				<li>年龄:22-65周岁的中国公民</li>
-    				<li>年龄:22-65周岁的中国公民</li>
-    				<li>年龄:22-65周岁的中国公民</li>
+    			<ul class="car_term_ulfir">
+    				<li>年龄:22-55周岁的中国公民</li>
+    				<li>拥有稳定职业，申请人拥有当地抵押车辆的所有权</li>
+    				<li>个人征信报告</li>
+    			</ul>
+    			<ul class="car_term_ulsec">
+	    			<li>机动车登记证、行驶证、购置附加税证（本）、购车发票</li>
+					<li>保险单、车税、进口车辆相关税证明</li>
+					<li>身份证（非本地户口客户提供有效期内暂住证或居住证）</li>
     			</ul>
     		</div>
     	</div>
-    	<div style="width:100%;height:500px;border:1px solid red;">
-    		
-    		<table width="100%" border="0px" style="margin-left:100px;">
-	    		<tr style="height:50px;">
-					<td class="borrowtd">借款金额</td><td><div class="borrowinput" style="float:left;height:37px;"><input class="borrowinputnum" type="text" name="borrownum" placeholder="请输入借款金额" onblur="borrowchenum(this.value)"/>元</div><span id="borrownum" style="color:red;margin-left:10px;"></span></td>
+    	<div id="borrow_house_term">
+			<div class="car_term_div">
+				<p style='margin-top:10px;'>申请条件</p>
+				<ul class="car_term_ulfir">
+					<li>年龄:22-55周岁的中国公民</li>
+					<li>《房屋所有权证》、《房屋共有权证》</li>
+					<li>《国有土地使用证》</li>
+				</ul>
+				<ul class="car_term_ulsec">
+	    			<li>授权委托书及受托人身份证明</li>
+					<li>房地产估价结果证明或双方价值认定书</li>
+					<li>婚姻有效证明并夫妻双方到场</li>
+				</ul>
+			</div>
+		</div>
+		<div id="borrow_credit_term">
+			<div class="car_term_div">
+				<p style='margin-top:10px;'>申请条件</p>
+				<ul class="car_term_ulfir">
+					<li>年龄:22-55周岁的中国公民</li>
+					<li>有效的二代身份证件，正反面复印件</li>
+					<li>工作证明(单位电话和公章)居住证明</li>
+				</ul>
+				<ul class="car_term_ulsec">
+	    			<li style="height:25px;width:100%;">收入证明(6个月工资流水)</li>
+					<li style="height:25px;width:100%;">个人征信报告（明细版）</li>
+					<li style="height:25px;width:100%;">婚姻状况资料、居住证明</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			function carshowhidcon(){
+				$("#borrow_car_term").slideDown(500);
+				$("#borrow_house_term").hide();
+				$("#borrow_credit_term").hide();
+			}
+			function houseshowhidcon(){
+				$("#borrow_house_term").slideDown(500);
+				$("#borrow_car_term").hide();
+				$("#borrow_credit_term").hide();
+			}
+			function creditshowhidcon(){
+				$("#borrow_credit_term").slideDown(500);
+				$("#borrow_car_term").hide();
+				$("#borrow_house_term").hide();
+			}
+		</script>
+    	<div class="loan_des_info">
+    		<!--<form action="borrow_money.php" method="post" onsubmit="return borrow_money()">-->
+    		<table width="100%" border="0px">
+	    		<tr>
+					<td class="borrowtd">借款金额</td><td><div class="borrowinput" style="float:left;height:37px;"><input class="borrowinputnum" type="text" name="loannum" placeholder="请输入借款金额" onblur="borrowchenum(this.value)"/>元</div><span id="borrownum" style="color:red;margin-left:10px;"></span></td>
 				</tr>
-				<tr style="height:50px;">
+				<tr>
 					<td class="borrowtd">借款期限</td>
 					<td>
-						<select class="borrowinput" name="provincename">
+						<select class="borrowinput" name="borrowloantime">
 	                    <!-- {foreach from=$loantime item=timelist} -->
 	                    <option>{$timelist}</option>
 	                    <option></option>
@@ -82,113 +135,271 @@
 	                    </select>
 					</td>
 				</tr>
-				<tr style="height:50px;">
+				<tr>
 					<td class="borrowtd">月还款额</td><td></td>
 				</tr>
-				<tr style="height:50px;">
+				<tr>
 					<td class="borrowtd">初期服务费</td><td></td>
-				<tr style="height:50px;">
+				<tr>
 					<td class="borrowtd">借款标题</td>
 					<td>
-						<input type="text" name="loantitle" class="borrowinput" placeholder="例:办公、装修">
+						<input type="text" name="loantitle" class="borrowinput" placeholder="例:办公、装修"><span id="borrowtitle" style="height:30px;line-height:30px;color:red;margin-left:10px;"></span>
 					</td>
 				</tr>
-				<tr style="height:50px;">
+				<tr>
 					<td class="borrowtd">借款描述</td>
 					<td>
-						<textarea cols="100" rows="8" placeholder="此描述用于向理财人展示您额借款用途" style="outline:none;resize:none;"></textarea>
+						<textarea cols="100" rows="8" name="loandescription" id="loantextarea" placeholder="此描述用于向理财人展示您的借款用途" style="outline:none;resize:none;"></textarea>
+						<br><span style="color:red;" id="borrowdescription"></span>
 					</td>
 				</tr>
 				<tr>
 					<td></td><td class="borrowtd"><input type="checkbox" name="loanagree" checked="checked">我已阅读并同意<a href='' style="color:blue;">《联众金融的借款协议》</a></td>
 				</tr>
-					<td class="borrowtd"></td><td><a href="borrow_money.php?act=userinformation"><input type="submit" class="borrow_sub" name="name" value="立即申请"/></a></td>
+					<td class="borrowtd"><input type="hidden" name="act" value="insert_borrow_money" /></td>
+					<td><a href="borrow_money.php?act=userinformation"><input type="submit" class="borrow_sub" name="name" value="立即申请"/></a></td>
 				</tr>
     		</table>
-    		
+    		<!--</form>-->
     	</div>
-{else if $act == 'userinformation'}
-    	<div class="user_borrowinfo">
-    		<div class="borrowinfo_top">
-    		<div style="margin-left:100px;margin-top:20px;height:30px;line-height:30px;"><div style="width:5px;height:30px;background:#FF852F;float:left;"></div><span style="font-size:20px;font-weight:bold;margin-left:10px;margin-top:20px;">基本信息</span></div>
-		    	<form action="user.php" name="formBorrow" method="post" onsubmit="return borrow_money();">
-		    	<table width="100%" cellpadding="10px" border="0px" style="margin-left:100px">
-		    		<tr>
-		    			<td class="borrowtdinfo">真实姓名</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">身份证号</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">手机号</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">性别</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">出生日期</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">最高学历</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">入学年份</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">毕业院校</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">籍贯</td>
-		    			<td>
-		    				<select class="borrowinput" name="provincename" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
-		                    <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
-		                    <!-- {foreach from=$province_list.$sn item=province} -->
-		                    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
-		                    <!-- {/foreach} -->
-		                    </select>
-		    				<select class="borrowinput" name="cityname" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
-		                    <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
-		                    <!-- {foreach from=$city_list.$sn item=city} -->
-		                    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
-		                    <!-- {/foreach} -->
-		                    </select>
-		    			</td>
-		    		</tr>
-		    		<tr>
-	    			<td class="borrowtdinfo">户口所在地</td>
+{/if}
+{if $act eq 'userinformation'}
+    	<div class="borrowinfo_top">
+    		<div class="userinfo_title"><div class="userinfo_title_left"></div><span>基本信息</span></div>
+    		<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
+	    	<!--<form action="user.php" name="formBorrow" method="post" onsubmit="return false;">-->
+	    	<table width="100%" cellpadding="7px" class="user_info_table">
+	    		<tr>
+	    			<td class="borrowtdinfo">真实姓名</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">身份证号</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">手机号</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">性别</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">出生日期</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">最高学历</td><td><input class="borrowinput" type="text" name="borrowname" placeholder="请输入真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">入学年份</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">毕业院校</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">籍贯</td>
 	    			<td>
-	    				<select class="borrowinput" name="provincename" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
+	    				<select class="borrowinputadd" name="provincename" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
 	                    <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
 	                    <!-- {foreach from=$province_list.$sn item=province} -->
 	                    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
 	                    <!-- {/foreach} -->
 	                    </select>
-	    				<select class="borrowinput" name="cityname" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
+	                    
+	    				<select class="borrowinputadd" name="cityname" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
 	                    <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
 	                    <!-- {foreach from=$city_list.$sn item=city} -->
 	                    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
 	                    <!-- {/foreach} -->
 	                    </select>
+	                    
+	                    <select class="borrowinputadd" style="display:none;" name="countyname" id="selDistricts_{$sn}">
+	                    <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+	                    <!-- {foreach from=$district_list.$sn item=district} -->
+	                    <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+	                    <!-- {/foreach} -->
+	                    </select>
 	    			</td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">居住地址</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<td class="borrowtdinfo">毕业院校</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
-		    		</tr>
-		    		<tr>
-		    			<input type="hidden" name="act" value="insert_borrow_money" />
-		    			<td class="borrowtdinfo"></td><td><input class="borrow_sub" type="submit" name="name" value="提交申请"/></td>
-		    		</tr>
-		    	</table>
-		    	</form>
-		    </div>
+	    		</tr>
+	    		<tr>
+    			<td class="borrowtdinfo">户口所在地</td>
+    			<td>
+    				<select class="borrowinputadd" name="provincename" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
+                    <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+                    <!-- {foreach from=$province_list.$sn item=province} -->
+                    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+                    <!-- {/foreach} -->
+                    </select>
+                    
+    				<select class="borrowinputadd" name="cityname" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
+                    <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+                    <!-- {foreach from=$city_list.$sn item=city} -->
+                    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+                    <!-- {/foreach} -->
+                    </select>
+                    
+                    <select class="borrowinputadd" style="display:none;" name="countyname" id="selDistricts_{$sn}">
+                    <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+                    <!-- {foreach from=$district_list.$sn item=district} -->
+                    <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+                    <!-- {/foreach} -->
+                    </select>
+    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">居住地址</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">毕业院校</td><td><input class="borrowinput" type="text" name="borrowphone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" style="color:red;margin-left:10px;"></span></td>
+	    		</tr>
+	    		<tr>
+	    			<input type="hidden" name="act" value="insert_borrow_money" />
+	    			<td class="borrowtdinfo"></td><td><a href="borrow_money.php?act=carinfo"><input class="borrow_sub" type="submit" name="name" value="下一步"/></a></td>
+	    		</tr>
+	    	</table>
+	    	<!--</form>-->
+	    	</div>
+		</div>
 {/if}
-	    	<div class="borrow-banner">{insert name='ads' id=38 num=1}</div>
-    	</div>
-    </div>
- 	
+{if $act eq 'carinfo'}
+		<div class="borrowinfo_top">
+		<div class="userinfo_title"><div class="userinfo_title_left"></div><span>车辆信息</span></div>
+		<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
+		<form action="user.php" name="formBorrow" method="post" onsubmit="return false;">
+		<table width="100%" cellpadding="7px" class="user_info_table">
+			<tr>
+				<td class="borrowtdinfo">车辆信息</td>
+				<td>
+					<select class="borrowinput" name="carinformation" id="car_info_cli">
+					{foreach from=$carinformation item=list}
+						<option>{$list}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="borrowtdinfo">车辆类型</td>
+				<td>
+					<select class="borrowinput" name="cartype">
+					{foreach from=$cartype item=list1}
+						<option>{$list1}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr id="car_tranfer_time">
+				<td class="borrowtdinfo">过户时间</td>
+				<td>
+					<select class="borrowinput" name="cartime">
+					{foreach from=$cartime item=list2}
+						<option>{$list2}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<script>
+				$("#car_info_cli").change(function(){
+					var carin = $("#car_info_cli").val();
+					if(carin == '二手车'){
+						$("#car_tranfer_time").show();
+					}
+				});
+				
+			</script>
+			<tr>
+				<td class="borrowtdinfo">使用性质</td>
+				<td>
+					<select class="borrowinput" name="carnature">
+					{foreach from=$carnature item=list3}
+						<option>{$list3}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="borrowtdinfo">车辆抵押</td>
+				<td>
+					<select class="borrowinput" name="carhold">
+					{foreach from=$carhold item=list4}
+						<option>{$list4}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="borrowtdinfo">信用历史</td>
+				<td>
+					<select class="borrowinput" name="carhistory">
+					{foreach from=$carhistory item=list5}
+						<option>{$list5}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<input type="hidden" name="act" value="insert_borrow_money" />
+				<td class="borrowtdinfo"></td><td><input class="borrow_sub" type="submit" name="name" value="进行匹配"/></td>
+			</tr>
+		</table>
+		</form>
+		</div>
+		</div>
+{/if}
+{if $act eq 'houseinfo'}
+		<div class="borrowinfo_top">
+		<div class="userinfo_title"><div class="userinfo_title_left"></div><span>房产信息</span></div>
+		<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
+		<form action="user.php" name="formBorrow" method="post" onsubmit="return false;">
+		<table width="100%" cellpadding="7px" class="user_info_table">
+			<tr>
+				<td class="borrowtdinfo">房产所在地</td>
+				<td>
+					<select class="borrowinput" name="carinformation" id="car_info_cli">
+					{foreach from=$carinformation item=list}
+						<option>{$list}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="borrowtdinfo">产权类型</td>
+				<td>
+					<select class="borrowinput" name="cartype">
+					{foreach from=$cartype item=list1}
+						<option>{$list1}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr>
+			<td class="borrowtdinfo">是否有房贷</td>
+				<td>
+					<select class="borrowinput" name="cartype">
+					{foreach from=$cartype item=list1}
+						<option>{$list1}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr id="car_tranfer_time">
+				<td class="borrowtdinfo">过户时间</td>
+				<td>
+					<select class="borrowinput" name="cartime">
+					{foreach from=$cartime item=list2}
+						<option>{$list2}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<input type="hidden" name="act" value="insert_borrow_money" />
+				<td class="borrowtdinfo"></td><td><input class="borrow_sub" type="submit" name="name" value="进行匹配"/></td>
+			</tr>
+		</table>
+		</form>
+		</div>
+		</div>
+{/if}	
+	</div>
+	</div>
 </div>
 
 <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
