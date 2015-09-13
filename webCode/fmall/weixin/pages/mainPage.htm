@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://m.wukonglicai.com/weixin/mainpage.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>聚能赚</title>
+	<link rel="stylesheet" type="text/css" href="./mainPage_files//reset.css">
+	<link rel="stylesheet" type="text/css" href="./mainPage_files//base.css">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="https://m.wukonglicai.com/css/zhezhao.css">
+	<link rel="stylesheet" href="https://m.wukonglicai.com/css/detail.css">
+	<script src="./mainPage_files//hm.js"></script><script type="text/javascript" src="./mainPage_files//zepto.min.js"></script>
+	<script type="text/javascript" src="./mainPage_files//cookie.js"></script>
+	<style>
+    body {
+        background: #f8f8f8;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+</head>
+<body>
+	<div class="box">
+		<section>
+			<!-- 头部可关闭层 -->
+							<a href="https://m.wukonglicai.com/weixin/investMillion.html">
+							<img src="./mainPage_files/investMillionBanner.png" width="100%" height="70px" alt="">
+					</a>
+			<!-- 账户切换栏 -->
+			<aside class="sec_t">
+				<div class="sec_top_left" id="tab">
+					<div id="m" class="active" style="border-left:none">
+						<p style="color:#fff">月账户</p>
+					</div>
+					<div id="q" style="border-left:1px #1acbbb solid;border-right:1px #1acbbb solid">
+						<p>季账户</p>
+					</div>
+					<div id="y">
+						<p>年账户</p>
+					</div>
+				</div>
+			</aside>
+
+			<!-- 中间 -->
+			<div id="od">
+				<!-- 月账户 -->
+				<nav id="M" style="display:block">
+					<aside class="sec_ce">
+						<p class="sec_ce_id">预期年化最高</p>
+						<img src="./mainPage_files//zhuti.png" alt="">
+						<p class="sec_ce_pc">11.0<span class="sec_ce_b">%</span></p>
+						<div class="sec_ce_pt">
+							<a href="javascript:void(0)" onclick="formDetilSubmit()">查看详情&gt;&gt;</a>
+						</div>
+					</aside>
+					
+					<aside class="sec_tx" id="newbody">
+						<div class="sec_txi">
+							<img src="./mainPage_files//icono.png" alt="">
+							<p>新手90天限时特权</p>
+							<span>+0.5%</span>
+						</div>
+					</aside>
+					
+					
+					<aside class="sec_txt">
+						<p><span>6%</span>起，逐月涨<span>0.5%</span>，最高<span>11%</span></p>
+					</aside>
+					<aside class="sec_txt">
+						<p>每月随取<span>1</span>次</p>
+					</aside>
+					
+					<div class="dio_ce">
+						<img src="./mainPage_files//to1.png" alt="" id="up">
+					</div>
+					<aside class="dione" style="display:block">
+						<div class="dione_o">
+							<p>已售罄</p>
+						</div>
+						<div class="dione_t">
+							<p>预计下次开售时间</p>
+							<span id="nextTime">2015-08-07 05:00:00</span>
+						</div>
+					</aside>
+
+					<aside class="didio">
+						<div class="didion">
+							<img src="./mainPage_files//tob.png" alt="">
+							<p>剩余买入额度（元）</p>
+							<span id="nowSale"></span>
+						</div>
+					</aside>
+					<div class="tb">
+						<img src="./mainPage_files//tbi.png" alt="" id="down">
+					</div>
+					
+					<div class="fb" style="display:none">
+						<p>*新手专享通道，最高上限1万元</p>
+					</div>
+				</nav>
+
+				<!-- 季账户 -->
+				<nav id="Q">
+					<aside class="sec_ce">
+						<img src="./mainPage_files//zhuti.png" alt="">
+						<p class="sec_ce_id">预期年化收益</p>
+						<p class="sec_ce_pc" id="q_hieght">
+							11.0
+						<span class="sec_ce_b">%</span></p>
+						<div class="sec_ce_pt">
+							<a href="javascript:void(0)" onclick="formDetilSubmit()">查看详情&gt;&gt;</a>
+						</div>
+					</aside>
+					
+					<aside class="sec_tx">
+						<div class="sec_txi">
+							<img src="./mainPage_files//icono.png" alt="">
+							<p>新手90天限时特权</p>
+							<span>+0.5%</span>
+						</div>
+					</aside>
+					
+					
+					<aside class="sec_txt">
+						<p>期限<span id="q_time">
+							9
+						</span>个月，到期退出或续投</p>
+					</aside>
+					<div class="ca" id="ta" style="margin:0 0 15px 0">
+						<div>
+							<b>
+								<img src="./mainPage_files//cv1.png" alt="">
+							</b>
+							<i>
+								<img src="./mainPage_files//c1.png" alt="">
+							</i>
+							<p>3个月</p>
+						</div>
+						<div class="activet">
+							<b>
+								<img src="./mainPage_files//cv2.png" alt="">
+							</b>
+							<i>
+								<img src="./mainPage_files//c2.png" alt="">
+							</i>
+							<p>6个月</p>
+						</div>
+						<div>
+							<b>
+								<img src="./mainPage_files//cv3.png" alt="">
+							</b>
+							<i>
+								<img src="./mainPage_files//c3.png" alt="">
+							</i>
+							<p>9个月</p>
+						</div>
+					</div>
+				</nav>
+
+				<!-- 年账户 -->
+				<nav id="Y">
+					<aside class="sec_ce">
+						<img src="./mainPage_files//zhuti.png" alt="">
+						<p class="sec_ce_id">预期年化收益</p>
+						<p class="sec_ce_pc">12.0<span class="sec_ce_b">%</span></p>
+						<div class="sec_ce_pt">
+							<a href="javascript:void(0)" onclick="formDetilSubmit()">查看详情&gt;&gt;</a>
+						</div>
+					</aside>
+					
+					<aside class="sec_tx" id="newbody">
+						<div class="sec_txi">
+							<img src="./mainPage_files//icono.png" alt="">
+							<p>新手90天限时特权</p>
+							<span>+0.5%</span>
+						</div>
+					</aside>
+					
+					
+					<aside class="sec_txt" style="margin:0 0 15px 0">
+						<p>期限<span>1</span>年，到期退出或续投</p>
+					</aside>
+				</nav>
+			</div>
+			<aside class="sec_k" id="sec_k"></aside>
+
+			<!-- 按钮 -->
+			<aside class="sec_zhu" id="is_jiaru">
+				<a href="https://m.wukonglicai.com/weixin/register.html" id="di">马上加入</a>
+			</aside>
+			<form action="https://m.wukonglicai.com/weixin/user/buy/shiftBank.html" method="get" id="form">
+				<input type="hidden" name="ptype" value="M">
+				<input type="hidden" name="productCode" value="M2014-11-19">
+				<input type="hidden" name="productPackageCode">
+			</form>
+			<form action="https://m.wukonglicai.com/weixin/accountdetail.html" method="get" id="formDetil">
+				<input type="hidden" name="ptype" value="M">
+				<input type="hidden" name="productCode" value="M2014-11-19">
+				<input type="hidden" name="productPackageCode">
+				<input type="hidden" name="nextStartTime" id="nextStartTime" value="2015-08-07 05:00:00">
+			</form>
+		</section>
+
+		<!-- 底部 -->
+		<footer>
+			<aside class="fot">
+				<ul>
+					<li><a href="https://m.wukonglicai.com/weixin/story.html">聚能赚故事</a></li>
+					<li><a href="https://m.wukonglicai.com/weixin/mainpage.html#">|</a></li>
+					<li><a href="https://m.wukonglicai.com/weixin/safe.html">安全保障</a></li>
+					<li><a href="https://m.wukonglicai.com/weixin/mainpage.html#">|</a></li>
+					<li><a href="https://m.wukonglicai.com/weixin/questions.html">常见问题</a></li>
+					<li><a href="https://m.wukonglicai.com/weixin/mainpage.html#">|</a></li>
+					<li id="is_login">
+					<a href="https://m.wukonglicai.com//weixin/register.html" style="color:#ff7c8a;font-weight:bold">登录/注册</a>
+					</li>
+				</ul>
+			</aside>
+			<div style="-webkit-box-pack:center;display:-webkit-box;height:30px">
+				<p style="color:#dddddd">银河众联(北京)信息科技有限公司 (企业)</p>
+			</div>
+		</footer>
+		
+	</div>
+		<script>
+		function getQueryString(name) {
+		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		    var r = window.location.search.substr(1).match(reg);
+		    if (r != null) return unescape(r[2]); return null;
+	 	}
+		var activtyQ=$(".sec_tx").find(".hidden");
+		
+		function eachActivityQ(activty,type){
+			for(var i=0;i<activty.length;i++){
+				if($(activty[i]).val().indexOf("Q,")!=-1||$(activty[i]).val().indexOf(type)!=-1){
+					$("#Q"+i).css("display","-webkit-box");
+				}else{
+					$("#Q"+i).css("display","none");
+				}
+			}
+		}
+		
+		$(function (){
+			var token=getCookie("utoken");
+			var index;
+			var $div = $('nav');
+			
+			var ptype=getQueryString('ptype');
+			if(ptype==undefined|| ptype==null || ptype==''){
+				ptype='M';
+			}
+			if(ptype=='M'){
+				$($("#form").find("input")[0]).val("M");
+				$($("#form").find("input")[1]).val("M2014-11-19");
+				$($("#formDetil").find("input")[0]).val("M");
+				$($("#formDetil").find("input")[1]).val("M2014-11-19");
+			}else if( ptype=='Q3'){
+				$($("#form").find("input")[0]).val("Q3");
+				$($("#form").find("input")[1]).val("Q3-00001");
+				$($("#formDetil").find("input")[0]).val("Q3");
+				$($("#formDetil").find("input")[1]).val("Q3-00001");
+				if(activtyQ!=undefined&&activtyQ.length>0){
+					eachActivityQ(activtyQ,ptype);
+				}
+			}else if(ptype=='Q' || ptype=='Q6'){
+				$($("#form").find("input")[0]).val("Q6");
+				$($("#form").find("input")[1]).val("Q6-00002");
+				$($("#formDetil").find("input")[0]).val("Q6");
+				$($("#formDetil").find("input")[1]).val("Q6-00002");
+				if(activtyQ!=undefined&&activtyQ.length>0){
+					eachActivityQ(activtyQ,ptype);
+				}
+			}else if(ptype=='Q9'){
+				$($("#form").find("input")[0]).val("Q9");
+				$($("#form").find("input")[1]).val("Q9-00003");
+				$($("#formDetil").find("input")[0]).val("Q9");
+				$($("#formDetil").find("input")[1]).val("Q6-00003");
+				if(activtyQ!=undefined&&activtyQ.length>0){
+					eachActivityQ(activtyQ,ptype);
+				}
+			}else if(ptype=='Y'){
+				$($("#form").find("input")[0]).val("Y");
+				$($("#form").find("input")[1]).val("Y2014-11-19");
+				$($("#formDetil").find("input")[0]).val("Y");
+				$($("#formDetil").find("input")[1]).val("Y2014-11-19");
+			}
+			
+			$('#tab div').on('click',function (){
+				index = $(this).index();
+				$(this).addClass('active').siblings().removeClass();
+				$(this).find('p').css('color','#fff').parent().siblings().find('p').css('color','#1acbbb');
+				$div.eq(index).show().siblings().hide();
+				if($(this).attr('id')=="m"){
+					$($("#form").find("input")[0]).val("M");
+				    $($("#formDetil").find("input")[0]).val("M");
+					$($("#form").find("input")[1]).val("M2014-11-19");
+					$($("#formDetil").find("input")[1]).val("M2014-11-19");
+					if($("#user").val()!=undefined){
+						if($("#flag").val()=="T"&&$("#nextStartTime").val()!=""){
+				    	$("#is_jiaru").html("<a href=\"javascript:void(0)\" id=\"di\"  onclick=\"formSubmit()\">绿色通道，新手可买</a>");
+						}else if($("#flag").val()=="F"&&$("#nextStartTime").val()!=""){
+						    $("#is_jiaru").html("<a href=\"javascript:void(0)\" id=\"di\"  onclick=\"looklookQ()\">看看季账户</a>");
+						}else{
+						    $("#is_jiaru").html("<a href=\"javascript:void(0)\" id=\"di\"  onclick=\"formSubmit()\">马上买入</a>");
+						}
+					}
+				}else if($(this).attr('id')=="q"){
+					$($("#form").find("input")[0]).val("Q6");
+			        $($("#formDetil").find("input")[0]).val("Q6");
+					$($("#form").find("input")[1]).val("Q6-00002");
+					$($("#formDetil").find("input")[1]).val("Q6-00002");
+					$("#q_hieght").html("10.0<span class = \"sec_ce_b\">%</span>");
+					$("#q_time").html("6");
+					if(activtyQ!=undefined&&activtyQ.length>0){
+						eachActivityQ(activtyQ,"Q6");
+					}
+			       	$($("#ta").find("div")[1]).addClass('activet').siblings().removeClass();
+			        $(".activet").find('b').css('display','block').parent().siblings().find('b').css('display','none');
+					$(".activet").find('i').css('display','none').parent().siblings().find('i').css('display','block');
+					$(".activet").find('p').css('color','#ff7c8a').parent().siblings().find('p').css('color','#999999');
+					if($("#user").val()!=undefined){
+				        $("#is_jiaru").html("<a href=\"javascript:void(0)\" id=\"di\"  onclick=\"formSubmit()\">马上买入</a>");
+			       	}
+				}else{
+					$($("#form").find("input")[0]).val("Y");
+			        $($("#formDetil").find("input")[0]).val("Y");
+					$($("#form").find("input")[1]).val("Y2014-11-19");
+					$($("#formDetil").find("input")[1]).val("Y2014-11-19");
+					if($("#user").val()!=undefined){
+						$("#is_jiaru").html("<a href=\"javascript:void(0)\" id=\"di\"  onclick=\"formSubmit()\">马上买入</a>");
+			        }
+				}
+				
+			});
+			
+			$('#ta div').on('click',function (){
+				index = $(this).index();
+				$(this).addClass('activet').siblings().removeClass();
+				$(this).find('b').css('display','block').parent().siblings().find('b').css('display','none');
+				$(this).find('i').css('display','none').parent().siblings().find('i').css('display','block');
+				$(this).find('p').css('color','#ff7c8a').parent().siblings().find('p').css('color','#999999');
+				if (token!=null && token!=""){
+					$("#is_jiaru").html("<a href = 'javascript:void(0)' id = 'di' onclick='formSubmit()'>马上买入</a>");	
+				}else{
+					$("#is_jiaru").html("<a href = '/weixin/register.html' id = 'di'>马上加入</a>");
+				}
+				if(index==0){
+					$($("#form").find("input")[0]).val("Q3");
+					$($("#form").find("input")[1]).val("Q3-00001");
+					$($("#formDetil").find("input")[0]).val("Q3");
+					$($("#formDetil").find("input")[1]).val("Q3-00001");
+					$("#q_hieght").html("8.0<span class = \"sec_ce_b\">%</span>");
+					$("#q_time").html("3");
+					if(activtyQ!=undefined&&activtyQ.length>0){
+						eachActivityQ(activtyQ,"Q3");
+					}	
+				}else if(index==1){
+					$($("#form").find("input")[0]).val("Q6");
+					$($("#form").find("input")[1]).val("Q6-00002");
+					$($("#formDetil").find("input")[0]).val("Q6");
+					$($("#formDetil").find("input")[1]).val("Q6-00002");
+					$("#q_hieght").html("10.0<span class = \"sec_ce_b\">%</span>");
+					$("#q_time").html("6");
+					if(activtyQ!=undefined&&activtyQ.length>0){
+						eachActivityQ(activtyQ,"Q6");
+					}
+				}else{
+					$($("#form").find("input")[0]).val("Q9");
+					$($("#form").find("input")[1]).val("Q9-00003");
+					$($("#formDetil").find("input")[0]).val("Q9");
+					$($("#formDetil").find("input")[1]).val("Q9-00003");
+					$("#q_hieght").html("11.0<span class = \"sec_ce_b\">%</span>");
+					$("#q_time").html("9");
+					if(activtyQ!=undefined&&activtyQ.length>0){
+						eachActivityQ(activtyQ,"Q9");
+					}
+				}
+			});
+		
+		});
+		
+		function looklookQ(){
+			$("#q").addClass('active').siblings().removeClass();
+			$("#q").find('b').css('display','block').parent().siblings().find('b').css('display','none');
+			$("#q").find('i').css('display','none').parent().siblings().find('i').css('display','block');
+			$($("#ta").find("div")[1]).addClass('activet').siblings().removeClass();
+			$(".activet").find('b').css('display','block').parent().siblings().find('b').css('display','none');
+			$(".activet").find('i').css('display','none').parent().siblings().find('i').css('display','block');
+			$(".activet").find('p').css('color','#ff7c8a').parent().siblings().find('p').css('color','#999999');
+			$($("#form").find("input")[0]).val("Q6");
+			$($("#form").find("input")[1]).val("Q6-00002");
+			$($("#formDetil").find("input")[0]).val("Q6");
+			$($("#formDetil").find("input")[1]).val("Q6-00002");
+			$("#q_hieght").html("10.0<span class = \"sec_ce_b\">%</span>");
+			$("#q_time").html("6");
+			if(activtyQ!=undefined&&activtyQ.length>0){
+				eachActivityQ(activtyQ,"Q6");
+			}
+			$("#Q").show().siblings().hide();
+			$("#q").find('p').css('color','#fff');
+			$("#m").find('p').css('color','#1acbbb');
+			$("#is_jiaru").html("<a href = 'javascript:void(0)' id = 'di' onclick='formSubmit()'>马上买入</a>");
+		}
+		
+		function formSubmit(){
+			ptype=$($("#form").find("input")[0]).val();
+			if($("#user").val()!=undefined){
+				history.pushState({}, "悟空理财","/weixin/user/mainpage.html?ptype="+ptype);
+			}else{
+				history.pushState({}, "悟空理财","/weixin/mainpage.html?ptype="+ptype);
+			}
+			$("#form").submit();
+		}
+		
+		function formDetilSubmit(){
+			ptype=$($("#form").find("input")[0]).val();
+			if($("#user").val()!=undefined){
+				history.pushState({}, "悟空理财","/weixin/user/mainpage.html?ptype="+ptype);
+			}else{
+				history.pushState({}, "悟空理财","/weixin/mainpage.html?ptype="+ptype);
+			}
+			$("#formDetil").submit();
+		}
+		
+	</script>
+	<div style="display:none">
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?77c5dde47c1fe4408e43b5dc5a5d3a0e";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	</div>
+	
+</body></html>
