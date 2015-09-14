@@ -13,8 +13,6 @@
  * $Id: user.php 17217 2011-01-19 06:29:08Z liubo $
 */
 
-
-
 $_LANG['require_login'] = '非法入口。<br />必须登录才能完成操作。';
 
 $_LANG['no_records'] = '没有记录';
@@ -135,6 +133,14 @@ $_LANG['booking_js']['contact_username_empty'] = '请输入联系人姓名！';
 $_LANG['booking_js']['email_empty'] = '请输入联系人的电子邮件地址！';
 $_LANG['booking_js']['email_error'] = '您输入的电子邮件地址格式不正确！';
 $_LANG['booking_js']['contact_phone_empty'] = '请输入联系人的电话！';
+
+/* 借款资料*/
+$_LANG['borrow_agree'] = '请仔细阅读联众金融借款协议,如您同意服务条款请打钩。';
+$_LANG['borrow_success'] = '您的信息已提交,请完善后边的信息以便我们会与您取得联系！';
+$_LANG['borrow_userinfo_fail'] = '您的信息缺失,请填写完整再次提交！';
+$_LANG['borrow_record_info'] = '-您的信息正在审核中，请勿重复提交数据！';
+$_LANG['financing_record_info'] = '-您的信息匹配失败，请重新输入！';
+
 
 /* 个人资料 */
 $_LANG['confirm_submit'] = '　确 定　';

@@ -507,8 +507,7 @@ $_LANG['welcome'] = '欢迎来到联众金融';
 $_LANG['user_login'] = '会员登陆';
 $_LANG['login_now'] = '立即登陆';
 $_LANG['reg_now'] = '立即注册';
-$_LANG['borrow_parameter'] = '缺少必要信息';
-$_LANG['borrow_success'] = '您的信息已提交,平台会尽快与您取得联系！';
+
 
 /* 商品品牌页 */
 $_LANG['official_site'] = '官方网站：';
