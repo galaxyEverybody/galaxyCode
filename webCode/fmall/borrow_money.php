@@ -98,7 +98,7 @@ elseif ($action == 'userinformation'){
 	
 	/* 取得国家的省列表 */
 	$province_list[$region_id] = get_regions(1, 1);
-	$smarty->assign('province_list',    $province_list);		//籍贯
+	$smarty->assign('province_list',    $province_list);
 	$smarty->assign('act',	$action);
 	
 	/* 查询借款信息*/
@@ -114,12 +114,16 @@ elseif ($action == 'userinformation'){
 	$smarty->assign('username',$username);
 	$smarty->assign('usephone',$usephone);
 	$smarty->assign('usercard',$usercard);
-	$smarty->assign('flag',$userinfo[0]['borrow_style']);
+	//$smarty->assign('flag',$userinfo[0]['borrow_style']);
+	$smarty->assign('flag',3);
 	$smarty->display('borrow_money.dwt');
 }
 
 /* 基本信息内容的添加*/
 elseif ($action == 'insert_user_info'){
+
+	include_once(ROOT_PATH . 'includes/lib_transaction.php');
+	
 	/* 查询借款信息*/
 	$sql = "SELECT u.realname,u.mobile_phone,u.idcard,b.borrow_style FROM ".$GLOBALS['ecs']->table('users').' as u , '.
 			$GLOBALS['ecs']->table('user_borrow').' as b WHERE u.user_id = b.user_id AND u.user_id = '.$userid;
@@ -137,12 +141,17 @@ elseif ($action == 'insert_user_info'){
 	$liveaddress = compile_str(trim($_POST['liveaddress']));
 	$zipcode = compile_str(trim($_POST['zipcode']));
 	//======================================================
-	$educational = compile_str(trim($_POST['educational']));
-	$studiotime = intval(trim($_POST['studiotime']));
-	$graduate = intval(trim($_POST['graduate']));
-	$relatename = compile_str(trim($_POST['relatename']));
-	$friendname = intval(trim($_POST['friendname']));
-	$friendphone = intval(trim($_POST['friendphone']));
+	$educational = isset($_POST['educational'])?compile_str(trim($_POST['educational'])):'0';
+	$studioyear = isset($_POST['birthdayYear'])?intval(trim($_POST['birthdayYear'])):0;
+	$studiomonth = isset($_POST['birthdayMonth'])?intval(trim($_POST['birthdayMonth'])):0;
+	$studioday = isset($_POST['birthdayDay'])?intval(trim($_POST['birthdayDay'])):0;
+	$graduate = isset($_POST['graduate'])?compile_str(trim($_POST['graduate'])):0;
+	$userfilination = isset($_POST['filination'])?compile_str(trim($_POST['filination'])):'0';
+	$relatename = isset($_POST['relatename'])?compile_str(trim($_POST['relatename'])):'0';
+	$relatephone = isset($_POST['relatephone'])?compile_str(trim($_POST['relatephone'])):'0';
+	$userotherfilination = isset($_POST['otherfilination'])?compile_str(trim($_POST['otherfilination'])):'0';
+	$friendname = isset($_POST['othername'])?compile_str(trim($_POST['othername'])):'0';
+	$friendphone = isset($_POST['otherphone'])?compile_str(trim($_POST['otherphone'])):'0';
 	
 	if(empty($truename) || empty($idcard) || empty($phone) || empty($sex) || empty($age) || empty($liveaddress) || empty($zipcode)){
 		show_message($_LANG['borrow_userinfo_fail'],$_LANG['back_up_page'],'borrow_money.php?act=userinformation');
@@ -151,39 +160,42 @@ elseif ($action == 'insert_user_info'){
 	$basicinfo = array(
 			'user_id'			=> $user_id,
 			'addtime'			=> gmtime(),
-			'realname'		=> $borrow_style,
-			'idcard'		=> isset($loannum)? $loannum:0,
-			'telephone'		=> isset($borrowloantime)? $borrowloantime:'0',
-			'sex'		=> isset($loantitle)? $loantitle:'0',
-			'age'		=> isset($loandescription)? $loandescription:'0',
-			'provinceplace'		=> 0,
-			'cityplace'		=> 0,
-			'countryplace'		=> 0,
-			'address'		=> 0,
-			'zipcode'		=> 0,
-			'educational'		=> 0,
-			'studiotime'		=> 0,
-			'graduate'		=> 0,
-			'relationname'		=> 0,
-			'relationphone'		=> 0,
-			'friendname'		=> 0,
-			'friendphone'		=> 0,
+			'realname'			=> $truename,
+			'idcard'			=> $idcard,
+			'telephone'			=> $phone,
+			'sex'				=> $sex,
+			'age'				=> $age,
+			'provinceplace'		=> $provincename,
+			'cityplace'			=> $cityname,
+			'countryplace'		=> $countyname,
+			'address'			=> $liveaddress,
+			'zipcode'			=> $zipcode,
+			'educational'		=> $educational,
+			'studioyear'		=> $studioyear,
+			'studiomonth'		=> $studiomonth,
+			'studioday'			=> $studioday,
+			'graduate'			=> $graduate,
+			'finitional'		=> $userfilination,
+			'relationname'		=> $relatename,
+			'relationphone'		=> $relatephone,
+			'otherfinitional'	=> $userotherfilination,
+			'friendname'		=> $friendname,
+			'friendphone'		=> $friendphone,
 	);
-	
-	if(insert_borrow($basicinfo)){
-		show_message($_LANG['borrow_success'],$_LANG['back_up_page'],'borrow_money.php?act=userinformation');
+
+	if(insert_borrow($basicinfo,1)){
+		$flag = $userinfo[0]['borrow_style'];
+		if($flag == 1){
+			header("location:borrow_money.php?act=carinfo");
+		}elseif($flag == 2){
+			header("location:borrow_money.php?act=houseinfo");
+		}elseif($flag == 3){
+			header("location:borrow_money.php?act=creditinfo");
+		}else{
+			header("location:borrow_money.php");
+		}
 	}
 	
-	$flag = $userinfo[0]['borrow_style'];
-	if($flag == 1){
-		header("location:borrow_money.php?act=carinfo");
-	}elseif($flag == 2){
-		header("location:borrow_money.php?act=houseinfo");
-	}elseif($flag == 3){
-		header("location:borrow_money.php?act=creditinfo");
-	}else{
-		header("location:borrow_money.php");
-	}
 }
 
 /* 车辆信息提交的页面*/
@@ -218,6 +230,34 @@ elseif ($action == 'carinfo'){
 /* 车辆信息的添加*/
 elseif ($action == 'insert_car_info'){
 	
+	include_once(ROOT_PATH . 'includes/lib_transaction.php');
+	
+	$carinformation = compile_str(trim($_POST['carinformation']));
+	$cartype = compile_str(trim($_POST['cartype']));
+	$cartime = isset($_POST['cartime'])?compile_str(trim($_POST['cartime'])):'0';
+	$carnature = compile_str(trim($_POST['carnature']));
+	$carhold = compile_str(trim($_POST['carhold']));
+	$carhistory = compile_str(trim($_POST['carhistory']));
+	
+	if(empty($carinformation) || empty($cartype) || empty($carnature) || empty($carhold) || empty($carhistory)){
+		show_message($_LANG['borrow_userinfo_fail'],$_LANG['back_up_page'],'borrow_money.php?act=carinfo');
+	}
+	
+	$carinfo = array(
+			'user_id'		=>	$userid,
+			'carinfo'		=>	$carinformation,
+			'carstyle'		=>	$cartype,
+			'cartransfer'	=>	$cartime,
+			'carnature'		=>	$carnature,
+			'carhold'		=>	$carhold,
+			'carhistory'	=>	$carhistory,
+			'addtime'		=>	gmtime()
+	);
+	
+	if(insert_borrow($carinfo,2)){
+		show_message($_LANG['borrow_record_success'],$_LANG['back_up_page'],'./index.php');
+	}
+
 }
 
 /* 房产信息提交的页面*/
@@ -241,13 +281,36 @@ elseif ($action == 'houseinfo'){
 /* 房产信息的添加*/
 elseif ($action == 'insert_house_info'){
 	
+	include_once(ROOT_PATH . 'includes/lib_transaction.php');
+	
+	$houseaddress = isset($_POST['hosue_houseadd'])?compile_str(trim($_POST['hosue_houseadd'])):'0';
+	$housetype = compile_str(trim($_POST['housetype']));
+	$houseloan = compile_str(trim($_POST['houseloan']));
+	
+	if(empty($houseaddress) || empty($housetype) || empty($houseloan)){
+		show_message($_LANG['borrow_userinfo_fail'],$_LANG['back_up_page'],'borrow_money.php?act=houseinfo');
+	}
+	
+	$carinfo = array(
+			'user_id'		=>	$userid,
+			'house_add'		=>	$houseaddress,
+			'house_type'		=>	$housetype,
+			'house_loan'	=>	$houseloan,
+			'addtime'		=>	gmtime()
+	);
+	
+	if(insert_borrow($carinfo,3)){
+		show_message($_LANG['borrow_record_success'],$_LANG['back_up_page'],'./index.php');
+	}
 }
 
 /* 纯信用信息提交的页面*/
 elseif ($action == 'creditinfo'){
-	/* 取得国家的省列表 */
-	$province_list[$region_id] = get_regions(1, 1);
-	$smarty->assign('province_list',    $province_list);
+	/* 查询纯信用信息 */
+	$sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('borrow_credit').' WHERE user_id='.$userid;
+	$creditinfo = $GLOBALS['db']->getAll($sql);
+	
+	print_r($creditinfo);exit;
 	
 	$smarty->assign('act',	$action);
 	$smarty->display('borrow_money.dwt');
@@ -256,6 +319,41 @@ elseif ($action == 'creditinfo'){
 /* 纯信用信息的添加*/
 elseif ($action == 'insert_credit_info'){
 
+	include_once(ROOT_PATH . 'includes/lib_base.php');
+	include_once(ROOT_PATH . 'includes/lib_transaction.php');
+	
+	$project = trim($_POST['project']);
+	
+	$type = $_FILES[$project]['type'];
+	$name = $_FILES[$project]['name'];
+	$size = $_FILES[$project]['size'];
+	
+	//判断图片的大小与格式
+	$imgarray = array('image/jpq','image/png','image/jpeg','image/gif');
+	if(!in_array($type,$imgarray)){
+		show_message($_LANG['identification_img_fail'], $_LANG['back_page_up'], 'borrow_money.php?act=creditinfo', 'info');
+	}elseif($size > 1024*1024*2){
+		show_message($_LANG['identification_imgsize_fail'], $_LANG['back_page_up'], 'borrow_money.php?act=creditinfo', 'info');
+	}
+	
+
+	/* 创建当月目录 */
+	$dir = date('Ym');
+	$path = './images/borrowmoney/'.$dir.'/'.$project.'/';
+	if(!file_exists($path)){
+		make_dir($path);
+	}
+	/* 确定文件名*/
+	$img_name = $path.'/'.gmtime().$name;
+	
+	if(move_uploaded_file($_FILES[$project]['tmp_name'],$img_name)){
+		//对借款用户的图片证明进行保存
+		if(update_userloan_img($userid,$img_name,$project)){
+			show_message($_LANG['userhead_upload_success'], $_LANG['back_page_up'], 'borrow_money?act=creditinfo', 'info');
+		}
+	}else{
+		show_message($_LANG['userhead_upload_fail'], $_LANG['back_page_up'], 'borrow_money?act=creditinfo', 'info');
+	}
 }
 
 

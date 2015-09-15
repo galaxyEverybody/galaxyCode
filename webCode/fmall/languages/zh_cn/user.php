@@ -140,6 +140,9 @@ $_LANG['borrow_success'] = '您的信息已提交,请完善后边的信息以便
 $_LANG['borrow_userinfo_fail'] = '您的信息缺失,请填写完整再次提交！';
 $_LANG['borrow_record_info'] = '-您的信息正在审核中，请勿重复提交数据！';
 $_LANG['financing_record_info'] = '-您的信息匹配失败，请重新输入！';
+$_LANG['borrow_record_success'] = '+您的信息以提交，审核通过后我们会尽快与您取得联系';
+$_LANG['identification_img_fail'] = '+图片的格式不合法，请重新上传';
+$_LANG['identification_imgsize_fail'] = '+图片过大，请重新上传';
 
 
 /* 个人资料 */

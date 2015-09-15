@@ -17,7 +17,7 @@
 <link href="{$cat_style}" rel="stylesheet" type="text/css" />
 <!-- {/if} -->
 {* 包含脚本文件 *}
-{insert_scripts files='common.js,index.js,jquery.form.js'}
+{insert_scripts files='common.js,index.js,jquery.form.js,jquery-form.js'}
 {insert_scripts files='utils.js,transport_jquery.js,borrow.js,region.js,shopping_flow.js'}
 </head>
 <body>
@@ -224,27 +224,33 @@
 	    		</tr>
 	    		{if $flag eq 3}
 	    		<tr>
-	    			<td class="borrowtdinfo">最高学历</td><td><input class="borrowinput" type="text" name="educational" placeholder="请输入您的最高学历" onblur="borrowchename(this.value)"/><span id="borrowname" class="borrow_error_info"></span></td>
+	    			<td class="borrowtdinfo">最高学历</td><td><input class="borrowinput" type="text" name="educational" placeholder="请输入您的最高学历" onblur="borrowcheeducational(this.value)"/><span id="borroweducational" class="borrow_error_info"></span></td>
 	    		</tr>
 	    		<tr>
-	    			<td class="borrowtdinfo">入学年份</td><td><input class="borrowinput" type="text" name="studiotime" placeholder="请选择您的入学年份" onblur="borrowchephone(this.value)"/><span id="borrowphone" class="borrow_error_info"></span></td>
+	    			<td class="borrowtdinfo">入学年份</td><td>{html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=+1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}</td>
 	    		</tr>
 	    		<tr>
-	    			<td class="borrowtdinfo">毕业院校</td><td><input class="borrowinput" type="text" name="graduate" placeholder="请输入您的毕业院校" onblur="borrowchephone(this.value)"/><span id="borrowphone" class="borrow_error_info"></span></td>
+	    			<td class="borrowtdinfo">毕业院校</td><td><input class="borrowinput" type="text" name="graduate" placeholder="请输入您的毕业院校" onblur="borrowchegraduate(this.value)"/><span id="borrowgraduate" class="borrow_error_info"></span></td>
 	    		</tr>
 	    		<tr><td class="relationinfo">直系亲属</td></tr>
 	    		<tr>
-	    			<td class="borrowtdinfo">姓名</td><td><input class="borrowinput" type="text" name="relatename" placeholder="姓名" onblur="borrowchephone(this.value)"/><span id="borrowphone" class="borrow_error_info"></span></td>
+    				<td class="borrowtdinfo">关系</td><td><input class="borrowinput" type="text" name="filination" placeholder="与您的关系" onblur="borrowchefilination(this.value)"/><span id="borrowfilination" class="borrow_error_info"></span></td>
+    			</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">姓名</td><td><input class="borrowinput" type="text" name="relatename" placeholder="姓名" onblur="borrowcherelatename(this.value)"/><span id="borrowrelatename" class="borrow_error_info"></span></td>
 	    		</tr>
 	    		<tr>
-	    			<td class="borrowtdinfo">电话</td><td><input class="borrowinput" type="text" name="relatephone" placeholder="手机号" onblur="borrowchename(this.value)"/><span id="borrowname" class="borrow_error_info"></span></td>
+	    			<td class="borrowtdinfo">电话</td><td><input class="borrowinput" type="text" name="relatephone" placeholder="手机号" onblur="borrowcherelatephone(this.value)"/><span id="borrowrelatephone" class="borrow_error_info"></span></td>
 	    		</tr>
 	    		<tr><td class="relationinfo">其它</td></tr>
 	    		<tr>
-	    			<td class="borrowtdinfo">姓名</td><td><input class="borrowinput" type="text" name="friendname" placeholder="姓名" onblur="borrowchephone(this.value)"/><span id="borrowphone" class="borrow_error_info"></span></td>
+					<td class="borrowtdinfo">关系</td><td><input class="borrowinput" type="text" name="otherfilination" placeholder="与您的关系" onblur="borrowcheotherfilination(this.value)"/><span id="borrowotherfilination" class="borrow_error_info"></span></td>
+				</tr>
+	    		<tr>
+	    			<td class="borrowtdinfo">姓名</td><td><input class="borrowinput" type="text" name="othername" placeholder="姓名" onblur="borrowcheothername(this.value)"/><span id="borrowothername" class="borrow_error_info"></span></td>
 	    		</tr>
 	    		<tr>
-	    			<td class="borrowtdinfo">电话</td><td><input class="borrowinput" type="text" name="friendphone" placeholder="手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" class="borrow_error_info"></span></td>
+	    			<td class="borrowtdinfo">电话</td><td><input class="borrowinput" type="text" name="otherphone" placeholder="手机号" onblur="borrowcheotherphone(this.value)"/><span id="borrowotherphone" class="borrow_error_info"></span></td>
 	    		</tr>
 	    		{/if}
 	    		<tr>
@@ -260,7 +266,7 @@
 		<div class="borrowinfo_top">
 		<div class="userinfo_title"><div class="userinfo_title_left"></div><span>车辆信息</span></div>
 		<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
-		<form action="user.php" name="formBorrow" method="post" onsubmit="return false;">
+		<form action="borrow_money.php" method="post">
 		<table width="100%" cellpadding="7px" class="user_info_table">
 			<tr>
 				<td class="borrowtdinfo">车辆信息</td>
@@ -297,6 +303,8 @@
 					var carin = $("#car_info_cli").val();
 					if(carin == '二手车'){
 						$("#car_tranfer_time").show();
+					}else{
+						$("#car_tranfer_time").hide();
 					}
 				});
 				
@@ -333,7 +341,7 @@
 			</tr>
 			
 			<tr>
-				<input type="hidden" name="act" value="insert_borrow_money" />
+				<input type="hidden" name="act" value="insert_car_info" />
 				<td class="borrowtdinfo"></td><td><input class="borrow_sub" type="submit" name="name" value="进行匹配"/></td>
 			</tr>
 		</table>
@@ -345,18 +353,18 @@
 		<div class="borrowinfo_top">
 		<div class="userinfo_title"><div class="userinfo_title_left"></div><span>房产信息</span></div>
 		<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
-		<form action="user.php" name="formBorrow" method="post" onsubmit="return false;">
+		<form action="borrow_money.php" method="post">
 		<table width="100%" cellpadding="7px" class="user_info_table">
 			<tr>
 				<td class="borrowtdinfo">房产所在地</td>
 				<td>
-					<input type="text" name="hosue_houseadd" class="borrowinput">
+					<input type="text" name="hosue_houseadd" class="borrowinput" value="北京">
 				</td>
 			</tr>
 			<tr>
 				<td class="borrowtdinfo">产权类型</td>
 				<td>
-					<select class="borrowinput" name="cartype">
+					<select class="borrowinput" name="housetype">
 					{foreach from=$righttye item=list7}
 						<option>{$list7}</option>
 					{/foreach}
@@ -366,25 +374,15 @@
 			<tr>
 			<td class="borrowtdinfo">是否有房贷</td>
 				<td>
-					<select class="borrowinput" name="cartype">
+					<select class="borrowinput" name="houseloan">
 					{foreach from=$decideloan item=list8}
 						<option>{$list8}</option>
 					{/foreach}
 					</select>
 				</td>
 			</tr>
-			<tr id="car_tranfer_time">
-				<td class="borrowtdinfo">过户时间</td>
-				<td>
-					<select class="borrowinput" name="cartime">
-					{foreach from=$loanqi item=list9}
-						<option>{$list9}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
 			<tr>
-				<input type="hidden" name="act" value="insert_borrow_money" />
+				<input type="hidden" name="act" value="insert_house_info" />
 				<td class="borrowtdinfo"></td><td><input class="borrow_sub" type="submit" name="name" value="进行匹配"/></td>
 			</tr>
 		</table>
@@ -401,7 +399,7 @@
 			<p style="font-size:20px;">身份认证</p>
 			<ul style="margin-left:20px;">
 				<li>1.本人身份证正面照片<a href="javascript:" onclick="uploadcardrightshow()" class="provincecard">上传认证</a>。</li>
-				<form action='' method='post' enctype='multipart/form-data' id="uploadcardfrom">
+				<form action="borrow_money.php" method="post" enctype='multipart/form-data'>
 				<div id='uploadcardrightdiv' style="display:none;">
 					<div class="fileinputdiv">
 						<div id='pcardrightTitle'></div>
@@ -410,45 +408,16 @@
 						</div>
 					</div>
 					<div class='uploadheadbutton'>
+						<input type='hidden' name='project' value='cardright'>
 						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type='submit' value='上传' class='uploadheadsub' onclick="cardrightsubmit()">
+						<input type="submit" value='上传' class='uploadheadsub'>
 						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcardrighthide()">
 					</div>
 				</div>
 				</form>
-				<script>
-				function cardrightsubmit(){
-					
-					var options = {
-							url:'borrow_money.php',
-							type:'post',
-							data:$('#uploadcardfrom').formSerialize(),
-							dataType:'script',
-							success:function(msg){
-								alert(msg);
-							}
-					}
-					$('#uploadcardfrom').ajaxSubmit(options);
-					
-				}
-				function insertcardrightTitle(tValue){ 
-				   var t1 = tValue.lastIndexOf("\\");  
-				   var t2 = tValue.lastIndexOf(".");  
-				   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-					   $('#pcardrightTitle').html(tValue.substring(t1 + 1, t2));
-				   }
-				}
-				
-				function uploadcardrightshow(){
-					$('#uploadcardrightdiv').slideToggle(500);
-				}
-				
-				function uploadcardrighthide(){
-					$('#uploadcardrightdiv').slideToggle(500);
-				}
-				</script>
+
 				<li>1.本人身份证反面照片<a href="javascript:" onclick="uploadcardleftshow()" class="provincecard">上传认证</a>。</li>
-				<form action='borrow_money.php' method='post' enctype='multipart/form-data'>
+				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcardleftdiv' style="display:none;">
 					<div class="fileinputdiv">
 						<div id='pcardleftTitle'></div>
@@ -463,26 +432,9 @@
 					</div>
 				</div>
 				</form>
-				<script>
-				function insertcardleftTitle(tValue){ 
-				   var t1 = tValue.lastIndexOf("\\");  
-				   var t2 = tValue.lastIndexOf(".");  
-				   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-					   $('#pcardrightTitle').html(tValue.substring(t1 + 1, t2));
-				   }
-				}
-				
-				function uploadcardleftshow(){
-					$('#uploadcardleftdiv').slideToggle(500);
-				}
-				
-				function uploadcardlefthide(){
-					$('#uploadcardleftdiv').slideToggle(500);
-				}
-				</script>
-				
+
 				<li>3.本人手持身份证正面头部照<a href="#javascript:" onclick="uploadcardheadshow()" class="provincecard">上传认证</a>。</li>
-				<form action='borrow_money.php' method='post' enctype='multipart/form-data'>
+				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcardheaddiv' style="display:none;">
 					<div class="fileinputdiv">
 						<div id='pcardheadTitle'></div>
@@ -497,30 +449,13 @@
 					</div>
 				</div>
 				</form>
-				<script>
-				function insertcardheadTitle(tValue){ 
-				   var t1 = tValue.lastIndexOf("\\");  
-				   var t2 = tValue.lastIndexOf(".");  
-				   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-					   $('#pcardheadTitle').html(tValue.substring(t1 + 1, t2));
-				   }
-				}
-				
-				function uploadcardheadshow(){
-					$('#uploadcardheaddiv').slideToggle(500);
-				}
-				
-				function uploadcardheadhide(){
-					$('#uploadcardheaddiv').slideToggle(500);
-				}
-				</script>
 			</ul>
 		</li>
 		<li>
 			<p style="font-size:20px;">工作认证</p>
 			<ul style="margin-left:20px;">
 				<li>1.加盖单位公章（或劳动合同专用章）的劳动合同。<a href="#javascript:" onclick="uploadcontractshow()" class="provincecard">上传认证</a></li>
-				<form action='borrow_money.php' method='post' enctype='multipart/form-data'>
+				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcontractdiv' style="display:none;">
 					<div class="fileinputdiv">
 						<div id='pcontractTitle'></div>
@@ -535,25 +470,9 @@
 					</div>
 				</div>
 				</form>
-				<script>
-				function insertcontractTitle(tValue){ 
-				   var t1 = tValue.lastIndexOf("\\");  
-				   var t2 = tValue.lastIndexOf(".");  
-				   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-					   $('#pcontractTitle').html(tValue.substring(t1 + 1, t2));
-				   }
-				}
 				
-				function uploadcontractshow(){
-					$('#uploadcontractdiv').slideToggle(500);
-				}
-				
-				function uploadcontracthide(){
-					$('#uploadcontractdiv').slideToggle(500);
-				}
-				</script>
 				<li>2.最近1个月内开具的加盖单位公章（或人力章、财务章）的机打在职证明。<a href="#javascript:" class="provincecard" onclick="uploadcertificationshow()">上传认证</a></li>
-				<form action='borrow_money.php' method='post' enctype='multipart/form-data'>
+				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcertificationdiv' style="display:none;">
 					<div class="fileinputdiv">
 						<div id='pcertificationTitle'></div>
@@ -568,25 +487,9 @@
 					</div>
 				</div>
 				</form>
-				<script>
-				function insertcertificationTitle(tValue){ 
-				   var t1 = tValue.lastIndexOf("\\");  
-				   var t2 = tValue.lastIndexOf(".");  
-				   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-					   $('#pcertificationTitle').html(tValue.substring(t1 + 1, t2));
-				   }
-				}
-				
-				function uploadcertificationshow(){
-					$('#uploadcertificationdiv').slideToggle(500);
-				}
-				
-				function uploadcertificationhide(){
-					$('#uploadcertificationdiv').slideToggle(500);
-				}
-				</script>
+
 				<li>3.带有姓名、照片、工作单位名称的工作证。<a href="#javascript:" onclick="uploadworkcertificationshow()" class="provincecard">上传认证</a></li>
-				<form action='borrow_money.php' method='post' enctype='multipart/form-data'>
+				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadworkcertificationdiv' style="display:none;">
 					<div class="fileinputdiv">
 						<div id='pworkcertificationTitle'></div>
@@ -601,29 +504,12 @@
 					</div>
 				</div>
 				</form>
-				<script>
-				function insertcertificationTitle(tValue){ 
-				   var t1 = tValue.lastIndexOf("\\");  
-				   var t2 = tValue.lastIndexOf(".");  
-				   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-					   $('#pworkcertificationTitle').html(tValue.substring(t1 + 1, t2));
-				   }
-				}
-				
-				function uploadworkcertificationshow(){
-					$('#uploadworkcertificationdiv').slideToggle(500);
-				}
-				
-				function uploadworkcertificationhide(){
-					$('#uploadworkcertificationdiv').slideToggle(500);
-				}
-				</script>
 			</ul>
 		</li>
 		<li>
 			<p style="font-size:20px;">信用认证</p>
 			<p style="margin-left:20px;">1.个人信用报告需15日内开具，认证条件：信用记录良好，认证有效期：6个月。<a href="#javascript:" onclick="uploadproveshow()" class="provincecard">上传认证</a></p>
-			<form action='borrow_money.php' method='post' enctype='multipart/form-data'>
+			<form action='' method='post' enctype='multipart/form-data'>
 			<div id='uploadprovediv' style="display:none;">
 				<div class="fileinputdiv">
 					<div id='pproveTitle'></div>
@@ -638,29 +524,12 @@
 				</div>
 			</div>
 			</form>
-			<script>
-			function insertproveTitle(tValue){ 
-			   var t1 = tValue.lastIndexOf("\\");  
-			   var t2 = tValue.lastIndexOf(".");  
-			   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-				   $('#pproveTitle').html(tValue.substring(t1 + 1, t2));
-			   }
-			}
-			
-			function uploadproveshow(){
-				$('#uploadprovediv').slideToggle(500);
-			}
-			
-			function uploadprovehide(){
-				$('#uploadprovediv').slideToggle(500);
-			}
-			</script>
 		</li>
 		<li>
 			<p style="font-size:20px;">收入认证</p>
 			<ul style="margin-left:20px;">
 				<li>1.可体现工资项的最近3个月的工资卡银行流水单。<a href="#javascript:" onclick="uploadbankproveshow()" class="provincecard">上传认证</a></li>
-				<form action='borrow_money.php' method='post' enctype='multipart/form-data'>
+				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadbankprovediv' style="display:none;">
 					<div class="fileinputdiv">
 						<div id='pbankproveTitle'></div>
@@ -675,25 +544,8 @@
 					</div>
 				</div>
 				</form>
-				<script>
-				function insertbankproveTitle(tValue){ 
-				   var t1 = tValue.lastIndexOf("\\");  
-				   var t2 = tValue.lastIndexOf(".");  
-				   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-					   $('#pbankproveTitle').html(tValue.substring(t1 + 1, t2));
-				   }
-				}
-				
-				function uploadbankproveshow(){
-					$('#uploadbankprovediv').slideToggle(500);
-				}
-				
-				function uploadbankprovehide(){
-					$('#uploadbankprovediv').slideToggle(500);
-				}
-				</script>
 				<li>2.可体现工资项的最近3个月的网银电脑截屏。<a href="#javascript:" onclick="uploadcomscreenshow()" class="provincecard">上传认证</a></li>
-				<form action='borrow_money.php' method='post' enctype='multipart/form-data'>
+				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcomscreendiv' style="display:none;">
 					<div class="fileinputdiv">
 						<div id='pcomscreenTitle'></div>
@@ -708,23 +560,6 @@
 					</div>
 				</div>
 				</form>
-				<script>
-				function insertcomscreenTitle(tValue){ 
-				   var t1 = tValue.lastIndexOf("\\");  
-				   var t2 = tValue.lastIndexOf(".");  
-				   if(t1 >= 0 && t1 < t2 && t1 < tValue.length){
-					   $('#pcomscreenTitle').html(tValue.substring(t1 + 1, t2));
-				   }
-				}
-				
-				function uploadcomscreenshow(){
-					$('#uploadcomscreendiv').slideToggle(500);
-				}
-				
-				function uploadcomscreenhide(){
-					$('#uploadcomscreendiv').slideToggle(500);
-				}
-				</script>
 			</ul>
 		</li>
 	</ul>

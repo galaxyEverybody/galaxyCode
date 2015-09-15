@@ -571,7 +571,7 @@ function checkEmail(email)
     document.forms['formUser'].elements['Submit'].disabled = 'disabled';
     return false;
   }
-  Ajax.call( 'user.php?act=check_email', 'email=' + email, check_email_callback , 'GET', 'TEXT', true, true );
+  Ajax.call( 'user.php?act=check_email', 'email=' + email, check_email_callback , 'GET', 'TEXT', true, true);
 }
 
 function check_email_callback(result)

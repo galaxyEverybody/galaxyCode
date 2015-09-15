@@ -95,7 +95,7 @@ function edit_profile($profile)
 }
 
 /**
- * 获取用户帐号信息
+ * 更改用户头像
  *
  * @access  public
  * @param   int       $user_id        用户user_id
@@ -130,6 +130,38 @@ function edit_profile($profile)
  	
  }
 
+ /**
+  * 添加借款用户的证明
+  *
+  * @access  public
+  * @param   int       $user_id        用户user_id
+  *
+  * @return void
+  */
+ function update_userloan_img($user_id,$img_name,$project){
+ 	//查看用户是否存在
+ 	$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('borrow_credit').' where user_id='.$user_id;
+ 	$num = $GLOBALS['db']->getOne($sql);
+ 	
+ 	$time = gmtime();
+ 	if(empty($num)){
+ 		$sql = 'INSERT INTO '.$GLOBALS['ecs']->table('borrow_credit').' (user_id,cardright,cardleft,cardhead,
+ 				contract,certification,workcertification,prove,bankprove,comscreen,addtime) VALUES ('.
+ 				$user_id.',"0","0","0","0","0","0","0","0","0",'.$time.')';
+ 		$GLOBALS['db']->query($sql);
+ 		
+ 		$sql = 'UPDATE '.$GLOBALS['ecs']->table('borrow_credit').' SET '.$project.'="'.$img_name.'",addtime= '.
+ 	 		$time.' where user_id = '.$user_id;
+ 	}else{
+ 		$sql = 'UPDATE '.$GLOBALS['ecs']->table('borrow_credit').' SET '.$project.'="'.$img_name.'",addtime= '.
+ 				$time.' where user_id = '.$user_id;
+ 	}
+
+ 	if($GLOBALS['db']->query($sql)){
+ 		return true;
+ 	}
+ }
+ 
 /**
  * 获取用户帐号信息
  *
@@ -622,11 +654,22 @@ function drop_consignee($id)
  * @param   array       $borrow_money
  * @return  bool
  */
-function insert_borrow($borrow_money)
+function insert_borrow($info,$type=0)
 {
 	/* 插入一条新记录 */
-	$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('user_borrow'), $borrow_money, 'INSERT');
-	
+	if($type == 0){
+		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('user_borrow'), $info, 'INSERT');
+	}elseif($type == 1){
+		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('borrow_basic'), $info, 'INSERT');
+	}elseif($type == 2){
+		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('borrow_car'), $info, 'INSERT');
+	}elseif($type == 3){
+		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('borrow_house'), $info, 'INSERT');
+	}elseif($type == 4){
+		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('borrow_credit'), $info, 'INSERT');
+	}else{
+		die('系统错误');
+	}
 	return true;
 }
 
