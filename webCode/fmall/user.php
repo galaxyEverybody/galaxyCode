@@ -768,6 +768,7 @@ elseif ($action == 'auth_center')
 	$userinfo['email'] = str_replace(substr($userinfo['email'],3,strlen($userinfo['email'])-10),'*****',$userinfo['email']);
 	$userinfo['idcard'] = str_replace(substr($userinfo['idcard'],3,strlen($userinfo['idcard'])-7),'********',$userinfo['idcard']);
 	
+	$smarty->assign('useruser',$user_id);
 	$smarty->assign('userinfostatus',$userinfo);
 	$smarty->display('user_transaction.dwt');
 }

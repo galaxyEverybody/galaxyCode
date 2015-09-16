@@ -854,6 +854,7 @@ $(function(){
 					<tr>
 						<td class="bangcardtd">身份证号</td>
 						<td>
+							<input type="hidden" name="useruser" value="{$useruser}">
 							<input class="bangcardinput" name="authcenter_idcardname" type="text" placeholder="请输入您的身份证号" onblur="chekauthcenter_idcardname(this.value);">
 							<div id="idcardnamemsg_authcenter" class='autherrorinfo'></div>
 						</td>

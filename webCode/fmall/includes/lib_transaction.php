@@ -131,6 +131,52 @@ function edit_profile($profile)
  }
 
  /**
+  * 查看借款信息
+  *
+  * @access  public
+  * @param   int       $user_id        用户user_id
+  * @return array
+  */
+ function select_borrowinfo_exist($user_id){
+ 	
+ 	/* 查询借款信息*/
+ 	$sql = "SELECT u.realname,u.mobile_phone,u.idcard,b.borrow_style FROM ".$GLOBALS['ecs']->table('users').' as u , '.
+ 			$GLOBALS['ecs']->table('user_borrow').' as b WHERE u.user_id = b.user_id AND u.user_id = '.$user_id;
+ 	
+ 	$userinfo = $GLOBALS['db']->getAll($sql);
+ 	
+ 	return $userinfo;
+ 
+ }
+ 
+ /**
+  * 查看用户借款信息的位置
+  *
+  * @access  public
+  * @param   int       $user_id        用户user_id
+  * @return array
+  */
+ function select_borrow_step($user_id){
+ 	
+ 	$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('user_borrow').' WHERE user_id='.$user_id;
+ 	$borcount['borrownum'] = $GLOBALS['db']->getOne($sql);
+ 	
+ 	$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('borrow_basic').' WHERE user_id='.$user_id;
+ 	$borcount['borrowbasic'] = $GLOBALS['db']->getOne($sql);
+ 
+ 	$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('borrow_car').' WHERE user_id='.$user_id;
+ 	$borcount['borrowcar'] = $GLOBALS['db']->getOne($sql);
+
+ 	$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('borrow_house').' WHERE user_id='.$user_id;
+ 	$borcount['borrowhouse'] = $GLOBALS['db']->getOne($sql);
+ 	
+ 	$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('borrow_credit').' WHERE user_id='.$user_id;
+ 	$borcount['borrowcredit'] = $GLOBALS['db']->getOne($sql);
+ 	
+ 	return $borcount;
+ }
+
+ /**
   * 添加借款用户的证明
   *
   * @access  public

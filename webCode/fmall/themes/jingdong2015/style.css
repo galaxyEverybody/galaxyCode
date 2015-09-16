@@ -3340,6 +3340,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .borrowinfo_top #pcontractTitle,#pcertificationTitle,#pworkcertificationTitle{ width:200px;height:30px;border:1px solid #ddd;float:left;text-align:left;}
 .borrowinfo_top #pproveTitle,#pbankproveTitle,#pcomscreenTitle{ width:200px;height:30px;border:1px solid #ddd;float:left;text-align:left;}
 .borrowinfo_top	.provincecard{ color:blue;margin-left:5px;}
+.borrowinfo_top	.provincecardcolor{ color:#FF852F;margin-left:5px;}
 .borrowinfo_top .relationinfo{ font-size:16px;font-weight:bold;color:#FF852F;}
 .userinfo_title{ margin-left:100px;margin-top:20px;height:30px;line-height:30px;}
 .userinfo_title_left{ width:5px;height:30px;background:#FF852F;float:left;}

@@ -38,19 +38,46 @@ if(empty($userid)){
 /* 申请借款页面*/
 if ($action == 'default')
 {	
+	include_once(ROOT_PATH . 'includes/lib_transaction.php');
+	
 	//查询是否有投资记录
 	$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('order_goods').' WHERE user_id='.$userid;
 	$countrec = $GLOBALS['db']->getOne($sql);
 	if(!empty($countrec)){
 		show_message($_LANG['financing_record_info'],$_LANG['back_up_page'],'user.php');
 	}
-	//if($countrec)
-	//查询是否有借款记录
-	/*$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('user_borrow').' WHERE user_id='.$userid;
-	$num = $GLOBALS['db']->getOne($sql);
-	if(!empty($num)){
-		show_message($_LANG['borrow_record_info'],$_LANG['back_up_page'],'user.php');
-	}*/
+
+	
+	$borrowstep = select_borrow_step($userid);		//查询借款的位置
+	
+	if(!empty($borrowstep['borrownum']) && empty($borrowstep['borrowbasic'])){
+		header('location:borrow_money.php?act=userinformation');
+	}elseif(!empty($borrowstep['borrownum']) && !empty($borrowstep['borrowbasic'])){
+		
+		$userinfo = select_borrowinfo_exist($userid);
+		
+		$flag = $userinfo[0]['borrow_style'];
+		if($flag == 1){
+			if(empty($borrowstep['borrow_car'])){
+				header("location:borrow_money.php?act=carinfo");
+			}else{
+				show_message($_LANG['borrow_record_info'],$_LANG['back_up_page'],'./index.php');
+			}	
+		}elseif($flag == 2){
+			if(empty($borrowstep['borrow_car'])){
+				header("location:borrow_money.php?act=houseinfo");
+			}else{
+				show_message($_LANG['borrow_record_info'],$_LANG['back_up_page'],'./index.php');
+			}
+		}elseif($flag == 3){
+			if(empty($borrowstep['borrow_car'])){
+				header("location:borrow_money.php?act=creditinfo");
+			}else{
+				show_message($_LANG['borrow_record_info'],$_LANG['back_up_page'],'./index.php');
+			}
+		}
+		
+	}
 	
 	$loantime = array('3个月','6个月','9个月','12个月','15个月','18个月','21个月','24个月');
 	
@@ -95,6 +122,7 @@ elseif ($action == 'insert_borrow_money')
 
 /* 基本信息的提交页面*/
 elseif ($action == 'userinformation'){
+	include_once(ROOT_PATH . 'includes/lib_transaction.php');
 	
 	/* 取得国家的省列表 */
 	$province_list[$region_id] = get_regions(1, 1);
@@ -102,10 +130,7 @@ elseif ($action == 'userinformation'){
 	$smarty->assign('act',	$action);
 	
 	/* 查询借款信息*/
-	$sql = "SELECT u.realname,u.mobile_phone,u.idcard,b.borrow_style FROM ".$GLOBALS['ecs']->table('users').' as u , '.
-			$GLOBALS['ecs']->table('user_borrow').' as b WHERE u.user_id = b.user_id AND u.user_id = '.$userid;
-	
-	$userinfo = $GLOBALS['db']->getAll($sql);
+	$userinfo = select_borrowinfo_exist($userid);
 
 	$username = isset($userinfo[0]['realname'])?substr($userinfo[0]['realname'],0,3).'****':'0';
 	$usephone = isset($userinfo[0]['mobile_phone'])?str_replace(substr($userinfo[0]['mobile_phone'],3,5),'*****',$userinfo[0]['mobile_phone']):'0';
@@ -114,8 +139,8 @@ elseif ($action == 'userinformation'){
 	$smarty->assign('username',$username);
 	$smarty->assign('usephone',$usephone);
 	$smarty->assign('usercard',$usercard);
-	//$smarty->assign('flag',$userinfo[0]['borrow_style']);
-	$smarty->assign('flag',3);
+	$smarty->assign('userid',$userid);
+	$smarty->assign('flag',$userinfo[0]['borrow_style']);
 	$smarty->display('borrow_money.dwt');
 }
 
@@ -125,10 +150,7 @@ elseif ($action == 'insert_user_info'){
 	include_once(ROOT_PATH . 'includes/lib_transaction.php');
 	
 	/* 查询借款信息*/
-	$sql = "SELECT u.realname,u.mobile_phone,u.idcard,b.borrow_style FROM ".$GLOBALS['ecs']->table('users').' as u , '.
-			$GLOBALS['ecs']->table('user_borrow').' as b WHERE u.user_id = b.user_id AND u.user_id = '.$userid;
-	
-	$userinfo = $GLOBALS['db']->getAll($sql);
+	$userinfo = select_borrowinfo_exist($userid);
 
 	$truename = isset($_POST['truename'])?compile_str(trim($_POST['truename'])):$userinfo[0]['realname'];
 	$idcard = isset($_POST['idcard'])?compile_str(trim($_POST['idcard'])):$userinfo[0]['idcard'];
@@ -155,6 +177,12 @@ elseif ($action == 'insert_user_info'){
 	
 	if(empty($truename) || empty($idcard) || empty($phone) || empty($sex) || empty($age) || empty($liveaddress) || empty($zipcode)){
 		show_message($_LANG['borrow_userinfo_fail'],$_LANG['back_up_page'],'borrow_money.php?act=userinformation');
+	}
+	
+	if(!preg_match("/1[3458]{1}\d{9}$/",$phone)){
+		show_message($_LANG['borrow_phone_fail'],$_LANG['back_up_page'],'borrow_money.php?act=userinformation');
+	}elseif(!preg_match('/^([\d]{17}[xX\d]|[\d]{15})$/',$idcard)){
+		show_message($_LANG['borrow_idcard_fail'],$_LANG['back_up_page'],'borrow_money.php?act=userinformation');
 	}
 	
 	$basicinfo = array(
@@ -309,9 +337,8 @@ elseif ($action == 'creditinfo'){
 	/* 查询纯信用信息 */
 	$sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('borrow_credit').' WHERE user_id='.$userid;
 	$creditinfo = $GLOBALS['db']->getAll($sql);
-	
-	print_r($creditinfo);exit;
-	
+	//print_r($creditinfo[0]);exit;
+	$smarty->assign('credit_info',	$creditinfo[0]);
 	$smarty->assign('act',	$action);
 	$smarty->display('borrow_money.dwt');
 }

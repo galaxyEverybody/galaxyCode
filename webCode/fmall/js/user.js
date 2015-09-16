@@ -73,8 +73,9 @@ function userEdit()
 function truenamecheck()
 {
 	var frm = document.forms['formEdit'];
-	var truename = frm.elements['truename'].value;
-	var idcard = frm.elements['idcard'].value;
+	var truename = frm.elements['truename_authcenter'].value;
+	var idcard = frm.elements['authcenter_idcardname'].value;
+	var useruser = frm.elements['useruser'].value;
 	
 	var msg = '';
 	
@@ -101,12 +102,21 @@ function truenamecheck()
 	  }
 	  else
 	  {
-		Ajax.call('user.php?act=ajax_checkidcard','turename=' + truename,callback_checkidcard,'POST','JSON');
+		Ajax.call('check_idcard.php','idcard='+ idcard + '&' + 'useruser=' + useruser + '&' + 'realname=' + truename,callback_checkidcarddiv,'POST','TEXT',true,true);
 	  }
 			
 }
-function callback_checkidcard(result)
+function callback_checkidcarddiv(result)
 {
+	var result = eval("("+result+")");
+	
+	if(result.status == '1'){
+		$('#borrow_idcard').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
+	}else if(result.status == '2'){
+		$("#borrow_idcard").html('-您的认证次数超过限制，请24小时之后再进行提交');
+	}else{
+		$("#borrow_idcard").html('-您输入的身份证号码与姓名不符');
+	}
 	document.getElementById("checknameid").style.display="block";
 		
 }

@@ -164,7 +164,12 @@
 	    		{/if}
 	    		{if $usercard eq '0'}
 	    		<tr>
-	    			<td class="borrowtdinfo">身份证号</td><td><input class="borrowinput" type="text" name="idcard" placeholder="请输入您的身份证号码" onblur="borrowcheidcard(this.value)"/><span id="borrow_idcard" class="borrow_error_info"></span></td>
+	    			<td class="borrowtdinfo">身份证号</td>
+	    			<td>
+	    				<input type="hidden" name="useruser" value="{$userid}" id="useruser">
+	    				<input class="borrowinput" id="usercardname" type="text" name="idcard" placeholder="请输入您的身份证号码" onblur="borrowcheidcard(this.value)"/>
+	    				<span id="borrow_idcard" class="borrow_error_info"></span>
+	    			</td>
 	    		</tr>
 	    		{else}
 	    		<tr>
@@ -398,7 +403,7 @@
 		<li>
 			<p style="font-size:20px;">身份认证</p>
 			<ul style="margin-left:20px;">
-				<li>1.本人身份证正面照片<a href="javascript:" onclick="uploadcardrightshow()" class="provincecard">上传认证</a>。</li>
+				<li>1.本人身份证正面照片{if $credit_info.cardright eq '0'}<a href="javascript:" onclick="uploadcardrightshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
 				<form action="borrow_money.php" method="post" enctype='multipart/form-data'>
 				<div id='uploadcardrightdiv' style="display:none;">
 					<div class="fileinputdiv">
@@ -416,7 +421,7 @@
 				</div>
 				</form>
 
-				<li>1.本人身份证反面照片<a href="javascript:" onclick="uploadcardleftshow()" class="provincecard">上传认证</a>。</li>
+				<li>1.本人身份证反面照片{if $credit_info.cardleft eq '0'}<a href="javascript:" onclick="uploadcardleftshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
 				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcardleftdiv' style="display:none;">
 					<div class="fileinputdiv">
@@ -426,6 +431,7 @@
 						</div>
 					</div>
 					<div class='uploadheadbutton'>
+						<input type='hidden' name='project' value='cardleft'>
 						<input type='hidden' name='act' value='insert_credit_info'>
 						<input type='submit' value='上传' class='uploadheadsub'>
 						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcardlefthide()">
@@ -433,7 +439,7 @@
 				</div>
 				</form>
 
-				<li>3.本人手持身份证正面头部照<a href="#javascript:" onclick="uploadcardheadshow()" class="provincecard">上传认证</a>。</li>
+				<li>3.本人手持身份证正面头部照{if $credit_info.cardhead eq '0'}<a href="#javascript:" onclick="uploadcardheadshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
 				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcardheaddiv' style="display:none;">
 					<div class="fileinputdiv">
@@ -443,6 +449,7 @@
 						</div>
 					</div>
 					<div class='uploadheadbutton'>
+						<input type='hidden' name='project' value='cardhead'>
 						<input type='hidden' name='act' value='insert_credit_info'>
 						<input type='submit' value='上传' class='uploadheadsub'>
 						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcardheadhide()">
@@ -454,7 +461,7 @@
 		<li>
 			<p style="font-size:20px;">工作认证</p>
 			<ul style="margin-left:20px;">
-				<li>1.加盖单位公章（或劳动合同专用章）的劳动合同。<a href="#javascript:" onclick="uploadcontractshow()" class="provincecard">上传认证</a></li>
+				<li>1.加盖单位公章（或劳动合同专用章）的劳动合同{if $credit_info.contract eq '0'}<a href="#javascript:" onclick="uploadcontractshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
 				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcontractdiv' style="display:none;">
 					<div class="fileinputdiv">
@@ -464,6 +471,7 @@
 						</div>
 					</div>
 					<div class='uploadheadbutton'>
+						<input type='hidden' name='project' value='contract'>
 						<input type='hidden' name='act' value='insert_credit_info'>
 						<input type='submit' value='上传' class='uploadheadsub'>
 						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcontracthide()">
@@ -471,7 +479,7 @@
 				</div>
 				</form>
 				
-				<li>2.最近1个月内开具的加盖单位公章（或人力章、财务章）的机打在职证明。<a href="#javascript:" class="provincecard" onclick="uploadcertificationshow()">上传认证</a></li>
+				<li>2.最近1个月内开具的加盖单位公章（或人力章、财务章）的机打在职证明{if $credit_info.certification eq '0'}<a href="#javascript:" class="provincecard" onclick="uploadcertificationshow()">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
 				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcertificationdiv' style="display:none;">
 					<div class="fileinputdiv">
@@ -481,6 +489,7 @@
 						</div>
 					</div>
 					<div class='uploadheadbutton'>
+						<input type='hidden' name='project' value='certification'>
 						<input type='hidden' name='act' value='insert_credit_info'>
 						<input type='submit' value='上传' class='uploadheadsub'>
 						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcertificationhide()">
@@ -488,7 +497,7 @@
 				</div>
 				</form>
 
-				<li>3.带有姓名、照片、工作单位名称的工作证。<a href="#javascript:" onclick="uploadworkcertificationshow()" class="provincecard">上传认证</a></li>
+				<li>3.带有姓名、照片、工作单位名称的工作证{if $credit_info.workcertification eq '0'}<a href="#javascript:" onclick="uploadworkcertificationshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
 				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadworkcertificationdiv' style="display:none;">
 					<div class="fileinputdiv">
@@ -498,6 +507,7 @@
 						</div>
 					</div>
 					<div class='uploadheadbutton'>
+						<input type='hidden' name='project' value='workcertification'>
 						<input type='hidden' name='act' value='insert_credit_info'>
 						<input type='submit' value='上传' class='uploadheadsub'>
 						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadworkcertificationhide()">
@@ -508,7 +518,7 @@
 		</li>
 		<li>
 			<p style="font-size:20px;">信用认证</p>
-			<p style="margin-left:20px;">1.个人信用报告需15日内开具，认证条件：信用记录良好，认证有效期：6个月。<a href="#javascript:" onclick="uploadproveshow()" class="provincecard">上传认证</a></p>
+			<p style="margin-left:20px;">1.个人信用报告需15日内开具，认证条件：信用记录良好，认证有效期：6个月{if $credit_info.prove eq '0'}<a href="#javascript:" onclick="uploadproveshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</p>
 			<form action='' method='post' enctype='multipart/form-data'>
 			<div id='uploadprovediv' style="display:none;">
 				<div class="fileinputdiv">
@@ -518,6 +528,7 @@
 					</div>
 				</div>
 				<div class='uploadheadbutton'>
+					<input type='hidden' name='project' value='prove'>
 					<input type='hidden' name='act' value='insert_credit_info'>
 					<input type='submit' value='上传' class='uploadheadsub'>
 					<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadprovehide()">
@@ -528,7 +539,7 @@
 		<li>
 			<p style="font-size:20px;">收入认证</p>
 			<ul style="margin-left:20px;">
-				<li>1.可体现工资项的最近3个月的工资卡银行流水单。<a href="#javascript:" onclick="uploadbankproveshow()" class="provincecard">上传认证</a></li>
+				<li>1.可体现工资项的最近3个月的工资卡银行流水单{if $credit_info.bankprove eq '0'}<a href="#javascript:" onclick="uploadbankproveshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
 				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadbankprovediv' style="display:none;">
 					<div class="fileinputdiv">
@@ -538,13 +549,14 @@
 						</div>
 					</div>
 					<div class='uploadheadbutton'>
+						<input type='hidden' name='project' value='bankprove'>
 						<input type='hidden' name='act' value='insert_credit_info'>
 						<input type='submit' value='上传' class='uploadheadsub'>
 						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadbankprovehide()">
 					</div>
 				</div>
 				</form>
-				<li>2.可体现工资项的最近3个月的网银电脑截屏。<a href="#javascript:" onclick="uploadcomscreenshow()" class="provincecard">上传认证</a></li>
+				<li>2.可体现工资项的最近3个月的网银电脑截屏{if $credit_info.comscreen eq '0'}<a href="#javascript:" onclick="uploadcomscreenshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
 				<form action='' method='post' enctype='multipart/form-data'>
 				<div id='uploadcomscreendiv' style="display:none;">
 					<div class="fileinputdiv">
@@ -554,6 +566,7 @@
 						</div>
 					</div>
 					<div class='uploadheadbutton'>
+						<input type='hidden' name='project' value='comscreen'>
 						<input type='hidden' name='act' value='insert_credit_info'>
 						<input type='submit' value='上传' class='uploadheadsub'>
 						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcomscreenhide()">
