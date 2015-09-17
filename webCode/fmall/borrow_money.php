@@ -131,10 +131,10 @@ elseif ($action == 'userinformation'){
 	
 	/* 查询借款信息*/
 	$userinfo = select_borrowinfo_exist($userid);
-
-	$username = isset($userinfo[0]['realname'])?substr($userinfo[0]['realname'],0,3).'****':'0';
-	$usephone = isset($userinfo[0]['mobile_phone'])?str_replace(substr($userinfo[0]['mobile_phone'],3,5),'*****',$userinfo[0]['mobile_phone']):'0';
-	$usercard = isset($userinfo[0]['idcard'])?str_replace(substr($userinfo[0]['idcard'],4,strlen($userinfo[0]['idcard'])-8),'**********',$userinfo[0]['idcard']):'0';
+	
+	$username = empty($userinfo[0]['realname'])?'0':substr($userinfo[0]['realname'],0,3).'****';
+	$usephone = empty($userinfo[0]['mobile_phone'])?'0':str_replace(substr($userinfo[0]['mobile_phone'],3,5),'*****',$userinfo[0]['mobile_phone']);
+	$usercard = empty($userinfo[0]['idcard'])?'0':str_replace(substr($userinfo[0]['idcard'],4,strlen($userinfo[0]['idcard'])-8),'**********',$userinfo[0]['idcard']);
 	
 	$smarty->assign('username',$username);
 	$smarty->assign('usephone',$usephone);

@@ -2881,7 +2881,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv img{ margin-left:20px;}
 .authcenterdiv .authupstyle{ width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;}
 .authcenterdiv .authupphone{ width:650px;height:200px;}
-.authcenterdiv .autherrorinfo{ color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:5px;}
+.authcenterdiv .autherrorinfo{ color:red;width:200px;line-height:30px;height:30px;float:left;margin-left:5px;}
 .authcenterdiv #authemaildiv{ width:650px;height:200px;display:none;margin-left:200px;}
 .authcenterdiv #authidcarddiv{ width:750px;height:200px;display:none;margin-left:200px;}
 .authcenterdiv #authpwssdiv{ width:750px;height:260px;display:none;}
@@ -2890,6 +2890,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv .capitalauthphone{ margin-left:50px;font-size:20px;}
 .authcenterdiv .capitalauthnum{ margin-left:100px;}
 .authcenterdiv .capitalauthupda{ float:right;margin-right:20px;color:#185283;cursor:pointer;}
+.authcenterdiv .capitalauthupdaspan{ float:right;margin-right:20px;color:#FF852F;cursor:pointer;}
 .authcenterdiv #authphonediv{ width:60%;height:auto;display:none;}
 .authcenterdiv #phoneauthupshow{ width:214px;height:30px;float:left;text-align:center;background:url(images/auth_centerphone01.png);}
 .authcenterdiv #idcardauthshow{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;}
@@ -2900,7 +2901,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .usBox #getpwemail{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;cursor:pointer;}
 .usBox .verifyauthinput{ width:150px;height:30px;float:left;}
 .usBox .authupstyle{ width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;}
-.usBox .autherrorinfo{ color:#FF852F;width:200px;line-height:30px;height:30px;float:left;margin-left:5px;}
+.usBox .autherrorinfo{ color:red;width:200px;line-height:30px;height:30px;float:left;margin-left:5px;}
 .usBox .authtableshow{ margin-top:20px;font-size:16px;}
 .usBox .authtablehide{ margin-top:20px;font-size:16px;display:none;}
 
@@ -3354,6 +3355,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .borrowinputadd{ width:160px;height:30px;border-radius:5px;outline:none;border:1px solid #ddd;}
 .borrow_sub{ width:260px;height:40px;border-radius:5px;outline:none;background-color:#FF852F;font-size:14px;font-weight:bold;color:#fff;border:0px;cursor:pointer;}
 .borrow-banner{ width:400px;height:300px;float:right;margin-right:20px;margin-top:50px;}
+
 
 
 

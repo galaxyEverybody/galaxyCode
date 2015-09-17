@@ -858,3 +858,8 @@ em, cite, th {
 .cloud_close a{}
 .cloud_close img{ position:absolute; right:10px; top:8px; border:none}
 .Start315{border: 1px solid #CC0000; background: #ffffcc; padding: 10px; margin-bottom: 5px;}
+
+.borrowinfodiv{ width:150px;height:25px;border:1px solid #ddd;line-height:25px;margin-top:-10px;}
+.borrowinfodivtitle{ width:260px;height:25px;border:1px solid #ddd;line-height:25px;margin-top:-10px;}
+.borrowinfodivdescription{ width:400px;height:150px;border:1px solid #ddd;line-height:25px;margin-top:-10px;}
+

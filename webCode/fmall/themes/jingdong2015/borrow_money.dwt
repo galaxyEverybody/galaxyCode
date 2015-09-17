@@ -155,7 +155,7 @@
 	    	<table width="100%" cellpadding="7px" class="user_info_table">
 	    		{if $username eq '0'}
 	    		<tr>
-	    			<td class="borrowtdinfo">真实姓名</td><td><input class="borrowinput" type="text" name="truename" placeholder="请输入您的真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" class="borrow_error_info"></span></td>
+	    			<td class="borrowtdinfo">真实姓名</td><td><input class="borrowinput" type="text" id="usertruename" name="truename" placeholder="请输入您的真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" class="borrow_error_info"></span></td>
 	    		</tr>
 	    		{else}
 	    		<tr>

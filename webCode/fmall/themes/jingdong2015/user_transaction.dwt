@@ -817,7 +817,7 @@ $(function(){
 		<!--邮箱修改start-->
 		<p><img src="images/emailauth01.png" width="25px"><span class="capitalauthphone">绑定邮箱</span>
 			<span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]<a onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</a>
-			{else}{$userinfostatus.email}</span> <span class="capitalauthupda">已绑定</span>{/if}</p>
+			{else}{$userinfostatus.email}</span> <span class="capitalauthupdaspan">已绑定</span>{/if}</p>
 		<div id="authemaildiv">
 				<form id="formauthcenteremail" action="user.php" method="post" onSubmit="return authcenteremailform();">
 				<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
@@ -840,21 +840,21 @@ $(function(){
 		<!--进行实名认证start-->
 		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">实名认证</span><span class="capitalauthnum">
 			{if $userinfostatus.idcardstatus eq 0}未认证[用于账户余额的提现与充值]<span onclick="authcenteridcard()" id="capitalupdaidcard" class="capitalauthupda">认证</span>
-			{else}{$userinfostatus.idcard}</span> <span class="capitalauthupda">已认证</span>{/if}</p>
+			{else}{$userinfostatus.idcard}</span> <span class="capitalauthupdaspan">已认证</span>{/if}</p>
 		<div id="authidcarddiv">
 				<form id="formauthcentertruename" action="user.php" method="post" onSubmit="return authcentertruenamefrom()">
 				<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
 					<tr>
 						<td class="bangcardtd">真实姓名</td>
 						<td>
-							<input class="bangcardinput" name="truename_authcenter" type="text" placeholder="请输入您的真实姓名" onblur="chekauthcenter_truename(this.value);">
+							<input class="bangcardinput" name="truename_authcenter" id="auth_realname" type="text" placeholder="请输入您的真实姓名" onblur="chekauthcenter_truename(this.value);">
 							<div id="truenamemsg_authcenter" class='autherrorinfo'></div>
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd">身份证号</td>
 						<td>
-							<input type="hidden" name="useruser" value="{$useruser}">
+							<input type="hidden" name="useruser" id="useruser" value="{$useruser}">
 							<input class="bangcardinput" name="authcenter_idcardname" type="text" placeholder="请输入您的身份证号" onblur="chekauthcenter_idcardname(this.value);">
 							<div id="idcardnamemsg_authcenter" class='autherrorinfo'></div>
 						</td>

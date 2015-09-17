@@ -1113,16 +1113,35 @@ function chekauthcenter_truename(truename){
 
 /*安全中心实名认证身份证号的检测*/
 function chekauthcenter_idcardname(idcardnum){
+	
 	reg=/^(\d{15}|\d{17}[\dXx])$/;
+	var truename = $('#auth_realname').val();
+	var useruser = $('#useruser').val();
+	
 	if(idcardnum == ''){
 		$('#idcardnamemsg_authcenter').html('-请输入您的身份证号');
 	}else{
 		if(reg.test(idcardnum)){
-			$('#idcardnamemsg_authcenter').html('+输入正确');
+			Ajax.call('check_idcard.php','idcard='+ idcardnum + '&' + 'useruser=' + useruser + '&' + 'realname=' + truename,callback_checkidcarddiv,'POST','TEXT',true,true);
 		}else{
 			$('#idcardnamemsg_authcenter').html('-输入格式错误');
 		}
 	}
+}
+
+function callback_checkidcarddiv(result)
+{
+	var result = eval("("+result+")");
+	
+	if(result.status == '1'){
+		$('#idcardnamemsg_authcenter').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
+	}else if(result.status == '2'){
+		$("#idcardnamemsg_authcenter").html('-您的认证次数超过限制，请24小时之后再进行提交');
+	}else{
+		$("#idcardnamemsg_authcenter").html('-您输入的身份证号码与姓名不符');
+	}
+	document.getElementById("checknameid").style.display="block";
+		
 }
 
 /*安全认证中心实名认证的提交*/
@@ -1231,19 +1250,24 @@ function getpwphoneform(){
 
 //账号验证
 function chekgetpwphone_user(username){
-	var reg = /^[0-9a-zA-Z]{3,30}$/;
 	if(username == ''){
 		$("#user_getpw").html('-请输入您注册的账号');
 		return false;
 	}else{
-		if(!reg.test(username)){
-			$("#user_getpw").html('-输入的账号不合法');
-			return false;
-		}else{
-			return true;
-		}
+		Ajax.call( 'user.php?act=is_registered', 'username=' + username, registed_callbackonlogin , 'GET', 'TEXT', true, true );
+		return true;
 	}
 }
+function registed_callbackonlogin(result){
+  if ( result == "true" ){
+	  $("#user_getpw").html('-您输入的账号不存在');
+	  return false;
+  }else{
+	  $("#user_getpw").html('-输入正确');
+	  return true;
+  }
+}
+
 //手机号验证
 function chekgetpwphone_phone(phone){
 	var reg = /^1[3|5|8|7]\d{9}$/;
@@ -1255,10 +1279,21 @@ function chekgetpwphone_phone(phone){
 			$("#phone_getpw").html('-输入的手机号不合法');
 			return false;
 		}else{
+			Ajax.call( 'user.php?act=check_phone', 'phone=' + phone, check_phone_callbacknologin , 'GET', 'TEXT', true, true );
 			return true;
 		}
 	}
 }
+function check_phone_callbacknologin(result){
+	if ( result == 'ok' ){
+		$("#phone_getpw").html('-您输入的号码不存在');
+		return true;
+	}else{
+		$("#phone_getpw").html('-输入正确');
+		return true;
+	}
+}
+
 //短信验证码验证
 function chekgetpwphone_verify(verify){
 	var reg = /^[0-9]{4}$/;
