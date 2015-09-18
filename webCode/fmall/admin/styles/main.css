@@ -862,4 +862,6 @@ em, cite, th {
 .borrowinfodiv{ width:150px;height:25px;border:1px solid #ddd;line-height:25px;margin-top:-10px;}
 .borrowinfodivtitle{ width:260px;height:25px;border:1px solid #ddd;line-height:25px;margin-top:-10px;}
 .borrowinfodivdescription{ width:400px;height:150px;border:1px solid #ddd;line-height:25px;margin-top:-10px;}
+.creditspan{ font-weight:bold;margin-left:30px;}
+.credittitle{ font-size:18px;color:green;}
 

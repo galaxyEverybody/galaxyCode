@@ -37,7 +37,7 @@ if ($action == 'list'){
 	$smarty->assign('cs_await_ship',    CS_AWAIT_SHIP);
 	$smarty->assign('full_page',        1);
 	
-	$borrow_list = borrow_list();
+	$borrow_list = borrow_list($useid);
 	
 	$smarty->assign('borrow_list',   $borrow_list);
 	$smarty->assign('filter',       $order_list['filter']);
@@ -51,58 +51,50 @@ if ($action == 'list'){
 }
 //获取信息的详情
 elseif($action == 'selinfo'){
-	$userid = trim($_GET['borrow_id']);
+	$useid = trim($_GET['borrow_id']);
 	//借款信息的查询
-	$sql = "select * from ".$GLOBALS['ecs']->table('user_borrow')." where user_id=".$userid;
-	$borrowinfo = $GLOBALS['db']->getAll($sql);
 	
+	$borrowinfo = borrow_list($useid);
+
 	$style = $borrowinfo[0]['borrow_style'];
 	
-	foreach($borrowinfo as $key=>$val){
-		$borrowinfo[$key]['add_time'] = local_date('Y-m-d H:i:s',$res[$key]['add_time']);
-		if($borrowinfo[$key]['borrow_style'] == 1){
-			$borrowinfo[$key]['borrow_style'] = '车贷';
-		}elseif($borrowinfo[$key]['borrow_style'] == 2){
-			$borrowinfo[$key]['borrow_style'] = '房贷';
-		}elseif($borrowinfo[$key]['borrow_style'] == 3){
-			$borrowinfo[$key]['borrow_style'] = '纯信用贷';
-		}else{
-			$borrowinfo[$key]['borrow_style'] = '不存在';
-		}
-		if($borrowinfo[$key]['borrow_status'] == 0){
-			$borrowinfo[$key]['borrow_status'] = '等待确认';
-		}elseif($borrowinfo[$key]['borrow_status'] == 1){
-			$borrowinfo[$key]['borrow_status'] = '审核中';
-		}elseif($borrowinfo[$key]['borrow_status'] == 2){
-			$borrowinfo[$key]['borrow_status'] = '放款中';
-		}elseif($borrowinfo[$key]['borrow_status'] == 3){
-			$borrowinfo[$key]['borrow_status'] = '借款结束';
-		}
-	}
 	
 	//查询基本信息
-	$sql = "select * from ".$GLOBALS['ecs']->table('borrow_basic')." where user_id=".$userid;
+	$sql = "select * from ".$GLOBALS['ecs']->table('borrow_basic')." where user_id=".$useid;
 	$borrowbasic = $GLOBALS['db']->getAll($sql);
 	
-	if($style == 1){
+	if($style == '车贷'){
 		//查询车辆信息
-		$sql = "select * from".$GLOBALS['ecs']->table('borrow_car')." where user_id=".$userid;
-	}elseif($style == 2){
+		$sql = "select * from".$GLOBALS['ecs']->table('borrow_car')." where user_id=".$useid;
+	}elseif($style == '纯信用贷'){
 		//查询房产信息
-		$sql = "select * from".$GLOBALS['ecs']->table('borrow_house')." where user_id=".$userid;
-	}elseif($style == 3){
+		$sql = "select * from".$GLOBALS['ecs']->table('borrow_house')." where user_id=".$useid;
+	}elseif($style == '房贷'){
 		//查询信用认证信息
-		$sql = "select * from".$GLOBALS['ecs']->table('borrow_credit')." where user_id=".$userid;
+		$sql = "select * from".$GLOBALS['ecs']->table('borrow_credit')." where user_id=".$useid;
 	}else{
 		die('信息错误');
 	}
 	$borrowtrue = $GLOBALS['db']->getAll($sql);
-	
+	//print_r($borrowtrue);exit;
 	$smarty->assign('style',$style);
+	$smarty->assign('useruser',$useid);
 	$smarty->assign('borrowinfo',$borrowinfo[0]);
 	$smarty->assign('borrowbasic',$borrowbasic[0]);
 	$smarty->assign('borrowtrue',$borrowtrue[0]);
 	$smarty->display('borrow_info.htm');
+}
+//借款信息的更改
+elseif($action == 'update_borrowstatus'){
+	$user_id = $_POST['user_user'];
+	$borrowstatus = intval(trim($_POST['borrow_status']));
+	
+	$sql = "UPDATE ".$GLOBALS['ecs']->table('user_borrow')." SET borrow_status=".$borrowstatus.
+		" WHERE user_id=".$user_id;
+	
+	$GLOBALS['db']->query($sql);
+	
+	header('location:borrow.php?act=list');
 }
 
 /**
@@ -110,9 +102,13 @@ elseif($action == 'selinfo'){
  * return array
  */
 
-function borrow_list(){
+function borrow_list($useid){
 	
-	$sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('user_borrow').' ORDER BY borrow_id desc,borrow_status desc ';
+	if(empty($useid)){
+		$sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('user_borrow').' ORDER BY borrow_id desc,borrow_status desc ';
+	}else{
+		$sql = "select * from ".$GLOBALS['ecs']->table('user_borrow')." where user_id=".$useid;
+	}
 	$res = $GLOBALS['db']->getAll($sql);
 	
 	foreach($res as $key=>$val){
@@ -134,6 +130,8 @@ function borrow_list(){
 			$res[$key]['borrow_status'] = '放款中';
 		}elseif($res[$key]['borrow_status'] == 3){
 			$res[$key]['borrow_status'] = '借款结束';
+		}elseif($res[$key]['borrow_status'] == 4){
+			$res[$key]['borrow_status'] = '不通过';
 		}
 	}
 

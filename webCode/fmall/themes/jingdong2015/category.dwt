@@ -219,7 +219,7 @@
     <div class="recentView"><!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem --></div>
 </div>
 
-<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/help_category.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 <script>
 	function panduan(){
 		var width=$(window).width();

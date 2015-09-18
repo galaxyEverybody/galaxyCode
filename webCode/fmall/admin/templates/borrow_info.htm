@@ -1,9 +1,10 @@
 <!-- $Id: goods_info.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
 
 {include file="pageheader.htm"}
-{insert_scripts files="../js/utils.js,selectzone.js,colorselector.js"} 
+{insert_scripts files="../js/utils.js,../js/jquery-1.9.1.min.js,selectzone.js,colorselector.js"} 
 <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
 <link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+
 {if $warning}
 <ul style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
   <li style="border: 1px solid #CC0000; background: #FFFFCC; padding: 10px; margin-bottom: 5px;" >{$warning}</li>
@@ -24,9 +25,6 @@
   
   <!-- tab body -->
   <div id="tabbody-div">
-    <form enctype="multipart/form-data" action="" method="post" name="theForm" >
-      <!-- 鏈€澶ф枃浠堕檺鍒 -->
-      <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
       <!-- 閫氱敤淇℃伅 -->
       <table width="90%" id="general-table" align="center" cellpadding="10px" cellspadding="10px">
         <tr>
@@ -185,39 +183,55 @@
       <!-- 房产信息end -->
       
       <!-- 信用认证信息start -->
-      <table width="90%" id="gallery-table" style="display:none" align="center">
-        <!-- 鍥剧墖鍒楄〃 -->
+      <table width="90%" id="gallery-table" align="center" cellpadding="10px" cellspadding="10px">
+      	<tr>
+      		<td class="credittitle">身份认证信息</td>
+      	</tr>
         <tr>
-          <td> {foreach from=$img_list item=img key=i}
-            <div id="gallery_{$img.img_id}" style="float:left; text-align:center; border: 1px solid #DADADA; margin: 4px; padding:2px;"> <a href="javascript:;" onclick="if (confirm('{$lang.drop_img_confirm}')) dropImg('{$img.img_id}')">[-]</a><br />
-              <a href="goods.php?act=show_image&img_url={$img.img_url}" target="_blank"> <img src="../{if $img.thumb_url}{$img.thumb_url}{else}{$img.img_url}{/if}" {if $thumb_width neq 0}width="{$thumb_width}"{/if} {if $thumb_height neq 0}height="{$thumb_height}"{/if} border="0" /> </a><br />
-              <input type="text" value="{$img.img_desc|escape}" size="15" name="old_img_desc[{$img.img_id}]" />
-            </div>
-            {/foreach} </td>
+        	<td><img src=".{$borrowtrue.cardright}" alt="联众金融" width="150px" height="150px"/><br/><span class="creditspan">身份证正面照</span></td>
+        	<td><img src=".{$borrowtrue.cardleft}" alt="联众金融" width="150px" height="150px"/><br/><span class="creditspan">身份证反面照</span></td>
+        	<td><img src=".{$borrowtrue.cardhead}" alt="联众金融" width="150px" height="150px"/><br/><span class="creditspan">手持身份证头像照</span></td>
         </tr>
         <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <!-- 涓婁紶鍥剧墖 -->
+      		<td class="credittitle">工作认证信息</td>
+      	</tr>
         <tr>
-          <td><a href="javascript:;" onclick="addImg(this)">[+]</a> {$lang.img_desc}
-            <input type="text" name="img_desc[]" size="20" />
-            {$lang.img_url}
-            <input type="file" name="img_url[]" />
-            <input type="text" size="40" value="{$lang.img_file}" style="color:#aaa;" onfocus="if (this.value == '{$lang.img_file}'){this.value='http://';this.style.color='#000';}" name="img_file[]"/></td>
+        	<td><img src=".{$borrowtrue.contract}" alt="联众金融" width="150px" height="150px"/><br/><span class="creditspan">合同照</span></td>
+        	<td><img src=".{$borrowtrue.certification}" alt="联众金融" width="150px" height="150px"/><br/><span class="creditspan">在职证明</span></td>
+        	<td><img src=".{$borrowtrue.cardhead}" alt="联众金融" width="150px" height="150px"/><br/><span class="creditspan">工作证照</span></td>
+        </tr>
+        <tr>
+      		<td class="credittitle">收入证明信息</td>
+      	</tr>
+        <tr>
+        	<td><img src=".{$borrowtrue.bankprove}" alt="联众金融" width="150px" height="150px"/><br/><span >银行流水单（3个月）</span></td>
+        	<td><img src=".{$borrowtrue.comscreen}" alt="联众金融" width="150px" height="150px"/><br/><span >工资项网银电脑截屏（3个月）</span></td>
+        </tr>
+        <tr>
+      		<td class="credittitle">信用认证信息</td>
+      	</tr>
+        <tr>
+        	<td><img src=".{$borrowtrue.prove}" alt="联众金融" width="150px" height="150px"/><br/><span>个人信用报告（6个月）</span></td>
         </tr>
       </table>
       <!-- 信用认证信息end -->
       
-      <div class="button-div">
-        <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
-        {if $code neq ''}
-        <input type="hidden" name="extension_code" value="{$code}" />
-        {/if}
-        <input type="button" value="{$lang.button_submit}" class="button" onclick="validate('{$goods.goods_id}')" />
+      <div class="button-div" style="margin-top:10px;font-size:16px;">
+      <form action="borrow.php" method="post">
+      	<p>借款定位</p>
+      	<div>
+      		<input type="radio" name="borrow_status" value="4">不通过
+      		<input type="radio" name="borrow_status" value="1">审核中
+      		<input type="radio" name="borrow_status" value="2">放款中
+      		<input type="radio" name="borrow_status" value="3">借款结束
+      	</div>
+        <input type="hidden" name="user_user" value="{$useruser}" />
+        <div style="margin-top:20px;">
+        <input type="submit" value="{$lang.button_submit}" class="button" />
         <input type="reset" value="{$lang.button_reset}" class="button" />
+        </div>
       </div>
-      <input type="hidden" name="act" value="{$form_act}" />
+      <input type="hidden" name="act" value="update_borrowstatus" />
     </form>
   </div>
 </div>
@@ -240,6 +254,19 @@
 <!--模板堂修改 end by zhouH--> 
 
 <!-- end goods form --> 
+<script>
+	$(function(){
+		var imgobj = $("#gallery-table img");
+		if(imgobj){
+			$.each(imgobj,function(){
+				$(this).click(function(){
+					window.open($(this).attr('src'),"_blank");
+				});
+			});
+		}
+		
+	});
+</script>
 {insert_scripts files="validator.js,tab.js,showbox.js"} 
 <script language="JavaScript">
   var goodsId = '{$goods.goods_id}';

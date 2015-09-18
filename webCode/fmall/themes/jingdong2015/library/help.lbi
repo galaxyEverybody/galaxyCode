@@ -2,7 +2,7 @@
 <div class="blank"></div>
 <!--{if $helps}-->
 <div class="w">
-  <div id="service-2013" class="Help_JD" > 
+  <div id="service-2013" class="Help_JD" >
     <!-- {foreach from=$helps item=help_cat name=foo} --> 
     {if $smarty.foreach.foo.iteration < 7}
     <dl class="fore{$smarty.foreach.foo.iteration}" style='width:179px;'>

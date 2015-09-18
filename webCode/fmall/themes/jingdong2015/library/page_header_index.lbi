@@ -3,6 +3,31 @@
 {insert_scripts files='transport_jquery.js,utils.js,jquery.SuperSlide.js'}
 <div id="shortcut-2013">
 	<div class="w">
+		<ul>
+			<li style="float:left;">服务热线：400-960-3330（9:00~18:00）</li>
+			<li style="margin-left:10px;float:left;"><a href="http://weibo.com/u/5699638700/home?wvr=5&sudaref=www.haosou.com#1441933272395" target="_blank">新浪微博</a></li>
+			<li style="margin-left:10px;float:left;" class="fore3 ld menu" id="xinliang-jd">微信</li>
+	            <div id="weixinshow">
+	            	<div class="weixindyhao">
+	            		<img src=""/>
+	            		[订阅号]
+	            	</div>
+	            	<div class="weixinfwhao">
+	            		<img src=""/>
+	            		[服务号]
+	            	</div>
+	            </div>
+			<li style="margin-left:10px;float:left;"><a href="http://wpa.qq.com/msgrd?V=1&amp;uin=729797175&amp;Site=联众金融&amp;Menu=yes" target="_blank" rel="nofollow">qq</a></li>
+		</ul>
+		<script>
+			$(function(){
+				$("#xinliang-jd").mouseenter(function(){
+					$("#weixinshow").show();
+				}).mouseout(function(){
+					$("#weixinshow").hide();
+				});
+			});
+		</script>
     	<ul class="fr lh">
         	{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
             <li class="fore3 ld menu myJd" id="app-jd">
@@ -59,16 +84,6 @@
             <li class="fore2 ld" style="display:none;"><div class="dt"><s></s> <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a></div></li>
             <!-- {/foreach} -->
             <!--{/if}-->
-            <li class="fore3 ld menu" id="app-jd" style="display:none;">
-            	<div class="dt"><s></s><i></i><span class="outline"></span><span class="blank"></span><a href="#" target="_blank">手机富猫</a><b></b></div>
-                <div class="dd lh">
-                	<div class="qr-info"></div>
-                    <div class="qr-item qr-jd-app">
-                    	<div class="qr-img"><img id="app-qrcode-img" src="images/538557daNd249a428.png" class="err-product" width="76" height="76"></div>
-                        <div class="qr-ext"><strong>EC模板堂客户端</strong><a href="#" target="_blank" class="btn-app-apple"></a><a href="#" target="_blank" class="btn-app-android"></a></div>
-                    </div>
-                </div>
-            </li>
             <li class="fore4 ld menu myJd" id="biz-service">
             	<div class="dt"><s></s> <span class="outline"></span> <span class="blank"></span> 客户服务 <b></b></div>
                 <div class="dd">

@@ -337,7 +337,17 @@ elseif ($action == 'creditinfo'){
 	/* 查询纯信用信息 */
 	$sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('borrow_credit').' WHERE user_id='.$userid;
 	$creditinfo = $GLOBALS['db']->getAll($sql);
-	//print_r($creditinfo[0]);exit;
+	
+	$creditinfo[0]['cardright'] = empty($creditinfo[0]['cardright'])?'0':$creditinfo[0]['cardright'];
+	$creditinfo[0]['cardleft'] = empty($creditinfo[0]['cardleft'])?'0':$creditinfo[0]['cardleft'];
+	$creditinfo[0]['cardhead'] = empty($creditinfo[0]['cardhead'])?'0':$creditinfo[0]['cardhead'];
+	$creditinfo[0]['contract'] = empty($creditinfo[0]['contract'])?'0':$creditinfo[0]['contract'];
+	$creditinfo[0]['certification'] = empty($creditinfo[0]['certification'])?'0':$creditinfo[0]['certification'];
+	$creditinfo[0]['workcertification'] = empty($creditinfo[0]['workcertification'])?'0':$creditinfo[0]['workcertification'];
+	$creditinfo[0]['prove'] = empty($creditinfo[0]['prove'])?'0':$creditinfo[0]['prove'];
+	$creditinfo[0]['bankprove'] = empty($creditinfo[0]['bankprove'])?'0':$creditinfo[0]['bankprove'];
+	$creditinfo[0]['comscreen'] = empty($creditinfo[0]['comscreen'])?'0':$creditinfo[0]['comscreen'];
+	
 	$smarty->assign('credit_info',	$creditinfo[0]);
 	$smarty->assign('act',	$action);
 	$smarty->display('borrow_money.dwt');

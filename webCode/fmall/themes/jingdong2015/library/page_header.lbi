@@ -3,9 +3,31 @@
 {insert_scripts files='transport_jquery.js,utils.js,jquery.SuperSlide.js'}
 <div id="shortcut-2013" class="PageHeader">
 	<div class="w">
-    	<ul class="fl lh">
-        	<li class="fore1 ld"><b></b><a href="javascript:addToFavorite()" rel="nofollow">收藏联众</a></li>
-        </ul>
+		<ul>
+			<li style="float:left;">服务热线：400-960-3330（9:00~18:00）</li>
+			<li style="margin-left:10px;float:left;"><a href="http://weibo.com/u/5699638700/home?wvr=5&sudaref=www.haosou.com#1441933272395" target="_blank">新浪微博</a></li>
+			<li style="margin-left:10px;float:left;" class="fore3 ld menu" id="xinliang-jd">微信</li>
+		        <div id="weixinshow">
+		        	<div class="weixindyhao">
+		        		<img src=""/>
+		        		[订阅号]
+		        	</div>
+		        	<div class="weixinfwhao">
+		        		<img src=""/>
+		        		[服务号]
+		        	</div>
+		        </div>
+			<li style="margin-left:10px;float:left;"><a href="http://wpa.qq.com/msgrd?V=1&amp;uin=729797175&amp;Site=联众金融&amp;Menu=yes" target="_blank" rel="nofollow">qq</a></li>
+		</ul>
+		<script>
+			$(function(){
+				$("#xinliang-jd").mouseenter(function(){
+					$("#weixinshow").show();
+				}).mouseout(function(){
+					$("#weixinshow").hide();
+				});
+			});
+		</script>
         <ul class="fr lh">
         	{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
             <!--{if $navigator_list.top}-->

@@ -91,6 +91,9 @@ h6 span{float:left;padding-left:15px}
 #search .go{background:url(images/bnt_search.gif);border:0;width:52px;height:19px}
 #ur_here{border:1px solid #c5e4ff;border-top:0;background:url(images/uh_bg.gif) repeat-x left top;height:36px;line-height:36px;padding:0 12px}
 #ur_here a{color:#006cce;text-decoration:none}
+.w #weixinshow{ width:360px;height:200px;border:1px solid #ddd;margin-top:30px;float:left;position:absolute;margin-left:130px;z-index:999;display:none;background:#fff;}
+.w #weixinshow .weixindyhao{ width:150px;height:150px;float:left;margin-top:20px;margin-left:20px;text-align:center;}
+.w #weixinshow .weixinfwhao{ width:150px;height:150px;float:right;margin-right:20px;margin-top:20px;text-align:center;}
 
 /*注册*/
 .reg_phoneverify{ width:120px;text-align:center;margin-left:10px;width:110px;backgound-color:#ddd;border:1px solid #dedede;}
@@ -863,7 +866,7 @@ h2,h3{font-size:14px}
 #service-2013 dl.fore5{width:160px}
 #service-2013 .fr{display:none}
 .clr{display:block;overflow:hidden;clear:both;height:0;line-height:0;font-size:0}
-#footer-2013{padding-bottom:30px;text-align:center}
+#footer-2013{padding-bottom:30px;text-align:center;height:80px;}
 #footer-2013 .links a,#footer-2013 .links span{margin:0 10px}
 #footer-2013 .links span a{margin:0}
 #footer-2013 .copyright{margin:10px 0}
@@ -2319,9 +2322,12 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 
 .backpanel .backpanel-inner{ width:42px; padding:0;}
 .backpanel .bp-item{ margin-top:0;}
-.backpanel .bp-item-survey{ height:33px; width:100%;}
+.backpanel .bp-item-survey{ height:42px; width:100%;}
 .backpanel .bp-item-survey a{ background:url(images/feedback_icon.png) no-repeat; padding:0; height:100%;}
-.backpanel .bp-item-survey a:hover{ background:#ff500b; color:#fff; text-align:center; line-height:33px;}
+.backpanel .bp-item-survey a:hover{ background:#ff500b; color:#fff; text-align:center;line-height:42px;}
+.backpanel .bp-item-naire{ height:42px; width:100%;}
+.backpanel .bp-item-naire a{ background:url(images/feedback_icon.png) no-repeat; padding:0; height:100%;}
+.backpanel .bp-item-naire a:hover{ background:#ff500b; color:#fff; text-align:center;line-height:20px;}
 .backpanel .bp-item-backtop{ height:42px; width:100%;}
 .backpanel .bp-item-backtop a{ background:url(images/feedback_icon.png) 0 -33px no-repeat; padding:0; height:100%;}
 .backpanel .bp-item-backtop a:hover{ background:#ff500b; color:#fff; text-align:center; line-height:42px;}
