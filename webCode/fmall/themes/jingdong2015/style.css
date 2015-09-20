@@ -94,6 +94,8 @@ h6 span{float:left;padding-left:15px}
 .w #weixinshow{ width:360px;height:200px;border:1px solid #ddd;margin-top:30px;float:left;position:absolute;margin-left:130px;z-index:999;display:none;background:#fff;}
 .w #weixinshow .weixindyhao{ width:150px;height:150px;float:left;margin-top:20px;margin-left:20px;text-align:center;}
 .w #weixinshow .weixinfwhao{ width:150px;height:150px;float:right;margin-right:20px;margin-top:20px;text-align:center;}
+.w .serive_hotline{ float:left;}
+.w .serive_wb{ margin-left:10px;float:left;}
 
 /*注册*/
 .reg_phoneverify{ width:120px;text-align:center;margin-left:10px;width:110px;backgound-color:#ddd;border:1px solid #dedede;}
