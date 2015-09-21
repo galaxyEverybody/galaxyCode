@@ -20,17 +20,19 @@
      <tr>
       <th>{$lang.goods_name}</th>
       <th>{$lang.order_sn}</th>
-      <th>{$lang.amount}</th>
+      <th>{$lang.amountstatus}</th>
       <th>{$lang.sell_price}</th>
-      <th>{$lang.sell_date}</th>
+      <th>{$lang.start_date}</th>
+      <th>{$lang.end_date}</th>
     </tr>
   {foreach from=$goods_sales_list item=list}
     <tr align="center">
       <td align="left"><a href="../goods.php?id={$list.goods_id}" target="_blank">{$list.goods_name}</a></td>
       <td><a href="order.php?act=info&order_id={$list.order_id}">{$list.order_sn}</a></td>
-      <td align="right">{$list.goods_num}</td>
-      <td align="right">{$list.sales_price}{$end_date}</td>
-      <td>{$list.sales_time}</td>
+      <td align="right">{$list.good_status}</td>
+      <td align="right">{$list.goods_price}</td>
+      <td align="right">{$list.start_date}</td>
+      <td>{$list.end_date}</td>
     </tr>
   {foreachelse}
     <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>

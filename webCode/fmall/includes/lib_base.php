@@ -199,6 +199,7 @@ function get_crlf()
  */
 function send_mail($name, $email, $subject, $content, $type = 0, $notification=false)
 {
+	set_time_limit(0);		//设置发送不超时
     /* 如果邮件编码不是EC_CHARSET，创建字符集转换对象，转换编码 */
     if ($GLOBALS['_CFG']['mail_charset'] != EC_CHARSET)
     {

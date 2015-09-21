@@ -241,15 +241,15 @@
 				<tr>
 					<td class="bangcardtd">新密码</td>
 					<td>
-						<input class="bangcardinput" id="newpw" name="newpw" type="text" placeholder="请输入新密码" onblur="chekgetpw_newpw(this.value);">
+						<input class="bangcardinput" id="newpw" name="newpw" type="password" placeholder="请输入新密码" onblur="chekgetpw_newpw(this.value);">
 						<div id="newpw_getpw" class='autherrorinfo'></div>
 						<input type="text" id="newphone_verify_time" value='60' style="display:none;">
 					</td>
 				</tr>
 				<tr>
-					<td class="bangcardtd">新密码确认</td>
+					<td class="bangcardtd">确认密码</td>
 					<td>
-						<input class="bangcardinput" name="newpwconfirm" type="text" placeholder="再次输入新密码" onblur="chekgetpw_newpwconfirm(this.value);">
+						<input class="bangcardinput" name="newpwconfirm" type="password" placeholder="再次输入新密码" onblur="chekgetpw_newpwconfirm(this.value);">
 						<div id="newpw_getpwconfirm" class='autherrorinfo'></div>
 					</td>
 				</tr>
@@ -390,21 +390,22 @@
   <div class="usBox_2 clearfix">
     <form action="user.php" method="post" name="getPassword2" onSubmit="return submitPwd()">
       <br />
-      <table width="80%" border="0" align="center">
+      <table width="50%" border="0" align="center" cellspadding="10px" cellspacing="10px">
         <tr>
           <td>{$lang.new_password}</td>
-          <td><input name="new_password" type="password" size="25" class="inputBg" /></td>
+          <td><input name="new_password" type="password" size="25" class="bangcardinput" /></td>
         </tr>
         <tr>
-          <td>{$lang.confirm_password}:</td>
-          <td><input name="confirm_password" type="password" size="25"  class="inputBg"/></td>
+          <td>{$lang.confirm_password}</td>
+          <td><input name="confirm_password" type="password" size="25"  class="bangcardinput"/></td>
         </tr>
         <tr>
-          <td colspan="2" align="center">
+          <td></td>
+          <td>
           	<input type="hidden" name="act" value="act_edit_password" />
             <input type="hidden" name="uid" value="{$uid}" />
             <input type="hidden" name="code" value="{$code}" />
-            <input type="submit" name="submit" value="{$lang.confirm_submit}" /></td>
+            <input type="submit" name="submit" class="bangcardsub" value="{$lang.confirm_submit}" /></td>
         </tr>
       </table>
       <br />

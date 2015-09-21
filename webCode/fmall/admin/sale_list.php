@@ -118,11 +118,11 @@ function get_sale_list($is_pagination = true){
     $filter['end_date'] = empty($_REQUEST['end_date']) ? local_strtotime('today') : local_strtotime($_REQUEST['end_date']);
   
     /* 查询数据的条件 */
-    $where = " WHERE og.order_id = oi.order_id". order_query_sql('finished', 'oi.') .
-             " AND oi.add_time >= '".$filter['start_date']."' AND oi.add_time < '" . ($filter['end_date'] + 86400) . "'";
+    $where = " WHERE og.goods_id = g.goods_id". order_query_sql('finished', 'og.') .
+             " AND og.add_time >= '".$filter['start_date']."' AND og.add_time < '" . ($filter['end_date'] + 86400) . "'";
     
     $sql = "SELECT COUNT(og.goods_id) FROM " .
-           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('goods') . ' AS g,'.
            $GLOBALS['ecs']->table('order_goods') . ' AS og '.
            $where;
     $filter['record_count'] = $GLOBALS['db']->getOne($sql);
@@ -130,10 +130,10 @@ function get_sale_list($is_pagination = true){
     /* 分页大小 */
     $filter = page_and_size($filter);
 
-    $sql = 'SELECT og.goods_id, og.goods_sn, og.goods_name, og.goods_number AS goods_num, og.goods_price '.
-           'AS sales_price, oi.add_time AS sales_time, oi.order_id, oi.order_sn '.
-           "FROM " . $GLOBALS['ecs']->table('order_goods')." AS og, ".$GLOBALS['ecs']->table('order_info')." AS oi ".
-           $where. " ORDER BY sales_time DESC, goods_num DESC";
+    $sql = 'SELECT og.goods_id, og.goods_sn, og.goods_name, og.goods_price '.
+           'AS sales_price, g.goods_weight , g.goods_number , og.order_id, og.order_sn , g.good_status '.
+           "FROM " . $GLOBALS['ecs']->table('order_goods')." AS og, ".$GLOBALS['ecs']->table('goods')." AS g ".
+           $where. " ORDER BY goods_weight DESC";
     if ($is_pagination)
     {
         $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
@@ -144,7 +144,8 @@ function get_sale_list($is_pagination = true){
     foreach ($sale_list_data as $key => $item)
     {
         $sale_list_data[$key]['sales_price'] = price_format($sale_list_data[$key]['sales_price']);
-        $sale_list_data[$key]['sales_time']  = local_date($GLOBALS['_CFG']['time_format'], $sale_list_data[$key]['sales_time']);
+        $sale_list_data[$key]['start_date']  = local_date($GLOBALS['_CFG']['time_format'], $sale_list_data[$key]['goods_weight']);
+        $sale_list_data[$key]['end_date']  = local_date($GLOBALS['_CFG']['time_format'], $sale_list_data[$key]['goods_number']);
     }
     $arr = array('sale_list_data' => $sale_list_data, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
     return $arr;

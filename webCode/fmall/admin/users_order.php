@@ -133,7 +133,7 @@ else
     $total_fee = " SUM(" . order_amount_field() . ") AS turnover ";
 
     $sql = "SELECT u.user_id, u.user_name, COUNT(*) AS order_num, " .$total_fee.
-               "FROM ".$ecs->table('users')." AS u, ".$ecs->table('order_info')." AS o " .$where .
+               "FROM ".$ecs->table('users')." AS u, ".$ecs->table('order_goods')." AS o " .$where .
                " GROUP BY u.user_id"." ORDER BY " . $filter['sort_by'] . " " . $filter['sort_order'];
     if ($is_pagination)
     {

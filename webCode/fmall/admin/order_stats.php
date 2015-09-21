@@ -36,6 +36,7 @@ else
 /*------------------------------------------------------ */
 if ($_REQUEST['act'] == 'list')
 {
+	
     admin_priv('sale_order_stats');
 
     /* 随机的颜色数组 */
@@ -46,7 +47,7 @@ if ($_REQUEST['act'] == 'list')
 
     /* 取得订单转化率数据 */
     $sql = "SELECT COUNT(*) AS total_order_num, " .$total_fee.
-           " FROM " . $ecs->table('order_info').
+           " FROM " . $ecs->table('order_goods').
            " WHERE 1 " . order_query_sql('finished');
     $order_general = $db->getRow($sql);
     $order_general['total_turnover'] = floatval($order_general['total_turnover']);
@@ -137,12 +138,12 @@ if ($_REQUEST['act'] == 'list')
 
         foreach($start_date_arr AS $k => $val)
         {
-             $sql = 'SELECT i.pay_id, p.pay_name, i.pay_time, COUNT(i.order_id) AS order_num ' .
-                'FROM ' .$ecs->table('payment'). ' AS p, ' .$ecs->table('order_info'). ' AS i '.
+             $sql = 'SELECT i.pay_id, p.pay_name, i.pay_time, COUNT(i.rec_id) AS order_num ' .
+                'FROM ' .$ecs->table('payment'). ' AS p, ' .$ecs->table('order_goods'). ' AS i '.
                 "WHERE p.pay_id = i.pay_id AND i.order_status = '" .OS_CONFIRMED. "' ".
-                "AND i.pay_status > '" .PS_UNPAYED. "' AND i.shipping_status > '" .SS_UNSHIPPED. "' ".
+                "AND i.pay_status > '" .PS_UNPAYED.
                 "AND i.add_time >= '$start_date_arr[$k]' AND i.add_time <= '$end_date_arr[$k]'".
-                "GROUP BY i.pay_id ORDER BY order_num DESC";
+                "GROUP BY i.pay_id ORDER BY rec_id DESC";
              $pay_res = $db->query($sql);
              while ($pay_item = $db->FetchRow($pay_res))
              {
@@ -178,9 +179,9 @@ if ($_REQUEST['act'] == 'list')
             $pay_xml .= "</dataset>";
         }
         $pay_xml .= "</chart>";
-
+		
         /* 配送方式 */
-        $ship = array();
+       /* $ship = array();
         $ship_count = array();
 
         $ship_xml = "<chart caption='$_LANG[shipping_method]' shownames='1' showvalues='0' decimals='0' outCnvBaseFontSize='12' baseFontSize='12' >";
@@ -227,14 +228,14 @@ if ($_REQUEST['act'] == 'list')
             }
             $ship_xml .= "</dataset>";
         }
-        $ship_xml .= "</chart>";
+        $ship_xml .= "</chart>";*/
     }
     /* 按时间段查询 */
     else
     {
         /* 订单概况 */
         $order_info = get_orderinfo($start_date, $end_date);
-
+       
         $order_general_xml = "<graph caption='".$_LANG['order_circs']."' decimalPrecision='2' showPercentageValues='0' showNames='1' showValues='1' showPercentageInLabel='0' pieYScale='45' pieBorderAlpha='40' pieFillAlpha='70' pieSliceDepth='15' pieRadius='100' outCnvBaseFontSize='13' baseFontSize='12'>";
 
         $order_general_xml .= "<set value='" .$order_info['confirmed_num']. "' name='" . $_LANG['confirmed'] . "' color='".$color_array[5]."' />";
@@ -245,15 +246,15 @@ if ($_REQUEST['act'] == 'list')
 
         $order_general_xml .= "<set value='" .$order_info['invalid_num']. "' name='" . $_LANG['invalid'] . "' color='".$color_array[4]."' />";
         $order_general_xml .= "</graph>";
-
+		
         /* 支付方式 */
         $pay_xml = "<graph caption='" . $_LANG['pay_method'] . "' decimalPrecision='2' showPercentageValues='0' showNames='1' numberPrefix='' showValues='1' showPercentageInLabel='0' pieYScale='45' pieBorderAlpha='40' pieFillAlpha='70' pieSliceDepth='15' pieRadius='100' outCnvBaseFontSize='13' baseFontSize='12'>";
-
-        $sql = 'SELECT i.pay_id, p.pay_name, COUNT(i.order_id) AS order_num ' .
-           'FROM ' .$ecs->table('payment'). ' AS p, ' .$ecs->table('order_info'). ' AS i '.
+		
+        $sql = 'SELECT i.pay_id, p.pay_name, COUNT(i.rec_id) AS order_num ' .
+           'FROM ' .$ecs->table('payment'). ' AS p, ' .$ecs->table('order_goods'). ' AS i '.
            "WHERE p.pay_id = i.pay_id " . order_query_sql('finished') .
            "AND i.add_time >= '$start_date' AND i.add_time <= '$end_date' ".
-           "GROUP BY i.pay_id ORDER BY order_num DESC";
+           "GROUP BY i.pay_id ORDER BY rec_id DESC";
         $pay_res= $db->query($sql);
 
         while ($pay_item = $db->FetchRow($pay_res))
@@ -261,9 +262,9 @@ if ($_REQUEST['act'] == 'list')
             $pay_xml .= "<set value='".$pay_item['order_num']."' name='".$pay_item['pay_name']."' color='".$color_array[mt_rand(0,7)]."'/>";
         }
         $pay_xml .= "</graph>";
-
+        
         /* 配送方式 */
-        $ship_xml = "<graph caption='".$_LANG['shipping_method']."' decimalPrecision='2' showPercentageValues='0' showNames='1' numberPrefix='' showValues='1' showPercentageInLabel='0' pieYScale='45' pieBorderAlpha='40' pieFillAlpha='70' pieSliceDepth='15' pieRadius='100' outCnvBaseFontSize='13' baseFontSize='12'>";
+        /*$ship_xml = "<graph caption='".$_LANG['shipping_method']."' decimalPrecision='2' showPercentageValues='0' showNames='1' numberPrefix='' showValues='1' showPercentageInLabel='0' pieYScale='45' pieBorderAlpha='40' pieFillAlpha='70' pieSliceDepth='15' pieRadius='100' outCnvBaseFontSize='13' baseFontSize='12'>";
 
         $sql = 'SELECT sp.shipping_id, sp.shipping_name AS ship_name, COUNT(i.order_id) AS order_num ' .
                'FROM ' .$ecs->table('shipping'). ' AS sp, ' .$ecs->table('order_info'). ' AS i ' .
@@ -277,7 +278,7 @@ if ($_REQUEST['act'] == 'list')
             $ship_xml .= "<set value='".$ship_item['order_num']."' name='".$ship_item['ship_name']."' color='".$color_array[mt_rand(0,7)]."' />";
         }
 
-        $ship_xml .= "</graph>";
+        $ship_xml .= "</graph>";*/
 
     }
     /* 赋值到模板 */
@@ -290,7 +291,7 @@ if ($_REQUEST['act'] == 'list')
     $smarty->assign('is_multi',            $is_multi);
 
     $smarty->assign('order_general_xml',   $order_general_xml);
-    $smarty->assign('ship_xml',            $ship_xml);
+    //$smarty->assign('ship_xml',            $ship_xml);
     $smarty->assign('pay_xml',             $pay_xml);
 
     $smarty->assign('ur_here',             $_LANG['report_order']);
@@ -335,11 +336,11 @@ elseif ($act = 'download')
     $data .= "\n$_LANG[pay_method]\n";
 
     /* 支付方式 */
-    $sql = 'SELECT i.pay_id, p.pay_name, COUNT(i.order_id) AS order_num ' .
-            'FROM ' .$ecs->table('payment'). ' AS p, ' .$ecs->table('order_info'). ' AS i '.
+    $sql = 'SELECT i.pay_id, p.pay_name, COUNT(i.rec_id) AS order_num ' .
+            'FROM ' .$ecs->table('payment'). ' AS p, ' .$ecs->table('order_goods'). ' AS i '.
             "WHERE p.pay_id = i.pay_id " . order_query_sql('finished') .
             "AND i.add_time >= '$start_date' AND i.add_time <= '$end_date' ".
-            "GROUP BY i.pay_id ORDER BY order_num DESC";
+            "GROUP BY i.pay_id ORDER BY rec_id DESC";
     $pay_res= $db->getAll($sql);
     foreach ($pay_res AS $val)
     {
@@ -352,7 +353,7 @@ elseif ($act = 'download')
     }
 
     /* 配送方式 */
-    $sql = 'SELECT sp.shipping_id, sp.shipping_name AS ship_name, COUNT(i.order_id) AS order_num ' .
+    /*$sql = 'SELECT sp.shipping_id, sp.shipping_name AS ship_name, COUNT(i.order_id) AS order_num ' .
             'FROM ' .$ecs->table('shipping'). ' AS sp, ' .$ecs->table('order_info'). ' AS i ' .
             'WHERE sp.shipping_id = i.shipping_id ' . order_query_sql('finished') .
             "AND i.add_time >= '$start_date' AND i.add_time <= '$end_date' " .
@@ -368,7 +369,7 @@ elseif ($act = 'download')
     foreach ($ship_res AS $val)
     {
         $data .= $val['order_num'] . "\t";
-    }
+    }*/
 
     echo ecs_iconv(EC_CHARSET, 'GB2312', $data) . "\t";
     exit;
@@ -389,26 +390,26 @@ elseif ($act = 'download')
     $order_info = array();
 
     /* 未确认订单数 */
-    $sql = 'SELECT COUNT(*) AS unconfirmed_num FROM ' .$GLOBALS['ecs']->table('order_info').
+    $sql = 'SELECT COUNT(*) AS unconfirmed_num FROM ' .$GLOBALS['ecs']->table('order_goods').
            " WHERE order_status = '" .OS_UNCONFIRMED. "' AND add_time >= '$start_date'".
            " AND add_time < '" . ($end_date + 86400) . "'";
 
     $order_info['unconfirmed_num'] = $GLOBALS['db']->getOne($sql);
 
     /* 已确认订单数 */
-    $sql = 'SELECT COUNT(*) AS confirmed_num FROM ' .$GLOBALS['ecs']->table('order_info').
-           " WHERE order_status = '" .OS_CONFIRMED. "' AND shipping_status NOT ". db_create_in(array(SS_SHIPPED, SS_RECEIVED)) . " AND pay_status NOT" . db_create_in(array(PS_PAYED, PS_PAYING)) ." AND add_time >= '$start_date'".
+    $sql = 'SELECT COUNT(*) AS confirmed_num FROM ' .$GLOBALS['ecs']->table('order_goods').
+           " WHERE order_status = '" .OS_CONFIRMED. "' AND pay_status NOT" . db_create_in(array(PS_PAYED, PS_PAYING)) ." AND add_time >= '$start_date'".
            " AND add_time < '" . ($end_date + 86400) . "'";
     $order_info['confirmed_num'] = $GLOBALS['db']->getOne($sql);
 
     /* 已成交订单数 */
-    $sql = 'SELECT COUNT(*) AS succeed_num FROM ' .$GLOBALS['ecs']->table('order_info').
+    $sql = 'SELECT COUNT(*) AS succeed_num FROM ' .$GLOBALS['ecs']->table('order_goods').
            " WHERE 1 " . order_query_sql('finished') .
            " AND add_time >= '$start_date' AND add_time < '" . ($end_date + 86400) . "'";
     $order_info['succeed_num'] = $GLOBALS['db']->getOne($sql);
 
     /* 无效或已取消订单数 */
-    $sql = "SELECT COUNT(*) AS invalid_num FROM " .$GLOBALS['ecs']->table('order_info').
+    $sql = "SELECT COUNT(*) AS invalid_num FROM " .$GLOBALS['ecs']->table('order_goods').
            " WHERE order_status > '" .OS_CONFIRMED. "'".
            " AND add_time >= '$start_date' AND add_time < '" . ($end_date + 86400) . "'";
     $order_info['invalid_num'] = $GLOBALS['db']->getOne($sql);

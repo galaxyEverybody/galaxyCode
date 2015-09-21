@@ -258,8 +258,9 @@ function send_pwd_email($uid, $user_name, $email, $code)
 
     /* 设置重置邮件模板所需要的内容信息 */
     $template    = get_mail_template('send_password');
+    
     $reset_email = $GLOBALS['ecs']->url() . 'user.php?act=get_password&uid=' . $uid . '&code=' . $code;
-
+    
     $GLOBALS['smarty']->assign('user_name',   $user_name);
     $GLOBALS['smarty']->assign('reset_email', $reset_email);
     $GLOBALS['smarty']->assign('shop_name',   $GLOBALS['_CFG']['shop_name']);

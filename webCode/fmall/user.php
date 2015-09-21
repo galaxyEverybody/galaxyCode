@@ -496,7 +496,7 @@ elseif($action == 'ajax_checkidcard')
 /* 验证用户邮箱地址是否被注册 */
 elseif($action == 'check_email')
 {
-    $email = trim($_GET['email']);
+    $email = trim($_REQUEST['email']);
     if ($user->check_email($email))
     {
         echo 'false';
@@ -1244,6 +1244,7 @@ elseif ($action == 'send_pwd_email')
          //$code = md5($user_info[0] . $user_info[1]);
 
         $code = md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']);
+        
         //发送邮件的函数
         if (send_pwd_email($user_info['user_id'], $user_name, $email, $code))
         {

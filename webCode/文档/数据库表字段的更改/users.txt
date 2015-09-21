@@ -3,3 +3,5 @@
 增加字段:idcard(varchar 32)=>身份证号
 
 增加字段:head_img(varchar 124)=>头像的存储的路径
+
+增加字段：is_loan_money(tinyint)=>理财，借贷标识 1：理财，2：借贷

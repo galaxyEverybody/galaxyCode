@@ -5058,11 +5058,11 @@ function order_list()
         $filter['page_count']     = $filter['record_count'] > 0 ? ceil($filter['record_count'] / $filter['page_size']) : 1;
 
         /* 查询 */
-        $sql = "SELECT o.order_id, o.order_sn, o.add_time, o.order_status, o.shipping_status, o.order_amount, o.money_paid," .
-                    "o.pay_status, o.consignee, o.address, o.email, o.tel, o.extension_code, o.extension_id, " .
+        $sql = "SELECT o.order_id, o.order_sn, o.add_time, o.order_status, o.goods_price," .
+                    "o.pay_status, o.extension_code, " .
                     "(" . order_amount_field('o.') . ") AS total_fee, " .
                     "IFNULL(u.user_name, '" .$GLOBALS['_LANG']['anonymous']. "') AS buyer ".
-                " FROM " . $GLOBALS['ecs']->table('order_info') . " AS o " .
+                " FROM " . $GLOBALS['ecs']->table('order_goods') . " AS o " .
                 " LEFT JOIN " .$GLOBALS['ecs']->table('users'). " AS u ON u.user_id=o.user_id ". $where .
                 " ORDER BY $filter[sort_by] $filter[sort_order] ".
                 " LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ",$filter[page_size]";

@@ -91,11 +91,12 @@ h6 span{float:left;padding-left:15px}
 #search .go{background:url(images/bnt_search.gif);border:0;width:52px;height:19px}
 #ur_here{border:1px solid #c5e4ff;border-top:0;background:url(images/uh_bg.gif) repeat-x left top;height:36px;line-height:36px;padding:0 12px}
 #ur_here a{color:#006cce;text-decoration:none}
-.w #weixinshow{ width:360px;height:200px;border:1px solid #ddd;margin-top:30px;float:left;position:absolute;margin-left:130px;z-index:999;display:none;background:#fff;}
+.w #weixinshow{ width:360px;height:200px;border:1px solid #ddd;margin-top:40px;float:left;position:absolute;margin-left:200px;z-index:999;display:none;background:#fff;}
 .w #weixinshow .weixindyhao{ width:150px;height:150px;float:left;margin-top:20px;margin-left:20px;text-align:center;}
 .w #weixinshow .weixinfwhao{ width:150px;height:150px;float:right;margin-right:20px;margin-top:20px;text-align:center;}
-.w .serive_hotline{ float:left;}
-.w .serive_wb{ margin-left:10px;float:left;}
+.w .serive_hotline{ float:left;font-size:14px;}
+.w .serive_hotline span{ font-size:20px;}
+.w .serive_wb{ margin-left:10px;float:left;font-size:14px;}
 
 /*注册*/
 .reg_phoneverify{ width:120px;text-align:center;margin-left:10px;width:110px;backgound-color:#ddd;border:1px solid #dedede;}
@@ -397,11 +398,11 @@ ol,ul{list-style:none}
 .banner_w{display:none}
 .banner_s{display:block}
 .root61 .w{width:1210px}
-#shortcut-2013,#shortcut-2013 .w{height:30px;background:#f7f7f7}
-#shortcut-2013{width:100%;border-bottom:1px solid #eee;line-height:30px}
-#shortcut-2013,#shortcut-2013 .w{height:30px;background:#f7f7f7}
+#shortcut-2013,#shortcut-2013 .w{height:40px;background:#f7f7f7}
+#shortcut-2013{width:100%;border-bottom:1px solid #eee;line-height:40px}
+#shortcut-2013,#shortcut-2013 .w{height:40px;background:#f7f7f7}
 #shortcut-2013 .fl{overflow:visible}
-#shortcut-2013 li{height:30px;padding:0 2px}
+#shortcut-2013 li{height:40px;padding:0 2px}
 #shortcut-2013 li .dt{padding:0 10px;float:left;position:relative; z-index:1;}
 #shortcut-2013 li .dt a{white-space:nowrap}
 #shortcut-2013 .fl .fore1{padding-left:16px;z-index:13}
@@ -409,8 +410,8 @@ ol,ul{list-style:none}
 #shortcut-2013 .fl b,#shortcut-2013 .fr b{background-image:url(images/20130330A_1.png);background-repeat:no-repeat}
 #shortcut-2013 .fl b{top:8px;left:0;width:13px;height:13px;background:url(images/20130725.png) no-repeat 0 0;cursor:pointer}
 #shortcut-2013 .fr{height:30px;overflow:visible}
-#shortcut-2013 li s{top:9px;left:-2px;width:0;height:12px;border-left:1px solid #DDD;overflow:hidden}
-#shortcut-2013 .fr b{top:12px;right:10px;width:11px;height:5px;background:url(images/header_arrow.png) no-repeat}
+#shortcut-2013 li s{top:16px;left:-2px;width:0;height:12px;border-left:1px solid #DDD;overflow:hidden}
+#shortcut-2013 .fr b{top:19px;right:10px;width:11px;height:5px;background:url(images/header_arrow.png) no-repeat}
 #shortcut-2013 .dd{display:none}
 .catalogue .floor .b1,.catalogue .floor .b2,.catalogue .floor .b4{background-image:url(images/20130330C.png);background-repeat:no-repeat}
 .catalogue .floor{position:absolute;top:-8px;left:0}
@@ -441,8 +442,8 @@ ol,ul{list-style:none}
 #shortcut-2013 .fr .hover b{transform:rotate(180deg);-webkit-transform:rotate(180deg);filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2)}
 #shortcut-2013 .hover .outline,#shortcut-2013 .hover .dd{position:absolute;border:1px solid #DDD;background:#fff}
 #shortcut-2013 .hover .outline{z-index:-1;left:0;top:0;width:73px;height:29px;border-top:0}
-#shortcut-2013 .hover .blank{position:absolute;z-index:1;top:23px;left:1px;width:73px;height:8px;overflow:hidden;background:#fff}
-#shortcut-2013 .hover .dd{display:block;top:30px; left:auto; right:1px;}
+#shortcut-2013 .hover .blank{position:absolute;z-index:1;top:29px;left:1px;width:73px;height:8px;overflow:hidden;background:#fff}
+#shortcut-2013 .hover .dd{display:block;top:40px; left:auto; right:1px;}
 #shortcut-2013 .hover .myJdCon{padding:0;width:270px;line-height:24px}
 #shortcut-2013 .hover .myJdCon .userInfo{padding:10px 15px;overflow:hidden}
 #shortcut-2013 .hover .myJdCon .uPic{width:60px;height:60px;float:left;margin-right:10px}
@@ -2904,7 +2905,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv #idcardauthshow{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;}
 .authcenterdiv .verifyauthinput{ width:150px;height:30px;float:left;}
 .authcenterdiv #authphonediv .nextnewdiv{ width:150px;height:40px;line-height:40px;text-align:center;float:left;background:#FF852F;color:#fff;font-weight:bold;cursor:pointer;}
-.nextnewdiv{ width:150px;height:40px;line-height:40px;text-align:center;float:left;background:#FF852F;color:#fff;font-weight:bold;cursor:pointer;}
+.nextnewdiv{ width:150px;height:40px;line-height:40px;text-align:center;float:left;background:#FF852F;color:#fff;font-weight:bold;cursor:pointer;font-size:18px;border:0px;}
 .usBox #getpwphone{ width:214px;height:30px;float:left;text-align:center;background:url(images/auth_centerphone01.png);cursor:pointer;} 
 .usBox #getpwemail{ width:206px;height:30px;float:right;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;cursor:pointer;}
 .usBox .verifyauthinput{ width:150px;height:30px;float:left;}

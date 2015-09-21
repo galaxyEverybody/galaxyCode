@@ -1609,12 +1609,23 @@ elseif ($_REQUEST['step'] == 'done')
 		exit;
 	}
 	
-	
     include_once('includes/lib_clips.php');
     //include_once('includes/lib_payment.php');
 	
     $investprice = trim($_POST['investamount']);
     $goods_id = trim($_POST['goods_id']);
+    $userid = $_SESSION['user_id'];
+    /* 查询是否是借款用户*/
+    $sql = 'SELECT is_loan_money,idcardstatus FROM '.$GLOBALS['ecs']->table('users').' WHERE user_id='.$userid;
+    $countrec = $GLOBALS['db']->getAll($sql);
+    
+    if($countrec[0]['is_loan_money'] == '2'){
+    	show_message($_LANG['financing_record_info'],$_LANG['back_up_page'],'./index.php');
+    }
+    //是否进行了实名认证
+    if(empty($countrec[0]['idcardstatus'])){
+    	show_message($_LANG['is_idcard_fail'],$_LANG['back_up_page'],'user.php?act=auth_center');
+    }
  	
     /* 取得商品信息 */
     $sql = "SELECT goods_name, goods_sn, is_on_sale, is_real, market_price, shop_price,

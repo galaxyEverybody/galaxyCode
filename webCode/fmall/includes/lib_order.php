@@ -2714,7 +2714,6 @@ function order_query_sql($type = 'finished', $alias = '')
     if ($type == 'finished')
     {
         return " AND {$alias}order_status " . db_create_in(array(OS_CONFIRMED, OS_SPLITED)) .
-               " AND {$alias}shipping_status " . db_create_in(array(SS_SHIPPED, SS_RECEIVED)) .
                " AND {$alias}pay_status " . db_create_in(array(PS_PAYED, PS_PAYING)) . " ";
     }
     /* 待发货订单 */
@@ -2722,16 +2721,13 @@ function order_query_sql($type = 'finished', $alias = '')
     {
         return " AND   {$alias}order_status " .
                  db_create_in(array(OS_CONFIRMED, OS_SPLITED, OS_SPLITING_PART)) .
-               " AND   {$alias}shipping_status " .
-                 db_create_in(array(SS_UNSHIPPED, SS_PREPARING, SS_SHIPPED_ING)) .
                " AND ( {$alias}pay_status " . db_create_in(array(PS_PAYED, PS_PAYING)) . " OR {$alias}pay_id " . db_create_in(payment_id_list(true)) . ") ";
     }
     /* 待付款订单 */
     elseif ($type == 'await_pay')
     {
         return " AND   {$alias}order_status " . db_create_in(array(OS_CONFIRMED, OS_SPLITED)) .
-               " AND   {$alias}pay_status = '" . PS_UNPAYED . "'" .
-               " AND ( {$alias}shipping_status " . db_create_in(array(SS_SHIPPED, SS_RECEIVED)) . " OR {$alias}pay_id " . db_create_in(payment_id_list(false)) . ") ";
+               " AND   {$alias}pay_status = '" . PS_UNPAYED . "'";
     }
     /* 未确认订单 */
     elseif ($type == 'unconfirmed')
@@ -2742,21 +2738,18 @@ function order_query_sql($type = 'finished', $alias = '')
     elseif ($type == 'unprocessed')
     {
         return " AND {$alias}order_status " . db_create_in(array(OS_UNCONFIRMED, OS_CONFIRMED)) .
-               " AND {$alias}shipping_status = '" . SS_UNSHIPPED . "'" .
                " AND {$alias}pay_status = '" . PS_UNPAYED . "' ";
     }
     /* 未付款未发货订单：管理员可操作 */
     elseif ($type == 'unpay_unship')
     {
         return " AND {$alias}order_status " . db_create_in(array(OS_UNCONFIRMED, OS_CONFIRMED)) .
-               " AND {$alias}shipping_status " . db_create_in(array(SS_UNSHIPPED, SS_PREPARING)) .
                " AND {$alias}pay_status = '" . PS_UNPAYED . "' ";
     }
     /* 已发货订单：不论是否付款 */
     elseif ($type == 'shipped')
     {
-        return " AND {$alias}order_status = '" . OS_CONFIRMED . "'" .
-               " AND {$alias}shipping_status " . db_create_in(array(SS_SHIPPED, SS_RECEIVED)) . " ";
+        return " AND {$alias}order_status = '" . OS_CONFIRMED . "'";
     }
     else
     {
@@ -2771,9 +2764,7 @@ function order_query_sql($type = 'finished', $alias = '')
  */
 function order_amount_field($alias = '')
 {
-    return "   {$alias}goods_amount + {$alias}tax + {$alias}shipping_fee" .
-           " + {$alias}insure_fee + {$alias}pay_fee + {$alias}pack_fee" .
-           " + {$alias}card_fee ";
+    return "   {$alias}invest_price ";
 }
 
 /**

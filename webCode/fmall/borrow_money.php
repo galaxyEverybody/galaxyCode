@@ -41,7 +41,7 @@ if ($action == 'default')
 	include_once(ROOT_PATH . 'includes/lib_transaction.php');
 	
 	//查询是否有投资记录
-	$sql = 'SELECT count(*) FROM '.$GLOBALS['ecs']->table('order_goods').' WHERE user_id='.$userid;
+	$sql = 'SELECT is_loan_money FROM '.$GLOBALS['ecs']->table('users').' WHERE user_id='.$userid;
 	$countrec = $GLOBALS['db']->getOne($sql);
 	if(!empty($countrec)){
 		show_message($_LANG['financing_record_info'],$_LANG['back_up_page'],'user.php');
@@ -116,6 +116,9 @@ elseif ($action == 'insert_borrow_money')
 	);
 	
 	if(insert_borrow($borrow_money)){
+		//更改用户的借款与理财标识
+		$sql = "UPDATE ".$GLOBALS['ecs']->table('users')." SET is_loan_money=2 WHERE user_id=".$user_id;
+		$GLOBALS['db']->query($sql);
 		show_message($_LANG['borrow_success'],$_LANG['back_up_page'],'borrow_money.php?act=userinformation');
 	}
 }

@@ -112,20 +112,22 @@ $_LANG['guest_statistics']= '客户统计报表';
 $_LANG['show_num'] = '显示数量';
 $_LANG['member_name'] = '会员名';
 $_LANG['order_amount'] = '订单数(单位:个)';
-$_LANG['buy_sum'] = '购物金额';
+$_LANG['buy_sum'] = '投资金额';
 
 $_LANG['order_amount_sort'] = '按订单数量排序';
 $_LANG['buy_sum_sort'] = '按购物金额排序';
 $_LANG['download_amount_sort'] = '下载购物金额报表';
 
 /* 销售名细 */
-$_LANG['goods_name'] = '商品名称';
+$_LANG['goods_name'] = '标抵名称';
 $_LANG['goods_sn'] = '货号';
 $_LANG['order_sn'] = '订单号';
-$_LANG['amount'] = '数量';
+$_LANG['amountstatus'] = '状态';
 $_LANG['to'] = '至';
-$_LANG['sell_price'] = '售价';
-$_LANG['sell_date'] = '售出日期';
+$_LANG['sell_price'] = '投标总额';
+$_LANG['sell_date'] = '开始日期';
+$_LANG['start_date'] = '开始日期';
+$_LANG['end_date'] = '还款日期';
 $_LANG['down_sales'] = '下载销售明细';
 $_LANG['sales_list'] = '销售明细';
 

@@ -1,0 +1,24 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="blank"></div>
+<!--{if $helps}-->
+<div class="w">
+  <div id="service-2013" class="Help_JD" >
+    <!-- {foreach from=$helps item=help_cat name=foo} --> 
+    {if $smarty.foreach.foo.iteration < 7}
+    <dl class="fore{$smarty.foreach.foo.iteration}" style='width:228px;'>
+      <dt><b></b><strong>{$help_cat.cat_name}</strong></dt>
+      <dd> 
+        <!-- {foreach from=$help_cat.article item=item name=foo2} -->
+        <!-- {if $smarty.foreach.foo2.iteration <3 } -->
+        <div><a href="{$item.url}" target="_blank" title="{$item.title|escape:html}">{$item.short_title}</a></div>
+        <!--{/if}-->
+        <!-- {/foreach} --> 
+      </dd>
+    </dl>
+    {/if} 
+    <!-- {/foreach} --> 
+    
+    <span class="clr"></span> </div>
+</div>
+<!--{/if}--> 
+

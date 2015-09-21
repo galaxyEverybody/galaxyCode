@@ -4,7 +4,7 @@
 <div id="shortcut-2013">
 	<div class="w">
 		<ul>
-			<li class="serive_hotline">服务热线：400-960-3330（9:00~18:00）</li>
+			<li class="serive_hotline">服务热线：<span>400-960-3330</span>（9:00~18:00）</li>
 			<li class="serive_wb"><a href="http://weibo.com/u/5699638700/home?wvr=5&sudaref=www.haosou.com#1441933272395" target="_blank">新浪微博</a></li>
 			<li class="serive_wb" id="xinliang-jd">微信</li>
 	            <div id="weixinshow">
@@ -17,7 +17,6 @@
 	            		[服务号]
 	            	</div>
 	            </div>
-	            <div></div>
 			<li class="serive_wb"><a href="http://wpa.qq.com/msgrd?V=1&amp;uin=729797175&amp;Site=联众金融&amp;Menu=yes" target="_blank" rel="nofollow">qq</a></li>
 		</ul>
 		<script>

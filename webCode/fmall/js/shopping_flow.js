@@ -1329,18 +1329,22 @@ function emailgetpwform(){
 
 //邮箱账户验证
 function chekgetpwemail_user(username){
-	var reg = /^[0-9a-zA-Z]{3,30}$/;
 	if(username == ''){
 		$("#emailuser_getpw").html('-请输入您注册的账号');
 		return false;
 	}else{
-		if(!reg.test(username)){
-			$("#emailuser_getpw").html('-输入的账号不合法');
-			return false;
-		}else{
-			return true;
-		}
+		Ajax.call( 'user.php?act=is_registered', 'username=' + username, onlogin_callback_username , 'GET', 'TEXT', true, true );
+		return true;
 	}
+}
+function onlogin_callback_username(result){
+  if ( result == "true" ){
+	  $("#emailuser_getpw").html('-您输入的账号不存在');
+	  return false;
+  }else{
+	  $("#emailuser_getpw").html('-输入正确');
+	  return true;
+  }
 }
 //邮箱验证
 function chekgetpwemail_email(email){
@@ -1353,9 +1357,19 @@ function chekgetpwemail_email(email){
 			$('#emailemail_getpw').html('-输入的邮箱账号不合法');
 			return false;
 		}else{
+			Ajax.call( 'user.php?act=check_email', 'email=' + email, onlogin_callback_email , 'GET', 'TEXT', true, true );
 			return true;
 		}
 	}
+}
+function onlogin_callback_email(result){
+  if ( result == "false" ){
+	  $("#emailemail_getpw").html('-输入正确');
+	  return true;
+  }else{
+	  $("#emailemail_getpw").html('-您输入的账号不存在');
+	  return false;
+  }
 }
 //新密码的验证
 function chekgetpw_newpw(newpw){
@@ -1402,7 +1416,7 @@ function getuserpw_phone()
 function getpw_phoneverify_callback(result)
 {
 	if(result == 'ok'){
-		$("#phone_getpw").html('+验证码已发送');
+		$("#verify_getpw").html('+验证码已发送');
 		RemainTimegetpw();
 	}
 }
