@@ -8,17 +8,24 @@ define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
 
-$act = !empty($_REQUEST['act']) ? $_REQUEST['act'] : 'default';
-
-$smarty->assign('helps',           get_shop_help());       // 网店帮助
+assign_template();
+assign_dynamic('activity');
+$position = assign_ur_here(0, $_LANG['shopping_activity']);
+$smarty->assign('page_title',          $position['title']);                    // 页面标题
+$smarty->assign('ur_here',             $position['ur_here']);                  // 当前位置
 $smarty->assign('navigator_list',        get_navigator($ctype, $catlist));  //自定义导航栏
+if (!empty($GLOBALS['_CFG']['search_keywords']))
+{
+	$searchkeywords = explode(',', trim($GLOBALS['_CFG']['search_keywords']));
+}
+else
+{
+	$searchkeywords = array();
+}
+$smarty->assign('searchkeywords', $searchkeywords);	//热搜关键词
+$smarty->assign('helps',        get_shop_help()); // 网店帮助
 
-/* 载入系统参数 */
-$_CFG = load_config();
-$qq = explode(',',$_CFG['qq']);
-$smarty->assign('qq',$qq);
-$smarty->assign('icp_number',$_CFG['icp_number']);
-
+$act = !empty($_REQUEST['act']) ? $_REQUEST['act'] : 'default';
 if($act == 'default'){
 	$smarty->display('naire.dwt');
 }

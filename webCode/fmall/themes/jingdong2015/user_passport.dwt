@@ -171,7 +171,7 @@
                     <!--{/if}-->
                     <div class="item item-new">
                         <span class="label">&nbsp;</span>
-                        <div class="fl item-ifo">
+                        <div class="fl item-ifo" style="width:450px;">
                             <input name="agreement" type="checkbox" value="1" checked="checked" class="checkbox">
                             <label for="protocol" style="color:#333;">{$lang.agreement}</label>
                         </div>

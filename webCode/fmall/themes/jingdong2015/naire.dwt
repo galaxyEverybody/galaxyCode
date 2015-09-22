@@ -17,10 +17,11 @@
 <link href="{$cat_style}" rel="stylesheet" type="text/css" />
 <!-- {/if} -->
 {* 包含脚本文件 *}
-{insert_scripts files='transport_jquery.js,utils.js,transport.js'}
+{insert_scripts files='utils.js,transport_jquery.js,borrow.js,region.js,shopping_flow.js'}
 <style>
-.quesanswer{ width:99%;height:auto;border:1px solid #ddd;}
+.quesanswer{ width:98%;height:auto;}
 .quesanswerdiv{ 100%;height:auto;}
+.quesanswerdiv .radioerr{color:red;margin-left:30px;font-size:14px;}
 .quesanswerdiv ul{ list-style:none;}
 .quesanswerdiv ul .quesborder{ height:25px;border-bottom:1px dashed #FF852F;margin-top:20px;}
 .quesborder_none{ border-bottom:0px;margin-top:10px;}
@@ -28,21 +29,25 @@
 .quesanswerdiv ul em{ font-weight:bold;letter-spacing:2px;}
 .clickpointer{ width:260px;height:40px;line-height:35px;background:#FF852F;color:#fff;font-weight:bold;font-size:16px;cursor:pointer;}
 .quesanswer #pageupper{ display:none;}
+.quesanswer #pageupper textarea{ border:solid 1px #ddd;resize:none;}
 .quesanswer #quesdiv_sub{ width:100%;text-align:center;margin-top:20px;display:none;}
 </style>
 </head>
 <body>
-<div class="w">
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
+
+<div class="w" style="border:2px solid #F7F7F7;">
 	<div class="quesanswer">
-		<h1>联众金融平台试运营调查问卷</h1>
+		<div style="text-align:center;margin-top:20px;"><h1>联众金融平台试运营调查问卷</h1></div>
 		<div class="quesanswerdiv">
-		<form action='' method='post'>
+		<form action='naire.php' method='post' onsubmit="return checkformmaire()">
 			<ul>
 				<div id="pagedown">
 				<li class="quesborder_none"><span>*</span><em>Q1.您的性别是？</em></li>
 				<li class="quesborder">
 					<input type='radio' name='sex' value='1'>男
 					<input type='radio' name='sex' value='2'>女
+					<span id="errsex" class="radioerr"></span>
 				</li>
 				<li class="quesborder_none"><span>*</span><em>Q2.您的职业？</li>
 				<li class="quesborder">
@@ -50,24 +55,28 @@
 					<input type='radio' name='work' value='2'>企业
 					<input type='radio' name='work' value='3'>学生
 					<input type='radio' name='work' value='4'>自由职业
+					<span id="errwork" class="radioerr"></span>
 				</li>
 				<li class="quesborder_none"><span>*</span><em>Q3.页面跳转是否流畅？</li>
 				<li class="quesborder">
 					<input type='radio' name='skip' value='1'>比较流畅
 					<input type='radio' name='skip' value='2'>很不流畅
 					<input type='radio' name='skip' value='3'>一般
+					<span id="errskip" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q4.会员注册登录是否流畅？</li>
 				<li class="quesborder">
 					<input type='radio' name='login' value='1'>比较顺畅
 					<input type='radio' name='login' value='2'>登录过程太繁琐
+					<span id="errlogin" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q5.支付方式是否顺畅？</li>
 				<li class="quesborder">
 					<input type='radio' name='paystyle' value='1'>比较顺畅
 					<input type='radio' name='paystyle' value='2'>支付方式太少，很不方便
+					<span id="errpaystyle" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q6.整体风格？</li>
@@ -75,6 +84,7 @@
 					<input type='radio' name='overstyle' value='1'>明快活泼
 					<input type='radio' name='overstyle' value='2'>商务风格
 					<input type='radio' name='overstyle' value='3'>风格混乱，难以形容
+					<span id="erroverstyle" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q7.图标是否美观易懂？</li>
@@ -82,24 +92,28 @@
 					<input type='radio' name='icon' value='1'>图标很容易识别
 					<input type='radio' name='icon' value='2'>完全看不懂
 					<input type='radio' name='icon' value='3'>有些需要分析才能明白
+					<span id="erricon" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q8.页面布局是否合理？</li>
 				<li class="quesborder">
 					<input type='radio' name='layout' value='1'>很合理
 					<input type='radio' name='layout' value='2'>页面看上去有点乱
+					<span id="errlayout" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q9.广告位设置是否得当？</li>
 				<li class="quesborder">
 					<input type='radio' name='ads' value='1'>比较醒目
 					<input type='radio' name='ads' value='2'>广告位影响了页面的正常使用
+					<span id="errads" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q10.按钮点击是否方便？</li>
 				<li class="quesborder">
 					<input type='radio' name='handy' value='1'>方便，简洁明了
 					<input type='radio' name='handy' value='2'>不方便，查找起来很麻烦
+					<span id="errhandy" class="radioerr"></span>
 				</li>
 				
 				<li class="quesborder_none"><span>*</span><em>Q11.产品分类是否得当？</li>
@@ -107,15 +121,17 @@
 					<input type='radio' name='category' value='1'>分类清楚，我很喜欢
 					<input type='radio' name='category' value='2'>分类不太清楚，但是仔细找找还可以找到
 					<input type='radio' name='category' value='3'>分类不得当，我找不到自己需要的产品
+					<span id="errcategory" class="radioerr"></span>
 				</li>
 				<li class="quesborder_none"><span>*</span><em>Q12.产品是否能满足您的需求？</li>
 				<li class="quesborder_none">
 					<input type='radio' name='demand' value='1'>可以满足
 					<input type='radio' name='demand' value='2'>还可以，能找到类似的产品
 					<input type='radio' name='demand' value='3'>我想要的产品在平台上找不到
+					<span id="errdemand" class="radioerr"></span>
 				</li>
 				<div style="width:100%;height:100px;text-align:center;margin-top:40px;">
-					<div onclick="turnoverpage()" class="clickpointer" >下一步</div>
+					<div id="turnoverpage" class="clickpointer" >下一步</div>
 				</div>
 				</div>
 				<div id="pageupper">
@@ -123,12 +139,14 @@
 				<li class="quesborder">
 					<input type='radio' name='appeal' value='1'>活动力度很大，我很满意
 					<input type='radio' name='appeal' value='2'>活动力度一般
+					<span id="errappeal" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q14.各操作提示是否清楚？</li>
 				<li class="quesborder">
 					<input type='radio' name='operation' value='1'>清楚
 					<input type='radio' name='operation' value='2'>不太清楚
+					<span id="erroperation" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q15.在线客服是否迅速专业？</li>
@@ -137,35 +155,41 @@
 					<input type='radio' name='custom' value='2'>迅速但不专业
 					<input type='radio' name='custom' value='3'>专业又迅速
 					<input type='radio' name='custom' value='4'>既不专业又不迅速
+					<span id="errcustom" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q16.各类资讯是否实用丰富？</li>
 				<li class="quesborder">
 					<input type='radio' name='advice' value='1'>比较实用
 					<input type='radio' name='advice' value='2'>这些资讯对我没有帮助
+					<span id="erradvice" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q17.资讯信息更新是否及时？</li>
 				<li class="quesborder">
 					<input type='radio' name='adup' value='1'>更新的比较及时
 					<input type='radio' name='adup' value='2'>更新的太慢了，资讯失去了时效性
+					<span id="erradup" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q18.验证短信邮件是否便捷迅速？</li>
 				<li class="quesborder">
 					<input type='radio' name='smsset' value='1'>速度很快，很方便
 					<input type='radio' name='smsset' value='2'>有点慢，速度有待提高
+					<span id="errsmsset" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q19.常见问题解答是否通俗易懂？</li>
 				<li class="quesborder">
 					<input type='radio' name='daveques' value='1'>比较清楚，我能看明白
 					<input type='radio' name='daveques' value='2'>不够通俗易懂
+					<span id="errdaveques" class="radioerr"></span>
 				</li>
 					
 				<li class="quesborder_none"><span>*</span><em>Q20.您对我们网站的整体印象？</li>
 				<li>
-					<textarea cols='150' rows="10" name="overimpression"></textarea>
+					<textarea cols='150' rows="10" name="overimpression" id="nairetext"></textarea><br/>
+					<span id="errnairetext"></span>
 				</li>
 				</div>
 			</ul>
@@ -177,14 +201,129 @@
 		</div>
 	</div>
 </div>
-<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 </body>
 </html>
 <script>
-	function turnoverpage(){
-		document.getElementById("pagedown").style.display = "none";
-		document.getElementById("pageupper").style.display = "block";
-		document.getElementById("quesdiv_sub").style.display = "block";
+	$(function(){
+		$("#turnoverpage").click(function(){
+			var sex = $("input[name=sex]:checked").val();
+			var work = $("input[name=work]:checked").val();
+			var skip = $("input[name=skip]:checked").val();
+			var login = $("input[name=login]:checked").val();
+			var paystyle = $("input[name=paystyle]:checked").val();
+			var overstyle = $("input[name=overstyle]:checked").val();
+			var icon = $("input[name=icon]:checked").val();
+			var layout = $("input[name=layout]:checked").val();
+			var ads = $("input[name=ads]:checked").val();
+			var handy = $("input[name=handy]:checked").val();
+			var category = $("input[name=category]:checked").val();
+			var demand = $("input[name=demand]:checked").val();
+			
+			if(typeof(sex) == 'undefined'){
+				$("#errsex").html('请选择！');
+				var sextop = $("input[name=sex]").offset().top;
+				$(window).scrollTop(sextop-40);
+				return false;
+			}else if(typeof(work) == 'undefined'){
+				var worktop = $("input[name=work]").offset().top;
+				$(window).scrollTop(worktop-40);
+				$("#errwork").html('请选择！');
+				return false;
+			}else if(typeof(skip) == 'undefined'){
+				var skiptop = $("input[name=skip]").offset().top;
+				$(window).scrollTop(skiptop-40);
+				$("#errskip").html('请选择！');
+				return false;
+			}else if(typeof(login) == 'undefined'){
+				var logintop = $("input[name=login]").offset().top;
+				$(window).scrollTop(logintop-40);
+				$("#errlogin").html('请选择！');
+				return false;
+			}else if(typeof(paystyle) == 'undefined'){
+				var paystyletop = $("input[name=paystyle]").offset().top;
+				$(window).scrollTop(paystyletop-40);
+				$("#errpaystyle").html('请选择！');
+				return false;
+			}else if(typeof(overstyle) == 'undefined'){
+				var overstyletop = $("input[name=overstyle]").offset().top;
+				$(window).scrollTop(overstyletop-40);
+				$("#erroverstyle").html('请选择！');
+				return false;
+			}else if(typeof(icon) == 'undefined'){
+				var icontop = $("input[name=icon]").offset().top;
+				$(window).scrollTop(icontop-40);
+				$("#erricon").html('请选择！');
+				return false;
+			}else if(typeof(layout) == 'undefined'){
+				var layouttop = $("input[name=layout]").offset().top;
+				$(window).scrollTop(layouttop-40);
+				$("#errlayout").html('请选择！');
+				return false;
+			}else if(typeof(ads) == 'undefined'){
+				$("#errads").html('请选择！');
+				return false;
+			}else if(typeof(handy) == 'undefined'){
+				$("#errhandy").html('请选择！');
+				return false;
+			}else if(typeof(category) == 'undefined'){
+				$("#errcategory").html('请选择！');
+				return false;
+			}else if(typeof(demand) == 'undefined'){
+				$("#errdemand").html('请选择！');
+				return false;
+			}else{
+				$("#pagedown").hide();
+				$("#pageupper").show();
+				$("#quesdiv_sub").show();
+				$(window).scrollTop(0);
+			}
+		});
+
+	});
+	function checkformmaire(){
+		var appeal = $("input[name=appeal]:checked").val();
+		var operation = $("input[name=operation]:checked").val();
+		var custom = $("input[name=custom]:checked").val();
+		var advice = $("input[name=advice]:checked").val();
+		var adup = $("input[name=adup]:checked").val();
+		var smsset = $("input[name=smsset]:checked").val();
+		var daveques = $("input[name=daveques]:checked").val();
+		var nairetext = $("#nairetext").val();
+		
+		if(typeof(appeal) == 'undefined'){
+			var appealtop = $("input[name=appeal]").offset().top;
+			$(window).scrollTop(appealtop-40);
+			$("#errappeal").html('请选择！');
+			return false;
+		}else if(typeof(operation) == 'undefined'){
+			var operationtop = $("input[name=operation]").offset().top;
+			$(window).scrollTop(operationtop-40);
+			$("#erroperation").html('请选择！');
+			return false;
+		}else if(typeof(custom) == 'undefined'){
+			var customtop = $("input[name=custom]").offset().top;
+			$(window).scrollTop(customtop-40);
+			$("#errcustom").html('请选择！');
+			return false;
+		}else if(typeof(advice) == 'undefined'){
+			$("#erradvice").html('请选择！');
+			return false;
+		}else if(typeof(adup) == 'undefined'){
+			$("#erradup").html('请选择！');
+			return false;
+		}else if(typeof(smsset) == 'undefined'){
+			$("#errsmsset").html('请选择！');
+			return false;
+		}else if(typeof(daveques) == 'undefined'){
+			$("#errdaveques").html('请选择！');
+			return false;
+		}else if(nairetext == ''){
+			$("#errnairetext").html('请留下您宝贵的建议！');
+			return false;
+		}else{
+			return true;
+		}
 	}
 </script>

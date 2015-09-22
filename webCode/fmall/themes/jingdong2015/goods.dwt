@@ -49,6 +49,7 @@ function reg(str){
     <div id="product-intro">
     	<div class="productinfo_left">
 	    	<div class="productinfo_name" style="border-bottom:1px solid #dddddd;height:40px;">
+	    		<div style="float:left;">
 	    		<!--{if $goodslevel neq 0}-->
 	    		<ul>
 	        	<!--{foreach from=$goodslevel item=level}-->
@@ -58,7 +59,10 @@ function reg(str){
 	        	<!--{else}-->
 	        	<h1>{$goods.goods_style_name}</h1>
 	        	<!--{/if}-->
+	        	</div>
+	        	<div style="float:right;"><a href="#javascript">协议范本</a></div>
 	        </div>
+	        
 	        <!--name end-->
 	    	<div class="bondinfo_middle">
                 	<div class="bond_middle_big">
