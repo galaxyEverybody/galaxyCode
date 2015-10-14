@@ -26,11 +26,8 @@
     <dt>会员中心</dt>
     <dd>
       <div class="item {if $action eq 'profile'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'profile'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=profile">{$lang.label_profile}</a></div>
-      <div class="item {if $action eq 'collection_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'collection_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=collection_list">{$lang.label_collection}</a></div>
-      <div class="item {if $action eq 'tag_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'tag_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=tag_list">{$lang.label_tag}</a></div>
+      <div class="item {if $action eq 'manage_msg'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'manage_msg'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=manage_msg">{$lang.label_manage_msg}</a></div>
       <div class="item {if $action eq 'message_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'message_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=message_list">{$lang.label_message}</a></div>
-      <div class="item {if $action eq 'affiliate'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'affiliate'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=affiliate">{$lang.label_affiliate}</a></div>
-      <div class="item {if $action eq 'comment_list'}curr{/if}"><div class="myjdshowdiv">{if $action eq 'comment_list'}<div class="myjdshowleft"></div>{/if}</div><a href="user.php?act=comment_list">{$lang.label_comment}</a></div>
     </dd>
   </dl>
 </div>

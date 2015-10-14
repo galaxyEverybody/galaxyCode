@@ -172,8 +172,7 @@
 		</li>
 	</ul>
 </div>
-<div class="lyt-c-1" style="margin-top:20px;"><img src="images/note.gif" alt="note" />&nbsp;&nbsp;{$user_notice}</div>
-<div class="lyt-c-2" style="display:none;"><!-- #BeginLibraryItem "/library/history_user.lbi" --><!-- #EndLibraryItem --></div>
+<div class="lyt-c-1"><img src="images/note.gif" alt="note" />&nbsp;&nbsp;{$user_notice}</div>
 <!-- {/if} -->
 <!-- #用户中心默认显示页面 end-->
 
