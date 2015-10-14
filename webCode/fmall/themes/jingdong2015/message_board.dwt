@@ -19,7 +19,8 @@
 {insert_scripts files='common.js'}
 </head>
 <body>
-<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem -->
+<div class="leave_words"></div>
 <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
 
 <div class="w">
@@ -29,7 +30,7 @@
       <h3><span>{$lang.post_message}</span></h3>
       <div class="boxCenterList">
           <form action="message.php" method="post" name="formMsg" onSubmit="return submitMsgBoard(this)">
-            <table width="100%" border="0" cellpadding="3">
+            <table width="100%" border="0" cellpadding="10" >
               <tr>
                 <td align="right">{$lang.username}</td>
                 <td>
@@ -51,11 +52,7 @@
                   <input type="radio" name="msg_type" value="1" />
                   {$lang.message_type[1]}
                   <input type="radio" name="msg_type" value="2" />
-                  {$lang.message_type[2]}
-                  <input type="radio" name="msg_type" value="3" />
-                  {$lang.message_type[3]}
-                  <input type="radio" name="msg_type" value="4" />
-                  {$lang.message_type[4]} </td>
+                  {$lang.message_type[2]}</td>
               </tr>
               <tr>
                 <td align="right">{$lang.message_title}</td>
@@ -65,12 +62,12 @@
               <tr>
                 <td align="right">{$lang.comment_captcha}</td>
                 <td><input type="text" size="8" name="captcha"  class="inputBg" />
-                <img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" /> </td>
+                <img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;height:30px;" onClick="this.src='captcha.php?'+Math.random()" /> </td>
               </tr>
             <!--{/if}-->
               <tr>
                 <td align="right" valign="top">{$lang.message_content}</td>
-                <td><textarea name="msg_content" cols="50" rows="4" wrap="virtual" style="border:1px solid #ccc;"></textarea></td>
+                <td><textarea name="msg_content" cols="50" rows="6" wrap="virtual" style="border:1px solid #ccc;resize:none;"></textarea></td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
@@ -144,7 +141,11 @@
     </div>
   
   </div>
-<!-- #BeginLibraryItem "/library/help.lbi" --> <!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem -->
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
 </body>
 </html>

@@ -2,14 +2,14 @@
 <div class="blank"></div>
 <!--{if $helps}-->
 <div class="w">
-  <div id="service-2013" class="Help_JD" >
+  <div id="service-2013" class="Help_JD">
     <!-- {foreach from=$helps item=help_cat name=foo} --> 
-    {if $smarty.foreach.foo.iteration < 7}
+    {if $smarty.foreach.foo.iteration < 5}
     <dl class="fore{$smarty.foreach.foo.iteration}" style='width:195px;'>
-      <dt><b></b><strong>{$help_cat.cat_name}</strong></dt>
+      <dt><strong>{$help_cat.cat_name}</strong></dt>
       <dd> 
         <!-- {foreach from=$help_cat.article item=item name=foo2} -->
-        <!-- {if $smarty.foreach.foo2.iteration <3 } -->
+        <!-- {if $smarty.foreach.foo2.iteration <5 } -->
         <div><a href="{$item.url}" target="_blank" title="{$item.title|escape:html}">{$item.short_title}</a></div>
         <!--{/if}-->
         <!-- {/foreach} --> 
@@ -18,7 +18,13 @@
     {/if} 
     <!-- {/foreach} --> 
     
-    <span class="clr"></span> </div>
+    <span class="clr"></span> 
+    </div>
+    <div id="four_active" >
+    	<p class="four_active_one">热线电话（服务时间：9:00--18:00）</p>
+    	<p class="four_active_two">400-960-3330</p>
+    	<p class="four_active_three">关注我们<span>新浪</span><span>微信</span></p>
+    </div>
 </div>
 <!--{/if}-->
 

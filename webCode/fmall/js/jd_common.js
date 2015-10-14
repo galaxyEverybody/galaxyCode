@@ -59,6 +59,20 @@ $(function(){
 	
 	$(".backpanel-inner").css("left",c);
 	
+	/* 顶部微信号的展现*/
+	$("#xinliang-jd").mouseenter(function(){
+		$("#weixinshow").slideDown();
+	}).mouseleave(function(){
+		$("#weixinshow").slideUp();
+	});
+	
+	/* 我要理财的下拉菜单*/
+	$("#header_loan_hide").mouseenter(function(){
+		$("#header_loan_show").slideDown();
+	}).mouseleave(function(){
+		$("#header_loan_show").slideUp();
+	});
+	
 })
 
 

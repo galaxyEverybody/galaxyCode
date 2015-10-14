@@ -3008,7 +3008,7 @@ elseif ($action == 'affiliate')
         $smarty->assign('url_format', $url_format);
         $smarty->assign('pager', $pager);
 
-
+		
         $smarty->assign('affiliate_intro', $affiliate_intro);
         $smarty->assign('affiliate_type', $affiliate['config']['separate_by']);
 
@@ -3035,7 +3035,7 @@ elseif ($action == 'affiliate')
     $smarty->assign('shopname', $_CFG['shop_name']);
     $smarty->assign('userid', $user_id);
     $smarty->assign('shopurl', $ecs->url());
-    $smarty->assign('logosrc', 'themes/' . $_CFG['template'] . '/images/logo.gif');
+    $smarty->assign('logosrc', 'themes/' . $_CFG['template'] . '/images/logo.png');
 
     $smarty->display('user_clips.dwt');
 }

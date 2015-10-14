@@ -611,10 +611,12 @@
   <!-- 结束用户登录注册界面 --> 
   <!-- {/if} --> 
 </div>
-<div class="flowBottomBox">
-<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
 </div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div> 
 <script type="Text/Javascript" language="JavaScript">
 <!--
 {literal}

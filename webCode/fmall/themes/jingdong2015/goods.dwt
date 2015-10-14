@@ -42,7 +42,7 @@ function reg(str){
 </script>
 </head>
 <body>
-<div class="GoodsPageHeader"><!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --></div>{insert_scripts files='magiczoomplus.js,jd_goods.js'}
+<div class="GoodsPageHeader"><!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --></div>{insert_scripts files='magiczoomplus.js,jd_goods.js'}
 <div class="rootNav">
 <div class="w">
 	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
@@ -196,8 +196,8 @@ function reg(str){
     <div class="clr"></div>
   <div class="right"> 
     <div id="product-detail" class="m m1">
-      <div class="float-nav-wrap" style="height: 30px; ">
-        <div class="mt" style="height: 30px;">
+      <div class="float-nav-wrap">
+        <div class="mt">
           <ul class="tab">
             <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">基本情况</a></li>
             <li id="p-con-attr"><a href="javascript:;" class="toggle-link">投标记录</a></li>
@@ -205,7 +205,7 @@ function reg(str){
           </ul>
         </div>
       </div>
-      <div class="mc" id="p-con-detail-con" >
+      <div class="mc" id="p-con-detail-con">
         <ul class="detail-list">
           <li>商品名称：{$goods.goods_name}</li>
           <!-- {foreach from=$properties item=property_group key=key} --> 
@@ -244,74 +244,15 @@ function reg(str){
         <div class="item-detail">{$goods.packing_list}</div>
       </div>
     </div>
-    <DIV class="clr"></DIV>
-		<div id="comment" class="m m2">
-	<div class="mt">
-	    <h2>商品评价</h2>
-	  </div>
-	  <div class="mc">
-	    <div id="i-comment">
-	      <div class="rate"> <strong>{$comment_percent.haoping_percent}<span>%</span></strong> <br>
-	        <span>好评度</span> </div>
-	      <div class="percent">
-	        <dl>
-	          <dt>好评<span>({$comment_percent.haoping_percent}%)</span></dt>
-	          <dd>
-	            <div style="width: {$comment_percent.haoping_percent}%;"></div>
-	          </dd>
-	        </dl>
-	        <dl>
-	          <dt>中评<span>({$comment_percent.zhongping_percent}%)</span></dt>
-	          <dd class="d1">
-	            <div style="width: {$comment_percent.zhongping_percent}%;"> </div>
-	          </dd>
-	        </dl>
-	        <dl>
-	          <dt>差评<span>({$comment_percent.chaping_percent}%)</span></dt>
-	          <dd class="d1">
-	            <div style="width: {$comment_percent.chaping_percent}%;"> </div>
-	          </dd>
-	        </dl>
-	      </div>
-	      <div class="btns">
-	        <div>{if $factor eq 0}所有用户都可以对该商品<br />
-	          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 1}只有登陆的用户才可以对该商品<br />
-	          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 2}在本站购买过一次其他商品的用户才可以对该商品<br />
-	          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{elseif $factor eq 3}购买过此{$goods_name}的顾客，在收到商品才可以对该商品<br />
-	          <a href="javascript:void(0);" class="open_comment">【发表评论】</a>{/if} </div>
-	      </div>
-	    </div>
-	  </div>
 </div>
-        <!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
-      
-  </div>
-  <div class="left">
-    <div id="related-sorts" class="m m2">
-      <div class="mt">
-        <h2>相关推荐</h2>
-      </div>
-      <div class="mc">
-        <ul style='width:100%;height:auto;text-align:center;'>
-   		 <!--{foreach from=$recommend_goods item=recgoods}-->
-          <li style="width:100%;height:auto;margin-top:10px;">
-            <div ><a href="{$recgoods.url}"><img height="150" width="150" src="{$recgoods.thumb}"></a></div>
-            <div style='margin-top:5px;'><a href="{$recgoods.url}" title="{$recgoods.short_name}">{$recgoods.short_name}</a></div>
-            <div style='margin-top:5px;'>年化利率:<span style='color:#FF852F;'>{$recgoods.market_price}</span>%</div>
-          </li>
-          <!--{/foreach}-->
-
-        </ul>
-        
-      </div>
-    </div>
-    </div>
 </div>
 <div class="clr"></div>
-<div class="w">
-  <div class="recentView"><!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem --></div>
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
 </div>
-<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
 
 
 

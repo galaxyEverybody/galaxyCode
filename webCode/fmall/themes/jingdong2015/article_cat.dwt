@@ -61,8 +61,12 @@
 		<div class="clr"></div>
     </div>
     <div class="articleBot">
-		<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
-        <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+		<div class="index_help_new">
+		<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+		</div>
+		<div class="index_footer_new">
+		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+		</div>
     </div>
 </body>
 <script type="text/javascript">

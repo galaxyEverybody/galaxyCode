@@ -15,309 +15,255 @@
 <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
 <link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
 {* 包含脚本文件 *}
-{insert_scripts files='common.js,index.js'}
+{insert_scripts files='common.js,index.js,echart/www/js/echarts.js'}
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jquery.SuperSlide.js,jd_index.js'}
+<div id="o-slide" style="width:100%"> 
+	<!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+</div>
 <div class="w">
-	<div id="o-slide"> <!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem --></div>
-	<div class="m _520_a_lifeandjourney_1 hover" id="virtuals-2014" style="margin-top:10px;height:233px;text-align:center;">
-		{if $headimg eq '0'}
-		<a href='user.php'><img src='images/indexlogin.jpg' alt='联众金融'></a>
-		<div class="registerdiv"><a href="user.php?act=register">立即注册>></a></div>
-		{else}
-		<div style='width:150px;height:150px;margin-top:30px;border-radius:75px;'>
-		<a href="user.php?act=profile"><img src='{$headimg}' alt='用户头像' width='150px' height='150px'></a>
+	<div id="banner_login">
+		<!--{if $headimg eq '0'}-->
+		<div class="banner_login_div">
+			<p class="banner_login_income">预期年华收益率</p>
+			<p class="banner_login_percent">7%-15%</p>
+			<p class="banner_login_poster">安全保障 值得信赖</p>
+			<a class="banner_login_register" href="./user.php?act=register">立即注册</a>
+			<p class="banner_login_login"><a href="./user.php">已有账号，立即登录</a></p>
 		</div>
-		{/if}
+		<!--{else}-->
+		<div class="banner_login_div">
+			<div class="banner_head_img"><img src="{$headimg}" alt="用户头像" width='100px' height='100px'/></div>
+			<p class="banner_login_poster">安全保障 值得信赖</p>
+			<a class="banner_login_img" href="./user.php">我的账户</a>
+		</div>
+		<!--{/if}-->
 	</div>
-  
-  <!--virtuals end-->
-  
-  <div id="jdnews" class="m m1"> <!-- TemplateBeginEditable name="新闻快报文章区域" -->
-  <!-- #BeginLibraryItem "/library/cat_articles.lbi" -->
-
-  <!-- {if $script_name eq 'index'} -->
-  <div class="mt">
-  	<h2>{$articles_cat.name|escape:html}</h2>
-      <div class="extra"><a href="{$articles_cat.url}" target="_blank">更多&nbsp;&gt;</a></div>
-  </div>
-  <div class="mc">
-  	<ul>
-      	<!--{foreach from=$articles item=article_item}-->
-          <li {if $smarty.foreach.foo.iteration mod 2 eq 1}class="odd"{/if}><a href="{$article_item.url}" target="_blank" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
-          <!--{/foreach}-->
-      </ul>
-  </div>
-  <!-- {elseif $script_name eq 'category'}-->
-  <div id="market">
-  	<div class="mt">{$articles_cat.name|escape:html}</div>
-      <div class="mc">
-      	<ul>
-          	<!--{foreach from=$articles item=article_item}-->
-              <li>·<a href="{$article_item.url}" target="_blank">{$article_item.short_title}</a></li>
-              <!--{/foreach}-->
-          </ul>
-      </div>
-  </div>
-  <!-- {else} -->
-  <div class="mt">
-  	<h2>{$articles_cat.name|escape:html}</h2>
-  </div>
-  <div class="mc">
-  	<ul>
-      	<!--{foreach from=$articles item=article_item}-->
-          <li>·<a target="_blank" href="{$article_item.url}" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
-          <!--{/foreach}-->
-      </ul>
-  </div>
-  <!-- {/if} -->
-   <!-- #EndLibraryItem -->
-  <!-- TemplateEndEditable --> </div>
-    <!--jdnews-->
 </div>
-<Div class="clear"></Div>
-
-<div class="w todayRest" style="display:none;">
-	<div class="mt">
-    	<div class="jd-clock-wrap">
-        	<div class="jd-clock">
-            	<i class="dian"></i>
-                <div class="jd-clock-h" style="-webkit-transform: rotate(327deg);"></div>
-                <div class="jd-clock-m"><i></i></div>
-                <div class="jd-clock-s"><i></i></div>
-            </div>
-        </div>
-    </div>
-    <!--slide end-->
-    <div class="jscroll" id="mscroll" >
-        <div class="ctrl" id="mscroll-ctrl-prev"><</div>
-        <div class="ctrl" id="mscroll-ctrl-next">></div>
-        <div class="o-list">
-            <div class="list" id="mscroll-list">
-                <ul class="mscroll-ul" >
-                <!-- TemplateBeginEditable name="首页幻灯片下方广告区域" -->
-<!-- TemplateEndEditable -->
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--mscroll end-->
+<div class="advert_div">
+	<div class="w">
+  <!--index_notice start-->
+  <div class="advert_div_up">
+  	<div class="advert_up_down" id="FontScroll">
+  		<ul>
+	    	<!--{foreach from=$new_articles item=article_item}-->
+	        <li {if $smarty.foreach.foo.iteration mod 2 eq 1}class="odd"{/if}><a href="{$article_item.url}" target="_blank" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
+	        <!--{/foreach}-->
+	    </ul>
+  	</div>
+  	<div class="advert_invest_info">6分钟前 用户：<span>13121524680</span>成功投资<span>5000</span>元</div>
+  </div>
+  <!--index_notice end-->
+  </div>
+</div>
+<div class="regular_div">
+	<div class="w">
+		<div class="regular_three_div">
+			<dl >
+				<dd>
+					<div class="regular_top_image"></div>
+					<h2>超高收益 超低门槛</h2>
+					<ul >
+						<li ><span >30倍超过收益</span></li>
+						<li ><span >30倍超过收益</span></li>
+						<li ><span >30倍超过收益</span></li>
+					</ul>
+				</dd>
+				<dd>
+					<div class="regular_top_image_two" ></div>
+					<h2 >超高收益 超低门槛</h2>
+					<ul >
+						<li ><span >30倍超过收益</span></li>
+						<li ><span >30倍超过收益</span></li>
+						<li ><span >30倍超过收益</span></li>
+					</ul>
+				</dd>
+				<dd>
+					<div class="regular_top_image_three" ></div>
+					<h2 >超高收益 超低门槛</h2>
+					<ul >
+						<li ><span >30倍超过收益</span></li>
+						<li ><span >30倍超过收益</span></li>
+						<li ><span >30倍超过收益</span></li>
+					</ul>
+				</dd>
+				<dd>
+					<div class="regular_top_image_four"></div>
+					<h2 >超高收益 超低门槛</h2>
+					<ul >
+						<li ><span >30倍超过收益</span></li>
+						<li ><span >30倍超过收益</span></li>
+						<li ><span >30倍超过收益</span></li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</div>
 </div>
 
-<div class="blank20"></div>
-<div id="showcase" class="w advanced">
-	<div class="m">
-    	<div class="mt"><h2>为您推荐</h2></div>
-        <div class="mc">
-        	<div class="sc-list clearfix">
-            	<div class="item fore1"> {insert name='ads_pro' type='特色1'} </div>
-                <div class="item fore2"> {insert name='ads_pro' type='特色2'} </div>
-                <div class="item fore3"> {insert name='ads_pro' type='特色3'} </div>
-                <div class="item fore4"> {insert name='ads_pro' type='特色4'} </div>
-                <div class="item fore5"> {insert name='ads_pro' type='特色5'} </div>
-                <div class="item fore6"> {insert name='ads_pro' type='特色6'} </div>
-                <div class="item fore7"> {insert name='ads_pro' type='特色7'} </div>
-                <div class="item fore8"> {insert name='ads_pro' type='特色8'} </div>
-            </div>
-            <div class="blank10"></div>
-        </div>
-    </div>
-</div>
-<div id="floors-list">
-   <!-- TemplateBeginEditable name="分类下商品区域" -->
-<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-
-<div class="w catGoodsBox catGoodsSlide">
-	<div class="mt">
-    	<h2><i></i><span></span><font>{$goods_cat.name}</font></h2>
-    </div>
-    <div class="mc">
-    	<div class="side">
-        	<div class="banner">{insert name='ads_pro' cat_name=$goods_cat.name type='分类下商品左广告'}<i></i></div>   
-        </div>
-        <div class="bd_box">
-        	<div class="bdBox bdBoxPro">
-            	<ul>
-            	<!--{foreach from=$goods_cat.goods_level2 item=goods name=foo}-->
-                	{count(goods)}
-                	<li>
-                    	<div class="pImg"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}"><img width="100" height="100" alt="{$goods.goods_name}" src="{$goods.thumb}"></a></div>
-                        <div class="pName"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}">{$goods.short_name}</a></div>
-                        <div class="pPrice">{if $goods.promote_price > 0}{$goods.promote_price}{else}{$goods.market_price}{/if}%</div>
-                    </li>
-                    <!--{/foreach}-->
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
- <!-- #EndLibraryItem -->
-
-<div class="w catGoodsBox catGoodsSlide">
-	<div class="mt">
-    	<h2><i></i><span></span><font>定期投</font></h2>
-        <div class="hd_box">
-        <div class="hd_box_two">
-        	<div class="hd_box_twoul">
-        		<div class="hd_box_twolione">
-        			<div class="hd_box_two_div">
-        				<div>
-        				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-        				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-        					<p class="hd_box_two_one_one"><a href="{$goods.url}">{$goods.name}</a><p>
-        					<p class="hd_box_two_two">近七日年化收益率<p>
-        					<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
-        				<!--{/foreach}-->
-        				<!-- #EndLibraryItem -->
-        				</div>
-        			</div>
-        			<a href="{$goods.url}"><div class="hd_box_two_imga"></div></a>
-        		</div>
+<div class="index_faxdate">
+	<div class="blank30"></div>
+	<div class="w">
+		<div class="faxdate_title" >
+			<span></span>
+			<a>优选定期</a>
+			<em>投资越高 收益越高</em>
+		</div>
+		<!-- TemplateBeginEditable name="分类下商品区域" -->
+		<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+		<!-- #EndLibraryItem -->
+		<div class="faxdate_div">
+			<div class="faxdate_month">
+				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+				<div class="faxdate_top_form"></div>
+				<div class="faxdate_coninfo">
+					<div class="faxdate_coninfo_font">优选定期</div>
+					<div class="faxdate_con_day">
+						<div class="faxdate_day_num">30</div>
+						<div class="faxdate_day_font">天<br/>锁定期</div>
+					</div>
+				</div>
+				<div class="faxdate_expect">
+					<div class="faxdate_expect_day">15</div>
+					<div class="faxdate_expect_font">预期年化<br/><em >%</em></div>
+				</div>
+				<div class="faxdate_invest_div">
+					<a href="{$goods.url}">立即投资</a>
+				</div>
+				<!--{/foreach}-->
         		<!-- #EndLibraryItem -->
-        		<div class="hd_box_twolitwo">
-        			<div class="hd_box_two_div">
-	    				<div>
-	    				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-	    				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-	    				<!-- {if $smarty.foreach.foo2.last} -->
-	    					<p class="hd_box_two_one_six"><a href="{$goods.url}">{$goods.name}</a><p>
-	    					<p class="hd_box_two_two">近七日年化收益率<p>
-	    					<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
-	    				<!--{/if}-->
-	    				<!--{/foreach}-->
-	    				<!-- #EndLibraryItem -->
-	    				</div>
-	    			</div>
-	    			<a href="{$goods.url}"><div class="hd_box_two_imgb"></div></a>
-        		</div>
-        		<div class="hd_box_twolithree">
-	        		<div class="hd_box_two_div">
-						<div>
-						<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-						<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-							<p class="hd_box_two_one_twenf"><a href="{$goods.url}">{$goods.name}</a><p>
-							<p class="hd_box_two_two">近七日年化收益率<p>
-							<p class="hd_box_two_three"><span>{$goods.market_price}</span>%<p>
-						<!--{/foreach}-->
-						<!-- #EndLibraryItem -->
-						</div>
-					<div>
-					<a href="{$goods.url}"><div class="hd_box_two_imgc"></div></a>
-	        	</div>
-        	</div>
-        </div>
-        </div>
+			</div>
+			<div class="faxdate_quarter">
+				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+				<div class="faxdate_top_form"></div>
+				<div class="faxdate_coninfo">
+					<div class="faxdate_coninfo_font">优选定期</div>
+					<div class="faxdate_con_day">
+						<div class="faxdate_day_num">30</div>
+						<div class="faxdate_day_font">天<br/>锁定期</div>
+					</div>
+				</div>
+				<div class="faxdate_expect">
+					<div class="faxdate_expect_day">15</div>
+					<div class="faxdate_expect_font">预期年化<br/><em >%</em></div>
+				</div>
+				<div class="faxdate_invest_div">
+					<a href="{$goods.url}">立即投资</a>
+				</div>
+				<!--{/foreach}-->
+        		<!-- #EndLibraryItem -->
+			</div>
+			<div class="faxdate_year">
+				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+				<div class="faxdate_top_form"></div>
+				<div class="faxdate_coninfo">
+					<div class="faxdate_coninfo_font">优选定期</div>
+					<div class="faxdate_con_day">
+						<div class="faxdate_day_num">30</div>
+						<div class="faxdate_day_font">天<br/>锁定期</div>
+					</div>
+				</div>
+				<div class="faxdate_expect">
+					<div class="faxdate_expect_day">15</div>
+					<div class="faxdate_expect_font">预期年化<br/><em >%</em></div>
+				</div>
+				<div class="faxdate_invest_div">
+					<a href="{$goods.url}">立即投资</a>
+				</div>
+				<!--{/foreach}-->
+        		<!-- #EndLibraryItem -->
+			</div>
+		</div>
+		<!-- TemplateEndEditable -->
+    </div>
+    <div class="blank30"></div>
+    
+    <div class="w">
+	    <div class="powder_title">
+			<span></span>
+			<a class="powder_title_a">散标投资</a>
+			<em >精选散标 灵活投资</em>
+			<div class="faxdate_powder_more"><a>更多></a></div>
+		</div>
+		<div class="powder_div">
+			<div class="powder_con_div">
+			<ul>
+				<li >
+					<span class="powder_div_name">借款标题</span>
+					<span class="powder_div_rate">年华利率</span>
+					<span class="powder_div_name">借款金额</span>
+					<span class="powder_div_name">借款期限</span>
+					<span class="powder_div_name">投资进度</span>
+				</li>
+				<!--{foreach from=$best_goods item=goods name=foo}-->
+				<li >
+					<span class="powder_div_name" >{$goods.short_name}</span>
+					<span class="powder_div_color" >{$goods.market_price}</span>
+					<span class="powder_div_name" >{$goods.shop_price}</span>
+					<span class="powder_div_name" >{$goods.term}</span>
+					<span class="powder_div_advance" >
+						<div class="powder_term_div" id="{$goods.id_division}"></div>
+						<input type="hidden" name="{$goods.id_division}" value="{$goods.price_advance}">
+					</span>
+					<span class="powder_div_sub">
+						<div class="powder_invest_cli"><a href="{$goods.url}">立即投资</a></div>
+					</span>
+				</li>
+				<!--{/foreach}-->
+			</ul>
+			</div>
+		</div>
+    </div>
+    <div class="blank30"></div>
+    <div class="w">
+	    <div class="powder_title">
+			<span ></span>
+			<a class="powder_title_a">最新动态</a>
+			<em >了解动态 放心投资</em>
+			<div class="faxdate_powder_more"><a href="http://www.yhzl.com/webCode/fmall/article_cat.php?cat_id=4">更多></a></div>
+		</div>
+		<div class="new_news">
+			<div class="news_div">
+				<ul >
+					<!--{foreach from=$new_amount item=amount_item}-->
+					<li >
+						<p ><a href="{$amount_item.url}" target="_blank" title="{$amount_item.title|escape:html}">{$amount_item.short_title}</a></p>
+						<em >{$amount_item.add_time}</em>
+					</li>
+					<!--{/foreach}-->
+				</ul>
+			</div>
+		</div>
+    </div>
+    <div class="blank30"></div>
+    <div class="w">
+	    <div class="powder_title">
+			<span></span>
+			<a class="powder_title_a">合作伙伴</a>
+		</div>
+		<div class="partner_div">
+	    	<ul>
+	    		<li ></li>
+	    		<li ></li>
+	    		<li ></li>
+	    		<li ></li>
+	    		<li ></li>
+	    		<li ></li>
+	    	</ul>
+	    </div>
     </div>
 </div>
- <!-- #EndLibraryItem -->
-
-<div class="w catGoodsBox catGoodsSlide">
-		<div class="mt">
-    	<h2><i></i><span></span><font>我要贷款</font></h2>
-        <div class="hd_box">
-        	<ul>
-            	<li id="cardivli"><a href="http://www.jnz360.com/fmall/user.php?act=borrow_money">车辆抵押贷款<i></i></a></li>
-            	<li id="housedivli"><a href="http://www.jnz360.com/fmall/user.php?act=borrow_money">房屋抵押贷款<i></i></a></li>
-            </ul>
-        </div>
-    	</div>
-    	<div style="width:100%;margin-top:5px;">
-    		<a href="http://www.jnz360.com/fmall/user.php?act=borrow_money"><img src="images/cardaikuan.jpg" width="100%" height="183px" id="cardivshow"></a>
-    		<a href="http://www.jnz360.com/fmall/user.php?act=borrow_money"><img src="images/housedaikuan.jpg" id="housedivshow" style="display:none;width:100%;height:183px;"></a>
-    	</div>
-    	<script>
-    	$(function(){
-    		$('#housedivli').mouseenter(function(){
-    			$('#housedivshow').show();
-    			$('#cardivshow').hide();
-    		});
-    		
-    		$('#cardivli').mouseenter(function(){
-    			$('#housedivshow').hide();
-    			$('#cardivshow').show();
-    		});
-    		
-    	});
-    	</script>
-</div>
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable -->
-</div>
-
-<div class="w" style="margin-top:760px;">
-	<div id="special">
-        <div class="mt"><h2>天天狂赚</h2></div>
-        <div class="mc">
-            <ul>
-                <!--{foreach from=$hot_goods item=goods name=no}-->
-                <li {if $smarty.foreach.no.iteration==1}class="cur"{/if}>
-                    <div class="pImg"><a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"></a></div>
-                    <div class="pInfo">
-                        <h2><a href="{$goods.url}" target="_blank">{$goods.short_style_name}</a></h2>
-                        <p><!-- {if $goods.promote_price neq ""} -->{$goods.promote_price}<!-- {else}-->{$goods.market_price}<!--{/if}-->%</p>
-                    </div>
-                </li>
-                <!--{/foreach}-->
-            </ul>
-        </div>
-    </div>
-    <div id="share2">
-    	<div class="mt"><h2>热门评价</h2></div>
-        <div class="mc">
-        	<div class="sw picScrollTop">
-            	<div class="bd">
-                    <ul>
-                        <!--{foreach from=$index_comments item=comments name=no}-->
-                        <!--{if $smarty.foreach.no.iteration < 7}-->
-                        <li>
-                            <div class="pImg"><a href="{$comments.url}" title="{$comments.goods_name}" target="_blank"><img src="{$comments.goods_thumb}" alt="{$comments.goods_name}"></a></div>
-                            <div class="pInfo">
-                                <div class="authorInfo">
-                                    <img title="a2d3g42011" src="http://img10.360buyimg.com/vclist/jfs/t499/282/910193630/1286/3c1f5272/552326deN5e96a96c.jpg" alt="a2d3g42011" width="28" height="28">
-                                    <span>a2d3g42011</span>
-                                </div>
-                                <div class="pDetail">
-                                    <a href="{$comments.url}" target="_blank" title="{$comments.content}"><span class="text">{$comments.content}</span><span class="iconR">”</span></a>
-                                    <span class="detailArrow">◆</span>
-                                    <span class="iconL">“</span>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- {/if} -->
-                        <!-- {/foreach} -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<span class="clr"></span>
-</div>
-
-<div class="service2015">
-	<div class="service2015Box">
-        <div class="slogen">
-        	<ul>
-            	<img src="images/lzjrtitle.jpg" alt="联众金融" width="1206px" height="90px">
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-- fanbo s 20150423 -->
-<div id="elevator" class="elevator" >
-    <ul>
-        <li ><span class="lou">1F</span><span class="text">理财</span></li>
-        <li ><span class="lou">2F</span><span class="text">定期</span></li>
-        <li ><span class="lou">3F</span><span class="text">贷款</span></li>
-    </ul>
-</div>
-<!-- fanbo e 20150423 -->
+<div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
 
-<!-- fanbo s 20150423 -->
 <script>
 var bodyH=$(window).height(),scTop=$("#floors-list").offset().top-bodyH;
 if($(window).scrollTop() >= scTop ){

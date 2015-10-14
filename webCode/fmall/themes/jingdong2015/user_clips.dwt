@@ -173,7 +173,7 @@
 	</ul>
 </div>
 <div class="lyt-c-1" style="margin-top:20px;"><img src="images/note.gif" alt="note" />&nbsp;&nbsp;{$user_notice}</div>
-<div class="lyt-c-2"><!-- #BeginLibraryItem "/library/history_user.lbi" --><!-- #EndLibraryItem --></div>
+<div class="lyt-c-2" style="display:none;"><!-- #BeginLibraryItem "/library/history_user.lbi" --><!-- #EndLibraryItem --></div>
 <!-- {/if} -->
 <!-- #用户中心默认显示页面 end-->
 
@@ -1147,14 +1147,14 @@ var {$key} = "{$item}";
 <!-- {if $affiliate.on eq 1} -->
 <!-- {if $action eq 'affiliate'} -->
 <!-- {if !$goodsid || $goodsid eq 0} -->
-<div style="font-size:16px;margin-left:20px;color:red;">本栏目暂时没有开放</div>
-<div class="boxCenterList" style="display:none;">
+<div style="font-size:16px;margin-left:20px;color:red;display:none;">本栏目暂时没有开放</div>
+<div class="boxCenterList" >
 <h5 class="mc"><span>{$lang.affiliate_detail}</span></h5>
 <div style="border-top:1px solid #ccc; padding-top:10px;">{$affiliate_intro}</div>
 </div>
 <!-- {if $affiliate.config.separate_by eq 0} -->
 <!-- 下线人数、分成 -->
-<div class="boxCenterList" style="display:none;">
+<div class="boxCenterList">
 <h5 class="mc"><span><a name="myrecommend">{$lang.affiliate_member}</a></span></h5>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
 <tr align="center">
@@ -1179,7 +1179,7 @@ var {$key} = "{$item}";
 <!-- {/if} -->
 <!-- 我的推荐清单 -->
 </div>
-<div class="boxCenterList" style="display:none;">
+<div class="boxCenterList">
 <h5 class="mc"><span>分成规则</span></h5>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
 <tr align="center">
@@ -1217,6 +1217,12 @@ var {$key} = "{$item}";
 <!-- {/if} -->
 </table>
 </div>
+
+<a href="http://www.yhzl.com/galaxyCode/webCode/fmall/?u=20" target="_blank" title="聚能赚"><img src="http://www.yhzl.com/galaxyCode/webCode/fmall/themes/jingdong2015/images/logo.png" /></a>
+
+
+
+
 <script type="text/javascript" language="JavaScript">
 <!--
 {literal}
@@ -1228,7 +1234,7 @@ sel.form.submit();
 //-->
 </script>
 <!-- /我的推荐清单 -->
-<div class="boxCenterList" style="display:none;">
+<div class="boxCenterList">
 <h5 class="mc"><span>{$lang.affiliate_code}</span></h5>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
 <tr>
@@ -1338,8 +1344,12 @@ clip.setData(trans,null,clipid.kGlobalClipboard);
     <div class="clr"></div>
 </div>
 </div>
-<!-- #BeginLibraryItem "/library/help.lbi" --> <!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem -->
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
 </body>
 <script type="text/javascript">
 {foreach from=$lang.clips_js item=item key=key}

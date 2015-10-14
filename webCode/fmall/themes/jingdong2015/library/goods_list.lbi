@@ -1,68 +1,57 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <div id="filter">
       <div class="cls"></div>
-      <div class="fore1">
         <dl class="order">
-          <dd  <!-- {if $pager.sort == 'market_price'} -->class="curr"<!-- {/if} -->><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=market_price&order=<!-- {if $pager.sort == 'market_price' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list" class="<!-- {if $pager.sort == 'market_price'} -->search_{$pager.order}<!-- {/if} -->">年利率<b></b></a></dd>
-          <dd <!-- {if $pager.sort == 'shop_price'} -->class="curr"<!-- {/if} -->><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=shop_price&order=<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->#goods_list" class="<!-- {if $pager.sort == 'shop_price'} -->search_{$pager.order}<!-- {/if} -->">金额<b></b></a></dd>
-          
-          
-          <dd <!-- {if $pager.sort == 'goods_number'} -->class="curr"<!-- {/if} -->><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=goods_number&order=<!-- {if $pager.sort == 'goods_number' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->#goods_list"  class="<!-- {if $pager.sort == 'goods_number'} -->search_{$pager.order}<!-- {/if} -->">还款期限<b></b></a></dd>
-          
-          
           <dd <!-- {if $pager.sort == 'goods_id'} -->class="curr"<!-- {/if} -->><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=goods_id&order=<!-- {if $pager.sort == 'goods_id' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list" class="<!-- {if $pager.sort == 'goods_id'} -->search_{$pager.order}<!-- {/if} -->">发布时间<b></b></a></dd>
-          
-          
+          <dd <!-- {if $pager.sort == 'shop_price'} -->class="curr"<!-- {/if} -->><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=shop_price&order=<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->#goods_list" class="<!-- {if $pager.sort == 'shop_price'} -->search_{$pager.order}<!-- {/if} -->">借款金额<b></b></a></dd>
+          <dd  <!-- {if $pager.sort == 'market_price'} -->class="curr"<!-- {/if} -->><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=market_price&order=<!-- {if $pager.sort == 'market_price' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list" class="<!-- {if $pager.sort == 'market_price'} -->search_{$pager.order}<!-- {/if} -->">年化利率<b></b></a></dd>
+          <dd <!-- {if $pager.sort == 'goods_number'} -->class="curr"<!-- {/if} -->><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=goods_number&order=<!-- {if $pager.sort == 'goods_number' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->#goods_list"  class="<!-- {if $pager.sort == 'goods_number'} -->search_{$pager.order}<!-- {/if} -->">借款期限<b></b></a></dd>  
         </dl>
-        <div class="pagin pagin-m" ><span class="text">  <!--{foreach from=$pager.page_number key=key item=item}-->
-      <!-- {if $pager.page eq $key} -->
-      <i>{$key}</i>
-      <!-- {/if} -->
-      <!--{/foreach}-->/{$pager.page_count}
-      </span>
-      <!-- {if $pager.page_prev} --><a href="{$pager.page_prev}" class="prev"><</a><!--{else}--><span class="prev-disabled"><</span><!-- {/if} -->
-      
-      <!-- {if $pager.page_next} --><a href="{$pager.page_next}" class="next">></a><!--{else}--><span class="next-disabled">></span><!-- {/if} -->
-      
-      
-      </div>
-        <span class="clr"></span></div>
-      
+        <span class="clr"></span>
     </div>
-    <div id="plist" class="m plist-n7a ordinary-prebuy">
-      <ul class="list-h">
-       <!--{foreach from=$goods_list item=goods}-->
-        <!-- {if $goods.goods_id} -->
-        <li>
-          <div class="lh-wrap">
-            <div class="p-img"><a target="_blank" href="{$goods.url}"><img width="220" height="220" alt="{$goods.goods_name}" src="{$goods.goods_thumb}" title="{$goods.goods_name}"></a>
-            <!-- {if $goods.is_new eq 1 || $goods.is_best eq 1 || $goods.is_hot eq 1 || $goods.org_promote_price > 0}-->
-            <!-- {if $goods.is_new eq 1}-->
-              <div class="picon pi1"></div>
-              <!-- {elseif $goods.is_hot eq 1} -->
-              <div class="picon pi2"></div>
-              <!-- {elseif $goods.is_best eq 1} -->
-                <div class="picon pi8"></div>
-               <!-- {elseif $goods.org_promote_price > 0} -->
-               <div class="picon pi3"></div>
-              <!-- {/if} -->
-              <!-- {/if} -->
-            </div>
-            <div class="p-price"><strong>年化利率： <!--{if $goods.promote_price neq "" } -->{$goods.promote_price} <!--{else}-->{$goods.market_price}<!--{/if}-->%</strong><span id="p647948"></span></div>
-            <div class="extra"><span class="evaluate">借款金额：<a target="_blank" href="{$goods.url}">{$goods.shop_price}元</a></span></div>
-            <div class="p-name"><a target="_blank" href="{$goods.url}" title="{$goods.goods_name}"><p>{$goods.goods_name}</p><p class="promoWords">{$goods.goods_brief}</p></a></div>
-            <div class="btns">
-            	<a href="javascript:addToCart({$goods.goods_id})" class="btn-buy" style="display:none;"><span></span>加入购物车</a>
-                <a id="coll647948" href="javascript:collect({$goods.goods_id});" class="btn-coll"><span></span>关注</a>
-                <a id="comp_{$goods.goods_id}" onClick="Compare.add({$goods.goods_id},'{$goods.goods_name|escape:"html"}','{$goods.type}')" class="btn-compare btn-compare-s"><span></span>对比</a>
-            </div>
-            </div>
-        </li>
-            <!--{/if}-->
-        <!--{/foreach}-->
-        
-      </ul>
-      <div class="blank0"></div>
+    <div class="cate_all_div">
+    	<div class="cate_all_middle">
+    	<ul>
+    		<li>
+	    		<span class="cate_all_title">借款用途</span>
+	    		<span class="cate_all_rate_head">年化利率</span>
+	    		<span class="cate_all_price">借款金额</span>
+	    		<span class="cate_all_rate_head">借款期限</span>
+	    		<span class="cate_all_style">保障方式</span>
+	    		<span class="cate_all_price">投资进度</span>
+    		</li>
+    		<!--{foreach from=$goods_list item=goods}-->
+        	<!-- {if $goods.goods_id} -->
+    		<li>
+    			<span class="cate_all_title"><a href="{$goods.url}">{$goods.goods_name}</a></span>
+	    		<span class="cate_all_rate">{$goods.market_price}%</span>
+	    		<span class="cate_all_price">{$goods.shop_price}元</span>
+	    		<span class="cate_all_rate">{$goods.loan_time}天</span>
+	    		<span class="cate_all_style">保障方式</span>
+	    		<span class="cate_all_price">
+	    			<div class="category_rate">
+	    				<div class="category_rate_true"></div>
+	    				<span>{$goods.loan_price}</span>%
+	    			</div>
+	    		</span>
+	    		<span class="cate_all_price">
+	    			<!--{if $goods.goodstatus eq "1"}-->
+	    			<div class="powder_invest_cli"><a href="{$goods.url}">立即投资</a></div>
+	    			<!--{elseif $goods.goodstatus eq "2"}-->
+	    			<div class="powder_invest_cli"><a >还款中</a></div>
+	    			<!--{elseif $goods.goodstatus eq "3"}-->
+	    			<div class="powder_invest_cli"><a >已结束</a></div>
+	    			<!--{else}-->
+	    			<div class="powder_invest_cli"><a >审核中</a></div>
+	    			<!--{/if}-->
+	    		</span>
+    		</li>
+    		<!--{/if}-->
+        	<!--{/foreach}-->
+    	</ul>
+    	</div>
+    </div>
+    <div class="blank0"></div>
     </div>
     
 <script type="Text/Javascript" language="JavaScript">
@@ -76,6 +65,16 @@ function selectPage(sel)
 //-->
 </script> 
 <script type="text/javascript">
+$(function(){
+	$(".category_rate").each(function(){
+		var wid = $(this).width();
+		var widrate = $(this).children("span").html();
+		var widratenum = widrate/100;
+		var widtrue = $(this).children(".category_rate_true");
+		widtrue.css("width",wid*widratenum);
+		
+	});
+});
 window.onload = function()
 {
   Compare.init();

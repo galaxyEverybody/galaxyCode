@@ -568,7 +568,7 @@ function get_recommend_goods($type = '', $cats = '')
         if ($data === false)
         {
             $sql = 'SELECT g.goods_id, g.is_best, g.is_new, g.is_hot, g.is_promote, b.brand_name,g.sort_order ' .
-               ' FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
+               ',g.surplus_price,g.goods_weight,g.goods_number FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
                ' LEFT JOIN ' . $GLOBALS['ecs']->table('brand') . ' AS b ON b.brand_id = g.brand_id ' .
                ' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.is_best = 1 OR g.is_new =1 OR g.is_hot = 1)'.
                ' ORDER BY g.sort_order, g.last_update DESC';
@@ -655,7 +655,7 @@ function get_recommend_goods($type = '', $cats = '')
         }
 
         //取出所有符合条件的商品数据，并将结果存入对应的推荐类型数组中
-        $sql = 'SELECT g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, ' .
+        $sql = 'SELECT g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, g.surplus_price,g.goods_weight,g.goods_number, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
                 "promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img, RAND() AS rnd " .
                 'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
@@ -680,6 +680,7 @@ function get_recommend_goods($type = '', $cats = '')
             }
 
             $goods[$idx]['id']           = $row['goods_id'];
+            $goods[$idx]['id_division']  = "division".$idx;
             $goods[$idx]['name']         = $row['goods_name'];
             $goods[$idx]['brief']        = $row['goods_brief'];
             $goods[$idx]['brand_name']   = isset($goods_data['brand'][$row['goods_id']]) ? $goods_data['brand'][$row['goods_id']] : '';
@@ -688,11 +689,15 @@ function get_recommend_goods($type = '', $cats = '')
             $goods[$idx]['short_name']   = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
                                                sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
             $goods[$idx]['short_style_name']   = add_style($goods[$idx]['short_name'],$row['goods_name_style']);
-            $goods[$idx]['market_price'] = price_format($row['market_price']);
+            $goods[$idx]['market_price'] = $row['market_price'].'%';
             $goods[$idx]['shop_price']   = price_format($row['shop_price']);
+            $goods[$idx]['price_advance']   = ceil(($row['shop_price']-$row['surplus_price'])/$row['shop_price']*100);
             $goods[$idx]['thumb']        = get_image_path($row['goods_id'], $row['goods_thumb'], true);
             $goods[$idx]['goods_img']    = get_image_path($row['goods_id'], $row['goods_img']);
             $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
+            /*gao update*/
+            $goods[$idx]['term'] = ceil(($row['goods_number'] - $row['goods_weight'])/3600*24).'天';
+            
             if (in_array($row['goods_id'], $type_array['best']))
             {
                 $type_goods['best'][] = $goods[$idx];
@@ -1259,7 +1264,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         $goods[$idx]['id']           = $row['goods_id'];
         $goods[$idx]['name']         = $row['goods_name'];
         $goods[$idx]['brief']        = $row['goods_brief'];
-        $goods[$idx]['market_price'] = price_format($row['market_price']);
+        $goods[$idx]['market_price'] = intval(price_format($row['market_price']));
         $goods[$idx]['short_name']   = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
                                         sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
         $goods[$idx]['shop_price']   = price_format($row['shop_price']);

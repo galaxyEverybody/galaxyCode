@@ -43,7 +43,6 @@ else
     exit;
 }
 
-
 /* 初始化分页信息 */
 $page = isset($_REQUEST['page'])   && intval($_REQUEST['page'])  > 0 ? intval($_REQUEST['page'])  : 1;
 $size = isset($_CFG['page_size'])  && intval($_CFG['page_size']) > 0 ? intval($_CFG['page_size']) : 10;
@@ -339,6 +338,7 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
         }
 
         $smarty->assign('filter_attr_list',  $all_attr_list);
+
         /* 扩展商品查询条件 */
         if (!empty($filter_attr))
         {
@@ -430,6 +430,7 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
             $goodslist[] = array();
         }
     }
+	
     $smarty->assign('goods_list',       $goodslist);
     $smarty->assign('category',         $cat_id);
 
@@ -448,7 +449,7 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
 		$smarty->assign('cat_info',         $cat);
 		$smarty->assign('categories_left',  get_categories_tree_left($cat_id)); 
 	}
-	 
+	
     $smarty->assign('script_name', $dwt_name);
 
     assign_pager('category',            $cat_id, $count, $size, $sort, $order, $page, '', $brand, $price_min, $price_max, $display, $filter_attr_str); // 分页
@@ -505,15 +506,15 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
 
     /* 获得商品列表 */
     $sql = 'SELECT g.goods_id, g.goods_name, g.goods_name_style, g.sales_volume, g.comments_number, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ' .
-                "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, g.promote_price, g.goods_type, " .
-                'g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_img ' .
+                "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, g.promote_price, g.goods_type, g.goods_weight, g.goods_number," .
+                'g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_img, g.surplus_price, g.good_status ' .
             'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
             'LEFT JOIN ' . $GLOBALS['ecs']->table('member_price') . ' AS mp ' .
                 "ON mp.goods_id = g.goods_id AND mp.user_rank = '$_SESSION[user_rank]' " .
             "WHERE $where $ext ORDER BY $sort $order";
 	
     $res = $GLOBALS['db']->selectLimit($sql, $size, ($page - 1) * $size);
-
+	
     $arr = array();
     while ($row = $GLOBALS['db']->fetchRow($res))
     {
@@ -579,10 +580,13 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
         $arr[$row['goods_id']]['goods_brief']      = $row['goods_brief'];
 		$arr[$row['goods_id']]['sales_volume']      = $row['sales_volume'];
 		$arr[$row['goods_id']]['comments_number']      = $row['comments_number'];
+		$arr[$row['goods_id']]['loan_time']      = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
+		$arr[$row['goods_id']]['loan_price']      = 100-floor($row['surplus_price']/$row['shop_price']*100);
 		
 		$arr[$row['goods_id']]['is_new']      = $row['is_new'];
 		$arr[$row['goods_id']]['is_best']      = $row['is_best'];
 		$arr[$row['goods_id']]['is_hot']      = $row['is_hot'];
+		$arr[$row['goods_id']]['goodstatus']      = $row['good_status'];
 		$arr[$row['goods_id']]['org_promote_price']      = $row['promote_price'];
 		
         $arr[$row['goods_id']]['goods_style_name'] = add_style($row['goods_name'],$row['goods_name_style']);

@@ -617,6 +617,7 @@ function assign_pager($app, $cat, $record_count, $size, $sort, $order, $page = 1
             $pager['search'][$key] = $row;
         }
     }
+
 	$GLOBALS['smarty']->assign('pager', $pager);
 }
 

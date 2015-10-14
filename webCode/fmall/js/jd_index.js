@@ -71,5 +71,443 @@ $(function(){
 			$(this).find(".pDetail .text").text(text+"……");
 		};
 	});
+	
+	/* 首页公告上下滚动效果*/
+	$.fn.FontScroll = function(options){
+        var d = {time: 3000,s: 'fontColor',num: 1}
+        var o = $.extend(d,options);
+        
+
+        this.children('ul').addClass('line');
+        var _con = $('.line').eq(0);
+        var _conH = _con.height(); //滚动总高度
+        var _conChildH = _con.children().eq(0).height();//一次滚动高度
+        var _temp = _conChildH;  //临时变量
+        var _time = d.time;  //滚动间隔
+        var _s = d.s;  //滚动间隔
+
+
+        _con.clone().insertAfter(_con);//初始化克隆
+
+        //样式控制
+        var num = d.num;
+        var _p = this.find('li');
+        var allNum = _p.length;
+
+        _p.eq(num).addClass(_s);
+
+
+        var timeID = setInterval(Up,_time);
+		this.hover(function(){clearInterval(timeID)},function(){timeID = setInterval(Up,_time);});
+
+        function Up(){
+            _con.animate({marginTop: '-'+_conChildH});
+            //样式控制
+            _p.removeClass(_s);
+            num += 1;
+            _p.eq(num).addClass(_s);
+            
+            if(_conH == _conChildH){
+                _con.animate({marginTop: '-'+_conChildH},"normal",over);
+            } else {
+                _conChildH += _temp;
+            }
+        }
+        function over(){
+            _con.attr("style",'margin-top:0');
+            _conChildH = _temp;
+            num = 1;
+            _p.removeClass(_s);
+            _p.eq(num).addClass(_s);
+        }
+    };
+    $('#FontScroll').FontScroll({time: 2000,num: 1});
+
+    /* 首页底部回到顶部的展现*/
+    $(window).scroll(function(){
+		if ($(window).scrollTop() > 300){
+			$(".backpanel").fadeIn(500);
+		}
+		else
+		{
+			$(".backpanel").fadeOut(500);
+		}
+		
+	});
+	
+	$(".backtop").click(function(){
+		$('body,html').animate({scrollTop:0},500);
+		return false;
+	});
+	
+	
+    /*首页投标进度展示*/
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: './js/echart/build/dist'
+        }
+    });
+    // 使用
+    require(
+        [
+            'echarts',
+			'echarts/chart/funnel',
+			'echarts/chart/pie'
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+        	 var myChart = ec.init(document.getElementById('division0')); 
+             var pricerate0 = $("input[name = division0]").val();
+             var otherpricerate0 = 100 - pricerate0;
+
+			var labelTop = {
+				normal : {
+					label : {
+						show : false,
+						position : 'center',
+						formatter : '{b}',
+						textStyle: {
+							baseline : 'bottom'
+						}
+					},
+					labelLine : {
+						show : false
+					}
+				}
+			};
+			var labelFromatter = {
+				normal : {
+					label : {
+						formatter : function (params){
+							return 100 - params.value + '%'
+						},
+						textStyle: {
+							baseline : 'top'
+						}
+					}
+				},
+			};
+			var labelBottom = {
+				normal : {
+					color: '#ccc',
+					label : {
+						show : true,
+						position : 'center'
+					},
+					labelLine : {
+						show : false
+					}
+				},
+				emphasis: {
+					color: 'rgba(0,0,0,0)'
+				}
+			};
+			var radius = [25, 30];
+			var option = {
+				legend: {
+					show: false,
+					x : 'center',
+					y : 'center',
+					data:[
+						'GoogleMaps','Facebook'
+					]
+				},
+				title : {
+					text: 'The App World',
+					subtext: 'from global web index',
+					x: 'center',
+					show: false
+				},
+				toolbox: {
+					show : false,
+					feature : {
+						dataView : {show: false, readOnly: false},
+						magicType : {
+							show: false, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									width: '50%',
+									height: '50%',
+									itemStyle : {
+										normal : {
+											label : {
+												formatter : function (params){
+													return 'other\n' + params.value + '%\n'
+												},
+												textStyle: {
+													baseline : 'middle'
+												}
+											}
+										},
+									} 
+								}
+							}
+						},
+						restore : {show: false},
+						saveAsImage : {show: false}
+					}
+				},
+				series : [
+					{
+						type : 'pie',
+						center : ['50%', '50%'],
+						radius : radius,
+						x: '0%', // for funnel
+						itemStyle : labelFromatter,
+						data : [
+							{name:'other', value:otherpricerate0, itemStyle : labelBottom},
+							{name:'GoogleMaps', value:pricerate0,itemStyle : labelTop}
+						]
+					}
+				]
+			};
+                
+                
+		 // 为echarts对象加载数据 
+		 myChart.setOption(option);
+		}
+	);
+    require(
+            [
+                'echarts',
+    			'echarts/chart/funnel',
+    			'echarts/chart/pie'
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('division1')); 
+                var pricerate1 = $("input[name = division1]").val();
+                var otherpricerate1 = 100 - pricerate1;
+
+    			var labelTop = {
+    				normal : {
+    					label : {
+    						show : false,
+    						position : 'center',
+    						formatter : '{b}',
+    						textStyle: {
+    							baseline : 'bottom'
+    						}
+    					},
+    					labelLine : {
+    						show : false
+    					}
+    				}
+    			};
+    			var labelFromatter = {
+    				normal : {
+    					label : {
+    						formatter : function (params){
+    							return 100 - params.value + '%'
+    						},
+    						textStyle: {
+    							baseline : 'top'
+    						}
+    					}
+    				},
+    			};
+    			var labelBottom = {
+    				normal : {
+    					color: '#ccc',
+    					label : {
+    						show : true,
+    						position : 'center'
+    					},
+    					labelLine : {
+    						show : false
+    					}
+    				},
+    				emphasis: {
+    					color: 'rgba(0,0,0,0)'
+    				}
+    			};
+    			var radius = [25, 30];
+    			var option = {
+    				legend: {
+    					show: false,
+    					x : 'center',
+    					y : 'center',
+    					data:[
+    						'GoogleMaps','Facebook'
+    					]
+    				},
+    				title : {
+    					text: 'The App World',
+    					subtext: 'from global web index',
+    					x: 'center',
+    					show: false
+    				},
+    				toolbox: {
+    					show : false,
+    					feature : {
+    						dataView : {show: false, readOnly: false},
+    						magicType : {
+    							show: false, 
+    							type: ['pie', 'funnel'],
+    							option: {
+    								funnel: {
+    									width: '50%',
+    									height: '50%',
+    									itemStyle : {
+    										normal : {
+    											label : {
+    												formatter : function (params){
+    													return 'other\n' + params.value + '%\n'
+    												},
+    												textStyle: {
+    													baseline : 'middle'
+    												}
+    											}
+    										},
+    									} 
+    								}
+    							}
+    						},
+    						restore : {show: false},
+    						saveAsImage : {show: false}
+    					}
+    				},
+    				series : [
+    					{
+    						type : 'pie',
+    						center : ['50%', '50%'],
+    						radius : radius,
+    						x: '0%', // for funnel
+    						itemStyle : labelFromatter,
+    						data : [
+    							{name:'other', value:otherpricerate1, itemStyle : labelBottom},
+    							{name:'GoogleMaps', value:pricerate1,itemStyle : labelTop}
+    						]
+    					}
+    				]
+    			};
+                    
+                    
+    		 // 为echarts对象加载数据 
+    		 myChart.setOption(option);
+    		}
+    	);
+    require(
+            [
+                'echarts',
+    			'echarts/chart/funnel',
+    			'echarts/chart/pie'
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('division2')); 
+                var pricerate2 = $("input[name = division2]").val();
+                var otherpricerate2 = 100 - pricerate2;
+
+    			var labelTop = {
+    				normal : {
+    					label : {
+    						show : false,
+    						position : 'center',
+    						formatter : '{b}',
+    						textStyle: {
+    							baseline : 'bottom'
+    						}
+    					},
+    					labelLine : {
+    						show : false
+    					}
+    				}
+    			};
+    			var labelFromatter = {
+    				normal : {
+    					label : {
+    						formatter : function (params){
+    							return 100 - params.value + '%'
+    						},
+    						textStyle: {
+    							baseline : 'top'
+    						}
+    					}
+    				},
+    			};
+    			var labelBottom = {
+    				normal : {
+    					color: '#ccc',
+    					label : {
+    						show : true,
+    						position : 'center'
+    					},
+    					labelLine : {
+    						show : false
+    					}
+    				},
+    				emphasis: {
+    					color: 'rgba(0,0,0,0)'
+    				}
+    			};
+    			var radius = [25, 30];
+    			var option = {
+    				legend: {
+    					show: false,
+    					x : 'center',
+    					y : 'center',
+    					data:[
+    						'GoogleMaps','Facebook'
+    					]
+    				},
+    				title : {
+    					text: 'The App World',
+    					subtext: 'from global web index',
+    					x: 'center',
+    					show: false
+    				},
+    				toolbox: {
+    					show : false,
+    					feature : {
+    						dataView : {show: false, readOnly: false},
+    						magicType : {
+    							show: false, 
+    							type: ['pie', 'funnel'],
+    							option: {
+    								funnel: {
+    									width: '50%',
+    									height: '50%',
+    									itemStyle : {
+    										normal : {
+    											label : {
+    												formatter : function (params){
+    													return 'other\n' + params.value + '%\n'
+    												},
+    												textStyle: {
+    													baseline : 'middle'
+    												}
+    											}
+    										},
+    									} 
+    								}
+    							}
+    						},
+    						restore : {show: false},
+    						saveAsImage : {show: false}
+    					}
+    				},
+    				series : [
+    					{
+    						type : 'pie',
+    						center : ['50%', '50%'],
+    						radius : radius,
+    						x: '0%', // for funnel
+    						itemStyle : labelFromatter,
+    						data : [
+    							{name:'other', value:otherpricerate2, itemStyle : labelBottom},
+    							{name:'GoogleMaps', value:pricerate2,itemStyle : labelTop}
+    						]
+    					}
+    				]
+    			};
+                    
+                    
+    		 // 为echarts对象加载数据 
+    		 myChart.setOption(option);
+    		}
+    	);
 
 })

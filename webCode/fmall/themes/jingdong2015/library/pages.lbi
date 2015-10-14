@@ -21,14 +21,13 @@
   
   <!--翻页 start-->
 
-    <div class="pagin fr">
+    <div class="pagin" style="text-align:center;">
     <!-- {if $pager.page_prev} -->
      <a href="{$pager.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
-        
-        <!-- {else} --> 
-        <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
-        <!-- {/if} --> 
-        <!-- {if $pager.page_count neq 1} --> 
+    <!-- {else} --> 
+      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
+    <!-- {/if} --> 
+    <!-- {if $pager.page_count neq 1} --> 
     <!--{foreach from=$pager.page_number key=key item=item}--> 
     <!-- {if $pager.page eq $key} --> 
     <a href="javascript:void(0);" class="current">{$key}</a>
@@ -39,7 +38,6 @@
     <!-- {/if} --> 
 	 <!-- {if $pager.page_next} -->
       <a href="{$pager.page_next}" class="next">{$lang.page_next}<b>></b></a>
-      
         <!-- {else} --> 
           <span class="next-disabled">{$lang.page_next}<b>></b></span>
         <!-- {/if} --> 

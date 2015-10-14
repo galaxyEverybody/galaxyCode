@@ -111,36 +111,42 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
 
     $smarty->assign('feed_url',        ($_CFG['rewrite'] == 1) ? 'feed.xml' : 'feed.php'); // RSS URL
 
-    $smarty->assign('categories',      get_categories_tree()); // 分类树
+    //$smarty->assign('categories',      get_categories_tree()); // 分类树
 
     $smarty->assign('helps',           get_shop_help());       // 网店帮助
-    $smarty->assign('top_goods',       get_top10());           // 销售排行
+    //$smarty->assign('top_goods',       get_top10());           // 销售排行
 
     $smarty->assign('best_goods',      get_recommend_goods('best'));    // 推荐商品
-    $smarty->assign('new_goods',       get_recommend_goods('new'));     // 最新商品
-    $smarty->assign('hot_goods',       get_recommend_goods('hot'));     // 天天狂赚
-    $smarty->assign('promotion_goods', get_promote_goods()); // 特价商品
-    $smarty->assign('brand_list',      get_brands());
-    $smarty->assign('promotion_info',  get_promotion_info()); // 增加一个动态显示所有促销信息的标签栏
+    //print_r(get_recommend_goods('best'));exit;
+    //$smarty->assign('new_goods',       get_recommend_goods('new'));     // 最新商品
+    //$smarty->assign('hot_goods',       get_recommend_goods('hot'));     // 天天狂赚
+    //$smarty->assign('promotion_goods', get_promote_goods()); // 特价商品
+    //$smarty->assign('brand_list',      get_brands());
+    //$smarty->assign('promotion_info',  get_promotion_info()); // 增加一个动态显示所有促销信息的标签栏
 
     //$smarty->assign('invoice_list',    index_get_invoice_query());  // 发货查询
-    //$smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
+    $smarty->assign('new_articles',    index_get_new_articles());   // 最新公告
+    $smarty->assign('new_amount',    	index_get_new_amount());   // 最新动态
     //$smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
     //$smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
     //$smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
 	$smarty->assign('script_name',     'index');  
-	$smarty->assign('index_comments',     get_comments($num));  
+	$smarty->assign('index_comments',     get_comments($num));
 
-    /* 首页主广告设置 */
-    $smarty->assign('index_ad',     $_CFG['index_ad']);
+	/* 最新动态的数据*/
+	$sql = "SELECT article_id,title,add_time FROM ".$GLOBALS['ecs']->table('article')." WHERE is_open = 1 and and cat_id=4";
+	
+	
+    /* 首页主广告设置 
+    //$smarty->assign('index_ad',     $_CFG['index_ad']);
     if ($_CFG['index_ad'] == 'cus')
     {
         $sql = 'SELECT ad_type, content, url FROM ' . $ecs->table("ad_custom") . ' WHERE ad_status = 1';
         $ad = $db->getRow($sql, true);
         $smarty->assign('ad', $ad);
-    }
+    }*/
 	
-    /* 查询用户头像*/
+     //查询用户头像
     if (!empty($_SESSION['user_id'])){
     	$userid = $_SESSION['user_id'];
     	$sql = 'SELECT head_img FROM '.$GLOBALS['ecs']->table('users').' where user_id='.$userid;
@@ -236,7 +242,7 @@ function index_get_invoice_query()
 }
 
 /**
- * 获得最新的文章列表。
+ * 获得最新的公告列表。
  *
  * @access  private
  * @return  array
@@ -248,6 +254,38 @@ function index_get_new_articles()
                 $GLOBALS['ecs']->table('article_cat') . ' AS ac' .
             ' WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_type = 1' .
             ' ORDER BY a.article_type DESC, a.add_time DESC LIMIT ' . $GLOBALS['_CFG']['article_number'];
+    $res = $GLOBALS['db']->getAll($sql);
+
+    $arr = array();
+    foreach ($res AS $idx => $row)
+    {
+        $arr[$idx]['id']          = $row['article_id'];
+        $arr[$idx]['title']       = $row['title'];
+        $arr[$idx]['short_title'] = $GLOBALS['_CFG']['article_title_length'] > 0 ?
+                                        sub_str($row['title'], $GLOBALS['_CFG']['article_title_length']) : $row['title'];
+        $arr[$idx]['cat_name']    = $row['cat_name'];
+        $arr[$idx]['add_time']    = local_date($GLOBALS['_CFG']['date_format'], $row['add_time']);
+        $arr[$idx]['url']         = $row['open_type'] != 1 ?
+                                        build_uri('article', array('aid' => $row['article_id']), $row['title']) : trim($row['file_url']);
+        $arr[$idx]['cat_url']     = build_uri('article_cat', array('acid' => $row['cat_id']), $row['cat_name']);
+    }
+
+    return $arr;
+}
+
+/**
+ * 获得最新的动态列表。
+ *
+ * @access  private
+ * @return  array
+ */
+function index_get_new_amount()
+{
+    $sql = 'SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name ' .
+            ' FROM ' . $GLOBALS['ecs']->table('article') . ' AS a, ' .
+                $GLOBALS['ecs']->table('article_cat') . ' AS ac' .
+            ' WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_id = 4' .
+            ' ORDER BY a.article_type DESC, a.add_time DESC LIMIT 0,4';
     $res = $GLOBALS['db']->getAll($sql);
 
     $arr = array();

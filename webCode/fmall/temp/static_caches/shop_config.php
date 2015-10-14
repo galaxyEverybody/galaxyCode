@@ -1,9 +1,9 @@
 <?php
 $data = array (
   'shop_name' => '聚能赚',
-  'shop_title' => '联众金融-理财首选（JNZ360.COM）-为用户个人投资提供了安全稳定的渠道，为小微企业借贷解决了融资难、贵的难题！',
-  'shop_desc' => '联众金融-理财首选（JNZ360.COM）-为用户个人投资提供了安全稳定的渠道，为小微企业借贷解决了融资难、贵的难题！',
-  'shop_keywords' => '联众金融，理财，p2p理财',
+  'shop_title' => '聚能赚-理财首选（JNZ360.COM）-为用户个人投资提供了安全稳定的渠道，为小微企业借贷解决了融资难、贵的难题！',
+  'shop_desc' => '聚能赚-理财首选（JNZ360.COM）-为用户个人投资提供了安全稳定的渠道，为小微企业借贷解决了融资难、贵的难题！',
+  'shop_keywords' => '聚能赚，理财，p2p理财',
   'shop_country' => '1',
   'shop_province' => '2',
   'shop_city' => '52',
@@ -79,8 +79,8 @@ scrollAmount=3><U><FONT color=red>
   'bought_goods' => 3,
   'article_number' => 4,
   'goods_name_length' => 40,
-  'price_format' => '5',
-  'page_size' => 20,
+  'price_format' => '0',
+  'page_size' => 10,
   'sort_order_type' => '0',
   'sort_order_method' => '0',
   'show_order_type' => '1',

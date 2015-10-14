@@ -503,7 +503,7 @@ $_LANG['preferential'] = '优惠券';
 $_LANG['edit_user_info'] = '进入用户中心';
 $_LANG['logout'] = '退出';
 $_LANG['user_logout'] = '退出';
-$_LANG['welcome'] = '欢迎来到联众金融';
+$_LANG['welcome'] = '欢迎来到聚能赚';
 $_LANG['user_login'] = '会员登陆';
 $_LANG['login_now'] = '立即登陆';
 $_LANG['reg_now'] = '立即注册';
@@ -515,7 +515,7 @@ $_LANG['brand_category'] = '分类浏览：';
 $_LANG['all_category'] = '所有分类';
 
 /* 商品分类页 */
-$_LANG['goods_filter'] = '商品筛选';
+$_LANG['goods_filter'] = '筛选';
 
 /* cls_image类的语言项 */
 $_LANG['directory_readonly'] = '目录 % 不存在或不可写';

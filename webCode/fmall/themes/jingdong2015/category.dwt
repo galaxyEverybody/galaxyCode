@@ -21,205 +21,63 @@
 {insert_scripts files='common.js,global.js,compare.js'}
 </head>
 <body>
-<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
-
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
+<div class="category_banner">
+	{insert name='ads' id=41 num=1}
+</div>
+<div style="width:100%;height:auto;background:#F2F2F2;">
 <div class="w main">
 	<div class="blank10"></div>
-	<!-- {if $hot_goods} -->
-	<div class="CatehotSales">
-    	<!-- TemplateBeginEditable name="热卖推荐区域" -->
-<!-- #BeginLibraryItem "/library/recommend_hot.lbi" -->
-
-<!-- {if $hot_goods} -->
-<!-- {if $script_name eq "category"} -->
-<div id="hotsale">
-	<div class="mt">精品推荐</div>
-    <div class="mc list-h"> 
-    	<!--{foreach from=$hot_goods item=goods}-->
-        <dl>
-        	<dt><a href="{$goods.url}" target="_blank"><img height="100" width="100" alt="{$goods.name|escape:html}" src="{$goods.thumb}"></a></dt>
-            <dd>
-            	<div class="p-name">
-                	<a href="{$goods.url}" target="_blank">{$goods.short_style_name}<font color="#ff6600"></font></a>
-                </div>
-                <div class="p-price">借款金额：<strong> <!-- {if $goods.promote_price neq ""} --> {$goods.promote_price} <!-- {else}--> {$goods.shop_price} <!--{/if}--></strong>元</div>
-                <div class="p-price">年化利率：<a href="{$goods.url}" target="_blank"><strong>{$goods.market_price}</strong>%</a></div>
-            </dd>
-        </dl>
-        <!--{/foreach}--> 
-    </div>
-</div>
-<!-- {/if} --> 
-<!-- {/if} --> 
-
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable -->
-
-<!-- {if $script_name eq 'index'} -->
-<div class="mt">
-	<h2>{$articles_cat.name|escape:html}</h2>
-    <div class="extra"><a href="{$articles_cat.url}" target="_blank">更多&nbsp;&gt;</a></div>
-</div>
-<div class="mc">
-	<ul>
-    	<!--{foreach from=$articles item=article_item}-->
-        <li {if $smarty.foreach.foo.iteration mod 2 eq 1}class="odd"{/if}><a href="{$article_item.url}" target="_blank" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
-        <!--{/foreach}-->
-    </ul>
-</div>
-<!-- {else} -->
-<div class="mt">
-	<h2>{$articles_cat.name|escape:html}</h2>
-</div>
-<div class="mc">
-	<ul>
-    	<!--{foreach from=$articles item=article_item}-->
-        <li>·<a target="_blank" href="{$article_item.url}" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
-        <!--{/foreach}-->
-    </ul>
-</div>
-<!-- {/if} -->
- <!-- #EndLibraryItem -->
-<!-- TemplateEndEditable -->
-
-	</div>
-    <!-- {/if} -->
-    
     <!--组合搜索 开始-->
     <div id="select" class="m">
     	<div class="mt">
-        	<h1>{$cat_info.cat_name} <strong>&nbsp;{$lang.goods_filter}</strong></h1>
-            <!--{if $brands_old.1 || $price_grade.1 || $filter_attr_list}-->
-            <div class="selectorSet">
-                <!--{if $brands_old.1}-->
-                <!--{foreach from=$brands_old item=brand key=key}-->
-                <!-- {if $brand.selected && $key > 0} -->
-                <a href="{$brands_old.0.url}">{$lang.brand}：<strong>{$brand.brand_name}</strong><b></b></a>
-                <!-- {/if} --> 
-                <!--{/foreach}--> 
-                <!--{/if}--> 
-                
-                <!--{if ($price_max > $price_min) && $price_max > 0}-->
-                <a href="{$price_grade.0.url}">{$lang.price}：<strong>{$price_min}&nbsp;-&nbsp;{$price_max}</strong><b></b></a>
-                <!--{/if}-->
-                
-                <!--{if  $filter_attr_sum > 0}-->
-                <!--{foreach from=$filter_attr_list item=filter_attr}-->
-                <!--{foreach from=$filter_attr.attr_list item=attr key=key}-->
-                <!-- {if $attr.selected && $key > 0} -->
-                <a href="{$attr.del_url}">{$filter_attr.filter_attr_name|escape:html}：<strong>{$attr.attr_value}</strong><b></b></a>
-                <!-- {/if} -->
-                <!--{/foreach}-->
-                <!--{/foreach}-->
-                <!--{/if}-->
-            </div>
-            <!--{/if}-->
-            <div class="stExt">共 {$pager.record_count} 个商品</div>
+        	<h1>{$cat_info.cat_name}</h1>&nbsp;
+            <div class="stExt">共 {$pager.record_count} 个产品</div>
         </div>
         <div class="mc attrs">
-        	<div class="attrsBox"> 
-                <!--{if !$brand_id}-->
-                <!--{if $brands_old.1}-->
-                <div class="prop-attrs">
-                	<div class="attr">
-                    	<div class="a-key"><font>{$lang.brand}</font>：</div>
-                        <div class="a-values">
-                        	<div class="v-fold">
-                            	<ul class="f-list">
-                                    <!--{foreach from=$brands_old item=brand}--> 
-                                    <li><a href="{$brand.url}">{$brand.brand_name}</a></li>
-                                    <!--{/foreach}-->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--{/if}-->
-                <!--{/if}-->
-                
-                <!--{if (($price_max > $price_min) && $price_max > 0) && $price_max}-->
-                <!--{else}-->
-                <!--{if $price_grade.1}-->
-                <div class="prop-attrs">
-                	<div class="attr">
-                    	<div class="a-key"><font>{$lang.price}</font>：</div>
-                        <div class="a-values">
-                        	<div class="v-fold">
-                            	<ul class="f-list">
-                                    <!--{foreach from=$price_grade item=grade}--> 
-                                    <li><a href="{$grade.url}">{$grade.price_range}</a></li>
-                                    <!--{/foreach}-->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--{/if}--> 
-                <!--{/if}-->
-                
+        	<div class="attrsBox">
                 <!--{foreach from=$filter_attr_list item=filter_attr}-->
-                <!-- {if !$filter_attr.selected} -->
                 <div class="prop-attrs">
                 	<div class="attr">
                     	<div class="a-key"><font>{$filter_attr.filter_attr_name|escape:html}</font>：</div>
                         <div class="a-values">
                         	<div class="v-fold">
                             	<ul class="f-list">
-                                	<!--{foreach from=$filter_attr.attr_list item=attr}--> 
+                                	<!--{foreach from=$filter_attr.attr_list item=attr}-->
+                                	{if $filter_attr.selected}
+                                    <li style="border:1px solid red;"><a href="{$attr.url}">{$attr.attr_value}</a></li>
+                                    {else}
                                     <li><a href="{$attr.url}">{$attr.attr_value}</a></li>
+                                    {/if}
                                     <!--{/foreach}-->
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--{/if}-->
                 <!--{/foreach}--> 
-            </div>
-            <div id="moreProp" class="mb">
-            	<div class="attr-extra">
-                	<div>更多选项<b></b></div>
-                </div>
-            </div>
-            <div id="lessProp" class="mb hide">
-            	<div class="attr-extra open">
-                	<div>收起<b></b></div>
-                </div>
             </div>
         </div>
     </div>
 
     <!--组合搜索 结束-->
     
-    <div class="right-extra">
+    <div class="right-extra" style="width:100%;">
 		<!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem -->
         <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
         <div class="blank20"></div>
         <div class="blank20"></div>
     </div>
-    <div class="left">
-    	<div class="j_box">
-    	  <div class="j_logo" style='border-bottom:1px solid #ddd;'>收益最佳</div>
-    	  <div class="j_boxcontent" '>
-    	        <ul class="clearfix" id="list1" style='width:100%;height:auto;text-align:center;'>
-    	          <!--{foreach from=$best_goods item=goods}-->
-    	          <li >
-    	            <div class="p_img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" width="150" height="150"></a></div>
-    	            <div class="p_name" style='margin-top:5px;'><a href="{$goods.url}" target="_blank">{$goods.short_style_name}</a></div>
-    	            <div class="p_price" style='margin-top:5px;'><span style='color:#FF852F;'>年化利率:{$goods.market_price}%</span></div>
-    	            <div class="clr" ></div>
-    	          </li>
-    	          <!--{/foreach}-->
-    	        </ul>
-    	        <div class="blank20"></div>
-    	  </div>
-    	</div>
-    </div>
     <span class="clr"></span>
-    <div class="recentView"><!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem --></div>
+</div>
 </div>
 
-<!-- #BeginLibraryItem "/library/help_category.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
 <script>
 	function panduan(){
 		var width=$(window).width();
