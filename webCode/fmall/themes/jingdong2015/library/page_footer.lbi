@@ -12,7 +12,7 @@
 
 <div class="w backpanel hide" id="backpanel">
 	<div class="backpanel-inner">
-        <div class=" bp-item bp-item-survey"><a href="message.php" class="survey" target="_blank">反馈</a><s></s></div>
+        <div class=" bp-item bp-item-survey"><a href="counter.php" class="survey" target="_blank">反馈</a><s></s></div>
         <div class=" bp-item bp-item-naire"><a href="naire.php" class="naire" target="_blank">调查<br/>问卷</a><s></s></div>
         <div class=" bp-item bp-item-backtop" data-top="0"><a href="#none" class="backtop" target="_self">顶部</a><s></s></div>
     </div>

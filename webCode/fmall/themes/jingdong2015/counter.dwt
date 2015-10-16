@@ -20,7 +20,7 @@
 {insert_scripts files='transport_jquery.js,utils.js,transport.js'}
 </head>
 <body>
-<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
 
 <div class="w main">
 	<div class="blank10"></div>
@@ -67,7 +67,12 @@
 		</div>
 	</div>
 </div>
-<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
 <script>
 	function counterajax(){
 		var csum = $("#countersum").val();

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<!-- {if $cat_style} -->
+<link href="{$cat_style}" rel="stylesheet" type="text/css" />
+<!-- {/if} -->
+{* 包含脚本文件 *}
+{insert_scripts files='transport_jquery.js,utils.js,transport.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
+<div style="width:100%;height:330px;border:1px solid red;">
+		
+</div>
+<div style="background:#F2F2F2">
+<div class="w main" style="border:1px solid red;">
+	<div class="blank10"></div>
+	<div style="width:95%;height:500px;border:1px solid red;background:#FFF;">
+		<div class="blank30"></div>
+		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">法律保障</h3>
+		<div style="width:90%;height:400px;">
+			<p style="font-size:16px;font-family:microsoft yahei;">借贷双方就借贷数额、借贷用途、借贷期限等内容形成书面协议，协议内容合法，受法律保护。珠宝贷以网络为平台，为借
+			贷双方提供可订立借款合同的居间服务，平台上出借人与借款人的借贷关系，属于民间借贷，受法律保护。</p>
+			<div style="width:100%;height:320px;border:1px solid blue;">
+			
+			</div>
+		</div>
+	</div>
+	<div style="width:95%;height:500px;border:1px solid red;background:#FFF;">
+		<div class="blank30"></div>
+		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">法律保障</h3>
+		<div style="width:90%;height:400px;">
+			<p style="font-size:16px;font-family:microsoft yahei;">借贷双方就借贷数额、借贷用途、借贷期限等内容形成书面协议，协议内容合法，受法律保护。珠宝贷以网络为平台，为借
+			贷双方提供可订立借款合同的居间服务，平台上出借人与借款人的借贷关系，属于民间借贷，受法律保护。</p>
+			<div style="width:100%;height:320px;border:1px solid blue;">
+			
+			</div>
+		</div>
+	</div>
+	<div style="width:95%;height:500px;border:1px solid red;background:#FFF;">
+		<div class="blank30"></div>
+		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">法律保障</h3>
+		<div style="width:90%;height:400px;">
+			<p style="font-size:16px;font-family:microsoft yahei;">借贷双方就借贷数额、借贷用途、借贷期限等内容形成书面协议，协议内容合法，受法律保护。珠宝贷以网络为平台，为借
+			贷双方提供可订立借款合同的居间服务，平台上出借人与借款人的借贷关系，属于民间借贷，受法律保护。</p>
+			<div style="width:100%;height:320px;border:1px solid blue;">
+			
+			</div>
+		</div>
+	</div>
+	<div style="width:95%;height:500px;border:1px solid red;background:#FFF;">
+		<div class="blank30"></div>
+		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">法律保障</h3>
+		<div style="width:90%;height:400px;">
+			<p style="font-size:16px;font-family:microsoft yahei;">借贷双方就借贷数额、借贷用途、借贷期限等内容形成书面协议，协议内容合法，受法律保护。珠宝贷以网络为平台，为借
+			贷双方提供可订立借款合同的居间服务，平台上出借人与借款人的借贷关系，属于民间借贷，受法律保护。</p>
+			<div style="width:100%;height:320px;border:1px solid blue;">
+			
+			</div>
+		</div>
+	</div>
+	<div style="width:95%;height:100px;">
+		<a href="user.php?act=register" style="display: block;border-radius: 10px;background-color: #ef6200;width: 216px;margin: 0 auto;margin-bottom: 40px;height: 56px;line-height: 56px;color: #fff;font-size: 26px;text-align: center;font-weight:bold;">立即注册 GO</a>
+	</div>
+</div>
+</div>
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
+</body>
+</html>
