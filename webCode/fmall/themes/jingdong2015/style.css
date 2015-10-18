@@ -90,10 +90,11 @@ h6 span{float:left;padding-left:15px}
 #ur_here a{color:#006cce;text-decoration:none}
 
 /* index_header*/
-.w #weixinshow{ background:transparent;background-color:rgba(255,255,255,0.15);width:210px;height:130px;border:1px solid #ddd;float:left;position:absolute;z-index:999;display:none;margin-top:-10px;}
-.w #weixinshow .weixindyhao{ width:100px;height:100px;float:left;margin-top:10px;text-align:center;color:#D7D4D4;}
-.weixindyhao span{background:url(images/weixinimg.png) no-repeat;width:85px;height:85px;display:inline-block;}
-.w #weixinshow .weixinfwhao{ width:100px;height:100px;float:right;margin-top:10px;text-align:center;}
+.w #weixinshow{ background:transparent;background-color:rgba(255,255,255,0.15);width:270px;height:160px;border:1px solid #ddd;float:left;position:absolute;z-index:999;display:none;margin-top:-10px;}
+.w #weixinshow .weixindyhao{ width:120px;height:120px;float:left;margin-left:10px;margin-top:10px;text-align:center;color:#D7D4D4;}
+.weixindyhao span{background:url(images/weixindyimg.jpg) no-repeat;width:120px;height:120px;display:inline-block;}
+.w #weixinshow .weixinfwhao{ width:120px;height:120px;float:right;margin-right:10px;margin-top:10px;text-align:center;color:#D7D4D4;}
+.weixinfwhao span{background:url(images/weixinfwimg.jpg) no-repeat;width:120px;height:120px;display:inline-block;}
 .w .serive_hotline{ float:left;font-size:14px;background:url(images/hot_phone.jpg) no-repeat;}
 .w .serive_hotline span{ font-size:20px;margin-left:35px;}
 .w .serive_wb li{ margin-left:10px;float:left;font-size:14px;}
@@ -139,8 +140,8 @@ h6 span{float:left;padding-left:15px}
 .regular_three_div dl{ width:100%;height245px;text-align:center;}
 .regular_three_div dd{ float:left;width:286px;}
 .regular_top_image{ width:100%;height:126px;background:url(images/baozhang_one.jpg) no-repeat;background-position:80px;}
-.regular_three_div h2{ padding:30px 0px 25px;font-size:22px;}
-.regular_three_div ul{ width:165px;height:75px;margin-left:65px;line-height:25px;text-align:left;}
+.regular_three_div h2{ padding:30px 0px 25px;font-size:28px;}
+.regular_three_div ul{ height:75px;line-height:25px;margin-left:90px;text-align:left;}
 .regular_three_div li{ list-style:disc;color:red;font-size:14px;}
 .regular_three_div span{ font-family:microsoft yahei;color:#8E8E8E;}
 .regular_top_image_two{ width:100%;height:126px;background:url(images/baozhang_two.jpg) no-repeat;background-position:80px;}
@@ -152,20 +153,24 @@ h6 span{float:left;padding-left:15px}
 .faxdate_title span{ width:33px;height:50px;float:left;display:inline-block;background:url(images/dingqi.jpg) no-repeat;background-position:0px 12px;}
 .faxdate_title a{ font-size:20px;font-family:microsoft yahei;padding:0px 20px 0px 5px;float:left;}
 .faxdate_div{ width:100%;height:300px;}
-.faxdate_month{ width:300px;height:280px;float:left;background:#FFF;}
+.faxdate_month{ width:280px;height:280px;float:left;background:#FFF;}
 .faxdate_top_form{ width:100%;height:10px;background:#FF8A00;}
-.faxdate_quarter{ width:300px;height:280px;float:left;margin-left:150px;background:#FFF;}
-.faxdate_year{ width:300px;height:280px;float:right;margin-left:100px;background:#FFF;}
-.faxdate_coninfo{ width:260px;height:40px;margin-top:30px;}
-.faxdate_coninfo_font{ font-size:18px;float:left;font-family:microsoft yahei;padding:10px;}
-.faxdate_con_day{ float:right;width:120px;height:40px;}
-.faxdate_day_num{ float:left;font-size:40px;width:50px;height:40px;line-height:40px;}
+.faxdate_top_p{ font-size:16px;margin-top:10px;margin-left:30px;font-family:microsoft yahei;}
+.faxdate_quarter{ width:280px;height:280px;float:left;margin-left:20px;background:#FFF;margin-left:30px;}
+.faxdate_year{ width:280px;height:280px;float:right;margin-left:20px;background:#FFF;}
+.faxdate_coninfo{ width:220px;height:40px;margin-top:10px;}
+.faxdate_coninfo_font{ font-size:12px;float:right;font-family:microsoft yahei;}
+.faxdate_coninfo_font_div{ text-align:right;}
+.faxdate_coninfo_font_div span{ padding:0px 5px 0px 5px;color:red;}
+.faxdate_con_day{ float:left;width:120px;height:40px;}
+.faxdate_day_num{ float:left;font-size:40px;width:50px;height:40px;line-height:40px;color:#0183D8;}
 .faxdate_day_font{ float:right;width:65px;height:40px;font-family:microsoft yahei;}
-.faxdate_expect{ width:150px;height:70px;margin-top:40px;}
-.faxdate_expect_day{ width:80px;height:70px;float:left;font-size:70px;color:#FF8A00;}
+.faxdate_expect{ width:100%;height:90px;border:1px solid #FFF;text-align:center;}
+.faxdate_expect_day{ height:70px;font-size:70px;color:#FF8A00;margin-top:35px;}
+.faxdate_expect_day span{ font-size:46px;}
 .faxdate_expect_font{ width:60px;height:70px;float:right;font-size:14px;font-family:microsoft yahei;}
 .faxdate_expect_font em{ color:#FF8A00;font-size:18px;}
-.faxdate_invest_div{ width:200px;height:40px;background:#FF8A00;text-align:center;font-weight:bold;line-height:40px;}
+.faxdate_invest_div{ width:220px;height:40px;background:#FF8A00;text-align:center;font-weight:bold;line-height:40px;margin-top:20px;}
 .faxdate_invest_div a{ color:#FFF;font-size:16px;display:inline-block;width:200px;height:40px;}
 .faxdate_invest_div a:hover{ color:#FFF;margin-left:2px;margin-top:2px;}
 
@@ -182,7 +187,7 @@ h6 span{float:left;padding-left:15px}
 .powder_div_sub{ width:150px;margin-left:210px;display:inline-block;text-align:center;}
 .powder_div_advance{ width:200px;display:inline-block;text-align:center;float:left;margin-left:770px;margin-top:-72px;}
 .powder_term_div{ width:60px;height:70px;line-height:70px;}
-.powder_div_color{ width:150px;display:inline-block;text-align:center;color:#FF8A00;}
+.powder_div_color{ width:150px;display:inline-block;text-align:center;color:red;}
 .powder_invest_cli{ width:100px;height:40px;background:#FF8A00;color:#FFF;font-weight:bold;line-height:40px;font-size:14px;cursor:pointer;}
 .powder_invest_cli a:hover{ color:#FFF;margin-left:2px;margin-top:2px;}
 
@@ -998,7 +1003,7 @@ h2,h3{font-size:14px}
 #four_active .four_active_one span{ font-size:24px;color:#FF8A00;margin-left:35px;}
 #four_active .activityimg{ width:100%;height:110px;margin-top:5px;}
 #four_active .activityimg .activityimg_left{ height:110px;width:85px;float:left;}
-#four_active .activityimg .activityimg_left span{ background:url(images/weixinimg.png);width:85px;height:85px;display:inline-block;}
+#four_active .activityimg .activityimg_left span{ background:url(images/weixinimg.jpg);width:85px;height:85px;display:inline-block;}
 #four_active .activityimg .activityimg_right{ height:110px;width:85px;float:left;margin-left:50px;}
 #four_active .activityimg .activityimg_right span{ background:url(images/xinlangimg.png);width:85px;height:85px;display:inline-block;}
 .clr{display:block;overflow:hidden;clear:both;height:0;line-height:0;font-size:0}
@@ -2454,7 +2459,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .backpanel .bp-item{ margin-top:0;width:100%;background:#FF8A00;}
 .backpanel .bp-item-survey{ height:65px; width:100%;border-bottom:2px solid #DDD;}
 .backpanel .bp-item-survey a{ background:url(images/footer_001.jpg) no-repeat; padding:0; height:100%;}
-.backpanel .bp-item-survey a:hover{ background:#ff500b; color:#fff; text-align:center;line-height:65px;}
+.backpanel .bp-item-survey a:hover{ background:#ff500b; color:#fff; text-align:center;line-height:30px;}
 .backpanel .bp-item-naire{ height:65px; width:100%;border-bottom:2px solid #DDD;}
 .backpanel .bp-item-naire a{ background:url(images/footer_001.jpg) no-repeat; padding:0; height:100%;}
 .backpanel .bp-item-naire a:hover{ background:#ff500b; color:#fff; text-align:center;line-height:30px;}

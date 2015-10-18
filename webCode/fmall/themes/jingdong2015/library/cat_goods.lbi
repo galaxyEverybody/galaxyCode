@@ -3,16 +3,21 @@
 <!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
 <!-- {if $smarty.foreach.foo2.last} -->
     <div class="faxdate_top_form"></div>
+	<p class="faxdate_top_p">预期年化</p>
+	<div class="faxdate_expect">
+		<div class="faxdate_expect_day">{$goods.market_price}
+			<span>%</span>
+		</div>
+	</div>
 	<div class="faxdate_coninfo">
-		<div class="faxdate_coninfo_font">优选定期</div>
 		<div class="faxdate_con_day">
 			<div class="faxdate_day_num">30</div>
 			<div class="faxdate_day_font">天<br/>锁定期</div>
 		</div>
-	</div>
-	<div class="faxdate_expect">
-		<div class="faxdate_expect_day">{$goods.market_price}</div>
-		<div class="faxdate_expect_font">预期年化<br/><em >%</em></div>
+		<div class="faxdate_coninfo_font">
+			<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+			<p>起投金额</p>
+		</div>
 	</div>
 	<div class="faxdate_invest_div">
 		<a href="{$goods.url}">立即投资</a>

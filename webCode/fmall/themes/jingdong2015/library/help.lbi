@@ -19,9 +19,17 @@
     <!-- {/foreach} -->  
     </div>
     <div id="four_active" >
-    	<p class="four_active_one">热线电话（服务时间：9:00--18:00）</p>
-    	<p class="four_active_two">400-960-3330</p>
-    	<p class="four_active_three">关注我们<span>新浪</span><span>微信</span></p>
+    	<p class="four_active_one"><span>400-960-3330</span>(工作日:9:00~18:00)</p>
+    	<div class="activityimg">
+    		<div class="activityimg_left">
+    			<span></span>
+    			<p>微信订阅号</p>
+    		</div>
+    		<div class="activityimg_right">
+    			<span></span>
+    			<p>官方微博(新浪)</p>
+    		</div>
+    	</div>
     </div>
 </div>
 <!--{/if}-->

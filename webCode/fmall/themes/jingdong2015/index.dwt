@@ -63,7 +63,7 @@
 			<dl >
 				<dd>
 					<a href="safety.php"><div class="regular_top_image"></div></a>
-					<h2>超高收益 超低门槛</h2>
+					<h2>安全抵押</h2>
 					<ul >
 						<li ><span >30倍超过收益</span></li>
 						<li ><span >30倍超过收益</span></li>
@@ -72,7 +72,7 @@
 				</dd>
 				<dd>
 					<div class="regular_top_image_two" ></div>
-					<h2 >超高收益 超低门槛</h2>
+					<h2 >收益超高</h2>
 					<ul >
 						<li ><span >30倍超过收益</span></li>
 						<li ><span >30倍超过收益</span></li>
@@ -81,7 +81,7 @@
 				</dd>
 				<dd>
 					<div class="regular_top_image_three" ></div>
-					<h2 >超高收益 超低门槛</h2>
+					<h2 >简单理财</h2>
 					<ul >
 						<li ><span >30倍超过收益</span></li>
 						<li ><span >30倍超过收益</span></li>
@@ -90,7 +90,7 @@
 				</dd>
 				<dd>
 					<div class="regular_top_image_four"></div>
-					<h2 >超高收益 超低门槛</h2>
+					<h2 >百元起投</h2>
 					<ul >
 						<li ><span >30倍超过收益</span></li>
 						<li ><span >30倍超过收益</span></li>
@@ -116,35 +116,67 @@
 		<div class="faxdate_div">
 			<div class="faxdate_month" >
 				<div class="faxdate_top_form"></div>
-				<p style="font-size:16px;margin-top:10px;margin-left:30px;">预期年化</p>
+				<p class="faxdate_top_p">预期年化</p>
 				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">15%</div>
+					<div class="faxdate_expect_day">15
+						<span>%</span>
+					</div>
 				</div>
-				<div class="faxdate_coninfo" style="border:1px solid red;">
-					<div class="faxdate_coninfo_font">优选定期</div>
+				<div class="faxdate_coninfo">
 					<div class="faxdate_con_day">
 						<div class="faxdate_day_num">30</div>
 						<div class="faxdate_day_font">天<br/>锁定期</div>
+					</div>
+					<div class="faxdate_coninfo_font">
+						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+						<p>起投金额</p>
 					</div>
 				</div>
 				<div class="faxdate_invest_div">
 					<a href="{$goods.url}">立即投资</a>
 				</div>
 			</div>
-			<div class="faxdate_quarter">
-				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+			<div class="faxdate_month" style="margin-left:30px;">
 				<div class="faxdate_top_form"></div>
+				<p class="faxdate_top_p">预期年化</p>
+				<div class="faxdate_expect">
+					<div class="faxdate_expect_day">15
+						<span>%</span>
+					</div>
+				</div>
 				<div class="faxdate_coninfo">
-					<div class="faxdate_coninfo_font">优选定期</div>
 					<div class="faxdate_con_day">
 						<div class="faxdate_day_num">30</div>
 						<div class="faxdate_day_font">天<br/>锁定期</div>
 					</div>
+					<div class="faxdate_coninfo_font">
+						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+						<p>起投金额</p>
+					</div>
 				</div>
+				<div class="faxdate_invest_div">
+					<a href="{$goods.url}">立即投资</a>
+				</div>
+			</div>
+			<div class="faxdate_quarter" style="margin-left:30px;">
+				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+				<div class="faxdate_top_form"></div>
+				<p class="faxdate_top_p">预期年化</p>
 				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">{$goods.market_price}</div>
-					<div class="faxdate_expect_font">预期年化<br/><em >%</em></div>
+					<div class="faxdate_expect_day">15
+						<span>%</span>
+					</div>
+				</div>
+				<div class="faxdate_coninfo">
+					<div class="faxdate_con_day">
+						<div class="faxdate_day_num">30</div>
+						<div class="faxdate_day_font">天<br/>锁定期</div>
+					</div>
+					<div class="faxdate_coninfo_font">
+						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+						<p>起投金额</p>
+					</div>
 				</div>
 				<div class="faxdate_invest_div">
 					<a href="{$goods.url}">立即投资</a>
@@ -156,16 +188,21 @@
 				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
 				<div class="faxdate_top_form"></div>
+				<p class="faxdate_top_p">预期年化</p>
+				<div class="faxdate_expect">
+					<div class="faxdate_expect_day">15
+						<span>%</span>
+					</div>
+				</div>
 				<div class="faxdate_coninfo">
-					<div class="faxdate_coninfo_font">优选定期</div>
 					<div class="faxdate_con_day">
 						<div class="faxdate_day_num">30</div>
 						<div class="faxdate_day_font">天<br/>锁定期</div>
 					</div>
-				</div>
-				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">{$goods.market_price}</div>
-					<div class="faxdate_expect_font">预期年化<br/><em >%</em></div>
+					<div class="faxdate_coninfo_font">
+						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+						<p>起投金额</p>
+					</div>
 				</div>
 				<div class="faxdate_invest_div">
 					<a href="{$goods.url}">立即投资</a>
