@@ -963,7 +963,9 @@ function get_goods_info($goods_id)
         if($row['goods_weight'] <= '0'){
         	$row['goods_weight'] = 0;
         }
-        
+       
+        /* 修改借款进度*/
+        $row['price_advance'] = ceil(($row['shop_price']-$row['surplus_price'])/$row['shop_price']*100);
         
         /* 修正上架时间显示 */
         $row['add_time']      = local_date($GLOBALS['_CFG']['date_format'], $row['add_time']);
@@ -1239,7 +1241,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
             'WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND '.
                 'g.is_delete = 0 AND (' . $children . 'OR ' . get_extension_goods($children) . ') ';
 
-    $order_rule = empty($order_rule) ? 'ORDER BY g.sort_order, g.goods_id DESC' : $order_rule;
+    $order_rule = empty($order_rule) ? 'ORDER BY g.sort_order, g.goods_id ASC' : $order_rule;
     $sql .= $order_rule;
 
     if ($num > 0)

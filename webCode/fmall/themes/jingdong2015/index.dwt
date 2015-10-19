@@ -48,11 +48,11 @@
   	<div class="advert_up_down" id="FontScroll">
   		<ul>
 	    	<!--{foreach from=$new_articles item=article_item}-->
-	        <li {if $smarty.foreach.foo.iteration mod 2 eq 1}class="odd"{/if}><a href="{$article_item.url}" target="_blank" title="{$article_item.title|escape:html}">{$article_item.short_title}</a></li>
+	        <li {if $smarty.foreach.foo.iteration mod 2 eq 1}class="odd"{/if}>{$article_item.short_title}<a href="{$article_item.url}" target="_blank" title="{$article_item.title|escape:html}">查看详情></a></li>
 	        <!--{/foreach}-->
 	    </ul>
   	</div>
-  	<div class="advert_invest_info"><span></span></div>
+  	<div class="advert_invest_info"><a href="article.php?act=list&cat_id=12">更多></a></div>
   </div>
   <!--index_notice end-->
   </div>
@@ -114,7 +114,9 @@
 		<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 		<!-- #EndLibraryItem -->
 		<div class="faxdate_div">
-			<div class="faxdate_month" >
+			<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+			<div class="faxdate_month" style="border:1px solid red;">
 				<div class="faxdate_top_form"></div>
 				<p class="faxdate_top_p">预期年化</p>
 				<div class="faxdate_expect">
@@ -136,7 +138,13 @@
 					<a href="{$goods.url}">立即投资</a>
 				</div>
 			</div>
-			<div class="faxdate_month" style="margin-left:30px;">
+			<div class="blank_index"></div>
+			<!--{/foreach}-->
+        	<!-- #EndLibraryItem -->
+			<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+			<!-- {if $smarty.foreach.foo2.index<2} -->
+			<div class="faxdate_quarter">
 				<div class="faxdate_top_form"></div>
 				<p class="faxdate_top_p">预期年化</p>
 				<div class="faxdate_expect">
@@ -156,37 +164,15 @@
 				</div>
 				<div class="faxdate_invest_div">
 					<a href="{$goods.url}">立即投资</a>
-				</div>
+				</div>	
 			</div>
-			<div class="faxdate_quarter" style="margin-left:30px;">
-				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-				<div class="faxdate_top_form"></div>
-				<p class="faxdate_top_p">预期年化</p>
-				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">15
-						<span>%</span>
-					</div>
-				</div>
-				<div class="faxdate_coninfo">
-					<div class="faxdate_con_day">
-						<div class="faxdate_day_num">30</div>
-						<div class="faxdate_day_font">天<br/>锁定期</div>
-					</div>
-					<div class="faxdate_coninfo_font">
-						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
-						<p>起投金额</p>
-					</div>
-				</div>
-				<div class="faxdate_invest_div">
-					<a href="{$goods.url}">立即投资</a>
-				</div>
-				<!--{/foreach}-->
-        		<!-- #EndLibraryItem -->
-			</div>
+			<div class="blank_index"></div>
+			<!--{/if}-->
+			<!--{/foreach}-->
+        	<!-- #EndLibraryItem -->
+        	<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
 			<div class="faxdate_year">
-				<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-				<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
 				<div class="faxdate_top_form"></div>
 				<p class="faxdate_top_p">预期年化</p>
 				<div class="faxdate_expect">
@@ -206,10 +192,11 @@
 				</div>
 				<div class="faxdate_invest_div">
 					<a href="{$goods.url}">立即投资</a>
-				</div>
-				<!--{/foreach}-->
-        		<!-- #EndLibraryItem -->
+				</div>	
 			</div>
+			<div class="blank_index"></div>
+			<!--{/foreach}-->
+        	<!-- #EndLibraryItem -->
 		</div>
 		<!-- TemplateEndEditable -->
     </div>
@@ -220,7 +207,7 @@
 			<span></span>
 			<a class="powder_title_a">散标投资</a>
 			<em >精选散标 灵活投资</em>
-			<div class="faxdate_powder_more"><a>更多></a></div>
+			<div class="faxdate_powder_more"><a href="category.php?id=1023">更多></a></div>
 		</div>
 		<div class="powder_div">
 			<div class="powder_con_div">
@@ -257,7 +244,7 @@
 			<span ></span>
 			<a class="powder_title_a">最新动态</a>
 			<em >了解动态 放心投资</em>
-			<div class="faxdate_powder_more"><a href="http://www.yhzl.com/webCode/fmall/article_cat.php?cat_id=4">更多></a></div>
+			<div class="faxdate_powder_more"><a href="article_cat.php?cat_id=4">更多></a></div>
 		</div>
 		<div class="new_news">
 			<div class="news_div">

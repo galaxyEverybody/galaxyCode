@@ -132,8 +132,9 @@ h6 span{float:left;padding-left:15px}
 .advert_div_up{ width:100%;height:50px;line-height:50px;}
 .advert_up_down{ float:left;width:600px;height:50px;line-height:50px;background:url(images/index_notice.jpg) no-repeat;background-position:0px 12px;overflow:hidden;}
 .advert_up_down ul{ margin-left:35px;font-size:14px;}
-.advert_invest_info{ width:255px;height:50px;float:right;}
-.advert_invest_info span{ color:red;}
+.advert_up_down ul a{ height:35px;width:80px;line-height:35px;border:1px solid #ccc;border-radius:5px;display:inline-block;margin-top:7px;text-align:center;margin-left:10px;}
+.advert_invest_info{ width:100px;height:50px;float:right;text-align:center;}
+.advert_invest_info a{ height:35px;width:80px;line-height:35px;border:1px solid #ccc;border-radius:5px;display:inline-block;margin-top:7px;}
 
 .regular_div{ width:100%;height:330px;}
 .regular_three_div{ width:100%;height:295px;margin-top:40px;}
@@ -152,11 +153,12 @@ h6 span{float:left;padding-left:15px}
 .faxdate_title{ width:100%;height:50px;line-height:50px;}
 .faxdate_title span{ width:33px;height:50px;float:left;display:inline-block;background:url(images/dingqi.jpg) no-repeat;background-position:0px 12px;}
 .faxdate_title a{ font-size:20px;font-family:microsoft yahei;padding:0px 20px 0px 5px;float:left;}
-.faxdate_div{ width:100%;height:300px;}
+.faxdate_div{ width:100%;height:280px;overflow:hidden;}
+.blank_index{ width:28px;height:280px;float:left;}
 .faxdate_month{ width:280px;height:280px;float:left;background:#FFF;}
 .faxdate_top_form{ width:100%;height:10px;background:#FF8A00;}
 .faxdate_top_p{ font-size:16px;margin-top:10px;margin-left:30px;font-family:microsoft yahei;}
-.faxdate_quarter{ width:280px;height:280px;float:left;margin-left:20px;background:#FFF;margin-left:30px;}
+.faxdate_quarter{ width:280px;height:280px;float:left;background:#FFF;}
 .faxdate_year{ width:280px;height:280px;float:right;margin-left:20px;background:#FFF;}
 .faxdate_coninfo{ width:220px;height:40px;margin-top:10px;}
 .faxdate_coninfo_font{ font-size:12px;float:right;font-family:microsoft yahei;}
@@ -1460,7 +1462,7 @@ h2,h3{font-size:14px}
 .productinfo_name .levelcurr{ float:left;margin-left:10px;width:110px;height:30px;line-height:30px;background:#ddd;text-align:center;font-size:16px;font-weight:bold;border-radius:5px;color:#fff;}
 .goodcurr{ float:left;margin-left:10px;width:110px;height:30px;line-height:30px;background:#FF852F;text-align:center;font-size:16px;font-weight:bold;border-radius:5px;color:#fff;}
 .bondinfo_middle{ width:100%;height:350px;}
-.bond_middle_big{ width:100%;height:170px;border-bottom:1px solid #ddd;}
+.bond_middle_big{ width:100%;height:130px;border-bottom:1px solid #ddd;}
 .bond_middle_big ul{ list-style:none;}
 .bond_middle_big .bond_big_one{ float:left;margin-left:0px;width:150px;height:100px;}
 .bond_middle_big .bond_big_num{ font-size:34px;color:#FF500B;margin-top:25px;}
@@ -1469,19 +1471,27 @@ h2,h3{font-size:14px}
 .bond_middle_big #divProgressbar{ width:400px;height:15px;border:1px solid #dddddd;border-radius:5px;background-color:#ddd;}
 .bond_middle_big #divProgressbarblue{ height:15px;background-color:#FF500B;float:left;border-radius:5px;}
 .bondinfo_middle_bottom{ width:100%;height:auto;margin-top:20px;line-height:40px;}
+.bondinfo_interval{ width:100%;height:auto;margin-top:10px;}
+.bondinfo_interval_left{ width:200px;height:100px;float:left;}
+.bondinfo_interval_right{ width:310px;height:100px;float:right;}
+.bondinfo_interval_middle{ width:200px;height:100px;float:left;}
+.bondinfo_interval_middle_div{ height:80px;line-height:60px;margin-left:80px;}
+.bondinfo_interval_right #loan_time_dis{ margin-left:80px;margin-top:30px;}
+.bondinfo_interval #good_detail_interval{ width:80px;height:80px;float:left;margin-left:80px;}
 .bondinfo_middle_bottom .bondinfotd{ font-weight:bold;width:230px;font-size:18px;}
 .bond_middle_middle{ width:100%;height:120px;margin-top:10px;}
 .bond_middle_middle span{ font-size:16px;color:#708090;margin-left:5px;}
-.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;background-color:#F9F9F9;height:380px;margin-top:5px;border:1px solid #ddd;}
+.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;height:330px;margin-top:5px;border-left:1px solid #ddd;}
+.bondinfo_detail_div{ width:200px;height:100px;float:left;}
 .bondinfo_leftdiv{ width:80%;height:auto;float:left;margin-left:50px;}
-.bondinfo_left_top{ line-height:40px;margin-top:30px;}
+.bondinfo_left_top{ line-height:40px;margin-top:20px;font-family:"microsoft yahei";}
 .bondinfo_left_top span{ font-size:18px;}
 .bondinfo_left .bond_left_topsize{ font-size:24px;color:#FF500B;}
 .bondinfo_recharge{ font-size:14px;float:right;margin-right:60px;text-align:center;color:#fff;font-weight:bold;}
 .bondinfo_left_middle{ width:80%;height:35px;margin-top:20px;background-color:#fff;float:left;border:1px solid #ddd;}
 .bondinfo_left_middle em{ float:right;margin-right:5px;font-size:16px;color:#c0c0c0;}
 .recharge_input{ width:95%;height:30px;border-style:none;font-size:14px;outline:none;}
-.bondinfo_num{ height:100px;margin-top:70px;line-height:25px;}
+.bondinfo_num{ height:auto;margin-top:70px;line-height:25px;}
 .bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #fff;float:left;cursor:pointer;background-color:#fff;border:1px solid #ddd;}
 .bondinfo_first{ margin-left:15px;float:left;}
 .showhidnum{ display:none;}
@@ -1609,7 +1619,8 @@ h2,h3{font-size:14px}
 .MagicZoomPup{z-index:3;visibility:hidden;position:absolute;top:0;left:0;width:50px;height:50px;border:1px solid #aaa;background:#fede4f 50% top no-repeat;opacity:.5;-moz-opacity:.5;-khtml-opacity:.5;filter:alpha(Opacity=50);cursor:move}
 .MagicBoxShadow{border:1px solid #e4e4e4}
 #spec-list .spec-items a.img-hover img{border:2px solid #ff500b;padding:0}
-.goodsW .right{width:100%;_overflow:hidden}
+.goodsW{ margin-top:20px;border:1px solid red;}
+.goodsW .right{width:100%;_overflow:hidden;background:#fff;-webkit-box-shadow: #666 0px 0px 10px;-moz-box-shadow: #666 0px 0px 10px;box-shadow: #666 0px 0px 10px;}
 .root61 .goodsW {width:1200px}
 .goodsW .right .mt{overflow:visible;height:50px;line-height:50px;background:#F2F2F2;border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:0;border-top:2px solid #ddd;padding:0;}
 .goodsW #related-sorts ul{padding:4px 0 4px 6px;overflow:hidden;zoom:1}
@@ -1686,10 +1697,10 @@ h2,h3{font-size:14px}
 #product-detail .detail-list{padding:8px;border:solid #dedfde;border-width:0 1px 1px;overflow:hidden;zoom:1}
 #product-detail .detail-list li{float:left;width:33%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:2px 0}
 .ac{text-align:center}
-.Ptable{margin:10px 0}
+.Ptable{margin:10px 0;border:1px solid #ccc;}
 .Ptable tr{ height:35px;text-align:center;}
-.Ptable th{background:#eef7fe;padding:5px;font-size:12px}
-.Ptable .tdTitle{background:none repeat scroll 0 0 #f5fafe;text-align:right;width:110px}
+.Ptable th{background:#FFF;padding:5px;font-size:12px}
+.Ptable .tdTitle{background:none repeat scroll 0 0 #FFF;text-align:right;width:110px}
 .Ptable th.tdTitle{text-align:center}
 .item-detail{padding:10px}
 .formwork{overflow:hidden;width:753px;padding:10px 0;border-bottom:1px dashed #e6e6e6;line-height:23px;text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:14px}
@@ -2670,7 +2681,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .GoodsPageHeader #top-banner{ display:none;}
 .rootNav{ background:#f2f2f2; border-bottom:solid 1px #f2f2f2; margin-bottom:10px;}
 .rootNav .breadcrumb{ padding:0 0 0 6px; line-height:45px; height:45px;}
-.rootNav #product-intro{ background:#fff;padding-left:50px; min-height:400px; _height:400px;}
+.rootNav #product-intro{ background:#fff;padding-left:50px; min-height:350px; _height:350px;background:#fff;-webkit-box-shadow: #666 0px 0px 10px;-moz-box-shadow: #666 0px 0px 10px;box-shadow: #666 0px 0px 10px;}
 .rootNav #preview{ width:200px; padding-bottom:15px;}
 .rootNav #spec-n1{ border:0; margin:14px 0 14px 14px;}
 .rootNav #short-share{ padding:24px 40px 0 34px; overflow:hidden;}

@@ -199,13 +199,9 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 
     
     $goods = get_goods_info($goods_id);			//获得商品的信息 
+    //print_r($goods);exit;
     $bidrecord = get_goods_bid($goods_id);		//获得投标记录
    	//$repayrecord = get_goods_repay($goods_id);	//获得还款记录
-    
-	/* 获取所属大类的名称 */
-    /*$sql = 'select a.cat_name from'.$ecs->table("category").' as a,'.$ecs->table("category").' as b where a.cat_id = b.parent_id and b.cat_id='.$goods["cat_id"];
-    $goods_row = $db->getRow($sql);
-    $goods_row_catname = $goods_row['cat_name'];*/
     
     if ($goods === false)
     {
@@ -244,8 +240,8 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('goods',              $goods);
         $smarty->assign('goods_id',           $goods['goods_id']);
         $smarty->assign('bid_record',           $bidrecord);
-        $smarty->assign('promote_end_time',   $goods['gmt_end_time']);
-        $smarty->assign('categories',         get_categories_tree());  // 分类树
+        //$smarty->assign('promote_end_time',   $goods['gmt_end_time']);
+        //$smarty->assign('categories',         get_categories_tree());  // 分类树
 
         /* meta */
         $smarty->assign('keywords',           htmlspecialchars($goods['keywords']));
@@ -268,7 +264,6 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $parentid = $GLOBALS['db']->getOne($sql);
         $sql = 'SELECT cat_name FROM '.$GLOBALS['ecs']->table('category').' where cat_id ='.$parentid;
         $parentcatname = $GLOBALS['db']->getOne($sql);
-        
         if($parentcatname == '季能赚'){
         	$levelinfo = get_twolevel_repay($parentid);//查询分类下产品id
         	$smarty->assign('goodslevel',$levelinfo);
@@ -280,7 +275,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         {
             $catlist[] = $v['cat_id'];
         }
-
+		
         assign_template('c', $catlist);
 
          /* 上一个商品下一个商品 */
@@ -304,19 +299,19 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('page_title',          $position['title']);                    // 页面标题
         $smarty->assign('ur_here',             $position['ur_here']);                  // 当前位置
 
-        $properties = get_goods_properties($goods_id);  // 获得商品的规格和属性
+        //$properties = get_goods_properties($goods_id);  // 获得商品的规格和属性
 
-        $smarty->assign('properties',          $properties['pro']);                              // 商品属性
-        $smarty->assign('specification',       $properties['spe']);                              // 商品规格
+        //$smarty->assign('properties',          $properties['pro']);                              // 商品属性
+        //$smarty->assign('specification',       $properties['spe']);                              // 商品规格
 		
-        $smarty->assign('attribute_linked',    get_same_attribute_goods($properties));           // 相同属性的关联商品
-        $smarty->assign('related_goods',       $linked_goods);                                   // 关联商品
-        $smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章
-        $smarty->assign('recommend_goods',		get_recommend_goods('hot'));						//获得相关推荐商品
+        //$smarty->assign('attribute_linked',    get_same_attribute_goods($properties));           // 相同属性的关联商品
+        //$smarty->assign('related_goods',       $linked_goods);                                   // 关联商品
+        //$smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章
+        //$smarty->assign('recommend_goods',		get_recommend_goods('hot'));						//获得相关推荐商品
         
-        $smarty->assign('fittings',            get_goods_fittings(array($goods_id)));                   // 配件
-        $smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
-        $smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
+        //$smarty->assign('fittings',            get_goods_fittings(array($goods_id)));                   // 配件
+        //$smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
+        //$smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
         //$smarty->assign('bought_goods',        get_also_bought($goods_id));                      // 购买了该商品的用户还购买了哪些商品
         //$smarty->assign('goods_rank',          get_goods_rank($goods_id));                       // 商品的销售排名
 		//$smarty->assign('related_cat',         get_related_cat($goods['cat_id'])); 
@@ -386,6 +381,19 @@ else
 $db->query('UPDATE ' . $ecs->table('goods') . " SET click_count = click_count + 1 WHERE goods_id = '$_REQUEST[id]'");
 
 $smarty->assign('now_time',  gmtime());           // 当前系统时间
+
+/* 获取所属大类的名称 */
+$sql='select cat_name from '.$ecs->table("category").' where cat_id='.$goods["cat_id"];
+$goods_cat = $db->getRow($sql);
+$goods_cat_name = $goods_cat['cat_name'];
+$sql = 'select a.cat_name from'.$ecs->table("category").' as a,'.$ecs->table("category").' as b where a.cat_id = b.parent_id and b.cat_id='.$goods["cat_id"];
+$goods_row = $db->getRow($sql);
+$goods_row_name = $goods_row['cat_name'];
+$array_cate = array('月能赚','季能赚','聚能赚');
+if(in_array($goods_cat_name,$array_cate) || in_array($goods_row_name,$array_cate)){
+	$smarty->display('goods_regular.dwt');exit;
+}
+
 $smarty->display('goods.dwt',      $cache_id);
 
 /*------------------------------------------------------ */

@@ -14,7 +14,7 @@
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
 <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
 {* 包含脚本文件 *}
-{insert_scripts files='common.js'}
+{insert_scripts files='common.js,echart/www/js/echarts.js'}
 <script type="text/javascript">
 function $id(element) {
   return document.getElementById(element);
@@ -69,55 +69,29 @@ function reg(str){
                 		<div class="bond_middle_middle">
 	                    	<ul>
 	                    		<li class="bond_big_one"><h4><img src="./images/bondyear.gif">&nbsp;年化利率</h4><div class="bond_big_num">{$goods.market_price}<span>%</span></div></li>
-	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;借款期限</h4><div class="bond_big_num">{$goods.goods_number}<span>天</span></div></li>
-	                    		<li class="bond_big_three"><h4><img src="./images/bondnum.jpg">&nbsp;借款金额</h4><div class="bond_big_num"><em id="totalnumprice">{$goods.shop_price}</em><span>元</span></div></li>
+	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;理财期限</h4><div class="bond_big_num">{$goods.goods_number}<span>天</span></div></li>
+	                    		<li class="bond_big_three"><h4><img src="./images/bondnum.jpg">&nbsp;理财金额</h4><div class="bond_big_num"><em id="totalnumprice">{$goods.shop_price}</em><span>元</span></div></li>
 	                    	</ul>
 	                    </div>
-	                	<div id="divProgressbar">
-	                		<div id="divProgressbarblue"></div><span id="divpercent">15%</span>
-	                	</div>
-		                <script>
-		                	$(function(){
-		                		var totalprice = $('#totalnumprice').html();
-		                		var useprice = $('#usenumprice').html();
-		                		var percent = (totalprice-useprice)/totalprice;
-		                		$('#divpercent').html(percent*100+'%');
-		                		var divwidth = 400*percent;
-		                		$("#divProgressbarblue").width(divwidth);
-		                	});
-		                </script>
                     </div>
 	                
-	                <!--summary end-->
-	                <div class="bondinfo_middle_bottom">
-	                	<table>
-	                		<tr>
-	                			<td>还款方式：</td>
-	                			<td class="bondinfotd">{if $goods.warn_number==1}按月等额本息{elseif $goods.warn_number==2}按月还息到期还本{else}到期还本息{/if}</td>
-	                			<td>借款期限：</td>
-	                			<td class="bondinfotd">{$goods.goods_number}天</td>
-	                		</tr>
-	                		<tr>
-	                			<td>保障方式：</td>
-	                			<td class="bondinfotd">本金+利息</td>
-	                			<td>剩余时间：</td>
-	                			<td class="bondinfotd"><em id="loan_time_dis"></em><div style="display:none;" id="loan_time_hid">{$goods.goods_weight}</div></td>
-	                		</tr>
-	                	</table>
+	                <div class="bondinfo_interval" style="font-family:microsoft yahei;font-size:16px;">
+	                	<div class="bondinfo_interval_left">
+	                		<h2>投资进度:</h2>
+	                		<input type="hidden" name="detail_hid_input" value="{$goods.price_advance}">
+	                		<div id="good_detail_interval"></div>
+	                	</div>
+	                	<div class="bondinfo_interval_middle">
+	                		<h2>保障方式:</h2>
+	                		<div class="bondinfo_interval_middle_div">本金+利息</div>
+	                	</div>
+	                	<div class="bondinfo_interval_right">
+	                		<h2>剩余时间:</h2>
+	                		<em id="loan_time_dis"></em>
+	                		<div style="display:none;" id="loan_time_hid">{$goods.goods_weight}</div>	
+	                	</div>
 	                </div>
 	         </div>
-	            <script>
-	            	$(function(){
-	            		var loan_time = $('#loan_time_hid').html();
-	
-	            		var minite = Math.floor((loan_time/60)%60);
-	            		var hour = Math.floor((loan_time/3600)%24);
-	            		var day = Math.floor((loan_time/3600)/24);
-	            		
-	            		$('#loan_time_dis').html('<span style="color:red;font-size:24px;">'+day+'</span>&nbsp;天&nbsp;<span style="color:red;font-size:24px;">'+hour+'</span>&nbsp;时&nbsp;<span style="color:red;font-size:24px;">'+minite+'</span>&nbsp;分');
-	            	});
-	            	
-	            </script>
         </div>
     	<div class="bondinfo_left">
     		<div class="bondinfo_leftdiv">
@@ -190,7 +164,7 @@ function reg(str){
     </div>
     <!--product-intro end-->
 </div>
-</div>
+
 <div class="w goodsW">
 	<!-- #BeginLibraryItem "/library/goods_fittings.lbi" --><!-- #EndLibraryItem -->
     <div class="clr"></div>
@@ -247,23 +221,29 @@ function reg(str){
 </div>
 </div>
 <div class="clr"></div>
+</div>
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
 </div>
 <div class="index_footer_new">
 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 </div>
-
-
-
 </body>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 <script>
 	<!--点击金额到金额输入框-->
 	$(function(){
+		//倒计时
+		var loan_time = $('#loan_time_hid').html();
+	    var minite = Math.floor((loan_time/60)%60);
+	    var hour = Math.floor((loan_time/3600)%24);
+	    var day = Math.floor((loan_time/3600)/24);
+	            		
+	    $('#loan_time_dis').html('<span style="color:red;font-size:24px;">'+day+'</span>&nbsp;天&nbsp;<span style="color:red;font-size:24px;">'+hour+'</span>&nbsp;时&nbsp;<span style="color:red;font-size:24px;">'+minite+'</span>&nbsp;分');
 		
 		$(".Ptable tr:even").css("background","#EDEBEC");
-
+		
+		//投资金额点击事件
 		$(".bondinfo_num li").click(function(){
 			var chargenum = $(this).text();
 			if(chargenum == '全部'){
@@ -276,57 +256,5 @@ function reg(str){
 			
 		});
 	});
-</script>
-
-<script type="text/javascript">
-var goods_id = {$goods_id};
-var goodsattr_style = {$cfg.goodsattr_style|default:1};
-var gmt_end_time = {$promote_end_time|default:0};
-{foreach from=$lang.goods_js item=item key=key}
-var {$key} = "{$item}";
-{/foreach}
-var goodsId = {$goods_id};
-var now_time = {$now_time};
-
-<!-- {literal} -->
-onload = function(){
-  changePrice();
-  fixpng();
-  try { onload_leftTime(); }
-  catch (e) {}
-}
-
-/**
- * 点选可选属性或改变数量时修改商品价格的函数
- */
-function changePrice()
-{
-  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
-
-  var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
-
-  Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
-}
-
-/**
- * 接收返回的信息
- */
-function changePriceResponse(res)
-{
-  if (res.err_msg.length > 0)
-  {
-    alert(res.err_msg);
-  }
-  else
-  {
-    document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
-    if (document.getElementById('ECS_SHOPPRICE'))
-      document.getElementById('ECS_SHOPPRICE').innerHTML = res.result;
-    if (document.getElementById('ECS_GOODS_AMOUNT'))
-      document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
-	
-  }
-}
-<!-- {/literal} -->
 </script>
 </html>

@@ -1,7 +1,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 {if $goods_cat.isalone neq 0}
 <!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-<!-- {if $smarty.foreach.foo2.last} -->
+<!-- {if $smarty.foreach.foo2.index<2} -->
+<div class="faxdate_quarter">
     <div class="faxdate_top_form"></div>
 	<p class="faxdate_top_p">预期年化</p>
 	<div class="faxdate_expect">
@@ -22,6 +23,8 @@
 	<div class="faxdate_invest_div">
 		<a href="{$goods.url}">立即投资</a>
 	</div>
+</div>
+<div class="blank_index"></div>
 <!--{/if}-->
 <!--{/foreach}-->
 {else}
