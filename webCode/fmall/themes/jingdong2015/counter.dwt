@@ -16,17 +16,16 @@
 <!-- {if $cat_style} -->
 <link href="{$cat_style}" rel="stylesheet" type="text/css" />
 <!-- {/if} -->
-{* 包含脚本文件 *}
-{insert_scripts files='transport_jquery.js,utils.js,transport.js'}
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
-
+<div class="counter_big_div">
+<div class="blank"></div>
 <div class="w main">
-	<div class="blank10"></div>
+	<div class="blank5"></div>
     <div class="miancounter">
 		<div class="countercont"><span>理财计算器</span></div>
-		<div style="width:90%;height:360px;">
+		<div class="reckon">
 			<form action="#" post="" onsubmit="return false">
 			<table class="countertable" border="0">
 				<tr>
@@ -60,12 +59,14 @@
 			</form>
 		</div>
 		<div class="tabletime"><div class="tabletimeleft"></div><span>还款时间表</span></div>
-		<div style="width:100%;height:auto;">
-			<table width="100%" class="repaymenttable" id="countertable">
+		<div class="tabletime_div">
+			<table class="repaymenttable" id="countertable">
 				<tr class="repaymenttabletr"><th>月份</th><th>月收本息</th><th>月收本金</th><th>月收利息</th><th>待收本息</th></tr>
 			</table>
 		</div>
+		<div class="blank5"></div>
 	</div>
+</div>
 </div>
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->

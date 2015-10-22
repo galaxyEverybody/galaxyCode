@@ -414,7 +414,7 @@ function check_password( password )
 			$("#password_notice").removeClass("error");
 		}
 		$("#password_notice").addClass("focus");
-        document.getElementById('password_notice').innerHTML = msg_can_rg;
+		document.getElementById('password_notice').innerHTML = '';
     }
 }
 
@@ -448,7 +448,7 @@ function check_conform_password( conform_password )
 			$("#conform_password_notice").removeClass("error");
 		}
 		$("#conform_password_notice").addClass("focus");
-        document.getElementById('conform_password_notice').innerHTML = msg_can_rg;
+		document.getElementById('conform_password_notice').innerHTML = '';
     }
 }
 
@@ -512,12 +512,12 @@ function registed_callback(result)
 {
   if ( result == "true" )
   {
-    document.getElementById('username_notice').innerHTML = msg_can_rg;
 	if($("#username_notice").hasClass("error"))
 	{
 		$("#username_notice").removeClass("error");
 	}
 	$("#username_notice").addClass("focus");
+	document.getElementById('username_notice').innerHTML = '';
     document.forms['formUser'].elements['Submit'].disabled = '';
   }
   else
@@ -579,7 +579,7 @@ function check_email_callback(result)
 		$("#email_notice").removeClass("error");
 	}
 	$("#email_notice").addClass("focus");
-    document.getElementById('email_notice').innerHTML = msg_can_rg;
+    
     document.forms['formUser'].elements['Submit'].disabled = '';
   }
   else
@@ -602,7 +602,7 @@ function checkPhone(phone)
 	
 	if (phone == '')
 	  {
-	    document.getElementById('phone_notice').innerHTML = '-手机号不能为空';
+	    document.getElementById('phone_notice').innerHTML = '手机号不能为空';
 		if($("#phone_notice").hasClass("focus"))
 		{
 			$("#phone_notice").removeClass("focus");
@@ -612,7 +612,7 @@ function checkPhone(phone)
 	  }
 	  else if (!Utils.isTel(phone))
 	  {
-	    document.getElementById('phone_notice').innerHTML = '-手机号格式不正确';
+	    document.getElementById('phone_notice').innerHTML = '手机号格式不正确';
 		if($("#phone_notice").hasClass("focus"))
 		{
 			$("#phone_notice").removeClass("focus");
@@ -641,12 +641,12 @@ function check_phone_callback(result){
 			$("#phone_notice").removeClass("error");
 		}
 		$("#phone_notice").addClass("focus");
-	    document.getElementById('phone_notice').innerHTML = "*可以注册";
+		document.getElementById('phone_notice').innerHTML = '';
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
 	  {
-	    document.getElementById('phone_notice').innerHTML = '-手机号已存在,请重新输入';
+	    document.getElementById('phone_notice').innerHTML = '手机号已存在,请重新输入';
 		if($("#phone_notice").hasClass("focus"))
 		{
 			$("#phone_notice").removeClass("focus");
@@ -670,13 +670,13 @@ function get_phoneverify_callback(result)
 			$("#phoneverify_notice").removeClass("error");
 		}
 		$("#phoneverify_notice").addClass("focus");
-	    //document.getElementById('phone_notice').innerHTML = '';
+	    
 		RemainTime();
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
 	  {
-	    document.getElementById('phoneverify_notice').innerHTML = '-验证码发送失败';
+	    document.getElementById('phoneverify_notice').innerHTML = '验证码发送失败';
 		if($("#phoneverify_notice").hasClass("focus"))
 		{
 			$("#phoneverify_notice").removeClass("focus");
@@ -691,7 +691,7 @@ function checkphoneverify(phoneverify)
 	var submit_disabled = false;
 	if (phoneverify == '')
 	  {
-	    document.getElementById('verify_notice').innerHTML = '-验证码不能为空';
+	    document.getElementById('verify_notice').innerHTML = '验证码不能为空';
 		if($("#verify_notice").hasClass("focus"))
 		{
 			$("#verify_notice").removeClass("focus");
@@ -701,7 +701,7 @@ function checkphoneverify(phoneverify)
 	  }
 	  else if (!Utils.isTelverify(phoneverify))
 	  {
-	    document.getElementById('verify_notice').innerHTML = '-验证码格式不正确';
+	    document.getElementById('verify_notice').innerHTML = '验证码格式不正确';
 		if($("#verify_notice").hasClass("focus"))
 		{
 			$("#verify_notice").removeClass("focus");
@@ -731,7 +731,7 @@ function check_phoneverify_callback(result)
 			$("#verify_notice").removeClass("error");
 		}
 		$("#verify_notice").addClass("verifyfocus");
-	    document.getElementById('verify_notice').innerHTML = '输入正确';
+		document.getElementById('verify_notice').innerHTML = ''
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else

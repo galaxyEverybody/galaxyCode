@@ -104,11 +104,11 @@
 <!-- {else} --> 
 {insert_scripts files='utils.js,user.js'}
 <DIV id="regist" class="w">
+	<div class="extra"> <span>我已经注册，现在就&nbsp;<a href="user.php" class="flk13">登录</a></span> </div>
 	<div class="mt">
     	<ul class="tab">
         	<li class="curr">个人用户</li>
         </ul>
-    	<div class="extra"> <span>我已经注册，现在就&nbsp;<a href="user.php" class="flk13">登录</a></span> </div>
     </div>
     <div class="mc">
         <form action="user.php" method="post" name="formUser" onsubmit="return register();" >
@@ -138,7 +138,7 @@
                         <span class="label"><b class="ftx04">*</b>请确认密码：</span>
                         <div class="fl item-ifo">
                             <input type="password" id="conform_password" name="conform_password" class="text" onblur="check_conform_password(this.value);" tabindex="3" onpaste="return  false" autocomplete="off">
-                            <i class="i-pass"></i>
+                            <i class="i-key"></i>
                             <label id="conform_password_notice"></label>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                         <span class="label"><b class="ftx04">*</b>{$lang.label_telephone}：</span>
                         <div class="fl item-ifo">
                             <input type="text" id="phone" onblur="checkPhone(this.value);" name="mobile_phone" class="text" tabindex="5" onpaste="return  false" autocomplete="off">
-                            <i class="i-pass"></i>
+                            <i class="i-phone"></i>
                             <label id="phone_notice"></label>
                         </div>
                     </div>
@@ -185,6 +185,7 @@
                 </div>
             </div>
         </form>
+        <div class="registerbanner">{insert name='ads' id=40 num=1}</div>
     </div>
 </DIV>
 <!--{/if}--> 
@@ -200,7 +201,7 @@
     {/foreach}
     </script>
 
-<div class="usBox">
+<div class="usBox" style="border:1px solid red;">
   <div class="usBox_2 clearfix">
 		<div class='authupstyle'>
 			<div onclick = "getpwphone()" id="getpwphone">依据注册手机号找回</div>
@@ -415,7 +416,12 @@
 <!--{/if}--> 
 <!--#找回密码界面 end-->
 
-<!-- #BeginLibraryItem "/library/page_footer_user.lbi" --> <!-- #EndLibraryItem --> 
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div> 
 
 </body>
 <script type="text/javascript">

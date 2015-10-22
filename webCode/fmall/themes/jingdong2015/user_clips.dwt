@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </li>
-            <li class="fore4 ld menu myJd" id="biz-service">
+            <li class="fore4 ld menu myJd" id="biz-service" style="display:none;">
                 <div class="dt"><s></s> <span class="outline"></span> <span class="blank"></span> 客户服务 <b></b></div>
                 <div class="dd">
 	                <div><a href="article.php?id=9">帮助中心</a></div>
@@ -53,14 +53,15 @@
 	                <div><a href="#" target="_blank">客服邮箱</a></div>
                 </div>
             </li>
-            <li class="fore4 ld menu myJd" id="biz-service" style="display:none">
+            <li class="fore4 ld">
+            	<div class="dt"><s></s>帮助</div>
             </li>
         </ul>
     </div>
 </div>
 <div id="nav">
 	<div class="w">
-    	<div class="logo"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.png" width="201" height="78" alt="联众"></a></div>
+    	<div class="logo"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.png" width="262" height="78" alt="联众"></a></div>
         <div class="navitems">
         	<ul>
             	<li class="fore"><a href="./index.php">首页</a></li>
@@ -99,6 +100,7 @@
 
 <div class="JD_userMain">
 <div class="w main">
+	<div class="blank5"></div>
 	<div class="right">
     	<div class="ordercontainer">
         	<div class="userCenterBox clearfix" style="_height:1%;">

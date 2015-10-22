@@ -1248,8 +1248,8 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
     {
         $sql .= ' LIMIT ' . $num;
     }
-    $res = $GLOBALS['db']->getAll($sql);
 
+    $res = $GLOBALS['db']->getAll($sql);
     $goods = array();
     foreach ($res AS $idx => $row)
     {
@@ -1276,7 +1276,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
     }
     
     $cat['goods_level2'] = $goods;
-	//print_r($goods);exit;
+	//print_r($goods);
     if ($from == 'web')
     {
         $GLOBALS['smarty']->assign('cat_goods_' . $cat_id, $goods);

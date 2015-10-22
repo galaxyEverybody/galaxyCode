@@ -18,7 +18,7 @@
 	    		<span class="cate_all_price">借款金额</span>
 	    		<span class="cate_all_rate_head">借款期限</span>
 	    		<span class="cate_all_style">保障方式</span>
-	    		<span class="cate_all_price">投资进度</span>
+	    		<span class="cate_all_rate_head">投资进度</span>
     		</li>
     		<!--{foreach from=$goods_list item=goods}-->
         	<!-- {if $goods.goods_id} -->
@@ -28,12 +28,7 @@
 	    		<span class="cate_all_price">{$goods.shop_price}元</span>
 	    		<span class="cate_all_rate">{$goods.loan_time}天</span>
 	    		<span class="cate_all_style">保障方式</span>
-	    		<span class="cate_all_price">
-	    			<div class="category_rate">
-	    				<div class="category_rate_true"></div>
-	    				<span>{$goods.loan_price}</span>%
-	    			</div>
-	    		</span>
+	    		<span class="cate_all_rate">{$goods.loan_price}%</span>
 	    		<span class="cate_all_price">
 	    			<!--{if $goods.goodstatus eq "1"}-->
 	    			<div class="powder_invest_cli"><a href="{$goods.url}">立即投资</a></div>
@@ -65,16 +60,6 @@ function selectPage(sel)
 //-->
 </script> 
 <script type="text/javascript">
-$(function(){
-	$(".category_rate").each(function(){
-		var wid = $(this).width();
-		var widrate = $(this).children("span").html();
-		var widratenum = widrate/100;
-		var widtrue = $(this).children(".category_rate_true");
-		widtrue.css("width",wid*widratenum);
-		
-	});
-});
 window.onload = function()
 {
   Compare.init();

@@ -15,8 +15,9 @@
 {insert_scripts files='common.js'}
 </head>
 <body class="article">
-<!-- #BeginLibraryItem "/library/page_header_user.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
 <div class="w">
+	<div class="counter_big_div">
   <div class="right">
     <div class="box">
       <div class="box_1">
@@ -45,7 +46,7 @@
       </div>
     <!-- {/foreach} --> 
     </div>
-
+	</div>
   </div>
   <div class="clr"></div>
 </div>

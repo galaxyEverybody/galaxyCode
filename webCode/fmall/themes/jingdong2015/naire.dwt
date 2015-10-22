@@ -19,7 +19,7 @@
 {* 包含脚本文件 *}
 {insert_scripts files='utils.js,transport_jquery.js,borrow.js,region.js,shopping_flow.js'}
 <style>
-.quesanswer{ width:98%;height:auto;}
+.quesanswer{ width:93%;height:auto;}
 .quesanswerdiv{ 100%;height:auto;}
 .quesanswerdiv .radioerr{color:red;margin-left:30px;font-size:14px;}
 .quesanswerdiv ul{ list-style:none;}
@@ -35,10 +35,11 @@
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
-
-<div class="w" style="border:2px solid #F7F7F7;">
+<div class="counter_big_div">
+<div class="blank10"></div>
+<div class="w" style="background:#FFF;">
 	<div class="quesanswer">
-		<div style="text-align:center;margin-top:20px;"><h1>联众金融平台试运营调查问卷</h1></div>
+		<div style="text-align:center;height:80px;line-height:80px;"><h1>银河众联平台试运营调查问卷</h1></div>
 		<div class="quesanswerdiv">
 		<form action='naire.php' method='post' onsubmit="return checkformmaire()">
 			<ul>
@@ -200,6 +201,7 @@
 		</form>
 		</div>
 	</div>
+</div>
 </div>
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->

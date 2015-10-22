@@ -126,7 +126,8 @@ $(function(){
 							return 100 - params.value + '%'
 						},
 						textStyle: {
-							baseline : 'top'
+							baseline : 'top',
+							color:'red'
 						}
 					}
 				},

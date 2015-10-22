@@ -163,6 +163,7 @@ $(function(){
 
 			var labelTop = {
 				normal : {
+					color: '#5FD653',
 					label : {
 						show : false,
 						position : 'center',
@@ -183,7 +184,8 @@ $(function(){
 							return 100 - params.value + '%'
 						},
 						textStyle: {
-							baseline : 'top'
+							baseline : 'top',
+							color:'red'
 						}
 					}
 				},
@@ -283,6 +285,7 @@ $(function(){
 
     			var labelTop = {
     				normal : {
+    					color: '#5FD653',
     					label : {
     						show : false,
     						position : 'center',
@@ -303,7 +306,8 @@ $(function(){
     							return 100 - params.value + '%'
     						},
     						textStyle: {
-    							baseline : 'top'
+    							baseline : 'top',
+    							color:'red'
     						}
     					}
     				},
@@ -403,6 +407,7 @@ $(function(){
 
     			var labelTop = {
     				normal : {
+    					color: '#5FD653',
     					label : {
     						show : false,
     						position : 'center',
@@ -423,7 +428,8 @@ $(function(){
     							return 100 - params.value + '%'
     						},
     						textStyle: {
-    							baseline : 'top'
+    							baseline : 'top',
+    							color:'red'
     						}
     					}
     				},

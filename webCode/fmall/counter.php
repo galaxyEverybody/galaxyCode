@@ -34,7 +34,7 @@ if ($action == 'countercount')
 	$ctime = trim($_GET['ctime']);  //时间
 	$ctype = trim($_GET['ctype']);	 //方式
 	
-	$backinfo = '<tr style="height:40px;background-color:#FF8201;color:#fff;"><th>月份</th><th>月收本息</th><th>月收本金</th><th>月收利息</th><th>待收本息</th></tr>';
+	$backinfo = '<tr style="height:40px;"><th>月份</th><th>月收本息</th><th>月收本金</th><th>月收利息</th><th>待收本息</th></tr>';
 	switch($ctype){
 		//按月等额本息
 		case 1:

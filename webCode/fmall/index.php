@@ -145,15 +145,18 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
         $ad = $db->getRow($sql, true);
         $smarty->assign('ad', $ad);
     }*/
+    
 	
      //查询用户头像
+     $headimg = '0';
     if (!empty($_SESSION['user_id'])){
     	$userid = $_SESSION['user_id'];
     	$sql = 'SELECT head_img FROM '.$GLOBALS['ecs']->table('users').' where user_id='.$userid;
     	$img = $GLOBALS['db']->getRow($sql);
     	$headimg = $img['head_img'];
+    	
+    	$headimg = empty($headimg)?'./images/user_head_img.gif':$headimg;
     }
-    $headimg = empty($headimg)?'0':$headimg;
     $smarty->assign('headimg',$headimg);
 
 	/*周欢改 start*/

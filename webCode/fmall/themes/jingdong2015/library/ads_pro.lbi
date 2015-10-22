@@ -1,8 +1,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 {if $pName eq 'displayW'}
 <a class="sLink" target="_blank" href="{$ad.ad_link}" style="display:none">{$ad.link_man}<i>&gt;</i></a>
-<a href="{$ad.ad_link}"> <img src="{$src}" width="{$ad.ad_width}" height="{$ad.ad_height}"> </a>
+<a href="{$ad.ad_link}"> <img src="{$src}" > </a>
 {else}
 
-<a href="{$ad.ad_link}"> <img src="{$src}" width="{$ad.ad_width}" height="{$ad.ad_height}"/> </a> 
+<a href="{$ad.ad_link}"> <img src="{$src}"/> </a> 
 {/if}

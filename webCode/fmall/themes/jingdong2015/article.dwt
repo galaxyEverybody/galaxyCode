@@ -15,9 +15,10 @@
 {insert_scripts files='common.js'}
 </head>
 <body class="article JD_article">
-	<!-- #BeginLibraryItem "/library/page_header_user.lbi" --><!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem -->
     <div class="blank10"></div>
     <div class="blank5"></div>
+    <div class="counter_big_div">
     <div class="w">
     	<div class="left"> 
             <div class="help_side" id="sortlist_atc"> 
@@ -34,7 +35,7 @@
                 <!-- {/foreach} --> 
             </div>
         </div>
-        <div class="right">
+        <div class="right" style="width:980px">
         	<div class="urHere"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
             <div class="articleCon">
                 <h3 class="tit">{$article.title|escape:html}</h3>
@@ -45,13 +46,12 @@
         </div>
         <div class="clr"></div>
     </div>
-
-		<div class="index_help_new">
-		<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
-		</div>
-		<div class="index_footer_new">
-		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
-		</div>
-    
+	</div>
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
 </body>
 </html>

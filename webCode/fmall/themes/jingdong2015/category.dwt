@@ -22,9 +22,7 @@
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
-<div class="category_banner">
-	{insert name='ads' id=41 num=1}
-</div>
+<div class="category_banner"></div>
 <div style="width:100%;height:auto;background:#F2F2F2;">
 <div class="w main">
 	<div class="blank10"></div>

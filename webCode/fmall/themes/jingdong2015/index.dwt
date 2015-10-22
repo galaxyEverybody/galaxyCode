@@ -19,7 +19,7 @@
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jquery.SuperSlide.js,jd_index.js'}
-<div id="o-slide" style="width:100%"> 
+<div id="o-slide"> 
 	<!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
 </div>
 <div class="w">
@@ -116,11 +116,11 @@
 		<div class="faxdate_div">
 			<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-			<div class="faxdate_month" style="border:1px solid red;">
+			<div class="faxdate_quarter">
 				<div class="faxdate_top_form"></div>
 				<p class="faxdate_top_p">预期年化</p>
 				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">15
+					<div class="faxdate_expect_day">{$goods.market_price}
 						<span>%</span>
 					</div>
 				</div>
@@ -136,7 +136,7 @@
 				</div>
 				<div class="faxdate_invest_div">
 					<a href="{$goods.url}">立即投资</a>
-				</div>
+				</div>	
 			</div>
 			<div class="blank_index"></div>
 			<!--{/foreach}-->
@@ -148,7 +148,7 @@
 				<div class="faxdate_top_form"></div>
 				<p class="faxdate_top_p">预期年化</p>
 				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">15
+					<div class="faxdate_expect_day">{$goods.market_price}
 						<span>%</span>
 					</div>
 				</div>
@@ -172,11 +172,11 @@
         	<!-- #EndLibraryItem -->
         	<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
 			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-			<div class="faxdate_year">
+			<div class="faxdate_quarter">
 				<div class="faxdate_top_form"></div>
 				<p class="faxdate_top_p">预期年化</p>
 				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">15
+					<div class="faxdate_expect_day">{$goods.market_price}
 						<span>%</span>
 					</div>
 				</div>
@@ -214,14 +214,14 @@
 			<ul>
 				<li >
 					<span class="powder_div_name">借款标题</span>
-					<span class="powder_div_rate">年华利率</span>
+					<span class="powder_div_rate">年化利率</span>
 					<span class="powder_div_name">借款金额</span>
 					<span class="powder_div_name">借款期限</span>
 					<span class="powder_div_name">投资进度</span>
 				</li>
 				<!--{foreach from=$best_goods item=goods name=foo}-->
 				<li >
-					<span class="powder_div_name" >{$goods.short_name}</span>
+					<span class="powder_div_name" ><a href="{$goods.url}">{$goods.short_name}</a></span>
 					<span class="powder_div_color" >{$goods.market_price}</span>
 					<span class="powder_div_name" >{$goods.shop_price}</span>
 					<span class="powder_div_name" >{$goods.term}</span>
