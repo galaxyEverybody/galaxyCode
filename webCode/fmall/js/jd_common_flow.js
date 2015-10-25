@@ -58,7 +58,12 @@ $(function(){
 	$(".no_index").mouseleave(function(){
 		$(this).removeClass("hover");
 	})
-	
+	/* 微信下拉效果*/
+	$("#xinliang-jd").mouseenter(function(){
+		$("#weixinshow").slideDown();
+	}).mouseleave(function(){
+		$("#weixinshow").slideUp();
+	});
 	/* 用户中心左侧菜单类点击*/
 	$("#myjd dt").click(function(){
 		

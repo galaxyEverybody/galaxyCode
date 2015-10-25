@@ -24,9 +24,24 @@
 {insert_scripts files='transport_jquery.js,utils.js,jquery.SuperSlide.js'}
 <div id="shortcut-2013" class="pageHeaderFlow">
     <div class="w">
-        <ul class="fl lh">
-            <li class="fore1 ld" clstag="homepage|keycount|home2013|01a"><b></b><a href="javascript:addToFavorite()" rel="nofollow">收藏联众</a></li>
-        </ul>
+        <ul class="serive_wb">
+			<li class="serive_hotline"><span>400-960-3330</span>（9:00~18:00）</li>
+			<li class="serive_wb_xinlang"><a href="http://weibo.com/u/5699638700/home?wvr=5&sudaref=www.haosou.com#1441933272395" target="_blank"></a></li>
+			<li id="xinliang-jd" class="serive_wb_weixin">
+				<a href="javascript:"></a>
+	            <div id="weixinshow">
+	            	<div class="weixindyhao">
+	            		<span></span>
+	            		[订阅号]
+	            	</div>
+	            	<div class="weixinfwhao">
+	            		<span></span>
+	            		[服务号]
+	            	</div>
+	            </div>
+	        </li>
+			<li class="serive_wb_qq"><a href="http://wpa.qq.com/msgrd?V=3&uin=3258297806&Site=qq&menu=yes" target="_blank" rel="nofollow"></a></li>
+		</ul>
         <ul class="fr lh">
             {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
             <!--{if $navigator_list.top}-->
@@ -61,7 +76,7 @@
 </div>
 <div id="nav">
 	<div class="w">
-    	<div class="logo"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.png" width="262" height="78" alt="联众"></a></div>
+    	<div class="logo"><a href="./index.php" hidefocus="true" ><b></b><img src="images/logo.png" alt="银河众联"></a></div>
         <div class="navitems">
         	<ul>
             	<li class="fore"><a href="./index.php">首页</a></li>

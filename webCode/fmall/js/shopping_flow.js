@@ -675,13 +675,25 @@ function chekbangtruename(bangtruename)
 {
 	if(bangtruename == ''){
 		$("#bangtruename").html("请输入您的真实姓名");
+		if($("#bangtruename").hasClass("focus")){
+			$("#bangtruename").removeClass("focus");
+		}
+		$("#bangtruename").addClass("error");
 		return false;
 	}else{
 		if(bangtruename.match(/[^\u4e00-\u9fa5]/)){
-			$("#bangtruename").html("输入姓名错误");
+			$("#bangtruename").html("输入姓名不合法");
+			if($("#bangtruename").hasClass("focus")){
+				$("#bangtruename").removeClass("focus");
+			}
+			$("#bangtruename").addClass("error");
 			return false;
 		}else{
-			$("#bangtruename").html("good");
+			$("#bangtruename").html("");
+			if($("#bangtruename").hasClass("error")){
+				$("#bangtruename").removeClass("error");
+			}
+			$("#bangtruename").addClass("focus");
 		}
 	}
 }
@@ -693,30 +705,54 @@ function checkcardwang(cardwang)
 {
 	if(cardwang == ''){
 		$("#cardwang").html("请输入您的银行卡开户网点");
+		if($("#cardwang").hasClass("focus")){
+			$("#cardwang").removeClass("focus");
+		}
+		$("#cardwang").addClass("error");
 		return false;
 	}else{
 		if(cardwang.match(/[^\u4e00-\u9fa5]/)){
-			$("#cardwang").html("输入开户网点错误");
+			if($("#cardwang").hasClass("focus")){
+				$("#cardwang").removeClass("focus");
+			}
+			$("#cardwang").addClass("error");
+			$("#cardwang").html("输入开户网点不合法");
 			return false;
 		}else{
-			$("#cardwang").html("good");
+			$("#cardwang").html("");
+			if($("#cardwang").hasClass("error")){
+				$("#cardwang").removeClass("error");
+			}
+			$("#cardwang").addClass("focus");
 		}
 	}
 }
 
 /*
- * 绑定银行卡检测真实姓名
+ * 绑定银行卡检测银行卡号
  */
 function chekcardnum(cardnum)
 {
 	if(cardnum == ''){
 		$("#cardnum").html("请输入您的银行卡号");
+		if($("#cardnum").hasClass("focus")){
+			$("#cardnum").removeClass("focus");
+		}
+		$("#cardnum").addClass("error");
 		return false;
 	}else{
 		if(cardnum.match(/^[0-9]{15,20}$/)){
-			$("#cardnum").html("good");
+			$("#cardnum").html("");
+			if($("#cardnum").hasClass("error")){
+				$("#cardnum").removeClass("error");
+			}
+			$("#cardnum").addClass("focus");
 		}else{
-			$("#cardnum").html("输入银行卡号错误");
+			$("#cardnum").html("输入银行卡号不合法");
+			if($("#cardnum").hasClass("focus")){
+				$("#cardnum").removeClass("focus");
+			}
+			$("#cardnum").addClass("error");
 			return false;
 		}
 	}
@@ -746,6 +782,11 @@ function chekwithdrawverify(withdrawverify)
 {
 	if(withdrawverify == ''){
 		$("#withdrawverify").html("请输入短信验证码");
+		if($("#withdrawverify").hasClass("focus"))
+		{
+			$("#withdrawverify").removeClass("focus");
+		}
+		$("#withdrawverify").addClass("error");
 		return false;
 	}else{
 		if(withdrawverify.match(/^[0-9]{4}$/)){
@@ -753,6 +794,11 @@ function chekwithdrawverify(withdrawverify)
 			return true;
 		}else{
 			$("#withdrawverify").html("短信验证码错误");
+			if($("#withdrawverify").hasClass("focus"))
+			{
+				$("#withdrawverify").removeClass("focus");
+			}
+			$("#withdrawverify").addClass("error");
 			return false;
 		}
 	}
@@ -764,14 +810,29 @@ function chekwithdrawverify(withdrawverify)
 function chekwithdrawpassword(withdrawpassword)
 {
 	if(withdrawpassword == ''){
-		$("#withdrawpassword").html("-请输入您的提现密码");
+		$("#withdrawpassword").html("请输入您的提现密码");
+		if($("#withdrawpassword").hasClass("focus"))
+		{
+			$("#withdrawpassword").removeClass("focus");
+		}
+		$("#withdrawpassword").addClass("error");
 		return false;
 	}else{
 		if(withdrawpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
-			$("#withdrawpassword").html("+输入正确");
+			$("#withdrawpassword").html("");
+			if($("#withdrawpassword").hasClass("error"))
+			{
+				$("#withdrawpassword").removeClass("error");
+			}
+			$("#withdrawpassword").addClass("focus");
 			return true;
 		}else{
-			$("#withdrawpassword").html("-提现密码格式错误");
+			$("#withdrawpassword").html("提现密码格式错误");
+			if($("#withdrawpassword").hasClass("focus"))
+			{
+				$("#withdrawpassword").removeClass("focus");
+			}
+			$("#withdrawpassword").addClass("error");
 			return false;
 		}
 	}
@@ -784,17 +845,37 @@ function chekwithdrawpwconfirm(pwconfirm){
 	var pw = $("input[name = 'withdrawpassword']")[0].value;
 	
 	if(pwconfirm == ''){
-		$("#withdrawpwconfirm").html("-请输入您的提现密码");
+		$("#withdrawpwconfirm").html("请输入您的提现密码");
+		if($("#withdrawpwconfirm").hasClass("focus"))
+		{
+			$("#withdrawpwconfirm").removeClass("focus");
+		}
+		$("#withdrawpwconfirm").addClass("error");
 		return false;
 	}else{
 		if(!pwconfirm.match(/^[0-9a-zA-Z]{6,30}$/)){
-			$("#withdrawpwconfirm").html("-提现密码格式错误");
+			$("#withdrawpwconfirm").html("提现密码格式错误");
+			if($("#withdrawpwconfirm").hasClass("focus"))
+			{
+				$("#withdrawpwconfirm").removeClass("focus");
+			}
+			$("#withdrawpwconfirm").addClass("error");
 			return false;
 		}else if(pw != pwconfirm){
-			$("#withdrawpwconfirm").html("-两次密码输入不一致");
+			$("#withdrawpwconfirm").html("两次密码输入不一致");
+			if($("#withdrawpwconfirm").hasClass("focus"))
+			{
+				$("#withdrawpwconfirm").removeClass("focus");
+			}
+			$("#withdrawpwconfirm").addClass("error");
 			return false;
 		}else{
-			$("#withdrawpwconfirm").html("+输入正确");
+			$("#withdrawpwconfirm").html("");
+			if($("#withdrawpwconfirm").hasClass("error"))
+			{
+				$("#withdrawpwconfirm").removeClass("error");
+			}
+			$("#withdrawpwconfirm").addClass("focus");
 			return true;
 		}
 	}
@@ -812,13 +893,11 @@ function withdraw_phoneverify_callback(result)
 {
 	if ( result == 'ok' )
 	  { 
-		$('#withdrawverify').html('验证码已发送');
 		RemainwithdrawTime();
 	  }
 	  else
 	  {
 		$('#withdraw_click').html('0');
-		$('#withdrawverify').html('验证码发送失败请重新点击');
 		$('#withdrawform').submit(function(){ return false;});
 	  }
 }
@@ -827,12 +906,22 @@ function check_withdrawphoneverify_callback(result)
 {
 	if ( result == 'ok' )
 	  {
-		$('#withdrawverify').html('输入正确');
+		$('#withdrawverify').html('');
+		if($("#withdrawverify").hasClass("error"))
+		{
+			$("#withdrawverify").removeClass("error");
+		}
+		$("#withdrawverify").addClass("focus");
 		return true;
 	  }
 	  else
 	  {
 		  $('#withdrawverify').html('输入错误');
+		  if($("#withdrawverify").hasClass("focus"))
+			{
+				$("#withdrawverify").removeClass("focus");
+			}
+			$("#withdrawverify").addClass("error");
 		  $('#withdrawform').submit(function(){ return false;});
 		  return false;
 	  }
@@ -943,30 +1032,60 @@ function authcenter_phoneverify_callback(result){
 /* 安全认证中心手机修改验证码验证*/
 function chekauthcenter_verify(phoneveri){
 	if(phoneveri == ''){
-		$('#callauthphone_verify').html('-请输入您收到的验证码');
+		$('#callauthphone_verify').html('请输入您收到的验证码');
+		if($("#callauthphone_verify").hasClass("focus")){
+			$("#callauthphone_verify").removeClass("focus");
+		}
+		$("#callauthphone_verify").addClass("error");
 	}else{
 		if(phoneveri.match(/[0-9]{4}/)){
-			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_authcenterphoneverify_callback , 'GET', 'TEXT', true, true );
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_auphoneverify_callback , 'GET', 'TEXT', true, true );
 		}else{
-			$('#callauthphone_verify').html('-验证码格式错误！');
+			$('#callauthphone_verify').html('验证码不合法');
+			if($("#callauthphone_verify").hasClass("focus")){
+				$("#callauthphone_verify").removeClass("focus");
+			}
+			$("#callauthphone_verify").addClass("error");
 		}
 	}
 }
-/*function check_authcenterphoneverify_callback(result){
-	if（result == 'ok'){
-		$('#callauthphone_verify').html('输入正确');
+function check_auphoneverify_callback(result){
+	if(result == 'ok'){
+		$('#callauthphone_verify').html('');
+		if($("#callauthphone_verify").hasClass("error")){
+			$("#callauthphone_verify").removeClass("error");
+		}
+		$("#callauthphone_verify").addClass("focus");
 	}else{
 		$('#callauthphone_verify').html('输入错误');
+		if($("#callauthphone_verify").hasClass("focus")){
+			$("#callauthphone_verify").removeClass("focus");
+		}
+		$("#callauthphone_verify").addClass("error");
 	}
-}*/
+}
 
 /* 安全认证中心提现密码手机的验证*/
 function chewithdrawauthcenter_password(widthdrawpassword){
 	if(widthdrawpassword == ''){
-		$('#withdrawerror_authcenter').html('-请输入您的提现密码');
+		$('#withdrawerror_authcenter').html('请输入您的提现密码');
+		if($("#withdrawerror_authcenter").hasClass("focus")){
+			$("#withdrawerror_authcenter").removeClass("focus");
+		}
+		$("#withdrawerror_authcenter").addClass("error");
 	}else{
 		if(!widthdrawpassword.match(/[0-9a-zA-Z]{6,30}/)){
-			$('#withdrawerror_authcenter').html('-输入的格式错误');
+			$('#withdrawerror_authcenter').html('输入的格式错误');
+			if($("#withdrawerror_authcenter").hasClass("focus")){
+				$("#withdrawerror_authcenter").removeClass("focus");
+			}
+			$("#withdrawerror_authcenter").addClass("error");
+		}else{
+			$('#withdrawerror_authcenter').html('');
+			if($("#withdrawerror_authcenter").hasClass("error")){
+				$("#withdrawerror_authcenter").removeClass("error");
+			}
+			$("#withdrawerror_authcenter").addClass("focus");
 		}
 	}
 }
@@ -974,10 +1093,24 @@ function chewithdrawauthcenter_password(widthdrawpassword){
 /* 安全认证中心提现密码身份证的验证*/
 function chewithdrawidcardauthcenter_password(widthdrawpassword){
 	if(widthdrawpassword == ''){
-		$('#withdrawidcard_authcenter').html('-请输入您的提现密码');
+		$('#withdrawidcard_authcenter').html('请输入您的提现密码');
+		if($("#withdrawidcard_authcenter").hasClass("focus")){
+			$("#withdrawidcard_authcenter").removeClass("focus");
+		}
+		$("#withdrawidcard_authcenter").addClass("error");
 	}else{
 		if(!widthdrawpassword.match(/[0-9a-zA-Z]{6,30}/)){
-			$('#withdrawidcard_authcenter').html('-输入的格式错误');
+			$('#withdrawidcard_authcenter').html('输入的密码不合法');
+			if($("#withdrawidcard_authcenter").hasClass("focus")){
+				$("#withdrawidcard_authcenter").removeClass("focus");
+			}
+			$("#withdrawidcard_authcenter").addClass("error");
+		}else{
+			$('#withdrawidcard_authcenter').html('');
+			if($("#withdrawidcard_authcenter").hasClass("error")){
+				$("#withdrawidcard_authcenter").removeClass("error");
+			}
+			$("#withdrawidcard_authcenter").addClass("focus");
 		}
 	}
 }
@@ -985,13 +1118,25 @@ function chewithdrawidcardauthcenter_password(widthdrawpassword){
 /* 安全认证中心身份证号的验证*/
 function chekauthcenter_idcard(idcard){
 	if(idcard == ''){
-		$('#idcarderror_authcenter').html('-请输入您的身份证号');
+		$('#idcarderror_authcenter').html('请输入您的身份证号');
+		if($("#idcarderror_authcenter").hasClass("focus")){
+			$("#idcarderror_authcenter").removeClass("focus");
+		}
+		$("#idcarderror_authcenter").addClass("error");
 	}else{
 		if(idcard.match(/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/)){
 			/* 未完验证*/
-			$('#idcarderror_authcenter').html('-输入正确');
+			$('#idcarderror_authcenter').html('');
+			if($("#idcarderror_authcenter").hasClass("error")){
+				$("#idcarderror_authcenter").removeClass("error");
+			}
+			$("#idcarderror_authcenter").addClass("focus");
 		}else{
-			$('#idcarderror_authcenter').html('-身份证号格式错误');
+			$('#idcarderror_authcenter').html('身份证号不合法');
+			if($("#idcarderror_authcenter").hasClass("focus")){
+				$("#idcarderror_authcenter").removeClass("focus");
+			}
+			$("#idcarderror_authcenter").addClass("error");
 		}
 	}
 }
@@ -1000,12 +1145,24 @@ function chekauthcenter_idcard(idcard){
 function authcenteruser_newphone(newphone){
 	var reg = /^1[3|5|8|7]\d{9}$/;
 	if(newphone == ''){
-		$('#newphone_authcenter').html('-请输入您的新手机号');
+		$('#newphone_authcenter').html('请输入您的新手机号');
+		if($("#newphone_authcenter").hasClass("focus")){
+			$("#newphone_authcenter").removeClass("focus");
+		}
+		$("#newphone_authcenter").addClass("error");
 	}else{
 		if(reg.test(newphone)){
-			$('#newphone_authcenter').html('+可以使用');
+			$('#newphone_authcenter').html('');
+			if($("#newphone_authcenter").hasClass("error")){
+				$("#newphone_authcenter").removeClass("error");
+			}
+			$("#newphone_authcenter").addClass("focus");
 		}else{
-			$('#newphone_authcenter').html('-手机号格式错误');
+			$('#newphone_authcenter').html('手机号不合法');
+			if($("#newphone_authcenter").hasClass("focus")){
+				$("#newphone_authcenter").removeClass("focus");
+			}
+			$("#newphone_authcenter").addClass("error");
 		}
 	}
 }
@@ -1015,35 +1172,63 @@ function getwithdrawnewphoneverify(){
 	var reg = /^1[3|5|8|7]\d{9}$/;
 	var phone = document.getElementById('newmobile_phone').value;
 	if(phone == ''){
-		$('#newphone_authcenter').html('-请输入您的新手机号');
+		$('#newphone_authcenter').html('请输入您的新手机号');
+		if($("#newphone_authcenter").hasClass("focus")){
+			$("#newphone_authcenter").removeClass("focus");
+		}
+		$("#newphone_authcenter").addClass("error");
 	}else{
 		if(reg.test(phone)){
 			Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_newphoneverify_callback , 'GET', 'TEXT', true, true );
 		}else{
-			$('#newphone_authcenter').html('-手机号格式错误');
+			$('#newphone_authcenter').html('手机号格式错误');
+			if($("#newphone_authcenter").hasClass("focus")){
+				$("#newphone_authcenter").removeClass("focus");
+			}
+			$("#newphone_authcenter").addClass("error");
 		}
 	}
 }
 
 function authcenter_newphoneverify_callback(result){
 	if(result == 'ok'){
-		$('#newphonemsg_authcenter').html('验证码已发送');
 		RemainauthcenternewphoneTime();
-	}else{
-		$('#newphonemsg_authcenter').html('-验证码发送失败');
 	}
 }
 
 /*新手机号验证码的验证*/
 function cheauthcenter_newverify(verify){
 	if(verify == ''){
-		$('#newphonemsg_authcenter').html('-请输入验证码');
+		$('#newphonemsg_authcenter').html('请输入验证码');
+		if($("#newphonemsg_authcenter").hasClass("focus")){
+			$("#newphonemsg_authcenter").removeClass("focus");
+		}
+		$("#newphonemsg_authcenter").addClass("error");
 	}else{
 		if(verify.match(/[0-9]{4}/)){
 			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_authcenternewphoneverify_callback , 'GET', 'TEXT', true, true );
 		}else{
-			$('#newphonemsg_authcenter').html('-输入格式错误');
+			$('#newphonemsg_authcenter').html('输入不合法');
+			if($("#newphonemsg_authcenter").hasClass("focus")){
+				$("#newphonemsg_authcenter").removeClass("focus");
+			}
+			$("#newphonemsg_authcenter").addClass("error");
 		}
+	}
+}
+function check_authcenternewphoneverify_callback(result){
+	if(result == 'ok'){
+		$('#newphonemsg_authcenter').html('');
+		if($("#newphonemsg_authcenter").hasClass("error")){
+			$("#newphonemsg_authcenter").removeClass("error");
+		}
+		$("#newphonemsg_authcenter").addClass("focus");
+	}else{
+		$('#newphonemsg_authcenter').html('输入错误');
+		if($("#newphonemsg_authcenter").hasClass("focus")){
+			$("#newphonemsg_authcenter").removeClass("focus");
+		}
+		$("#newphonemsg_authcenter").addClass("error");
 	}
 }
 
@@ -1069,14 +1254,25 @@ function authcentereditphone(){
 /*安全认证中心邮箱的验证*/
 function chekauthcenteremail(email){
 	if(email == ''){
-		$('#emailmsg_authcenter').html('-请输入您的邮箱账号');
+		$('#emailmsg_authcenter').html('请输入您的邮箱账号');
+		if($("#emailmsg_authcenter").hasClass("focus")){
+			$("#emailmsg_authcenter").removeClass("focus");
+		}
+		$("#emailmsg_authcenter").addClass("error");
 		$('#formauthcenteremail').submit(function(){return false;});
 	}else{
 		if(email.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)){
-			/*未完检测邮箱是否存在*/
-			
+			$('#emailmsg_authcenter').html('');
+			if($("#emailmsg_authcenter").hasClass("error")){
+				$("#emailmsg_authcenter").removeClass("error");
+			}
+			$("#emailmsg_authcenter").addClass("focus");
 		}else{
-			$('#emailmsg_authcenter').html('-请输入正确的邮箱');
+			$('#emailmsg_authcenter').html('邮箱账号不合法');
+			if($("#emailmsg_authcenter").hasClass("focus")){
+				$("#emailmsg_authcenter").removeClass("focus");
+			}
+			$("#emailmsg_authcenter").addClass("error");
 			$('#formauthcenteremail').submit(function(){return false;});
 		}
 	}
@@ -1087,11 +1283,19 @@ function authcenteremailform(){
 
 	var email = $("input[name='authcenter_email']")[0].value;
 	if(email == ''){
-		$('#emailmsg_authcenter').html('-请输入您的邮箱账号');
+		$('#emailmsg_authcenter').html('请输入您的邮箱账号');
+		if($("#emailmsg_authcenter").hasClass("focus")){
+			$("#emailmsg_authcenter").removeClass("focus");
+		}
+		$("#emailmsg_authcenter").addClass("error");
 		return false;
 	}else{
 		if(!email.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)){
-			$('#emailmsg_authcenter').html('-请输入正确的邮箱');
+			$('#emailmsg_authcenter').html('邮箱账号不合法');
+			if($("#emailmsg_authcenter").hasClass("focus")){
+				$("#emailmsg_authcenter").removeClass("focus");
+			}
+			$("#emailmsg_authcenter").addClass("error");
 			return false;
 		}
 	}
@@ -1101,12 +1305,24 @@ function authcenteremailform(){
 function chekauthcenter_truename(truename){
 	var reg=/^[\u4e00-\u9fa5]+$/;
 	if(truename == ''){
-		$('#truenamemsg_authcenter').html('-请输入您的真实姓名');
+		$('#truenamemsg_authcenter').html('请输入您的真实姓名');
+		if($("#truenamemsg_authcenter").hasClass("focus")){
+			$("#truenamemsg_authcenter").removeClass("focus");
+		}
+		$("#truenamemsg_authcenter").addClass("error");
 	}else{
 		if(reg.test(truename)){
-			$('#truenamemsg_authcenter').html('+输入正确');
+			$('#truenamemsg_authcenter').html('');
+			if($("#truenamemsg_authcenter").hasClass("error")){
+				$("#truenamemsg_authcenter").removeClass("error");
+			}
+			$("#truenamemsg_authcenter").addClass("focus");
 		}else{
-			$('#truenamemsg_authcenter').html('-输入格式错误');
+			$('#truenamemsg_authcenter').html('输入内容不合法');
+			if($("#truenamemsg_authcenter").hasClass("focus")){
+				$("#truenamemsg_authcenter").removeClass("focus");
+			}
+			$("#truenamemsg_authcenter").addClass("error");
 		}
 	}
 }
@@ -1119,12 +1335,20 @@ function chekauthcenter_idcardname(idcardnum){
 	var useruser = $('#useruser').val();
 	
 	if(idcardnum == ''){
-		$('#idcardnamemsg_authcenter').html('-请输入您的身份证号');
+		$('#idcardnamemsg_authcenter').html('请输入您的身份证号');
+		if($("#idcardnamemsg_authcenter").hasClass("focus")){
+			$("#idcardnamemsg_authcenter").removeClass("focus");
+		}
+		$("#idcardnamemsg_authcenter").addClass("error");
 	}else{
 		if(reg.test(idcardnum)){
 			Ajax.call('check_idcard.php','idcard='+ idcardnum + '&' + 'useruser=' + useruser + '&' + 'realname=' + truename,callback_checkidcarddiv,'POST','TEXT',true,true);
 		}else{
-			$('#idcardnamemsg_authcenter').html('-输入格式错误');
+			$('#idcardnamemsg_authcenter').html('输入内容不合法');
+			if($("#idcardnamemsg_authcenter").hasClass("focus")){
+				$("#idcardnamemsg_authcenter").removeClass("focus");
+			}
+			$("#idcardnamemsg_authcenter").addClass("error");
 		}
 	}
 }
@@ -1134,11 +1358,23 @@ function callback_checkidcarddiv(result)
 	var result = eval("("+result+")");
 	
 	if(result.status == '1'){
-		$('#idcardnamemsg_authcenter').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
+		$('#idcardnamemsg_authcenter').html('');
+		if($("#idcardnamemsg_authcenter").hasClass("error")){
+			$("#idcardnamemsg_authcenter").removeClass("error");
+		}
+		$("#idcardnamemsg_authcenter").addClass("focus");
 	}else if(result.status == '2'){
-		$("#idcardnamemsg_authcenter").html('-您的认证次数超过限制，请24小时之后再进行提交');
+		$("#idcardnamemsg_authcenter").html('您的认证次数超过限制，请24小时之后再进行提交');
+		if($("#idcardnamemsg_authcenter").hasClass("focus")){
+			$("#idcardnamemsg_authcenter").removeClass("focus");
+		}
+		$("#idcardnamemsg_authcenter").addClass("error");
 	}else{
-		$("#idcardnamemsg_authcenter").html('-您输入的身份证号码与姓名不符');
+		$("#idcardnamemsg_authcenter").html('您输入的身份证号码与姓名不符');
+		if($("#idcardnamemsg_authcenter").hasClass("focus")){
+			$("#idcardnamemsg_authcenter").removeClass("focus");
+		}
+		$("#idcardnamemsg_authcenter").addClass("error");
 	}
 	document.getElementById("checknameid").style.display="block";
 		
@@ -1150,11 +1386,19 @@ function authcentertruenamefrom(){
 	var trueidcard = $("input[name='authcenter_idcardname']")[0].value;
 	
 	if(truename == ''){
-		$('#truenamemsg_authcenter').html('-请输入您的真实姓名');
+		$('#truenamemsg_authcenter').html('请输入您的真实姓名');
+		if($("#truenamemsg_authcenter").hasClass("focus")){
+			$("#truenamemsg_authcenter").removeClass("focus");
+		}
+		$("#truenamemsg_authcenter").addClass("error");
 		return false;
 	}
 	if(trueidcard == ''){
-		$('#idcardnamemsg_authcenter').html('-请输入您的身份证号');
+		$('#idcardnamemsg_authcenter').html('请输入您的身份证号');
+		if($("#idcardnamemsg_authcenter").hasClass("focus")){
+			$("#idcardnamemsg_authcenter").removeClass("focus");
+		}
+		$("#idcardnamemsg_authcenter").addClass("error");
 		return false;
 	}
 	return true;
@@ -1165,17 +1409,28 @@ function formrechanger(){
 	var num = $("#rechargernum").val();
 	var reg = /^[0-9]{2,10}$/;
 	if(num == ''){	
-		$("#rechargernumspan").html('-请输入您要充值的金额');
+		$("#rechargernumspan").html('请输入您要充值的金额');
+		if($("#rechargernumspan").hasClass("focus")){
+			$("#rechargernumspan").removeClass("focus");
+		}
+		$("#rechargernumspan").addClass("error");
 		return false;
 	}else{
 		if(!reg.test(num) ){
-			$("#rechargernumspan").html('-请输入您要充值的金额');
+			$("#rechargernumspan").html('请输入您要充值的金额');
+			if($("#rechargernumspan").hasClass("focus")){
+				$("#rechargernumspan").removeClass("focus");
+			}
+			$("#rechargernumspan").addClass("error");
 			return false;
 		}else if(num%50 != 0){
-			$("#rechargernumspan").html('-充值的金额必须为50的倍数');
+			$("#rechargernumspan").html('充值的金额必须为50的倍数');
+			if($("#rechargernumspan").hasClass("focus")){
+				$("#rechargernumspan").removeClass("focus");
+			}
+			$("#rechargernumspan").addClass("error");
 			return false;
-		}else{
-			$("#rechargernumspan").html('+输入正确');
+		}else{		
 			return true;
 		}
 	}
@@ -1184,14 +1439,30 @@ function formrechanger(){
 function chekrechargernum(num){
 	var reg = /^[0-9]{2,10}$/;
 	if(num == ''){
-		$("#rechargernumspan").html('-请输入您要充值的金额');
+		$("#rechargernumspan").html('请输入您要充值的金额');
+		if($("#rechargernumspan").hasClass("focus")){
+			$("#rechargernumspan").removeClass("focus");
+		}
+		$("#rechargernumspan").addClass("error");
 	}else{
 		if(!reg.test(num)){
-			$("#rechargernumspan").html('-请输入您要充值的金额');
+			$("#rechargernumspan").html('请输入您要充值的金额');
+			if($("#rechargernumspan").hasClass("focus")){
+				$("#rechargernumspan").removeClass("focus");
+			}
+			$("#rechargernumspan").addClass("error");
 		}else if(num%50 != 0){
-			$("#rechargernumspan").html('-充值的金额必须为50的倍数');
+			$("#rechargernumspan").html('充值的金额必须为50的倍数');
+			if($("#rechargernumspan").hasClass("focus")){
+				$("#rechargernumspan").removeClass("focus");
+			}
+			$("#rechargernumspan").addClass("error");
 		}else{
-			$("#rechargernumspan").html('+输入正确');
+			$("#rechargernumspan").html('');
+			if($("#rechargernumspan").hasClass("error")){
+				$("#rechargernumspan").removeClass("error");
+			}
+			$("#rechargernumspan").addClass("focus");
 		}
 	}
 }
@@ -1201,17 +1472,28 @@ function formwithdrawals(){
 	var num = $("#withdrawalsnum").val();
 	var reg = /^[0-9]{1,10}$/;
 	if(num == ''){
-		$("#withdrawalsnumspan").html('-请输入您要提现的金额');
+		$("#withdrawalsnumspan").html('请输入您要提现的金额');
+		if($("#withdrawalsnumspan").hasClass("focus")){
+			$("#withdrawalsnumspan").removeClass("focus");
+		}
+		$("#withdrawalsnumspan").addClass("error");
 		return false;
 	}else{
 		if(!reg.test(num)){
-			$("#withdrawalsnumspan").html('-输入的金额不合法');
+			$("#withdrawalsnumspan").html('输入的金额不合法');
+			if($("#withdrawalsnumspan").hasClass("focus")){
+				$("#withdrawalsnumspan").removeClass("focus");
+			}
+			$("#withdrawalsnumspan").addClass("error");
 			return false;
 		}else if(num < 5){
-			$("#withdrawalsnumspan").html('-提现的金额小于最小金额');
+			$("#withdrawalsnumspan").html('提现的金额小于最小金额');
+			if($("#withdrawalsnumspan").hasClass("focus")){
+				$("#withdrawalsnumspan").removeClass("focus");
+			}
+			$("#withdrawalsnumspan").addClass("error");
 			return false;
 		}else{
-			$("#withdrawalsnumspan").html('+输入正确');
 			return true;
 		}
 	}
@@ -1220,14 +1502,30 @@ function formwithdrawals(){
 function chekwithdrawalsnum(num){
 	var reg = /^[0-9]{1,10}$/;
 	if(num == ''){
-		$("#withdrawalsnumspan").html('-请输入您要提现的金额');
+		$("#withdrawalsnumspan").html('请输入您要提现的金额');
+		if($("#withdrawalsnumspan").hasClass("focus")){
+			$("#withdrawalsnumspan").removeClass("focus");
+		}
+		$("#withdrawalsnumspan").addClass("error");
 	}else{
 		if(!reg.test(num)){
-			$("#withdrawalsnumspan").html('-输入的金额不合法');
+			$("#withdrawalsnumspan").html('输入的金额不合法');
+			if($("#withdrawalsnumspan").hasClass("focus")){
+				$("#withdrawalsnumspan").removeClass("focus");
+			}
+			$("#withdrawalsnumspan").addClass("error");
 		}else if(num < 5){
-			$("#withdrawalsnumspan").html('-提现的金额小于最小金额');
+			$("#withdrawalsnumspan").html('提现的金额小于最小金额');
+			if($("#withdrawalsnumspan").hasClass("focus")){
+				$("#withdrawalsnumspan").removeClass("focus");
+			}
+			$("#withdrawalsnumspan").addClass("error");
 		}else{
-			$("#withdrawalsnumspan").html('+输入正确');
+			$("#withdrawalsnumspan").html('');
+			if($("#withdrawalsnumspan").hasClass("error")){
+				$("#withdrawalsnumspan").removeClass("error");
+			}
+			$("#withdrawalsnumspan").addClass("focus");
 		}
 	}
 }
@@ -1251,7 +1549,11 @@ function getpwphoneform(){
 //账号验证
 function chekgetpwphone_user(username){
 	if(username == ''){
-		$("#user_getpw").html('-请输入您注册的账号');
+		$("#user_getpw").html('请输入您注册的账号');
+		if($("#user_getpw").hasClass("focus")){
+			$("#user_getpw").removeClass("focus");
+		}
+		$("#user_getpw").addClass("error");
 		return false;
 	}else{
 		Ajax.call( 'user.php?act=is_registered', 'username=' + username, registed_callbackonlogin , 'GET', 'TEXT', true, true );
@@ -1260,10 +1562,18 @@ function chekgetpwphone_user(username){
 }
 function registed_callbackonlogin(result){
   if ( result == "true" ){
-	  $("#user_getpw").html('-您输入的账号不存在');
+	  if($("#user_getpw").hasClass("focus")){
+			$("#user_getpw").removeClass("focus");
+		}
+	  $("#user_getpw").addClass("error");
+	  $("#user_getpw").html('您输入的账号不存在');
 	  return false;
   }else{
-	  $("#user_getpw").html('-输入正确');
+	  $("#user_getpw").html('');
+	  if($("#user_getpw").hasClass("error")){
+			$("#user_getpw").removeClass("error");
+		}
+	  $("#user_getpw").addClass("focus");
 	  return true;
   }
 }
@@ -1272,11 +1582,19 @@ function registed_callbackonlogin(result){
 function chekgetpwphone_phone(phone){
 	var reg = /^1[3|5|8|7]\d{9}$/;
 	if(phone == ''){
-		$("#phone_getpw").html('-请输入您注册时的手机号');
+		if($("#phone_getpw").hasClass("focus")){
+			$("#phone_getpw").removeClass("focus");
+		}
+		$("#phone_getpw").addClass("error");
+		$("#phone_getpw").html('请输入您注册时的手机号');
 		return false;
 	}else{
 		if(!reg.test(phone)){
-			$("#phone_getpw").html('-输入的手机号不合法');
+			if($("#phone_getpw").hasClass("focus")){
+				$("#phone_getpw").removeClass("focus");
+			}
+			$("#phone_getpw").addClass("error");
+			$("#phone_getpw").html('输入的手机号不合法');
 			return false;
 		}else{
 			Ajax.call( 'user.php?act=check_phone', 'phone=' + phone, check_phone_callbacknologin , 'GET', 'TEXT', true, true );
@@ -1286,10 +1604,18 @@ function chekgetpwphone_phone(phone){
 }
 function check_phone_callbacknologin(result){
 	if ( result == 'ok' ){
-		$("#phone_getpw").html('-您输入的号码不存在');
+		if($("#phone_getpw").hasClass("focus")){
+			$("#phone_getpw").removeClass("focus");
+		}
+		$("#phone_getpw").addClass("error");
+		$("#phone_getpw").html('您输入的号码不存在');
 		return true;
 	}else{
-		$("#phone_getpw").html('-输入正确');
+		if($("#phone_getpw").hasClass("error")){
+			$("#phone_getpw").removeClass("error");
+		}
+		$("#phone_getpw").addClass("focus");
+		$("#phone_getpw").html('');
 		return true;
 	}
 }
@@ -1298,10 +1624,18 @@ function check_phone_callbacknologin(result){
 function chekgetpwphone_verify(verify){
 	var reg = /^[0-9]{4}$/;
 	if(verify == ''){
-		$("#verify_getpw").html('-请输入您收到的验证码');
+		if($("#verify_getpw").hasClass("focus")){
+			$("#verify_getpw").removeClass("focus");
+		}
+		$("#verify_getpw").addClass("error");
+		$("#verify_getpw").html('请输入您收到的验证码');
 		return false;
 	}else if(!reg.test(verify)){
-		$("#verify_getpw").html('-输入的验证码不合法');
+		if($("#verify_getpw").hasClass("focus")){
+			$("#verify_getpw").removeClass("focus");
+		}
+		$("#verify_getpw").addClass("error");
+		$("#verify_getpw").html('输入的验证码不合法');
 		return false;
 	}else{
 		Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, checkgetpw_phoneverify_callback , 'GET', 'TEXT', true, true );
@@ -1309,8 +1643,17 @@ function chekgetpwphone_verify(verify){
 }
 function checkgetpw_phoneverify_callback(result){
 	if(result == 'false'){
-		$('#verify_getpw').html('-验证码输入错误');
+		if($("#verify_getpw").hasClass("focus")){
+			$("#verify_getpw").removeClass("focus");
+		}
+		$("#verify_getpw").addClass("error");
+		$('#verify_getpw').html('验证码输入错误');
 	}else{
+		if($("#verify_getpw").hasClass("error")){
+			$("#verify_getpw").removeClass("error");
+		}
+		$("#verify_getpw").addClass("focus");
+		$('#verify_getpw').html('');
 		return true;
 	}
 }
@@ -1330,7 +1673,11 @@ function emailgetpwform(){
 //邮箱账户验证
 function chekgetpwemail_user(username){
 	if(username == ''){
-		$("#emailuser_getpw").html('-请输入您注册的账号');
+		if($("#emailuser_getpw").hasClass("focus")){
+			$("#emailuser_getpw").removeClass("focus");
+		}
+		$("#emailuser_getpw").addClass("error");
+		$("#emailuser_getpw").html('请输入您注册的账号');
 		return false;
 	}else{
 		Ajax.call( 'user.php?act=is_registered', 'username=' + username, onlogin_callback_username , 'GET', 'TEXT', true, true );
@@ -1339,10 +1686,18 @@ function chekgetpwemail_user(username){
 }
 function onlogin_callback_username(result){
   if ( result == "true" ){
-	  $("#emailuser_getpw").html('-您输入的账号不存在');
+	  if($("#emailuser_getpw").hasClass("focus")){
+			$("#emailuser_getpw").removeClass("focus");
+		}
+	  $("#emailuser_getpw").addClass("error");
+	  $("#emailuser_getpw").html('您输入的账号不存在');
 	  return false;
   }else{
-	  $("#emailuser_getpw").html('-输入正确');
+	  if($("#emailuser_getpw").hasClass("error")){
+			$("#emailuser_getpw").removeClass("error");
+		}
+	  $("#emailuser_getpw").addClass("focus");
+	  $("#emailuser_getpw").html('');
 	  return true;
   }
 }
@@ -1350,11 +1705,19 @@ function onlogin_callback_username(result){
 function chekgetpwemail_email(email){
 	var reg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	if(email == ''){
-		$('#emailemail_getpw').html('-请输入您的邮箱账号');
+		if($("#emailemail_getpw").hasClass("focus")){
+			$("#emailemail_getpw").removeClass("focus");
+		}
+		$("#emailemail_getpw").addClass("error");
+		$('#emailemail_getpw').html('请输入您的邮箱账号');
 		return false;
 	}else{
 		if(!reg.test(email)){
-			$('#emailemail_getpw').html('-输入的邮箱账号不合法');
+			if($("#emailemail_getpw").hasClass("focus")){
+				$("#emailemail_getpw").removeClass("focus");
+			}
+			$("#emailemail_getpw").addClass("error");
+			$('#emailemail_getpw').html('输入的邮箱账号不合法');
 			return false;
 		}else{
 			Ajax.call( 'user.php?act=check_email', 'email=' + email, onlogin_callback_email , 'GET', 'TEXT', true, true );
@@ -1364,10 +1727,18 @@ function chekgetpwemail_email(email){
 }
 function onlogin_callback_email(result){
   if ( result == "false" ){
-	  $("#emailemail_getpw").html('-输入正确');
+	  if($("#emailemail_getpw").hasClass("error")){
+			$("#emailemail_getpw").removeClass("error");
+		}
+		$("#emailemail_getpw").addClass("focus");
+	  $("#emailemail_getpw").html('');
 	  return true;
   }else{
-	  $("#emailemail_getpw").html('-您输入的账号不存在');
+	  if($("#emailemail_getpw").hasClass("focus")){
+			$("#emailemail_getpw").removeClass("focus");
+		}
+		$("#emailemail_getpw").addClass("error");
+	  $("#emailemail_getpw").html('您输入的账号不存在');
 	  return false;
   }
 }
@@ -1375,13 +1746,26 @@ function onlogin_callback_email(result){
 function chekgetpw_newpw(newpw){
 	var reg = /^[0-9a-zA-Z]{3,30}$/;
 	if(newpw == ''){
-		$("#newpw_getpw").html('-请输入新的密码');
+		if($("#newpw_getpw").hasClass("focus")){
+			$("#newpw_getpw").removeClass("focus");
+		}
+		$("#newpw_getpw").addClass("error");
+		$("#newpw_getpw").html('请输入新的密码');
 		return false;
 	}else{
 		if(!reg.test(newpw)){
-			$("#newpw_getpw").html('-输入的密码不合法');
+			if($("#newpw_getpw").hasClass("focus")){
+				$("#newpw_getpw").removeClass("focus");
+			}
+			$("#newpw_getpw").addClass("error");
+			$("#newpw_getpw").html('输入的密码不合法');
 			return false;
 		}else{
+			if($("#newpw_getpw").hasClass("error")){
+				$("#newpw_getpw").removeClass("error");
+			}
+			$("#newpw_getpw").addClass("focus");
+			$("#newpw_getpw").html('');
 			return true;
 		}
 	}
@@ -1391,18 +1775,35 @@ function chekgetpw_newpwconfirm(newpwconfirm){
 	var newpw = $('#newpw').val();
 	var reg = /^[0-9a-zA-Z]{3,30}$/;
 	if(newpwconfirm == ''){
-		$("#newpw_getpwconfirm").html('-请输入新的密码');
+		if($("#newpw_getpwconfirm").hasClass("focus")){
+			$("#newpw_getpwconfirm").removeClass("focus");
+		}
+		$("#newpw_getpwconfirm").addClass("error");
+		$("#newpw_getpwconfirm").html('请输入新的密码');
 		return false;
 	}else{
 		if(!reg.test(newpw)){
-			$("#newpw_getpwconfirm").html('-输入的密码不合法');
+			if($("#newpw_getpwconfirm").hasClass("focus")){
+				$("#newpw_getpwconfirm").removeClass("focus");
+			}
+			$("#newpw_getpwconfirm").addClass("error");
+			$("#newpw_getpwconfirm").html('输入的密码不合法');
 			return false;
 		}
 	}
 	if(newpw != newpwconfirm){
-		$("#newpw_getpwconfirm").html('-两次密码输入不一致');
+		if($("#newpw_getpwconfirm").hasClass("focus")){
+			$("#newpw_getpwconfirm").removeClass("focus");
+		}
+		$("#newpw_getpwconfirm").addClass("error");
+		$("#newpw_getpwconfirm").html('两次密码输入不一致');
 		return false;
 	}else{
+		if($("#newpw_getpwconfirm").hasClass("error")){
+			$("#newpw_getpwconfirm").removeClass("error");
+		}
+		$("#newpw_getpwconfirm").addClass("focus");
+		$("#newpw_getpwconfirm").html('');
 		return true;
 	}
 }
@@ -1416,7 +1817,6 @@ function getuserpw_phone()
 function getpw_phoneverify_callback(result)
 {
 	if(result == 'ok'){
-		$("#verify_getpw").html('+验证码已发送');
 		RemainTimegetpw();
 	}
 }

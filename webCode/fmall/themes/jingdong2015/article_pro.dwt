@@ -15,9 +15,10 @@
 {insert_scripts files='common.js'}
 </head>
 <body class="article">
-<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem -->
+<div class="counter_big_div">
+<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
 <div class="w">
-	<div class="counter_big_div">
   <div class="right">
     <div class="box">
       <div class="box_1">
@@ -32,10 +33,9 @@
     </div>
      <div class="blank5"></div>
   </div>
-  <div class="left"> 
- 
+  <div class="left">
     <div class="help_side" id="sortlist_atc"> 
-            <!-- {foreach from=$helps item=help_cat name=foo} --> 
+    <!-- {foreach from=$helps item=help_cat name=foo} --> 
       <div class="current article_list">
         <h4><b></b>{$help_cat.cat_name}</h4>
         <ul>

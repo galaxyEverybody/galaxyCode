@@ -135,14 +135,24 @@ function editPassword()
 }
 /* 检测输入的原密码是否正确*/
 function chekold_password(oldpassword)
-{
+{	
 	if(oldpassword == ''){
 		$('#old_password').html('请输入您的原密码');
+		if($("#old_password").hasClass("focus"))
+		{
+			$("#old_password").removeClass("focus");
+		}
+		$("#old_password").addClass("error");
 	}else{
 		if(oldpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
 			Ajax.call('user.php?act=ajax_checkoldpassword','oldpassword=' + oldpassword,old_pwcallback,'POST','JSON');
 		}else{
-			$('#old_password').html('输入的格式错误');
+			$('#old_password').html('输入的内容不合法');
+			if($("#old_password").hasClass("focus"))
+			{
+				$("#old_password").removeClass("focus");
+			}
+			$("#old_password").addClass("error");
 		}
 	}
 }
@@ -150,9 +160,19 @@ function chekold_password(oldpassword)
 function old_pwcallback(result)
 {
 	if(result > 0){
-		$('#old_password').html('输入正确');
+		$('#old_password').html('');
+		if($("#old_password").hasClass("error"))
+		{
+			$("#old_password").removeClass("error");
+		}
+		$("#old_password").addClass("focus");
 	}else{
 		$('#old_password').html('原密码输入错误');
+		if($("#old_password").hasClass("focus"))
+		{
+			$("#old_password").removeClass("focus");
+		}
+		$("#old_password").addClass("error");
 		$('#formPassword').submit(function(){ return false;});
 	}
 }
@@ -161,11 +181,26 @@ function cheknew_password(newpassword)
 {
 	if(newpassword == ''){
 		$('#new_password').html('请输入您的新密码');
+		if($("#new_password").hasClass("focus"))
+		{
+			$("#new_password").removeClass("focus");
+		}
+		$("#new_password").addClass("error");
 	}else{
 		if(newpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
-			$('#new_password').html('输入正确');
+			$('#new_password').html('');
+			if($("#new_password").hasClass("error"))
+			{
+				$("#new_password").removeClass("error");
+			}
+			$("#new_password").addClass("focus");
 		}else{
-			$('#new_password').html('输入的格式错误');
+			$('#new_password').html('输入的内容不合法');
+			if($("#new_password").hasClass("focus"))
+			{
+				$("#new_password").removeClass("focus");
+			}
+			$("#new_password").addClass("error");
 		}
 	}
 }
@@ -174,11 +209,26 @@ function chekconfirm_password(confirmpassword)
 {
 	if(confirmpassword == ''){
 		$('#confirm_password').html('请输入您的新密码');
+		if($("#confirm_password").hasClass("focus"))
+		{
+			$("#confirm_password").removeClass("focus");
+		}
+		$("#confirm_password").addClass("error");
 	}else{
 		if(confirmpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
-			$('#confirm_password').html('输入正确');
+			$('#confirm_password').html('');
+			if($("#confirm_password").hasClass("error"))
+			{
+				$("#confirm_password").removeClass("error");
+			}
+			$("#confirm_password").addClass("focus");
 		}else{
-			$('#confirm_password').html('输入的格式错误');
+			$('#confirm_password').html('输入的内容不合法');
+			if($("#confirm_password").hasClass("focus"))
+			{
+				$("#confirm_password").removeClass("focus");
+			}
+			$("#confirm_password").addClass("error");
 		}
 	}
 }
@@ -664,24 +714,13 @@ function getphoneverify()
 function get_phoneverify_callback(result)
 {
 	if ( result == 'ok' )
-	  {
-		if($("#phoneverify_notice").hasClass("error"))
-		{
-			$("#phoneverify_notice").removeClass("error");
-		}
-		$("#phoneverify_notice").addClass("focus");
-	    
+	  { 
 		RemainTime();
 	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
 	  {
-	    document.getElementById('phoneverify_notice').innerHTML = '验证码发送失败';
-		if($("#phoneverify_notice").hasClass("focus"))
-		{
-			$("#phoneverify_notice").removeClass("focus");
-		}
-		$("#phoneverify_notice").addClass("error");
+	    document.getElementById('verify_notice').innerHTML = '验证码发送失败';
 	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
 	  }
 }

@@ -684,6 +684,12 @@ elseif($action == 'ajax_checkoldpassword')
 elseif ($action == 'bangcard')
 {
 	include_once('includes/lib_transaction.php');
+	/*判断用户的实名认证状态*/
+	$sql = 'select idcard,idcardstatus from '.$ecs->table('users').' where user_id ='.$user_id;
+	$row = $db->getRow($sql);
+	if(empty($row['idcard']) || empty($row['idcardstatus'])){
+		show_message('请先完成实名认证',$_LANG['back_up_page'], 'user.php?act=auth_center', 'info');
+	}
 	/* 取得国家的省列表 */
 	$province_list[$region_id] = get_regions(1, 1);
 	$smarty->assign('province_list',    $province_list);
@@ -976,10 +982,10 @@ elseif ($action == 'profile')
     $user_info = get_profile($user_id);
 
 	$user_info['phone'] = str_replace(substr($user_info['mobile_phone'],3,5),'*****',$user_info['mobile_phone']);
-	$user_info['truename'] = $user_info['realname'] == '0'?0:substr($user_info['realname'],0,3).'****';
-	$user_info['idcard'] = $user_info['idcard'] == '0'?0:str_replace(substr($user_info['idcard'],4,strlen($user_info['idcard'])-8),'**********',$user_info['idcard']);
-	$user_info['card'] = $user_info['card'] == 0?0:substr($user_info['card'],0,4).'**********'.substr($user_info['card'],-4);
-	$user_info['user_head_img'] = isset($user_info['user_head_img'])?$user_info['user_head_img']:0;
+	$user_info['truename'] = empty($user_info['realname'])?0:substr($user_info['realname'],0,3).'****';
+	$user_info['idcard'] = empty($user_info['idcard'])?0:str_replace(substr($user_info['idcard'],4,strlen($user_info['idcard'])-8),'**********',$user_info['idcard']);
+	$user_info['card'] = empty($user_info['card'])?0:substr($user_info['card'],0,4).'**********'.substr($user_info['card'],-4);
+	$user_info['user_head_img'] = empty($user_info['user_head_img'])?'./images/user_head_img.gif':$user_info['user_head_img'];
 	
 	/* 取出注册扩展字段 */
     /*$sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
@@ -1013,7 +1019,7 @@ elseif ($action == 'profile')
 
     /* 密码提示问题 */
     //$smarty->assign('passwd_questions', $_LANG['passwd_questions']);
-	
+
     $smarty->assign('profile', $user_info);
     $smarty->display('user_transaction.dwt');
 }

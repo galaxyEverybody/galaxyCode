@@ -632,7 +632,7 @@ function get_user_default($user_id)
     $info['emailstatus'] = $row['emailstatus'];
     $info['idcardstatus'] = $row['idcardstatus'];
     $info['bangcardstatus'] = $row['bangcardstatus'];
-    $info['user_head_img'] = empty($row['head_img'])?'0':$row['head_img'];
+    $info['user_head_img'] = empty($row['head_img'])?'./images/user_head_img.gif':$row['head_img'];
     
     /* 增加是否开启会员邮件验证开关 */
     $info['is_validate'] = ($GLOBALS['_CFG']['member_email_validate'] && !$row['is_validated'])?0:1;
