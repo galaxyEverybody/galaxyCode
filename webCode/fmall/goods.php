@@ -257,7 +257,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         }
         $smarty->assign('searchkeywords', $searchkeywords);	//热搜关键词
 
-        /* 或得顶级分类产品名称*/
+        /* 或得顶级分类产品名称
         $sql = 'SELECT cat_id FROM '.$GLOBALS['ecs']->table('goods').' where goods_id ='.$goods['goods_id'];
         $parentid = $GLOBALS['db']->getOne($sql);
         $sql = 'SELECT parent_id from '.$GLOBALS['ecs']->table('category').' where cat_id ='.$parentid;
@@ -267,7 +267,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         if($parentcatname == '季能赚'){
         	$levelinfo = get_twolevel_repay($parentid);//查询分类下产品id
         	$smarty->assign('goodslevel',$levelinfo);
-        }
+        }*/
  		
         
         $catlist = array();

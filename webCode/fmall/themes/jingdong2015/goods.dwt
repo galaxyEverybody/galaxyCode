@@ -50,15 +50,7 @@ function reg(str){
     	<div class="productinfo_left">
 	    	<div class="productinfo_name" style="border-bottom:1px solid #dddddd;height:40px;">
 	    		<div style="float:left;">
-	    		<!--{if $goodslevel neq 0}-->
-	    		<ul>
-	        	<!--{foreach from=$goodslevel item=level}-->
-	        		<li class={if $level.goods_name eq $goods.goods_style_name}goodcurr{else}levelcurr{/if}><a style="color:#fff;" href='goods.php?id={$level.goods_id}'>{$level.goods_name}</a></li>
-	        	<!--{/foreach}-->
-	        	</ul>
-	        	<!--{else}-->
 	        	<h1>{$goods.goods_style_name}</h1>
-	        	<!--{/if}-->
 	        	</div>
 	        	<div style="float:right;"><a href="#javascript">协议范本</a></div>
 	        </div>

@@ -844,7 +844,7 @@ $(function(){
 		
 		<!--进行实名认证start-->
 		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">实名认证</span><span class="capitalauthnum">
-			{if $userinfostatus.idcardstatus eq 0}未认证[用于账户余额的提现与充值]<span onclick="authcenteridcard()" id="capitalupdaidcard" class="capitalauthupda">认证</span>
+			{if $userinfostatus.idcardstatus eq '0'}未认证[用于账户余额的提现与充值]<span onclick="authcenteridcard()" id="capitalupdaidcard" class="capitalauthupda">认证</span>
 			{else}{$userinfostatus.idcard}</span> <span class="capitalauthupdaspan">已认证</span>{/if}</p>
 		<div id="authidcarddiv">
 				<form id="formauthcentertruename" action="user.php" method="post" onSubmit="return authcentertruenamefrom()">
@@ -986,32 +986,72 @@ $(function(){
 
 <!--消息中心页面start-->
 <!--{if $action eq 'manage_msg'}-->
+{insert_scripts files='transport_jquery.js'}
 <div class="boxCenterList">
 	<div class="capitaldiv">
 		<span class="capitalleft"></span><span class="capitalright">我的消息</span>
 	</div>
+	<!--{if $ardetail eq 'all'}-->
 	<div class="personnews">
 		<div class="personnews_div">
 			<div class="news_checkall">
-				<div class="checkall_left"><input type="checkbox">全选</div>
+				<div class="checkall_left"><input type="checkbox" id="checkallhead" onclick="checkall_none()">全选</div>
 				<div class="news_delete">
-					<a>删除</a>
+					<a id="check_del">删除</a>
 				</div>
 			</div>
-			<div class="news_page">分页信息</div>
 		</div>
 	</div>
 	<div class="personnewsinfo">
 		<ul>
 			<!--{foreach from=$artciles_list item=activityinfo}-->
 			<li class="newsinfo_li">
-				<div class="newsinfo_left"><input type="checkbox"><span><a href="{$activityinfo.url}">{$activityinfo.title}</a></span></div>
+				<div class="newsinfo_left"><input type="checkbox" name="checked_none" value="{$activityinfo.id}"><span><a href="{$activityinfo.url}">{$activityinfo.title|escape:html}</a></span></div>
 				<span class="personnewsinfotime">{$activityinfo.add_time}</span>
 			</li>
 			<!--{/foreach}-->
 		</ul>
+		<div class="news_page">
+		<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+		</div>
 	</div>
+	<!--{else}-->
+	<div class="personnewsdetailinfo">
+		<h1>{$artidetail.title|escape:html}</h1>
+		<p><!-- {if $article.content } -->{$artidetail.content}<!-- {/if} --></p>
+		<div class="personnewsdetailinfo_time">{$artidetail.add_time}</div>
+	</div>
+	<!--{/if}-->
 </div>
+<script>
+$(function(){
+	$('#checkallhead').click(function(){
+		if(this.checked){
+			$("input[name='checked_none']").attr('checked',true);
+		}else{
+			$("input[name='checked_none']").attr('checked',false);
+		}
+	});
+	
+	var artids='';
+	$("#check_del").click(function(){
+		$("input[name='checked_none']:checkbox:checked").each(function(){
+			artids+=$(this).val()+',';
+		});
+
+		Ajax.call('user.php?act=ajax_center_manadel','artlids='+artids,callback_center_manadel,'POST','TEXT',true,true);
+		
+		function callback_center_manadel(result){
+			if(result == 'true'){
+				alert("删除成功");
+				window.location.reload();
+			}else{
+				alert("删除失败");
+			}
+		}
+	});
+});
+</script>
 <!--{/if}-->
 <!--消息中心页面end-->
 

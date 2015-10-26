@@ -88,7 +88,7 @@
                 </div>
             </li>
             <li class="fore4 ld">
-            	<div class="dt"><s></s>帮助</div>
+            	<div class="dt"><s></s><a href="article.php?id=19">帮助</a></div>
             </li>
         </ul>
     </div>

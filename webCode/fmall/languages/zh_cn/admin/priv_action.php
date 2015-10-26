@@ -94,9 +94,6 @@ $_LANG['file_check'] = '文件校验';
 $_LANG['file_priv'] = '文件权限检验';
 $_LANG['reg_fields'] = '会员注册项管理';
 
-//体验金活动权限
-$_LANG['activity_stats'] = '体验金活动列表';
-
 
 //订单管理部分权限
 $_LANG['order_os_edit'] = '编辑订单状态';
@@ -111,6 +108,7 @@ $_LANG['sale_order_stats'] = '订单销售统计';
 $_LANG['client_flow_stats'] = '客户流量统计';
 $_LANG['delivery_view'] = '查看发货单';
 $_LANG['back_view'] = '查看退货单';
+$_LANG['borrow_view'] = '查看借款列表';
 
 //促销管理
 $_LANG['snatch_manage'] = '夺宝奇兵';
@@ -125,6 +123,7 @@ $_LANG['favourable'] = '优惠活动';
 $_LANG['whole_sale'] = '批发管理';
 $_LANG['package_manage'] = '超值礼包';
 $_LANG['exchange_goods'] = '积分商城商品';
+$_LANG['activity_stats'] = '体验金活动管理';
 
 //邮件管理
 $_LANG['attention_list'] = '关注管理';

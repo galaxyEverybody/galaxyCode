@@ -50,6 +50,7 @@ if (!defined('IN_ECS'))
     $purview['14_package_list']      = 'package_manage';
 //  $purview['02_snatch_list']       = 'gift_manage';  //赠品管理
     $purview['15_exchange_goods']    = 'exchange_goods';  //赠品管理
+    $purview['16_taste_list']           = 'activity_stats';
 
 //文章管理权限
     $purview['02_articlecat_list']   = 'article_cat';
@@ -118,7 +119,6 @@ if (!defined('IN_ECS'))
     $purview['report_sell']          = 'sale_order_stats';
     $purview['sale_list']            = 'sale_order_stats';
     $purview['sell_stats']           = 'sale_order_stats';
-    $purview['taste_list']           = 'activity_stats';
 
 
 //模板管理

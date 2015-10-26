@@ -5,3 +5,5 @@
 增加字段:head_img(varchar 124)=>头像的存储的路径
 
 增加字段：is_loan_money(tinyint)=>理财，借贷标识 1：理财，2：借贷
+
+增加字段：isdel_article(text)=>促销活动被删除的id

@@ -35,7 +35,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'manage_msg', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
-'message_list', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
+'message_list', 'ajax_center_manadel', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'booking_list_month', 'booking_list_quarter', 'booking_list_year', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 未登录处理 */
@@ -688,7 +688,7 @@ elseif ($action == 'bangcard')
 	$sql = 'select idcard,idcardstatus from '.$ecs->table('users').' where user_id ='.$user_id;
 	$row = $db->getRow($sql);
 	if(empty($row['idcard']) || empty($row['idcardstatus'])){
-		show_message('请先完成实名认证',$_LANG['back_up_page'], 'user.php?act=auth_center', 'info');
+		show_message($_LANG['withdraws_idcard_fail'],$_LANG['back_up_page'], 'user.php?act=auth_center', 'info');
 	}
 	/* 取得国家的省列表 */
 	$province_list[$region_id] = get_regions(1, 1);
@@ -886,18 +886,39 @@ elseif ($action == 'signin')
 
 /* 消息中心页面*/
 elseif ($action == 'manage_msg'){
-	/* 获得指定的分类ID */
-	$cat_id = 11;
+	$articleid = intval($_GET['id']);
+
+	if(!empty($articleid)){
+		/* 获得文章的信息 */
+	    $sql = "SELECT a.*, IFNULL(AVG(r.comment_rank), 0) AS comment_rank ".
+	            "FROM " .$GLOBALS['ecs']->table('article'). " AS a ".
+	            "LEFT JOIN " .$GLOBALS['ecs']->table('comment'). " AS r ON r.id_value = a.article_id AND comment_type = 1 ".
+	            "WHERE a.is_open = 1 AND a.article_id = '$articleid' GROUP BY a.article_id";
+	    $row = $GLOBALS['db']->getRow($sql);
 	
-	/* 获得当前页码 */
-	$page   = !empty($_REQUEST['page'])  && intval($_REQUEST['page'])  > 0 ? intval($_REQUEST['page'])  : 1;
+	    if ($row !== false)
+	    {
+	        $row['comment_rank'] = ceil($row['comment_rank']);                              // 用户评论级别取整
+	        $row['add_time']     = local_date($GLOBALS['_CFG']['date_format'], $row['add_time']); // 修正添加时间显示
 	
-	
-	if (!$smarty->is_cached('article_cat.dwt', $cache_id))
-	{
+	        /* 作者信息如果为空，则用网站名称替换 */
+	        if (empty($row['author']) || $row['author'] == '_SHOPHELP')
+	        {
+	            $row['author'] = $GLOBALS['_CFG']['shop_name'];
+	        }
+	    }
+
+	    $smarty->assign('ardetail','one');
+	    $smarty->assign('artidetail',$row);
+	    $smarty->display('user_transaction.dwt');
+	}else{
+		/* 获得指定的分类ID */
+		$cat_id = 11;
+		
+		/* 获得当前页码 */
+		$page   = !empty($_REQUEST['page'])  && intval($_REQUEST['page'])  > 0 ? intval($_REQUEST['page'])  : 1;
+		
 	    /* 如果页面没有被缓存则重新获得页面的内容 */
-	
-	    assign_template('a', array($cat_id));
 	    $position = assign_ur_here($cat_id);
 	    $smarty->assign('page_title',           $position['title']);     // 页面标题
 	    $smarty->assign('ur_here',              $position['ur_here']);   // 当前位置
@@ -919,46 +940,54 @@ elseif ($action == 'manage_msg'){
 	    /* 获得文章总数 */
 	    $size   = isset($_CFG['article_page_size']) && intval($_CFG['article_page_size']) > 0 ? intval($_CFG['article_page_size']) : 20;
 	    $count  = get_article_count($cat_id);
+
 	    $pages  = ($count > 0) ? ceil($count / $size) : 1;
 	
 	    if ($page > $pages)
 	    {
 	        $page = $pages;
 	    }
-	    $pager['search']['id'] = $cat_id;
-	    $keywords = '';
-	    $goon_keywords = ''; //继续传递的搜索关键词
-	
-	    /* 获得文章列表 */
-	    if (isset($_REQUEST['keywords']))
-	    {
-	        $keywords = addslashes(htmlspecialchars(urldecode(trim($_REQUEST['keywords']))));
-	        $pager['search']['keywords'] = $keywords;
-	        $search_url = substr(strrchr($_POST['cur_url'], '/'), 1);
-	
-	        $smarty->assign('search_value',    stripslashes(stripslashes($keywords)));
-	        $smarty->assign('search_url',       $search_url);
-	        $count  = get_article_count($cat_id, $keywords);
-	        $pages  = ($count > 0) ? ceil($count / $size) : 1;
-	        if ($page > $pages)
-	        {
-	            $page = $pages;
-	        }
-	
-	        $goon_keywords = urlencode($_REQUEST['keywords']);
-	    }
-	    
-		    $smarty->assign('artciles_list',    get_cat_articles($cat_id, $page, $size ,$keywords));
-			//print_r(get_cat_articles($cat_id, $page, $size ,$keywords));exit;
-		    /* 分页 */
-		    assign_pager('article_cat', $cat_id, $count, $size, '', '', $page, $goon_keywords);
-		    assign_dynamic('article_cat');
-		}
+	    $artciles_list = get_cat_articles($cat_id, $page, $size ,$keywords);
+	    /* 查询删除的促销活动id*/
+	    $sql = 'SELECT isdel_article from '.$ecs->table("users").' where user_id='.$user_id;
+		$delid = $GLOBALS['db']->getOne($sql);
+		$delidarr = explode(',',$delid);
 		
-	$smarty->assign('feed_url',         ($_CFG['rewrite'] == 1) ? "feed-typearticle_cat" . $cat_id . ".xml" : 'feed.php?type=article_cat' . $cat_id); // RSS URL
-	
-	$smarty->display('user_transaction.dwt', $cache_id);
+	    foreach($artciles_list as $key=>$artcleinfo){
+	    	$artciles_list[$key][url] = 'user.php?act=manage_msg&id='.$artcleinfo[id];
+	    	if(in_array($artciles_list[$key][id],$delidarr)){
+	    		unset($artciles_list[$key]);
+	    	}
+	    }
 
+		$smarty->assign('artciles_list',    $artciles_list);
+		
+	    /* 分页 */
+	    assign_pager('article_cat', $cat_id, $count, $size, '', '', $page, $goon_keywords);
+			
+		$smarty->assign('feed_url',         ($_CFG['rewrite'] == 1) ? "feed-typearticle_cat" . $cat_id . ".xml" : 'feed.php?type=article_cat' . $cat_id); // RSS URL
+		$smarty->assign('ardetail','all');
+		$smarty->display('user_transaction.dwt');
+	}
+}
+
+/* 消息中心里消息的删除*/
+elseif ($action == 'ajax_center_manadel'){
+	$artlids = $_POST['artlids'];
+	if(isset($artlids)){
+		/* 查询删除的促销活动id*/
+	    $sql = 'SELECT isdel_article from '.$ecs->table("users").' where user_id='.$user_id;
+		$delid = $GLOBALS['db']->getOne($sql);
+		$artlids = $delid.$artlids;
+		
+		$sql='update '.$ecs->table('users').' set isdel_article="'.$artlids.'" where user_id='.$user_id;
+		$res = $GLOBALS['db']->query($sql);
+		if($res){
+			echo 'true';
+		}else{
+			echo 'false';
+		}
+	}
 }
 
 /* 退出会员中心 */

@@ -22,11 +22,11 @@
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
-
+<div class="borrow_big_div">
 <div class="w main">
 	<div class="blank10"></div>
     <div class="m" style="background:#F9F9F9;">
-    <div class="borrow-m">
+    <div class="borrow-m" style="margin-bottom:50px;">
     	<div class="borrow_titleinfo">
     		<div class="title_car_first"></div>
 {if $act eq 'default'}
@@ -582,7 +582,7 @@
 	</div>
 	</div>
 </div>
-
+</div>
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
 </div>

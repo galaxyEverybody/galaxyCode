@@ -25,7 +25,7 @@ else
 if ($_REQUEST['act'] == 'list'){
 	
 	/* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('activity_stats');
 	
 	/*时间参数*/
     if(!isset($_REQUEST['start_time'])){

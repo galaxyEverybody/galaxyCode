@@ -268,7 +268,7 @@ h6 span{float:left;padding-left:15px}
 .news_checkall{ margin-left:10px;font-size:16px;}
 .news_checkall .checkall_left{ float:left;}
 .news_checkall .readover{ margin-left:20px;width:70px;height:30px;border:1px solid #ddd;text-align:center;background:F2F2F2;float:left;margin-top:4px;}
-.news_checkall .readover a,.news_delete a{ height:30px;font-size:12px;line-height:30px;}
+.news_checkall .readover a,.news_delete a{ height:30px;font-size:12px;line-height:30px;cursor:pointer;}
 .news_checkall .news_delete{ margin-left:20px;width:50px;height:30px;border:1px solid #ddd;text-align:center;background:F2F2F2;float:left;margin-top:4px;}
 .news_page{ float:right;margin-right:20px;}
 .personnewsinfo{ width:100%;height:550px;}
@@ -276,6 +276,8 @@ h6 span{float:left;padding-left:15px}
 .personnewsinfo .newsinfo_left{ float:left;margin-left:10px;}
 .personnewsinfo .newsinfo_left span{ margin-left:15px;}
 .personnewsinfo .personnewsinfotime{ float:right;}
+.personnewsdetailinfo{ width:100%;height:auto;text-align:center;margin-top:50px;}
+.personnewsdetailinfo_time{ text-align:right;width:100;height:30px;}
 .boxCenterList .bangcardtable{ margin-top:10px;font-size:16px;margin-left:100px;}
 .bangcardtable .error{ background:url(images/register_error.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;font-size:12px;color:red;}
 .bangcardtable .focus{ background:url(images/register_right.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;}
@@ -795,7 +797,7 @@ h2,h3{font-size:14px}
 .jscroll .list{overflow:hidden}
 .jscroll .list .item{float:left}
 #mscroll .list li{border-right:1px solid #EEE}
-.m,.sm{margin-bottom:10px}
+.sm{margin-bottom:10px}
 .da0x70{width:210px;height:70px;background:#f8f8f8}
 .root61 .da0x70{width:310px}
 #jdnews{float:right;width:210px}
@@ -3477,8 +3479,9 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .articleCon .fanYe .fr{ float:left;}
 
 /* 鍊熸椤甸潰*/
+.borrow_big_div{ width:100%;height:auto;background:#F2F2F2;}
 .borrow_titleinfo{ width:100%;height:30px;margin-top:10px;}
-.borrow-m{ width:1100px;height:auto;border:1px solid #F5F5F5;background:#fff;}
+.borrow-m{ width:1100px;height:auto;border:1px solid #F5F5F5;background:#fff;margin-bottom:50px;}
 .title_car_first{ width:20px;height:20px;border-radius:10px;background:#FF852F;float:left;margin-left:100px;}
 .title_car_default{ width:200px;height:2px;background:#ddd;float:left;margin-top:10px;margin-left:10px;}
 .title_car_div{ width:10px;height:10px;border-radius:5px;background:#ddd;float:left;margin-left:10px;margin-top:5px;}
