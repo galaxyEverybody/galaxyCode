@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<!-- {if $cat_style} -->
+<link href="{$cat_style}" rel="stylesheet" type="text/css" />
+<!-- {/if} -->
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
+<div class="catabs_banner"></div>
+<div class="catabs_bigdiv">
+<div class="w main">
+	<div class="blank70"></div>
+    <div class="catabs_div">
+    	<div class="blankleft2"></div>
+		<!-- {foreach from=$catabs_goods item=goods name=foo2} -->
+		<div class="catabs_info">
+		    <p>{$goods.name}</p>
+		    <ul>
+		    	<li ><div class="catabs_infoli_left">预期年收益率</div><div class="catabs_rate">{$goods.market_price}<em>%</em></div></li>
+		    	<li ><div class="catabs_infoli_left">锁定期限</div><div class="catabs_day">{$goods.goods_weight_day}<em>天</em></div></li>
+		    	<li ><div class="catabs_infoli_left">起头金额</div><div class="catabs_count">{$goods.shop_price}<em>元</em></div></li>
+		    	<li >
+		    		<div class="catabs_infoli_left">投资进度</div>
+	    			<div class="catabs_what">
+	    				<div class="tou_catabs"></div>
+	    			</div>
+	    			<div class="advance_num">{$goods.advance}%</div>
+		    	</li>
+		    </ul>
+		    <a href="{$goods.url}">立即投资</a>
+		</div>
+		<!--{/foreach}-->
+    </div>
+    <script>
+    	$(function(){
+    		var wid = $(".catabs_what").width();
+    		$(".catabs_what").each(function(){
+    			var rate = $(this).next(".advance_num").html();
+    			rate = rate.replace(/[^0-9]/ig,'');
+    			$(this).children(".tou_catabs").css('width',wid*rate/100);
+    		})
+    	});
+    </script>
+    <div class="blank70"></div>
+    <div class="count_num">
+    	<p class="count_title">聚能赚收益计算器</p>
+    	<div class="countbig_div">
+    	 	<div class="bigdiv_left">
+    	 		<p >投资金额:</p>
+    	 		<div class="countnum_info">
+    	 			<input type="text" value="10000" id="counter_catnum">
+    	 			<span>元</span>
+    	 		</div>
+    	 		<a href="#javascript:" onclick="counter_catabsnum()">开始计算</a>
+    	 	</div>
+    	 	<div class="bigdiv_right">
+    	 		<p >产品类型:</p>
+    	 		<ul>
+    	 			<li>
+    	 				<div class="bigright_font">聚能赚定期<span class="catfont_month">(12个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo12" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum12">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">聚能赚定期<span class="catfont_monthtwo">(6个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo6" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum6">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">聚能赚定期<span class="catfont_monthtwo">(3个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo3" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum3">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">聚能赚定期<span class="catfont_monthtwo">(1个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo1" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum1">100.00</span>元</div>
+    	 			</li>
+    	 		</ul>
+    	 	</div>
+    	 	<script>
+    	 		function counter_catabsnum(){
+    	 			var num = $("#counter_catnum").val();
+    	 			Ajax.call('categoryabs.php?act=ajax_counter','catnum='+num,callback_catcounter,'POST','TEXT',true,true);
+    	 			
+    	 		}
+    	 		function callback_catcounter(result){
+    	 			var carone = result.split(',');
+    	 			$("#rescountnum12").html(carone[0]);
+    	 			$("#rescountnum6").html(carone[1]);
+    	 			$("#rescountnum3").html(carone[2]);
+    	 			$("#rescountnum1").html(carone[3]);
+    	 			
+    	 			$("#catabsmiddleinfo12").css("width",0);
+    	 			$("#catabsmiddleinfo6").css("width",0);
+    	 			$("#catabsmiddleinfo3").css("width",0);
+    	 			$("#catabsmiddleinfo1").css("width",0);
+    	 			
+    	 			var number = 0;	
+            		var startwidth12 = 400;
+            		var startwidth6 = 250;
+            		var startwidth3 = 200;
+            		var startwidth1 = 100;
+            		
+            		var auto12 = setInterval(autoaddwidth12,"100");
+            		function autoaddwidth12(){
+            			number = number+20;
+            			$("#catabsmiddleinfo12").css("width",number);
+            			if(number >= startwidth12){
+            				clearInterval(auto12);
+            			}
+            		}
+            		
+            		var auto6 = setInterval(autoaddwidth6,"100");
+            		function autoaddwidth6(){
+            			number = number+20;
+            			$("#catabsmiddleinfo6").css("width",number);
+            			if(number >= startwidth6){
+            				clearInterval(auto6);
+            			}
+            		}
+            		
+            		var auto3 = setInterval(autoaddwidth3,"100");
+            		function autoaddwidth3(){
+            			number = number+20;
+            			$("#catabsmiddleinfo3").css("width",number);
+            			if(number >= startwidth3){
+            				clearInterval(auto3);
+            			}
+            		}
+            		
+            		var auto1 = setInterval(autoaddwidth1,"100");
+            		function autoaddwidth1(){
+            			number = number+20;
+            			$("#catabsmiddleinfo1").css("width",number);
+            			if(number >= startwidth1){
+            				clearInterval(auto1);
+            			}
+            		}
+    	 			
+    	 		}
+            	$(function(){
+            		var number = 0;	
+            		var startwidth12 = 400;
+            		var startwidth6 = 250;
+            		var startwidth3 = 200;
+            		var startwidth1 = 100;
+            		
+            		var auto12 = setInterval(autoaddwidth12,"100");
+            		function autoaddwidth12(){
+            			number = number+20;
+            			$("#catabsmiddleinfo12").css("width",number);
+            			if(number >= startwidth12){
+            				clearInterval(auto12);
+            			}
+            		}
+            		
+            		var auto6 = setInterval(autoaddwidth6,"100");
+            		function autoaddwidth6(){
+            			number = number+20;
+            			$("#catabsmiddleinfo6").css("width",number);
+            			if(number >= startwidth6){
+            				clearInterval(auto6);
+            			}
+            		}
+            		
+            		var auto3 = setInterval(autoaddwidth3,"100");
+            		function autoaddwidth3(){
+            			number = number+20;
+            			$("#catabsmiddleinfo3").css("width",number);
+            			if(number >= startwidth3){
+            				clearInterval(auto3);
+            			}
+            		}
+            		
+            		var auto1 = setInterval(autoaddwidth1,"100");
+            		function autoaddwidth1(){
+            			number = number+20;
+            			$("#catabsmiddleinfo1").css("width",number);
+            			if(number >= startwidth1){
+            				clearInterval(auto1);
+            			}
+            		}
+
+            	});
+            </script>
+    	</div>
+    </div>
+    <div class="blank70"></div>
+</div>
+</div>
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
+</body>
+</html>

@@ -16,65 +16,28 @@
 <!-- {if $cat_style} -->
 <link href="{$cat_style}" rel="stylesheet" type="text/css" />
 <!-- {/if} -->
-{* 包含脚本文件 *}
-{insert_scripts files='transport_jquery.js,utils.js,transport.js'}
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
-<div style="width:100%;height:330px;border:1px solid red;">
-		
+<div class="safety_banner"></div>
+<div class="w">
+	<ul class="safetyul">
+		<li class="safetyli_one" onclick="safetyli_one()"><a href="javascript:#"></a></li>
+		<span>+</span>
+		<li class="safetyli_two" onclick="safetyli_two()"><a href="javascript:#"></a></li>
+		<span>+</span>
+		<li class="safetyli_three" onclick="safetyli_three()"><a href="javascript:#"></a></li>
+		<span>+</span>
+		<li class="safetyli_four" onclick="safetyli_four()"><a href="javascript:#"></a></li>
+		<span>+</span>
+		<li class="safetyli_five" onclick="safetyli_five()"><a href="javascript:#"></a></li>
+	</ul>
 </div>
-<div style="background:#F2F2F2">
-<div class="w main" style="border:1px solid red;">
-	<div class="blank10"></div>
-	<div style="width:95%;height:500px;border:1px solid red;background:#FFF;">
-		<div class="blank30"></div>
-		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">法律保障</h3>
-		<div style="width:90%;height:400px;">
-			<p style="font-size:16px;font-family:microsoft yahei;">借贷双方就借贷数额、借贷用途、借贷期限等内容形成书面协议，协议内容合法，受法律保护。珠宝贷以网络为平台，为借
-			贷双方提供可订立借款合同的居间服务，平台上出借人与借款人的借贷关系，属于民间借贷，受法律保护。</p>
-			<div style="width:100%;height:320px;border:1px solid blue;">
-			
-			</div>
-		</div>
+<div class="safety_middle"></div>
+<div class="w main">
+	<div class="safety_register">
+		<a href="user.php?act=register">立即注册 GO</a>
 	</div>
-	<div style="width:95%;height:500px;border:1px solid red;background:#FFF;">
-		<div class="blank30"></div>
-		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">技术安全</h3>
-		<div style="width:90%;height:400px;">
-			<p style="font-size:16px;font-family:microsoft yahei;">借贷双方就借贷数额、借贷用途、借贷期限等内容形成书面协议，协议内容合法，受法律保护。珠宝贷以网络为平台，为借
-			贷双方提供可订立借款合同的居间服务，平台上出借人与借款人的借贷关系，属于民间借贷，受法律保护。</p>
-			<div style="width:100%;height:320px;border:1px solid blue;">
-			
-			</div>
-		</div>
-	</div>
-	<div style="width:95%;height:500px;border:1px solid red;background:#FFF;">
-		<div class="blank30"></div>
-		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">自律监管</h3>
-		<div style="width:90%;height:400px;">
-			<p style="font-size:16px;font-family:microsoft yahei;">借贷双方就借贷数额、借贷用途、借贷期限等内容形成书面协议，协议内容合法，受法律保护。珠宝贷以网络为平台，为借
-			贷双方提供可订立借款合同的居间服务，平台上出借人与借款人的借贷关系，属于民间借贷，受法律保护。</p>
-			<div style="width:100%;height:320px;border:1px solid blue;">
-			
-			</div>
-		</div>
-	</div>
-	<div style="width:95%;height:500px;border:1px solid red;background:#FFF;">
-		<div class="blank30"></div>
-		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">风险保障</h3>
-		<div style="width:90%;height:400px;">
-			<p style="font-size:16px;font-family:microsoft yahei;">借贷双方就借贷数额、借贷用途、借贷期限等内容形成书面协议，协议内容合法，受法律保护。珠宝贷以网络为平台，为借
-			贷双方提供可订立借款合同的居间服务，平台上出借人与借款人的借贷关系，属于民间借贷，受法律保护。</p>
-			<div style="width:100%;height:320px;border:1px solid blue;">
-			
-			</div>
-		</div>
-	</div>
-	<div style="width:95%;height:100px;">
-		<a href="user.php?act=register" style="display: block;border-radius: 10px;background-color: #ef6200;width: 216px;margin: 0 auto;margin-bottom: 40px;height: 56px;line-height: 56px;color: #fff;font-size: 26px;text-align: center;font-weight:bold;">立即注册 GO</a>
-	</div>
-</div>
 </div>
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
@@ -82,5 +45,22 @@
 <div class="index_footer_new">
 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 </div>
+<script>
+	function safetyli_one(){
+		$(window).scrollTop(500);
+	}
+	function safetyli_two(){
+		$(window).scrollTop(1000);
+	}
+	function safetyli_three(){
+		$(window).scrollTop(1600);
+	}
+	function safetyli_four(){
+		$(window).scrollTop(2100);
+	}
+	function safetyli_five(){
+		$(window).scrollTop(2700);
+	}
+</script>
 </body>
 </html>

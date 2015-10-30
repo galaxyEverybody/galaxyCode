@@ -5046,19 +5046,19 @@ function order_list()
         /* 记录总数 */
         if ($filter['user_name'])
         {
-            $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('order_info') . " AS o ,".
+            $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('order_goods') . " AS o ,".
                    $GLOBALS['ecs']->table('users') . " AS u " . $where;
         }
         else
         {
-            $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('order_info') . " AS o ". $where;
+            $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('order_goods') . " AS o ". $where;
         }
 
         $filter['record_count']   = $GLOBALS['db']->getOne($sql);
         $filter['page_count']     = $filter['record_count'] > 0 ? ceil($filter['record_count'] / $filter['page_size']) : 1;
 
         /* 查询 */
-        $sql = "SELECT o.order_id, o.order_sn, o.add_time, o.order_status, o.goods_price," .
+        $sql = "SELECT o.order_id, o.order_sn, o.add_time, o.order_status, o.goods_price, o.order_price, " .
                     "o.pay_status, o.extension_code, " .
                     "(" . order_amount_field('o.') . ") AS total_fee, " .
                     "IFNULL(u.user_name, '" .$GLOBALS['_LANG']['anonymous']. "') AS buyer ".
@@ -5084,7 +5084,7 @@ function order_list()
     /* 格式话数据 */
     foreach ($row AS $key => $value)
     {
-        $row[$key]['formated_order_amount'] = price_format($value['order_amount']);
+        $row[$key]['formated_order_amount'] = price_format($value['order_price']);
         $row[$key]['formated_money_paid'] = price_format($value['money_paid']);
         $row[$key]['formated_total_fee'] = price_format($value['total_fee']);
         $row[$key]['short_order_time'] = local_date('m-d H:i', $value['add_time']);

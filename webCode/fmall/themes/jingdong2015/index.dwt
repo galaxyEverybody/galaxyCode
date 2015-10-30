@@ -62,7 +62,7 @@
 		<div class="regular_three_div">
 			<dl >
 				<dd>
-					<a href="safety.php"><div class="regular_top_image"></div></a>
+					<div class="regular_top_image"></div>
 					<h2>安全抵押</h2>
 					<ul >
 						<li ><span >30倍超过收益</span></li>
@@ -267,12 +267,12 @@
 		</div>
 		<div class="partner_div">
 	    	<ul>
-	    		<li ></li>
-	    		<li ></li>
-	    		<li ></li>
-	    		<li ></li>
-	    		<li ></li>
-	    		<li ></li>
+	    		<a href="http://www.cebbank.com/" target="_blank" rel="nofollow"><li class="partnerone"></li></a>
+	    		<a href="http://www.abchina.com/cn/" target="_blank" rel="nofollow"><li class="partnertwo"></li></a>
+	    		<a href="http://www.aliyun.com/?utm_medium=text&utm_source=bdbrand&utm_campaign=bdbrand&utm_content=se_32492" target="_blank" rel="nofollow"><li class="partnerthree"></li></a>
+	    		<a href="http://www.ecpic.com.cn/?cmpid=nim_bdfc_000001" target="_blank" rel="nofollow"><li class="partnerfour"></li></a>
+	    		<a href="http://www.shenzhourong.com/" target="_blank" rel="nofollow"><li class="partnerfive"></li></a>
+	    		<a href="http://www.51job.com/?from=baidupz" target="_blank" rel="nofollow"><li class="partnersix"></li></a>
 	    	</ul>
 	    </div>
     </div>

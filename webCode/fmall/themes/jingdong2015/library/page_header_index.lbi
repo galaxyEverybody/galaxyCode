@@ -105,8 +105,9 @@
         	 		<div class="header_loan_hide"> 我要理财 <b></b></div>
 	                <div id="header_loan_show">
         	 		<ul class="header_loan_indul">
+        	 			<li><a href="categoryabs.php">聚能赚定期</a></li>
         	 			<!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav name=foo} -->
-        	 			<!--{if $smarty.foreach.foo.iteration < 5}-->
+        	 			<!--{if $smarty.foreach.foo.iteration < 2}-->
 	                    <li><a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li>
 	                    <!--{/if}-->
 	                    <!-- {/foreach} -->

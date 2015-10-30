@@ -68,7 +68,7 @@ function reg(str){
                 	<div class="bond_middle_big">
                 		<div class="bond_middle_middle">
 	                    	<ul>
-	                    		<li class="bond_big_one"><h4><img src="./images/bondyear.gif">&nbsp;年化利率</h4><div class="bond_big_num">{$goods.market_price}<span>%</span></div></li>
+	                    		<li class="bond_big_one"><h4><img src="./images/bondyear.gif">&nbsp;年化利率</h4><div class="bond_big_num"><b id="fourrate_show"></b><em id="fourrate_hide" class="hide">{$goods.market_price}</em><span>%</span></div></li>
 	                    		<li class="bond_big_two"><h4><img src="./images/loantime.jpg">&nbsp;理财期限</h4><div class="bond_big_num">{$goods.goods_number}<span>天</span></div></li>
 	                    		<li class="bond_big_three"><h4><img src="./images/bondnum.jpg">&nbsp;理财金额</h4><div class="bond_big_num"><em id="totalnumprice">{$goods.shop_price}</em><span>元</span></div></li>
 	                    	</ul>
@@ -109,7 +109,7 @@ function reg(str){
         			</li>
         			<li>
         				<div class="bondinfo_left_middle">
-	        				<div style="float:left;">
+	        				<div class="bondinfo_left_middle_top">
 	        					<input class="recharge_input" id="investamount" type="text" name="investamount" placeholder="投资金额为100的倍数"/>
 	        				</div>
         					<em>元</em>
@@ -140,26 +140,7 @@ function reg(str){
         		</ul>
 	            </form>
              </div>
-             <script>
-             	function checkgoodsform()
-	         	{
-	         		var investnum = $("#investamount").val();
-	         		var goodsid = $("#hidgoodsid").val();
-	         		if(investnum == ''){
-	         			alert('请输入投资金额');
-	         			return false;
-	         		}else{
-	         			if(investnum%100 != 0){
-	         				alert('输入金额必须为100的倍数');
-	         				return false;
-	         			}
-	         		}
-	         		if(goodsid == ''){
-	         			return false;
-	         		}
-	         		return true;
-	         	}
-             </script>
+             
         </div>
             <!--choose end-->
             <span class="clr"></span> 
@@ -255,4 +236,39 @@ function reg(str){
 		});
 	});
 </script>
+<script>
+	$(function(){
+		var number = 0;	
+		var num = $("#fourrate_hide").html();
+		var auto = setInterval(autoadd,"100");
+		
+		function autoadd(){
+			number++;
+			$("#fourrate_show").html(number);
+			if(number == num){
+				clearInterval(auto);
+			}
+		}
+	});
+</script>
+<script>
+ 	function checkgoodsform()
+ 	{
+ 		var investnum = $("#investamount").val();
+ 		var goodsid = $("#hidgoodsid").val();
+ 		if(investnum == ''){
+ 			alert('请输入投资金额');
+ 			return false;
+ 		}else{
+ 			if(investnum%100 != 0){
+ 				alert('输入金额必须为100的倍数');
+ 				return false;
+ 			}
+ 		}
+ 		if(goodsid == ''){
+ 			return false;
+ 		}
+ 		return true;
+ 	}
+ </script>
 </html>
