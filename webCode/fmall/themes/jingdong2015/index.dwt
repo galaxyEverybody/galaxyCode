@@ -107,7 +107,7 @@
 	<div class="w">
 		<div class="faxdate_title" >
 			<span></span>
-			<a>优选定期</a>
+			<a href="categoryabs.php">优选定期</a>
 			<em>投资越高 收益越高</em>
 		</div>
 		<!-- TemplateBeginEditable name="分类下商品区域" -->
@@ -205,7 +205,7 @@
     <div class="w">
 	    <div class="powder_title">
 			<span></span>
-			<a class="powder_title_a">散标投资</a>
+			<a class="powder_title_a" href="#javascrpt:">散标投资</a>
 			<em >精选散标 灵活投资</em>
 			<div class="faxdate_powder_more"><a href="category.php?id=1023">更多></a></div>
 		</div>
@@ -242,7 +242,7 @@
     <div class="w">
 	    <div class="powder_news_title">
 			<span ></span>
-			<a class="powder_title_a">最新动态</a>
+			<a class="powder_title_a" href="#javascript:">最新动态</a>
 			<em >了解动态 放心投资</em>
 			<div class="faxdate_powder_more"><a href="article_cat.php?cat_id=4">更多></a></div>
 		</div>
@@ -263,7 +263,7 @@
     <div class="w">
 	    <div class="powder_work_title">
 			<span></span>
-			<a class="powder_title_a">合作伙伴</a>
+			<a class="powder_title_a" href="#javascript:">合作伙伴</a>
 		</div>
 		<div class="partner_div">
 	    	<ul>
