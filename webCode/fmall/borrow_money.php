@@ -212,9 +212,6 @@ elseif ($action == 'carinfo'){
 	$province_list[$region_id] = get_regions(1, 1);
 	$smarty->assign('province_list',    $province_list);
 	
-	/* 查询借款信息*/
-	$sql = "SELECT borrow_style FROM ".$GLOBALS['ecs']->table('user_borrow').' WHERE user_id = '.$userid;
-	$falg = $GLOBALS['db']->getOne($sql);
 	
 	$smarty->assign('carinformation',	$carinformation);
 	$smarty->assign('cartype',	$cartype);

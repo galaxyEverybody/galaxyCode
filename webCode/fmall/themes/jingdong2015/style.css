@@ -3549,7 +3549,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .boxCenterList ul.CenterList li b{ margin-right:4px;}
 .articleCon .fanYe .fr{ float:left;}
 
-/* 鍊熸椤甸潰*/
+/* borrow_money*/
 .borrow_big_div{ width:100%;height:auto;background:#F2F2F2;}
 .borrow_titleinfo{ width:100%;height:30px;margin-top:10px;}
 .borrow-m{ width:1100px;height:auto;border:1px solid #F5F5F5;background:#fff;margin-bottom:50px;}
@@ -3565,15 +3565,16 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .borrow_mar_four{ margin-left:190px;}
 .loan_des_info{ width:960px;height:auto;border:1px solid #ddd;margin-left:80px;}
 .loan_des_info tr{ height:50px;}
-.borrow_category{ width:100%;height:150px;}
-.count_click_car{ display:block;margin-left:500px;width:220px;height:40px;background:#FF8A00;text-align:center;font-weight: bold;line-height: 40px;margin-top: 20px}
+.borrow_category{ width:100%;height:150px;border:1px solid #CCC;box-shadow:0 0 3px #000;}
+.count_click_car{ display:block;margin-left:500px;width:220px;height:40px;background:#FF8A00;text-align:center;font-weight: bold;line-height: 40px;margin-top:10px;color:#FFF;font-size:16px;}
 .borrow_category .category_input_style{ float:left;width:20px;height:20px;filter:alpha(opacity=50);opacity:0.5;}
-.borrow_category #category_car{ width:600px;height:150px;border:1px solid #ddd;float:left;background:#1BB8E2;border-radius:5px;}
-.borrow_category #category_house{ width:600px;height:150px;border:1px solid #ddd;float:right;background:#5CAD22;border-radius:5px;"}
+.borrow_category #category_car{ width:600px;height:150px;float:left;background:#1BB8E2;cursor:pointer;}
+.borrow_category #category_house{ width:600px;height:150px;float:right;background:#5CAD22;cursor:pointer;"}
 #category_car em,#category_house em,#category_credit em{ font-size:28px;font-weight:blod;}
-#borrow_car_term{ width:100%;height:280px;display:block;border:1px solid #ddd;}
-#borrow_house_term{ width:100%;height:280px;display:none;border:1px solid #ddd;}
-.car_term_div{ width:100%;height:180px;margin-top:10px;text-align:left;}
+#borrow_car_term{ width:100%;height:300px;display:block;border:1px solid #ddd;box-shadow:0 0 2px #000;}
+#borrow_car_term a:hover,#borrow_house_term a:hover{ color:#FFF;}
+#borrow_house_term{ width:100%;height:300px;display:none;border:1px solid #ddd;box-shadow:0 0 2px #000;}
+.car_term_div{ width:100%;height:180px;margin-top:50px;text-align:left;}
 .car_term_ulfir{ line-height:25px;list-style:disc;float:left;width:300px;height:180px;}
 .car_term_ulsec{ line-height:25px;list-style:disc;float:left;width:300px;height:180px;margin-left:260px;}
 .countbig_div_car{ width:1200px;height:300px;}

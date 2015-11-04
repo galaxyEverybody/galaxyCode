@@ -57,7 +57,7 @@
     			</ul>
     		</div>
     		<div>
-    			<a href="#" class="count_click_car">立即申请</a>
+    			<a href="./borrow_money.php?act=carinfo" class="count_click_car">立即申请</a>
     		</div>
     	</div>
     	<div id="borrow_house_term">
@@ -87,7 +87,7 @@
     			</ul>
     		</div>
     		<div>
-    			<a href="#" class="count_click_car">立即申请</a>
+    			<a href="./borrow_money.php?act=houseinfo" class="count_click_car">立即申请</a>
     		</div>
 		</div>
 		<div class="blank70"></div>
@@ -439,253 +439,17 @@
     <div class="blank70"></div>
     </div>
 {/if}
-{if $act eq 'userinformation'}
-    	<div class="borrowinfo_top">
-    		<div class="userinfo_title"><div class="userinfo_title_left"></div><span>基本信息</span></div>
-    		<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
-	    	<form action="borrow_money.php" method="post" onsubmit="return borrow_userinfo_form()">
-	    	<table width="100%" cellpadding="7px" class="user_info_table">
-	    		{if $username eq '0'}
-	    		<tr>
-	    			<td class="borrowtdinfo">真实姓名</td><td><input class="borrowinput" type="text" id="usertruename" name="truename" placeholder="请输入您的真实姓名" onblur="borrowchename(this.value)"/><span id="borrowname" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		{else}
-	    		<tr>
-    				<td class="borrowtdinfo">真实姓名</td><td>{$username}</td>
-    			</tr>
-	    		{/if}
-	    		{if $usercard eq '0'}
-	    		<tr>
-	    			<td class="borrowtdinfo">身份证号</td>
-	    			<td>
-	    				<input type="hidden" name="useruser" value="{$userid}" id="useruser">
-	    				<input class="borrowinput" id="usercardname" type="text" name="idcard" placeholder="请输入您的身份证号码" onblur="borrowcheidcard(this.value)"/>
-	    				<span id="borrow_idcard" class="borrow_error_info"></span>
-	    			</td>
-	    		</tr>
-	    		{else}
-	    		<tr>
-	    			<td class="borrowtdinfo">身份证号</td><td>{$usercard}</td>
-	    		</tr>
-	    		{/if}
-	    		{if $usephone eq '0'}
-	    		<tr>
-	    			<td class="borrowtdinfo">手机号</td><td><input class="borrowinput" type="text" name="phone" placeholder="请输入您的手机号" onblur="borrowchephone(this.value)"/><span id="borrowphone" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		{else}
-	    		<tr>
-	    			<td class="borrowtdinfo">手机号</td><td>{$usephone}</td>
-	    		</tr>
-	    		{/if}
-	    		<tr>
-	    			<td class="borrowtdinfo">性别</td>
-	    			<td>
-	    				<input style="width:15px;height:15px;" type="radio" name="sex" value='1'/>男
-	    				<input style="width:15px;height:15px;margin-left:20px;" type="radio" name="sex" value='2'/>女
-	    				<span id="borrow_sex" class="borrow_error_info"></span>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">年龄</td><td><input class="borrowinput" type="text" name="age" placeholder="请输入您的年龄" onblur="borrowage(this.value)"/><span id="borrow_age" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">籍贯</td>
-	    			<td>
-	    				<select class="borrowinputadd" name="provincename" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
-	                    <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
-	                    <!-- {foreach from=$province_list.$sn item=province} -->
-	                    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
-	                    <!-- {/foreach} -->
-	                    </select>
-	                    
-	    				<select class="borrowinputadd" name="cityname" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
-	                    <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
-	                    <!-- {foreach from=$city_list.$sn item=city} -->
-	                    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
-	                    <!-- {/foreach} -->
-	                    </select>
-	                    
-	                    <select class="borrowinputadd" style="display:none;" name="countyname" id="selDistricts_{$sn}">
-	                    <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
-	                    <!-- {foreach from=$district_list.$sn item=district} -->
-	                    <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
-	                    <!-- {/foreach} -->
-	                    </select>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">居住地址</td><td><input class="borrowinput" type="text" name="liveaddress" placeholder="请输入您现在的居住地址" onblur="borrowliveaddress(this.value)"/><span id="borrow_liveadd" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">居住地邮编</td><td><input class="borrowinput" type="text" name="zipcode" placeholder="请输入您居住地的邮编" onblur="borrowzipcode(this.value)"/><span id="borrow_zip" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		{if $flag eq 3}
-	    		<tr>
-	    			<td class="borrowtdinfo">最高学历</td><td><input class="borrowinput" type="text" name="educational" placeholder="请输入您的最高学历" onblur="borrowcheeducational(this.value)"/><span id="borroweducational" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">入学年份</td><td>{html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=+1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}</td>
-	    		</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">毕业院校</td><td><input class="borrowinput" type="text" name="graduate" placeholder="请输入您的毕业院校" onblur="borrowchegraduate(this.value)"/><span id="borrowgraduate" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		<tr><td class="relationinfo">直系亲属</td></tr>
-	    		<tr>
-    				<td class="borrowtdinfo">关系</td><td><input class="borrowinput" type="text" name="filination" placeholder="与您的关系" onblur="borrowchefilination(this.value)"/><span id="borrowfilination" class="borrow_error_info"></span></td>
-    			</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">姓名</td><td><input class="borrowinput" type="text" name="relatename" placeholder="姓名" onblur="borrowcherelatename(this.value)"/><span id="borrowrelatename" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">电话</td><td><input class="borrowinput" type="text" name="relatephone" placeholder="手机号" onblur="borrowcherelatephone(this.value)"/><span id="borrowrelatephone" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		<tr><td class="relationinfo">其它</td></tr>
-	    		<tr>
-					<td class="borrowtdinfo">关系</td><td><input class="borrowinput" type="text" name="otherfilination" placeholder="与您的关系" onblur="borrowcheotherfilination(this.value)"/><span id="borrowotherfilination" class="borrow_error_info"></span></td>
-				</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">姓名</td><td><input class="borrowinput" type="text" name="othername" placeholder="姓名" onblur="borrowcheothername(this.value)"/><span id="borrowothername" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		<tr>
-	    			<td class="borrowtdinfo">电话</td><td><input class="borrowinput" type="text" name="otherphone" placeholder="手机号" onblur="borrowcheotherphone(this.value)"/><span id="borrowotherphone" class="borrow_error_info"></span></td>
-	    		</tr>
-	    		{/if}
-	    		<tr>
-	    			<input type="hidden" name="act" value="insert_user_info" />
-	    			<td class="borrowtdinfo"></td><td><input class="borrow_sub" type="submit" name="name" value="下一步"/></td>
-	    		</tr>
-	    	</table>
-	    	</form>
-	    	</div>
-		</div>
-{/if}
 {if $act eq 'carinfo'}
-		<div class="borrowinfo_top">
-		<div class="userinfo_title"><div class="userinfo_title_left"></div><span>车辆信息</span></div>
-		<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
-		<form action="borrow_money.php" method="post">
-		<table width="100%" cellpadding="7px" class="user_info_table">
-			<tr>
-				<td class="borrowtdinfo">车辆信息</td>
-				<td>
-					<select class="borrowinput" name="carinformation" id="car_info_cli">
-					{foreach from=$carinformation item=list}
-						<option>{$list}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td class="borrowtdinfo">车辆类型</td>
-				<td>
-					<select class="borrowinput" name="cartype">
-					{foreach from=$cartype item=list1}
-						<option>{$list1}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
-			<tr id="car_tranfer_time">
-				<td class="borrowtdinfo">过户时间</td>
-				<td>
-					<select class="borrowinput" name="cartime">
-					{foreach from=$cartime item=list2}
-						<option>{$list2}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
-			<script>
-				$("#car_info_cli").change(function(){
-					var carin = $("#car_info_cli").val();
-					if(carin == '二手车'){
-						$("#car_tranfer_time").show();
-					}else{
-						$("#car_tranfer_time").hide();
-					}
-				});
-				
-			</script>
-			<tr>
-				<td class="borrowtdinfo">使用性质</td>
-				<td>
-					<select class="borrowinput" name="carnature">
-					{foreach from=$carnature item=list3}
-						<option>{$list3}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td class="borrowtdinfo">车辆抵押</td>
-				<td>
-					<select class="borrowinput" name="carhold">
-					{foreach from=$carhold item=list4}
-						<option>{$list4}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td class="borrowtdinfo">信用历史</td>
-				<td>
-					<select class="borrowinput" name="carhistory">
-					{foreach from=$carhistory item=list5}
-						<option>{$list5}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
-			
-			<tr>
-				<input type="hidden" name="act" value="insert_car_info" />
-				<td class="borrowtdinfo"></td><td><input class="borrow_sub" type="submit" name="name" value="进行匹配"/></td>
-			</tr>
-		</table>
-		</form>
-		</div>
-		</div>
+	<div style="width:100%;height:360px;border:1px solid red;"></div>
+	<div class="w">
+		
+	</div>
 {/if}
 {if $act eq 'houseinfo'}
-		<div class="borrowinfo_top">
-		<div class="userinfo_title"><div class="userinfo_title_left"></div><span>房产信息</span></div>
-		<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
-		<form action="borrow_money.php" method="post">
-		<table width="100%" cellpadding="7px" class="user_info_table">
-			<tr>
-				<td class="borrowtdinfo">房产所在地</td>
-				<td>
-					<input type="text" name="hosue_houseadd" class="borrowinput" value="北京">
-				</td>
-			</tr>
-			<tr>
-				<td class="borrowtdinfo">产权类型</td>
-				<td>
-					<select class="borrowinput" name="housetype">
-					{foreach from=$righttye item=list7}
-						<option>{$list7}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
-			<tr>
-			<td class="borrowtdinfo">是否有房贷</td>
-				<td>
-					<select class="borrowinput" name="houseloan">
-					{foreach from=$decideloan item=list8}
-						<option>{$list8}</option>
-					{/foreach}
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<input type="hidden" name="act" value="insert_house_info" />
-				<td class="borrowtdinfo"></td><td><input class="borrow_sub" type="submit" name="name" value="进行匹配"/></td>
-			</tr>
-		</table>
-		</form>
-		</div>
-		</div>
+	<div style="width:100%;height:360px;border:1px solid red;"></div>
+	<div class="w">
+		
+	</div>
 {/if}
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
