@@ -155,7 +155,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     	$img = $GLOBALS['db']->getRow($sql);
     	$headimg = $img['head_img'];
     	
-    	$headimg = empty($headimg)?'./images/user_head_img.gif':$headimg;
+    	$headimg = empty($headimg)?'./images/user_head_img.jpg':$headimg;
     }
     $smarty->assign('headimg',$headimg);
 

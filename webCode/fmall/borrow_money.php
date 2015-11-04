@@ -16,75 +16,45 @@ $position = assign_ur_here(0, $_LANG['shopping_activity']);
 $smarty->assign('page_title',          $position['title']);                    // 页面标题
 $smarty->assign('ur_here',             $position['ur_here']);                  // 当前位置
 $smarty->assign('navigator_list',        get_navigator($ctype, $catlist));  //自定义导航栏
-if (!empty($GLOBALS['_CFG']['search_keywords']))
-{
-	$searchkeywords = explode(',', trim($GLOBALS['_CFG']['search_keywords']));
-}
-else
-{
-	$searchkeywords = array();
-}
-$smarty->assign('searchkeywords', $searchkeywords);	//热搜关键词
+
 $smarty->assign('helps',        get_shop_help()); // 网店帮助
 
 
 $action = isset($_REQUEST['act'])?$_REQUEST['act']:'default';
-$userid = $_SESSION['user_id'];
-
-if(empty($userid)){
-	header("location:user.php");
-}
 
 /* 申请借款页面*/
 if ($action == 'default')
 {	
 	include_once(ROOT_PATH . 'includes/lib_transaction.php');
 	
-	//查询是否有投资记录
-	$sql = 'SELECT is_loan_money FROM '.$GLOBALS['ecs']->table('users').' WHERE user_id='.$userid;
-	$countrec = $GLOBALS['db']->getOne($sql);
-	if(!empty($countrec)){
-		show_message($_LANG['financing_record_info'],$_LANG['back_up_page'],'user.php');
-	}
-
-	
-	$borrowstep = select_borrow_step($userid);		//查询借款的位置
-	
-	if(!empty($borrowstep['borrownum']) && empty($borrowstep['borrowbasic'])){
-		header('location:borrow_money.php?act=userinformation');
-	}elseif(!empty($borrowstep['borrownum']) && !empty($borrowstep['borrowbasic'])){
-		
-		$userinfo = select_borrowinfo_exist($userid);
-		
-		$flag = $userinfo[0]['borrow_style'];
-		if($flag == 1){
-			if(empty($borrowstep['borrow_car'])){
-				header("location:borrow_money.php?act=carinfo");
-			}else{
-				show_message($_LANG['borrow_record_info'],$_LANG['back_up_page'],'./index.php');
-			}	
-		}elseif($flag == 2){
-			if(empty($borrowstep['borrow_car'])){
-				header("location:borrow_money.php?act=houseinfo");
-			}else{
-				show_message($_LANG['borrow_record_info'],$_LANG['back_up_page'],'./index.php');
-			}
-		}elseif($flag == 3){
-			if(empty($borrowstep['borrow_car'])){
-				header("location:borrow_money.php?act=creditinfo");
-			}else{
-				show_message($_LANG['borrow_record_info'],$_LANG['back_up_page'],'./index.php');
-			}
-		}
-		
-	}
-	
-	$loantime = array('3个月','6个月','9个月','12个月','15个月','18个月','21个月','24个月');
-	
-	$smarty->assign('loantime',		$loantime);
-	
 	$smarty->assign('act',		$action);
 	$smarty->display('borrow_money.dwt');
+}
+
+/* ajax的车贷计算*/
+elseif ($action =="ajax_counter_car"){
+	$num = intval($_POST['catnum']);
+	$yearrate = 0.12;
+	$sixmonth = 0.13;
+	$threemonth = 0.15;
+	$month = 0.17;
+	
+	$val = $num*$yearrate.','.$num*$sixmonth.','.$num*$threemonth.','.$num*$month;
+	
+	echo $val;
+}
+
+/* ajax的房贷计算*/
+elseif ($action =="ajax_counter_house"){
+	$num = intval($_POST['catnum']);
+	$yearrate = 0.12;
+	$sixmonth = 0.13;
+	$threemonth = 0.15;
+	$month = 0.17;
+	
+	$val = $num*$yearrate.','.$num*$sixmonth.','.$num*$threemonth.','.$num*$month;
+	
+	echo $val;
 }
 
 /* 添加借款信息*/

@@ -254,7 +254,8 @@ function delete_tag($tag_words, $user_id)
  * @param   int     $user_id        用户ID
  * @param   int     $num            列表最大数量
  * @param   int     $start          列表起始位置
- * @param   int     $type           债券的类型
+ * @param   int     $catstatus      投资的类型
+ * @param   int     $type           投资的状态
  *
  * @return  array   $booking
  */
@@ -262,52 +263,57 @@ function get_booking_list($user_id, $num, $start, $catstatus, $type)
 {
     $booking = array();
     $pay_status = PS_PAYED;
-    
-    $sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.goods_weight,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
+    if($catstatus == '0'){
+    	$sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.goods_weight,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
             "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
                      $GLOBALS['ecs']->table('order_goods') . " AS o, " .$GLOBALS['ecs']->table('category') . " AS c " .
             "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND g.good_status = ".$type." AND".
-    		" o.user_id = '$user_id' AND c.is_standalone =".$catstatus." order by o.rec_id desc";
+    		" o.user_id = '$user_id' AND c.is_standalone =0 order by o.rec_id desc";
+    }else{
+    	$sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.goods_weight,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
+            "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
+                     $GLOBALS['ecs']->table('order_goods') . " AS o, " .$GLOBALS['ecs']->table('category') . " AS c " .
+            "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND g.good_status = ".$type." AND".
+    		" o.user_id = '$user_id' AND c.is_standalone !=0 order by o.rec_id desc";
+    }
+    
     $res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
 	
     while ($row = $GLOBALS['db']->fetchRow($res))
-    {
+    {	
         if (empty($row['dispose_note']))
         {
             $row['dispose_note'] = 'N/A';
         }
         if($type == GD_INVING){
-        	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
-        					'market_price'  => $row['market_price'].'%',	//年利率
-                           'surprice'   	=> round(100*(($row['shop_price'] - $row['surplus_price'])/$row['shop_price']),2).'%',	//进度
-                           'limit_time' 	=> ceil(($row['goods_number'] - $row['add_time'])/(60*60*24)),	//到期时间
-                           'overplus_time'  => ceil(($row['goods_number'] - gmtime())/(60*60*24)),			//剩余时间
-        					'good_id'		=> $row['goods_sn']		//债券id
-        				);
+        	$booking[] = array(
+				'good_id'		=> $row['goods_sn'],		//债券id
+				'invest_price'  => $row['invest_price'],	//投资金额
+				'market_price'  => $row['market_price'].'%',	//年利率
+                'invest_time' 	=> ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24)),//投资期限
+                'me_money'  	=> number_format($row['invest_price']+$row['invest_price']*$row['market_price']/100,2),		//待收本息
+                'invest_temp'	=> floor(ceil((($row['shop_price']-$row['surplus_price'])/$row['shop_price'])*100))/100		//投资进度	
+			);
         }
         if($type == GD_FULL){
-        	$monthnum = ceil(($row['goods_number']-$row['goods_weight'])/3600*24*30) - ceil((($row['goods_number']-$row['goods_weight'])/3600*24*30)/((gmtime()-$row['goods_weight'])/3600*24*30));
-        	$nextmonth = local_date('Y-m-d',$row['goods_weight']+3600*24*30*$monthnum);
-        	if($nextmonth-gmtime()>0){$orstatus = '未付款';}else{$orstatus = '已付款';}
-        	
-        	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
-        			'market_price'  => $row['market_price'],	//年利率
-        			'collect_interest'   	=> ($row['shop_price']*$row['market_price'])/365*(($row['goods_number'] - $row['add_time'])/60*60*24),	//待收本息
-        			'month_interest' 	=> ($row['shop_price']*$row['market_price'])/365*(date('t',gmtime())),	//月收本息
-        			'overplus_time'  => $nextmonth,			//下个还款日
-        			'over_status'  => $orstatus,			//状态
-        			'good_id'		=> $row['goods_sn']		//债券id
-        	);
+        	$booking[] = array(
+				'good_id'		=> $row['goods_sn'],		//债券id
+				'invest_price'  => $row['invest_price'],	//投资金额
+				'market_price'  => $row['market_price'].'%',	//年利率
+                'invest_time' 	=> ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24)),//投资期限
+                'me_money'  	=> $row['invest_price']+$row['invest_price']*$row['market_price']/100,		//待收本息
+                'time_start'	=> local_get($row['goods_weight'])	//计息日期
+			);
         }
         if($type == GD_OVER){
-        	$booking[] = array('invest_price'   => $row['invest_price'],	//原始投资金额
-        			'market_price'  => $row['market_price'],	//年利率
-        			'shop_price'   	=> ($row['shop_price'] - $row['surplus_price'])/$row['shop_price'],	//回收金额
-        			'limit_time' 	=> ($row['goods_number'] - $row['add_time'])/(60*60*24),	//已转金额
-        			'overplus_time'  => local_getdate($row['goods_number']),			//结清日期
-        			'over_style'  => ($row['goods_number'] - gmtime())/60*60*24,			//结清方式
-        			'good_id'		=> $row['goods_sn']		//债券id
-        	);
+        	$booking[] = array(
+				'good_id'		=> $row['goods_sn'],		//债券id
+				'invest_price'  => $row['invest_price'],	//投资金额
+				'market_price'  => $row['market_price'].'%',	//年利率
+                'invest_time' 	=> ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24)),//投资期限
+                'me_money'  	=> $row['invest_price']+$row['invest_price']*$row['market_price']/100,		//待收本息
+                'time_end'	=> local_time($row['goods_number'])		//结清日期	
+			);
         }
         
     }
@@ -632,7 +638,7 @@ function get_user_default($user_id)
     $info['emailstatus'] = $row['emailstatus'];
     $info['idcardstatus'] = $row['idcardstatus'];
     $info['bangcardstatus'] = $row['bangcardstatus'];
-    $info['user_head_img'] = empty($row['head_img'])?'./images/user_head_img.gif':$row['head_img'];
+    $info['user_head_img'] = empty($row['head_img'])?'./images/user_head_img.jpg':$row['head_img'];
     
     /* 增加是否开启会员邮件验证开关 */
     $info['is_validate'] = ($GLOBALS['_CFG']['member_email_validate'] && !$row['is_validated'])?0:1;

@@ -4,28 +4,12 @@
  * =================
  */
 function carshowhidcon(){
-	$("#borrow_car_term").slideDown(500);
-	$("#borrow_house_term").hide();
-	$("#borrow_credit_term").hide();
-	$("#category_car_input").prop("checked",true);
-	$("#category_house_input").prop("checked",false);
-	$("#category_credit_input").prop("checked",false);
+	$("#borrow_car_term").show(1000);
+	$("#borrow_house_term").hide(1000);
 }
 function houseshowhidcon(){
-	$("#borrow_house_term").slideDown(500);
-	$("#borrow_car_term").hide();
-	$("#borrow_credit_term").hide();
-	$("#category_house_input").prop("checked",true);
-	$("#category_car_input").prop("checked",false);
-	$("#category_credit_input").prop("checked",false);
-}
-function creditshowhidcon(){
-	$("#borrow_credit_term").slideDown(500);
-	$("#borrow_car_term").hide();
-	$("#borrow_house_term").hide();
-	$("#category_credit_input").prop("checked",true);
-	$("#category_house_input").prop("checked",false);
-	$("#category_car_input").prop("checked",false);
+	$("#borrow_house_term").show(1000);
+	$("#borrow_car_term").hide(1000);
 }
 
 /*

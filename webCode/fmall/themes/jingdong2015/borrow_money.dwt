@@ -21,131 +21,423 @@
 {insert_scripts files='utils.js,transport_jquery.js,borrow.js,region.js,shopping_flow.js'}
 </head>
 <body>
-<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
-<div class="borrow_big_div">
-<div class="w main">
-	<div class="blank10"></div>
-    <div class="m" style="background:#F9F9F9;">
-    <div class="borrow-m" style="margin-bottom:50px;">
-    	<div class="borrow_titleinfo">
-    		<div class="title_car_first"></div>
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}	
 {if $act eq 'default'}
-    		<div class="title_car_default"></div>
-    		<div class="title_car_div"></div>
-{/if}
-{if $act neq 'default'}
-			<div class="title_car_info"></div>
-			<div class="title_info_div"></div>
-{/if}
-    		<div class="title_car_default"></div>
-    		<div class="title_car_div"></div>
-    		<div class="title_car_default"></div>
-    		<div class="title_car_div"></div>
-    		<div class="title_car_default"></div>
-    		<div class="title_car_div"></div>
-    	</div>
-    	<div class="borrow_string">
-    		<span class="borrow_mar_first">进入需求分类</span><span class="borrow_mar_second">填写借款信息</span>
-    		<span class="borrow_mar_three">审核</span><span class="borrow_mar_four">筹集借款</span>
-    		<span class="borrow_mar_four">获得借款</span>
-    	</div>
-{if $act eq 'default'}
-		<form action="borrow_money.php" method="post" onsubmit="return borrow_money()">
+	<div style="width:100%;height:360px;border:1px solid red;background:url() center center no-repeat;"></div>
+	<div class="blank70"></div>
+	<div class="w main">
     	<div class="borrow_category">
-    		<div id="category_car" onclick="carshowhidcon();"><input type="checkbox" id="category_car_input" name="category_style" class="category_input_style" value='1'><em>车贷</em><span>(适用在北京工作有车)</span></div>
-    		<div id="category_house" onclick="houseshowhidcon();"><input type="checkbox" id="category_house_input" name="category_style" class="category_input_style" value='2'><em>房贷</em><span>(适用在北京工作有房)</span></div>
-    		<div id="category_credit" onclick="creditshowhidcon();"><input type="checkbox" id="category_credit_input" name="category_style" class="category_input_style" value='3'><em>信用贷</em><span>(适用工薪阶层)</span></div>
+    		<div id="category_car" onclick="carshowhidcon();">车辆抵押贷款</div>
+    		<div id="category_house" onclick="houseshowhidcon();">房产抵押贷款</div>
     	</div>
     	<div id="borrow_car_term">
     		<div class="car_term_div">
-    			<p style='margin-top:10px;'>申请条件</p>
-    			<ul class="car_term_ulfir">
-    				<li>年龄:22-55周岁的中国公民</li>
-    				<li>拥有稳定职业，申请人拥有当地抵押车辆的所有权</li>
-    				<li>个人征信报告</li>
-    			</ul>
     			<ul class="car_term_ulsec">
-	    			<li>机动车登记证、行驶证、购置附加税证（本）、购车发票</li>
-					<li>保险单、车税、进口车辆相关税证明</li>
-					<li>身份证（非本地户口客户提供有效期内暂住证或居住证）</li>
+    				<p>产品特点</p>
+    				<li>申请便捷，有车就能贷</li>
+    				<li>资料齐全，最快1天放款</li>
+    				<li>最高可借评估值90%</li>
+    				<li>借款金额上不封顶</li>
+    				<li>期限灵活，自由选择</li>
     			</ul>
+    			<ul class="car_term_ulfir">
+	    			<p>申请条件</p>
+    				<li>申请人拥有抵押车辆的所有权</li>
+    				<li>车辆无未偿还按揭</li>
+    				<li>有稳定收入来源</li>
+    				<li>车辆所在地已开通我公司业务</li>
+    			</ul>
+    			<ul class="car_term_ulfir">
+    				<p>所需资料</p>
+    				<li>机动车登记证书</li>
+    				<li>税务登记证</li>
+    				<li>机动车行驶证</li>
+    				<li>原始购车发票</li>
+    				<li>交强险保单，二代身份证</li>
+    			</ul>
+    		</div>
+    		<div>
+    			<a href="#" class="count_click_car">立即申请</a>
     		</div>
     	</div>
     	<div id="borrow_house_term">
 			<div class="car_term_div">
-				<p style='margin-top:10px;'>申请条件</p>
-				<ul class="car_term_ulfir">
-					<li>年龄:22-55周岁的中国公民</li>
-					<li>《房屋所有权证》、《房屋共有权证》</li>
-					<li>《国有土地使用证》</li>
-				</ul>
-				<ul class="car_term_ulsec">
-	    			<li>授权委托书及受托人身份证明</li>
-					<li>房地产估价结果证明或双方价值认定书</li>
-					<li>婚姻有效证明并夫妻双方到场</li>
-				</ul>
-			</div>
+    			<ul class="car_term_ulsec">
+    				<p>产品特点</p>
+    				<li>申请便捷，有车就能贷</li>
+    				<li>资料齐全，最快1天放款</li>
+    				<li>最高可借评估值90%</li>
+    				<li>借款金额上不封顶</li>
+    				<li>期限灵活，自由选择</li>
+    			</ul>
+    			<ul class="car_term_ulfir">
+	    			<p>申请条件</p>
+    				<li>申请人拥有抵押车辆的所有权</li>
+    				<li>车辆无未偿还按揭</li>
+    				<li>有稳定收入来源</li>
+    				<li>车辆所在地已开通我公司业务</li>
+    			</ul>
+    			<ul class="car_term_ulfir">
+    				<p>所需资料</p>
+    				<li>机动车登记证书</li>
+    				<li>税务登记证</li>
+    				<li>机动车行驶证</li>
+    				<li>原始购车发票</li>
+    				<li>交强险保单，二代身份证</li>
+    			</ul>
+    		</div>
+    		<div>
+    			<a href="#" class="count_click_car">立即申请</a>
+    		</div>
 		</div>
-		<div id="borrow_credit_term">
-			<div class="car_term_div">
-				<p style='margin-top:10px;'>申请条件</p>
-				<ul class="car_term_ulfir">
-					<li>年龄:22-55周岁的中国公民</li>
-					<li>有效的二代身份证件，正反面复印件</li>
-					<li>工作证明(单位电话和公章)居住证明</li>
-				</ul>
-				<ul class="car_term_ulsec">
-	    			<li style="height:25px;width:100%;">收入证明(6个月工资流水)</li>
-					<li style="height:25px;width:100%;">个人征信报告（明细版）</li>
-					<li style="height:25px;width:100%;">婚姻状况资料、居住证明</li>
-				</ul>
-			</div>
-		</div>
-		
-    	<div class="loan_des_info">
-    		<form action="borrow_money.php" method="post" onsubmit="return borrow_money()">
-    		<table width="100%" border="0px">
-	    		<tr>
-					<td class="borrowtd">借款金额</td><td><div class="borrowinput" style="float:left;height:37px;"><input class="borrowinputnum" type="text" name="loannum" placeholder="请输入借款金额" onblur="borrowchenum(this.value)"/>元</div><span id="borrownum" style="color:red;margin-left:10px;"></span></td>
-				</tr>
-				<tr>
-					<td class="borrowtd">借款期限</td>
-					<td>
-						<select class="borrowinput" name="borrowloantime">
-	                    <!-- {foreach from=$loantime item=timelist} -->
-	                    <option>{$timelist}</option>
-	                    <option></option>
-	                    <!-- {/foreach} -->
-	                    </select>
-					</td>
-				</tr>
-				<tr>
-					<td class="borrowtd">月还款额</td><td></td>
-				</tr>
-				<tr>
-					<td class="borrowtd">初期服务费</td><td></td>
-				<tr>
-					<td class="borrowtd">借款标题</td>
-					<td>
-						<input type="text" name="loantitle" class="borrowinput" placeholder="例:办公、装修"><span id="borrowtitle" style="height:30px;line-height:30px;color:red;margin-left:10px;"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class="borrowtd">借款描述</td>
-					<td>
-						<textarea cols="100" rows="8" name="loandescription" id="loantextarea" placeholder="此描述用于向理财人展示您的借款用途" style="outline:none;resize:none;"></textarea>
-						<br><span style="color:red;" id="borrowdescription"></span>
-					</td>
-				</tr>
-				<tr>
-					<td></td><td class="borrowtd"><input type="checkbox" name="loanagree" checked="checked">我已阅读并同意<a href='' style="color:blue;">《联众金融的借款协议》</a></td>
-				</tr>
-					<td class="borrowtd"><input type="hidden" name="act" value="insert_borrow_money" /></td>
-					<td><a href="borrow_money.php?act=userinformation"><input type="submit" class="borrow_sub" name="name" value="立即申请"/></a></td>
-				</tr>
-    		</table>
-    		</form>
+		<div class="blank70"></div>
+    	<div class="count_car_house">
+    	<div class="rate_count_div">
+    		<ul>
+    			<li class="rate_car_li" onclick="borrow_rate_car()">车贷利率</li>
+    			<li class="rate_house_li" onclick="borrow_rate_house()">房贷利率</li>
+    		</ul>
+    		<div class="borrow_rate_blank"></div>
     	</div>
+    	<div class="countbig_div_car" id="countbig_div_car">
+    	 	<div class="bigdiv_left">
+    	 		<p >借款金额:</p>
+    	 		<div class="countnum_info">
+    	 			<input type="text" value="10000" id="counter_catnum_car">
+    	 			<span>元</span>
+    	 		</div>
+    	 		<a href="#javascript:" onclick="counter_catabsnum_car()">开始计算</a>
+    	 	</div>
+    	 	<div class="bigdiv_right">
+    	 		<p >产品类型:</p>
+    	 		<ul>
+    	 			<li>
+    	 				<div class="bigright_font">借款期限<span class="catfont_month">(12个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo12_car" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum12_car">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(6个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo6_car" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum6_car">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(3个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo3_car" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum3_car">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(1个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo1_car" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum1_car">100.00</span>元</div>
+    	 			</li>
+    	 		</ul>
+    	 	</div>
+    	 	<script>
+    	 		function counter_catabsnum_car(){
+    	 			var num = $("#counter_catnum_car").val();
+    	 			Ajax.call('borrow_money.php?act=ajax_counter_car','catnum='+num,callback_catcounter_car,'POST','TEXT',true,true);
+    	 			
+    	 		}
+    	 		function callback_catcounter_car(result){
+    	 			var carone = result.split(',');
+    	 			$("#rescountnum12_car").html(carone[0]);
+    	 			$("#rescountnum6_car").html(carone[1]);
+    	 			$("#rescountnum3_car").html(carone[2]);
+    	 			$("#rescountnum1_car").html(carone[3]);
+    	 			
+    	 			$("#catabsmiddleinfo12_car").css("width",0);
+    	 			$("#catabsmiddleinfo6_car").css("width",0);
+    	 			$("#catabsmiddleinfo3_car").css("width",0);
+    	 			$("#catabsmiddleinfo1_car").css("width",0);
+    	 			
+    	 			var number = 0;	
+            		var startwidth12 = 400;
+            		var startwidth6 = 250;
+            		var startwidth3 = 200;
+            		var startwidth1 = 100;
+            		
+            		var auto12 = setInterval(autoaddwidth12_car,"100");
+            		function autoaddwidth12_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo12_car").css("width",number);
+            			if(number >= startwidth12){
+            				clearInterval(auto12);
+            			}
+            		}
+            		
+            		var auto6 = setInterval(autoaddwidth6_car,"100");
+            		function autoaddwidth6_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo6_car").css("width",number);
+            			if(number >= startwidth6){
+            				clearInterval(auto6);
+            			}
+            		}
+            		
+            		var auto3 = setInterval(autoaddwidth3_car,"100");
+            		function autoaddwidth3_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo3_car").css("width",number);
+            			if(number >= startwidth3){
+            				clearInterval(auto3);
+            			}
+            		}
+            		
+            		var auto1 = setInterval(autoaddwidth1_car,"100");
+            		function autoaddwidth1_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo1_car").css("width",number);
+            			if(number >= startwidth1){
+            				clearInterval(auto1);
+            			}
+            		}
+    	 			
+    	 		}
+            	$(function(){
+            		var number = 0;	
+            		var startwidth12 = 400;
+            		var startwidth6 = 250;
+            		var startwidth3 = 200;
+            		var startwidth1 = 100;
+            		
+            		var auto12 = setInterval(autoaddwidth12_car,"100");
+            		function autoaddwidth12_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo12_car").css("width",number);
+            			if(number >= startwidth12){
+            				clearInterval(auto12);
+            			}
+            		}
+            		
+            		var auto6 = setInterval(autoaddwidth6_car,"100");
+            		function autoaddwidth6_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo6_car").css("width",number);
+            			if(number >= startwidth6){
+            				clearInterval(auto6);
+            			}
+            		}
+            		
+            		var auto3 = setInterval(autoaddwidth3_car,"100");
+            		function autoaddwidth3_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo3_car").css("width",number);
+            			if(number >= startwidth3){
+            				clearInterval(auto3);
+            			}
+            		}
+            		
+            		var auto1 = setInterval(autoaddwidth1_car,"100");
+            		function autoaddwidth1_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo1_car").css("width",number);
+            			if(number >= startwidth1){
+            				clearInterval(auto1);
+            			}
+            		}
+
+            	});
+            </script>
+    	</div>
+    	<div class="countbig_div_car" id="countbig_div_house" style="display:none;">
+    	 	<div class="bigdiv_left">
+    	 		<p >借款金额:</p>
+    	 		<div class="countnum_info">
+    	 			<input type="text" value="10000" id="counter_catnum_house">
+    	 			<span>元</span>
+    	 		</div>
+    	 		<a href="#javascript:" onclick="counter_catabsnum_house()">开始计算</a>
+    	 	</div>
+    	 	<div class="bigdiv_right">
+    	 		<p >产品类型:</p>
+    	 		<ul>
+    	 			<li>
+    	 				<div class="bigright_font">借款期限<span class="catfont_month">(12个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo12_house" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum12_house">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(6个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo6_house" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum6_house">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(3个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo3_house" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum3_house">100.00</span>元</div>
+    	 			</li>
+    	 			<li>
+    	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(1个月)</span></div>
+    	 				<div class="bigright_middle"><div id="catabsmiddleinfo1_house" class="catabsmiddle_info"></div></div>
+    	 				<div class="bigright_countnum"><span id="rescountnum1_house">100.00</span>元</div>
+    	 			</li>
+    	 		</ul>
+    	 	</div>
+    	 	<script>
+    	 		function counter_catabsnum_house(){
+    	 			var num = $("#counter_catnum_house").val();
+    	 			Ajax.call('borrow_money.php?act=ajax_counter_house','catnum='+num,callback_catcounter_house,'POST','TEXT',true,true);
+    	 			
+    	 		}
+    	 		function callback_catcounter_house(result){
+    	 			var carone = result.split(',');
+    	 			$("#rescountnum12_house").html(carone[0]);
+    	 			$("#rescountnum6_house").html(carone[1]);
+    	 			$("#rescountnum3_house").html(carone[2]);
+    	 			$("#rescountnum1_house").html(carone[3]);
+    	 			
+    	 			$("#catabsmiddleinfo12_house").css("width",0);
+    	 			$("#catabsmiddleinfo6_house").css("width",0);
+    	 			$("#catabsmiddleinfo3_house").css("width",0);
+    	 			$("#catabsmiddleinfo1_house").css("width",0);
+    	 			
+    	 			var number = 0;	
+            		var startwidth12 = 400;
+            		var startwidth6 = 250;
+            		var startwidth3 = 200;
+            		var startwidth1 = 100;
+            		
+            		var auto12 = setInterval(autoaddwidth12_house,"100");
+            		function autoaddwidth12_house(){
+            			number = number+20;
+            			$("#catabsmiddleinfo12_house").css("width",number);
+            			if(number >= startwidth12){
+            				clearInterval(auto12);
+            			}
+            		}
+            		
+            		var auto6 = setInterval(autoaddwidth6_house,"100");
+            		function autoaddwidth6_house(){
+            			number = number+20;
+            			$("#catabsmiddleinfo6_house").css("width",number);
+            			if(number >= startwidth6){
+            				clearInterval(auto6);
+            			}
+            		}
+            		
+            		var auto3 = setInterval(autoaddwidth3_house,"100");
+            		function autoaddwidth3_house(){
+            			number = number+20;
+            			$("#catabsmiddleinfo3_house").css("width",number);
+            			if(number >= startwidth3){
+            				clearInterval(auto3);
+            			}
+            		}
+            		
+            		var auto1 = setInterval(autoaddwidth1_house,"100");
+            		function autoaddwidth1_house(){
+            			number = number+20;
+            			$("#catabsmiddleinfo1_house").css("width",number);
+            			if(number >= startwidth1){
+            				clearInterval(auto1);
+            			}
+            		}
+    	 			
+    	 		}
+            	
+            	function borrow_rate_car(){
+            		$("#countbig_div_car").show();
+            		$("#countbig_div_house").hide();
+            		$(".rate_house_li").css("border-bottom","1px solid #CCC");
+            		$(".rate_car_li").css("border-bottom",0);
+            		
+            		var number = 0;	
+            		var startwidth12 = 400;
+            		var startwidth6 = 250;
+            		var startwidth3 = 200;
+            		var startwidth1 = 100;
+            		
+            		var auto12 = setInterval(autoaddwidth12_car,"100");
+            		function autoaddwidth12_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo12_car").css("width",number);
+            			if(number >= startwidth12){
+            				clearInterval(auto12);
+            			}
+            		}
+            		
+            		var auto6 = setInterval(autoaddwidth6_car,"100");
+            		function autoaddwidth6_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo6_car").css("width",number);
+            			if(number >= startwidth6){
+            				clearInterval(auto6);
+            			}
+            		}
+            		
+            		var auto3 = setInterval(autoaddwidth3_car,"100");
+            		function autoaddwidth3_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo3_car").css("width",number);
+            			if(number >= startwidth3){
+            				clearInterval(auto3);
+            			}
+            		}
+            		
+            		var auto1 = setInterval(autoaddwidth1_car,"100");
+            		function autoaddwidth1_car(){
+            			number = number+20;
+            			$("#catabsmiddleinfo1_car").css("width",number);
+            			if(number >= startwidth1){
+            				clearInterval(auto1);
+            			}
+            		}
+            	}
+            	function borrow_rate_house(){
+            		$("#countbig_div_car").hide();
+            		$("#countbig_div_house").show();
+            		$(".rate_house_li").css("border-bottom",0);
+            		$(".rate_car_li").css("border-bottom","1px solid #CCC");
+            		
+            		
+            		var number = 0;	
+            		var startwidth12 = 400;
+            		var startwidth6 = 250;
+            		var startwidth3 = 200;
+            		var startwidth1 = 100;
+            		
+            		var auto12 = setInterval(autoaddwidth12_house,"100");
+            		function autoaddwidth12_house(){
+            			number = number+20;
+            			$("#catabsmiddleinfo12_house").css("width",number);
+            			if(number >= startwidth12){
+            				clearInterval(auto12);
+            			}
+            		}
+            		
+            		var auto6 = setInterval(autoaddwidth6_house,"100");
+            		function autoaddwidth6_house(){
+            			number = number+20;
+            			$("#catabsmiddleinfo6_house").css("width",number);
+            			if(number >= startwidth6){
+            				clearInterval(auto6);
+            			}
+            		}
+            		
+            		var auto3 = setInterval(autoaddwidth3_house,"100");
+            		function autoaddwidth3_house(){
+            			number = number+20;
+            			$("#catabsmiddleinfo3_house").css("width",number);
+            			if(number >= startwidth3){
+            				clearInterval(auto3);
+            			}
+            		}
+            		
+            		var auto1 = setInterval(autoaddwidth1_house,"100");
+            		function autoaddwidth1_house(){
+            			number = number+20;
+            			$("#catabsmiddleinfo1_house").css("width",number);
+            			if(number >= startwidth1){
+            				clearInterval(auto1);
+            			}
+            		}
+            	}
+            </script>
+    	</div>
+    </div>
+    <div class="blank70"></div>
+    </div>
 {/if}
 {if $act eq 'userinformation'}
     	<div class="borrowinfo_top">
@@ -395,194 +687,6 @@
 		</div>
 		</div>
 {/if}
-{if $act eq 'creditinfo'}
-	<div class="borrowinfo_top">
-	<div class="userinfo_title"><div class="userinfo_title_left"></div><span>信用信息</span></div>
-	<div style="width:100%;height:auto;border:1px solid #ddd;margin-top:15px;">
-	<ul style="margin-left:100px;line-height:40px;">
-		<li>
-			<p style="font-size:20px;">身份认证</p>
-			<ul style="margin-left:20px;">
-				<li>1.本人身份证正面照片{if $credit_info.cardright eq '0'}<a href="javascript:" onclick="uploadcardrightshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
-				<form action="borrow_money.php" method="post" enctype='multipart/form-data'>
-				<div id='uploadcardrightdiv' style="display:none;">
-					<div class="fileinputdiv">
-						<div id='pcardrightTitle'></div>
-						<div class='uploadinputdiv'>
-							<input type="file" name="cardright" class='uploadtrueinput' onChange="insertcardrightTitle(this.value);">选择文件
-						</div>
-					</div>
-					<div class='uploadheadbutton'>
-						<input type='hidden' name='project' value='cardright'>
-						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type="submit" value='上传' class='uploadheadsub'>
-						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcardrighthide()">
-					</div>
-				</div>
-				</form>
-
-				<li>1.本人身份证反面照片{if $credit_info.cardleft eq '0'}<a href="javascript:" onclick="uploadcardleftshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
-				<form action='' method='post' enctype='multipart/form-data'>
-				<div id='uploadcardleftdiv' style="display:none;">
-					<div class="fileinputdiv">
-						<div id='pcardleftTitle'></div>
-						<div class='uploadinputdiv'>
-							<input type="file" name="cardleft" class='uploadtrueinput' onChange="insertcardleftTitle(this.value);">选择文件
-						</div>
-					</div>
-					<div class='uploadheadbutton'>
-						<input type='hidden' name='project' value='cardleft'>
-						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type='submit' value='上传' class='uploadheadsub'>
-						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcardlefthide()">
-					</div>
-				</div>
-				</form>
-
-				<li>3.本人手持身份证正面头部照{if $credit_info.cardhead eq '0'}<a href="#javascript:" onclick="uploadcardheadshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
-				<form action='' method='post' enctype='multipart/form-data'>
-				<div id='uploadcardheaddiv' style="display:none;">
-					<div class="fileinputdiv">
-						<div id='pcardheadTitle'></div>
-						<div class='uploadinputdiv'>
-							<input type="file" name="cardhead" class='uploadtrueinput' onChange="insertcardheadTitle(this.value);">选择文件
-						</div>
-					</div>
-					<div class='uploadheadbutton'>
-						<input type='hidden' name='project' value='cardhead'>
-						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type='submit' value='上传' class='uploadheadsub'>
-						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcardheadhide()">
-					</div>
-				</div>
-				</form>
-			</ul>
-		</li>
-		<li>
-			<p style="font-size:20px;">工作认证</p>
-			<ul style="margin-left:20px;">
-				<li>1.加盖单位公章（或劳动合同专用章）的劳动合同{if $credit_info.contract eq '0'}<a href="#javascript:" onclick="uploadcontractshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
-				<form action='' method='post' enctype='multipart/form-data'>
-				<div id='uploadcontractdiv' style="display:none;">
-					<div class="fileinputdiv">
-						<div id='pcontractTitle'></div>
-						<div class='uploadinputdiv'>
-							<input type="file" name="contract" class='uploadtrueinput' onChange="insertcontractTitle(this.value);">选择文件
-						</div>
-					</div>
-					<div class='uploadheadbutton'>
-						<input type='hidden' name='project' value='contract'>
-						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type='submit' value='上传' class='uploadheadsub'>
-						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcontracthide()">
-					</div>
-				</div>
-				</form>
-				
-				<li>2.最近1个月内开具的加盖单位公章（或人力章、财务章）的机打在职证明{if $credit_info.certification eq '0'}<a href="#javascript:" class="provincecard" onclick="uploadcertificationshow()">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
-				<form action='' method='post' enctype='multipart/form-data'>
-				<div id='uploadcertificationdiv' style="display:none;">
-					<div class="fileinputdiv">
-						<div id='pcertificationTitle'></div>
-						<div class='uploadinputdiv'>
-							<input type="file" name="certification" class='uploadtrueinput' onChange="insertcertificationTitle(this.value);">选择文件
-						</div>
-					</div>
-					<div class='uploadheadbutton'>
-						<input type='hidden' name='project' value='certification'>
-						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type='submit' value='上传' class='uploadheadsub'>
-						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcertificationhide()">
-					</div>
-				</div>
-				</form>
-
-				<li>3.带有姓名、照片、工作单位名称的工作证{if $credit_info.workcertification eq '0'}<a href="#javascript:" onclick="uploadworkcertificationshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
-				<form action='' method='post' enctype='multipart/form-data'>
-				<div id='uploadworkcertificationdiv' style="display:none;">
-					<div class="fileinputdiv">
-						<div id='pworkcertificationTitle'></div>
-						<div class='uploadinputdiv'>
-							<input type="file" name="workcertification" class='uploadtrueinput' onChange="insertcertificationTitle(this.value);">选择文件
-						</div>
-					</div>
-					<div class='uploadheadbutton'>
-						<input type='hidden' name='project' value='workcertification'>
-						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type='submit' value='上传' class='uploadheadsub'>
-						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadworkcertificationhide()">
-					</div>
-				</div>
-				</form>
-			</ul>
-		</li>
-		<li>
-			<p style="font-size:20px;">信用认证</p>
-			<p style="margin-left:20px;">1.个人信用报告需15日内开具，认证条件：信用记录良好，认证有效期：6个月{if $credit_info.prove eq '0'}<a href="#javascript:" onclick="uploadproveshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</p>
-			<form action='' method='post' enctype='multipart/form-data'>
-			<div id='uploadprovediv' style="display:none;">
-				<div class="fileinputdiv">
-					<div id='pproveTitle'></div>
-					<div class='uploadinputdiv'>
-						<input type="file" name="prove" class='uploadtrueinput' onChange="insertproveTitle(this.value);">选择文件
-					</div>
-				</div>
-				<div class='uploadheadbutton'>
-					<input type='hidden' name='project' value='prove'>
-					<input type='hidden' name='act' value='insert_credit_info'>
-					<input type='submit' value='上传' class='uploadheadsub'>
-					<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadprovehide()">
-				</div>
-			</div>
-			</form>
-		</li>
-		<li>
-			<p style="font-size:20px;">收入认证</p>
-			<ul style="margin-left:20px;">
-				<li>1.可体现工资项的最近3个月的工资卡银行流水单{if $credit_info.bankprove eq '0'}<a href="#javascript:" onclick="uploadbankproveshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
-				<form action='' method='post' enctype='multipart/form-data'>
-				<div id='uploadbankprovediv' style="display:none;">
-					<div class="fileinputdiv">
-						<div id='pbankproveTitle'></div>
-						<div class='uploadinputdiv'>
-							<input type="file" name="bankprove" class='uploadtrueinput' onChange="insertbankproveTitle(this.value);">选择文件
-						</div>
-					</div>
-					<div class='uploadheadbutton'>
-						<input type='hidden' name='project' value='bankprove'>
-						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type='submit' value='上传' class='uploadheadsub'>
-						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadbankprovehide()">
-					</div>
-				</div>
-				</form>
-				<li>2.可体现工资项的最近3个月的网银电脑截屏{if $credit_info.comscreen eq '0'}<a href="#javascript:" onclick="uploadcomscreenshow()" class="provincecard">上传认证</a>{else}<a href="#javascript:" class="provincecardcolor">已认证</a>{/if}。</li>
-				<form action='' method='post' enctype='multipart/form-data'>
-				<div id='uploadcomscreendiv' style="display:none;">
-					<div class="fileinputdiv">
-						<div id='pcomscreenTitle'></div>
-						<div class='uploadinputdiv'>
-							<input type="file" name="comscreen" class='uploadtrueinput' onChange="insertcomscreenTitle(this.value);">选择文件
-						</div>
-					</div>
-					<div class='uploadheadbutton'>
-						<input type='hidden' name='project' value='comscreen'>
-						<input type='hidden' name='act' value='insert_credit_info'>
-						<input type='submit' value='上传' class='uploadheadsub'>
-						<input type='reset' value='取消上传' class='uploadheadrest' onclick="uploadcomscreenhide()">
-					</div>
-				</div>
-				</form>
-			</ul>
-		</li>
-	</ul>
-	</div>
-	</div>
-{/if}
-	</div>
-	</div>
-</div>
-</div>
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
 </div>

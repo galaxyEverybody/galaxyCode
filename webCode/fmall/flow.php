@@ -1619,9 +1619,10 @@ elseif ($_REQUEST['step'] == 'done')
     $sql = 'SELECT is_loan_money,idcardstatus FROM '.$GLOBALS['ecs']->table('users').' WHERE user_id='.$userid;
     $countrec = $GLOBALS['db']->getAll($sql);
     
-    if($countrec[0]['is_loan_money'] == '2'){
+    /*if($countrec[0]['is_loan_money'] == '2'){
     	show_message($_LANG['financing_record_info'],$_LANG['back_up_page'],'./index.php');
-    }
+    }*/
+    
     //是否进行了实名认证
     if(empty($countrec[0]['idcardstatus'])){
     	show_message($_LANG['is_idcard_fail'],$_LANG['back_up_page'],'user.php?act=auth_center');

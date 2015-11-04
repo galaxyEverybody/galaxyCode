@@ -36,7 +36,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'manage_msg', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'ajax_center_manadel', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
-'account_deposit','bang_payment','account_log', 'booking_list_month', 'booking_list_quarter', 'booking_list_year', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
+'account_deposit','bang_payment','account_log', 'booking_list_month', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 未登录处理 */
 if (empty($_SESSION['user_id']))
@@ -1014,7 +1014,7 @@ elseif ($action == 'profile')
 	$user_info['truename'] = empty($user_info['realname'])?0:substr($user_info['realname'],0,3).'****';
 	$user_info['idcard'] = empty($user_info['idcard'])?0:str_replace(substr($user_info['idcard'],4,strlen($user_info['idcard'])-8),'**********',$user_info['idcard']);
 	$user_info['card'] = empty($user_info['card'])?0:substr($user_info['card'],0,4).'**********'.substr($user_info['card'],-4);
-	$user_info['user_head_img'] = empty($user_info['user_head_img'])?'./images/user_head_img.gif':$user_info['user_head_img'];
+	$user_info['user_head_img'] = empty($user_info['user_head_img'])?'./images/user_head_img.jpg':$user_info['user_head_img'];
 	
 	/* 取出注册扩展字段 */
     /*$sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
@@ -1869,7 +1869,7 @@ elseif ($action == 'bang_payment')
 	$smarty->display('user_bang.dwt');
 }
 
-/* 显示我的债券列表 */
+/* 显示散标投资列表 */
 elseif ($action == 'booking_list')
 {
     include_once(ROOT_PATH . 'includes/lib_clips.php');
@@ -1895,7 +1895,7 @@ elseif ($action == 'booking_list')
     $smarty->display('user_clips.dwt');
 }
 
-/* 显示月能赚列表*/
+/* 显示聚能赚定期列表*/
 elseif ($action == 'booking_list_month')
 {
 	include_once(ROOT_PATH . 'includes/lib_clips.php');
@@ -1910,69 +1910,16 @@ elseif ($action == 'booking_list_month')
 	$sql = "SELECT count(*) " .
 			"FROM " .$ecs->table('goods'). " AS g, " .
 			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
-			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = ".$catstatus." AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone != 0 AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
 	$record_count = $db->getOne($sql);
-
+	
 	$pager = get_pager('user.php', array('act' => $action), $record_count, $page);
-	$smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
-	$smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
-	$smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
+	$smarty->assign('bid_list_abs', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
+	$smarty->assign('recover_list_abs', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
+	$smarty->assign('bond_list_abs', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
 	$smarty->assign('pager',        $pager);
 	$smarty->display('user_clips.dwt');
 }
-
-/* 显示月能赚列表*/
-elseif ($action == 'booking_list_quarter')
-{
-	include_once(ROOT_PATH . 'includes/lib_clips.php');
-
-	$catstatus = isset($catstatus)?$catstatus:2;
-
-
-	$page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
-	$pay_status = PS_PAYED;
-
-	/* 我的债券 */
-	$sql = "SELECT count(*) " .
-			"FROM " .$ecs->table('goods'). " AS g, " .
-			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
-			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = ".$catstatus." AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
-	$record_count = $db->getOne($sql);
-
-	$pager = get_pager('user.php', array('act' => $action), $record_count, $page);
-	$smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
-	$smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
-	$smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
-	$smarty->assign('pager',        $pager);
-	$smarty->display('user_clips.dwt');
-}
-
-/* 显示聚能赚列表*/
-elseif ($action == 'booking_list_year')
-{
-	include_once(ROOT_PATH . 'includes/lib_clips.php');
-
-	$catstatus = isset($catstatus)?$catstatus:3;
-
-
-	$page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
-	$pay_status = PS_PAYED;
-
-	/* 我的债券 */
-	$sql = "SELECT count(*) " .
-			"FROM " .$ecs->table('goods'). " AS g, " .
-			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
-			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = ".$catstatus." AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
-	$record_count = $db->getOne($sql);
-
-	$pager = get_pager('user.php', array('act' => $action), $record_count, $page);
-	$smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
-	$smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
-	$smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
-	$smarty->assign('pager',        $pager);
-	$smarty->display('user_clips.dwt');
-}
-
 /* 我的贷款页面*/
 elseif ($action == 'loan_list')
 {

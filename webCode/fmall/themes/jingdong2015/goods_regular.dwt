@@ -82,14 +82,14 @@ function reg(str){
 	                		<div id="good_detail_interval"></div>
 	                	</div>
 	                	<div class="bondinfo_detail_div">
-	                		<ul style="line-height:40px;height:80px;">
-	                			<li style="background:url(images/gooddetailone.jpg) 10px no-repeat;"><span style="margin-left:30px;">资金保障计划</span></li>
-	                			<li style="background:url(images/gooddetailtwo.jpg) 10px no-repeat;"><span style="margin-left:30px;">账户保障措施</span></li>
+	                		<ul>
+	                			<li class="good_det_one"><span>资金保障计划</span></li>
+	                			<li class="good_det_two"><span>账户保障措施</span></li>
 	                		</ul>
 	                	</div>
 	                	<div class="bondinfo_detail_div">
-	                		<ul style="line-height:40px;height:80px;">
-	                			<li style="background:url(images/gooddetailthree.jpg) 10px no-repeat;"><span style="margin-left:30px;">资金可循环出借</span></li>
+	                		<ul>
+	                			<li class="good_det_three"><span>资金可循环出借</span></li>
 	                			
 	                		</ul>
 	                	</div>
