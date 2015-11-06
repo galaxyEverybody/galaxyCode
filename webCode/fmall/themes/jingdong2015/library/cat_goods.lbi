@@ -12,7 +12,7 @@
 	</div>
 	<div class="faxdate_coninfo">
 		<div class="faxdate_con_day">
-			<div class="faxdate_day_num">30</div>
+			<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
 			<div class="faxdate_day_font">天<br/>锁定期</div>
 		</div>
 		<div class="faxdate_coninfo_font">

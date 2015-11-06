@@ -137,20 +137,21 @@ function reg(str){
     </div>
     <!--product-intro end-->
 </div>
-
+<div class="blank20"></div>
 <div class="w goodsW">
 	<!-- #BeginLibraryItem "/library/goods_fittings.lbi" --><!-- #EndLibraryItem -->
     <div class="clr"></div>
   <div class="right"> 
-    <div id="product-detail" class="m m1">
+    <div id="product-detail">
       <div class="float-nav-wrap">
         <div class="mt">
           <ul class="tab">
-            <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">基本情况</a></li>
-            <li id="p-con-attr"><a href="javascript:;" class="toggle-link">投标记录</a></li>
-            <li id="p-con-list"><a href="javascript:;" class="toggle-link">风控措施</a></li>
+            <li class="curr" id="p-con-detail"><a href="javascript:;">基本情况</a></li>
+            <li id="p-con-attr"><a href="javascript:;">投标记录</a></li>
+            <li id="p-con-list"><a href="javascript:;">风控措施</a></li>
           </ul>
         </div>
+        
       </div>
       <div class="mc" id="p-con-detail-con">
         <ul class="detail-list">

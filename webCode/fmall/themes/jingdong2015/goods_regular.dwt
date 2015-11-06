@@ -148,12 +148,12 @@ function reg(str){
     </div>
     <!--product-intro end-->
 </div>
-
+<div class="blank20"></div>
 <div class="w goodsW">
 	<!-- #BeginLibraryItem "/library/goods_fittings.lbi" --><!-- #EndLibraryItem -->
     <div class="clr"></div>
   <div class="right"> 
-    <div id="product-detail" class="m m1">
+    <div id="product-detail">
       <div class="float-nav-wrap">
         <div class="mt">
           <ul class="tab">

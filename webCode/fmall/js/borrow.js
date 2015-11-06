@@ -6,10 +6,19 @@
 function carshowhidcon(){
 	$("#borrow_car_term").show(1000);
 	$("#borrow_house_term").hide(1000);
+	$("#category_car").removeClass("clickhouse_car");
+	$("#category_car").addClass("category_car");
+	$("#category_house").removeClass("clickhouse");
+	$("#category_house").addClass("category_house");
 }
 function houseshowhidcon(){
 	$("#borrow_house_term").show(1000);
-	$("#borrow_car_term").hide(1000);
+	$("#borrow_car_term").hide(1000);	
+	
+	$("#category_house").removeClass("category_house");
+	$("#category_house").addClass("clickhouse");
+	$("#category_car").removeClass("category_car");
+	$("#category_car").addClass("clickhouse_car");
 }
 
 /*

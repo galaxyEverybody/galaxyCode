@@ -23,72 +23,38 @@
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}	
 {if $act eq 'default'}
-	<div style="width:100%;height:360px;border:1px solid red;background:url() center center no-repeat;"></div>
+	<div style="width:100%;height:360px;background:url(images/borrow_banner.jpg) center center no-repeat;"></div>
 	<div class="blank70"></div>
 	<div class="w main">
-    	<div class="borrow_category">
-    		<div id="category_car" onclick="carshowhidcon();">车辆抵押贷款</div>
-    		<div id="category_house" onclick="houseshowhidcon();">房产抵押贷款</div>
-    	</div>
-    	<div id="borrow_car_term">
-    		<div class="car_term_div">
-    			<ul class="car_term_ulsec">
-    				<p>产品特点</p>
-    				<li>申请便捷，有车就能贷</li>
-    				<li>资料齐全，最快1天放款</li>
-    				<li>最高可借评估值90%</li>
-    				<li>借款金额上不封顶</li>
-    				<li>期限灵活，自由选择</li>
-    			</ul>
-    			<ul class="car_term_ulfir">
-	    			<p>申请条件</p>
-    				<li>申请人拥有抵押车辆的所有权</li>
-    				<li>车辆无未偿还按揭</li>
-    				<li>有稳定收入来源</li>
-    				<li>车辆所在地已开通我公司业务</li>
-    			</ul>
-    			<ul class="car_term_ulfir">
-    				<p>所需资料</p>
-    				<li>机动车登记证书</li>
-    				<li>税务登记证</li>
-    				<li>机动车行驶证</li>
-    				<li>原始购车发票</li>
-    				<li>交强险保单，二代身份证</li>
-    			</ul>
-    		</div>
-    		<div>
-    			<a href="./borrow_money.php?act=carinfo" class="count_click_car">立即申请</a>
-    		</div>
-    	</div>
-    	<div id="borrow_house_term">
-			<div class="car_term_div">
-    			<ul class="car_term_ulsec">
-    				<p>产品特点</p>
-    				<li>申请便捷，有车就能贷</li>
-    				<li>资料齐全，最快1天放款</li>
-    				<li>最高可借评估值90%</li>
-    				<li>借款金额上不封顶</li>
-    				<li>期限灵活，自由选择</li>
-    			</ul>
-    			<ul class="car_term_ulfir">
-	    			<p>申请条件</p>
-    				<li>申请人拥有抵押车辆的所有权</li>
-    				<li>车辆无未偿还按揭</li>
-    				<li>有稳定收入来源</li>
-    				<li>车辆所在地已开通我公司业务</li>
-    			</ul>
-    			<ul class="car_term_ulfir">
-    				<p>所需资料</p>
-    				<li>机动车登记证书</li>
-    				<li>税务登记证</li>
-    				<li>机动车行驶证</li>
-    				<li>原始购车发票</li>
-    				<li>交强险保单，二代身份证</li>
-    			</ul>
-    		</div>
-    		<div>
-    			<a href="./borrow_money.php?act=houseinfo" class="count_click_car">立即申请</a>
-    		</div>
+		<div class="borrow_middle_color">
+	    	<div class="borrow_category">
+	    		<div id="category_car" class="category_car" onclick="carshowhidcon();"><em style="margin-top:30px;margin-left:50px;float:left;">车辆抵押贷款</em></div>
+	    		<div id="category_house" class="category_house" onclick="houseshowhidcon();"><em style="margin-top:30px;margin-left:50px;float:left;">房产抵押贷款</em></div>
+	    	</div>
+	    	<div id="borrow_car_term">
+	    		<div class="car_term_div">
+	    			<ul>
+	    				<li class="car_term_td"></li>
+	    				<li class="car_term_tj"></li>
+	    				<li class="car_term_zl"></li>
+	    			</ul>
+	    		</div>
+	    		<div>
+	    			<a href="./borrow_money.php?act=carinfo" class="count_click_car">立即申请</a>
+	    		</div>
+	    	</div>
+	    	<div id="borrow_house_term">
+				<div class="car_term_div">
+	    			<ul>
+	    				<li class="house_term_td"></li>
+	    				<li class="house_term_tj"></li>
+	    				<li class="house_term_zl"></li>
+	    			</ul>
+	    		</div>
+	    		<div>
+	    			<a href="./borrow_money.php?act=houseinfo" class="count_click_car">立即申请</a>
+	    		</div>
+			</div>
 		</div>
 		<div class="blank70"></div>
     	<div class="count_car_house">
@@ -133,112 +99,6 @@
     	 			</li>
     	 		</ul>
     	 	</div>
-    	 	<script>
-    	 		function counter_catabsnum_car(){
-    	 			var num = $("#counter_catnum_car").val();
-    	 			Ajax.call('borrow_money.php?act=ajax_counter_car','catnum='+num,callback_catcounter_car,'POST','TEXT',true,true);
-    	 			
-    	 		}
-    	 		function callback_catcounter_car(result){
-    	 			var carone = result.split(',');
-    	 			$("#rescountnum12_car").html(carone[0]);
-    	 			$("#rescountnum6_car").html(carone[1]);
-    	 			$("#rescountnum3_car").html(carone[2]);
-    	 			$("#rescountnum1_car").html(carone[3]);
-    	 			
-    	 			$("#catabsmiddleinfo12_car").css("width",0);
-    	 			$("#catabsmiddleinfo6_car").css("width",0);
-    	 			$("#catabsmiddleinfo3_car").css("width",0);
-    	 			$("#catabsmiddleinfo1_car").css("width",0);
-    	 			
-    	 			var number = 0;	
-            		var startwidth12 = 400;
-            		var startwidth6 = 250;
-            		var startwidth3 = 200;
-            		var startwidth1 = 100;
-            		
-            		var auto12 = setInterval(autoaddwidth12_car,"100");
-            		function autoaddwidth12_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo12_car").css("width",number);
-            			if(number >= startwidth12){
-            				clearInterval(auto12);
-            			}
-            		}
-            		
-            		var auto6 = setInterval(autoaddwidth6_car,"100");
-            		function autoaddwidth6_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo6_car").css("width",number);
-            			if(number >= startwidth6){
-            				clearInterval(auto6);
-            			}
-            		}
-            		
-            		var auto3 = setInterval(autoaddwidth3_car,"100");
-            		function autoaddwidth3_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo3_car").css("width",number);
-            			if(number >= startwidth3){
-            				clearInterval(auto3);
-            			}
-            		}
-            		
-            		var auto1 = setInterval(autoaddwidth1_car,"100");
-            		function autoaddwidth1_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo1_car").css("width",number);
-            			if(number >= startwidth1){
-            				clearInterval(auto1);
-            			}
-            		}
-    	 			
-    	 		}
-            	$(function(){
-            		var number = 0;	
-            		var startwidth12 = 400;
-            		var startwidth6 = 250;
-            		var startwidth3 = 200;
-            		var startwidth1 = 100;
-            		
-            		var auto12 = setInterval(autoaddwidth12_car,"100");
-            		function autoaddwidth12_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo12_car").css("width",number);
-            			if(number >= startwidth12){
-            				clearInterval(auto12);
-            			}
-            		}
-            		
-            		var auto6 = setInterval(autoaddwidth6_car,"100");
-            		function autoaddwidth6_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo6_car").css("width",number);
-            			if(number >= startwidth6){
-            				clearInterval(auto6);
-            			}
-            		}
-            		
-            		var auto3 = setInterval(autoaddwidth3_car,"100");
-            		function autoaddwidth3_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo3_car").css("width",number);
-            			if(number >= startwidth3){
-            				clearInterval(auto3);
-            			}
-            		}
-            		
-            		var auto1 = setInterval(autoaddwidth1_car,"100");
-            		function autoaddwidth1_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo1_car").css("width",number);
-            			if(number >= startwidth1){
-            				clearInterval(auto1);
-            			}
-            		}
-
-            	});
-            </script>
     	</div>
     	<div class="countbig_div_car" id="countbig_div_house" style="display:none;">
     	 	<div class="bigdiv_left">
@@ -274,176 +134,53 @@
     	 			</li>
     	 		</ul>
     	 	</div>
-    	 	<script>
-    	 		function counter_catabsnum_house(){
-    	 			var num = $("#counter_catnum_house").val();
-    	 			Ajax.call('borrow_money.php?act=ajax_counter_house','catnum='+num,callback_catcounter_house,'POST','TEXT',true,true);
-    	 			
-    	 		}
-    	 		function callback_catcounter_house(result){
-    	 			var carone = result.split(',');
-    	 			$("#rescountnum12_house").html(carone[0]);
-    	 			$("#rescountnum6_house").html(carone[1]);
-    	 			$("#rescountnum3_house").html(carone[2]);
-    	 			$("#rescountnum1_house").html(carone[3]);
-    	 			
-    	 			$("#catabsmiddleinfo12_house").css("width",0);
-    	 			$("#catabsmiddleinfo6_house").css("width",0);
-    	 			$("#catabsmiddleinfo3_house").css("width",0);
-    	 			$("#catabsmiddleinfo1_house").css("width",0);
-    	 			
-    	 			var number = 0;	
-            		var startwidth12 = 400;
-            		var startwidth6 = 250;
-            		var startwidth3 = 200;
-            		var startwidth1 = 100;
-            		
-            		var auto12 = setInterval(autoaddwidth12_house,"100");
-            		function autoaddwidth12_house(){
-            			number = number+20;
-            			$("#catabsmiddleinfo12_house").css("width",number);
-            			if(number >= startwidth12){
-            				clearInterval(auto12);
-            			}
-            		}
-            		
-            		var auto6 = setInterval(autoaddwidth6_house,"100");
-            		function autoaddwidth6_house(){
-            			number = number+20;
-            			$("#catabsmiddleinfo6_house").css("width",number);
-            			if(number >= startwidth6){
-            				clearInterval(auto6);
-            			}
-            		}
-            		
-            		var auto3 = setInterval(autoaddwidth3_house,"100");
-            		function autoaddwidth3_house(){
-            			number = number+20;
-            			$("#catabsmiddleinfo3_house").css("width",number);
-            			if(number >= startwidth3){
-            				clearInterval(auto3);
-            			}
-            		}
-            		
-            		var auto1 = setInterval(autoaddwidth1_house,"100");
-            		function autoaddwidth1_house(){
-            			number = number+20;
-            			$("#catabsmiddleinfo1_house").css("width",number);
-            			if(number >= startwidth1){
-            				clearInterval(auto1);
-            			}
-            		}
-    	 			
-    	 		}
-            	
-            	function borrow_rate_car(){
-            		$("#countbig_div_car").show();
-            		$("#countbig_div_house").hide();
-            		$(".rate_house_li").css("border-bottom","1px solid #CCC");
-            		$(".rate_car_li").css("border-bottom",0);
-            		
-            		var number = 0;	
-            		var startwidth12 = 400;
-            		var startwidth6 = 250;
-            		var startwidth3 = 200;
-            		var startwidth1 = 100;
-            		
-            		var auto12 = setInterval(autoaddwidth12_car,"100");
-            		function autoaddwidth12_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo12_car").css("width",number);
-            			if(number >= startwidth12){
-            				clearInterval(auto12);
-            			}
-            		}
-            		
-            		var auto6 = setInterval(autoaddwidth6_car,"100");
-            		function autoaddwidth6_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo6_car").css("width",number);
-            			if(number >= startwidth6){
-            				clearInterval(auto6);
-            			}
-            		}
-            		
-            		var auto3 = setInterval(autoaddwidth3_car,"100");
-            		function autoaddwidth3_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo3_car").css("width",number);
-            			if(number >= startwidth3){
-            				clearInterval(auto3);
-            			}
-            		}
-            		
-            		var auto1 = setInterval(autoaddwidth1_car,"100");
-            		function autoaddwidth1_car(){
-            			number = number+20;
-            			$("#catabsmiddleinfo1_car").css("width",number);
-            			if(number >= startwidth1){
-            				clearInterval(auto1);
-            			}
-            		}
-            	}
-            	function borrow_rate_house(){
-            		$("#countbig_div_car").hide();
-            		$("#countbig_div_house").show();
-            		$(".rate_house_li").css("border-bottom",0);
-            		$(".rate_car_li").css("border-bottom","1px solid #CCC");
-            		
-            		
-            		var number = 0;	
-            		var startwidth12 = 400;
-            		var startwidth6 = 250;
-            		var startwidth3 = 200;
-            		var startwidth1 = 100;
-            		
-            		var auto12 = setInterval(autoaddwidth12_house,"100");
-            		function autoaddwidth12_house(){
-            			number = number+20;
-            			$("#catabsmiddleinfo12_house").css("width",number);
-            			if(number >= startwidth12){
-            				clearInterval(auto12);
-            			}
-            		}
-            		
-            		var auto6 = setInterval(autoaddwidth6_house,"100");
-            		function autoaddwidth6_house(){
-            			number = number+20;
-            			$("#catabsmiddleinfo6_house").css("width",number);
-            			if(number >= startwidth6){
-            				clearInterval(auto6);
-            			}
-            		}
-            		
-            		var auto3 = setInterval(autoaddwidth3_house,"100");
-            		function autoaddwidth3_house(){
-            			number = number+20;
-            			$("#catabsmiddleinfo3_house").css("width",number);
-            			if(number >= startwidth3){
-            				clearInterval(auto3);
-            			}
-            		}
-            		
-            		var auto1 = setInterval(autoaddwidth1_house,"100");
-            		function autoaddwidth1_house(){
-            			number = number+20;
-            			$("#catabsmiddleinfo1_house").css("width",number);
-            			if(number >= startwidth1){
-            				clearInterval(auto1);
-            			}
-            		}
-            	}
-            </script>
     	</div>
     </div>
     <div class="blank70"></div>
     </div>
 {/if}
 {if $act eq 'carinfo'}
-	<div style="width:100%;height:360px;border:1px solid red;"></div>
-	<div class="w">
-		
+	<div style="width:100%;height:200px;border:1px solid red;"></div>
+	<div class="blank20"></div>
+	<div style="width:100%;height:435px;border:1px solid red;">
+		<div class="w">
+			<div style="width:330px;height:415px;border:1px solid red;margin-top:9px;float:right;">
+				<p style="border:1px solid red;width:100%;height:45px;line-height:45px;font-size:24px;font-weight:bold;text-align:center;">在线申请</p>
+				<ul style="font-size:14px;margin-top:10px;">
+					<li style="height:30px;width:100%;border:1px solid red;display:block;">
+						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">姓名：</em>
+						<div style="float:left;"><input style="height:25px;" type="text" name="borrow_name" placeholder="如：张xx"></div>
+					</li>
+					<li style="height:30px;width:100%;border:1px solid red;display:block;">
+						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">联系电话：</em>
+						<input style="height:25px;" type="text" name="borrow_phone" placeholder="请填写真实号码，以便与您联系">
+					</li>
+					<li style="height:30px;width:100%;border:1px solid red;display:block;">
+						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">借款金额：</em>
+						<div style="float:right;"><input style="height:25px;" type="text" name="borrow_price" placeholder="填写借款金额">元</div>
+					</li>
+					<li style="height:30px;width:100%;border:1px solid red;display:block;">
+						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">借款期限：</em>
+						<div style="float:right;"><input style="height:25px;" type="text" name="borrow_day" placeholder="填写借款时间">天</div>
+					</li>
+					<li style="height:30px;width:100%;border:1px solid red;display:block;">
+						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">车辆购置时间：</em>
+						<div><select></select><select></select></div>
+					</li>
+					<li style="height:30px;width:100%;border:1px solid red;display:block;">
+						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">车辆购置价格：</em>
+						<div><input style="height:25px;" type="text" name="buycar_price" placeholder="请填写车辆价格"></div>
+					</li>
+					<li style="height:30px;width:100%;border:1px solid red;display:block;">
+						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">车辆购置地址：</em>
+						<div><input style="height:25px;" type="text" name="buycar_address" placeholder="请填写车辆所属地"></div>
+					</li>
+				</ul>
+				<a style="display:block;margin-top:10px;margin-left:83px;width:160px;height:40px;line-height:40px;font-size:14px;text-align:center;border:1px solid red;">立即申请</a>
+			</div>
+		</div>
 	</div>
+	<div class="blank70"></div>
 {/if}
 {if $act eq 'houseinfo'}
 	<div style="width:100%;height:360px;border:1px solid red;"></div>
@@ -457,6 +194,299 @@
 <div class="index_footer_new">
 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 </div>
+<script>
+	function counter_catabsnum_car(){
+		var num = $("#counter_catnum_car").val();
+		Ajax.call('borrow_money.php?act=ajax_counter_car','catnum='+num,callback_catcounter_car,'POST','TEXT',true,true);
+		
+	}
+	function callback_catcounter_car(result){
+		var carone = result.split(',');
+		$("#rescountnum12_car").html(carone[0]);
+		$("#rescountnum6_car").html(carone[1]);
+		$("#rescountnum3_car").html(carone[2]);
+		$("#rescountnum1_car").html(carone[3]);
+		
+		$("#catabsmiddleinfo12_car").css("width",0);
+		$("#catabsmiddleinfo6_car").css("width",0);
+		$("#catabsmiddleinfo3_car").css("width",0);
+		$("#catabsmiddleinfo1_car").css("width",0);
+		
+		var number = 0;	
+		var startwidth12 = 400;
+		var startwidth6 = 250;
+		var startwidth3 = 200;
+		var startwidth1 = 100;
+		
+		var auto12 = setInterval(autoaddwidth12_car,"100");
+		function autoaddwidth12_car(){
+			number = number+20;
+			$("#catabsmiddleinfo12_car").css("width",number);
+			if(number >= startwidth12){
+				clearInterval(auto12);
+			}
+		}
+		
+		var auto6 = setInterval(autoaddwidth6_car,"100");
+		function autoaddwidth6_car(){
+			number = number+20;
+			$("#catabsmiddleinfo6_car").css("width",number);
+			if(number >= startwidth6){
+				clearInterval(auto6);
+			}
+		}
+		
+		var auto3 = setInterval(autoaddwidth3_car,"100");
+		function autoaddwidth3_car(){
+			number = number+20;
+			$("#catabsmiddleinfo3_car").css("width",number);
+			if(number >= startwidth3){
+				clearInterval(auto3);
+			}
+		}
+		
+		var auto1 = setInterval(autoaddwidth1_car,"100");
+		function autoaddwidth1_car(){
+			number = number+20;
+			$("#catabsmiddleinfo1_car").css("width",number);
+			if(number >= startwidth1){
+				clearInterval(auto1);
+			}
+		}
+		
+	}
+	$(function(){
+		var number = 0;	
+		var startwidth12 = 400;
+		var startwidth6 = 250;
+		var startwidth3 = 200;
+		var startwidth1 = 100;
+		
+		var auto12 = setInterval(autoaddwidth12_car,"100");
+		function autoaddwidth12_car(){
+			number = number+20;
+			$("#catabsmiddleinfo12_car").css("width",number);
+			if(number >= startwidth12){
+				clearInterval(auto12);
+			}
+		}
+		
+		var auto6 = setInterval(autoaddwidth6_car,"100");
+		function autoaddwidth6_car(){
+			number = number+20;
+			$("#catabsmiddleinfo6_car").css("width",number);
+			if(number >= startwidth6){
+				clearInterval(auto6);
+			}
+		}
+		
+		var auto3 = setInterval(autoaddwidth3_car,"100");
+		function autoaddwidth3_car(){
+			number = number+20;
+			$("#catabsmiddleinfo3_car").css("width",number);
+			if(number >= startwidth3){
+				clearInterval(auto3);
+			}
+		}
+		
+		var auto1 = setInterval(autoaddwidth1_car,"100");
+		function autoaddwidth1_car(){
+			number = number+20;
+			$("#catabsmiddleinfo1_car").css("width",number);
+			if(number >= startwidth1){
+				clearInterval(auto1);
+			}
+		}
 
+	});
+</script>
+<script>
+	function counter_catabsnum_house(){
+		var num = $("#counter_catnum_house").val();
+		Ajax.call('borrow_money.php?act=ajax_counter_house','catnum='+num,callback_catcounter_house,'POST','TEXT',true,true);
+		
+	}
+	function callback_catcounter_house(result){
+		var carone = result.split(',');
+		$("#rescountnum12_house").html(carone[0]);
+		$("#rescountnum6_house").html(carone[1]);
+		$("#rescountnum3_house").html(carone[2]);
+		$("#rescountnum1_house").html(carone[3]);
+		
+		$("#catabsmiddleinfo12_house").css("width",0);
+		$("#catabsmiddleinfo6_house").css("width",0);
+		$("#catabsmiddleinfo3_house").css("width",0);
+		$("#catabsmiddleinfo1_house").css("width",0);
+		
+		var number = 0;	
+		var startwidth12 = 400;
+		var startwidth6 = 250;
+		var startwidth3 = 200;
+		var startwidth1 = 100;
+		
+		var auto12 = setInterval(autoaddwidth12_house,"100");
+		function autoaddwidth12_house(){
+			number = number+20;
+			$("#catabsmiddleinfo12_house").css("width",number);
+			if(number >= startwidth12){
+				clearInterval(auto12);
+			}
+		}
+		
+		var auto6 = setInterval(autoaddwidth6_house,"100");
+		function autoaddwidth6_house(){
+			number = number+20;
+			$("#catabsmiddleinfo6_house").css("width",number);
+			if(number >= startwidth6){
+				clearInterval(auto6);
+			}
+		}
+		
+		var auto3 = setInterval(autoaddwidth3_house,"100");
+		function autoaddwidth3_house(){
+			number = number+20;
+			$("#catabsmiddleinfo3_house").css("width",number);
+			if(number >= startwidth3){
+				clearInterval(auto3);
+			}
+		}
+		
+		var auto1 = setInterval(autoaddwidth1_house,"100");
+		function autoaddwidth1_house(){
+			number = number+20;
+			$("#catabsmiddleinfo1_house").css("width",number);
+			if(number >= startwidth1){
+				clearInterval(auto1);
+			}
+		}
+		
+	}
+	
+	function borrow_rate_car(){
+		$("#countbig_div_car").show();
+		$("#countbig_div_house").hide();
+		$(".rate_house_li").css("border-bottom","1px solid #FE8A0F");
+		$(".rate_car_li").css("border-bottom",0);
+		
+		var number = 0;	
+		var startwidth12 = 400;
+		var startwidth6 = 250;
+		var startwidth3 = 200;
+		var startwidth1 = 100;
+		
+		var auto12 = setInterval(autoaddwidth12_car,"100");
+		function autoaddwidth12_car(){
+			number = number+20;
+			$("#catabsmiddleinfo12_car").css("width",number);
+			if(number >= startwidth12){
+				clearInterval(auto12);
+			}
+		}
+		
+		var auto6 = setInterval(autoaddwidth6_car,"100");
+		function autoaddwidth6_car(){
+			number = number+20;
+			$("#catabsmiddleinfo6_car").css("width",number);
+			if(number >= startwidth6){
+				clearInterval(auto6);
+			}
+		}
+		
+		var auto3 = setInterval(autoaddwidth3_car,"100");
+		function autoaddwidth3_car(){
+			number = number+20;
+			$("#catabsmiddleinfo3_car").css("width",number);
+			if(number >= startwidth3){
+				clearInterval(auto3);
+			}
+		}
+		
+		var auto1 = setInterval(autoaddwidth1_car,"100");
+		function autoaddwidth1_car(){
+			number = number+20;
+			$("#catabsmiddleinfo1_car").css("width",number);
+			if(number >= startwidth1){
+				clearInterval(auto1);
+			}
+		}
+	}
+	function borrow_rate_house(){
+		$("#countbig_div_car").hide();
+		$("#countbig_div_house").show();
+		$(".rate_house_li").css("border-bottom",0);
+		$(".rate_car_li").css("border-bottom","1px solid #FE8A0F");
+		
+		
+		var number = 0;	
+		var startwidth12 = 400;
+		var startwidth6 = 250;
+		var startwidth3 = 200;
+		var startwidth1 = 100;
+		
+		var auto12 = setInterval(autoaddwidth12_house,"100");
+		function autoaddwidth12_house(){
+			number = number+20;
+			$("#catabsmiddleinfo12_house").css("width",number);
+			if(number >= startwidth12){
+				clearInterval(auto12);
+			}
+		}
+		
+		var auto6 = setInterval(autoaddwidth6_house,"100");
+		function autoaddwidth6_house(){
+			number = number+20;
+			$("#catabsmiddleinfo6_house").css("width",number);
+			if(number >= startwidth6){
+				clearInterval(auto6);
+			}
+		}
+		
+		var auto3 = setInterval(autoaddwidth3_house,"100");
+		function autoaddwidth3_house(){
+			number = number+20;
+			$("#catabsmiddleinfo3_house").css("width",number);
+			if(number >= startwidth3){
+				clearInterval(auto3);
+			}
+		}
+		
+		var auto1 = setInterval(autoaddwidth1_house,"100");
+		function autoaddwidth1_house(){
+			number = number+20;
+			$("#catabsmiddleinfo1_house").css("width",number);
+			if(number >= startwidth1){
+				clearInterval(auto1);
+			}
+		}
+	}
+</script>
+<style type="text/css">
+.borrow_middle_color{ width:100%;height:590px;border:1px solid #FE8A0F;}
+#borrow_car_term{ width:100%;height:380px;display:block;}
+#borrow_car_term a:hover,#borrow_house_term a:hover{ color:#FFF;}
+#borrow_house_term{ width:100%;height:380px;display:none;}
+#borrow_car_term .car_term_div,#borrow_house_term .car_term_div{ width:100%;height:200px;margin-top:50px;text-align:left;}
+.count_car_house{ width:100%;height:350px;border:1px solid #FE8A0F;background:#FFF;}
+.rate_count_div{ width:100%;height:45px;line-height:50px;}
+.rate_count_div ul{ line-height:45px;height:45px;text-align:center;float:left;}
+.rate_count_div .rate_car_li{ float:left;width:100px;cursor:pointer}
+.rate_count_div .rate_house_li{ float:left;width:100px;cursor:pointer;border-bottom:1px solid #FE8A0F;border-left:1px solid #FE8A0F;}
+.rate_count_div .borrow_rate_blank{ width:1007px;height:45px;border-bottom:1px solid #FE8A0F;float:right;border-left:1px solid #FE8A0F;}
+.countbig_div_car{ width:1200px;height:300px;}
+.countbig_div_car .bigdiv_left{ width:400px;height:300px;float:left;}
+.countbig_div_car .bigdiv_left p,.bigdiv_right p{ font-size:24px;margin-top:40px;margin-left:40px;}
+.countbig_div_car .bigdiv_left a{ width:350px;height:50px;display:block;margin-left:40px;margin-top:40px;line-height:50px;border-radius:10px;background:#FF8F00;color:#FFF;font-size:14px;text-align:center;font-weight:bold;cursor:pointer;}
+.countbig_div_car .countnum_info{ width:350px;height:50px;border:1px solid #ccc;border-radius:10px;margin-top:20px;font-size:18px;margin-left:40px;}
+.countbig_div_car .countnum_info input{ width:315px;height:45px;border:0px;outline:none;margin-left:5px;font-size:18px;}
+.countbig_div_car .bigdiv_right{ width:750px;height:300px;float:right;}
+.countbig_div_car .bigdiv_right ul{ line-height:60px;font-size:16px;}
+.countbig_div_car .bigdiv_right ul li{ height:60px;}
+.countbig_div_car .bigright_font{ float:left;}
+.countbig_div_car .bigright_font .catfont_month{ margin-left:40px;}
+.countbig_div_car .bigright_middle{ width:400px;height:10px;border:1px solid #FFF;float:left;margin-left:40px;margin-top:25px;}
+.countbig_div_car .bigright_middle .catabsmiddle_info{ width:0px;height:100%;background:red;float:left;}
+.countbig_div_car .bigright_countnum{ float:left;margin-left:40px;color:red;}
+.countbig_div_car .bigright_font .catfont_monthtwo{ margin-left:40px;padding-left:10px;}
+</style>
 </body>
 </html>

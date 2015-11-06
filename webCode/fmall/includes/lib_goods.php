@@ -1232,7 +1232,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 
     $children = get_children($cat_id);
 	
-    $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, ' .
+    $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.goods_number, g.goods_weight, g.shop_price AS org_price, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
                'g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img ' .
             "FROM " . $GLOBALS['ecs']->table('goods') . ' AS g '.
@@ -1273,6 +1273,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         $goods[$idx]['thumb']        = get_image_path($row['goods_id'], $row['goods_thumb'], true);
         $goods[$idx]['goods_img']    = get_image_path($row['goods_id'], $row['goods_img']);
         $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
+    	$goods[$idx]['goods_weight_day']	 = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
     }
     
     $cat['goods_level2'] = $goods;
