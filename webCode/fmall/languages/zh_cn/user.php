@@ -136,7 +136,8 @@ $_LANG['booking_js']['contact_phone_empty'] = '请输入联系人的电话！';
 /* 借款资料*/
 $_LANG['borrow_agree'] = '请仔细阅读联众金融借款协议,如您同意服务条款请打钩。';
 $_LANG['borrow_success'] = '您的信息已提交,请完善后边的信息以便我们会与您取得联系！';
-$_LANG['borrow_userinfo_fail'] = '您的信息缺失,请填写完整再次提交！';
+$_LANG['borrow_userinfo_fail'] = '-您的信息缺失,请填写完整再次提交！';
+$_LANG['borrow_carphone_fail'] = '-您的手机号不合法,请重新填写！';
 $_LANG['borrow_record_info'] = '-您的信息正在审核中，请勿重复提交数据！';
 $_LANG['financing_record_info'] = '-您的信息匹配失败，请重新输入！';
 $_LANG['borrow_record_success'] = '+您的信息以提交，审核通过后我们会尽快与您取得联系';

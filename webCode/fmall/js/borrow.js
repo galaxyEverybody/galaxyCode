@@ -58,23 +58,53 @@ function borrowchenum(borrownum){
 		$('#borrownum').html('请输入您的借款金额');
 	}else{
 		if(!Utils.isInt(borrownum)){
-			$('#borrownum').html('输入的格式不正确');
+			$('#borrownum').html('输入的金额不合法');
 		}else{
-			$('#borrowname').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
+			$('#borrownum').html('');
+		}
+	}
+}
+/*
+ * 车辆购置金额的验证
+ */
+function borrowchebuynum(borrowbuynum){
+	reg = /^((\d+\.\d*[1-9]\d*)|(\d*[1-9]\d*\.\d+)|(\d*[1-9]\d*))$/;
+	if(borrowbuynum ==''){
+		$('#borrowbuynum').html('请输入您的购车金额');
+	}else{
+		if(reg.test(borrowbuynum)){
+			$('#borrowbuynum').html('');
+		}else{
+			$('#borrowbuynum').html('输入的金额不合法');
+		}
+	}
+}
+/*
+ * 借款时间的验证
+ */
+function borrowchetime(borrowtime){
+	if(borrowtime ==''){
+		$('#borrowtime').html('请输入您的借款期限');
+	}else{
+		if(!Utils.isInt(borrowtime)){
+			$('#borrowtime').html('输入的时间不合法');
+		}else{
+			$('#borrowtime').html('');
 		}
 	}
 }
 /*
  * 借款姓名的验证
  */
-function borrowchename(borrowname){
-	if(borrowname ==''){
-		$('#borrowname').html('-请输入您的真实姓名');
+function borrowchename(carname){
+	var reg=/^[\u2E80-\u9FFF]+$/; 
+	if(carname ==''){
+		$('#borrowname').html('请输入您的真实姓名');
 	}else{
-		if(borrowname.match(/[^\u4e00-\u9fa5]/)){
-			$('#borrowname').html('-输入的格式不正确');
+		if(!reg.test(carname)){
+			$('#borrowname').html('输入的姓名不合法');
 		}else{
-			$('#borrowname').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
+			$('#borrowname').html('');
 		}
 	}
 }
@@ -124,170 +154,48 @@ function borrowage(age){
 /* 居住地址的验证*/
 function borrowliveaddress(liveadd){
 	if(liveadd == ''){
-		$("#borrow_liveadd").html('-请输入您现在的居住地');
+		$("#borrow_liveadd").html('请输入您车辆的所属地');
 	}else{
-		$('#borrow_liveadd').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-	}
-}
-
-//邮编的验证
-function borrowzipcode(zipcode){
-	if(zipcode == ''){
-		$("#borrow_zip").html('-请输入您居住地的邮编');
-	}else{
-		if(!Utils.isInt(zipcode)){
-			$("#borrow_zip").html('-您输入的邮编不合法');
-		}else{
-			$('#borrow_zip').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
-	}
-}
-
-//最高学历的验证
-function borrowcheeducational(educational){
-	if(educational == ''){
-		$("#borroweducational").html('-请输入您的最高学历');
-	}else{
-		if(educational.match(/[^\u4e00-\u9fa5]/)){
-			$("#borroweducational").html('-您输入的不合法');
-		}else{
-			$('#borroweducational').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
-	}
-}
-
-//毕业院校的验证
-function borrowchegraduate(graduate){
-	if(graduate == ''){
-		$("#borrowgraduate").html('-请输入您的毕业院校');
-	}else{
-		if(graduate.match(/[^\u4e00-\u9fa5]/)){
-			$("#borrowgraduate").html('-您输入的不合法');
-		}else{
-			$('#borrowgraduate').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
-	}
-}
-
-//亲属与您的关系的验证
-function borrowchefilination(filination){
-	if(filination == ''){
-		$("#borrowfilination").html('-请输入与您的关系');
-	}else{
-		if(filination.match(/[^\u4e00-\u9fa5]/)){
-			$("#borrowfilination").html('-您输入的不合法');
-		}else{
-			$('#borrowfilination').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
-	}
-}
-
-//亲属姓名与您的关系的验证
-function borrowcherelatename(relatename){
-	if(relatename == ''){
-		$("#borrowrelatename").html('-请输入您直系亲属的姓名');
-	}else{
-		if(relatename.match(/[^\u4e00-\u9fa5]/)){
-			$("#borrowrelatename").html('-您输入的姓名不合法');
-		}else{
-			$('#borrowrelatename').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
-	}
-}
-
-//亲属电话与您的关系的验证
-function borrowcherelatephone(relatephone){
-	if(relatephone == ''){
-		$("#borrowrelatephone").html('-请输入您直系亲属的电话');
-	}else{
-		if(!Utils.isTel(relatephone)){
-			$("#borrowrelatephone").html('-您输入的手机号不合法');
-		}else{
-			$('#borrowrelatephone').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
-	}
-}
-
-//其它与您的关系的验证
-function borrowcheotherfilination(otherfilination){
-	if(otherfilination == ''){
-		$("#borrowotherfilination").html('-请输入与您的关系');
-	}else{
-		if(otherfilination.match(/[^\u4e00-\u9fa5]/)){
-			$("#borrowotherfilination").html('-您输入的不合法');
-		}else{
-			$('#borrowotherfilination').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
-	}
-}
-
-//其它姓名与您的关系的验证
-function borrowcheothername(othername){
-	if(othername == ''){
-		$("#borrowothername").html('-请输入他的姓名');
-	}else{
-		if(othername.match(/[^\u4e00-\u9fa5]/)){
-			$("#borrowothername").html('-您输入的姓名不合法');
-		}else{
-			$('#borrowothername').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
-	}
-}
-
-//其它电话与您的关系的验证
-function borrowcheotherphone(otherphone){
-	if(otherphone == ''){
-		$("#borrowotherphone").html('-请输入他的手机号');
-	}else{
-		if(!Utils.isTel(otherphone)){
-			$("#borrowotherphone").html('-您输入的手机号不合法');
-		}else{
-			$('#borrowotherphone').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-		}
+		$("#borrow_liveadd").html('');
 	}
 }
 
 /*
  * 借款人基本信息提交的验证
  */
-function borrow_userinfo_form(){
+function borrow_carinfo_form(){
 	
-	var truename = $("input[name='truename']")[0].value;
-	var idcard = $("input[name='idcard']")[0].value;
-	var phone = $("input[name='phone']")[0].value;
-	var sex = $("input[name = sex]")[0].value;
-	var age = $("input[name = age]")[0].value;
-	var liveaddress = $("input[name = liveaddress]")[0].value;
-	var zipcode = $("input[name = zipcode]")[0].value;
+	var carname = $("input[name='carname']")[0].value;
+	var carphone = $("input[name='carphone']")[0].value;
+	var carborrownum = $("input[name='carborrownum']")[0].value;
+	var cartime = $("input[name = cartime]")[0].value;
+	var carnum = $("input[name = carnum]")[0].value;
+	var caraddress = $("input[name = caraddress]")[0].value;
 	
-	if(truename == ''){
-		$("#borrowname").html('-请输入您的真实姓名');
+	if(carname == ''){
+		$("#borrowname").html('请输入您的真实姓名');
 		return false;
 	}
-	if(idcard == ''){
-		$("#borrow_idcard").html('-请输入您的身份证号码');
+	if(carphone == ''){
+		$("#borrowphone").html('请输入您的手机号码');
 		return false;
 	}
-	if(phone == ''){
-		$("#borrowphone").html('-请输入您的手机号码');
+	if(carborrownum == ''){
+		$("#borrownum").html('请输入借款金额');
 		return false;
 	}
-	if(sex == ''){
-		$("#borrow_sex").html('-请选择您的性别');
+	if(cartime == ''){
+		$("#borrowtime").html('请输入您的借款期限');
 		return false;
 	}
-	if(age == ''){
-		$("#borrow_age").html('-请输入您的年龄');
+	if(carnum == ''){
+		$("#borrowbuynum").html('请输入车辆购置价格');
 		return false;
 	}
-	if(liveaddress == ''){
-		$("#borrow_liveadd").html('-请输入您现在的居住地');
+	if(caraddress == ''){
 		return false;
 	}
-	if(zipcode == ''){
-		$("#borrow_zip").html('-请输入您居住地的邮编');
-		return false;
-	}
+	
 	
 	return true;
 }
@@ -296,23 +204,18 @@ function borrow_userinfo_form(){
  * 借款人手机号的验证
  */
 function borrowchephone(borrowphone){
+	reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
 	if(borrowphone ==''){
-		$('#borrowphone').html('-请输入您的手机号');
+		$('#borrowphone').html('请输入您的手机号');
 	}else{
-		if(!Utils.isTel(borrowphone)){
-			$('#borrowphone').html('-手机号格式不正确');
+		if(reg.test(borrowphone)){
+			$('#borrowphone').html('');
 		}else{
-			Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + borrowphone,borrow_phone_callback, 'GET', 'TEXT', true, true );
+			$('#borrowphone').html('手机号不合法');
 		}
 	}
 }
-function borrow_phone_callback(result){
-	if(result == 'ok'){
-		$('#borrowphone').html('<img src="themes/jingdong2015/images/borrow_right.gif">');
-	}else{
-		$('#borrowphone').html('输入的手机号不正确请重新输入');
-	}
-}
+
 /*
  * 借款短信验证码的验证
  */

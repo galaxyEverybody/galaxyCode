@@ -24,6 +24,7 @@
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}	
 {if $act eq 'default'}
 	<div style="width:100%;height:360px;background:url(images/borrow_banner.jpg) center center no-repeat;"></div>
+	<div style="width:100%;height:auto;background:#f2f2f2;">
 	<div class="blank70"></div>
 	<div class="w main">
 		<div class="borrow_middle_color">
@@ -138,45 +139,93 @@
     </div>
     <div class="blank70"></div>
     </div>
+    </div>
 {/if}
 {if $act eq 'carinfo'}
-	<div style="width:100%;height:200px;border:1px solid red;"></div>
+	<div class="borrow_carinfo_top"></div>
 	<div class="blank20"></div>
-	<div style="width:100%;height:435px;border:1px solid red;">
+	<div class="borrow_carinfo_middle">
 		<div class="w">
-			<div style="width:330px;height:415px;border:1px solid red;margin-top:9px;float:right;">
-				<p style="border:1px solid red;width:100%;height:45px;line-height:45px;font-size:24px;font-weight:bold;text-align:center;">在线申请</p>
-				<ul style="font-size:14px;margin-top:10px;">
-					<li style="height:30px;width:100%;border:1px solid red;display:block;">
-						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">姓名：</em>
-						<div style="float:left;"><input style="height:25px;" type="text" name="borrow_name" placeholder="如：张xx"></div>
-					</li>
-					<li style="height:30px;width:100%;border:1px solid red;display:block;">
-						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">联系电话：</em>
-						<input style="height:25px;" type="text" name="borrow_phone" placeholder="请填写真实号码，以便与您联系">
-					</li>
-					<li style="height:30px;width:100%;border:1px solid red;display:block;">
-						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">借款金额：</em>
-						<div style="float:right;"><input style="height:25px;" type="text" name="borrow_price" placeholder="填写借款金额">元</div>
-					</li>
-					<li style="height:30px;width:100%;border:1px solid red;display:block;">
-						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">借款期限：</em>
-						<div style="float:right;"><input style="height:25px;" type="text" name="borrow_day" placeholder="填写借款时间">天</div>
-					</li>
-					<li style="height:30px;width:100%;border:1px solid red;display:block;">
-						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">车辆购置时间：</em>
-						<div><select></select><select></select></div>
-					</li>
-					<li style="height:30px;width:100%;border:1px solid red;display:block;">
-						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">车辆购置价格：</em>
-						<div><input style="height:25px;" type="text" name="buycar_price" placeholder="请填写车辆价格"></div>
-					</li>
-					<li style="height:30px;width:100%;border:1px solid red;display:block;">
-						<em style="height:30px;line-height:30px;width:120px;border:1px solid red;display:block;float:left;text-align:right;">车辆购置地址：</em>
-						<div><input style="height:25px;" type="text" name="buycar_address" placeholder="请填写车辆所属地"></div>
-					</li>
-				</ul>
-				<a style="display:block;margin-top:10px;margin-left:83px;width:160px;height:40px;line-height:40px;font-size:14px;text-align:center;border:1px solid red;">立即申请</a>
+			<div class="car_detail_div">
+				<p class="car_detail_title">在线申请</p>
+				<form action="borrow_money.php" method="post" onsubmit="return borrow_carinfo_form()">
+				<table cellpadding="0px">
+					<tr class="odd">
+						<td class="car_odd_left">姓名：</td>
+						<td><input class="car_odd_input" style="width:170px;" type="text" name="carname" placeholder="请填写姓名如：张xx" onblur="borrowchename(this.value)"></td>
+					</tr>
+					<tr class="even">
+						<td class="car_odd_left"></td><td><span id="borrowname"></span></td>
+					</tr>
+					<tr class="odd">
+						<td class="car_odd_left">联系电话：</td>
+						<td><input class="car_odd_input" type="text" name="carphone" placeholder="请填写真实号码以便与您联系" onblur="borrowchephone(this.value)"></td>
+					</tr>
+					<tr class="even">
+						<td class="car_odd_left"></td><td><span id="borrowphone"></span></td>
+					</tr>
+					<tr class="odd">
+						<td class="car_odd_left">借款金额：</td>
+						<td>
+							<div class="car_money_num">
+								<input class="car_money_input" type="text" name="carborrownum" placeholder="请输入借款金额" onblur="borrowchenum(this.value)">元
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="car_odd_left"></td><td><span id="borrownum"></span></td>
+					</tr>
+					<tr class="odd">
+						<td class="car_odd_left">借款期限：</td>
+						<td>
+							<div class="car_money_num">
+								<input class="car_money_input" type="text" name="cartime" placeholder="请输入借款期限" onblur="borrowchetime(this.value)">天
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="car_odd_left"></td><td><span id="borrowtime"></span></td>
+					</tr>
+					<tr class="odd">
+						<td class="car_odd_left">车辆购置时间：</td>
+						<td>
+							<select class="car_odd_select" name="carbuyyear">
+								<!-- {foreach from=$cartimeyear item=caryear key=key} -->
+										<option>{$caryear}</option>
+								<!-- {/foreach} -->
+							</select> 年
+							<select class="car_odd_select" name="carbuymonth">
+								<!-- {foreach from=$cartimemonth item=carmonth key=key} -->
+										<option>{$carmonth}</option>
+								<1-- {/foreach} -->
+							</select> 月
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="car_odd_left"></td><td></td>
+					</tr>
+					<tr class="odd">
+						<td class="car_odd_left">车辆购置价格：</td>
+						<td>
+							<div class="car_money_num">
+								<input class="car_money_car" type="text" name="carnum" placeholder="请输入车辆价格" onblur="borrowchebuynum(this.value)">万元
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="car_odd_left"></td><td><span id="borrowbuynum"></span></td>
+					</tr>
+					<tr class="odd">
+						<td class="car_odd_left">车辆登记地址：</td>
+						<td><input class="car_odd_input" type="text" name="caraddress" placeholder="请填写车辆所属地"></td>
+					</tr>
+					<tr class="even">
+						<td class="car_odd_left"></td><td></td>
+					</tr>
+				</table>
+				<input type="hidden" name="act" value="insert_car_info">
+				<input type="submit" class="car_info_sub" value="立即申请">
+				</form>
 			</div>
 		</div>
 	</div>
@@ -365,8 +414,10 @@
 	function borrow_rate_car(){
 		$("#countbig_div_car").show();
 		$("#countbig_div_house").hide();
-		$(".rate_house_li").css("border-bottom","1px solid #FE8A0F");
+		$(".rate_house_li").css("border-bottom","1px solid #CCC");
 		$(".rate_car_li").css("border-bottom",0);
+		$(".rate_car_li").css("color","#FE8A0F");
+		$(".rate_house_li").css("color","#333333");
 		
 		var number = 0;	
 		var startwidth12 = 400;
@@ -414,7 +465,9 @@
 		$("#countbig_div_car").hide();
 		$("#countbig_div_house").show();
 		$(".rate_house_li").css("border-bottom",0);
-		$(".rate_car_li").css("border-bottom","1px solid #FE8A0F");
+		$(".rate_car_li").css("border-bottom","1px solid #CCC");
+		$(".rate_house_li").css("color","#FE8A0F");
+		$(".rate_car_li").css("color","#333333");
 		
 		
 		var number = 0;	
@@ -461,17 +514,17 @@
 	}
 </script>
 <style type="text/css">
-.borrow_middle_color{ width:100%;height:590px;border:1px solid #FE8A0F;}
+.borrow_middle_color{ width:100%;height:590px;border:1px solid #CCC;}
 #borrow_car_term{ width:100%;height:380px;display:block;}
 #borrow_car_term a:hover,#borrow_house_term a:hover{ color:#FFF;}
 #borrow_house_term{ width:100%;height:380px;display:none;}
 #borrow_car_term .car_term_div,#borrow_house_term .car_term_div{ width:100%;height:200px;margin-top:50px;text-align:left;}
-.count_car_house{ width:100%;height:350px;border:1px solid #FE8A0F;background:#FFF;}
+.count_car_house{ width:100%;height:350px;border:1px solid #CCC;background:#FFF;}
 .rate_count_div{ width:100%;height:45px;line-height:50px;}
 .rate_count_div ul{ line-height:45px;height:45px;text-align:center;float:left;}
 .rate_count_div .rate_car_li{ float:left;width:100px;cursor:pointer}
-.rate_count_div .rate_house_li{ float:left;width:100px;cursor:pointer;border-bottom:1px solid #FE8A0F;border-left:1px solid #FE8A0F;}
-.rate_count_div .borrow_rate_blank{ width:1007px;height:45px;border-bottom:1px solid #FE8A0F;float:right;border-left:1px solid #FE8A0F;}
+.rate_count_div .rate_house_li{ float:left;width:100px;cursor:pointer;border-bottom:1px solid #CCC;border-left:1px solid #CCC;}
+.rate_count_div .borrow_rate_blank{ width:1007px;height:45px;border-bottom:1px solid #CCC;float:right;border-left:1px solid #CCC;}
 .countbig_div_car{ width:1200px;height:300px;}
 .countbig_div_car .bigdiv_left{ width:400px;height:300px;float:left;}
 .countbig_div_car .bigdiv_left p,.bigdiv_right p{ font-size:24px;margin-top:40px;margin-left:40px;}

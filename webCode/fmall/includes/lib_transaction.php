@@ -703,16 +703,10 @@ function drop_consignee($id)
 function insert_borrow($info,$type=0)
 {
 	/* 插入一条新记录 */
-	if($type == 0){
-		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('user_borrow'), $info, 'INSERT');
-	}elseif($type == 1){
-		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('borrow_basic'), $info, 'INSERT');
-	}elseif($type == 2){
+	if($type == 1){
 		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('borrow_car'), $info, 'INSERT');
-	}elseif($type == 3){
+	}elseif($type == 2){
 		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('borrow_house'), $info, 'INSERT');
-	}elseif($type == 4){
-		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('borrow_credit'), $info, 'INSERT');
 	}else{
 		die('系统错误');
 	}

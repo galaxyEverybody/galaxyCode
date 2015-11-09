@@ -3547,9 +3547,9 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 /* borrow_money*/
 .borrow_big_div{ width:100%;height:auto;background:#F2F2F2;}
 .borrow_titleinfo{ width:100%;height:30px;margin-top:10px;}
-.borrow_middle_color{ width:100%;height:590px;border:1px solid #FE8A0F;}
+.borrow_middle_color{ width:100%;height:590px;border:1px solid #CCC;background:#fff;}
 .borrow-m{ width:1100px;height:auto;border:1px solid #F5F5F5;background:#fff;margin-bottom:50px;}
-.title_car_first{ width:20px;height:20px;border-radius:10px;background:#FF852F;float:left;margin-left:100px;}
+.title_car_first{ width:20px;height:20px;border-radius:10px;background:#ccc;float:left;margin-left:100px;}
 .title_car_default{ width:200px;height:2px;background:#ddd;float:left;margin-top:10px;margin-left:10px;}
 .title_car_div{ width:10px;height:10px;border-radius:5px;background:#ddd;float:left;margin-left:10px;margin-top:5px;}
 .title_car_info{ width:200px;height:2px;background:#FF852F;float:left;margin-top:10px;margin-left:10px;}
@@ -3565,8 +3565,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .count_click_car{ display:block;margin-left:500px;width:200px;height:40px;background:#FF8A00;text-align:center;font-weight: bold;line-height: 40px;margin-top:50px;color:#FFF;font-size:16px;}
 .borrow_category .category_input_style{ float:left;width:20px;height:20px;filter:alpha(opacity=50);opacity:0.5;}
 .borrow_category .category_car{ color:#FE8A0F;font-weight:bold;width:605px;height:205px;float:left;cursor:pointer;background:url(images/borrow_carover.jpg) no-repeat;background-position:200px;}
-.borrow_category .category_house{ width:604px;height:205px;font-weight:bold;float:right;border-left:1px solid #FE8A0F;border-bottom:1px solid #FE8A0F;cursor:pointer;background:url(images/borrow_house.jpg) no-repeat;background-position:200px;}
-.category_car em,.category_house em{ font-size:28px;font-weight:blod;}
+.borrow_category .category_house{ width:604px;height:205px;font-weight:bold;float:right;border-left:1px solid #CCC;border-bottom:1px solid #CCC;cursor:pointer;background:url(images/borrow_house.jpg) no-repeat;background-position:200px;}
+.category_car em,.category_house em{ font-size:28px;font-weight:blod;margin-top:30px;margin-left:50px;float:left;}
 .countbig_div_car{ width:1200px;height:300px;}
 .countbig_div_car .bigdiv_left{ width:400px;height:300px;float:left;}
 .countbig_div_car .bigdiv_left p,.bigdiv_right p{ font-size:24px;margin-top:40px;margin-left:40px;}
@@ -3582,12 +3582,12 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .countbig_div_car .bigright_middle .catabsmiddle_info{ width:0px;height:100%;background:red;float:left;}
 .countbig_div_car .bigright_countnum{ float:left;margin-left:40px;color:red;}
 .countbig_div_car .bigright_font .catfont_monthtwo{ margin-left:40px;padding-left:10px;}
-.count_car_house{ width:100%;height:350px;border:1px solid #FE8A0F;background:#FFF;}
+.count_car_house{ width:100%;height:350px;border:1px solid #CCC;background:#FFF;}
 .rate_count_div{ width:100%;height:45px;line-height:50px;}
 .rate_count_div ul{ line-height:45px;height:45px;text-align:center;float:left;}
-.rate_count_div .rate_car_li{ float:left;width:100px;cursor:pointer}
-.rate_count_div .rate_house_li{ float:left;width:100px;cursor:pointer;border-bottom:1px solid #FE8A0F;border-left:1px solid #FE8A0F;}
-.rate_count_div .borrow_rate_blank{ width:1007px;height:45px;border-bottom:1px solid #FE8A0F;float:right;border-left:1px solid #FE8A0F;}
+.rate_count_div .rate_car_li{ float:left;width:100px;cursor:pointer;font-weight:bold;color:#FE8A0F;}
+.rate_count_div .rate_house_li{ float:left;width:100px;cursor:pointer;border-bottom:1px solid #CCC;border-left:1px solid #CCC;}
+.rate_count_div .borrow_rate_blank{ width:1007px;height:45px;border-bottom:1px solid #CCC;float:right;border-left:1px solid #CCC;}
 #borrow_car_term{ width:100%;height:380px;display:block;}
 #borrow_car_term a:hover,#borrow_house_term a:hover{ color:#FFF;}
 #borrow_house_term{ width:100%;height:380px;display:none;}
@@ -3600,6 +3600,21 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #borrow_house_term .house_term_zl{ width:200px;height:200px;float:left;background:url(images/borrow_housezl.jpg) no-repeat;margin-left:200px;}
 .borrow_category .clickhouse{ width:604px;height:205px;color:#FE8A0F;font-weight:bold;font-size:28px;float:right;cursor:pointer;background:url(images/borrow_houseover.jpg) no-repeat;background-position:200px;}
 .borrow_category .clickhouse_car{ border-bottom:1px solid #FE8A0F;font-size:28px;border-right:1px solid #FE8A0F;font-weight:bold;width:605px;height:205px;float:left;cursor:pointer;background:url(images/borrow_car.jpg) no-repeat;background-position:200px;}
+.borrow_carinfo_top{ width:100%;height:200px;border:1px solid red;}
+.borrow_carinfo_middle{ width:100%;height:435px;background:url(images/car_banner.jpg) center center no-repeat;}
+.car_detail_div{ background:transparent;background-color:rgba(255,255,255,0.35);width:330px;height:415px;margin-top:9px;float:right;}
+.car_detail_title{ width:100%;height:45px;line-height:45px;font-size:20px;font-weight:bold;text-align:center;}
+.car_detail_div table{ border:0px}
+.car_detail_div .odd{ height:25px;}
+.car_detail_div .even{ height:15px;}
+.car_detail_div .car_odd_left{ width:110px;text-align:right;}
+.car_detail_div .car_odd_input{ height:20px;width:170px;}
+.car_detail_div .car_money_num{ height:22px;width:170px;border:1px solid #888888;background:#FFF;}
+.car_detail_div .car_money_input{ height:18px;width:155px;border:0px;outline:0px;}
+.car_detail_div .car_money_car{ height:18px;width:140px;border:0px;outline:0px;}
+.car_detail_div .car_odd_select{ width:70px;height:22px;}
+.car_detail_div .car_info_sub{ background:transparent;background-color:rgba(255,255,255,0.35);font-size:14px;display:block;width:280px;height:30px;line-height:30px;border:1px solid #ccc;text-align:center;margin-left:25px;cursor:pointer;}
+.car_detail_div span{ color:red;}
 
 
 .borrowinfo_top{ float:left;border:1px solid #ddd;width:100%;background:#fff;}
