@@ -167,8 +167,8 @@ h6 span{float:left;padding-left:15px}
 .faxdate_coninfo_font{ font-size:12px;float:right;font-family:microsoft yahei;}
 .faxdate_coninfo_font_div{ text-align:right;}
 .faxdate_coninfo_font_div span{ padding:0px 5px 0px 5px;color:red;}
-.faxdate_con_day{ float:left;width:120px;height:40px;}
-.faxdate_day_num{ float:left;font-size:40px;width:50px;height:40px;line-height:40px;color:#0183D8;}
+.faxdate_con_day{ float:left;width:auto;height:40px;}
+.faxdate_day_num{ float:left;font-size:40px;width:auto;height:40px;line-height:40px;color:#0183D8;}
 .faxdate_day_font{ float:right;width:65px;height:40px;font-family:microsoft yahei;}
 .faxdate_expect{ width:100%;height:90px;border:1px solid #FFF;text-align:center;}
 .faxdate_expect_day{ height:70px;font-size:70px;color:#FF8A00;margin-top:35px;}
@@ -3564,9 +3564,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .borrow_category{ width:100%;height:205px;}
 .count_click_car{ display:block;margin-left:500px;width:200px;height:40px;background:#FF8A00;text-align:center;font-weight: bold;line-height: 40px;margin-top:50px;color:#FFF;font-size:16px;}
 .borrow_category .category_input_style{ float:left;width:20px;height:20px;filter:alpha(opacity=50);opacity:0.5;}
-.borrow_category .category_car{ color:#FE8A0F;font-weight:bold;width:605px;height:205px;float:left;cursor:pointer;background:url(images/borrow_carover.jpg) no-repeat;background-position:200px;}
-.borrow_category .category_house{ width:604px;height:205px;font-weight:bold;float:right;border-left:1px solid #CCC;border-bottom:1px solid #CCC;cursor:pointer;background:url(images/borrow_house.jpg) no-repeat;background-position:200px;}
-.category_car em,.category_house em{ font-size:28px;font-weight:blod;margin-top:30px;margin-left:50px;float:left;}
+.borrow_category .category_car{ width:605px;height:205px;float:left;cursor:pointer;background:url(images/borrow_carover.jpg) no-repeat;}
+.borrow_category .category_house{ width:604px;height:205px;float:right;border-left:1px solid #CCC;border-bottom:1px solid #CCC;cursor:pointer;background:url(images/borrow_house.jpg) no-repeat;}
 .countbig_div_car{ width:1200px;height:300px;}
 .countbig_div_car .bigdiv_left{ width:400px;height:300px;float:left;}
 .countbig_div_car .bigdiv_left p,.bigdiv_right p{ font-size:24px;margin-top:40px;margin-left:40px;}
@@ -3598,8 +3597,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #borrow_house_term .house_term_td{ width:200px;height:200px;float:left;background:url(images/borrow_housetd.jpg) no-repeat;margin-left:100px;}
 #borrow_house_term .house_term_tj{ width:200px;height:200px;float:left;background:url(images/borrow_housetj.jpg) no-repeat;margin-left:200px;}
 #borrow_house_term .house_term_zl{ width:200px;height:200px;float:left;background:url(images/borrow_housezl.jpg) no-repeat;margin-left:200px;}
-.borrow_category .clickhouse{ width:604px;height:205px;color:#FE8A0F;font-weight:bold;font-size:28px;float:right;cursor:pointer;background:url(images/borrow_houseover.jpg) no-repeat;background-position:200px;}
-.borrow_category .clickhouse_car{ border-bottom:1px solid #FE8A0F;font-size:28px;border-right:1px solid #FE8A0F;font-weight:bold;width:605px;height:205px;float:left;cursor:pointer;background:url(images/borrow_car.jpg) no-repeat;background-position:200px;}
+.borrow_category .clickhouse{ width:604px;height:205px;float:right;cursor:pointer;background:url(images/borrow_houseover.jpg) no-repeat;}
+.borrow_category .clickhouse_car{ border-bottom:1px solid #CCC;border-right:1px solid #CCC;width:605px;height:205px;float:left;cursor:pointer;background:url(images/borrow_car.jpg) no-repeat;}
 .borrow_carinfo_top{ width:100%;height:200px;border:1px solid red;}
 .borrow_carinfo_middle{ width:100%;height:435px;background:url(images/car_banner.jpg) center center no-repeat;}
 .car_detail_div{ background:transparent;background-color:rgba(255,255,255,0.35);width:330px;height:415px;margin-top:9px;float:right;}

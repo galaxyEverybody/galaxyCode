@@ -78,19 +78,19 @@ elseif ($action == 'carinfo'){
 elseif ($action == 'insert_car_info'){
 	include_once(ROOT_PATH . 'includes/lib_transaction.php');
 	
-	$carname = compile_str(trim($_POST['carname']));
-	$caraddress = compile_str(trim($_POST['caraddress']));
-	$carphone = intval(trim($_POST['carphone']));
-	$carborrownum = intval($_POST['carborrownum']);
-	$cartime = intval($_POST['cartime']);
-	$carbuytime = intval($_POST['carbuyyear']).'/'.intval($_POST['carbuymonth']);
-	$carnum = intval($_POST['carnum']*10000);
+	$carname = trim($_POST['carname']);
+	$caraddress = trim($_POST['caraddress']);
+	$carphone = trim($_POST['carphone']);
+	$carborrownum = trim($_POST['carborrownum']);
+	$cartime = trim($_POST['cartime']);
+	$carbuytime = trim($_POST['carbuyyear']).'/'.trim($_POST['carbuymonth']);
+	$carnum = trim($_POST['carnum']*10000);
 	
 	if(empty($carname) || empty($carphone) || empty($caraddress) || empty($carborrownum) || empty($cartime) || empty($carnum)){
 		show_message($_LANG['borrow_userinfo_fail'],$_LANG['back_up_page'],'borrow_money.php?act=carinfo');
 	}
-	
-	if(!preg_match('/^1[34578]\d{9}$/',$carphone)){
+
+	if(!preg_match('/^1[34578]{1}\d{9}$/',$carphone)){
 		show_message($_LANG['borrow_carphone_fail'],$_LANG['back_up_page'],'borrow_money.php?act=carinfo');
 	}
 	
@@ -98,15 +98,17 @@ elseif ($action == 'insert_car_info'){
 	$carinfo = array(
 			'user_id'			=>	$userid,
 			'car_name'			=>	$carname,
-			'car_phone'			=>	$carinformation,
-			'car_address'		=>	$cartype,
-			'car_borrownum'		=>	$cartime,
-			'car_borrowtime'	=>	$carnature,
-			'car_buytime'		=>	$carhold,
-			'car_carnum'		=>	$carhistory,
-			'add_time'			=>	gmtime()
+			'car_phone'			=>	$carphone,
+			'car_address'		=>	$caraddress,
+			'car_borrownum'		=>	$carborrownum,
+			'car_borrowtime'	=>	$cartime,
+			'car_buytime'		=>	$carbuytime,
+			'car_carnum'		=>	$carnum,
+			'status'			=>	0,
+			'add_time'			=>	gmtime(),
+			'is_del'			=>	0
 	);
-	
+
 	if(insert_borrow($carinfo,1)){
 		show_message($_LANG['borrow_record_success'],$_LANG['back_up_page'],'./index.php');
 	}

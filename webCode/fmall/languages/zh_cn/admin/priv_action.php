@@ -108,7 +108,8 @@ $_LANG['sale_order_stats'] = '订单销售统计';
 $_LANG['client_flow_stats'] = '客户流量统计';
 $_LANG['delivery_view'] = '查看发货单';
 $_LANG['back_view'] = '查看退货单';
-$_LANG['borrow_view'] = '查看借款列表';
+$_LANG['borrow_view'] = '车贷借款列表';
+$_LANG['borrow_house'] = '房贷借款列表';
 
 //促销管理
 $_LANG['snatch_manage'] = '夺宝奇兵';

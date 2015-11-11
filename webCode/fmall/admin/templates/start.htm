@@ -25,7 +25,7 @@
     }
   //-->
  </script> 
-<ul id="lilist" style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
+<ul id="lilist" style="padding:0; margin: 0; display:none; list-style-type:none; color: #CC0000;">
   {foreach from=$warning_arr item=warning}
   <li class="Start315">{$warning}</li>
   {/foreach}
@@ -228,7 +228,7 @@
 <!--
 onload = function()
 {
-  /* 检查订单 */
+  /* 妫�鏌ヨ鍗� */
   startCheckOrder();
 }
   Ajax.call('index.php?is_ajax=1&act=main_api','', start_api, 'GET', 'TEXT','FLASE');
@@ -241,7 +241,7 @@ onload = function()
       {
         var Mar = document.getElementById("Marquee");
         lis = Mar.getElementsByTagName('div');
-        //alert(lis.length); //显示li元素的个数
+        //alert(lis.length); //鏄剧ずli鍏冪礌鐨勪釜鏁�
         if(lis.length>1)
         {
           api_styel();
@@ -265,10 +265,10 @@ onload = function()
             
             var child_div=Mar.getElementsByTagName("div");
 
-        var picH = 16;//移动高度
-        var scrollstep=2;//移动步幅,越大越快
-        var scrolltime=30;//移动频度(毫秒)越大越慢
-        var stoptime=4000;//间断时间(毫秒)
+        var picH = 16;//绉诲姩楂樺害
+        var scrollstep=2;//绉诲姩姝ュ箙,瓒婂ぇ瓒婂揩
+        var scrolltime=30;//绉诲姩棰戝害(姣)瓒婂ぇ瓒婃參
+        var stoptime=4000;//闂存柇鏃堕棿(姣)
         var tmpH = 0;
         
         function start()

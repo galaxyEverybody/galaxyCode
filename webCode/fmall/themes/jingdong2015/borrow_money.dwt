@@ -29,8 +29,8 @@
 	<div class="w main">
 		<div class="borrow_middle_color">
 	    	<div class="borrow_category">
-	    		<div id="category_car" class="category_car" onclick="carshowhidcon();"><em style="margin-top:30px;margin-left:50px;float:left;">车辆抵押贷款</em></div>
-	    		<div id="category_house" class="category_house" onclick="houseshowhidcon();"><em style="margin-top:30px;margin-left:50px;float:left;">房产抵押贷款</em></div>
+	    		<div id="category_car" class="category_car" onclick="carshowhidcon();"></div>
+	    		<div id="category_house" class="category_house" onclick="houseshowhidcon();"></div>
 	    	</div>
 	    	<div id="borrow_car_term">
 	    		<div class="car_term_div">

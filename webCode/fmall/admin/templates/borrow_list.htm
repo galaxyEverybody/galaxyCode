@@ -4,8 +4,6 @@
 {include file="pageheader.htm"}
 {insert_scripts files="../js/utils.js,listtable.js"}
 
-<!-- 商品搜索 -->
-{include file="goods_search.htm"}
 <!-- 商品列表 -->
 <form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
   <!-- start goods list -->
@@ -17,33 +15,45 @@
       <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
       <a href="javascript:listTable.sort('goods_id'); ">序号</a>{$sort_goods_id}
     </th>
-    <th><a href="javascript:listTable.sort('goods_name'); ">借款金额</a></th>
-    <th><a href="javascript:listTable.sort('goods_sn'); ">借款期限</a></th>
-    <th><a href="javascript:listTable.sort('shop_price'); ">借款方式</a></th>
-    <th><a href="javascript:listTable.sort('is_on_sale'); ">借款时间</a></th>
-    <th><a href="javascript:listTable.sort('goods_number'); ">借款状态</a></th>
+    <th><a href="javascript:listTable.sort('car_name'); ">姓名</a></th>
+    <th><a href="javascript:listTable.sort('car_phone'); ">联系方式</a></th>
+    <th><a href="javascript:listTable.sort('car_borrownum'); ">借款金额(元)</a></th>
+    <th><a href="javascript:listTable.sort('car_borrowtime'); ">借款期限(天)</a></th>
+    <th><a href="javascript:listTable.sort('car_buytime'); ">车辆购置价格(元)</a></th>
+    <th><a href="javascript:listTable.sort('car_carnum'); ">车辆购置时间</a></th>
+    <th><a href="javascript:listTable.sort('car_address'); ">车辆登记地址</a></th>
+    <th><a href="javascript:listTable.sort('add_time'); ">借款时间</a></th>
+    <th><a href="javascript:listTable.sort('status'); ">借款状态</a></th>
+    
+    
+    
+    
+    
     <th>{$lang.handler}</th>
   <tr>
   {foreach from=$borrow_list item=borrows}
   <tr>
-    <td><input type="checkbox" name="checkboxes[]" value="{$goods.goods_id}" />{$borrows.borrow_id}</td>
-    <td class="first-cell" style="{if $goods.is_promote}color:red;{/if}"><span onclick="listTable.edit(this, 'edit_goods_name', {$goods.goods_id})">{$borrows.borrow_num}元</span></td>
-    <td><span onclick="listTable.edit(this, 'edit_goods_price', {$goods.goods_id})">{$borrows.borrow_time}</span></td>
-    <td><span onclick="listTable.edit(this, 'edit_goods_price', {$goods.goods_id})">{$borrows.borrow_style}</span></td>
-    <td align="center">{$borrows.add_time}</td>
-    <td align="center">{$borrows.borrow_status}</td>
+    <td><input type="checkbox" name="checkboxes[]" value="{$borrows.car_id}" />{$borrows.car_id}</td>
+    <td>{$borrows.car_name}</td>
+    <td>{$borrows.car_phone}</td>
+    <td>{$borrows.car_borrownum}</span></td>
+    <td>{$borrows.car_borrowtime}</span></td>
+    <td>{$borrows.car_carnum}</span></td>
+    <td>{$borrows.car_buytime}</td>
+    <td><span>{$borrows.car_address}</span></td>
+    <td><span >{$borrows.add_time}</span></td>
+    <td>
+    	<select id="{$borrows.car_id}">
+    		<option value='0' {if $borrows.status eq '0'} selected = "selected"{/if}>等待确认</option>
+    		<option value='1' {if $borrows.status eq '1'} selected = "selected"{/if}>审核中</option>
+    		<option value='2' {if $borrows.status eq '2'} selected = "selected"{/if}>放款中</option>
+    		<option value='3' {if $borrows.status eq '3'} selected = "selected"{/if}>借款结束</option>
+    		<option value='4' {if $borrows.status eq '4'} selected = "selected"{/if}>不通过</option>
+    	</select>
+    </td>
     <td align="center">
-      <a href="borrow.php?act=selinfo&borrow_id={$borrows.user_id}" title="{$lang.view}"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a>
-      <a href="borrow.php?act=selinfo&borrow_id={$borrows.user_id}" title="{$lang.edit}"><img src="images/icon_edit.gif" width="21" height="21" border="0" /></a>
-      <a href="goods.php?act=copy&goods_id={$goods.goods_id}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.copy}"><img src="images/icon_copy.gif" width="21" height="21" border="0" /></a>
-      <a href="javascript:;" onclick="listTable.remove({$goods.goods_id}, '{$lang.trash_goods_confirm}')" title="{$lang.trash}"><img src="images/icon_trash.gif" width="21" height="21" border="0" /></a>
-      {if $specifications[$goods.goods_type] neq ''}<a href="goods.php?act=product_list&goods_id={$goods.goods_id}" title="{$lang.item_list}"><img src="images/icon_docs.gif" width="21" height="21" border="0" /></a>{else}<img src="images/empty.gif" width="21" height="21" border="0" />{/if}
-      {if $add_handler}
-        |
-        {foreach from=$add_handler item=handler}
-        <a href="{$handler.url}&goods_id={$goods.goods_id}" title="{$handler.title}"><img src="images/{$handler.img}" width="21" height="21" border="0" /></a>
-        {/foreach}
-      {/if}
+      <a href="javascript:#" onclick="borrow_edit({$borrows.car_id})" title="{$lang.edit}"><img src="images/icon_edit.gif" width="21" height="21" border="0" /></a>
+      <a href="borrow.php?act=remove_car&id={$borrows.car_id}" title="{$lang.trash}"><img src="images/icon_trash.gif" width="21" height="21" border="0" /></a>
     </td>
   </tr>
   {foreachelse}
@@ -51,7 +61,19 @@
   {/foreach}
 </table>
 <!-- end goods list -->
-
+<script>
+	function borrow_edit(id){
+		var sta = document.getElementById(id).value;
+		Ajax.call('borrow.php?act=edit_car','id='+id+'&sta='+sta,callback_edit_car,'POST','TEXT',true,true);
+	}
+	function callback_edit_car(res){
+		if(res){
+			alert('修改成功');
+		}else{
+			alert('修改失败');
+		}
+	}
+</script>
 <!-- 分页 -->
 <table id="page-table" cellspacing="0">
   <tr>
