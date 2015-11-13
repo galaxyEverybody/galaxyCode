@@ -169,7 +169,7 @@ function reg(str){
       </div>
       <div class="mc hide" id="p-con-attr-con">
         <div class="detail-correction"></div>
-        <table cellpadding="1px" cellspacing="1px" width="100%" border="1px" class="Ptable">
+        <table cellpadding="1px" cellspacing="1px" class="Ptable">
           <tbody>
             <tr>
               <th class="tdTitle">序号</th>

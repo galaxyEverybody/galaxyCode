@@ -165,7 +165,7 @@ function reg(str){
       </div>
       <div class="mc" id="p-con-detail-con">
         <ul class="detail-list">
-          <li>商品名称：{$goods.goods_name}</li>
+          <li>产品名称：{$goods.goods_name}</li>
           <!-- {foreach from=$properties item=property_group key=key} --> 
           <!-- {foreach from=$property_group item=property} -->
           <li>{$property.name|escape:html}：{$property.value}</li>
@@ -179,7 +179,7 @@ function reg(str){
       </div>
       <div class="mc hide" id="p-con-attr-con">
         <div class="detail-correction"></div>
-        <table cellpadding="1px" cellspacing="1px" width="100%" class="Ptable">
+        <table cellpadding="1px" cellspacing="1px" class="Ptable">
           <tbody>
             <tr>
               <th class="tdTitle">序号</th>

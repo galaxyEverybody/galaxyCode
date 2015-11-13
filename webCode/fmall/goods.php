@@ -199,7 +199,6 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 
     
     $goods = get_goods_info($goods_id);			//获得商品的信息 
-    //print_r($goods);exit;
     $bidrecord = get_goods_bid($goods_id);		//获得投标记录
    	//$repayrecord = get_goods_repay($goods_id);	//获得还款记录
     

@@ -105,10 +105,11 @@
 <div class="index_faxdate">
 	<div class="blank30"></div>
 	<div class="w">
-		<div class="faxdate_title" >
+		<div class="faxdate_title">
 			<span></span>
 			<a href="categoryabs.php">聚能赚定期</a>
-			<em>投资越高 收益越高</em>
+			<s class="fax_title_s"></s>
+			<em class="fax_title_img"></em>
 		</div>
 		<!-- TemplateBeginEditable name="分类下商品区域" -->
 		<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
@@ -206,13 +207,14 @@
 	    <div class="powder_title">
 			<span></span>
 			<a class="powder_title_a" href="category.php?id=1009">散标投资</a>
-			<em >精选散标 灵活投资</em>
+			<s class="powder_title_s"></s>
+			<em class="powder_title_img"></em>
 			<div class="faxdate_powder_more"><a href="category.php?id=1009">更多></a></div>
 		</div>
 		<div class="powder_div">
 			<div class="powder_con_div">
 			<ul>
-				<li >
+				<li>
 					<span class="powder_div_name">借款标题</span>
 					<span class="powder_div_rate">年化利率</span>
 					<span class="powder_div_name">借款金额</span>
@@ -243,13 +245,14 @@
 	    <div class="powder_news_title">
 			<span ></span>
 			<a class="powder_title_a" href="#javascript:">最新动态</a>
-			<em >了解动态 放心投资</em>
+			<s class="news_title_s"></s>
+			<em class="news_title_img"></em>
 		</div>
 		<div class="new_news">
 			<div class="news_div">
 				<ul >
 					<!--{foreach from=$new_amount item=amount_item}-->
-					<li >
+					<li>
 						<p ><a href="{$amount_item.url}" target="_blank" title="{$amount_item.title|escape:html}">{$amount_item.short_title}</a></p>
 						<em >{$amount_item.add_time}</em>
 					</li>

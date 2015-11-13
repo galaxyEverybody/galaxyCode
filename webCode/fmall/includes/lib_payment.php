@@ -158,13 +158,13 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
             if ($pay_log['order_type'] == PAY_ORDER)
             {
                 /* 取得订单信息 */
-                $sql = 'SELECT user_id, order_sn, goods_price, order_price, goods_id ' .
-                        'FROM ' . $GLOBALS['ecs']->table('order_goods') .
-                       " WHERE order_sn = '$pay_log[order_id]'";
+                $sql = 'SELECT o.user_id, o.order_sn, o.goods_price, o.order_price, o.goods_id, g.surplus_price ' .
+                        'FROM ' . $GLOBALS['ecs']->table('order_goods').'as o,'.$GLOBALS['ecs']->table('goods').
+                       'as g WHERE order_sn='.$pay_log[order_id].' AND o.goods_id=g.goods_id';
                 $order    = $GLOBALS['db']->getRow($sql);
                 $order_id = $order['order_sn'];
                 $goodid = $order['goods_id'];
-                $invest_price = $order['goods_price'] - $order['order_price'];	//产品的可投资金额
+                $invest_price = $order['surplus_price'] - $order['order_price'];	//产品的可投资金额
 
                 /* 修改订单状态为已付款 */
                 $sql = 'UPDATE ' . $GLOBALS['ecs']->table('order_goods') .
@@ -177,6 +177,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                 
                 /* 修改商品的可投资金额*/
                 $sql = 'UPDATE '.$GLOBALS['ecs']->table('goods').' SET surplus_price ="'.$invest_price.'" where goods_id ='.$goodid;
+
                 $GLOBALS['db']->query($sql);
                 
                 /* 记录订单操作记录 

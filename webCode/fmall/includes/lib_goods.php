@@ -1015,11 +1015,15 @@ function get_goods_info($goods_id)
 function get_goods_bid($goods_id)
 {
 	$sql = 'select g.rec_id,u.user_name,g.invest_price,g.add_time from '.$GLOBALS['ecs']->table('order_goods').' as g,'.
-	$GLOBALS['ecs']->table('users').'as u where g.user_id=u.user_id and g.pay_status=1 and g.goods_id='.$goods_id;
+	$GLOBALS['ecs']->table('users').'as u where g.user_id=u.user_id and g.pay_status=2 and g.goods_id='.$goods_id.' limit 10';
+
 	$goodsbidrecord = $GLOBALS['db']->getAll($sql);
 	
+	foreach($goodsbidrecord as $key=>$goodsbidrec){
+		$goodsbidrecord[$key]['add_time'] = local_date("Y-m-d H:i:s",$goodsbidrec['add_time']);
+	}
 	return $goodsbidrecord;
-	/*未完*/
+
 }
 
 /**
