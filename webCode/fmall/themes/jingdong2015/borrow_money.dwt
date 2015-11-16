@@ -216,8 +216,14 @@
 						<td class="car_odd_left"></td><td><span id="borrowbuynum"></span></td>
 					</tr>
 					<tr class="odd">
-						<td class="car_odd_left">车辆登记地址：</td>
-						<td><input class="car_odd_input" type="text" name="caraddress" placeholder="请填写车辆所属地"></td>
+						<td class="car_odd_left">车辆登记城市：</td>
+						<td>
+							<select class='car_address_select'>
+								<option>北京</option>
+								<option>张家口</option>
+								<option>其它</option>
+							</select>
+						</td>
 					</tr>
 					<tr class="even">
 						<td class="car_odd_left"></td><td></td>

@@ -214,17 +214,17 @@
 		<div class="powder_div">
 			<div class="powder_con_div">
 			<ul>
-				<li>
+				<li class="powder_con_title">
 					<span class="powder_div_name">借款标题</span>
 					<span class="powder_div_rate">年化利率</span>
-					<span class="powder_div_name">借款金额</span>
+					<span class="powder_div_name">借款金额（元）</span>
 					<span class="powder_div_name">借款期限</span>
 					<span class="powder_div_name">投资进度</span>
 				</li>
 				<!--{foreach from=$best_goods item=goods name=foo}-->
 				<li >
 					<span class="powder_div_name" ><a href="{$goods.url}">{$goods.short_name}</a></span>
-					<span class="powder_div_color" >{$goods.market_price}</span>
+					<span class="powder_div_color" >{$goods.market_price}%</span>
 					<span class="powder_div_name" >{$goods.shop_price}</span>
 					<span class="powder_div_name" >{$goods.term}</span>
 					<span class="powder_div_advance" >

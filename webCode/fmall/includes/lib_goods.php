@@ -689,14 +689,14 @@ function get_recommend_goods($type = '', $cats = '')
             $goods[$idx]['short_name']   = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
                                                sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
             $goods[$idx]['short_style_name']   = add_style($goods[$idx]['short_name'],$row['goods_name_style']);
-            $goods[$idx]['market_price'] = $row['market_price'].'%';
-            $goods[$idx]['shop_price']   = price_format($row['shop_price']);
+            $goods[$idx]['market_price'] = market_format($row['market_price']);
+            $goods[$idx]['shop_price']   = number_format($row['shop_price']);
             $goods[$idx]['price_advance']   = ceil(($row['shop_price']-$row['surplus_price'])/$row['shop_price']*100);
             $goods[$idx]['thumb']        = get_image_path($row['goods_id'], $row['goods_thumb'], true);
             $goods[$idx]['goods_img']    = get_image_path($row['goods_id'], $row['goods_img']);
             $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
             /*gao update*/
-            $goods[$idx]['term'] = ceil(($row['goods_number'] - $row['goods_weight'])/3600*24).'天';
+            $goods[$idx]['term'] = ceil(($row['goods_number'] - $row['goods_weight'])/(3600*24)).'天';
             
             if (in_array($row['goods_id'], $type_array['best']))
             {
@@ -911,9 +911,6 @@ function get_goods_info($goods_id)
         /* 用户评论级别取整 */
         $row['comment_rank']  = ceil($row['comment_rank']) == 0 ? 5 : ceil($row['comment_rank']);
 
-        /* 获得商品的销售价格 */
-        $row['market_price']        = intval($row['market_price']);
-        $row['shop_price_formated'] = price_format($row['shop_price']);
 
         /* 修正促销价格 */
         if ($row['promote_price'] > 0)
@@ -996,6 +993,11 @@ function get_goods_info($goods_id)
         /* 修正商品图片 */
         $row['goods_img']   = get_image_path($goods_id, $row['goods_img']);
         $row['goods_thumb'] = get_image_path($goods_id, $row['goods_thumb'], true);
+
+		/* 获得标底投资金额 */
+        $row['market_price']    = market_format($row['market_price']);
+        $row['shop_price'] 		= number_format($row['shop_price']);
+        $row['surplus_price'] 	= number_format($row['surplus_price']);
 
         return $row;
     }
@@ -1270,7 +1272,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         $goods[$idx]['id']           = $row['goods_id'];
         $goods[$idx]['name']         = $row['goods_name'];
         $goods[$idx]['brief']        = $row['goods_brief'];
-        $goods[$idx]['market_price'] = intval(price_format($row['market_price']));
+        $goods[$idx]['market_price'] = substr($row['market_price'],-1)>0?$row['market_price']:intval($row['market_price']);
         $goods[$idx]['short_name']   = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
                                         sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
         $goods[$idx]['shop_price']   = price_format($row['shop_price']);

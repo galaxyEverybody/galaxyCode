@@ -417,18 +417,13 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
         $page = $max_page;
     }
     $goodslist = category_get_goods($children, $brand, $price_min, $price_max, $ext, $size, $page, $sort, $order);
-   
-    foreach($goodslist as $key=>$goodsvalue)
-    {
-    	$goodslist[$key]['shop_price'] = number_format($goodsvalue['shop_price']);
-    }
     
     if($display == 'grid')
     {
         if(count($goodslist) % 2 != 0)
         {
             $goodslist[] = array();
-        }
+        } 
     }
 	
     $smarty->assign('goods_list',       $goodslist);
@@ -590,8 +585,8 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
 		$arr[$row['goods_id']]['org_promote_price']      = $row['promote_price'];
 		
         $arr[$row['goods_id']]['goods_style_name'] = add_style($row['goods_name'],$row['goods_name_style']);
-        $arr[$row['goods_id']]['market_price']     = price_format($row['market_price']);
-        $arr[$row['goods_id']]['shop_price']       = price_format($row['shop_price']);
+        $arr[$row['goods_id']]['market_price']     = market_format($row['market_price']);
+        $arr[$row['goods_id']]['shop_price']       = number_format($row['shop_price'],',');
         $arr[$row['goods_id']]['type']             = $row['goods_type'];
         $arr[$row['goods_id']]['promote_price']    = ($promote_price > 0) ? price_format($promote_price) : '';
         $arr[$row['goods_id']]['goods_thumb']      = get_image_path($row['goods_id'], $row['goods_thumb'], true);

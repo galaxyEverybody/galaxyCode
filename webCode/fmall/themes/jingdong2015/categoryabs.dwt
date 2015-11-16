@@ -34,7 +34,7 @@
 		    <ul>
 		    	<li ><div class="catabs_infoli_left">预期年收益率</div><div class="catabs_rate">{$goods.market_price}<em>%</em></div></li>
 		    	<li ><div class="catabs_infoli_left">锁定期限</div><div class="catabs_day">{$goods.goods_weight_day}<em>天</em></div></li>
-		    	<li ><div class="catabs_infoli_left">起投金额</div><div class="catabs_count">100.00<em>元</em></div></li>
+		    	<li ><div class="catabs_infoli_left">起投金额</div><div class="catabs_count">100<em>元</em></div></li>
 		    	<li >
 		    		<div class="catabs_infoli_left">投资进度</div>
 	    			<div class="catabs_what">

@@ -235,12 +235,15 @@ function reg(str){
 	$(function(){
 		var number = 0;	
 		var num = $("#gooddetailrateend").html();
+		var firstnum = num.substr(0,2);
+		var lastnum = num.substr(2);
 		var auto = setInterval(autoadd,"100");
 		
 		function autoadd(){
 			number++;
+			var numbers = number+lastnum;
 			$("#gooddetailrate").html(number);
-			if(number == num){
+			if(number == firstnum){
 				clearInterval(auto);
 			}
 		}

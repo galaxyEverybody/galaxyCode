@@ -1064,6 +1064,26 @@ function price_format($price, $change_price = true)
 }
 
 /**
+* 格式化显示利率
+* @param float $num
+* return string
+*/
+function market_format($num){
+	if($num == ''){
+		$market_price = 0;
+	}
+	if($num){
+		if(substr($num,-1)>0){
+			$market_price = $num;
+		}else{
+			$market_price = intval($num);
+		}
+	}
+	
+	return $market_price;
+}
+
+/**
  * 返回订单中的虚拟商品
  *
  * @access  public
