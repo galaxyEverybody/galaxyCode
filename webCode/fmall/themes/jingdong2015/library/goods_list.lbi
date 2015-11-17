@@ -12,7 +12,7 @@
     <div class="cate_all_div">
     	<div class="cate_all_middle">
     	<ul>
-    		<li>
+    		<li class="firstli">
 	    		<span class="cate_all_title">借款用途</span>
 	    		<span class="cate_all_rate_head">年化利率</span>
 	    		<span class="cate_all_price">借款金额（元）</span>
@@ -27,7 +27,13 @@
 	    		<span class="cate_all_rate">{$goods.market_price}%</span>
 	    		<span class="cate_all_price">{$goods.shop_price}</span>
 	    		<span class="cate_all_rate">{$goods.loan_time}天</span>
-	    		<span class="cate_all_style">保障方式</span>
+	    		<span class="cate_all_style">
+	    			<!--{if $goods.ensure_style eq '0'}-->
+	    			<img src="images/ensure_di.gif" alt="银河众联">
+	    			<!--{else}-->
+	    			<img src="images/ensure_xin.gif" alt="银河众联">
+	    			<!--{/if}-->
+	    		</span>
 	    		<span class="cate_all_rate">{$goods.loan_price}%</span>
 	    		<span class="cate_all_price">
 	    			<!--{if $goods.goodstatus eq "1"}-->

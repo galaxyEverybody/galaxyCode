@@ -255,7 +255,7 @@ function index_get_new_articles()
     $sql = 'SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name ' .
             ' FROM ' . $GLOBALS['ecs']->table('article') . ' AS a, ' .
                 $GLOBALS['ecs']->table('article_cat') . ' AS ac' .
-            ' WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_type = 1' .
+            ' WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_type = 1 AND a.cat_id = 12 ' .
             ' ORDER BY a.article_type DESC, a.add_time DESC LIMIT ' . $GLOBALS['_CFG']['article_number'];
     $res = $GLOBALS['db']->getAll($sql);
 

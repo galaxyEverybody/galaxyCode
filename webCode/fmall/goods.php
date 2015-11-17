@@ -92,7 +92,7 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'getGoodsInfo')
 		$res['goods_img'] = $goods['goods_img'];
 		$res['goods_sn'] =  sprintf($GLOBALS['_LANG']['quick_goods_sn'], $goods['goods_sn']);
 		$res['shop_price'] = intval(price_format($goods['shop_price']));
-		$res['market_price'] = sprintf($GLOBALS['_LANG']['quick_market_pirce'], $goods['market_price']);
+		$res['market_price'] = market_format($goods['market_price']);
 		$comment_percent = comment_percent($goods_id);
 		$res['haoping_percent'] = $comment_percent['haoping_percent'].'%';
 		$new_comment = get_new_comment($goods_id,5);

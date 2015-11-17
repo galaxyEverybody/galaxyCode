@@ -97,6 +97,8 @@ $_LANG['goods_sn_exists'] = '您输入的货号已存在，请换一个';
 /*------------------------------------------------------ */
 $_LANG['tab_general'] = '通用信息';
 $_LANG['tab_detail'] = '详细描述';
+$_LANG['wind_control'] = '风控措施';
+$_LANG['last_ensure'] = '售后保障';
 $_LANG['tab_mix'] = '其他信息';
 $_LANG['tab_properties'] = '商品属性';
 $_LANG['tab_gallery'] = '商品相册';
@@ -177,6 +179,8 @@ $_LANG['rapid_add_brand'] = '添加品牌';
 $_LANG['category_manage'] = '分类管理';
 $_LANG['brand_manage'] = '品牌管理';
 $_LANG['hide'] = '隐藏';
+
+$_LANG['ensure_style'] = '保障方式';
 
 $_LANG['lab_volume_price']         = '商品优惠价格：';
 $_LANG['volume_number']            = '优惠数量';

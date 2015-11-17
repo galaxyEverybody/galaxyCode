@@ -237,12 +237,13 @@ function reg(str){
 		var num = $("#gooddetailrateend").html();
 		var firstnum = num.substr(0,2);
 		var lastnum = num.substr(2);
+
 		var auto = setInterval(autoadd,"100");
 		
 		function autoadd(){
 			number++;
 			var numbers = number+lastnum;
-			$("#gooddetailrate").html(number);
+			$("#gooddetailrate").html(numbers);
 			if(number == firstnum){
 				clearInterval(auto);
 			}

@@ -34,10 +34,10 @@ if ($action == 'default')
 /* ajax的车贷计算*/
 elseif ($action =="ajax_counter_car"){
 	$num = intval($_POST['catnum']);
-	$yearrate = 0.12;
-	$sixmonth = 0.13;
-	$threemonth = 0.15;
-	$month = 0.17;
+	$yearrate = 0.023*12;
+	$sixmonth = 0.023*6;
+	$threemonth = 0.023*3;
+	$month = 0.023;
 	
 	$val = $num*$yearrate.','.$num*$sixmonth.','.$num*$threemonth.','.$num*$month;
 	

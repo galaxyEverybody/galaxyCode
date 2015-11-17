@@ -377,6 +377,7 @@ h6 span{float:left;padding-left:15px}
 /* category*/
 .cate_all_div{ height:auto;background:#fff;width:100%;}
 .cate_all_middle{ width:95%;height:auto;margin-left:35px;}
+.cate_all_middle .firstli{ font-weight:bold;}
 .cate_all_div ul{ width:100%;height:auto;line-height:70px;font-size:16px;font-family:microsoft yahei;}
 .cate_all_div ul li{ border-bottom:1px solid #DDD;height:70px;}
 .cate_all_div .cate_all_title{ width:15%;display:inline-block;text-align:left;margin-left:30px;}

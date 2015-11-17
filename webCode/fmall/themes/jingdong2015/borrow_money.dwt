@@ -81,22 +81,22 @@
     	 			<li>
     	 				<div class="bigright_font">借款期限<span class="catfont_month">(12个月)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo12_car" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum12_car">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum12_car">2760</span>元</div>
     	 			</li>
     	 			<li>
     	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(6个月)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo6_car" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum6_car">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum6_car">1380</span>元</div>
     	 			</li>
     	 			<li>
     	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(3个月)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo3_car" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum3_car">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum3_car">690</span>元</div>
     	 			</li>
     	 			<li>
     	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(1个月)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo1_car" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum1_car">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum1_car">230</span>元</div>
     	 			</li>
     	 		</ul>
     	 	</div>
@@ -116,22 +116,22 @@
     	 			<li>
     	 				<div class="bigright_font">借款期限<span class="catfont_month">(12个月)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo12_house" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum12_house">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum12_house">2760</span>元</div>
     	 			</li>
     	 			<li>
     	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(6个月)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo6_house" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum6_house">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum6_house">1380</span>元</div>
     	 			</li>
     	 			<li>
     	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(3个月)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo3_house" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum3_house">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum3_house">690</span>元</div>
     	 			</li>
     	 			<li>
     	 				<div class="bigright_font">借款期限<span class="catfont_monthtwo">(1个月)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo1_house" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum1_house">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum1_house">230</span>元</div>
     	 			</li>
     	 		</ul>
     	 	</div>
@@ -269,9 +269,9 @@
 		
 		var number = 0;	
 		var startwidth12 = 400;
-		var startwidth6 = 250;
-		var startwidth3 = 200;
-		var startwidth1 = 100;
+		var startwidth6 = 200;
+		var startwidth3 = 100;
+		var startwidth1 = 30;
 		
 		var auto12 = setInterval(autoaddwidth12_car,"100");
 		function autoaddwidth12_car(){
@@ -313,9 +313,9 @@
 	$(function(){
 		var number = 0;	
 		var startwidth12 = 400;
-		var startwidth6 = 250;
-		var startwidth3 = 200;
-		var startwidth1 = 100;
+		var startwidth6 = 200;
+		var startwidth3 = 100;
+		var startwidth1 = 30;
 		
 		var auto12 = setInterval(autoaddwidth12_car,"100");
 		function autoaddwidth12_car(){
@@ -375,9 +375,9 @@
 		
 		var number = 0;	
 		var startwidth12 = 400;
-		var startwidth6 = 250;
-		var startwidth3 = 200;
-		var startwidth1 = 100;
+		var startwidth6 = 200;
+		var startwidth3 = 100;
+		var startwidth1 = 30;
 		
 		var auto12 = setInterval(autoaddwidth12_house,"100");
 		function autoaddwidth12_house(){
@@ -427,9 +427,9 @@
 		
 		var number = 0;	
 		var startwidth12 = 400;
-		var startwidth6 = 250;
-		var startwidth3 = 200;
-		var startwidth1 = 100;
+		var startwidth6 = 200;
+		var startwidth3 = 100;
+		var startwidth1 = 30;
 		
 		var auto12 = setInterval(autoaddwidth12_car,"100");
 		function autoaddwidth12_car(){
@@ -478,9 +478,9 @@
 		
 		var number = 0;	
 		var startwidth12 = 400;
-		var startwidth6 = 250;
-		var startwidth3 = 200;
-		var startwidth1 = 100;
+		var startwidth6 = 200;
+		var startwidth3 = 100;
+		var startwidth1 = 30;
 		
 		var auto12 = setInterval(autoaddwidth12_house,"100");
 		function autoaddwidth12_house(){

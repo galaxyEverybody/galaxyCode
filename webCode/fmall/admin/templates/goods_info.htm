@@ -15,8 +15,8 @@
   <!-- tab bar -->
   <div id="tabbar-div">
     <p> <span class="tab-front" id="general-tab">{$lang.tab_general}</span> <span class="tab-back" id="detail-tab">{$lang.tab_detail}</span>
-    <span class="tab-back" id="packing-tab">风控措施</span>
-    <span class="tab-back" id="customer-tab">售后保障</span>
+    <span class="tab-back" id="packing-tab">{$lang.wind_control}</span>
+    <span class="tab-back" id="customer-tab">{$lang.last_ensure}</span>
     <span
         class="tab-back" id="mix-tab">{$lang.tab_mix}</span>{if $goods_type_list}<span
         class="tab-back" id="properties-tab">{$lang.tab_properties}</span>{/if}<span
@@ -63,6 +63,15 @@
             <input class="text" size="10" name="addedCategoryName" />
             <a href="javascript:void(0)" onclick="addCategory()" title="{$lang.button_submit}" class="special" >{$lang.button_submit}</a> <a href="javascript:void(0)" onclick="return goCatPage()" title="{$lang.category_manage}" class="special" >{$lang.category_manage}</a> <a href="javascript:void(0)" onclick="hideCatDiv()" title="{$lang.hide}" class="special" ><<</a> </span> {/if}
             {$lang.require_field} </td>
+        </tr>
+        <tr>
+        	<td class="label">{$lang.ensure_style}</td>
+        	<td>
+        		<select name="ensure_style">
+        			<option value='0'>抵押</option>
+        			<option value='1'>信用</option>
+        		</select>
+        	</td>
         </tr>
         <tr style="display:none;">
           <td class="label">{$lang.lab_other_cat}</td>
