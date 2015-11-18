@@ -655,7 +655,7 @@ function get_recommend_goods($type = '', $cats = '')
         }
 
         //取出所有符合条件的商品数据，并将结果存入对应的推荐类型数组中
-        $sql = 'SELECT g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, g.surplus_price,g.goods_weight,g.goods_number, ' .
+        $sql = 'SELECT g.goods_id, g.goods_name, g.good_status, g.add_time, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, g.surplus_price,g.goods_weight,g.goods_number, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
                 "promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img, RAND() AS rnd " .
                 'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
@@ -695,6 +695,16 @@ function get_recommend_goods($type = '', $cats = '')
             $goods[$idx]['thumb']        = get_image_path($row['goods_id'], $row['goods_thumb'], true);
             $goods[$idx]['goods_img']    = get_image_path($row['goods_id'], $row['goods_img']);
             $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
+            if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
+	    		$goods[$idx]['good_status'] = $row['good_status'];
+	    	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){
+	    		$goods[$idx]['good_status'] = 3;
+	    	}elseif(gmtime()>$row['goods_number']){
+	    		$goods[$idx]['good_status'] = 4;
+	    	}else{
+	    		$goods[$idx]['good_status'] = 0;
+	    	}
+            
             /*gao update*/
             $goods[$idx]['term'] = ceil(($row['goods_number'] - $row['goods_weight'])/(3600*24)).'天';
             
@@ -1238,7 +1248,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 
     $children = get_children($cat_id);
 	
-    $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.goods_number, g.goods_weight, g.shop_price AS org_price, ' .
+    $sql = 'SELECT g.goods_id, g.goods_name, g.good_status, g.market_price, g.add_time, g.goods_number, g.goods_weight, g.shop_price AS org_price, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
                'g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img ' .
             "FROM " . $GLOBALS['ecs']->table('goods') . ' AS g '.
@@ -1247,14 +1257,14 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
             'WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND '.
                 'g.is_delete = 0 AND (' . $children . 'OR ' . get_extension_goods($children) . ') ';
 
-    $order_rule = empty($order_rule) ? 'ORDER BY g.sort_order, g.goods_id ASC' : $order_rule;
+    $order_rule = empty($order_rule) ? 'ORDER BY g.sort_order, g.goods_id DESC' : $order_rule;
     $sql .= $order_rule;
 
     if ($num > 0)
     {
         $sql .= ' LIMIT ' . $num;
     }
-
+	
     $res = $GLOBALS['db']->getAll($sql);
     $goods = array();
     foreach ($res AS $idx => $row)
@@ -1280,6 +1290,15 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         $goods[$idx]['goods_img']    = get_image_path($row['goods_id'], $row['goods_img']);
         $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
     	$goods[$idx]['goods_weight_day']	 = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
+    	if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
+    		$goods[$idx]['good_status'] = $row['good_status'];
+    	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){
+    		$goods[$idx]['good_status'] = 3;
+    	}elseif(gmtime()>$row['goods_number']){
+    		$goods[$idx]['good_status'] = 4;
+    	}else{
+    		$goods[$idx]['good_status'] = 0;
+    	}
     }
     
     $cat['goods_level2'] = $goods;

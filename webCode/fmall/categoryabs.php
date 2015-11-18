@@ -35,12 +35,13 @@ if( $action == 'default'){
 	
 	$sql = 'SELECT cat_id FROM ' . $GLOBALS["ecs"]->table("category").' WHERE is_standalone !=0 AND is_show =1' ;
 	$res = $GLOBALS['db']->getAll($sql);
-	
+
 	$catabsone = assign_catabs_goods($res[0][cat_id], $num = 1, $from = 'web', $order_rule = '');
-	$catabstwo = assign_catabs_goods($res[1][cat_id], $num = 2, $from = 'web', $order_rule = '');
+	$catabstwo = assign_catabs_goods($res[1][cat_id], $num = 1, $from = 'web', $order_rule = '');
 	$catabsthree = assign_catabs_goods($res[2][cat_id], $num = 1, $from = 'web', $order_rule = '');
+	$catabsfour = assign_catabs_goods($res[3][cat_id], $num = 1, $from = 'web', $order_rule = '');
 	
-	$cat_goods = array_merge($catabsone,$catabstwo,$catabsthree);
+	$cat_goods = array_merge($catabsone,$catabstwo,$catabsfour,$catabsthree);
 	//print_r($cat_goods);exit;
 	$smarty->assign('catabs_goods',$cat_goods);
 	
@@ -78,7 +79,7 @@ function assign_catabs_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 
     $children = get_children($cat_id);
 	
-    $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.goods_number, g.goods_weight, g.surplus_price, g.shop_price AS org_price, ' .
+    $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.add_time, g.good_status, g.goods_number, g.goods_weight, g.surplus_price, g.shop_price AS org_price, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
                'g.promote_price, promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img ' .
             "FROM " . $GLOBALS['ecs']->table('goods') . ' AS g '.
@@ -87,7 +88,7 @@ function assign_catabs_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
             'WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND '.
                 'g.is_delete = 0 AND (' . $children . 'OR ' . get_extension_goods($children) . ') ';
 
-    $order_rule = empty($order_rule) ? 'ORDER BY g.sort_order, g.goods_id ASC' : $order_rule;
+    $order_rule = empty($order_rule) ? 'ORDER BY g.sort_order, g.goods_id DESC' : $order_rule;
     $sql .= $order_rule;
 
     if ($num > 0)
@@ -121,6 +122,15 @@ function assign_catabs_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
    		$goods[$idx]['advance']		 = ceil(($row['shop_price']-$row['surplus_price'])/$row['shop_price']*100);
    		$goods[$idx]['goods_weight_day']	 = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
+    	if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
+    		$goods[$idx]['good_status'] = $row['good_status'];
+    	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){
+    		$goods[$idx]['good_status'] = 3;
+    	}elseif(gmtime()>$row['goods_number']){
+    		$goods[$idx]['good_status'] = 4;
+    	}else{
+    		$goods[$idx]['good_status'] = 0;
+    	}
     }
     $cat[$cat_id] = $goods;
 

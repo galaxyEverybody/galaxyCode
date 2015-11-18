@@ -180,6 +180,8 @@ h6 span{float:left;padding-left:15px}
 .faxdate_invest_div{ width:220px;height:40px;background:#FF8A00;text-align:center;font-weight:bold;line-height:40px;margin-top:20px;}
 .faxdate_invest_div a{ color:#FFF;font-size:16px;display:inline-block;width:200px;height:40px;}
 .faxdate_invest_div a:hover{ color:#FFF;margin-left:2px;margin-top:2px;}
+.faxdate_invest_over{ width:220px;height:40px;background:#DDD;text-align:center;font-weight:bold;line-height:40px;margin-top:20px;}
+
 
 .faxdate_powder_more{ width:50px;height:50px;float:right;font-size:14px;}
 .powder_title{ width:100%;height:50px;line-height:50px;}
@@ -199,6 +201,7 @@ h6 span{float:left;padding-left:15px}
 .powder_term_div{ width:60px;height:70px;line-height:70px;}
 .powder_div_color{ width:150px;display:inline-block;text-align:center;color:red;}
 .powder_invest_cli{ width:100px;height:40px;background:#FF8A00;color:#FFF;font-weight:bold;line-height:40px;font-size:14px;cursor:pointer;}
+.powder_invest_over{ width:100px;height:40px;background:#DDD;font-weight:bold;line-height:40px;font-size:14px;cursor:pointer;}
 .powder_invest_cli a:hover{ color:#FFF;margin-left:2px;margin-top:2px;}
 
 .powder_news_title{ width:100%;height:50px;line-height:50px;}
@@ -297,6 +300,7 @@ h6 span{float:left;padding-left:15px}
 .catabs_color{ float:right;}
 .catabs_info a{ width:150px;height:35px;line-height:35px;color:#FFF;margin-left:75px;margin-top:15px;background:#FF8A00;display:block;text-align:center;cursor:pointer;}
 .catabs_info a:hover,.bigdiv_left a:hover{ color:#FFF;}
+.catabs_info .catabs_over{ width:150px;height:35px;line-height:35px;margin-left:75px;margin-top:15px;background:#DDD;display:block;text-align:center;cursor:pointer;}
 .count_num{ width:100%;height:350px;border:1px solid #FFF;background:#FFF;box-shadow: 0 0 2px #000;}
 .count_num .count_title{ margin-top:25px;font-size:16px;margin-left:30px;}
 .countbig_div{ width:1200px;height:300px;}
@@ -1588,6 +1592,7 @@ h2,h3{font-size:14px}
 .bondinfo_first{ margin-left:15px;float:left;}
 .showhidnum{ display:none;}
 .bondinfo_tz_bnt{ border:0px;letter-spacing:2px;float:left;width:260px;height:40px;background-color:#FF500B;text-align:center;line-height:40px;margin-top:20px;color:#fff;font-weight:bold;font-size:16px;cursor:pointer;}
+.bondinfo_tz_over{ border:0px;letter-spacing:2px;float:left;width:260px;height:40px;background-color:#DDD;text-align:center;line-height:40px;margin-top:20px;font-weight:bold;font-size:16px;cursor:pointer;}
 #summary-grade .star{float:left;margin:1px 5px 0 0}
 #summary #summary-stock{overflow:visible;margin-top:15px}
 .hl_red,a.hl_red,.hl_red:hover,.hl_red:visited,#summary .hl_red{color:#ff500b}
@@ -3608,7 +3613,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #borrow_house_term .house_term_zl{ width:200px;height:200px;float:left;background:url(images/borrow_housezl.jpg) no-repeat;margin-left:200px;}
 .borrow_category .clickhouse{ width:603px;height:215px;float:right;cursor:pointer;background:url(images/borrow_houseover.jpg) no-repeat;}
 .borrow_category .clickhouse_car{ border-bottom:1px solid #CCC;border-right:1px solid #CCC;width:603px;height:215px;float:left;cursor:pointer;background:url(images/borrow_car.jpg) no-repeat;}
-.borrow_carinfo_top{ width:100%;height:170px;background:url(images/borrow_car_top.jpg) center center no-repeat;}
+.borrow_carinfo_top{ width:100%;height:119px;background:url(images/borrow_car_top.jpg) center center no-repeat;}
 .borrow_carinfo_middle{ width:100%;height:435px;background:url(images/car_banner.jpg) center center no-repeat;}
 .car_detail_div{ background:transparent;background-color:rgba(255,255,255,0.35);width:330px;height:415px;margin-top:9px;float:right;}
 .car_detail_title{ width:100%;height:45px;line-height:45px;font-size:20px;font-weight:bold;text-align:center;}

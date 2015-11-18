@@ -175,6 +175,12 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
 
                 $GLOBALS['db']->query($sql);
                 
+                /* 修改标抵的状态为已满标*/
+                if($invest_price == '0'){
+                	$sql = "UPDATE ".$GLOBALS['ecs']->table('ecs_goods')." set good_status=2 WHERE goods_id=".$goodid;
+                	$GLOBALS['db']->query($sql);
+                }
+                
                 /* 修改商品的可投资金额*/
                 $sql = 'UPDATE '.$GLOBALS['ecs']->table('goods').' SET surplus_price ="'.$invest_price.'" where goods_id ='.$goodid;
 

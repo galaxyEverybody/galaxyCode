@@ -112,14 +112,10 @@ if ($_REQUEST['act'] == 'insert')
 
     $cat['cat_recommend'] = !empty($_POST['cat_recommend'])  ? $_POST['cat_recommend'] : array();
     
-    if($cat['cat_name'] == '月能赚'){
-    	$cat['is_standalone'] = 1;
-    }elseif($cat['cat_name'] == '季能赚'){
-    	$cat['is_standalone'] = 2;
-    }elseif($cat['cat_name'] == '聚能赚'){
-    	$cat['is_standalone'] = 3;
-    }else{
+    if($cat['cat_name'] == '散标投资'){
     	$cat['is_standalone'] = 0;
+    }else{
+    	$cat['is_standalone'] = rand(4,50);
     }
     
 

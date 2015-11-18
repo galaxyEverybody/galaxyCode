@@ -417,7 +417,7 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
         $page = $max_page;
     }
     $goodslist = category_get_goods($children, $brand, $price_min, $price_max, $ext, $size, $page, $sort, $order);
-
+	
     if($display == 'grid')
     {
         if(count($goodslist) % 2 != 0)
@@ -502,7 +502,7 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
     /* 获得商品列表 */
     $sql = 'SELECT g.goods_id, g.goods_name, g.goods_name_style, g.sales_volume, g.ensure_style, g.comments_number, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, g.promote_price, g.goods_type, g.goods_weight, g.goods_number," .
-                'g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_img, g.surplus_price, g.good_status ' .
+                'g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_img, g.surplus_price, g.good_status, g.add_time ' .
             'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
             'LEFT JOIN ' . $GLOBALS['ecs']->table('member_price') . ' AS mp ' .
                 "ON mp.goods_id = g.goods_id AND mp.user_rank = '$_SESSION[user_rank]' " .
@@ -581,7 +581,6 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
 		$arr[$row['goods_id']]['is_new']      = $row['is_new'];
 		$arr[$row['goods_id']]['is_best']      = $row['is_best'];
 		$arr[$row['goods_id']]['is_hot']      = $row['is_hot'];
-		$arr[$row['goods_id']]['goodstatus']      = $row['good_status'];
 		$arr[$row['goods_id']]['ensure_style']      = $row['ensure_style'];
 		$arr[$row['goods_id']]['org_promote_price']      = $row['promote_price'];
 		
@@ -593,6 +592,16 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
         $arr[$row['goods_id']]['goods_thumb']      = get_image_path($row['goods_id'], $row['goods_thumb'], true);
         $arr[$row['goods_id']]['goods_img']        = get_image_path($row['goods_id'], $row['goods_img']);
         $arr[$row['goods_id']]['url']              = build_uri('goods', array('gid'=>$row['goods_id']), $row['goods_name']);
+    	if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
+    		$goods[$idx]['good_status'] = $row['good_status'];
+    	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){
+    		$goods[$idx]['good_status'] = 3;
+    	}elseif(gmtime()>$row['goods_number']){
+    		$goods[$idx]['good_status'] = 4;
+    	}else{
+    		$goods[$idx]['good_status'] = 0;
+    	}
+    
     }
 
     return $arr;

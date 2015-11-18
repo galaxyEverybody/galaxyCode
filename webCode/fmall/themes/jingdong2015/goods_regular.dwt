@@ -232,10 +232,22 @@ function reg(str){
 	$(function(){
 		var number = 0;	
 		var num = $("#fourrate_hide").html();
-		var firstnum = num.substr(0,2);
-		var lastnum = num.substr(2);
-		var auto = setInterval(autoadd,"100");
 		
+		if(num.length>2){
+			var place = num.indexOf(".");
+			var firstnum = num.substr(0,place);
+			var lastnum = num.substr(place);
+			var auto = setInterval(autoadd,"100");
+		}else{
+			var autoone = setInterval(autoone,"100");
+		}
+		function autoone(){
+			number++;
+			$("#fourrate_show").html(number);
+			if(number == num){
+				clearInterval(autoone);
+			}
+		}
 		function autoadd(){
 			number++;
 			var numbers = number+lastnum;

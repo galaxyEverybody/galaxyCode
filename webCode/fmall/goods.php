@@ -255,19 +255,6 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         	$searchkeywords = array();
         }
         $smarty->assign('searchkeywords', $searchkeywords);	//热搜关键词
-
-        /* 或得顶级分类产品名称
-        $sql = 'SELECT cat_id FROM '.$GLOBALS['ecs']->table('goods').' where goods_id ='.$goods['goods_id'];
-        $parentid = $GLOBALS['db']->getOne($sql);
-        $sql = 'SELECT parent_id from '.$GLOBALS['ecs']->table('category').' where cat_id ='.$parentid;
-        $parentid = $GLOBALS['db']->getOne($sql);
-        $sql = 'SELECT cat_name FROM '.$GLOBALS['ecs']->table('category').' where cat_id ='.$parentid;
-        $parentcatname = $GLOBALS['db']->getOne($sql);
-        if($parentcatname == '季能赚'){
-        	$levelinfo = get_twolevel_repay($parentid);//查询分类下产品id
-        	$smarty->assign('goodslevel',$levelinfo);
-        }*/
- 		
         
         $catlist = array();
         foreach(get_parent_cats($goods['cat_id']) as $k=>$v)
@@ -381,19 +368,17 @@ $db->query('UPDATE ' . $ecs->table('goods') . " SET click_count = click_count + 
 
 $smarty->assign('now_time',  gmtime());           // 当前系统时间
 
-/* 获取所属大类的名称 */
-$sql='select cat_name from '.$ecs->table("category").' where cat_id='.$goods["cat_id"];
-$goods_cat = $db->getRow($sql);
-$goods_cat_name = $goods_cat['cat_name'];
-$sql = 'select a.cat_name from'.$ecs->table("category").' as a,'.$ecs->table("category").' as b where a.cat_id = b.parent_id and b.cat_id='.$goods["cat_id"];
-$goods_row = $db->getRow($sql);
-$goods_row_name = $goods_row['cat_name'];
-$array_cate = array('月能赚','季能赚','聚能赚');
-if(in_array($goods_cat_name,$array_cate) || in_array($goods_row_name,$array_cate)){
-	$smarty->display('goods_regular.dwt');exit;
+/* 判断是否为定期*/
+$sql='select is_standalone from '.$ecs->table("category").' where cat_id='.$goods["cat_id"];
+$goods_cat = $db->getOne($sql);
+
+if(empty($goods_cat)){
+	$smarty->display('goods.dwt',      $cache_id);
+}else{
+	$smarty->display('goods_regular.dwt');
 }
 
-$smarty->display('goods.dwt',      $cache_id);
+
 
 /*------------------------------------------------------ */
 //-- PRIVATE FUNCTION

@@ -39,11 +39,13 @@
 	    			<!--{if $goods.goodstatus eq "1"}-->
 	    			<div class="powder_invest_cli"><a href="{$goods.url}">立即投资</a></div>
 	    			<!--{elseif $goods.goodstatus eq "2"}-->
-	    			<div class="powder_invest_cli"><a >还款中</a></div>
+	    			<div class="powder_invest_over"><a href="javascript:#">已满标</a></div>
 	    			<!--{elseif $goods.goodstatus eq "3"}-->
-	    			<div class="powder_invest_cli"><a >已结束</a></div>
+	    			<div class="powder_invest_over"><a href="javascript:#">还款中</a></div>
+	    			<!--{elseif $goods.goodstatus eq "4"}-->
+	    			<div class="powder_invest_over"><a href="javascript:#">已结束</a></div>
 	    			<!--{else}-->
-	    			<div class="powder_invest_cli"><a >审核中</a></div>
+	    			<div class="powder_invest_over"><a href="javascript:#">审核中</a></div>
 	    			<!--{/if}-->
 	    		</span>
     		</li>

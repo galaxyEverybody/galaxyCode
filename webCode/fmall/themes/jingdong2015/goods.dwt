@@ -122,8 +122,12 @@ function reg(str){
         			{if $goods.good_status eq 1}
         			<input type="hidden" name="goods_id" id="hidgoodsid" value="{$goods.goods_id}">
         			<input type="submit" class="bondinfo_tz_bnt" value="立即投资">
-        			{else if $goods.good_status eq 2}
-        			<input class="bondinfo_tz_bnt" style="background:#ddd;color:#FF500B;" value="已投满">
+        			{elseif $goods.good_status eq 2}
+        			<input class="bondinfo_tz_over" style="background:#ddd;color:#FF500B;" value="还款中">
+        			{elseif $goods.good_status eq 3}
+        			<input class="bondinfo_tz_over" style="background:#ddd;color:#FF500B;" value="已结束">
+        			{else}
+        			<input class="bondinfo_tz_over" style="background:#ddd;color:#FF500B;" value="审核中">
         			{/if}
         			<input type="text" name="step" value="done" style="display:none;">
         		</ul>
@@ -235,11 +239,22 @@ function reg(str){
 	$(function(){
 		var number = 0;	
 		var num = $("#gooddetailrateend").html();
-		var firstnum = num.substr(0,2);
-		var lastnum = num.substr(2);
-
-		var auto = setInterval(autoadd,"100");
 		
+		if(num.length>2){
+			var place = num.indexOf(".");
+			var firstnum = num.substr(0,place);
+			var lastnum = num.substr(place);
+			var auto = setInterval(autoadd,"100");
+		}else{
+			var autoone = setInterval(autoone,"100");
+		}
+		function autoone(){
+			number++;
+			$("#gooddetailrate").html(number);
+			if(number == num){
+				clearInterval(autoone);
+			}
+		}
 		function autoadd(){
 			number++;
 			var numbers = number+lastnum;

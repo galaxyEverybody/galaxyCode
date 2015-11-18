@@ -43,7 +43,17 @@
 	    			<div class="advance_num">{$goods.advance}%</div>
 		    	</li>
 		    </ul>
-		    <a href="{$goods.url}">立即投资</a>
+		    <!--{if $goods.good_status eq 1}-->
+			<a href="{$goods.url}">立即投资</a>
+			<!--{elseif $goods.good_status eq 2}-->
+			<a href="javascript:#" class="catabs_over">已满标</a>
+			<!--{elseif $goods.good_status eq 3}-->
+			<a href="javascript:#" class="catabs_over">还款中</a>
+			<!--{elseif $goods.good_status eq 4}-->
+			<a href="javascript:#" class="catabs_over">已结束</a>
+			<!--{else}-->
+			<a href="javascript:#" class="catabs_over">审核中</a>
+			<!--{/if}-->
 		</div>
 		<!--{/foreach}-->
     </div>
