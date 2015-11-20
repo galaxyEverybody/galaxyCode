@@ -417,7 +417,7 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
         $page = $max_page;
     }
     $goodslist = category_get_goods($children, $brand, $price_min, $price_max, $ext, $size, $page, $sort, $order);
-	
+
     if($display == 'grid')
     {
         if(count($goodslist) % 2 != 0)
@@ -593,13 +593,13 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
         $arr[$row['goods_id']]['goods_img']        = get_image_path($row['goods_id'], $row['goods_img']);
         $arr[$row['goods_id']]['url']              = build_uri('goods', array('gid'=>$row['goods_id']), $row['goods_name']);
     	if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
-    		$goods[$idx]['good_status'] = $row['good_status'];
+    		$arr[$row['goods_id']]['good_status'] = $row['good_status'];
     	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){
-    		$goods[$idx]['good_status'] = 3;
+    		$arr[$row['goods_id']]['good_status'] = 3;
     	}elseif(gmtime()>$row['goods_number']){
-    		$goods[$idx]['good_status'] = 4;
+    		$arr[$row['goods_id']]['good_status'] = 4;
     	}else{
-    		$goods[$idx]['good_status'] = 0;
+    		$arr[$row['goods_id']]['good_status'] = 0;
     	}
     
     }

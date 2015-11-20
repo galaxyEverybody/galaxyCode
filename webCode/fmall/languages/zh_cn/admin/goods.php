@@ -111,7 +111,7 @@ $_LANG['lab_goods_sn'] = '商品货号：';
 $_LANG['lab_goods_cat'] = '商品分类：';
 $_LANG['lab_other_cat'] = '扩展分类：';
 $_LANG['lab_goods_brand'] = '商品品牌：';
-$_LANG['lab_shop_price'] = '本店售价：';
+$_LANG['lab_shop_price'] = '募集金额：';
 $_LANG['lab_market_price'] = '市场售价：';
 $_LANG['lab_user_price'] = '会员价格：';
 $_LANG['lab_promote_price'] = '促销价：';
@@ -126,7 +126,7 @@ $_LANG['lab_goods_type'] = '商品类型：';
 $_LANG['lab_picture_url'] = '商品图片外部URL';
 $_LANG['lab_thumb_url'] = '商品缩略图外部URL';
 
-$_LANG['lab_loan_date'] = '借款到期时间：';
+$_LANG['lab_loan_date'] = '募集到期时间：';
 $_LANG['unit_g'] = '克';
 $_LANG['unit_kg'] = '千克';
 $_LANG['lab_repay_date'] = '还款到期时间：';

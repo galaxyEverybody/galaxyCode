@@ -75,7 +75,11 @@ function reg(str){
 	                	</div>
 	                	<div class="bondinfo_interval_middle">
 	                		<h2>保障方式:</h2>
-	                		<div class="bondinfo_interval_middle_div">本金+利息</div>
+	                		<!--{if $goods.ensure_style eq 0}-->
+	                		<div class="bondinfo_interval_middle_di"></div>
+	                		<!--{else}-->
+	                		<div class="bondinfo_interval_middle_xin"></div>
+	                		<!--{/if}-->
 	                	</div>
 	                	<div class="bondinfo_interval_right">
 	                		<h2>剩余时间:</h2>
@@ -123,11 +127,13 @@ function reg(str){
         			<input type="hidden" name="goods_id" id="hidgoodsid" value="{$goods.goods_id}">
         			<input type="submit" class="bondinfo_tz_bnt" value="立即投资">
         			{elseif $goods.good_status eq 2}
-        			<input class="bondinfo_tz_over" style="background:#ddd;color:#FF500B;" value="还款中">
+        			<input class="bondinfo_tz_over" value="已满标">
         			{elseif $goods.good_status eq 3}
-        			<input class="bondinfo_tz_over" style="background:#ddd;color:#FF500B;" value="已结束">
+        			<input class="bondinfo_tz_over" value="还款中">
+        			{elseif $goods.good_status eq 4}
+        			<input class="bondinfo_tz_over" value="已结束">
         			{else}
-        			<input class="bondinfo_tz_over" style="background:#ddd;color:#FF500B;" value="审核中">
+        			<input class="bondinfo_tz_over" value="审核中">
         			{/if}
         			<input type="text" name="step" value="done" style="display:none;">
         		</ul>

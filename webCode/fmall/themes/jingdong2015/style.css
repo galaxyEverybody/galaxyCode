@@ -1565,7 +1565,8 @@ h2,h3{font-size:14px}
 .bondinfo_interval_left{ width:200px;height:100px;float:left;}
 .bondinfo_interval_right{ width:310px;height:100px;float:right;}
 .bondinfo_interval_middle{ width:200px;height:100px;float:left;}
-.bondinfo_interval_middle_div{ height:80px;line-height:60px;margin-left:80px;}
+.bondinfo_interval_middle_di{ height:60px;line-height:60px;margin-left:60px;background:url(images/ensure_di.jpg) center center no-repeat;}
+.bondinfo_interval_middle_xin{ height:60px;line-height:60px;margin-left:60px;background:url(images/ensure_xin.jpg) center center no-repeat;}
 .bondinfo_interval_right #loan_time_dis{ margin-left:80px;margin-top:30px;}
 .bondinfo_interval #good_detail_interval{ width:80px;height:80px;float:left;margin-left:80px;}
 .bondinfo_middle_bottom .bondinfotd{ font-weight:bold;width:230px;font-size:18px;}
@@ -3616,8 +3617,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .borrow_carinfo_top{ width:100%;height:119px;background:url(images/borrow_car_top.jpg) center center no-repeat;}
 .borrow_carinfo_middle{ width:100%;height:435px;background:url(images/car_banner.jpg) center center no-repeat;}
 .car_detail_div{ background:transparent;background-color:rgba(255,255,255,0.35);width:330px;height:415px;margin-top:9px;float:right;}
-.car_detail_title{ width:100%;height:45px;line-height:45px;font-size:20px;font-weight:bold;text-align:center;}
-.car_detail_div table{ border:0px}
+.car_detail_title{ background:rgb(255,170,2);color:#FFF;width:100%;height:35px;line-height:35px;font-size:20px;font-weight:bold;text-align:center;}
+.car_detail_div table{ border:0px;margin-top:5px;}
 .car_detail_div .odd{ height:25px;}
 .car_detail_div .even{ height:15px;}
 .car_detail_div .car_odd_left{ width:110px;text-align:right;}
@@ -3627,8 +3628,20 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .car_detail_div .car_money_car{ height:18px;width:140px;border:0px;outline:0px;}
 .car_detail_div .car_odd_select{ width:70px;height:22px;}
 .car_detail_div .car_address_select{ width:173px;height:22px;}
-.car_detail_div .car_info_sub{ background:transparent;background-color:rgba(255,255,255,0.35);font-size:14px;display:block;width:280px;height:30px;line-height:30px;border:1px solid #ccc;text-align:center;margin-left:25px;cursor:pointer;}
+.car_detail_div .car_info_sub{ background:transparent;background-color:rgba(255,255,255,0.5);color:#666666;border:0px;outline:0px;font-size:14px;font-weight:bold;display:block;width:260px;height:30px;line-height:30px;text-align:center;margin-left:30px;cursor:pointer;}
 .car_detail_div span{ color:red;}
+
+.house_detail_div{ background:transparent;background-color:rgba(255,255,255,0.35);width:330px;height:415px;margin-top:9px;float:right;}
+.house_detail_title{ background:#69D2E1;width:100%;height:50px;line-height:50px;color:#fff;font-size:30px;font-weight:bold;text-align:center;}
+.house_detail_div table{ border:0px;margin-top:20px;height:260px;}
+.house_detail_div .odd{ height:25px;}
+.house_detail_div .even{ height:15px;color:red;}
+.house_detail_div .car_odd_left{ width:110px;text-align:right;}
+.house_detail_div .car_odd_input{ height:20px;width:170px;}
+.house_detail_div .car_address_select{ width:173px;height:25px;}
+.house_detail_div .car_money_num{ height:22px;width:170px;border:1px solid #888888;background:#FFF;}
+.house_detail_div .car_money_input{ height:18px;width:143px;border:0px;outline:0px;}
+.house_detail_div .car_info_sub{ background:transparent;background-color:rgba(255,255,255,0.5);font-size:16px;color:#666666;border:0px;outline:0px;font-weight:bold;display:block;width:240px;height:40px;line-height:40px;text-align:center;margin-left:50px;cursor:pointer;}
 
 
 .borrowinfo_top{ float:left;border:1px solid #ddd;width:100%;background:#fff;}

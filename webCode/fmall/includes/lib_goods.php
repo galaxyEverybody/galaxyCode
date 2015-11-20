@@ -957,9 +957,21 @@ function get_goods_info($goods_id)
             $row['watermark_img'] =  $watermark_img;
         }
 
-        $row['promote_price_org'] =  $promote_price;
-        $row['promote_price'] =  price_format($promote_price);
-
+        $row['promote_price_org']	= $promote_price;
+        $row['promote_price']		= price_format($promote_price);
+        $row['ensure_style']		= isset($row['ensure_style'])?$row['ensure_style']:0;
+		
+		/* 修正产品状态*/
+		if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
+    		$row['good_status'] = $row['good_status'];
+    	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){
+    		$row['good_status'] = 3;
+    	}elseif(gmtime()>$row['goods_number']){
+    		$row['good_status'] = 4;
+    	}else{
+    		$row['good_status'] = 0;
+    	}
+		
         /* 修正还款期限 gao*/
         $row['goods_number'] = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
         

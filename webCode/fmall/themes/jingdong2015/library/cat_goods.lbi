@@ -22,13 +22,13 @@
 	<!--{if $goods.good_status eq 1}-->
 	<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
 	<!--{elseif $goods.good_status eq 2}-->
-	<div class="faxdate_invest_over"><a href="javascript:#">已满标</a></div>
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已满标</a></div>
 	<!--{elseif $goods.good_status eq 3}-->
-	<div class="faxdate_invest_over"><a href="javascript:#">还款中</a></div>
+	<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
 	<!--{elseif $goods.good_status eq 4}-->
-	<div class="faxdate_invest_over"><a href="javascript:#">已结束</a></div>
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
 	<!--{else}-->
-	<div class="faxdate_invest_over"><a href="javascript:#">审核中</a></div>
+	<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
 	<!--{/if}-->
 </div>
 <div class="blank_index"></div>

@@ -46,13 +46,13 @@
 		    <!--{if $goods.good_status eq 1}-->
 			<a href="{$goods.url}">立即投资</a>
 			<!--{elseif $goods.good_status eq 2}-->
-			<a href="javascript:#" class="catabs_over">已满标</a>
+			<a href="{$goods.url}" class="catabs_over">已满标</a>
 			<!--{elseif $goods.good_status eq 3}-->
-			<a href="javascript:#" class="catabs_over">还款中</a>
+			<a href="{$goods.url}" class="catabs_over">还款中</a>
 			<!--{elseif $goods.good_status eq 4}-->
-			<a href="javascript:#" class="catabs_over">已结束</a>
+			<a href="{$goods.url}" class="catabs_over">已结束</a>
 			<!--{else}-->
-			<a href="javascript:#" class="catabs_over">审核中</a>
+			<a href="{$goods.url}" class="catabs_over">审核中</a>
 			<!--{/if}-->
 		</div>
 		<!--{/foreach}-->
@@ -74,7 +74,7 @@
     	 	<div class="bigdiv_left">
     	 		<p >投资金额:</p>
     	 		<div class="countnum_info">
-    	 			<input type="text" value="10000" id="counter_catnum">
+    	 			<input type="text" value="1000" id="counter_catnum">
     	 			<span>元</span>
     	 		</div>
     	 		<a href="#javascript:" onclick="counter_catabsnum()">开始计算</a>
@@ -83,24 +83,24 @@
     	 		<p >产品类型:</p>
     	 		<ul>
     	 			<li>
-    	 				<div class="bigright_font">聚能赚定期<span class="catfont_month">(12个月)</span></div>
+    	 				<div class="bigright_font">聚能赚定期<span class="catfont_month">(365天)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo12" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum12">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum12"></span>元</div>
     	 			</li>
     	 			<li>
-    	 				<div class="bigright_font">聚能赚定期<span class="catfont_monthtwo">(6个月)</span></div>
+    	 				<div class="bigright_font">聚能赚定期<span class="catfont_month">(180天)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo6" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum6">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum6"></span>元</div>
     	 			</li>
     	 			<li>
-    	 				<div class="bigright_font">聚能赚定期<span class="catfont_monthtwo">(3个月)</span></div>
+    	 				<div class="bigright_font">聚能赚定期<span class="catfont_monthtwo">(90天)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo3" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum3">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum3"></span>元</div>
     	 			</li>
     	 			<li>
-    	 				<div class="bigright_font">聚能赚定期<span class="catfont_monthtwo">(1个月)</span></div>
+    	 				<div class="bigright_font">聚能赚定期<span class="catfont_monthtwo">(30天)</span></div>
     	 				<div class="bigright_middle"><div id="catabsmiddleinfo1" class="catabsmiddle_info"></div></div>
-    	 				<div class="bigright_countnum"><span id="rescountnum1">100.00</span>元</div>
+    	 				<div class="bigright_countnum"><span id="rescountnum1"></span>元</div>
     	 			</li>
     	 		</ul>
     	 	</div>
@@ -124,9 +124,9 @@
     	 			
     	 			var number = 0;	
             		var startwidth12 = 400;
-            		var startwidth6 = 250;
-            		var startwidth3 = 200;
-            		var startwidth1 = 100;
+            		var startwidth6 = 400*carone[1]/carone[0];
+            		var startwidth3 = 400*carone[2]/carone[0];
+            		var startwidth1 = 400*carone[3]/carone[0];
             		
             		var auto12 = setInterval(autoaddwidth12,"100");
             		function autoaddwidth12(){
@@ -172,41 +172,7 @@
             		var startwidth3 = 200;
             		var startwidth1 = 100;
             		
-            		var auto12 = setInterval(autoaddwidth12,"100");
-            		function autoaddwidth12(){
-            			number = number+20;
-            			$("#catabsmiddleinfo12").css("width",number);
-            			if(number >= startwidth12){
-            				clearInterval(auto12);
-            			}
-            		}
-            		
-            		var auto6 = setInterval(autoaddwidth6,"100");
-            		function autoaddwidth6(){
-            			number = number+20;
-            			$("#catabsmiddleinfo6").css("width",number);
-            			if(number >= startwidth6){
-            				clearInterval(auto6);
-            			}
-            		}
-            		
-            		var auto3 = setInterval(autoaddwidth3,"100");
-            		function autoaddwidth3(){
-            			number = number+20;
-            			$("#catabsmiddleinfo3").css("width",number);
-            			if(number >= startwidth3){
-            				clearInterval(auto3);
-            			}
-            		}
-            		
-            		var auto1 = setInterval(autoaddwidth1,"100");
-            		function autoaddwidth1(){
-            			number = number+20;
-            			$("#catabsmiddleinfo1").css("width",number);
-            			if(number >= startwidth1){
-            				clearInterval(auto1);
-            			}
-            		}
+            		counter_catabsnum(); 
 
             	});
             </script>

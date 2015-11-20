@@ -22,13 +22,8 @@
     <th><a href="javascript:listTable.sort('car_buytime'); ">车辆购置价格(元)</a></th>
     <th><a href="javascript:listTable.sort('car_carnum'); ">车辆购置时间</a></th>
     <th><a href="javascript:listTable.sort('car_address'); ">车辆登记地址</a></th>
-    <th><a href="javascript:listTable.sort('add_time'); ">借款时间</a></th>
+    <th><a href="javascript:listTable.sort('add_time'); ">申请时间</a></th>
     <th><a href="javascript:listTable.sort('status'); ">借款状态</a></th>
-    
-    
-    
-    
-    
     <th>{$lang.handler}</th>
   <tr>
   {foreach from=$borrow_list item=borrows}
@@ -78,7 +73,7 @@
 <table id="page-table" cellspacing="0">
   <tr>
     <td align="right" nowrap="true">
-    {include file="page.htm"}
+    {include file="pageborrowlist.htm"}
     </td>
   </tr>
 </table>

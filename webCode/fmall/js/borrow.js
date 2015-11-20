@@ -4,16 +4,16 @@
  * =================
  */
 function carshowhidcon(){
-	$("#borrow_car_term").show(1000);
-	$("#borrow_house_term").hide(1000);
+	$("#borrow_car_term").show(500);
+	$("#borrow_house_term").hide(500);
 	$("#category_car").removeClass("clickhouse_car");
 	$("#category_car").addClass("category_car");
 	$("#category_house").removeClass("clickhouse");
 	$("#category_house").addClass("category_house");
 }
 function houseshowhidcon(){
-	$("#borrow_house_term").show(1000);
-	$("#borrow_car_term").hide(1000);	
+	$("#borrow_house_term").show(500);
+	$("#borrow_car_term").hide(500);	
 	
 	$("#category_house").removeClass("category_house");
 	$("#category_house").addClass("clickhouse");
@@ -51,7 +51,7 @@ function borrow_money()
 	return true;
 }
 /*
- * 借款金额的验证
+ * 车辆借款金额的验证
  */
 function borrowchenum(borrownum){
 	if(borrownum ==''){
@@ -61,6 +61,20 @@ function borrowchenum(borrownum){
 			$('#borrownum').html('输入的金额不合法');
 		}else{
 			$('#borrownum').html('');
+		}
+	}
+}
+/*
+ * 房屋借款金额的验证
+ */
+function borrowhousechenum(borrownum){
+	if(borrownum ==''){
+		$('#houseborrownum').html('请输入您的借款金额');
+	}else{
+		if(!Utils.isNumber(borrownum)){
+			$('#houseborrownum').html('输入的金额不合法');
+		}else{
+			$('#houseborrownum').html('');
 		}
 	}
 }
@@ -94,7 +108,7 @@ function borrowchetime(borrowtime){
 	}
 }
 /*
- * 借款姓名的验证
+ * 车辆借款姓名的验证
  */
 function borrowchename(carname){
 	var reg=/^[\u2E80-\u9FFF]+$/; 
@@ -105,6 +119,21 @@ function borrowchename(carname){
 			$('#borrowname').html('输入的姓名不合法');
 		}else{
 			$('#borrowname').html('');
+		}
+	}
+}
+/*
+ * 房屋借款姓名的验证
+ */
+function borrowhousechename(carname){
+	var reg=/^[\u2E80-\u9FFF]+$/; 
+	if(carname ==''){
+		$('#housename').html('请输入您的真实姓名');
+	}else{
+		if(!reg.test(carname)){
+			$('#housename').html('输入的姓名不合法');
+		}else{
+			$('#housename').html('');
 		}
 	}
 }
@@ -161,7 +190,7 @@ function borrowliveaddress(liveadd){
 }
 
 /*
- * 借款人基本信息提交的验证
+ * 借款人车辆信息提交的验证
  */
 function borrow_carinfo_form(){
 	
@@ -201,7 +230,38 @@ function borrow_carinfo_form(){
 }
 
 /*
- * 借款人手机号的验证
+ * 借款人车辆信息提交的验证
+ */
+function borrow_houseinfo_form(){
+	
+	var housename = $("input[name='housename']")[0].value;
+	var housephone = $("input[name='housephone']")[0].value;
+	var houseborrownum = $("input[name='houseborrownum']")[0].value;
+	var house_use = $("input[name = house_use]")[0].value;
+	
+	if(housename == ''){
+		$("#housename").html('请输入您的真实姓名');
+		return false;
+	}
+	if(housephone == ''){
+		$("#housephone").html('请输入您的手机号码');
+		return false;
+	}
+	if(houseborrownum == ''){
+		$("#houseborrownum").html('请输入借款金额');
+		return false;
+	}
+	if(house_use == ''){
+		$("#house_use").html('请输入您的借款用途');
+		return false;
+	}
+	
+
+	return true;
+}
+
+/*
+ * 车辆借款人手机号的验证
  */
 function borrowchephone(borrowphone){
 	reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
@@ -212,6 +272,21 @@ function borrowchephone(borrowphone){
 			$('#borrowphone').html('');
 		}else{
 			$('#borrowphone').html('手机号不合法');
+		}
+	}
+}
+/*
+ * 房屋借款人手机号的验证
+ */
+function borrowhousechephone(borrowphone){
+	reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
+	if(borrowphone ==''){
+		$('#housephone').html('请输入您的手机号');
+	}else{
+		if(reg.test(borrowphone)){
+			$('#housephone').html('');
+		}else{
+			$('#housephone').html('手机号不合法');
 		}
 	}
 }

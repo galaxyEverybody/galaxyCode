@@ -125,8 +125,14 @@ function reg(str){
         			{if $goods.good_status eq 1}
         			<input type="hidden" name="goods_id" id="hidgoodsid" value="{$goods.goods_id}">
         			<input type="submit" class="bondinfo_tz_bnt" value="立即投资">
-        			{else if $goods.good_status eq 2}
-        			<input class="bondinfo_tz_bnt" style="background:#ddd;color:#FF500B;" value="已投满">
+        			{elseif $goods.good_status eq 2}
+        			<input class="bondinfo_tz_over" value="已满标">
+        			{elseif $goods.good_status eq 3}
+        			<input class="bondinfo_tz_over" value="还款中">
+        			{elseif $goods.good_status eq 4}
+        			<input class="bondinfo_tz_over" value="已结束">
+        			{else}
+        			<input class="bondinfo_tz_over" value="审核中">
         			{/if}
         			<input type="text" name="step" value="done" style="display:none;">
         		</ul>

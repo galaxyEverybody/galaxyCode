@@ -235,13 +235,70 @@
 			</div>
 		</div>
 	</div>
-	<div class="blank70"></div>
+	<div class="blank30"></div>
 {/if}
 {if $act eq 'houseinfo'}
-	<div style="width:100%;height:360px;border:1px solid red;"></div>
+	<div style="width:100%;height:90px;background:url(images/borrowhouse_top.jpg) center center no-repeat;"></div>
+	<div class="blank20"></div>
+	<div style="width:100%;height:445px;background:url(images/borrowhouse_middle.jpg) center center no-repeat;">
 	<div class="w">
-		
+		<div class="house_detail_div">
+			<p class="house_detail_title">在线申请</p>
+			<form action="borrow_money.php" method="post" onsubmit="return borrow_houseinfo_form()">
+			<table cellpadding="0px">
+				<tr class="odd">
+					<td class="car_odd_left">姓名：</td>
+					<td><input class="car_odd_input" style="width:170px;" type="text" name="housename" placeholder="请填写姓名如：张xx" onblur="borrowhousechename(this.value)"></td>
+				</tr>
+				<tr class="even">
+					<td class="car_odd_left"></td><td><span id="housename"></span></td>
+				</tr>
+				<tr class="odd">
+					<td class="car_odd_left">联系电话：</td>
+					<td><input class="car_odd_input" type="text" name="housephone" placeholder="请填写真实号码以便与您联系" onblur="borrowhousechephone(this.value)"></td>
+				</tr>
+				<tr class="even">
+					<td class="car_odd_left"></td><td><span id="housephone"></span></td>
+				</tr>
+				<tr class="odd">
+					<td class="car_odd_left">借款金额：</td>
+					<td>
+						<div class="car_money_num">
+							<input class="car_money_input" type="text" name="houseborrownum" placeholder="请输入借款金额" onblur="borrowhousechenum(this.value)">万元
+						</div>
+					</td>
+				</tr>
+				<tr class="even">
+					<td class="car_odd_left"></td><td><span id="houseborrownum"></span></td>
+				</tr>
+				<tr class="odd">
+					<td class="car_odd_left">所在城市：</td>
+					<td>
+						<select class='car_address_select' name="house_add">
+							<option>北京</option>
+							<option>张家口</option>
+							<option>其它</option>
+						</select>
+					</td>
+				</tr>
+				<tr class="even">
+					<td class="car_odd_left"></td><td></td>
+				</tr>
+				<tr class="odd">
+					<td class="car_odd_left">借款用途：</td>
+					<td><input class="car_odd_input" type="text" name="house_use" placeholder="投资，资金周转，救急" onblur="borrowchephone(this.value)"></td>
+				</tr>
+				<tr class="even">
+					<td class="car_odd_left"></td><td><span id="house_use"></span></td>
+				</tr>
+			</table>
+			<input type="hidden" name="act" value="insert_house_info">
+			<input type="submit" class="car_info_sub" value="立即申请">
+			</form>
+		</div>
 	</div>
+	</div>
+	<div class="blank30"></div>
 {/if}
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->

@@ -118,43 +118,38 @@ elseif ($action == 'insert_car_info'){
 /* 房产信息提交的页面*/
 elseif ($action == 'houseinfo'){
 	
-	$righttye = array('商品房','经济适用房','其它');			//产权类型
-	$decideloan = array('正在还房贷','房贷已还清','没有房贷');	//是否有房贷
-	$loanqi = array('3个月以上','3-6个月','6个月以上');		//已还款期数
-	/* 取得国家的省列表 */
-	$province_list[$region_id] = get_regions(1, 1);
-	$smarty->assign('province_list',    $province_list);
-	
-	$smarty->assign('righttye',	$righttye);
-	$smarty->assign('decideloan',	$decideloan);
-	$smarty->assign('loanqi',	$loanqi);
-	
 	$smarty->assign('act',	$action);
 	$smarty->display('borrow_money.dwt');
 }
 
 /* 房产信息的添加*/
 elseif ($action == 'insert_house_info'){
-	
 	include_once(ROOT_PATH . 'includes/lib_transaction.php');
 	
-	$houseaddress = isset($_POST['hosue_houseadd'])?compile_str(trim($_POST['hosue_houseadd'])):'0';
-	$housetype = compile_str(trim($_POST['housetype']));
-	$houseloan = compile_str(trim($_POST['houseloan']));
+	$userid = isset($_SESSION['user_id'])?$_SESSION['user_id']:'0';
+	$housename = trim($_POST['housename']);
+	$housephone = trim($_POST['housephone']);
+	$houseborrownum = trim($_POST['houseborrownum'])*10000;
+	$house_add = trim($_POST['house_add']);
+	$house_use = trim($_POST['house_use']);
 	
-	if(empty($houseaddress) || empty($housetype) || empty($houseloan)){
+	if(empty($housename) || empty($housephone) || empty($houseborrownum) || empty($house_add) || empty($house_use)){
 		show_message($_LANG['borrow_userinfo_fail'],$_LANG['back_up_page'],'borrow_money.php?act=houseinfo');
 	}
-	
-	$carinfo = array(
-			'user_id'		=>	$userid,
-			'house_add'		=>	$houseaddress,
-			'house_type'		=>	$housetype,
-			'house_loan'	=>	$houseloan,
-			'addtime'		=>	gmtime()
+
+	$houseinfo = array(
+			'user_id'			=>	$userid,
+			'housename'			=>	$housename,
+			'housephone'		=>	$housephone,
+			'houseborrownum'	=>	$houseborrownum,
+			'house_add'			=>	$house_add,
+			'house_use'			=>	$house_use,
+			'status'			=>	0,
+			'add_time'			=>	gmtime(),
+			'is_del'			=>	0
 	);
 	
-	if(insert_borrow($carinfo,3)){
+	if(insert_borrow($houseinfo,2)){
 		show_message($_LANG['borrow_record_success'],$_LANG['back_up_page'],'./index.php');
 	}
 }

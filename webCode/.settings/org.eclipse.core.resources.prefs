@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//fmall/admin/templates=UTF-8
+encoding//fmall/admin/templates/borrow_house.htm=UTF-8
 encoding//fmall/admin/templates/borrow_list.htm=UTF-8
 encoding//fmall/admin/templates/goods_info.htm=UTF-8
 encoding//fmall/admin/templates/order_list.htm=UTF-8
