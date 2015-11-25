@@ -13,4 +13,6 @@ warn_number(商品报警数量)=》还款方式(tinyint) {1=>按月等额本息,
 增加:good_status(产品状态)(tinyint){0=>发布状态需要审核,1=>投标中,2=>已满标,3=>还款中,4=>已结清}
 
 增加:ensure_style(保障方式)(tinyint){0=>抵押;1=>信用}
+
+增加：upstatus_time (投标满额时间)(int)
 			
