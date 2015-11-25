@@ -1572,7 +1572,12 @@ h2,h3{font-size:14px}
 .bondinfo_middle_bottom .bondinfotd{ font-weight:bold;width:230px;font-size:18px;}
 .bond_middle_middle{ width:100%;height:120px;margin-top:10px;}
 .bond_middle_middle span{ font-size:16px;color:#708090;margin-left:5px;}
-.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;height:330px;margin-top:5px;border-left:1px solid #ddd;}
+.bondinfo_left{ width:32%;height:auto;float:right;margin-right:15px;height:330px;margin-top:15px;border-left:1px solid #ddd;}
+.bondinfo_left .status_two{ width:150px;height:150px;margin-top:35px;background:url(images/statustwo.jpg) center center no-repeat;}
+.bondinfo_left .status_three{ width:150px;height:150px;margin-top:35px;background:url(images/statusthree.jpg) center center no-repeat;}
+.bondinfo_left .status_four{ width:150px;height:150px;margin-top:35px;background:url(images/statusfour.jpg) center center no-repeat;}
+.bondinfo_left .status_p{ width:300px;height:50px;line-height:50px;margin-top:50px;border:0px;margin-left:40px;background:#F2F2F2;color:#FF500B;}
+.bondinfo_left .bondinfo_left_two{ width:100%;height:300px;text-align:center;}
 .bondinfo_detail_div{ width:200px;height:100px;float:left;}
 .bondinfo_detail_div ul{ line-height:40px;height:80px;}
 .bondinfo_detail_div .good_det_one{ background:url(images/gooddetailthree.jpg) 10px no-repeat;}
@@ -3075,7 +3080,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .userLogin .login-box .form ul li#o-authcode img{ width:100px; height:32px; margin-left:5px; float:left; cursor:pointer;}
 .userLogin .login-box .form ul li#o-authcode span{ float:left; line-height:32px; padding-left:5px; color:#666;}
 .userLogin .login-box .form ul li.submit{ border: 1px solid #cb2a2d; margin:0 auto 20px; height: 33px;}
-.userLogin .login-box .form ul li.submit .btn-img{ border: 1px solid #e85356; display: block; width:100%; background: #ff500b; height:33px; line-height:29px; color: #fff; font-size: 20px; font-family: '\5fae\8f6f\96c5\9ed1';}
+.userLogin .login-box .form ul li.submit .btn-img{ border: 0px;outline:none; display: block; width:100%; background: #ff500b; height:33px; line-height:29px; color: #fff; font-size: 20px; font-family: '\5fae\8f6f\96c5\9ed1';}
 .userLogin .login-box .form ul li.submit02{ margin-top:-10px; border-color:#ddd;}
 .userLogin .login-box .form ul li.submit02 .btn-img{ margin:0; font-size:14px; background: #eee; color: #666; border-color: #f5f5f5;}
 .userLogin .login-box .coagent h5{ font-weight: 400; color: #999; border:0; padding:0; line-height:22px; height:auto; margin:0;}

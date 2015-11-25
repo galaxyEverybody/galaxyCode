@@ -177,7 +177,8 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                 
                 /* 修改标抵的状态为已满标*/
                 if($invest_price == '0'){
-                	$sql = "UPDATE ".$GLOBALS['ecs']->table('ecs_goods')." set good_status=2 WHERE goods_id=".$goodid;
+                	$status_time = gmtime();
+                	$sql = "UPDATE ".$GLOBALS['ecs']->table('goods')." set good_status=2,upstatus_time=".$status_time." WHERE goods_id=".$goodid;
                 	$GLOBALS['db']->query($sql);
                 }
                 

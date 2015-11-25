@@ -1538,11 +1538,10 @@ function getpwphoneform(){
 	var userpw = $("input[name='newpw']")[0].value;
 	var userpwconfirm = $("input[name='newpwconfirm']")[0].value;
 	
-	if(chekgetpwphone_user(username)&&chekgetpwphone_phone(userphone)&&chekgetpwphone_verify(userverify)&&
-			chekgetpw_newpw(userpw)&&chekgetpw_newpwconfirm(userpwconfirm)){
-		return true;
-	}else{
+	if(username == '' || userphone == '' || userverify == '' || userpw == '' || userpwconfirm == ''){
 		return false;
+	}else{
+		return true;
 	}
 }
 
@@ -1812,12 +1811,18 @@ function chekgetpw_newpwconfirm(newpwconfirm){
 function getuserpw_phone()
 {
 	var phone = $("input[name='getpwphone_phone']")[0].value;
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, getpw_phoneverify_callback , 'GET', 'TEXT', true, true );
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, getpw_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 function getpw_phoneverify_callback(result)
 {
 	if(result == 'ok'){
 		RemainTimegetpw();
+	}else{
+		if($("#verify_getpw").hasClass("focus")){
+			$("#verify_getpw").removeClass("focus");
+		}
+		$("#verify_getpw").addClass("error");
+		$('#verify_getpw').html(result);
 	}
 }
 

@@ -5,14 +5,8 @@
     {if $smarty.get.act neq "trash"}
     <!-- 分类 -->
     <select name="cat_id"><option value="0">{$lang.goods_cat}</option>{$cat_list}</select>
-    <!-- 品牌 -->
-    <select name="brand_id"><option value="0">{$lang.goods_brand}</option>{html_options options=$brand_list}</select>
     <!-- 推荐 -->
     <select name="intro_type"><option value="0">{$lang.intro_type}</option>{html_options options=$intro_list selected=$smarty.get.intro_type}</select>
-     {if $suppliers_exists eq 1}    
-      <!-- 供货商 -->
-      <select name="suppliers_id"><option value="0">{$lang.intro_type}</option>{html_options options=$suppliers_list_name selected=$smarty.get.suppliers_id}</select>
-      {/if}
       <!-- 上架 -->
       <select name="is_on_sale"><option value=''>{$lang.intro_type}</option><option value="1">{$lang.on_sale}</option><option value="0">{$lang.not_on_sale}</option></select>
     {/if}

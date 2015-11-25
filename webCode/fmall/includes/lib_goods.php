@@ -964,13 +964,17 @@ function get_goods_info($goods_id)
 		/* 修正产品状态*/
 		if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
     		$row['good_status'] = $row['good_status'];
+    		$row[repayment_time] = local_date('Y年m月d日',$row[goods_weight]);
     	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){
     		$row['good_status'] = 3;
+    		$row[repayment_time] = local_date('Y年m月d日',$row[goods_weight]);
     	}elseif(gmtime()>$row['goods_number']){
     		$row['good_status'] = 4;
+    		$row[over_time] = local_date('Y年m月d日',$row[goods_number]);
     	}else{
     		$row['good_status'] = 0;
     	}
+
 		
         /* 修正还款期限 gao*/
         $row['goods_number'] = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));

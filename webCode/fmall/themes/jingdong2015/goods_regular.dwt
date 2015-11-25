@@ -89,6 +89,7 @@ function reg(str){
 	         </div>
         </div>
     	<div class="bondinfo_left">
+    		<!--{if $goods.good_status eq 1}-->
     		<div class="bondinfo_leftdiv">
     			<form action="flow.php" method="post" onsubmit="return checkgoodsform();">
         		<ul class="bondinfo_left_top">
@@ -138,7 +139,22 @@ function reg(str){
         		</ul>
 	            </form>
              </div>
-             
+             <!--{elseif $goods.good_status eq 2}-->
+             <div class="bondinfo_left_two">
+             	<p class="status_p">还款时间：{$goods.repayment_time}</p>
+             	<div class="status_two"></div>
+             </div>
+             <!--{elseif $goods.good_status eq 3}-->
+             <div class="bondinfo_left_two">
+             	<p class="status_p">还款时间：{$goods.repayment_time}</p>
+             	<div class="status_three"></div>
+             </div>
+             <!--{elseif $goods.good_status eq 4}-->
+             <div class="bondinfo_left_two">
+             	<p class="status_p">结束时间：{$goods.over_time}</p>
+             	<div class="status_four"></div>
+             </div>
+             <!--{/if}-->
         </div>
             <!--choose end-->
             <span class="clr"></span> 

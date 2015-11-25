@@ -522,7 +522,7 @@ elseif($action == 'check_phone')
 /* 获取短信验证码*/
 elseif($action == 'get_phoneverify')
 {
-	$mobile = trim($_GET['phone']);
+	$mobile = trim($_POST['phone']);
 	if($user->get_phoneverify($mobile))
 	{
 		echo 'ok';

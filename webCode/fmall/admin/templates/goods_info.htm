@@ -16,14 +16,14 @@
   <div id="tabbar-div">
     <p> <span class="tab-front" id="general-tab">{$lang.tab_general}</span> <span class="tab-back" id="detail-tab">{$lang.tab_detail}</span>
     <span class="tab-back" id="packing-tab">{$lang.wind_control}</span>
-    <span class="tab-back" id="customer-tab">{$lang.last_ensure}</span>
+    <span class="tab-back" id="customer-tab" style="display:none;">{$lang.last_ensure}</span>
     <span
         class="tab-back" id="mix-tab">{$lang.tab_mix}</span>{if $goods_type_list}<span
-        class="tab-back" id="properties-tab">{$lang.tab_properties}</span>{/if}<span
+        class="tab-back" id="properties-tab" style="display:none;">{$lang.tab_properties}</span>{/if}<span
         class="tab-back" id="gallery-tab">{$lang.tab_gallery}</span><span
-        class="tab-back" id="linkgoods-tab">{$lang.tab_linkgoods}</span>{if $code eq ''}<span
-        class="tab-back" id="groupgoods-tab">{$lang.tab_groupgoods}</span>{/if}<span
-        class="tab-back" id="article-tab">{$lang.tab_article}</span> </p>
+        class="tab-back" id="linkgoods-tab" style="display:none;">{$lang.tab_linkgoods}</span>{if $code eq ''}<span
+        class="tab-back" id="groupgoods-tab" style="display:none;">{$lang.tab_groupgoods}</span>{/if}<span
+        class="tab-back" id="article-tab" style="display:none;">{$lang.tab_article}</span> </p>
   </div>
   
   <!-- tab body -->

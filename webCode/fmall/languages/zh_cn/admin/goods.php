@@ -65,9 +65,9 @@ $_LANG['is_promote'] = '特价';
 $_LANG['all_type'] = '全部推荐';
 $_LANG['sort_order'] = '推荐排序';
 
-$_LANG['goods_name'] = '商品名称';
+$_LANG['goods_name'] = '产品名称';
 $_LANG['goods_sn'] = '货号';
-$_LANG['shop_price'] = '价格';
+$_LANG['shop_price'] = '募集金额';
 $_LANG['is_on_sale'] = '上架';
 $_LANG['goods_number'] = '还款时间';
 
