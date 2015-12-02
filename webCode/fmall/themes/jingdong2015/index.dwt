@@ -34,7 +34,7 @@
 		</div>
 		<!--{else}-->
 		<div class="banner_login_div">
-			<div class="banner_head_img"><img src="{$headimg}" alt="用户头像" width='100px' height='100px'/></div>
+			<div class="banner_head_img"><img src="{$headimg}" alt="银河众联" title="用户头像" width='100px' height='100px'/></div>
 			<p class="banner_login_poster">安全保障 值得信赖</p>
 			<a class="banner_login_img" href="./user.php">我的账户</a>
 		</div>
@@ -275,16 +275,22 @@
 				<li class="powder_con_title">
 					<span class="powder_div_name">借款标题</span>
 					<span class="powder_div_rate">年化利率</span>
-					<span class="powder_div_name">借款金额（元）</span>
-					<span class="powder_div_name">借款期限</span>
-					<span class="powder_div_name">投资进度</span>
+					<span class="powder_div_price">借款金额（元）</span>
+					<span class="powder_div_time">借款期限</span>
+					<span class="powder_div_time">保障方式</span>
+					<span class="powder_div_invest">投资进度</span>
 				</li>
 				<!--{foreach from=$best_goods item=goods name=foo}-->
 				<li >
 					<span class="powder_div_name" ><a href="{$goods.url}">{$goods.short_name}</a></span>
 					<span class="powder_div_color" >{$goods.market_price}%</span>
-					<span class="powder_div_name" >{$goods.shop_price}</span>
-					<span class="powder_div_name" >{$goods.term}</span>
+					<span class="powder_div_price" >{$goods.shop_price}</span>
+					<span class="powder_div_time" >{$goods.term}</span>
+					<!--{if $goods.ensure eq 0}-->
+					<span class="powder_div_time" ><img src="themes/jingdong2015/images/ensure_di.jpg" alt="银河众联" title="抵押标"></span>
+					<!--{else}-->
+					<span class="powder_div_time" ><img src="themes/jingdong2015/images/ensure_xin.jpg" alt="银河众联" title="信用标"></span>
+					<!--{/if}-->
 					<span class="powder_div_advance" >
 						<div class="powder_term_div" id="{$goods.id_division}"></div>
 						<input type="hidden" name="{$goods.id_division}" value="{$goods.price_advance}">

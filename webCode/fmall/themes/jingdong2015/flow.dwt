@@ -377,13 +377,13 @@
 <div class="flowCheckoutBox" >
     <div class="flowBox_cart">
         <div id="content" style="width:70%;margin-top:50px;">
-            <div class="mt"><img src="images/pay_menttop.jpg" alt="联众金融" style="float:left;padding-right:10px;"><h2>确认支付页面</h2></div>
+            <div class="mt"><img src="images/pay_menttop.jpg" alt="银河众联" style="float:left;padding-right:10px;"><h2>确认支付页面</h2></div>
             <div class="mc" style="border-bottom:1px solid #DDD;margin-top:35px;">
                 <form action="flow.php" method="post" name="theForm" id="theForm" onsubmit="return checkOrderForm(this)">
                     <div class="step-cont">
                         <div id="consignee-addr">
                         	<div class="consigneetop">
-                        	<div class="consigneemiddle"><img src="images/pay_mentmiddle.png" alt="联众金融" width="200px" height="200px"></div>
+                        	<div class="consigneemiddle"><img src="images/pay_mentmiddle.png" alt="银河众联" width="200px" height="200px"></div>
                             <div class="consignee-cont">
                             	<h3 style="margin-left:30px;">{$lang.consignee_good_name}：{$ordername}</h3>
                                 <ul>
@@ -414,7 +414,7 @@
                                     <li>
                                         <div class="payment-item hoverInput" style="color:blue;">
                                         	<label for="payment_style"><b></b>{$payment.pay_name}</label>
-                                            <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_style" {if $payid eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/>
+                                            <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_style" {if $payment.pay_id eq 4}checked{/if} onclick="selectPayment(this)"/>
                                             <input type="hidden" name="code" value="{$payment.pay_code}">
                                         </div>
                                     </li>
@@ -445,11 +445,11 @@
 			$(this).addClass("cur")
 		}
 	});
-	payment.click(function(){
+	/*payment.click(function(){
 		if($(this).find("input").is(":checked")){
 			$(this).addClass("cur").parent("li").siblings("li").find("div").removeClass("cur")
 		}
-	});
+	});*/
 	payment.hover(function(){
 		$(this).addClass("hover").parent("li").siblings("li").find("div").removeClass("hover")
 	},function(){

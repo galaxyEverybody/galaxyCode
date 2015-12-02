@@ -98,16 +98,13 @@ function orderShippingSelectedResponse(result)
  */
 function selectPayment(obj)
 {
-  if (selectedPayment == obj)
-  {
-    return;
-  }
-  else
-  {
-    selectedPayment = obj;
-  }
-
-  Ajax.call('flow.php?step=select_payment', 'payment=' + obj.value, orderSelectedResponse, 'GET', 'JSON');
+	$(this).attr("checked",true);
+	var payment=$(".hoverInput");
+	payment.click(function(){
+		if($(this).find("input").is(":checked")){
+			$(this).addClass("cur").parent("li").siblings("li").find("div").removeClass("cur");
+		}
+	});
 }
 /* *
  * 团购购物流程 --> 改变配送方式

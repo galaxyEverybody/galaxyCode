@@ -468,9 +468,9 @@ var select_spe = "{$lang.select_spe}";
 			<li id="userinfo_band3" onclick="bandinfo_showhid3();">投标中的债券</li>
 		</ul>
 	</div>
-	<div id="bonddivtr" style="border:1px solid #ddd;width:836px;height:auto;border-top:3px solid #FF8A00;">
-		<div id="overbanddiv1" style="width:100%;height:auto;">
-			<table width="100%" border="0">
+	<div id="bonddivtr">
+		<div id="overbanddiv1">
+			<table>
 				<thead>
 					<tr class="capitaltr">
 						<th>债券ID</th>
@@ -482,21 +482,43 @@ var select_spe = "{$lang.select_spe}";
 					<tr>
 				</thead>
 				<tbody>
-				{foreach from = $recover_list item=recover_list}
+				{foreach from = $recover_list_abs item=recover_list}
 					<tr class="capitaltr">
-						<td>{$bond_list.good_id}</td>
-						<td>{$bond_list.invest_price}</td>
-						<td style="color:#FF6969;">{$bond_list.market_price}</td>
-						<td>{$bond_list.invest_time}</td>
-						<td>{$bond_list.me_money}</td>
-						<td>{$bond_list.time_start}</td>
+						<td>{$recover_list.good_id}</td>
+						<td>{$recover_list.invest_price}</td>
+						<td style="color:#FF6969;">{$recover_list.market_price}</td>
+						<td>{$recover_list.invest_time}</td>
+						<td>{$recover_list.me_money}</td>
+						<td>{$recover_list.time_start}</td>
 					</tr>
 				{/foreach}
 				</tbody>
 			</table>
+			<div class="blank10"></div>
+    		<div class="pagin" style="text-align:center;">
+			    <!-- {if $pager_recover.page_prev} -->
+			     <a href="{$pager_recover.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
+			    <!-- {else} --> 
+			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
+			    <!-- {/if} --> 
+			    <!-- {if $pager_recover.page_count neq 1} --> 
+			    <!--{foreach from=$pager_recover.page_number key=key item=item}--> 
+			    <!-- {if $pager.page eq $key} --> 
+			    <a href="javascript:void(0);" class="current">{$key}</a>
+			    <!-- {else} --> 
+			    <a href="{$item}">{$key}</a> 
+			    <!-- {/if} --> 
+			    <!--{/foreach}--> 
+			    <!-- {/if} --> 
+				 <!-- {if $pager_recover.page_next} -->
+			      <a href="{$pager_recover.page_next}" class="next">{$lang.page_next}<b>></b></a>
+			        <!-- {else} --> 
+			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
+		        <!-- {/if} --> 
+		    </div>
 		</div>
-		<div id="overbanddiv2" style="width:100%;height:auto;border:0px solid red;display:none;">
-			<table width="100%" border="0" style="margin-top:3px;">
+		<div id="overbanddiv2">
+			<table>
 				<thead>
 					<tr class="capitaltr">
 						<th>债券ID</th>
@@ -508,7 +530,7 @@ var select_spe = "{$lang.select_spe}";
 					<tr>
 				</thead>
 				<tbody>
-				{foreach from = $bond_list item=bond_list}
+				{foreach from = $bond_list_abs item=bond_list}
 					<tr class="capitaltr">
 						<td>{$bond_list.good_id}</td>
 						<td>{$bond_list.invest_price}</td>
@@ -520,9 +542,31 @@ var select_spe = "{$lang.select_spe}";
 				{/foreach}
 				</tbody>
 			</table>
+			<div class="blank10"></div>
+    		<div class="pagin" style="text-align:center;">
+			    <!-- {if $pager_bond.page_prev} -->
+			     <a href="{$pager_bond.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
+			    <!-- {else} --> 
+			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
+			    <!-- {/if} --> 
+			    <!-- {if $pager_bond.page_count neq 1} --> 
+			    <!--{foreach from=$pager_bond.page_number key=key item=item}--> 
+			    <!-- {if $pager.page eq $key} --> 
+			    <a href="javascript:void(0);" class="current">{$key}</a>
+			    <!-- {else} --> 
+			    <a href="{$item}">{$key}</a> 
+			    <!-- {/if} --> 
+			    <!--{/foreach}--> 
+			    <!-- {/if} --> 
+				 <!-- {if $pager_bond.page_next} -->
+			      <a href="{$pager_bond.page_next}" class="next">{$lang.page_next}<b>></b></a>
+			        <!-- {else} --> 
+			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
+		        <!-- {/if} --> 
+		    </div>
 		</div>
-		<div id="overbanddiv3" style="width:100%;height:auto;border:0px solid red;display:none;">
-			<table width="100%" border="0" style="margin-top:3px;text-align:center;">
+		<div id="overbanddiv3">
+			<table>
 				<thead>
 					<tr class="capitaltr">
 						<th>债券ID</th>
@@ -534,7 +578,7 @@ var select_spe = "{$lang.select_spe}";
 					<tr>
 				</thead>
 				<tbody>
-				{foreach from = $bid_list item=bid_list}
+				{foreach from = $bid_list_abs item=bid_list}
 					<tr class="capitaltr">
 						<td>{$bid_list.good_id}</td>
 						<td>{$bid_list.invest_price}</td>
@@ -546,10 +590,31 @@ var select_spe = "{$lang.select_spe}";
 				{/foreach}
 				</tbody>
 			</table>
+			<div class="blank10"></div>
+    		<div class="pagin" style="text-align:center;">
+			    <!-- {if $pager_bid.page_prev} -->
+			     <a href="{$pager_bid.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
+			    <!-- {else} --> 
+			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
+			    <!-- {/if} --> 
+			    <!-- {if $pager_bid.page_count neq 1} --> 
+			    <!--{foreach from=$pager_bid.page_number key=key item=item}--> 
+			    <!-- {if $pager.page eq $key} --> 
+			    <a href="javascript:void(0);" class="current">{$key}</a>
+			    <!-- {else} --> 
+			    <a href="{$item}">{$key}</a> 
+			    <!-- {/if} --> 
+			    <!--{/foreach}--> 
+			    <!-- {/if} --> 
+				 <!-- {if $pager_bid.page_next} -->
+			      <a href="{$pager_bid.page_next}" class="next">{$lang.page_next}<b>></b></a>
+			        <!-- {else} --> 
+			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
+		        <!-- {/if} --> 
+		    </div>
 		</div>
 	</div>
-	<div class="blank10"></div>
-    <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+
 	<script>
 		$(function(){
 			$("#bonddivtr tr:even").css("background","#EDEBEC");
@@ -625,9 +690,9 @@ var select_spe = "{$lang.select_spe}";
 			<li id="userinfo_band3" onclick="bandinfo_showhid3();">投标中的债券</li>
 		</ul>
 	</div>
-	<div id="bonddivtr" style="border:1px solid #ddd;width:836px;height:auto;border-top:3px solid #FF8A00;">
-		<div id="overbanddiv1" style="width:100%;height:auto;">
-			<table width="100%" border="0">
+	<div id="bonddivtr">
+		<div id="overbanddiv1">
+			<table>
 				<thead>
 					<tr class="capitaltr">
 						<th>债券ID</th>
@@ -641,19 +706,41 @@ var select_spe = "{$lang.select_spe}";
 				<tbody>
 				{foreach from = $recover_list_abs item=recover_list}
 					<tr class="capitaltr">
-						<td>{$bond_list.good_id}</td>
-						<td>{$bond_list.invest_price}</td>
-						<td style="color:#FF6969;">{$bond_list.market_price}</td>
-						<td>{$bond_list.invest_time}</td>
-						<td>{$bond_list.me_money}</td>
-						<td>{$bond_list.time_start}</td>
+						<td>{$recover_list.good_id}</td>
+						<td>{$recover_list.invest_price}</td>
+						<td style="color:#FF6969;">{$recover_list.market_price}</td>
+						<td>{$recover_list.invest_time}</td>
+						<td>{$recover_list.me_money}</td>
+						<td>{$recover_list.time_start}</td>
 					</tr>
 				{/foreach}
 				</tbody>
 			</table>
+			<div class="blank10"></div>
+    		<div class="pagin" style="text-align:center;">
+			    <!-- {if $pager_recover.page_prev} -->
+			     <a href="{$pager_recover.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
+			    <!-- {else} --> 
+			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
+			    <!-- {/if} --> 
+			    <!-- {if $pager_recover.page_count neq 1} --> 
+			    <!--{foreach from=$pager_recover.page_number key=key item=item}--> 
+			    <!-- {if $pager.page eq $key} --> 
+			    <a href="javascript:void(0);" class="current">{$key}</a>
+			    <!-- {else} --> 
+			    <a href="{$item}">{$key}</a> 
+			    <!-- {/if} --> 
+			    <!--{/foreach}--> 
+			    <!-- {/if} --> 
+				 <!-- {if $pager_recover.page_next} -->
+			      <a href="{$pager_recover.page_next}" class="next">{$lang.page_next}<b>></b></a>
+			        <!-- {else} --> 
+			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
+		        <!-- {/if} --> 
+		    </div>
 		</div>
-		<div id="overbanddiv2" style="width:100%;height:auto;border:0px solid red;display:none;">
-			<table width="100%" border="0" style="margin-top:3px;">
+		<div id="overbanddiv2">
+			<table>
 				<thead>
 					<tr class="capitaltr">
 						<th>债券ID</th>
@@ -677,9 +764,31 @@ var select_spe = "{$lang.select_spe}";
 				{/foreach}
 				</tbody>
 			</table>
+			<div class="blank10"></div>
+    		<div class="pagin" style="text-align:center;">
+			    <!-- {if $pager_bond.page_prev} -->
+			     <a href="{$pager_bond.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
+			    <!-- {else} --> 
+			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
+			    <!-- {/if} --> 
+			    <!-- {if $pager_bond.page_count neq 1} --> 
+			    <!--{foreach from=$pager_bond.page_number key=key item=item}--> 
+			    <!-- {if $pager.page eq $key} --> 
+			    <a href="javascript:void(0);" class="current">{$key}</a>
+			    <!-- {else} --> 
+			    <a href="{$item}">{$key}</a> 
+			    <!-- {/if} --> 
+			    <!--{/foreach}--> 
+			    <!-- {/if} --> 
+				 <!-- {if $pager_bond.page_next} -->
+			      <a href="{$pager_bond.page_next}" class="next">{$lang.page_next}<b>></b></a>
+			        <!-- {else} --> 
+			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
+		        <!-- {/if} --> 
+		    </div>
 		</div>
-		<div id="overbanddiv3" style="width:100%;height:auto;border:0px solid red;display:none;">
-			<table width="100%" border="0" style="margin-top:3px;text-align:center;">
+		<div id="overbanddiv3">
+			<table>
 				<thead>
 					<tr class="capitaltr">
 						<th>债券ID</th>
@@ -703,10 +812,31 @@ var select_spe = "{$lang.select_spe}";
 				{/foreach}
 				</tbody>
 			</table>
+			<div class="blank10"></div>
+    		<div class="pagin" style="text-align:center;">
+			    <!-- {if $pager_bid.page_prev} -->
+			     <a href="{$pager_bid.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
+			    <!-- {else} --> 
+			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
+			    <!-- {/if} --> 
+			    <!-- {if $pager_bid.page_count neq 1} --> 
+			    <!--{foreach from=$pager_bid.page_number key=key item=item}--> 
+			    <!-- {if $pager.page eq $key} --> 
+			    <a href="javascript:void(0);" class="current">{$key}</a>
+			    <!-- {else} --> 
+			    <a href="{$item}">{$key}</a> 
+			    <!-- {/if} --> 
+			    <!--{/foreach}--> 
+			    <!-- {/if} --> 
+				 <!-- {if $pager_bid.page_next} -->
+			      <a href="{$pager_bid.page_next}" class="next">{$lang.page_next}<b>></b></a>
+			        <!-- {else} --> 
+			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
+		        <!-- {/if} --> 
+		    </div>
 		</div>
 	</div>
-	<div class="blank10"></div>
-    <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+	
 	<script>
 		$(function(){
 			$("#bonddivtr tr:even").css("background","#EDEBEC");

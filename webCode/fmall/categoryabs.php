@@ -41,7 +41,7 @@ if( $action == 'default'){
 	$catabsthree = assign_catabs_goods($res[2][cat_id], $num = 1, $from = 'web', $order_rule = '');
 	$catabsfour = assign_catabs_goods($res[3][cat_id], $num = 1, $from = 'web', $order_rule = '');
 	
-	$cat_goods = array_merge($catabsone,$catabstwo,$catabsfour,$catabsthree);
+	$cat_goods = array_merge($catabsone,$catabstwo,$catabsthree,$catabsfour);
 	
 	$smarty->assign('catabs_goods',$cat_goods);
 	
@@ -60,7 +60,7 @@ elseif($action == 'ajax_counter'){
 	$catabsthree = assign_catabs_goods($res[2][cat_id], $num = 1, $from = 'web', $order_rule = '');
 	$catabsfour = assign_catabs_goods($res[3][cat_id], $num = 1, $from = 'web', $order_rule = '');
 	
-	$cat_goods = array_merge($catabsone,$catabstwo,$catabsfour,$catabsthree);
+	$cat_goods = array_merge($catabsone,$catabstwo,$catabsthree,$catabsfour);
 	
 	foreach($cat_goods as $cat_good){
 		$markets .= $cat_good['market_price'].",";
@@ -68,9 +68,9 @@ elseif($action == 'ajax_counter'){
 
 	$mar = explode(',',$markets);
 
-	$month = number_format($mar[0]*$numprice/1200,2,'.','');
-	$threemonth = number_format($mar[1]*$numprice/400,2,'.','');
-	$sixmonth = number_format($mar[2]*$numprice/200,2,'.','');
+	$month = number_format($mar[0]*$numprice/36500*30,2,'.','');
+	$threemonth = number_format($mar[1]*$numprice/36500*90,2,'.','');
+	$sixmonth = number_format($mar[2]*$numprice/36500*180,2,'.','');
 	$year = number_format($mar[3]*$numprice/100,2,'.','');
 	
 	$val = $year.','.$sixmonth.','.$threemonth.','.$month;

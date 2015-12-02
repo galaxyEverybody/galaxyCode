@@ -655,7 +655,7 @@ function get_recommend_goods($type = '', $cats = '')
         }
 
         //取出所有符合条件的商品数据，并将结果存入对应的推荐类型数组中
-        $sql = 'SELECT g.goods_id, g.goods_name, g.good_status, g.add_time, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, g.surplus_price,g.goods_weight,g.goods_number, ' .
+        $sql = 'SELECT g.goods_id, g.goods_name, g.ensure_style, g.good_status, g.add_time, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, g.surplus_price,g.goods_weight,g.goods_number, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
                 "promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img, RAND() AS rnd " .
                 'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
@@ -683,6 +683,7 @@ function get_recommend_goods($type = '', $cats = '')
             $goods[$idx]['id_division']  = "division".$idx;
             $goods[$idx]['name']         = $row['goods_name'];
             $goods[$idx]['brief']        = $row['goods_brief'];
+            $goods[$idx]['ensure_style']        = $row['ensure_style'];
             $goods[$idx]['brand_name']   = isset($goods_data['brand'][$row['goods_id']]) ? $goods_data['brand'][$row['goods_id']] : '';
             $goods[$idx]['goods_style_name']   = add_style($row['goods_name'],$row['goods_name_style']);
 

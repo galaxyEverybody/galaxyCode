@@ -259,7 +259,7 @@ function delete_tag($tag_words, $user_id)
  *
  * @return  array   $booking
  */
-function get_booking_list($user_id, $num, $start, $catstatus, $type)
+function get_booking_list($user_id,$catstatus,$startsize,$size)
 {
     $booking = array();
     $pay_status = PS_PAYED;
@@ -267,26 +267,28 @@ function get_booking_list($user_id, $num, $start, $catstatus, $type)
     	$sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.goods_weight,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
             "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
                      $GLOBALS['ecs']->table('order_goods') . " AS o, " .$GLOBALS['ecs']->table('category') . " AS c " .
-            "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND g.good_status = ".$type." AND".
-    		" o.user_id = '$user_id' AND c.is_standalone =0 order by o.rec_id desc";
+            "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND".
+    		" o.user_id = '$user_id' AND c.is_standalone =0 order by o.rec_id desc limit ".$startsize.",".$size;
     }else{
     	$sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.goods_weight,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
             "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
                      $GLOBALS['ecs']->table('order_goods') . " AS o, " .$GLOBALS['ecs']->table('category') . " AS c " .
-            "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND g.good_status = ".$type." AND".
-    		" o.user_id = '$user_id' AND c.is_standalone !=0 order by o.rec_id desc";
+            "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND".
+    		" o.user_id = '$user_id' AND c.is_standalone !=0 order by o.rec_id desc limit ".$startsize.",".$size;
     }
     
-    $res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
-	
-    while ($row = $GLOBALS['db']->fetchRow($res))
-    {	
-        if (empty($row['dispose_note']))
-        {
-            $row['dispose_note'] = 'N/A';
-        }
-        if($type == GD_INVING){
-        	$booking[] = array(
+    //$res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
+    $res = $GLOBALS['db']->getAll($sql);
+    //print_r($res);exit;
+    /* 声明数组*/
+    $info['bid_list_abs'] = array();
+    $info['recover_list_abs'] = array();
+    $info['bond_list_abs'] = array();
+    
+    foreach($res as $row){
+    	if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
+    	
+    		$info['bid_list_abs'][] = array(
 				'good_id'		=> $row['goods_sn'],		//债券id
 				'invest_price'  => $row['invest_price'],	//投资金额
 				'market_price'  => $row['market_price'].'%',	//年利率
@@ -294,31 +296,33 @@ function get_booking_list($user_id, $num, $start, $catstatus, $type)
                 'me_money'  	=> number_format($row['invest_price']+$row['invest_price']*$row['market_price']/100,2),		//待收本息
                 'invest_temp'	=> floor(ceil((($row['shop_price']-$row['surplus_price'])/$row['shop_price'])*100))/100		//投资进度	
 			);
-        }
-        if($type == GD_FULL){
-        	$booking[] = array(
+			
+    	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){
+    		
+    		$info['recover_list_abs'][] = array(
 				'good_id'		=> $row['goods_sn'],		//债券id
 				'invest_price'  => $row['invest_price'],	//投资金额
 				'market_price'  => $row['market_price'].'%',	//年利率
                 'invest_time' 	=> ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24)),//投资期限
                 'me_money'  	=> $row['invest_price']+$row['invest_price']*$row['market_price']/100,		//待收本息
-                'time_start'	=> local_get($row['goods_weight'])	//计息日期
+                'time_start'	=> date('Y-m-d',$row['goods_weight'])	//计息日期
 			);
-        }
-        if($type == GD_OVER){
-        	$booking[] = array(
+    		
+    	}elseif(gmtime()>$row['goods_number']){
+    	
+    		$info['bond_list_abs'][] = array(
 				'good_id'		=> $row['goods_sn'],		//债券id
 				'invest_price'  => $row['invest_price'],	//投资金额
 				'market_price'  => $row['market_price'].'%',	//年利率
                 'invest_time' 	=> ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24)),//投资期限
                 'me_money'  	=> $row['invest_price']+$row['invest_price']*$row['market_price']/100,		//待收本息
-                'time_end'	=> local_time($row['goods_number'])		//结清日期	
+                'time_end'		=> date('Y-m-d',$row['goods_number'])		//结清日期	
 			);
-        }
-        
+    	
+    	}
     }
 
-    return $booking;
+    return $info;
 }
 
 /**

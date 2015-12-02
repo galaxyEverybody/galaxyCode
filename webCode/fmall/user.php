@@ -36,7 +36,8 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'manage_msg', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'ajax_center_manadel', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
-'account_deposit','bang_payment','account_log', 'booking_list_month', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
+'account_deposit','bang_payment','account_log', 'booking_list_month', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list',
+'validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer', 'callback_invest_ajax', 'over_invest_ajax', 'on_invest_ajax',);
 
 /* 未登录处理 */
 if (empty($_SESSION['user_id']))
@@ -1879,20 +1880,66 @@ elseif ($action == 'booking_list')
     
     $page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
 	$pay_status = PS_PAYED;
+	$startsize = 0;
     
     /* 我的债券 */
-    $sql = "SELECT count(*) " .
-            "FROM " .$ecs->table('goods'). " AS g, " .
-                     $ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
-            "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = ".$catstatus." AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
-    $record_count = $db->getOne($sql);
-    
-    $pager = get_pager('user.php', array('act' => $action), $record_count, $page);
-    $smarty->assign('bid_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
-    $smarty->assign('recover_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
-    $smarty->assign('bond_list', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
-    $smarty->assign('pager',        $pager);
+	$sql = "SELECT g.goods_number,g.goods_weight,g.add_time " .
+			"FROM " .$ecs->table('goods'). " AS g, " .
+			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone = 0 AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+	$record_count = $db->getAll($sql);
+	
+	/* 声明数组*/
+	$pagebid = array();
+	$pagerecover = array();
+	$pagebond = array();
+	
+	foreach($record_count as $countinfo){
+		if($countinfo['goods_weight'] >= gmtime() && gmtime() >=$countinfo['add_time']){
+			$pagebid[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_weight'] && gmtime()<$countinfo['goods_number']){
+			$pagerecover[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_number']){
+			$pagebond[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}
+	}
+	
+	
+	$pager_bid = get_pager('user.php', array('act' => $action), count($pagebid), $page);
+	$pager_recover = get_pager('user.php', array('act' => $action), count($pagerecover), $page);
+	$pager_bond = get_pager('user.php', array('act' => $action), count($pagebond), $page);
+	
+	$info = get_booking_list($user_id, $catstatus, $startsize, $pager_bid['size']);
+	
+	$smarty->assign('bid_list_abs',$info['bid_list_abs']);
+	$smarty->assign('recover_list_abs',$info['recover_list_abs']);
+	$smarty->assign('bond_list_abs',$info['bond_list_abs']);
+	$smarty->assign('pager_bid',$pager_bid);
+	$smarty->assign('pager_recover',$pager_recover);
+	$smarty->assign('pager_bond',$pager_bond);
+	
     $smarty->display('user_clips.dwt');
+}
+
+/* 散标投资回收中的债券 AJAX分页*/
+elseif ($action == 'callback_invest_ajax'){
+	
+}
+
+/* 散标投资已结清的债券 AJAX分页*/
+elseif ($action == 'over_invest_ajax'){
+	
+}
+
+/* 散标投资投标中的债券 AJAX分页*/
+elseif ($action == 'on_invest_ajax'){
+	
 }
 
 /* 显示聚能赚定期列表*/
@@ -1905,20 +1952,52 @@ elseif ($action == 'booking_list_month')
 
 	$page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
 	$pay_status = PS_PAYED;
+	$startsize = 0;
 
 	/* 我的债券 */
-	$sql = "SELECT count(*) " .
+	$sql = "SELECT g.goods_number,g.goods_weight,g.add_time " .
 			"FROM " .$ecs->table('goods'). " AS g, " .
 			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
 			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone != 0 AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
-	$record_count = $db->getOne($sql);
+	$record_count = $db->getAll($sql);
 	
-	$pager = get_pager('user.php', array('act' => $action), $record_count, $page);
-	$smarty->assign('bid_list_abs', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_INVING));
-	$smarty->assign('recover_list_abs', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_FULL));
-	$smarty->assign('bond_list_abs', get_booking_list($user_id, $pager['size'], $pager['start'], $catstatus, GD_OVER));
-	$smarty->assign('pager',        $pager);
+	/* 声明数组*/
+	$pagebid = array();
+	$pagerecover = array();
+	$pagebond = array();
+	
+	foreach($record_count as $countinfo){
+		if($countinfo['goods_weight'] >= gmtime() && gmtime() >=$countinfo['add_time']){
+			$pagebid[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_weight'] && gmtime()<$countinfo['goods_number']){
+			$pagerecover[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_number']){
+			$pagebond[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}
+	}
+	
+	
+	$pager_bid = get_pager('user.php', array('act' => $action), count($pagebid), $page);
+	$pager_recover = get_pager('user.php', array('act' => $action), count($pagerecover), $page);
+	$pager_bond = get_pager('user.php', array('act' => $action), count($pagebond), $page);
+	
+	$info = get_booking_list($user_id, $catstatus, $startsize, $pager_bid['size']);
+	
+	$smarty->assign('bid_list_abs',$info['bid_list_abs']);
+	$smarty->assign('recover_list_abs',$info['recover_list_abs']);
+	$smarty->assign('bond_list_abs',$info['bond_list_abs']);
+	$smarty->assign('pager_bid',$pager_bid);
+	$smarty->assign('pager_recover',$pager_recover);
+	$smarty->assign('pager_bond',$pager_bond);
+	
 	$smarty->display('user_clips.dwt');
+	
 }
 /* 我的贷款页面*/
 elseif ($action == 'loan_list')

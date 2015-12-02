@@ -28,7 +28,7 @@ require_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/shopping_flow.php');
 
 if (!isset($_REQUEST['step']))
 {
-    $_REQUEST['step'] = "cart";
+    $_REQUEST['step'] = "done";
 }
 
 /*------------------------------------------------------ */
@@ -1682,7 +1682,7 @@ elseif ($_REQUEST['step'] == 'done')
     //取得支付配送方式
     $sql = 'select pay_id,pay_code,pay_name from '.$GLOBALS['ecs']->table('payment');
     $payment_list = $GLOBALS['db']->getAll($sql);
-    
+
     $smarty->assign('payment_list',$payment_list);
     
     /* 取得购物类型 
