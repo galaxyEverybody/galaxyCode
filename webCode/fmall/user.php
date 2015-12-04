@@ -37,7 +37,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 $ui_arr = array('register','ajax_checkoldpassword', 'manage_msg', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'ajax_center_manadel', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'booking_list_month', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list',
-'validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer', 'callback_invest_ajax', 'over_invest_ajax', 'on_invest_ajax',);
+'validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer', 'callback_invest_ajax', 'over_invest_ajax', 'on_invest_ajax', 'callback_fixinvest_ajax', 'over_fixinvest_ajax', 'on_fixinvest_ajax');
 
 /* 未登录处理 */
 if (empty($_SESSION['user_id']))
@@ -1911,11 +1911,14 @@ elseif ($action == 'booking_list')
 	}
 	
 	
-	$pager_bid = get_pager('user.php', array('act' => $action), count($pagebid), $page);
-	$pager_recover = get_pager('user.php', array('act' => $action), count($pagerecover), $page);
-	$pager_bond = get_pager('user.php', array('act' => $action), count($pagebond), $page);
+	$pager_bid = get_pager('user.php', array('act' => 'on_invest_ajax'), count($pagebid), $page, $size);
+	$pager_recover = get_pager('user.php', array('act' => 'callback_invest_ajax'), count($pagerecover), $page, $size);
+	$pager_bond = get_pager('user.php', array('act' => 'over_invest_ajax'), count($pagebond), $page, $size);
 	
-	$info = get_booking_list($user_id, $catstatus, $startsize, $pager_bid['size']);
+	$info = get_booking_list($user_id, $catstatus);
+	$bid_list_abs = array_slice($info['bid_list_abs'],0,5);
+	$recover_list_abs = array_slice($info['bid_list_abs'],0,5);
+	$bond_list_abs = array_slice($info['bid_list_abs'],0,5);
 	
 	$smarty->assign('bid_list_abs',$info['bid_list_abs']);
 	$smarty->assign('recover_list_abs',$info['recover_list_abs']);
@@ -1929,17 +1932,103 @@ elseif ($action == 'booking_list')
 
 /* 散标投资回收中的债券 AJAX分页*/
 elseif ($action == 'callback_invest_ajax'){
+	$page = isset($_GET['page'])?$_GET['page']:1;
+	$catstatus = isset($catstatus)?$catstatus:0;
+	$size = 5;
+	$startpage = ($page-1)*$size;
 	
+	$info = get_booking_list($user_id, $catstatus);
+	$recover_list_abs = array_slice($info['recover_list_abs'],$startpage,$size);
+	
+	$str = '<thead><tr class="capitaltr"><th>债券ID</th><th>投资金额(元)</th><th>投资期限(天)</th><th>年化利率(%)</th><th>待收本息(元)</th><th>计息日期</th><tr></thead><tbody>';
+	
+	foreach($recover_list_abs as $key=>$val){
+		if($key%2==0){
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td>'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["time_start"].'</td><tr>';
+		}else{
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td>'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["time_start"].'</td><tr>';
+		}
+	}
+	
+	echo $str.'</tbody></table>';
 }
 
 /* 散标投资已结清的债券 AJAX分页*/
 elseif ($action == 'over_invest_ajax'){
+	include_once(ROOT_PATH . 'includes/lib_clips.php');
+
+	$page = isset($_POST['page'])?$_POST['page']:1;
+	$catstatus = isset($catstatus)?$catstatus:0;
+	$size = 5;
+	$startpage = ($page-1)*$size;
 	
+	$info = get_booking_list($user_id, $catstatus);
+	$bond_list_abs = array_slice($info['bond_list_abs'],$startpage,$size);
+	
+	$str = '<thead><tr class="capitaltr"><th>债券ID</th><th>投资金额(元)</th><th>投资期限(天)</th><th>年化利率(%)</th><th>待收本息(元)</th><th>结清日期</th><tr></thead><tbody>';
+	
+	foreach($bond_list_abs as $key=>$val){
+		if($key%2==0){
+			$str.='<tr class="capitaltr" style="background:#EDEBEC;"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td style="color:red;">'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["time_end"].'</td><tr>';
+		}else{
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td style="color:red;">'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["time_end"].'</td><tr>';
+		}
+	}
+	
+	echo $str.'</tbody></table>';
 }
 
 /* 散标投资投标中的债券 AJAX分页*/
 elseif ($action == 'on_invest_ajax'){
+	$page = isset($_GET['page'])?$_GET['page']:1;
+	$catstatus = isset($catstatus)?$catstatus:0;
+	$size = 5;
+	$startpage = ($page-1)*$size;
 	
+	$info = get_booking_list($user_id, $catstatus);
+	$bid_list_abs = array_slice($info['bid_list_abs'],$startpage,$size);
+	
+	$str = '<thead><tr class="capitaltr"><th>债券ID</th><th>投资金额(元)</th><th>年化利率(%)</th><th>投资期限(天)</th><th>待收本息(元)</th><th>进度</th><tr></thead><tbody>';
+	
+	foreach($recover_list_abs as $key=>$val){
+		if($key%2==0){
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td style="color:red;">'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["invest_temp"].'%</td><tr>';
+		}else{
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td style="color:red;">'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["invest_temp"].'%</td><tr>';
+		}
+	}
+	
+	echo $str.'</tbody></table>';
 }
 
 /* 显示聚能赚定期列表*/
@@ -1953,6 +2042,7 @@ elseif ($action == 'booking_list_month')
 	$page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
 	$pay_status = PS_PAYED;
 	$startsize = 0;
+	$size = 5;
 
 	/* 我的债券 */
 	$sql = "SELECT g.goods_number,g.goods_weight,g.add_time " .
@@ -1983,15 +2073,19 @@ elseif ($action == 'booking_list_month')
 	}
 	
 	
-	$pager_bid = get_pager('user.php', array('act' => $action), count($pagebid), $page);
-	$pager_recover = get_pager('user.php', array('act' => $action), count($pagerecover), $page);
-	$pager_bond = get_pager('user.php', array('act' => $action), count($pagebond), $page);
+	$pager_bid = get_pager('user.php', array('act' => 'on_fixinvest_ajax'), count($pagebid), $page, $size);
+	$pager_recover = get_pager('user.php', array('act' => 'callback_fixinvest_ajax'), count($pagerecover), $page, $size);
+	$pager_bond = get_pager('user.php', array('act' => 'over_fixinvest_ajax'), count($pagebond), $page, $size);
 	
-	$info = get_booking_list($user_id, $catstatus, $startsize, $pager_bid['size']);
+	$info = get_booking_list($user_id, $catstatus);
 	
-	$smarty->assign('bid_list_abs',$info['bid_list_abs']);
-	$smarty->assign('recover_list_abs',$info['recover_list_abs']);
-	$smarty->assign('bond_list_abs',$info['bond_list_abs']);
+	$bid_list_abs = array_slice($info['bid_list_abs'],0,$size);
+	$recover_list_abs = array_slice($info['recover_list_abs'],0,$size);
+	$bond_list_abs = array_slice($info['bond_list_abs'],0,$size);
+	
+	$smarty->assign('bid_list_abs',$bid_list_abs);
+	$smarty->assign('recover_list_abs',$recover_list_abs);
+	$smarty->assign('bond_list_abs',$bond_list_abs);
 	$smarty->assign('pager_bid',$pager_bid);
 	$smarty->assign('pager_recover',$pager_recover);
 	$smarty->assign('pager_bond',$pager_bond);
@@ -1999,6 +2093,260 @@ elseif ($action == 'booking_list_month')
 	$smarty->display('user_clips.dwt');
 	
 }
+
+/* 聚能赚定期回收中的债券 AJAX分页*/
+elseif ($action == 'callback_fixinvest_ajax'){
+	$page = isset($_GET['page'])?$_GET['page']:1;
+	$catstatus = isset($catstatus)?$catstatus:1;
+	$pay_status = PS_PAYED;
+	$size = 5;
+	$startpage = ($page-1)*$size;
+	
+	/* 我的债券 */
+	$sql = "SELECT g.goods_number,g.goods_weight,g.add_time " .
+			"FROM " .$ecs->table('goods'). " AS g, " .
+			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone != 0 AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+	$record_count = $db->getAll($sql);
+	
+	/* 声明数组*/
+	$pagebid = array();
+	$pagerecover = array();
+	$pagebond = array();
+	
+	foreach($record_count as $countinfo){
+		if($countinfo['goods_weight'] >= gmtime() && gmtime() >=$countinfo['add_time']){
+			$pagebid[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_weight'] && gmtime()<$countinfo['goods_number']){
+			$pagerecover[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_number']){
+			$pagebond[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}
+	}
+	$pager_recover = get_pager('user.php', array('act' => 'over_fixinvest_ajax'), count($pagebond), $page, $size);
+	
+	$pagestr='<div class="blank10"></div><div class="pagin" style="text-align:center;">';
+	if(!empty($pager_recover["page_prev"])){
+		$pagestr.='<a href="'.$pager_recover["page_prev"].'" class="prev"><b><</b>上一页</a>';
+	}else{
+		$pagestr.='<span class="prev-disabled"><b><</b>上一页</span>';
+	}
+	
+	foreach($pager_recover['page_number'] as $key=>$item){
+		if($key==$page){
+			$pagestr.='<a href="javascript:void(0);" class="current">'.$key.'</a>';
+		}else{
+			$pagestr.='<a href="javascript:void(0);" id="'.$item.'" onclick="ajax_pageinfo2(this)">'.$key.'</a>';
+		}
+	}
+	if(!empty($pager_recover['page_next'])){
+		$pagestr.='<a href="'.$pager_recover['page_next'].'" class="next">下一页<b>></b></a></div>';
+	}else{
+		$pagestr.='<span class="next-disabled">下一页<b>></b></span></div>';
+	}
+	
+	$info = get_booking_list($user_id, $catstatus);
+	$recover_list_abs = array_slice($info['recover_list_abs'],$startpage,$size);
+	
+	$str = '<thead><tr class="capitaltr"><th>债券ID</th><th>投资金额(元)</th><th>投资期限(天)</th><th>年化利率(%)</th><th>待收本息(元)</th><th>计息日期</th><tr></thead><tbody>';
+	
+	foreach($recover_list_abs as $key=>$val){
+		if($key%2==0){
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td>'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["time_start"].'</td><tr>';
+		}else{
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td>'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["time_start"].'</td><tr>';
+		}
+	}
+	
+	echo $str.'</tbody></table>''.$pagestr;
+}
+
+/* 聚能赚定期已结清的债券 AJAX分页*/
+elseif ($action == 'over_fixinvest_ajax'){
+
+	include_once(ROOT_PATH . 'includes/lib_clips.php');
+
+	$page = isset($_POST['page'])?$_POST['page']:1;
+	$catstatus = isset($catstatus)?$catstatus:1;
+	$pay_status = PS_PAYED;
+	$size = 5;
+	$startpage = ($page-1)*$size;
+	
+	/* 我的债券 */
+	$sql = "SELECT g.goods_number,g.goods_weight,g.add_time " .
+			"FROM " .$ecs->table('goods'). " AS g, " .
+			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone != 0 AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+	$record_count = $db->getAll($sql);
+	
+	/* 声明数组*/
+	$pagebid = array();
+	$pagerecover = array();
+	$pagebond = array();
+	
+	foreach($record_count as $countinfo){
+		if($countinfo['goods_weight'] >= gmtime() && gmtime() >=$countinfo['add_time']){
+			$pagebid[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_weight'] && gmtime()<$countinfo['goods_number']){
+			$pagerecover[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_number']){
+			$pagebond[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}
+	}
+	$pager_bond = get_pager('user.php', array('act' => $action), count($pagebond), $page, $size);
+	
+	$pagestr='<div class="blank10"></div><div class="pagin" style="text-align:center;">';
+	if(!empty($pager_bond["page_prev"])){
+		$pagestr.='<a href="'.$pager_bond["page_prev"].'" class="prev"><b><</b>上一页</a>';
+	}else{
+		$pagestr.='<span class="prev-disabled"><b><</b>上一页</span>';
+	}
+	
+	foreach($pager_bond['page_number'] as $key=>$item){
+		if($key==$page){
+			$pagestr.='<a href="javascript:void(0);" class="current">'.$key.'</a>';
+		}else{
+			$pagestr.='<a href="javascript:void(0);" id="'.$item.'" onclick="ajax_pageinfo2(this)">'.$key.'</a>';
+		}
+	}
+	if(!empty($pager_bond['page_next'])){
+		$pagestr.='<a href="'.$pager_bond['page_next'].'" class="next">下一页<b>></b></a></div>';
+	}else{
+		$pagestr.='<span class="next-disabled">下一页<b>></b></span></div>';
+	}
+	
+	
+	$info = get_booking_list($user_id, $catstatus);
+	$bond_list_abs = array_slice($info['bond_list_abs'],$startpage,$size);
+	
+	$str = '<table><thead><tr class="capitaltr"><th>债券ID</th><th>投资金额(元)</th><th>投资期限(天)</th><th>年化利率(%)</th><th>待收本息(元)</th><th>结清日期</th><tr></thead><tbody>';
+	
+	foreach($bond_list_abs as $key=>$val){
+		if($key%2==0){
+			$str.='<tr class="capitaltr" style="background:#EDEBEC;"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td style="color:red;">'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["time_end"].'</td><tr>';
+		}else{
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td style="color:red;">'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["time_end"].'</td><tr>';
+		}
+	}
+	
+	echo $str.'</tbody></table>'.$pagestr;
+}
+
+/* 聚能赚定期投标中的债券 AJAX分页*/
+elseif ($action == 'on_fixinvest_ajax'){
+	$page = isset($_GET['page'])?$_GET['page']:1;
+	$catstatus = isset($catstatus)?$catstatus:1;
+	$pay_status = PS_PAYED;
+	$size = 5;
+	$startpage = ($page-1)*$size;
+	
+	/* 我的债券 */
+	$sql = "SELECT g.goods_number,g.goods_weight,g.add_time " .
+			"FROM " .$ecs->table('goods'). " AS g, " .
+			$ecs->table('order_goods') . " AS o, " .$ecs->table('category') . " AS c " .
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone != 0 AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+	$record_count = $db->getAll($sql);
+	
+	/* 声明数组*/
+	$pagebid = array();
+	$pagerecover = array();
+	$pagebond = array();
+	
+	foreach($record_count as $countinfo){
+		if($countinfo['goods_weight'] >= gmtime() && gmtime() >=$countinfo['add_time']){
+			$pagebid[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_weight'] && gmtime()<$countinfo['goods_number']){
+			$pagerecover[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_number']){
+			$pagebond[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}
+	}
+	$pager_bid = get_pager('user.php', array('act' => $action), count($pagebond), $page, $size);
+	
+	$pagestr='<div class="blank10"></div><div class="pagin" style="text-align:center;">';
+	if(!empty($pager_bid["page_prev"])){
+		$pagestr.='<a href="'.$pager_bid["page_prev"].'" class="prev"><b><</b>上一页</a>';
+	}else{
+		$pagestr.='<span class="prev-disabled"><b><</b>上一页</span>';
+	}
+	
+	foreach($pager_bid['page_number'] as $key=>$item){
+		if($key==$page){
+			$pagestr.='<a href="javascript:void(0);" class="current">'.$key.'</a>';
+		}else{
+			$pagestr.='<a href="javascript:void(0);" id="'.$item.'" onclick="ajax_pageinfo2(this)">'.$key.'</a>';
+		}
+	}
+	if(!empty($pager_bid['page_next'])){
+		$pagestr.='<a href="'.$pager_bid['page_next'].'" class="next">下一页<b>></b></a></div>';
+	}else{
+		$pagestr.='<span class="next-disabled">下一页<b>></b></span></div>';
+	}
+	
+	$info = get_booking_list($user_id, $catstatus);
+	$bid_list_abs = array_slice($info['bid_list_abs'],$startpage,$size);
+	
+	$str = '<thead><tr class="capitaltr"><th>债券ID</th><th>投资金额(元)</th><th>年化利率(%)</th><th>投资期限(天)</th><th>待收本息(元)</th><th>进度</th><tr></thead><tbody>';
+	
+	foreach($recover_list_abs as $key=>$val){
+		if($key%2==0){
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td style="color:red;">'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["invest_temp"].'%</td><tr>';
+		}else{
+			$str.='<tr class="capitaltr"><td>'.$val["good_id"].'</td>';
+			$str.='<td>'.$val["invest_price"].'</td>';
+			$str.='<td style="color:red;">'.$val["market_price"].'</td>';
+			$str.='<td>'.$val["invest_time"].'</td>';
+			$str.='<td>'.$val["me_money"].'</td>';
+			$str.='<td>'.$val["invest_temp"].'%</td><tr>';
+		}
+	}
+	
+	echo $str.'</tbody></table>''.$pagestr;
+}
+
 /* 我的贷款页面*/
 elseif ($action == 'loan_list')
 {

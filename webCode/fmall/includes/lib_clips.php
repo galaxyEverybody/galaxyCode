@@ -259,7 +259,7 @@ function delete_tag($tag_words, $user_id)
  *
  * @return  array   $booking
  */
-function get_booking_list($user_id,$catstatus,$startsize,$size)
+function get_booking_list($user_id,$catstatus)
 {
     $booking = array();
     $pay_status = PS_PAYED;
@@ -268,13 +268,13 @@ function get_booking_list($user_id,$catstatus,$startsize,$size)
             "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
                      $GLOBALS['ecs']->table('order_goods') . " AS o, " .$GLOBALS['ecs']->table('category') . " AS c " .
             "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND".
-    		" o.user_id = '$user_id' AND c.is_standalone =0 order by o.rec_id desc limit ".$startsize.",".$size;
+    		" o.user_id = '$user_id' AND c.is_standalone =0 order by o.rec_id desc";
     }else{
     	$sql = "SELECT o.invest_price,o.market_price,g.goods_number,g.goods_weight,g.add_time,g.shop_price,g.surplus_price,g.goods_sn,g.good_status " .
             "FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
                      $GLOBALS['ecs']->table('order_goods') . " AS o, " .$GLOBALS['ecs']->table('category') . " AS c " .
             "WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND o.pay_status = ".$pay_status." AND".
-    		" o.user_id = '$user_id' AND c.is_standalone !=0 order by o.rec_id desc limit ".$startsize.",".$size;
+    		" o.user_id = '$user_id' AND c.is_standalone !=0 order by o.rec_id desc";
     }
     
     //$res = $GLOBALS['db']->SelectLimit($sql, $num, $start);

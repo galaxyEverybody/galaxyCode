@@ -486,7 +486,7 @@ var select_spe = "{$lang.select_spe}";
 					<tr class="capitaltr">
 						<td>{$recover_list.good_id}</td>
 						<td>{$recover_list.invest_price}</td>
-						<td style="color:#FF6969;">{$recover_list.market_price}</td>
+						<td style="color:red;">{$recover_list.market_price}</td>
 						<td>{$recover_list.invest_time}</td>
 						<td>{$recover_list.me_money}</td>
 						<td>{$recover_list.time_start}</td>
@@ -503,10 +503,10 @@ var select_spe = "{$lang.select_spe}";
 			    <!-- {/if} --> 
 			    <!-- {if $pager_recover.page_count neq 1} --> 
 			    <!--{foreach from=$pager_recover.page_number key=key item=item}--> 
-			    <!-- {if $pager.page eq $key} --> 
+			    <!-- {if $pager_recover.page eq $key} --> 
 			    <a href="javascript:void(0);" class="current">{$key}</a>
 			    <!-- {else} --> 
-			    <a href="{$item}">{$key}</a> 
+			    <a href="javascript:void(0);" id="{$item}" onclick="ajax_pageinfo1(this)">{$key}</a> 
 			    <!-- {/if} --> 
 			    <!--{/foreach}--> 
 			    <!-- {/if} --> 
@@ -516,6 +516,19 @@ var select_spe = "{$lang.select_spe}";
 			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
 		        <!-- {/if} --> 
 		    </div>
+		    <script>
+		    	function ajax_pageinfo1(oinfo){
+		    		var url = oinfo.id;
+		    		var urnum = url.indexOf("?");
+		    		var ur = url.substr(0,urnum);
+		    		var param = url.substr(++urnum);
+		    		Ajax.call(ur,param,callback_pageinfo1,"POST","TEXT",true,true);
+		    	}
+		    	function callback_pageinfo1(res){
+	    			var tbody = $("#overbanddiv1").children("table");
+	    			tbody.html(res);
+	    		}
+		    </script>
 		</div>
 		<div id="overbanddiv2">
 			<table>
@@ -534,7 +547,7 @@ var select_spe = "{$lang.select_spe}";
 					<tr class="capitaltr">
 						<td>{$bond_list.good_id}</td>
 						<td>{$bond_list.invest_price}</td>
-						<td style="color:#FF6969;">{$bond_list.market_price}</td>
+						<td style="color:red;">{$bond_list.market_price}</td>
 						<td>{$bond_list.invest_time}</td>
 						<td>{$bond_list.me_money}</td>
 						<td>{$bond_list.time_end}</td>
@@ -551,10 +564,10 @@ var select_spe = "{$lang.select_spe}";
 			    <!-- {/if} --> 
 			    <!-- {if $pager_bond.page_count neq 1} --> 
 			    <!--{foreach from=$pager_bond.page_number key=key item=item}--> 
-			    <!-- {if $pager.page eq $key} --> 
+			    <!-- {if $pager_bond.page eq $key} --> 
 			    <a href="javascript:void(0);" class="current">{$key}</a>
 			    <!-- {else} --> 
-			    <a href="{$item}">{$key}</a> 
+			    <a href="javascript:void(0);" id="{$item}" onclick="ajax_pageinfo2(this)">{$key}</a>  
 			    <!-- {/if} --> 
 			    <!--{/foreach}--> 
 			    <!-- {/if} --> 
@@ -564,6 +577,19 @@ var select_spe = "{$lang.select_spe}";
 			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
 		        <!-- {/if} --> 
 		    </div>
+		    <script>
+		    	function ajax_pageinfo2(oinfo){
+		    		var url = oinfo.id;
+		    		var urnum = url.indexOf("?");
+		    		var ur = url.substr(0,urnum);
+		    		var param = url.substr(++urnum);
+		    		Ajax.call(ur,param,callback_pageinfo2,"POST","TEXT",true,true);
+		    	}
+		    	function callback_pageinfo2(res){
+	    			var tbody = $("#overbanddiv2").children("table");
+	    			tbody.html(res);
+	    		}
+		    </script>
 		</div>
 		<div id="overbanddiv3">
 			<table>
@@ -582,7 +608,7 @@ var select_spe = "{$lang.select_spe}";
 					<tr class="capitaltr">
 						<td>{$bid_list.good_id}</td>
 						<td>{$bid_list.invest_price}</td>
-						<td style="color:#FF6969;">{$bid_list.market_price}</td>
+						<td style="color:red;">{$bid_list.market_price}</td>
 						<td>{$bid_list.invest_time}</td>
 						<td>{$bid_list.me_money}</td>
 						<td>{$bid_list.invest_temp}%</td>
@@ -599,10 +625,10 @@ var select_spe = "{$lang.select_spe}";
 			    <!-- {/if} --> 
 			    <!-- {if $pager_bid.page_count neq 1} --> 
 			    <!--{foreach from=$pager_bid.page_number key=key item=item}--> 
-			    <!-- {if $pager.page eq $key} --> 
+			    <!-- {if $pager_bid.page eq $key} --> 
 			    <a href="javascript:void(0);" class="current">{$key}</a>
 			    <!-- {else} --> 
-			    <a href="{$item}">{$key}</a> 
+			    <a href="javascript:void(0);" id="{$item}" onclick="ajax_pageinfo3(this)">{$key}</a>  
 			    <!-- {/if} --> 
 			    <!--{/foreach}--> 
 			    <!-- {/if} --> 
@@ -612,6 +638,19 @@ var select_spe = "{$lang.select_spe}";
 			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
 		        <!-- {/if} --> 
 		    </div>
+		    <script>
+		    	function ajax_pageinfo3(oinfo){
+		    		var url = oinfo.id;
+		    		var urnum = url.indexOf("?");
+		    		var ur = url.substr(0,urnum);
+		    		var param = url.substr(++urnum);
+		    		Ajax.call(ur,param,callback_pageinfo3,"POST","TEXT",true,true);
+		    	}
+		    	function callback_pageinfo3(res){
+	    			var tbody = $("#overbanddiv3").children("table");
+	    			tbody.html(res);
+	    		}
+		    </script>
 		</div>
 	</div>
 
@@ -708,7 +747,7 @@ var select_spe = "{$lang.select_spe}";
 					<tr class="capitaltr">
 						<td>{$recover_list.good_id}</td>
 						<td>{$recover_list.invest_price}</td>
-						<td style="color:#FF6969;">{$recover_list.market_price}</td>
+						<td style="color:red">{$recover_list.market_price}</td>
 						<td>{$recover_list.invest_time}</td>
 						<td>{$recover_list.me_money}</td>
 						<td>{$recover_list.time_start}</td>
@@ -725,10 +764,10 @@ var select_spe = "{$lang.select_spe}";
 			    <!-- {/if} --> 
 			    <!-- {if $pager_recover.page_count neq 1} --> 
 			    <!--{foreach from=$pager_recover.page_number key=key item=item}--> 
-			    <!-- {if $pager.page eq $key} --> 
+			    <!-- {if $pager_recover.page eq $key} --> 
 			    <a href="javascript:void(0);" class="current">{$key}</a>
 			    <!-- {else} --> 
-			    <a href="{$item}">{$key}</a> 
+			    <a href="javascript:void(0);" id="{$item}" onclick="ajax_pageinfo1(this)">{$key}</a> 
 			    <!-- {/if} --> 
 			    <!--{/foreach}--> 
 			    <!-- {/if} --> 
@@ -738,6 +777,19 @@ var select_spe = "{$lang.select_spe}";
 			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
 		        <!-- {/if} --> 
 		    </div>
+		    <script>
+		    	function ajax_pageinfo1(oinfo){
+		    		var url = oinfo.id;
+		    		var urnum = url.indexOf("?");
+		    		var ur = url.substr(0,urnum);
+		    		var param = url.substr(++urnum);
+		    		Ajax.call(ur,param,callback_pageinfo1,"POST","TEXT",true,true);
+		    	}
+		    	function callback_pageinfo1(res){
+	    			var tbody = $("#overbanddiv1").children("table");
+	    			tbody.html(res);
+	    		}
+		    </script>
 		</div>
 		<div id="overbanddiv2">
 			<table>
@@ -756,8 +808,8 @@ var select_spe = "{$lang.select_spe}";
 					<tr class="capitaltr">
 						<td>{$bond_list.good_id}</td>
 						<td>{$bond_list.invest_price}</td>
-						<td style="color:#FF6969;">{$bond_list.market_price}</td>
 						<td>{$bond_list.invest_time}</td>
+						<td style="color:red">{$bond_list.market_price}</td>
 						<td>{$bond_list.me_money}</td>
 						<td>{$bond_list.time_end}</td>
 					</tr>
@@ -772,12 +824,12 @@ var select_spe = "{$lang.select_spe}";
 			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
 			    <!-- {/if} --> 
 			    <!-- {if $pager_bond.page_count neq 1} --> 
-			    <!--{foreach from=$pager_bond.page_number key=key item=item}--> 
-			    <!-- {if $pager.page eq $key} --> 
+			    <!--{foreach from=$pager_bond.page_number key=key item=item}-->
+			    <!-- {if $pager_bid.page eq $key} -->
 			    <a href="javascript:void(0);" class="current">{$key}</a>
-			    <!-- {else} --> 
-			    <a href="{$item}">{$key}</a> 
-			    <!-- {/if} --> 
+			    <!-- {else} -->
+			    <a href="javascript:void(0);" id="{$item}" onclick="ajax_pageinfo2(this)">{$key}</a> 
+			    <!-- {/if} -->
 			    <!--{/foreach}--> 
 			    <!-- {/if} --> 
 				 <!-- {if $pager_bond.page_next} -->
@@ -787,6 +839,19 @@ var select_spe = "{$lang.select_spe}";
 		        <!-- {/if} --> 
 		    </div>
 		</div>
+		<script>
+		    	function ajax_pageinfo2(oinfo){
+		    		var url = oinfo.id;
+		    		var urnum = url.indexOf("?");
+		    		var ur = url.substr(0,urnum);
+		    		var param = url.substr(++urnum);
+		    		Ajax.call(ur,param,callback_pageinfo2,"POST","TEXT",true,true);
+		    	}
+		    	function callback_pageinfo2(res){
+	    			var tbody = $("#overbanddiv2");
+	    			tbody.html(res);
+	    		}
+		    </script>
 		<div id="overbanddiv3">
 			<table>
 				<thead>
@@ -804,7 +869,7 @@ var select_spe = "{$lang.select_spe}";
 					<tr class="capitaltr">
 						<td>{$bid_list.good_id}</td>
 						<td>{$bid_list.invest_price}</td>
-						<td style="color:#FF6969;">{$bid_list.market_price}</td>
+						<td style="color:red;">{$bid_list.market_price}</td>
 						<td>{$bid_list.invest_time}</td>
 						<td>{$bid_list.me_money}</td>
 						<td>{$bid_list.invest_temp}%</td>
@@ -821,10 +886,10 @@ var select_spe = "{$lang.select_spe}";
 			    <!-- {/if} --> 
 			    <!-- {if $pager_bid.page_count neq 1} --> 
 			    <!--{foreach from=$pager_bid.page_number key=key item=item}--> 
-			    <!-- {if $pager.page eq $key} --> 
+			    <!-- {if $pager_bid.page eq $key} --> 
 			    <a href="javascript:void(0);" class="current">{$key}</a>
 			    <!-- {else} --> 
-			    <a href="{$item}">{$key}</a> 
+			    <a href="javascript:void(0)" id="{$item}" onclick="ajax_pageinfo3(this)">{$key}</a> 
 			    <!-- {/if} --> 
 			    <!--{/foreach}--> 
 			    <!-- {/if} --> 
@@ -834,6 +899,19 @@ var select_spe = "{$lang.select_spe}";
 			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
 		        <!-- {/if} --> 
 		    </div>
+		    <script>
+		    	function ajax_pageinfo3(oinfo){
+		    		var url = oinfo.id;
+		    		var urnum = url.indexOf("?");
+		    		var ur = url.substr(0,urnum);
+		    		var param = url.substr(++urnum);
+		    		Ajax.call(ur,param,callback_pageinfo3,"POST","TEXT",true,true);
+		    	}
+		    	function callback_pageinfo3(res){
+	    			var tbody = $("#overbanddiv3").children("table");
+	    			tbody.html(res);
+	    		}
+		    </script>
 		</div>
 	</div>
 	

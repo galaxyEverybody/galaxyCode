@@ -16,61 +16,43 @@
 <!-- {if $cat_style} -->
 <link href="{$cat_style}" rel="stylesheet" type="text/css" />
 <!-- {/if} -->
-{* 包含脚本文件 *}
-{insert_scripts files='transport_jquery.js,utils.js,transport.js'}
+
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
-<div style="width:100%;height:330px;border:1px solid red;">
-		
-</div>
-<div style="background:#F2F2F2">
-<div class="w main">
+
+<div class="newgudie_banner"></div>
+<div class="newguide_one"></div>
+<div class="newguide_company">
 	<div class="blank10"></div>
+	<h2>什么是银河众联</h2>
+	<div class="blank30"></div>
+	<p class="p_company">
+	银河众联致力于为各位投资人提供<span>安全</span>、<span>有保障</span>、<span>高收益</span>的互联网理财服务，<br/>
+	通过银河众联的推荐，您可以将手中的富余资金，出借给有足值抵押物抵押、<br/>
+	信用良好的平台借款人，并获得利息回报。
+	</p>
+</div>
+<div class="newguide_two"></div>
+<div class="newguide_three"></div>
+<div class="newguide_company">
+	<h2>银河众联的优势</h2>
+</div>
+<div class="newguide_four"></div>
+<div class="newguide_five"></div>
+<div class="newguide_company">
 	<div class="blank10"></div>
-	<div style="width:95%;height:450px;border:1px solid red;background:#FFF;">
-		<div class="blank30"></div>
-		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">企业介绍</h3>
-		<div style="width:90%;height:400px;">
-			<p style="font-size:16px;font-family:microsoft yahei;text-indent:28px;line-height:25px;">聚能赚（www.jnz360.com）
-			为银河众联（北京）信息科技有限公司旗下的互联网金融平台，于2015年8月正式上线运营，总部位于北京。
-			聚能赚旨在通过互联网为用户个人投资提供了安全稳定的渠道，为小微企业借贷解决了融资难、贵的难题。
-			秉承“联接你我、众人得利、金钱之托、融合共赢”的理念，凭借领先的科技、深厚的资金、以人为本的态度，
-			致力于打造最具影响力的互联网金融交易信息服务平台，推动普惠金融的全面发展。</p>
-		</div>
-	</div>
-	<div style="width:95%;height:450px;border:1px solid red;background:#FFF;">
-		<div class="blank30"></div>
-		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">成为会员</h3>
-		<div style="width:90%;height:400px;">
-			<div style="width:100%;height:320px;border:1px solid blue;">
-			
-			</div>
-		</div>
-	</div>
-	<div style="width:95%;height:450px;border:1px solid red;background:#FFF;">
-		<div class="blank30"></div>
-		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">如何投资</h3>
-		<div style="width:90%;height:400px;">
-			<div style="width:100%;height:320px;border:1px solid blue;">
-			
-			</div>
-		</div>
-	</div>
-	<div style="width:95%;height:450px;border:1px solid red;background:#FFF;">
-		<div class="blank30"></div>
-		<h3 style="width:100%;height:70px;line-height:70px;font-size:24px;font-weight:bold;margin-left:30px;">如何借款</h3>
-		<div style="width:90%;height:400px;">
-			<div style="width:100%;height:320px;border:1px solid blue;">
-			
-			</div>
-		</div>
-	</div>
-	<div style="width:95%;height:100px;">
-		<a href="user.php?act=register" style="display: block;border-radius: 10px;background-color: #ef6200;width: 216px;margin: 0 auto;margin-bottom: 40px;height: 56px;line-height: 56px;color: #fff;font-size: 26px;text-align: center;font-weight:bold;">立即注册 GO</a>
-	</div>
+	<h2>有什么产品可以投资</h2>
+	<div class="blank30"></div>
+	<p class="p_title">聚能赚定期</p>
+	<div class="blank30"></div>
+	<p class="p_content">定期存款选聚能赚，收益远超余额宝。多种期限供您选，长期短期随您挑。</p>
 </div>
+<div class="newguide_six"></div>
+<div class="newguide_resgister">
+	<a href="user.php?act=register">立即注册</a>
 </div>
+
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->
 </div>

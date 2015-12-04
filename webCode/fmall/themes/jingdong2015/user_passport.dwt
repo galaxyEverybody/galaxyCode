@@ -33,7 +33,7 @@
         	<div class="login-form">
             	<div class="login-box">
                 	<div class="mt">
-                    	<h1>联众会员</h1>
+                    	<h1>众联会员</h1>
                         <div class="extra-r">
                         	<div class="regist-link">
                             	<a href="../user.php?act=register"><span><b></b></span>立即注册</a>

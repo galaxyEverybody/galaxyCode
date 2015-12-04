@@ -281,6 +281,23 @@ h6 span{float:left;padding-left:15px}
 .safety_register a{ display: block;border-radius: 10px;background-color: #ef6200;width: 216px;margin: 0 auto;margin-top:60px;margin-bottom: 40px;height: 56px;line-height: 56px;color: #fff;font-size: 26px;text-align: center;font-weight:bold;}
 .safety_register a:hover{ color:#FFF;}
 
+/* newgudie*/
+.newgudie_banner{ width:100%;height:360px;background:url(images/newguidebanner.jpg) center center no-repeat;}
+.newguide_one{ width:100%;height:120px;background:url(images/newguideone.jpg) center center no-repeat;}
+.newguide_company{ width:100%;height:auto;text-align:center;font-family:Microsoft YaHei;}
+.newguide_company h2{ font-size:34px;}
+.p_company{ font-size:16px;line-height:25px;word-spacing:35px;}
+.newguide_two{ width:100%;height:550px;background:url(images/newguidetwo.jpg) center center no-repeat;}
+.newguide_three{ width:100%;height:182px;background:url(images/newguidethree.jpg) center center no-repeat;}
+.newguide_four{ width:100%;height:489px;background:url(images/newguidefour.jpg) center center no-repeat;}
+.newguide_five{ width:100%;height:128px;background:url(images/newguidefive.jpg) center center no-repeat;}
+.p_title{ font-size:16px;word-spacing:35px;color:red;}
+.p_content{ font-size:16px;word-spacing:35px;}
+.newguide_six{ width:100%;height:605px;background:url(images/newguidesix.jpg) center center no-repeat;}
+.newguide_resgister{ width:100%;height:100px;}
+.newguide_resgister a{ cursor:pointer;display: block;border-radius: 10px;background-color: #ef6200;width: 216px;margin: 0 auto;margin-bottom: 40px;height: 56px;line-height: 56px;color: #fff;font-size: 26px;text-align: center;font-weight:bold;}
+
+
 /* catabs_list*/
 .catabs_banner{ width:100%;height:365px;background:url('images/catabs_banner.jpg') center center no-repeat;}
 .catabs_bigdiv{ width:100%;height:auto;background:#F2F2F2;}
