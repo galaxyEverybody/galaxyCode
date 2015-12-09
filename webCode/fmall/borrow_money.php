@@ -77,14 +77,14 @@ elseif ($action == 'carinfo'){
 /* 车辆信息的添加*/
 elseif ($action == 'insert_car_info'){
 	include_once(ROOT_PATH . 'includes/lib_transaction.php');
-	
-	$carname = trim($_POST['carname']);
-	$caraddress = trim($_POST['caraddress']);
-	$carphone = trim($_POST['carphone']);
-	$carborrownum = trim($_POST['carborrownum']);
-	$cartime = trim($_POST['cartime']);
-	$carbuytime = trim($_POST['carbuyyear']).'/'.trim($_POST['carbuymonth']);
-	$carnum = trim($_POST['carnum']*10000);
+
+	$carname = mysql_real_escape_string($_POST['carname']);
+	$caraddress = mysql_real_escape_string($_POST['caraddress']);
+	$carphone = mysql_real_escape_string($_POST['carphone']);
+	$carborrownum = mysql_real_escape_string($_POST['carborrownum']);
+	$cartime = mysql_real_escape_string($_POST['cartime']);
+	$carbuytime = mysql_real_escape_string($_POST['carbuyyear']).'/'.mysql_real_escape_string($_POST['carbuymonth']);
+	$carnum = mysql_real_escape_string($_POST['carnum']*10000);
 	
 	if(empty($carname) || empty($carphone) || empty($caraddress) || empty($carborrownum) || empty($cartime) || empty($carnum)){
 		show_message($_LANG['borrow_userinfo_fail'],$_LANG['back_up_page'],'borrow_money.php?act=carinfo');
@@ -127,14 +127,18 @@ elseif ($action == 'insert_house_info'){
 	include_once(ROOT_PATH . 'includes/lib_transaction.php');
 	
 	$userid = isset($_SESSION['user_id'])?$_SESSION['user_id']:'0';
-	$housename = trim($_POST['housename']);
-	$housephone = trim($_POST['housephone']);
-	$houseborrownum = trim($_POST['houseborrownum'])*10000;
-	$house_add = trim($_POST['house_add']);
-	$house_use = trim($_POST['house_use']);
-	
+	$housename = mysql_real_escape_string($_POST['housename']);
+	$housephone = mysql_real_escape_string($_POST['housephone']);
+	$houseborrownum = mysql_real_escape_string($_POST['houseborrownum'])*10000;
+	$house_add = mysql_real_escape_string($_POST['house_add']);
+	$house_use = mysql_real_escape_string($_POST['house_use']);
+
 	if(empty($housename) || empty($housephone) || empty($houseborrownum) || empty($house_add) || empty($house_use)){
 		show_message($_LANG['borrow_userinfo_fail'],$_LANG['back_up_page'],'borrow_money.php?act=houseinfo');
+	}
+	
+	if(!preg_match('/^1[34578]{1}\d{9}$/',$housephone)){
+		show_message($_LANG['borrow_carphone_fail'],$_LANG['back_up_page'],'borrow_money.php?act=houseinfo');
 	}
 
 	$houseinfo = array(

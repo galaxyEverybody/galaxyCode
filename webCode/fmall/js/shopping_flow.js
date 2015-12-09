@@ -97,14 +97,11 @@ function orderShippingSelectedResponse(result)
  * 改变支付方式
  */
 function selectPayment(obj)
-{
-	$(this).attr("checked",true);
-	var payment=$(".hoverInput");
-	payment.click(function(){
-		if($(this).find("input").is(":checked")){
-			$(this).addClass("cur").parent("li").siblings("li").find("div").removeClass("cur");
-		}
-	});
+{	
+	oid = obj.id;
+	var sid = document.getElementById(oid);
+
+	$(sid).addClass("cur");
 }
 /* *
  * 团购购物流程 --> 改变配送方式

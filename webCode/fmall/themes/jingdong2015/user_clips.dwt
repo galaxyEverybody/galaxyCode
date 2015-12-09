@@ -525,7 +525,7 @@ var select_spe = "{$lang.select_spe}";
 		    		Ajax.call(ur,param,callback_pageinfo1,"POST","TEXT",true,true);
 		    	}
 		    	function callback_pageinfo1(res){
-	    			var tbody = $("#overbanddiv1").children("table");
+	    			var tbody = $("#overbanddiv1");
 	    			tbody.html(res);
 	    		}
 		    </script>
@@ -586,7 +586,7 @@ var select_spe = "{$lang.select_spe}";
 		    		Ajax.call(ur,param,callback_pageinfo2,"POST","TEXT",true,true);
 		    	}
 		    	function callback_pageinfo2(res){
-	    			var tbody = $("#overbanddiv2").children("table");
+	    			var tbody = $("#overbanddiv2");
 	    			tbody.html(res);
 	    		}
 		    </script>
@@ -647,7 +647,7 @@ var select_spe = "{$lang.select_spe}";
 		    		Ajax.call(ur,param,callback_pageinfo3,"POST","TEXT",true,true);
 		    	}
 		    	function callback_pageinfo3(res){
-	    			var tbody = $("#overbanddiv3").children("table");
+	    			var tbody = $("#overbanddiv3");
 	    			tbody.html(res);
 	    		}
 		    </script>
@@ -758,7 +758,7 @@ var select_spe = "{$lang.select_spe}";
 			<div class="blank10"></div>
     		<div class="pagin" style="text-align:center;">
 			    <!-- {if $pager_recover.page_prev} -->
-			     <a href="{$pager_recover.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
+			     <a href="javascript:void(0);" class="prev" id="{$item}" onclick="ajax_pageinfo1(this)"><b><</b>{$lang.page_prev}</a>
 			    <!-- {else} --> 
 			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
 			    <!-- {/if} --> 
@@ -772,7 +772,7 @@ var select_spe = "{$lang.select_spe}";
 			    <!--{/foreach}--> 
 			    <!-- {/if} --> 
 				 <!-- {if $pager_recover.page_next} -->
-			      <a href="{$pager_recover.page_next}" class="next">{$lang.page_next}<b>></b></a>
+			      <a href="javascript:void(0);" class="next" id="{$item}" onclick="ajax_pageinfo1(this)">{$lang.page_next}<b>></b></a>
 			        <!-- {else} --> 
 			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
 		        <!-- {/if} --> 
@@ -786,7 +786,7 @@ var select_spe = "{$lang.select_spe}";
 		    		Ajax.call(ur,param,callback_pageinfo1,"POST","TEXT",true,true);
 		    	}
 		    	function callback_pageinfo1(res){
-	    			var tbody = $("#overbanddiv1").children("table");
+	    			var tbody = $("#overbanddiv1");
 	    			tbody.html(res);
 	    		}
 		    </script>
@@ -819,7 +819,7 @@ var select_spe = "{$lang.select_spe}";
 			<div class="blank10"></div>
     		<div class="pagin" style="text-align:center;">
 			    <!-- {if $pager_bond.page_prev} -->
-			     <a href="{$pager_bond.page_prev}" class="prev"><b><</b>{$lang.page_prev}</a>
+			     <a href="javascript:void(0);" class="prev" id="{$item}" onclick="ajax_pageinfo2(this)"><b><</b>{$lang.page_prev}</a>
 			    <!-- {else} --> 
 			      <span class="prev-disabled"><b><</b>{$lang.page_prev}</span>
 			    <!-- {/if} --> 
@@ -833,7 +833,7 @@ var select_spe = "{$lang.select_spe}";
 			    <!--{/foreach}--> 
 			    <!-- {/if} --> 
 				 <!-- {if $pager_bond.page_next} -->
-			      <a href="{$pager_bond.page_next}" class="next">{$lang.page_next}<b>></b></a>
+			      <a href="javascript:void(0);" class="next" id="{$item}" onclick="ajax_pageinfo2(this)">{$lang.page_next}<b>></b></a>
 			        <!-- {else} --> 
 			          <span class="next-disabled">{$lang.page_next}<b>></b></span>
 		        <!-- {/if} --> 
@@ -908,7 +908,7 @@ var select_spe = "{$lang.select_spe}";
 		    		Ajax.call(ur,param,callback_pageinfo3,"POST","TEXT",true,true);
 		    	}
 		    	function callback_pageinfo3(res){
-	    			var tbody = $("#overbanddiv3").children("table");
+	    			var tbody = $("#overbanddiv3");
 	    			tbody.html(res);
 	    		}
 		    </script>

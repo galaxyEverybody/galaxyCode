@@ -248,6 +248,79 @@ function delete_tag($tag_words, $user_id)
 }
 
 /**
+*	我的债券分页函数
+*	@access  public
+*	@param	int			$act			调用方法
+*	@param	int			$user_id		用户id
+*	@param	int			$page			当前页
+*	@param	int			$size			页大小
+*	@param	int			$pay_status		支付状态
+*	@return str
+*/
+function ajax_invest_pageinfo($act, $user_id, $page, $size, $pay_status){
+	
+	/* 我的债券 */
+	$sql = "SELECT g.goods_number,g.goods_weight,g.add_time " .
+			"FROM " .$GLOBALS['ecs']->table('goods'). " AS g, " .
+			$GLOBALS['ecs']->table('order_goods') . " AS o, " .$GLOBALS['ecs']->table('category') . " AS c " .
+			"WHERE g.goods_id = o.goods_id AND c.cat_id = g.cat_id AND c.is_standalone != 0 AND o.pay_status = ".$pay_status." AND o.user_id = '$user_id'";
+	$record_count = $GLOBALS['db']->getAll($sql);
+	
+	/* 声明数组*/
+	$pagebid = array();
+	$pagerecover = array();
+	$pagebond = array();
+	
+	foreach($record_count as $countinfo){
+		if($countinfo['goods_weight'] >= gmtime() && gmtime() >=$countinfo['add_time']){
+			$pagebid[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_weight'] && gmtime()<$countinfo['goods_number']){
+			$pagerecover[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}elseif(gmtime()>$countinfo['goods_number']){
+			$pagebond[] = array(
+				'add_time'	=>	$countinfo['add_time']
+			);
+		}
+	}
+	if($act == "callback_fixinvest_ajax"){
+		$pager_bond = get_pager('user.php', array('act' => $act), count($pagerecover), $page, $size);
+	}elseif($act == "over_fixinvest_ajax"){
+		$pager_bond = get_pager('user.php', array('act' => $act), count($pagebond), $page, $size);
+	}else{
+		$pager_bond = get_pager('user.php', array('act' => $act), count($pagebid), $page, $size);
+	}
+	
+	$page_prev = $page-1 > 0?$page-1:1;
+	
+	$pagestr='<div class="blank10"></div><div class="pagin" style="text-align:center;">';
+	
+	if(!empty($pager_bond["page_prev"])){
+		$pagestr.='<a href="javascript:void(0);" class="prev" id="user.php?act='.$act.'&page='.$page_prev.'" onclick="ajax_pageinfo2(this)"><b><</b>上一页</a>';
+	}else{
+		$pagestr.='<span class="prev-disabled"><b><</b>上一页</span>';
+	}
+	
+	foreach($pager_bond['page_number'] as $key=>$item){
+		if($key==$page){
+			$pagestr.='<a href="javascript:void(0);" class="current">'.$key.'</a>';
+		}else{
+			$pagestr.='<a href="javascript:void(0);" id="'.$item.'" onclick="ajax_pageinfo2(this)">'.$key.'</a>';
+		}
+	}
+	if(!empty($pager_bond['page_next'])){
+		$pagestr.='<a href="javascript:void(0);" class="next" id="'.$item.'" onclick="ajax_pageinfo2(this)">下一页<b>></b></a></div>';
+	}else{
+		$pagestr.='<span class="next-disabled">下一页<b>></b></span></div>';
+	}
+	
+	return $pagestr;
+}
+
+/**
  *  获取我的债券列表
  *
  * @access  public

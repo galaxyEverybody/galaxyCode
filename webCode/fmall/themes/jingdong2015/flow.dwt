@@ -413,8 +413,8 @@
                                 	{foreach from=$payment_list item=payment}
                                     <li>
                                         <div class="payment-item hoverInput" style="color:blue;">
-                                        	<label for="payment_style"><b></b>{$payment.pay_name}</label>
-                                            <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_style" {if $payment.pay_id eq 4}checked{/if} onclick="selectPayment(this)"/>
+                                        	<label for="payment_{$payment.pay_id}"><b></b>{$payment.pay_name}</label>
+                                            <input type="radio" name="payment" value="{$payment.pay_id}" id="payment_{$payment.pay_id}" {if $payment.pay_id eq 4}checked{/if}  onclick="selectPayment(this)" />
                                             <input type="hidden" name="code" value="{$payment.pay_code}">
                                         </div>
                                     </li>
@@ -445,11 +445,11 @@
 			$(this).addClass("cur")
 		}
 	});
-	/*payment.click(function(){
+	payment.click(function(){
 		if($(this).find("input").is(":checked")){
 			$(this).addClass("cur").parent("li").siblings("li").find("div").removeClass("cur")
 		}
-	});*/
+	});
 	payment.hover(function(){
 		$(this).addClass("hover").parent("li").siblings("li").find("div").removeClass("hover")
 	},function(){

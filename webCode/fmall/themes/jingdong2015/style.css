@@ -296,7 +296,7 @@ h6 span{float:left;padding-left:15px}
 .newguide_six{ width:100%;height:605px;background:url(images/newguidesix.jpg) center center no-repeat;}
 .newguide_resgister{ width:100%;height:100px;}
 .newguide_resgister a{ cursor:pointer;display: block;border-radius: 10px;background-color: #ef6200;width: 216px;margin: 0 auto;margin-bottom: 40px;height: 56px;line-height: 56px;color: #fff;font-size: 26px;text-align: center;font-weight:bold;}
-
+.newguide_resgister a:hover{ color:#FFF;}
 
 /* catabs_list*/
 .catabs_banner{ width:100%;height:365px;background:url('images/catabs_banner.jpg') center center no-repeat;}
