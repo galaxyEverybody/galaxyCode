@@ -111,14 +111,14 @@
         </ul>
     </div>
     <div class="mc">
-        <form action="user.php" method="post" name="formUser" onsubmit="return register();" >
+        <form action="user.php" method="post" name="formUser" onsubmit="return sub_register();" >
             <div class="form">
                 <div id="o-password">
                     <div class="item" id="select-regName">
                         <span class="label"><b class="ftx04">*</b>账户名：</span>
                         <div class="fl item-ifo">
                             <div class="o-intelligent-regName">
-                                <input type="text" id="username" name="username" onblur="is_registered(this.value);" class="text" tabindex="1" autocomplete="off" onpaste="return false;" value="建议使用个人手机号" onfocus="if(this.value=='建议使用个人手机号') this.value='';this.style.color='#333'" onblur="if(this.value=='') {this.value='建议使用个人手机号';this.style.color='#999999'}" style="color: rgb(153, 153, 153); ">
+                                <input type="text" id="username" name="username" onblur="is_registered(this.value);" class="text" tabindex="1" autocomplete="off" onpaste="return false;" placeholder="建议使用个人手机号">
                                 <i class="i-name"></i>
                                 <label id="username_notice"></label>
                             </div>

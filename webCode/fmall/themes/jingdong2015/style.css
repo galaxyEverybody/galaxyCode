@@ -302,7 +302,7 @@ h6 span{float:left;padding-left:15px}
 .catabs_banner{ width:100%;height:365px;background:url('images/catabs_banner.jpg') center center no-repeat;}
 .catabs_bigdiv{ width:100%;height:auto;background:#F2F2F2;}
 .blank70{ width:100%;height:70px;}
-.catabs_div{ width:100%;height:400px;background:#FFF;box-shadow: 0 0 2px #000;border:1px solid #CCC;}
+.catabs_div{ width:100%;height:400px;background:#FFF;border:1px solid #CCC;border-right:0px;}
 .blankleft2{ width:2px;height:100%;float:left;}
 .catabs_info{ width:301px;height:400px;float:left;font-size:16px;font-family:microsoft yahei;border-right:1px solid #ccc;}
 .catabs_info p{ width:100%;height:40px;line-height:40px;border-bottom:1px solid #ccc;text-align:center;color:#FF8A00;}
@@ -321,7 +321,7 @@ h6 span{float:left;padding-left:15px}
 .catabs_info a{ width:150px;height:35px;line-height:35px;color:#FFF;margin-left:75px;margin-top:15px;background:#FF8A00;display:block;text-align:center;cursor:pointer;}
 .catabs_info a:hover,.bigdiv_left a:hover{ color:#FFF;}
 .catabs_info .catabs_over{ width:150px;height:35px;line-height:35px;margin-left:75px;margin-top:15px;background:#DDD;display:block;text-align:center;cursor:pointer;}
-.count_num{ width:100%;height:350px;border:1px solid #FFF;background:#FFF;box-shadow: 0 0 2px #000;}
+.count_num{ width:100%;height:350px;border:1px solid #FFF;background:#FFF;border:1px solid #CCC;}
 .count_num .count_title{ margin-top:25px;font-size:16px;margin-left:30px;}
 .countbig_div{ width:1200px;height:300px;}
 .countbig_div .bigdiv_left{ width:400px;height:300px;float:left;}
@@ -337,7 +337,7 @@ h6 span{float:left;padding-left:15px}
 .bigright_middle{ width:400px;height:10px;border:1px solid #FFF;float:left;margin-left:40px;margin-top:25px;}
 .bigright_middle .catabsmiddle_info{ width:0px;height:100%;background:red;float:left;}
 .bigright_countnum{ float:left;margin-left:40px;color:red;}
-.bigright_font .catfont_monthtwo{ margin-left:40px;padding-left:10px;}
+.bigright_font .catfont_monthtwo{ margin-left:50px;}
 
 
 .capitaldiv{ margin-top:10px;}
@@ -348,7 +348,7 @@ h6 span{float:left;padding-left:15px}
 .bond_title{ width:100%;height:35px;text-align:center;line-height:35px;margin-top:15px;}
 .bond_title li{ min-width:278px;_width:278px;border:1px solid #ddd;cursor:pointer;background:#F7F7F7;border-bottom:0px;}
 .usecentermenu{ color:#FF852F;font-size:16px;font-weight:bold;}
-.userinfo_head{ width:150px;height:150px;border:1px solid #ddd;}
+.userinfo_head{ width:150px;height:150px;}
 .userinfo_head img{ float:left;width:150px;height:150px;}
 .fileinputdiv{ width:280px;height:50px;margin-top:10px;text-align:center;}
 .fileinputdiv #pTitle{ width:200px;height:30px;border:1px solid #ddd;float:left;text-align:left;}
@@ -3621,11 +3621,12 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .countbig_div_car .bigdiv_right ul{ line-height:60px;font-size:16px;}
 .countbig_div_car .bigdiv_right ul li{ height:60px;}
 .countbig_div_car .bigright_font{ float:left;}
-.countbig_div_car .bigright_font .catfont_month{ margin-left:40px;}
+.countbig_div_car .bigright_font .catfont_month{ margin-left:50px;}
 .countbig_div_car .bigright_middle{ width:400px;height:10px;border:1px solid #FFF;float:left;margin-left:40px;margin-top:25px;}
 .countbig_div_car .bigright_middle .catabsmiddle_info{ width:0px;height:100%;background:red;float:left;}
 .countbig_div_car .bigright_countnum{ float:left;margin-left:40px;color:red;}
-.countbig_div_car .bigright_font .catfont_monthtwo{ margin-left:40px;padding-left:10px;}
+.countbig_div_car .bigright_font .catfont_monthtwo{ margin-left:40px;}
+.countbig_div_car .bigright_font .catfont_monththree{ margin-left:50px;}
 .count_car_house{ width:100%;height:350px;border:1px solid #CCC;background:#FFF;}
 .rate_count_div{ width:100%;height:45px;line-height:50px;font-size:18px;}
 .rate_count_div ul{ line-height:45px;height:45px;text-align:center;float:left;}

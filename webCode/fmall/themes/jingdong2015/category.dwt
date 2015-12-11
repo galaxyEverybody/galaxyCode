@@ -23,7 +23,7 @@
 <body>
 <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='jd_category.js'}
 <div class="category_banner"></div>
-<div style="width:100%;height:auto;background:#F2F2F2;">
+<div class="catabs_bigdiv">
 <div class="w main">
 	<div class="blank10"></div>
     <!--组合搜索 开始-->
@@ -43,7 +43,7 @@
                             	<ul class="f-list">
                                 	<!--{foreach from=$filter_attr.attr_list item=attr}-->
                                 	{if $filter_attr.selected}
-                                    <li style="border:1px solid red;"><a href="{$attr.url}">{$attr.attr_value}</a></li>
+                                    <li><a href="{$attr.url}">{$attr.attr_value}</a></li>
                                     {else}
                                     <li><a href="{$attr.url}">{$attr.attr_value}</a></li>
                                     {/if}

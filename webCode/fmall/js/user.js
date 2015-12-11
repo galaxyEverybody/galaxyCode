@@ -709,10 +709,11 @@ function check_phone_callback(result){
 function getphoneverify()
 {
 	var phone = document.getElementById('phone').value;
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, get_phoneverify_callback , 'GET', 'TEXT', true, true );
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, get_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 function get_phoneverify_callback(result)
 {
+	alert(result);
 	if ( result == 'ok' )
 	  { 
 		RemainTime();
@@ -736,7 +737,6 @@ function checkphoneverify(phoneverify)
 			$("#verify_notice").removeClass("focus");
 		}
 		$("#verify_notice").addClass("verifyerror");
-	    submit_disabled = true;
 	  }
 	  else if (!Utils.isTelverify(phoneverify))
 	  {
@@ -746,7 +746,6 @@ function checkphoneverify(phoneverify)
 			$("#verify_notice").removeClass("focus");
 		}
 		$("#verify_notice").addClass("verifyerror");
-	    submit_disabled = true;
 	  }
 	 
 	  if( submit_disabled )
@@ -756,8 +755,6 @@ function checkphoneverify(phoneverify)
 			$("#verify_notice").removeClass("focus");
 		}
 		$("#verify_notice").addClass("verifyerror");
-	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
-	    return false;
 	  }
 	 Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_phoneverify_callback , 'GET', 'TEXT', true, true );
 }
@@ -771,7 +768,6 @@ function check_phoneverify_callback(result)
 		}
 		$("#verify_notice").addClass("verifyfocus");
 		document.getElementById('verify_notice').innerHTML = ''
-	    document.forms['formUser'].elements['Submit'].disabled = '';
 	  }
 	  else
 	  {
@@ -781,75 +777,43 @@ function check_phoneverify_callback(result)
 			$("#verify_notice").removeClass("verifyfocus");
 		}
 		$("#verify_notice").addClass("verifyerror");
-	    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+		$("#phoneverify").val(' ');
 	  }
 }
 /* *
  * 处理注册用户
  */
-function register()
+function sub_register()
 {
-  var frm  = document.forms['formUser'];
-  var username  = Utils.trim(frm.elements['username'].value);
-  var password  = Utils.trim(frm.elements['password'].value);
-  var confirm_password = Utils.trim(frm.elements['confirm_password'].value);
-  var verify  = Utils.trim(frm.elements['verify'].value);
-  var mobile_phone  = Utils.trim(frm.elements['mobile_phone'].value);
-  var checked_agreement = frm.elements['agreement'].checked;
-
-  // 检查输入
-  var msg = '';
-  if (username.length == 0)
-  {
-    msg += '- 用户名不能为空。\n';
-  }
-  else if (username.match(/^\s*$|^c:\\con\\con$|[%,\'\*\"\s\t\<\>\&\\]/))
-  {
-    msg += '- 用户名只能是由字母数字以及下划线组成。\n';
-  }
-  else if (username.length < 3)
-  {
-    msg += '- 用户名长度不能少于 3 个字符。\n';
-  }
-
-  if (password.length == 0)
-  {
-    msg += '- 登录密码不能为空。\n';
-  }
-  else if (password.length < 6)
-  {
-    msg += '- 登录密码不能少于 6 个字符。\n';
-  }
-  if (/ /.test(password) == true)
-  {
-	msg += '- 密码中不能包含空格\n';
-  }
-  if (confirm_password != password )
-  {
-    msg += '- 两次输入密码不一致\n';
-  }
-  if(checked_agreement != true)
-  {
-    msg += '- 您没有接受协议\n';
-  }
-  if (mobile_phone.length>0)
-  {
-    var reg = /^[\d|\-|\s]+$/;
-    if (!reg.test(mobile_phone))
-    {
-      msg += '- 手机号码不是一个有效号码\n';
-    }
-  }
-
-  if (msg.length > 0)
-  {
-    alert(msg);
-    return false;
-  }
-  else
-  {
-    return true;
-  }
+	
+	var username  = $("#username").val();
+	var password  = $("#password1").val();
+	var confirm_password  = $("#conform_password").val();
+	var mobile_phone  = $("#phone").val();
+	var phone_verify  = $("#phoneverify").val();
+	
+	if( username == ''){
+		alert('用户名不可以为空！');
+		return false;
+	}
+	if( password == ''){
+		alert('密码不可以为空！');
+		return false;
+	}
+	if( password != confirm_password){
+		alert('两次密码输入不一致！');
+		return false;
+	}
+	if( mobile_phone == ''){
+		alert('手机号不可以为空！');
+		return false;
+	}
+	if( phone_verify == ''){
+		alert('短信验证码不可以为空！');
+		return false;
+	}
+	return true;
+ 
 }
 
 

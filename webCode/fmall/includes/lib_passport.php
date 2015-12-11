@@ -58,6 +58,7 @@ function register($username, $password,  $mobile_phone)
 
     if (!$GLOBALS['user']->add_user($username, $password, $mobile_phone))
     {
+    	
         if ($GLOBALS['user']->error == ERR_INVALID_USERNAME)
         {
             $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['username_invalid'], $username));
@@ -80,7 +81,7 @@ function register($username, $password,  $mobile_phone)
         }
         elseif ($GLOBALS['user']->error == ERR_PHONE_EXISTS)
         {
-        	$GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['phone_exist'],$phone));
+        	show_message('手机号已存在！',$_LANG['back_up_page'], 'user.php?act=register');
         }
         else
         {

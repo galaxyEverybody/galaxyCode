@@ -52,7 +52,7 @@
 	        <!--{/foreach}-->
 	    </ul>
   	</div>
-  	<div class="advert_invest_info"><a href="article.php?act=list&cat_id=12">更多></a></div>
+  	<div class="advert_invest_info hide"><a href="article.php?act=list&cat_id=12">更多></a></div>
   </div>
   <!--index_notice end-->
   </div>

@@ -195,10 +195,11 @@ class integrate
 
             return false;
         }
-        /* 检查email是否重复 */
+        /* 检查手机号是否重复 */
         $sql = "SELECT " . $this->field_id .
                " FROM " . $this->table($this->user_table).
                " WHERE " . $this->field_phone . " = '$mobile_phone'";
+
         if ($this->db->getOne($sql, true) > 0)
         {
             $this->error = ERR_PHONE_EXISTS;
@@ -920,7 +921,7 @@ class integrate
     	
     	//$mobile = $_POST['mobile'];
     	//$send_code = $_POST['send_code'];
-    	
+
     	$mobile_code = $this->random(4,1);
     	if(empty($mobile)){
     		exit('手机号码不能为空');

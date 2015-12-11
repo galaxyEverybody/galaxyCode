@@ -32,11 +32,11 @@
 	            <div id="weixinshow">
 	            	<div class="weixindyhao">
 	            		<span></span>
-	            		[订阅号]
+	            		<p>[订阅号]</p>
 	            	</div>
 	            	<div class="weixinfwhao">
 	            		<span></span>
-	            		[服务号]
+	            		<p>[服务号]</p>
 	            	</div>
 	            </div>
 	        </li>
@@ -1239,7 +1239,7 @@ clip.setData(trans,null,clipid.kGlobalClipboard);
 	</div>
 	<div class="left">
 		<div id="myjd" class="m">
-        	<div class="mt"><h2><a href="user.php">我的联众</a></h2><div class="myjdtitle"></div></div>
+        	<div class="mt"><h2><a href="user.php">我的众联</a></h2><div class="myjdtitle"></div></div>
             <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
         </div>
     </div>

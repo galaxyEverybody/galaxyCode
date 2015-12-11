@@ -524,13 +524,16 @@ elseif($action == 'check_phone')
 elseif($action == 'get_phoneverify')
 {
 	$mobile = trim($_POST['phone']);
+
 	if($user->get_phoneverify($mobile))
 	{
 		echo 'ok';
+		exit;
 	}
 	else
 	{
 		echo 'false';
+		exit;
 	}
 }
 /* 验证短信验证码*/

@@ -995,7 +995,7 @@ function get_goods_info($goods_id)
         $row['add_time']      = local_date($GLOBALS['_CFG']['date_format'], $row['add_time']);
 		
         /* 账户金额的显示*/
-        $row['user_money'] = isset($row['user_money'])?$row['user_money']:'null';
+        $row['user_money'] = isset($row['user_money'])?number_format($row['user_money'],2,'.',','):'null';
         
         /* 促销时间倒计时 
         $time = gmtime();
