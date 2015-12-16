@@ -23,72 +23,11 @@
 		</ul>
 		
     	<ul class="fr lh">
-        	{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
-            <li class="fore3 ld menu myJd" id="app-jd" style="display:none;">
-            	<div class="dt"><span class="outline"></span><span class="blank"></span><s></s><a href="user.php">用户中心</a><b></b></div>
-                <div class="dd myJdCon">
-                	<div class="userInfo">
-                    	<div class="uPic">
-                    	{if $headimg eq '0'}
-                    		<a href="user.php"><img src="images/no-img_mid_.jpg"></a>
-                    	{else}
-                    		<img src="{$headimg}" alt="用户头像" width='100px' height='100px'/>
-                    	{/if}
-                    	</div>
-                        <div class="uName">{* ECSHOP 提醒您：根据用户id来调用member_info_index.lbi显示不同的界面  *}{insert name='member_info_index'}</div>
-                    </div>
-                    <div class="otherList">
-                        <p><a href="user.php?act=message_list">建议中心</a></p>
-                        <p><a href="user.php?act=comment_list">我的评论</a></p>
-                        <p><a href="user.php?act=tag_list">我的标签</a></p>
-                        <p><a href="user.php?act=collection_list">我的关注</a></p>
-                        <p><a href="user.php?act=affiliate">我的推荐</a></p>
-                        <p><a href="user.php?act=profile">用户信息</a></p>
-                    </div>
-                    <div class="viewList" id="history_div">
-                    	<div class="smt"><h4>最近浏览</h4></div>
-                        <div class="smc" id="history_list">
-                        	{insert name='history2'}
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <script type="text/javascript">
-			if (document.getElementById('history_list').innerHTML.replace(/\s/g,'').length<1){
-				document.getElementById('history_div').style.display='none';
-			}else{
-				document.getElementById('history_div').style.display='block';
-			}
-			function clear_history(){
-				Ajax.call('user.php', 'act=clear_history',clear_history_Response, 'GET', 'TEXT',1,1);
-			}
-			function clear_history_Response(res){
-				document.getElementById('history_list').innerHTML = '<center>{$lang.no_history}</center>';
-			}
-			$(function(){
-				var zhi=$(".viewList").find(".smc .item").length;
-				if( zhi > 4 ){
-					$(".viewList").find(".smc .item").eq(3).nextAll().remove();
-				}
-			});
-            </script>
-            
-            <!--{if $navigator_list.top}-->
-            <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
-            <li class="fore2 ld" style="display:none;"><div class="dt"><s></s> <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a></div></li>
-            <!-- {/foreach} -->
-            <!--{/if}-->
-            <li class="fore4 ld menu myJd" id="biz-service" style="display:none;">
-            	<div class="dt"><s></s> <span class="outline"></span> <span class="blank"></span> 客户服务 <b></b></div>
-                <div class="dd">
-                	<div><a href="article.php?id=9">帮助中心</a></div>
-                    <div><a href="http://wpa.qq.com/msgrd?V=1&amp;uin=729797175&amp;Site=联众金融&amp;Menu=yes" target="_blank" rel="nofollow">在线客服</a></div>
-                    <div><a href="user.php?act=message_list" rel="nofollow">建议中心</a></div>
-                    <div><a href="#" target="_blank">客服邮箱</a></div>
-                </div>
-            </li>
+        	{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}
+        	{insert name='member_info'}
+        	<li><s></s></li>
             <li class="fore4 ld">
-            	<div class="dt"><s></s><a href="newguide.php">帮助</a></div>
+            	<div class="dt"><a href="newguide.php">帮助</a></div>
             </li>
         </ul>
     </div>

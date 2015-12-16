@@ -42,10 +42,10 @@
                         	<div class="v-fold">
                             	<ul class="f-list">
                                 	<!--{foreach from=$filter_attr.attr_list item=attr}-->
-                                	{if $filter_attr.selected}
-                                    <li><a href="{$attr.url}">{$attr.attr_value}</a></li>
+                                	{if $attr.selected eq '1'}
+                                    <li><a href="{$attr.url}" class="click_all_one">{$attr.attr_value}</a></li>
                                     {else}
-                                    <li><a href="{$attr.url}">{$attr.attr_value}</a></li>
+                                    <li><a href="{$attr.url}" {if $attr.attr_value eq '全部'}class="click_all_one"{/if}>{$attr.attr_value}</a></li>
                                     {/if}
                                     <!--{/foreach}-->
                                 </ul>
@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-
+	
     <!--组合搜索 结束-->
     
     <div class="right-extra" style="width:100%;">

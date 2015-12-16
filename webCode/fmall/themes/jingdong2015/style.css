@@ -644,15 +644,15 @@ ol,ul{list-style:none}
 #shortcut-2013{width:100%;border-bottom:1px solid #eee;line-height:40px}
 #shortcut-2013,#shortcut-2013 .w{height:40px;background:#DDD;}
 #shortcut-2013 .fl{overflow:visible}
-#shortcut-2013 li{height:40px;padding:0 2px}
-#shortcut-2013 li .dt{padding:0 10px;float:left;position:relative; z-index:1;}
-#shortcut-2013 li .dt a{white-space:nowrap}
+#shortcut-2013 li{height:40px;padding:0px}
+#shortcut-2013 li .dt{padding:0px;float:left;position:relative; z-index:1;}
+#shortcut-2013 li .dt a{white-space:nowrap;padding:0px 10px;display:block;float:left;text-align:center;}
 #shortcut-2013 .fl .fore1{padding-left:16px;z-index:13}
 #shortcut-2013 b{transition:transform .1s ease-in 0s;-webkit-transition:-webkit-transform .1s ease-in 0s}
 #shortcut-2013 .fl b,#shortcut-2013 .fr b{background-image:url(images/20130330A_1.png);background-repeat:no-repeat}
 #shortcut-2013 .fl b{top:8px;left:0;width:13px;height:13px;background:url(images/20130725.png) no-repeat 0 0;cursor:pointer}
-#shortcut-2013 .fr{height:30px;overflow:visible}
-#shortcut-2013 li s{top:16px;left:-2px;width:0;height:12px;border-left:1px solid #F2F2F2;overflow:hidden}
+#shortcut-2013 .fr{height:40px;overflow:visible}
+#shortcut-2013 li s{margin-top:14px;width:1px;height:12px;background:#fff;float:left;}
 #shortcut-2013 .fr b{top:19px;right:10px;width:11px;height:5px;background:url(images/header_arrow.png) no-repeat}
 #shortcut-2013 .dd{display:none}
 .catalogue .floor .b1,.catalogue .floor .b2,.catalogue .floor .b4{background-image:url(images/20130330C.png);background-repeat:no-repeat}
@@ -1387,9 +1387,9 @@ h2,h3{font-size:14px}
 .prop-attrs .v-fold .f-list{overflow:hidden;width:548px;height:20px}
 .root61 .prop-attrs .f-list{width:765px}
 .prop-attrs .v-fold .f-list li{float:left;height:20px;margin-right:32px;padding-top:5px}
-.prop-attrs .v-fold .f-list a{float:left;height:15px;line-height:14px;text-decoration:none;white-space:nowrap;font-family:verdana;color:#005aa0}
+.prop-attrs .v-fold .f-list a{float:left;width:80px;height:30px;line-height:30px;text-decoration:none;white-space:nowrap;font-family:verdana;color:#005aa0}
 .prop-attrs .v-fold:after{content:'\20';display:block;clear:both}
-.prop-attrs .v-fold .f-list a:hover,.prop-attrs .v-fold .f-list a.curr{color:#ff500b}
+.prop-attrs .v-fold .f-list a.curr{color:#ff500b}
 .prop-attrs .v-fold .f-list a.curr{color:#ff500b}
 .prop-attrs .pr{float:left;width:148px;margin-right:10px}
 .prop-attrs #select-price .f-list{float:left;width:auto}
@@ -3422,10 +3422,11 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #select .a-key{ float: left; width: 100px; padding-left: 50px; line-height:70px; text-align:left; font-weight:bold; font-size:16px; color:#666;font-family:"microsoft yahei";}
 #select .a-values{ margin-left: 110px; padding-right: 130px; padding-left: 10px; overflow: hidden; zoom: 1; width:auto; float:none; height:auto;}
 #select .prop-attrs .v-fold{ overflow: hidden; zoom: 1;}
-#select .prop-attrs .v-fold .f-list{ width:auto;height:30px;line-height:30px;font-size:14px;margin-top:20px;}
+#select .prop-attrs .v-fold .f-list{ width:auto;height:40px;line-height:40px;font-size:14px;margin-top:15px;}
+#select .prop-attrs .v-fold .f-list .click_all{ width:50px;height:30px;line-height:30px;background:#ff500b;color:#fff;font-weight:bold;text-align:center;border-radius:10px;}
+#select .prop-attrs .v-fold .f-list .click_all_one{ width:80px;height:30px;line-height:30px;background:#ff500b;color:#fff;font-weight:bold;text-align:center;border-radius:10px;}
 #select .prop-attrs .v-fold .f-list li{ float: left; _display: inline; margin-right: 16px; height: 30px; line-height: 30px;}
 #select .prop-attrs .v-fold .f-list a{ white-space: nowrap; zoom: 1; color: #005aa0;}
-#select .prop-attrs .v-fold .f-list a:hover{ color:#ff500b;}
 #select .mb{ text-align: center; position: relative; top: -1px; border-top: 1px solid #ddd; margin:0; height:34px; -webkit-transition: border-color .15s ease-in-out; -moz-transition: border-color .15s ease-in-out; transition: border-color .15s ease-in-out;}
 #select .mb .attr-extra{ height:auto; line-height:normal; padding:0; border:0;}
 #select .mb .attr-extra div{ height: 28px; line-height: 28px; padding: 0 40px 0 20px; border:1px solid #ddd; border-top-color:#fff;  -webkit-transition: border-color .15s ease-in-out; -moz-transition: border-color .15s ease-in-out; transition: border-color .15s ease-in-out; font-family:"瀹嬩綋";}

@@ -273,7 +273,7 @@ if (!$smarty->is_cached($dwt_name.'.dwt', $cache_id))
     {
         $cat_filter_attr = explode(',', $cat['filter_attr']);       //提取出此分类的筛选属性
         $all_attr_list = array();
-
+		
         foreach ($cat_filter_attr AS $key => $value)
         {
             $sql = "SELECT a.attr_name FROM " . $ecs->table('attribute') . " AS a, " . $ecs->table('goods_attr') . " AS ga, " . $ecs->table('goods') . " AS g WHERE ($children OR " . get_extension_goods($children) . ") AND a.attr_id = ga.attr_id AND g.goods_id = ga.goods_id AND g.is_delete = 0 AND g.is_on_sale = 1 AND g.is_alone_sale = 1 AND a.attr_id='$value'";
