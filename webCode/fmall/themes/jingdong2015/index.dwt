@@ -26,7 +26,7 @@
 	<div id="banner_login">
 		<!--{if $headimg eq '0'}-->
 		<div class="banner_login_div">
-			<p class="banner_login_income">预期年华收益率</p>
+			<p class="banner_login_income">预期年化收益率</p>
 			<p class="banner_login_percent">7%-15%</p>
 			<p class="banner_login_poster">安全保障 值得信赖</p>
 			<a class="banner_login_register" href="./user.php?act=register">立即注册</a>

@@ -163,7 +163,7 @@ $(function(){
 
 			var labelTop = {
 				normal : {
-					color: '#5FD653',
+					color: '#4188BE',
 					label : {
 						show : false,
 						position : 'center',
@@ -285,7 +285,7 @@ $(function(){
 
     			var labelTop = {
     				normal : {
-    					color: '#5FD653',
+    					color: '#4188BE',
     					label : {
     						show : false,
     						position : 'center',
@@ -407,7 +407,7 @@ $(function(){
 
     			var labelTop = {
     				normal : {
-    					color: '#5FD653',
+    					color: '#4188BE',
     					label : {
     						show : false,
     						position : 'center',

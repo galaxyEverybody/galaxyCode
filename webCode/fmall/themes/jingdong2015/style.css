@@ -1363,7 +1363,7 @@ h2,h3{font-size:14px}
 #market .market-adlist li{height:47px;line-height:47px;margin-bottom:10px;padding-left:20px}
 #market .market-adlist li img{border:1px solid #ddd}
 #select{margin-bottom:0;zoom:1}
-#select .mt{height:30px;padding:0 10px;background:#f9f9f9;line-height:30px}
+#select .mt{height:30px;background:#f9f9f9;line-height:30px}
 #select .mt h1{float:left;height:30px;font:400 15px/30px 寰蒋闆呴粦;color:#ff500b;font-family:microsoft yahei;}
 #select .mt h1 strong{margin-right:10px;font:400 15px/30px 寰蒋闆呴粦;color:#333}
 #select .mt h1 a{font:12px/31px 寰蒋闆呴粦;color:#005aa0}
@@ -1415,18 +1415,15 @@ h2,h3{font-size:14px}
 #select .mb .attr-extra b{display:block;position:absolute;top:9px;right:16px;overflow:hidden;width:9px;height:6px}
 #select .mb .attr-extra b,#select .mb .close b,#select .mb .open b{background:url(images/20130606B.png) no-repeat}
 #select .mb .attr-extra b,#select .mb .close b{background-position:-36px -55px}
-#filter{border:1px solid #ddd;margin-bottom:0px;background:#F9F9F9;height:50px;}
+#filter{border:1px solid #ddd;margin-bottom:0px;background:#F9F9F9;height:35px;}
 #filter .fore1{overflow:hidden;height:50px;zoom:1}
-#filter dl,#filter dt,#filter dd{float:left;line-height:50px;zoom:1}
-#filter .order dd{height:50px;border:1px solid #cecbce;background-color:#fff;margin-right:5px;overflow:hidden;zoom:1;font-family:microsoft yahei;}
-#filter .order .curr{border:1px solid #ff500b;background:#ff500b;font-weight:700;height:35px;}
+#filter dl,#filter dt,#filter dd{float:left;line-height:25px;zoom:1}
+#filter .order dd{height:20px;border:1px solid #cecbce;background-color:#fff;margin-right:5px;overflow:hidden;zoom:1;font-family:microsoft yahei;}
+#filter .order .curr{border:1px solid #ff500b;background:#ff500b;font-weight:700;height:30px;}
 #filter .order a{display:block;position:relative}
 #filter .order .curr a:link,#filter .order .curr a:visited{color:#fff;padding:0 18px 0 10px}
-#filter .order b{display:none;position:absolute;top:6px; *top:3px;;right:8px;width:9px;height:11px;overflow:hidden;font-size:0;z-index:11; vertical-align:text-top;}
+#filter .order b{position:absolute;top:6px; *top:3px;;right:8px;width:9px;height:11px;overflow:hidden;font-size:0;z-index:11; vertical-align:text-top;}
 #filter .up b,#filter .down b,#store-selector .close,#store-selector .text b,#filter .instock b,#filter .type b,#filter .activity b{background-image:url(images/20130603A.png);background-repeat:no-repeat}
-#filter .search_ASC b,#filter .search_DESC b{background-image:url(images/20130603A.png);background-repeat:no-repeat}
-#filter .search_DESC b,#filter .search_ASC b{display:block}
-#filter .order .search_ASC b{background-position:0 -12px}
 #filter .pagin{float:right;height:35px;padding:2px 0;border-left:1px solid #fff}
 .pagin a,.pagin span{height:30px;padding:3px 10px;border:1px solid #ccc;margin-left:2px;font-family:arial;line-height:30px;font-size:14px;overflow:hidden;-moz-border-radius:5px;-webkit-border-radius:5px}
 .pagin-m a,.pagin-m span{height:14px;line-height:14px;font-size:12px}
@@ -3415,7 +3412,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #select .mt{ background: #F1F1F1; line-height: 45px; height: 45px; overflow: hidden; zoom: 1;}
 #select .mt h1{ line-height:45px; height:auto; font-weight:700;font-size:22px;}
 #select .mt h1 strong{ color:#666; font-weight:700;}
-#select .stExt{ margin-left:15px;}
+#select .stExt{ margin-left:15px;margin-top:5px;}
 #select .mc{ border:0; margin-top:-1px;}
 #select .attr{ width:auto; border:0; padding:0;}
 .root61 #select .attr{ width:auto;}
@@ -3473,18 +3470,20 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .j_skulist .p_price{ padding:0; margin:0;}
 .j_skulist .p_price .tag_content{ font-family:verdana; font-size:14px; margin:0;}
 
-#filter{ border:0; box-shadow:none;background:#F2F2F2;margin-bottom:20px;margin-top:20px;}
+#filter{ border:0; box-shadow:none;background:#F2F2F2;margin-bottom:10px;margin-top:30px;}
 #filter .fore1{ height:50px; background:#F1F1F1; border-bottom:1px solid #E7E3E7;}
-
+#filter .order{ float:left;margin-left:15px;margin-top:7px;}
 #filter .order dd{ margin:0 0 0 -1px; border:0; height:auto;}
-#filter .order dd a{ float: left; padding: 0 20px; height: 35px; border: 1px solid #CCC; line-height: 35px; background: #FFF; color: #333;}
+#filter .order dd a{ float: left; padding: 0 20px; height: 25px; border: 1px solid #CCC; line-height: 25px; background: #FFF; color: #333;}
 #filter .order .curr{ margin:0 0 0 -1px; border:0; height:auto;}
 #filter .order .curr a{ background: #ff500b; color: #FFF; border-color: #ff500b;}
 #filter .order .curr a:link, #filter .order .curr a:visited{ padding-right:20px;}
 #filter .order dd a:hover{ border-color:#ff500b; position:relative; z-index:1; color:#ff500b;}
-#filter .order b{ position: absolute; background: url(images/search.ele.png) no-repeat -9999px -9999px; top:5px; right:5px; width: 13px; height: 12px; overflow: hidden; font-size: 0;}
-#filter .order .search_ASC b{ background-position:0 -225px;}
+#filter .order .b_asc{ position: absolute; background: url(images/search.ele.png) no-repeat; background-position:0px -225px; top:5px; right:5px; width: 13px; height: 12px; overflow: block; font-size: 0;}
+#filter .order .b_desc{ position: absolute; background: url(images/search.ele.png) no-repeat; background-position:0px -203px; top:5px; right:5px; width: 13px; height: 12px; overflow: block; font-size: 0;}
+
 #filter .pagin{ border:0;}
+#filter .titleh1{ color:#ff500b;font-weight:bold;font-family:microsoft yahei;float:left;line-height:40px;}
 #filter .pagin-m a{ width: 46px; height: 23px; border: 1px solid #DDD; background: #FFF; line-height: 23px; font-family: "\5b8b\4f53"; text-align: center; font-size: 16px; color: #AAA; padding:0; border-radius:0; margin:0; margin-left:-1px;}
 #filter .pagin-m .prev-disabled,#filter .pagin-m .next-disabled{ width: 46px; height: 23px; border: 1px solid #DDD; line-height: 23px; font-family: "\5b8b\4f53"; text-align: center; font-size: 16px; padding: 0; background: #F1F1F1; color: #CCC; border-radius:0; margin:0; margin-left:-1px;}
 #filter .pagin .text{ padding:0; line-height:25px; height:auto; padding-right:10px;}
