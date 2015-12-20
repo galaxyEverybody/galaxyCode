@@ -1889,7 +1889,7 @@ h2,h3{font-size:14px}
 .flowBox_cart h6{height:28px;line-height:28px;border:0;background:url(images/flow_tit.gif) no-repeat;color:#444;font-weight:bold}
 .flowBox_cart .flowBox_in h6{height:23px;line-height:23px;text-align:right;font-size:12px;background:#edf7ff;color:#3f3f3f;border:1px solid white;padding-right:10px}
 .flowBox_in{border-left:3px solid #aacded;border-right:3px solid #aacded;padding:20px;float:left;width:884px}
-#logo{padding-left:5px;float:left}
+#logo{padding-left:5px;float:left;background:#fff;}
 .progress{padding-top:6px}
 .progress .progress-1{background:url(images/step1.png) no-repeat;width:481px;padding-top:23px;overflow:hidden;height:23px}
 .progress .progress-2{background:url(images/step2.png) no-repeat;width:481px;padding-top:23px;overflow:hidden;height:23px}

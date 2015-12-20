@@ -1114,7 +1114,7 @@ elseif ($_REQUEST['step'] == 'select_payment')
 	$code = trim($_POST['code']);
 	$log_id = trim($_POST['log_id']);
 	
-	if(empty($payment) || empty($investnum) || empty($market_trueprice) || empty($log_id) || empty($code)){
+	if(empty($payment) || empty($money) || empty($market_trueprice) || empty($log_id) || empty($code)){
 		show_message($_LANG['submit_payment_error'], $_LANG['back_up_page'], 'flow.php');
 		exit;
 	}

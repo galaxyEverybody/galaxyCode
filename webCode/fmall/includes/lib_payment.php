@@ -149,6 +149,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
         $pay_log = $GLOBALS['db']->getRow($sql);
         if ($pay_log && $pay_log['is_paid'] == 0)
         {
+        
             /* 修改此次支付操作的状态为已付款 */
             $sql = 'UPDATE ' . $GLOBALS['ecs']->table('pay_log') .
                     " SET is_paid = '1' WHERE log_id = '$log_id'";
@@ -161,7 +162,9 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                 $sql = 'SELECT o.user_id, o.order_sn, o.goods_price, o.order_price, o.goods_id, g.surplus_price ' .
                         'FROM ' . $GLOBALS['ecs']->table('order_goods').'as o,'.$GLOBALS['ecs']->table('goods').
                        'as g WHERE order_sn='.$pay_log[order_id].' AND o.goods_id=g.goods_id';
+                
                 $order    = $GLOBALS['db']->getRow($sql);
+                print_r($order);exit;
                 $order_id = $order['order_sn'];
                 $goodid = $order['goods_id'];
                 $invest_price = $order['surplus_price'] - $order['order_price'];	//产品的可投资金额

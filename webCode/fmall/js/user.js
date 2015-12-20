@@ -713,7 +713,6 @@ function getphoneverify()
 }
 function get_phoneverify_callback(result)
 {
-	alert(result);
 	if ( result == 'ok' )
 	  { 
 		RemainTime();

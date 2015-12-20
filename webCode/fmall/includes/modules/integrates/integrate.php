@@ -147,19 +147,21 @@ class integrate
      */
     function login($username, $password, $remember = null)
     {
-        if ($this->check_user($username, $password) > 0)
-        {
-            if ($this->need_sync)
-            {
+        $sql = "SELECT " . $this->field_id .
+                   " FROM " . $this->table($this->user_table).
+                   " WHERE " . $this->field_name . "='" . $username . "' AND " . $this->field_pass . " ='" . $this->compile_password(array('password'=>$password)) . "'";
+		
+        $userid = $this->db->getOne($sql);
+
+        if($userid){
+            if($this->need_sync){
                 $this->sync($username,$password);
             }
             $this->set_session($username);
             $this->set_cookie($username, $remember);
 
             return true;
-        }
-        else
-        {
+        }else{
             return false;
         }
     }
@@ -294,7 +296,7 @@ class integrate
         }
         if ((!empty($cfg['md5paypassword'])) && $this->field_paypass != 'NULL')
         {
-        	$values[] = $this->field_paypass . "='" . $this->compile_password(array('md5password'=>$cfg['md5password'])) . "'";
+        	$values[] = $this->field_paypass . "='" . $this->compile_password(array('password'=>$cfg['md5password'])) . "'";
         }
 
         if ((!empty($cfg['email'])) && $this->field_email != 'NULL')
@@ -443,11 +445,11 @@ class integrate
     function get_profile_by_name($username)
     {
         $post_username = $username;
-
+		
         $sql = "SELECT " . $this->field_id . " AS user_id," . $this->field_name . " AS user_name," .
                     $this->field_email . " AS email," . $this->field_gender ." AS sex,".
                     $this->field_bday . " AS birthday," . $this->field_reg_date . " AS reg_time, ".
-                    $this->field_pass . " AS password ".
+                    $this->field_pass . " AS password, ".$this->field_phone." AS mobile_phone ".
                " FROM " . $this->table($this->user_table) .
                " WHERE " .$this->field_name . "='$post_username'";
         $row = $this->db->getRow($sql);
@@ -513,7 +515,6 @@ class integrate
      */
     function check_user($username, $password = null)
     {
-
         $post_username = $username;
 
         /* 如果没有定义密码则只检查用户名 */

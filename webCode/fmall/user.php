@@ -583,7 +583,7 @@ elseif ($action == 'act_login')
     $password = isset($_POST['password']) ? mysql_real_escape_string(trim($_POST['password'])) : '';
     $back_act = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
 
-
+	
     $captcha = intval($_CFG['captcha']);
     if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2)) && gd_version() > 0)
     {
@@ -605,6 +605,7 @@ elseif ($action == 'act_login')
 	
     if ($user->login($username, $password,isset($_POST['remember'])))
     {
+    	
         update_user_info();
         recalculate_price();
         
@@ -1245,7 +1246,8 @@ elseif ($action == 'act_editlogin_userphone'){
 	}
 	
 	//判断账号和手机号是否匹配
-	$user_info = $user->get_user_info($user_name);
+	$user_info = $user->get_user_info($username);
+	
 	if($user_info && $user_info['mobile_phone'] == $phone){
 		if ($user->edit_user(array('username'=> ($user_info['user_name']), 'password'=>$newpw)))
         {
@@ -1350,7 +1352,7 @@ elseif ($action == 'send_pwd_email')
 
     //用户名和邮件地址是否匹配
     $user_info = $user->get_user_info($user_name);
-
+	
     if ($user_info && $user_info['email'] == $email)
     {
         //生成code
