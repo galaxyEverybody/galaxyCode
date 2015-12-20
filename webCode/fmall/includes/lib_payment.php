@@ -164,7 +164,6 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                        'as g WHERE order_sn='.$pay_log[order_id].' AND o.goods_id=g.goods_id';
                 
                 $order    = $GLOBALS['db']->getRow($sql);
-                print_r($order);exit;
                 $order_id = $order['order_sn'];
                 $goodid = $order['goods_id'];
                 $invest_price = $order['surplus_price'] - $order['order_price'];	//产品的可投资金额
