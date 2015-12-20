@@ -1124,10 +1124,10 @@ h2,h3{font-size:14px}
 #footer-2013 .links a,#footer-2013 .links span{margin:0 10px}
 #footer-2013 .links span a{margin:0}
 #footer-2013 .copyright{color:#DEDEDE;}
-#footer-2013 .authentication a{margin:20px 5px}
+#footer-2013 .authentication a{margin-top:10px;}
 #footer-2013 .links a{color:#666}
 .authentication{width:455px;height:auto;overflow:hidden}
-.authentication a{display:block;float:left}
+.authentication a{display:block;}
 .breadcrumb{height:20px;padding:8px 0 8px 6px;overflow:hidden;line-height:20px;vertical-align:baseline}
 .breadcrumb strong,.breadcrumb h1{display:inline;font-weight:700;line-height:20px;font-size:18px;font-family:"microsoft yahei"}
 .breadcrumb span{font-family:"\5b8b\4f53"}
@@ -2584,7 +2584,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .PageHeader #categorys-2013 .item dt{ padding:9px 6px 0 0; line-height:18px;}
 .PageHeader #categorys-2013 .item .categorys-brands li{ width:auto; padding-right:10px; line-height:20px;}
 
-.backpanel .backpanel-inner{ width:50px; height:auto; padding:0px 0px 106px;}
+.backpanel .backpanel-inner{ width:50px; height:auto; padding:0px 0px 100px;}
 .backpanel .bp-item{ margin-top:0;width:100%;background:#FF8A00;}
 .backpanel .bp-item-survey{ height:50px; width:100%;border-bottom:2px solid #DDD;}
 .backpanel .bp-item-survey a{ background:url(images/footer_counter.jpg) no-repeat; padding:0; height:100%;}
@@ -3059,7 +3059,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #shortcut-2013.pageHeaderFlow .hover .headNav .fore1{ width:260px;}
 
 .userLoginHeader{ height:90px; background:#fff;}
-.userLoginHeader .w{ padding-top:14px;}
+.userLoginHeader .w{ padding-top:5px;}
 .userLoginHeader .w b{ font-weight:400; line-height:52px; color:#3a3a3a; font-size:22px; font-family:'microsoft yahei'; padding-left:20px; vertical-align:middle;}
 .userLogin{}
 .userLogin .login-wrap{ height:475px;}
