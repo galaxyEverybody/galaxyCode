@@ -1113,21 +1113,21 @@ elseif ($_REQUEST['step'] == 'select_payment')
 	$payment = trim($_POST['payment']);
 	$code = trim($_POST['code']);
 	$log_id = trim($_POST['log_id']);
-	
+	$goods_id=trim($_POST['goods_id']);
 	if(empty($payment) || empty($investnum) || empty($market_trueprice) || empty($log_id) || empty($code)){
-		show_message($_LANG['submit_payment_error'], $_LANG['back_up_page'], 'flow.php');
+		show_message($_LANG['submit_payment_error'], $_LANG['back_up_page'], 'goods.php?id='.$goods_id);
 		exit;
 	}
 	$paystyle = get_payment($code);		//检查支付方式
 	
 	if(empty($paystyle)){
-		show_message($_LANG['submit_payment_style'], $_LANG['back_up_page'], 'flow.php');
+		show_message($_LANG['submit_payment_style'], $_LANG['back_up_page'], 'goods.php?id='.$goods_id);
 		exit;
 	}
 	$moneystatus = check_money($log_id, $money);	//检查支付的金额是否与订单相符
 	
 	if(!$moneystatus){
-		show_message($_LANG['submit_payment_num'], $_LANG['back_up_page'], 'flow.php');
+		show_message($_LANG['submit_payment_num'], $_LANG['back_up_page'], 'goods.php?id='.$goods_id);
 		exit;
 	}
 	
@@ -1684,7 +1684,7 @@ elseif ($_REQUEST['step'] == 'done')
     $payment_list = $GLOBALS['db']->getAll($sql);
 
     $smarty->assign('payment_list',$payment_list);
-    
+    $smarty->assign('goods_id',$goods_id);
     /* 取得购物类型 
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 

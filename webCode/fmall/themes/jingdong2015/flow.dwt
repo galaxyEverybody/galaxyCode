@@ -426,6 +426,7 @@
                         <div class="step-sub">
                         	<input type="hidden" name="log_id" value="{$log_id}">
                         	<input type="hidden" name="step" value="select_payment">
+                        	<input type="hidden" name="goods_id" value="{$goods_id}">
                         	<input type="submit" value="确认支付">
                         </div>
                     </div>
