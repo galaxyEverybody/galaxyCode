@@ -146,7 +146,7 @@ h6 span{float:left;padding-left:15px}
 .regular_top_image{ width:100%;height:126px;background:url(images/baozhang_one.jpg) no-repeat;background-position:80px;}
 .regular_three_div h2{ padding:30px 0px 25px;font-size:28px;}
 .regular_three_div ul{ height:75px;line-height:25px;margin-left:90px;text-align:left;}
-.regular_three_div li{ list-style:disc;color:red;font-size:14px;}
+.regular_three_div li{ list-style:disc;color:red;font-size:14px;filter:alpha(opacity=70);opacity:0.7;}
 .regular_three_div span{ font-family:microsoft yahei;color:#8E8E8E;}
 .regular_top_image_two{ width:100%;height:126px;background:url(images/baozhang_two.jpg) no-repeat;background-position:80px;}
 .regular_top_image_three{ width:100%;height:126px;background:url(images/baozhang_three.jpg) no-repeat;background-position:80px;}
