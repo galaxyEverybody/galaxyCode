@@ -754,7 +754,7 @@ $(function(){
 						<td class="bangcardtd">验证码</td>
 						<td>
 							<input class="verifyauthinput" name="authcenter_phoneverify" type="text" placeholder="请输入验证码" onblur="chekauthcenter_verify(this.value);">
-							<div class="widthdraw_button_time" id="get_authcenterphone_time" onclick="getauthcenter_phone()">获取验证码</div>
+							<div class="widthdraw_button_time" id="get_authcenterphone_time" onclick="getauthcenter_phone()"><a href="javascript:void(0)">获取验证码<a></div>
 							<label id="callauthphone_verify"></label>
 							<input id="oldphone_verify_time" type="text" value='60' style="display:none;"/>
 						</td>
@@ -882,21 +882,21 @@ $(function(){
 					<tr>
 						<td class="bangcardtd">原密码</td>
 						<td>
-							<input class="bangcardinput" name="old_password" type="text" placeholder="请输入您以前的密码" onblur="chekold_password(this.value);">
+							<input class="bangcardinput" name="old_password" type="password" placeholder="请输入您以前的密码" onblur="chekold_password(this.value);">
 							<label id="old_password"></label>
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd">新密码</td>
 						<td>
-							<input class="bangcardinput" name="new_password" type="text" placeholder="请输入您的新密码" onblur="cheknew_password(this.value);">
+							<input class="bangcardinput" name="new_password" type="password" placeholder="请输入您的新密码" onblur="cheknew_password(this.value);">
 							<label id="new_password"></label>
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd">确认密码</td>
 						<td>
-							<input class="bangcardinput" name="confirm_password" type="text" placeholder="请输入您的新密码" onblur="chekconfirm_password(this.value);">
+							<input class="bangcardinput" name="confirm_password" type="password" placeholder="请输入您的新密码" onblur="chekconfirm_password(this.value);">
 							<label id="confirm_password"></label>
 						</td>
 					</tr>

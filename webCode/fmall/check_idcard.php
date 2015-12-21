@@ -5,7 +5,6 @@
 define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
-include_once(ROOT_PATH . 'includes/lib_transaction.php');
 
 $userid = $_SESSION['user_id'];
 if(empty($userid)){
@@ -18,17 +17,8 @@ $user_id = trim($data['useruser']);
 $realname = trim($data['realname']);
 
 if($user_id = $userid){
-
-	/* 查询真实姓名*/
-	if($realname == 'undefined'){
-		$userinfo = select_borrowinfo_exist($userid);
-		$name = $userinfo[0]['realname'];
-	}else{
-		$name = $realname;
-	}
-	
 	//查询认证次数
-	$countinfo = select_chek_id($userid,$name);
+	$countinfo = select_chek_id($userid);
 	$num = $countinfo['num'];
 	$addtime = $countinfo['time'];
 	$nowtime = gmtime();
@@ -41,7 +31,7 @@ if($user_id = $userid){
 		die(json_encode($arr));
 	}
 	
-	$post_data [ 'name' ] = $name;
+	$post_data [ 'name' ] = $realname;
 	$post_data [ 'cardno' ] = $data['idcard'] ;
 	$post_data [ 'appkey' ] = "bbefe459287faab66731a970d9c85328" ;
 
@@ -72,7 +62,7 @@ if($user_id = $userid){
 	
 	$checkidinfo = array(
 			'user_id'		=>	$user_id,
-			'userealname'	=>	$name,
+			'userealname'	=>	$realname,
 			'isok'			=>	isset($isok)?$isok:0,
 			'code'			=>	isset($code)?$code:0,
 			'err'			=>	isset($err)?$err:0,
@@ -83,8 +73,6 @@ if($user_id = $userid){
 			'checktimes'	=>	'1',
 	);
 	
-	insert_check_id($userid,$name,$checkidinfo);		//记录认证的信息
-	
 	if($code =='1'){
 		$res['status'] = '1';
 		echo json_encode($res);
@@ -92,7 +80,7 @@ if($user_id = $userid){
 		$res['status'] = '0';
 		echo json_encode($res);
 	}
-
+	insert_check_id($userid,$checkidinfo);		//记录认证的信息
 }else{
 	$res['status'] = '0';
 	echo json_encode($res);
@@ -103,8 +91,8 @@ if($user_id = $userid){
  * 对查询的信息进行添加
  */
 
-function insert_check_id($userid,$name,$checkidinfo){
-	$infoone = select_chek_id($userid,$name);
+function insert_check_id($userid,$checkidinfo){
+	$infoone = select_chek_id($userid);
 	$numone = $infoone['num'];
 	
 	if(empty($numone)){
@@ -112,7 +100,7 @@ function insert_check_id($userid,$name,$checkidinfo){
 	}else{
 		$nums = $numone+1;
 		$sql = "UPDATE ".$GLOBALS['ecs']->table('check_idcard')." SET checktimes =".$nums.
-			" WHERE user_id=".$userid." and userealname='".$name."'";
+			" WHERE user_id=".$userid;
 		$GLOBALS['db']->query($sql);
 	}
 }
@@ -121,9 +109,8 @@ function insert_check_id($userid,$name,$checkidinfo){
  * 查询认证的次数与时间
  */
 
-function select_chek_id($userid,$name){
-	$sql = "SELECT checktimes,addtime FROM ".$GLOBALS['ecs']->table('check_idcard')." WHERE user_id=".$userid.
-	" and userealname='".$name."' order by realid desc";
+function select_chek_id($userid){
+	$sql = "SELECT checktimes,addtime FROM ".$GLOBALS['ecs']->table('check_idcard')." WHERE user_id=".$userid;
 
 	$countinfo = $GLOBALS['db']->getAll($sql);
 

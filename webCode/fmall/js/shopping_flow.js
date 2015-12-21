@@ -880,19 +880,31 @@ function chekwithdrawpwconfirm(pwconfirm){
 function getwithdrawphoneverify()
 {
 	var phone = document.getElementById('truephone').value;
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, withdraw_phoneverify_callback , 'GET', 'TEXT', true, true );
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, withdraw_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 
 function withdraw_phoneverify_callback(result)
 {
 	if ( result == 'ok' )
 	  { 
+		$('#withdrawverify').html('验证码已发送');
+		if($("#withdrawverify").hasClass("error"))
+		{
+			$("#withdrawverify").removeClass("error");
+		}
+		$("#withdrawverify").addClass("focus");
 		RemainwithdrawTime();
 	  }
 	  else
 	  {
-		$('#withdraw_click').html('0');
-		$('#withdrawform').submit(function(){ return false;});
+		  $('#withdrawverify').html('验证码发送失败');
+			if($("#withdrawverify").hasClass("focus"))
+			{
+				$("#withdrawverify").removeClass("focus");
+			}
+			$("#withdrawverify").addClass("error");
+			$('#withdraw_click').html('0');
+			$('#withdrawform').submit(function(){ return false;});
 	  }
 }
 
@@ -1011,14 +1023,22 @@ function RemainauthcenternewphoneTime(){
 /* 安全认证中心手机更换手机获取验证码*/
 function getauthcenter_phone(){
 	var phone = document.getElementById('oldmobile_phone').innerHTML;
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_phoneverify_callback , 'GET', 'TEXT', true, true );
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 function authcenter_phoneverify_callback(result){
 	if(result == 'ok'){
 		$('#callauthphone_verify').html('验证码已发送');
+		if($("#callauthphone_verify").hasClass("error")){
+			$("#callauthphone_verify").removeClass("error");
+		}
+		$("#callauthphone_verify").addClass("focus");
 		RemainauthcenterphoneTime();
 	}else{
-		$('#callauthphone_verify').html('-验证码发送失败');
+		$('#callauthphone_verify').html('验证码发送失败');
+		if($("#callauthphone_verify").hasClass("focus")){
+			$("#callauthphone_verify").removeClass("focus");
+		}
+		$("#callauthphone_verify").addClass("error");
 	}
 	
 }
@@ -1343,6 +1363,9 @@ function chekauthcenter_idcardname(idcardnum){
 				$("#idcardnamemsg_authcenter").removeClass("focus");
 			}
 			$("#idcardnamemsg_authcenter").addClass("error");
+			$("#formauthcentertruename").on('submit',function(e){
+				e.preventDefault();
+			});
 		}
 	}
 }
@@ -1358,17 +1381,23 @@ function callback_checkidcarddiv(result)
 		}
 		$("#idcardnamemsg_authcenter").addClass("focus");
 	}else if(result.status == '2'){
-		$("#idcardnamemsg_authcenter").html('您的认证次数超过限制，请24小时之后再进行提交');
+		$("#idcardnamemsg_authcenter").html('认证次数超过限制,24小时之后再进行提交');
 		if($("#idcardnamemsg_authcenter").hasClass("focus")){
 			$("#idcardnamemsg_authcenter").removeClass("focus");
 		}
 		$("#idcardnamemsg_authcenter").addClass("error");
+		$("#formauthcentertruename").on('submit',function(e){
+			e.preventDefault();
+		});
 	}else{
 		$("#idcardnamemsg_authcenter").html('您输入的身份证号码与姓名不符');
 		if($("#idcardnamemsg_authcenter").hasClass("focus")){
 			$("#idcardnamemsg_authcenter").removeClass("focus");
 		}
 		$("#idcardnamemsg_authcenter").addClass("error");
+		$("#formauthcentertruename").on('submit',function(e){
+			e.preventDefault();
+		});
 	}
 	document.getElementById("checknameid").style.display="block";
 		
@@ -1631,7 +1660,7 @@ function chekgetpwphone_verify(verify){
 		$("#verify_getpw").html('输入的验证码不合法');
 		return false;
 	}else{
-		Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, checkgetpw_phoneverify_callback , 'GET', 'TEXT', true, true );
+		Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + verify, checkgetpw_phoneverify_callback , 'GET', 'TEXT', true, true );
 	}
 }
 function checkgetpw_phoneverify_callback(result){
@@ -1641,6 +1670,7 @@ function checkgetpw_phoneverify_callback(result){
 		}
 		$("#verify_getpw").addClass("error");
 		$('#verify_getpw').html('验证码输入错误');
+		$("input[name='getpw_verify']").val(' ');
 	}else{
 		if($("#verify_getpw").hasClass("error")){
 			$("#verify_getpw").removeClass("error");
@@ -1737,7 +1767,6 @@ function onlogin_callback_email(result){
 }
 //新密码的验证
 function chekgetpw_newpw(newpw){
-	var reg = /^[0-9a-zA-Z]{3,30}$/;
 	if(newpw == ''){
 		if($("#newpw_getpw").hasClass("focus")){
 			$("#newpw_getpw").removeClass("focus");
@@ -1746,12 +1775,12 @@ function chekgetpw_newpw(newpw){
 		$("#newpw_getpw").html('请输入新的密码');
 		return false;
 	}else{
-		if(!reg.test(newpw)){
+		if(newpw.length < 6){
 			if($("#newpw_getpw").hasClass("focus")){
 				$("#newpw_getpw").removeClass("focus");
 			}
 			$("#newpw_getpw").addClass("error");
-			$("#newpw_getpw").html('输入的密码不合法');
+			$("#newpw_getpw").html('输入大于5位的任意字符');
 			return false;
 		}else{
 			if($("#newpw_getpw").hasClass("error")){
@@ -1780,7 +1809,7 @@ function chekgetpw_newpwconfirm(newpwconfirm){
 				$("#newpw_getpwconfirm").removeClass("focus");
 			}
 			$("#newpw_getpwconfirm").addClass("error");
-			$("#newpw_getpwconfirm").html('输入的密码不合法');
+			$("#newpw_getpwconfirm").html('输入大于5位的任意字符');
 			return false;
 		}
 	}

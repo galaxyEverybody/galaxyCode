@@ -144,7 +144,7 @@ function chekold_password(oldpassword)
 		}
 		$("#old_password").addClass("error");
 	}else{
-		if(oldpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
+		if(oldpassword.length >= 6){
 			Ajax.call('user.php?act=ajax_checkoldpassword','oldpassword=' + oldpassword,old_pwcallback,'POST','JSON');
 		}else{
 			$('#old_password').html('输入的内容不合法');
@@ -173,7 +173,9 @@ function old_pwcallback(result)
 			$("#old_password").removeClass("focus");
 		}
 		$("#old_password").addClass("error");
-		$('#formPassword').submit(function(){ return false;});
+		$('#formPassword').on('submit',function(e){
+			e.preventDefault();
+		});
 	}
 }
 
@@ -187,7 +189,7 @@ function cheknew_password(newpassword)
 		}
 		$("#new_password").addClass("error");
 	}else{
-		if(newpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
+		if(newpassword.length >= 6){
 			$('#new_password').html('');
 			if($("#new_password").hasClass("error"))
 			{
@@ -207,6 +209,7 @@ function cheknew_password(newpassword)
 
 function chekconfirm_password(confirmpassword)
 {
+	var newpassword = $("input[name='new_password']")[0].value;
 	if(confirmpassword == ''){
 		$('#confirm_password').html('请输入您的新密码');
 		if($("#confirm_password").hasClass("focus"))
@@ -215,13 +218,22 @@ function chekconfirm_password(confirmpassword)
 		}
 		$("#confirm_password").addClass("error");
 	}else{
-		if(confirmpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
-			$('#confirm_password').html('');
-			if($("#confirm_password").hasClass("error"))
-			{
-				$("#confirm_password").removeClass("error");
+		if(confirmpassword.length >= 6){
+			if(newpassword == confirmpassword){
+				$('#confirm_password').html('');
+				if($("#confirm_password").hasClass("error"))
+				{
+					$("#confirm_password").removeClass("error");
+				}
+				$("#confirm_password").addClass("focus");
+			}else{
+				$('#confirm_password').html('两次密码输入不一致');
+				if($("#confirm_password").hasClass("focus"))
+				{
+					$("#confirm_password").removeClass("focus");
+				}
+				$("#confirm_password").addClass("error");
 			}
-			$("#confirm_password").addClass("focus");
 		}else{
 			$('#confirm_password').html('输入的内容不合法');
 			if($("#confirm_password").hasClass("focus"))

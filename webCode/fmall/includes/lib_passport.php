@@ -282,21 +282,22 @@ function send_pwd_email($uid, $user_name, $email, $code)
 }
 
 /**
- *  发送激活验证邮件
+ *  发送绑定邮箱验证邮件
  *
  * @access  public
  * @param   int     $user_id        用户ID
  *
  * @return boolen
  */
-function send_regiter_hash ($user_id)
+function send_regiter_hash ($user_id,$email)
 {
     /* 设置验证邮件模板所需要的内容信息 */
     $template    = get_mail_template('register_validate');
+
     $hash = register_hash('encode', $user_id);
     $validate_email = $GLOBALS['ecs']->url() . 'user.php?act=validate_email&hash=' . $hash;
 
-    $sql = "SELECT user_name, email FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id = '$user_id'";
+    $sql = "SELECT user_name FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id = '$user_id'";
     $row = $GLOBALS['db']->getRow($sql);
 
     $GLOBALS['smarty']->assign('user_name',         $row['user_name']);
@@ -305,9 +306,9 @@ function send_regiter_hash ($user_id)
     $GLOBALS['smarty']->assign('send_date',         date($GLOBALS['_CFG']['date_format']));
 
     $content = $GLOBALS['smarty']->fetch('str:' . $template['template_content']);
-
+	
     /* 发送激活验证邮件 */
-    if (send_mail($row['user_name'], $row['email'], $template['template_subject'], $content, $template['is_html']))
+    if (send_mail($row['user_name'], $email, $template['template_subject'], $content, $template['is_html']))
     {
         return true;
     }

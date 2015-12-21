@@ -455,11 +455,11 @@ elseif ($action == 'validate_email')
         $id = register_hash('decode', $hash);
         if ($id > 0)
         {
-            $sql = "UPDATE " . $ecs->table('users') . " SET is_validated = 1 WHERE user_id='$id'";
+            $sql = "UPDATE " . $ecs->table('users') . " SET emailstatus = 1 WHERE user_id='$id'";
             $db->query($sql);
             $sql = 'SELECT user_name, email FROM ' . $ecs->table('users') . " WHERE user_id = '$id'";
             $row = $db->getRow($sql);
-            show_message(sprintf($_LANG['validate_ok'], $row['user_name'], $row['email']),$_LANG['profile_lnk'], 'user.php');
+            show_message(sprintf($_LANG['validate_ok'], $row['user_name'], $row['email']),$_LANG['profile_lnk'], 'user.php?act=auth_center');
         }
     }
     show_message($_LANG['validate_fail']);
@@ -677,10 +677,15 @@ elseif($action == 'ajax_checkoldpassword')
 {
 	include_once('includes/cls_json.php');
 	$json = new JSON;
-	
+	$name = $_SESSION['user_name'];
 	$password = isset($_POST['oldpassword'])?trim($_POST['oldpassword']):NULL;
+	$password = $user->compile_password(array('password'=>$password));
 	
-	$result = $user->check_user($_SESSION['user_name'], $password);
+	$sql = "SELECT user_id FROM ".$GLOBALS['ecs']->table('users').
+		" WHERE user_name='".$name."' AND password='".$password."'";
+	$result = $GLOBALS['db']->getOne($sql);
+
+	//$result = $user->check_user($_SESSION['user_name'], $password);
 	
 	die($json->encode($result));
 }
@@ -784,6 +789,8 @@ elseif ($action == 'auth_center')
 /* 安全认证中邮箱的绑定*/
 elseif ($action == 'act_bang_email')
 {
+	include_once(ROOT_PATH . 'includes/lib_passport.php');
+	
 	$email = trim($_POST['authcenter_email']);
 	if(empty($email)){
 		show_message($_LANG['passport_js']['email_empty']);
@@ -794,8 +801,19 @@ elseif ($action == 'act_bang_email')
 	$sql='SELECT * FROM '.$GLOBALS['ecs']->table('users').' where email="'.$email.'"';
 	$result = $GLOBALS['db']->getOne($sql);
 	if(empty($result)){
-		$sql='UPDATE '.$GLOBALS['ecs']->table('users').' SET email="'.$email.'",emailstatus=1 where user_id='.$user_id;
-		$res = $GLOBALS['db']->query($sql);
+		$sql='UPDATE '.$GLOBALS['ecs']->table('users').' SET email="'.$email.'" where user_id='.$user_id;
+		$GLOBALS['db']->query($sql);
+		
+		//发送邮件的函数
+        if (send_regiter_hash($user_id,$email))
+        {
+            show_message($_LANG['send_bangmail_success'] . $email, $_LANG['back_home_lnk'], './', 'info');
+        }
+        else
+        {
+            //发送邮件出错
+            show_message($_LANG['fail_send_password'], $_LANG['back_page_up'], './', 'info');
+        }
 		header("location:user.php?act=auth_center");
 	}else{
 		show_message($_LANG['passport_js']['email_confirm']);

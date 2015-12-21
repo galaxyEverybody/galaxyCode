@@ -242,6 +242,7 @@ $_LANG['enter_new_password'] = '请输入您的新密码';
 $_LANG['username_no_email'] = '您填写的用户名与电子邮件地址不匹配，请重新输入！';
 $_LANG['fail_send_password'] = '发送邮件出错，请与管理员联系！';
 $_LANG['send_success'] = '重置密码的邮件已经发到您的邮箱：';
+$_LANG['send_bangmail_success'] = '绑定验证的邮件已经发到您的邮箱：';
 $_LANG['parm_error'] = '参数错误，请返回！';
 $_LANG['edit_password_failure'] = '您输入的原密码不正确！';
 $_LANG['edit_password_success'] = '您的新密码已设置成功！';

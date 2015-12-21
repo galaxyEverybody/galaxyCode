@@ -235,7 +235,7 @@
 				</tr>
 				<tr>
 					<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
-					<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
+					<td><div onclick="nextnewphone()" class="nextnewdiv" id="nextnewdiv">下一步</div></td>
 				</tr>
 			</table>
 			<table id="formnewpw" border="0px" cellspadding="10px" cellspacing="10px" class='authtablehide'>
@@ -243,7 +243,7 @@
 					<td class="bangcardtd">新密码</td>
 					<td>
 						<input class="bangcardinput" id="newpw" name="newpw" type="password" placeholder="请输入新密码" onblur="chekgetpw_newpw(this.value);">
-						<div id="newpw_getpw" class='autherrorinfo'></div>
+						<label id="newpw_getpw" class='autherrorinfo'></label>
 						<input type="text" id="newphone_verify_time" value='60' style="display:none;">
 					</td>
 				</tr>
@@ -310,9 +310,19 @@
 		$('#getpwemail').css("background-image","url("+path1+"/themes/jingdong2015/images/authcenteridcard01.png)");
 	}
 	function nextnewphone(){
-		$('#formgetpwphone').hide();
-		$('#formgetpwemail').hide();
-		$('#formnewpw').show();
+		var verify = $("input[name='getpw_verify']").val();
+
+		if(verify == ''){
+			if($("#verify_getpw").hasClass("focus")){
+				$("#verify_getpw").removeClass("focus");
+			}
+			$("#verify_getpw").addClass("error");
+			$("#verify_getpw").html('请输入您收到的验证码');
+		}else{
+			$('#formgetpwphone').hide();
+			$('#formgetpwemail').hide();
+			$('#formnewpw').show();
+		}
 	}
 </script>
 <!--*通过问题找回密码的确认找回账号界面 --> 

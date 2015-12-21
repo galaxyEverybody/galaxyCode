@@ -393,7 +393,6 @@ h6 span{float:left;padding-left:15px}
 .withdraw_verify .capitalauthnum{ margin-left:100px;}
 .withdraw_verify .capitalauthupda{ float:right;margin-right:20px;color:#185283;}
 .widthdraw_button_time{ cursor:pointer;text-align:center;border:1px solid #FF852F;width:100px;line-height:30px;height:30px;background:#FF852F;float:left;margin-left:5px;}
-.widthdraw_button_time a{ }
 .widthdraw_button_time a:hover{ color:#FFF;}
 .withdraw_verify .error{ background:url(images/register_error.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;font-size:12px;color:red;}
 .withdraw_verify .focus{ background:url(images/register_right.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;}
@@ -1889,7 +1888,7 @@ h2,h3{font-size:14px}
 .flowBox_cart h6{height:28px;line-height:28px;border:0;background:url(images/flow_tit.gif) no-repeat;color:#444;font-weight:bold}
 .flowBox_cart .flowBox_in h6{height:23px;line-height:23px;text-align:right;font-size:12px;background:#edf7ff;color:#3f3f3f;border:1px solid white;padding-right:10px}
 .flowBox_in{border-left:3px solid #aacded;border-right:3px solid #aacded;padding:20px;float:left;width:884px}
-#logo{padding-left:5px;float:left;background:#fff;}
+#logo{padding-left:5px;float:left;background:#f2f2f2;}
 .progress{padding-top:6px}
 .progress .progress-1{background:url(images/step1.png) no-repeat;width:481px;padding-top:23px;overflow:hidden;height:23px}
 .progress .progress-2{background:url(images/step2.png) no-repeat;width:481px;padding-top:23px;overflow:hidden;height:23px}
@@ -3151,6 +3150,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv img{ margin-left:20px;}
 .authcenterdiv .authupstyle{ width:410px;height:30px;line-height:30px;border:1px solid #ddd;margin-top:10px;}
 .authcenterdiv .authupphone{ width:650px;height:200px;}
+.authcenterdiv .authupphone .error{ background:url(images/register_error.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;font-size:12px;color:red;}
+.authcenterdiv .authupphone .focus{ background:url(images/register_right.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;}
 .authcenterdiv .autherrorinfo{ color:red;width:200px;line-height:30px;height:30px;float:left;margin-left:5px;}
 .authcenterdiv #authemaildiv{ width:650px;height:200px;display:none;margin-left:200px;}
 .authcenterdiv #authidcarddiv{ width:750px;height:200px;display:none;margin-left:200px;}
