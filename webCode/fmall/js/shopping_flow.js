@@ -1053,7 +1053,7 @@ function chekauthcenter_verify(phoneveri){
 		$("#callauthphone_verify").addClass("error");
 	}else{
 		if(phoneveri.match(/[0-9]{4}/)){
-			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_auphoneverify_callback , 'GET', 'TEXT', true, true );
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneveri, check_auphoneverify_callback , 'GET', 'TEXT', true, true );
 		}else{
 			$('#callauthphone_verify').html('验证码不合法');
 			if($("#callauthphone_verify").hasClass("focus")){
@@ -1076,6 +1076,8 @@ function check_auphoneverify_callback(result){
 			$("#callauthphone_verify").removeClass("focus");
 		}
 		$("#callauthphone_verify").addClass("error");
+		$("input[name='authcenter_phoneverify']").val('');
+		$("input[name='authcenter_phoneverify']").focus();
 	}
 }
 
@@ -1095,12 +1097,26 @@ function chewithdrawauthcenter_password(widthdrawpassword){
 			}
 			$("#withdrawerror_authcenter").addClass("error");
 		}else{
-			$('#withdrawerror_authcenter').html('');
-			if($("#withdrawerror_authcenter").hasClass("error")){
-				$("#withdrawerror_authcenter").removeClass("error");
-			}
-			$("#withdrawerror_authcenter").addClass("focus");
+			Ajax.call('user.php?act=che_authwd_pw','password='+widthdrawpassword,callback_auth_pw,'POST','TEXT',true,true);	
 		}
+	}
+}
+
+function callback_auth_pw(result){
+	if(result == 'ok'){
+		$('#withdrawerror_authcenter').html('');
+		if($("#withdrawerror_authcenter").hasClass("error")){
+			$("#withdrawerror_authcenter").removeClass("error");
+		}
+		$("#withdrawerror_authcenter").addClass("focus");
+	}else{
+		$('#withdrawerror_authcenter').html('验证码输入错误');
+		if($("#withdrawerror_authcenter").hasClass("focus")){
+			$("#withdrawerror_authcenter").removeClass("focus");
+		}
+		$("#withdrawerror_authcenter").addClass("error");
+		$("#wd_pw").val('');
+		$("#wd_pw").focus();
 	}
 }
 
@@ -1119,17 +1135,32 @@ function chewithdrawidcardauthcenter_password(widthdrawpassword){
 				$("#withdrawidcard_authcenter").removeClass("focus");
 			}
 			$("#withdrawidcard_authcenter").addClass("error");
+			$("input[name='withdrawauthidcardcenter_password']").val('');
+			$("input[name='withdrawauthidcardcenter_password']").focus();
 		}else{
-			$('#withdrawidcard_authcenter').html('');
-			if($("#withdrawidcard_authcenter").hasClass("error")){
-				$("#withdrawidcard_authcenter").removeClass("error");
-			}
-			$("#withdrawidcard_authcenter").addClass("focus");
+			Ajax.call('user.php?act=che_authwd_pw','password='+widthdrawpassword,callback_authidcard_pw,'POST','TEXT',true,true);
 		}
 	}
 }
+function callback_authidcard_pw(result){
+	if(result == 'ok'){
+		$('#withdrawidcard_authcenter').html('');
+		if($("#withdrawidcard_authcenter").hasClass("error")){
+			$("#withdrawidcard_authcenter").removeClass("error");
+		}
+		$("#withdrawidcard_authcenter").addClass("focus");
+	}else{
+		$('#withdrawidcard_authcenter').html('提现密码输入错误');
+		if($("#withdrawidcard_authcenter").hasClass("focus")){
+			$("#withdrawidcard_authcenter").removeClass("focus");
+		}
+		$("#withdrawidcard_authcenter").addClass("error");
+		$("input[name='withdrawauthidcardcenter_password']").val('');
+		$("input[name='withdrawauthidcardcenter_password']").focus();
+	}
+}
 
-/* 安全认证中心身份证号的验证*/
+/* 安全认证中心变更手机号身份证号的验证*/
 function chekauthcenter_idcard(idcard){
 	if(idcard == ''){
 		$('#idcarderror_authcenter').html('请输入您的身份证号');
@@ -1138,23 +1169,36 @@ function chekauthcenter_idcard(idcard){
 		}
 		$("#idcarderror_authcenter").addClass("error");
 	}else{
-		if(idcard.match(/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/)){
-			/* 未完验证*/
-			$('#idcarderror_authcenter').html('');
-			if($("#idcarderror_authcenter").hasClass("error")){
-				$("#idcarderror_authcenter").removeClass("error");
-			}
-			$("#idcarderror_authcenter").addClass("focus");
+		if(idcard.match(/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/)){
+			Ajax.call('user.php?act=ajax_checkidcard','idcard='+idcard,callback_idcard_newphone,'POST','TEXT',true,true);		
 		}else{
 			$('#idcarderror_authcenter').html('身份证号不合法');
 			if($("#idcarderror_authcenter").hasClass("focus")){
 				$("#idcarderror_authcenter").removeClass("focus");
 			}
 			$("#idcarderror_authcenter").addClass("error");
+			$("input[name='authcenter_idcard']").val('');
+			$("input[name='authcenter_idcard']").focus();
 		}
 	}
 }
-
+function callback_idcard_newphone(result){
+	if(result == 'ok'){
+		$('#idcarderror_authcenter').html('');
+		if($("#idcarderror_authcenter").hasClass("error")){
+			$("#idcarderror_authcenter").removeClass("error");
+		}
+		$("#idcarderror_authcenter").addClass("focus");
+	}else{
+		$('#idcarderror_authcenter').html('您输入的身份证号不存在');
+		if($("#idcarderror_authcenter").hasClass("focus")){
+			$("#idcarderror_authcenter").removeClass("focus");
+		}
+		$("#idcarderror_authcenter").addClass("error");
+		$("input[name='authcenter_idcard']").val('');
+		$("input[name='authcenter_idcard']").focus();
+	}
+}
 /* 安全认证中心新手机号的验证*/
 function authcenteruser_newphone(newphone){
 	var reg = /^1[3|5|8|7]\d{9}$/;
@@ -1166,18 +1210,32 @@ function authcenteruser_newphone(newphone){
 		$("#newphone_authcenter").addClass("error");
 	}else{
 		if(reg.test(newphone)){
-			$('#newphone_authcenter').html('');
-			if($("#newphone_authcenter").hasClass("error")){
-				$("#newphone_authcenter").removeClass("error");
-			}
-			$("#newphone_authcenter").addClass("focus");
+			Ajax.call( 'user.php?act=check_phone', 'phone=' + newphone, check_newphone_callback , 'GET', 'TEXT', true, true );
+			
 		}else{
 			$('#newphone_authcenter').html('手机号不合法');
 			if($("#newphone_authcenter").hasClass("focus")){
 				$("#newphone_authcenter").removeClass("focus");
 			}
 			$("#newphone_authcenter").addClass("error");
+			$("#newmobile_phone").val('');
+			$("#newmobile_phone").focus();
 		}
+	}
+}
+function check_newphone_callback(result){
+	if(result == 'ok'){
+		$('#newphone_authcenter').html('');
+		if($("#newphone_authcenter").hasClass("error")){
+			$("#newphone_authcenter").removeClass("error");
+		}
+		$("#newphone_authcenter").addClass("focus");
+	}else{
+		$('#newphone_authcenter').html('改手机号已存在');
+		if($("#newphone_authcenter").hasClass("focus")){
+			$("#newphone_authcenter").removeClass("focus");
+		}
+		$("#newphone_authcenter").addClass("error");
 	}
 }
 
@@ -1220,13 +1278,15 @@ function cheauthcenter_newverify(verify){
 		$("#newphonemsg_authcenter").addClass("error");
 	}else{
 		if(verify.match(/[0-9]{4}/)){
-			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_authcenternewphoneverify_callback , 'GET', 'TEXT', true, true );
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + verify, check_authcenternewphoneverify_callback , 'GET', 'TEXT', true, true );
 		}else{
 			$('#newphonemsg_authcenter').html('输入不合法');
 			if($("#newphonemsg_authcenter").hasClass("focus")){
 				$("#newphonemsg_authcenter").removeClass("focus");
 			}
 			$("#newphonemsg_authcenter").addClass("error");
+			$("input[name='authnewphone_verify']").val('');
+			$("input[name='authnewphone_verify']").focus();
 		}
 	}
 }
@@ -1243,26 +1303,32 @@ function check_authcenternewphoneverify_callback(result){
 			$("#newphonemsg_authcenter").removeClass("focus");
 		}
 		$("#newphonemsg_authcenter").addClass("error");
+		$("input[name='authnewphone_verify']").val('');
+		$("input[name='authnewphone_verify']").focus();
 	}
 }
 
 /*安全认证中心修改手机号的提交*/
-function authcentereditphone(){
-	var phoneverify = $("input[name='authcenter_phoneverify']")[0].value();
-	var withdrawps = $("input[name='withdrawauthcenter_password']")[0].value();
-	var idcard = $("input[name='authcenter_idcard']")[0].value();
-	var idcardwithdrawpw = $("input[name='withdrawauthidcardcenter_password']")[0].value();
-	var newphone = $("input[name='authcenter_newphonename']")[0].value();
-	var newphoneverify = $("input[name='authnewphone_verify']")[0].value();
-	if(empty(phoneverify)){
-		if(empty(idcard)||empty(idcardwithdrawpw)||empty(newphone)||empty(newphoneverify)){
-			$('#formauthcenterphone').submit(function(){return false;})
+function authcentereditphone(){	
+	var newpne = $("#newmobile_phone").val();
+	var newpneverify = $("input[name='authnewphone_verify']").val();
+	if(newpne == ''){
+		$('#newphone_authcenter').html('请输入您的新手机号');
+		if($("#newphone_authcenter").hasClass("focus")){
+			$("#newphone_authcenter").removeClass("focus");
 		}
-	}else{
-		if(empty(phoneverify)||empty(withdrawps)||empty(newphone)||empty(newphoneverify)){
-			$('#formauthcenterphone').submit(function(){return false;})
-		}
+		$("#newphone_authcenter").addClass("error");
+		return false;
 	}
+	if(newpneverify == ''){
+		$('#newphonemsg_authcenter').html('请输入验证码');
+		if($("#newphonemsg_authcenter").hasClass("focus")){
+			$("#newphonemsg_authcenter").removeClass("focus");
+		}
+		$("#newphonemsg_authcenter").addClass("error");
+		return false;
+	}
+	return true;
 }
 
 /*安全认证中心邮箱的验证*/
@@ -1380,14 +1446,17 @@ function callback_checkidcarddiv(result)
 			$("#idcardnamemsg_authcenter").removeClass("error");
 		}
 		$("#idcardnamemsg_authcenter").addClass("focus");
+		$("#formauthcentertruename").submit(function(event){
+			window.event.returnValue=true;
+		});
 	}else if(result.status == '2'){
 		$("#idcardnamemsg_authcenter").html('认证次数超过限制,24小时之后再进行提交');
 		if($("#idcardnamemsg_authcenter").hasClass("focus")){
 			$("#idcardnamemsg_authcenter").removeClass("focus");
 		}
 		$("#idcardnamemsg_authcenter").addClass("error");
-		$("#formauthcentertruename").on('submit',function(e){
-			e.preventDefault();
+		$("#formauthcentertruename").submit(function(event){
+			window.event.returnValue=false;
 		});
 	}else{
 		$("#idcardnamemsg_authcenter").html('您输入的身份证号码与姓名不符');
@@ -1395,8 +1464,8 @@ function callback_checkidcarddiv(result)
 			$("#idcardnamemsg_authcenter").removeClass("focus");
 		}
 		$("#idcardnamemsg_authcenter").addClass("error");
-		$("#formauthcentertruename").on('submit',function(e){
-			e.preventDefault();
+		$("#formauthcentertruename").submit(function(event){
+			window.event.returnValue=false;
 		});
 	}
 	document.getElementById("checknameid").style.display="block";
@@ -1424,6 +1493,7 @@ function authcentertruenamefrom(){
 		$("#idcardnamemsg_authcenter").addClass("error");
 		return false;
 	}
+	
 	return true;
 }
 

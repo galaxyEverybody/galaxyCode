@@ -35,7 +35,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'manage_msg', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
-'message_list', 'ajax_center_manadel', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
+'message_list', 'che_authwd_pw', 'ajax_center_manadel', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'booking_list_month', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list',
 'validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer', 'callback_invest_ajax', 'over_invest_ajax', 'on_invest_ajax', 'callback_fixinvest_ajax', 'over_fixinvest_ajax', 'on_fixinvest_ajax');
 
@@ -483,14 +483,19 @@ elseif ($action == 'is_registered')
     }
 }
 
-/*验证用户的真实身份（实名认证）*/
-elseif($action == 'ajax_checkidcard')
-{
-	include_once(ROOT_PATH . 'includes/cls_json.php');
-	$_POST['nameinfo'] = json_str_iconv($_POST['nameinfo']);
-	$result['status'] = 'false';
-	$result['message'] = '实名认证未通过';
-	die($json->encode($result));
+/* 验证用户的身份证信息是否存在*/
+elseif($action == 'ajax_checkidcard'){
+	$idcard = trim($_POST['idcard']);
+	
+	$sql = "SELECT user_id FROM ".$GLOBALS['ecs']->table('users').
+		" WHERE user_id=".$user_id." AND idcard='".$idcard."'";
+		
+	$res = $GLOBALS['ecs']->getOne($sql);
+	if($res > 0){
+		echo "ok";
+	}else{
+		echo "error";
+	}
 }
 
 /* 验证用户邮箱地址是否被注册 */
@@ -846,6 +851,19 @@ elseif ($action == 'act_edit_userphone')
 		header('location:user.php?act=auth_center');
 	}else{
 		show_message($_LANG['passport_js']['newphone_invalid']);
+	}
+}
+
+/* 注册手机号更改中提现验证码的验证*/
+elseif ($action == 'che_authwd_pw'){
+	$password = trim($_POST['password']);
+	$password = $user->compile_password(array('password'=>$password));
+	$sql = 'SELECT paypassword FROM '.$GLOBALS['ecs']->table('users')." WHERE user_id=".$user_id;
+	$pw = $GLOBALS['db']->getOne($sql);
+	if($pw == $password){
+		echo "ok";
+	}else{
+		echo "error";
 	}
 }
 
@@ -3925,7 +3943,7 @@ elseif ($action == 'act_transform_ucenter_points')
 }
 
 /* 安全认证中心实名的认证*/
-elseif ($action = 'act_bang_truename')
+elseif ($action == 'act_bang_truename')
 {
 	$name = trim($_POST['truename_authcenter']);
 	$idcard = trim($_POST['authcenter_idcardname']);

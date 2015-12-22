@@ -169,14 +169,14 @@ $(function(){
 				<tr>
 					<td class="bangcardtd">提现密码</td>
 					<td>
-						<input class="bangcardinput" name="withdrawpassword" type="text" placeholder="请输入您的提现密码" onblur="chekwithdrawpassword(this.value);">
+						<input class="bangcardinput" name="withdrawpassword" type="password" placeholder="请输入您的提现密码" onblur="chekwithdrawpassword(this.value);">
 						<label id="withdrawpassword"></label>
 					</td>
 				</tr>
 				<tr>
 					<td class="bangcardtd">确认密码</td>
 					<td>
-						<input class="bangcardinput" name="withdrawpwconfirm" type="text" placeholder="重新输入您的提现密码" onblur="chekwithdrawpwconfirm(this.value);">
+						<input class="bangcardinput" name="withdrawpwconfirm" type="password" placeholder="重新输入您的提现密码" onblur="chekwithdrawpwconfirm(this.value);">
 						<label id="withdrawpwconfirm"></label>
 					</td>
 				</tr>
@@ -748,7 +748,7 @@ $(function(){
 				<div onclick = "idcardauthshow()"  id="idcardauthshow">依据身份信息修改</div>
 			</div>
 			<div class='authupphone'>
-				<form id="formauthcenterphone" action="user.php" method="post" onSubmit="return authcentereditphone()">
+				<form id="formauthcenterphone" action="user.php" method="post" onSubmit="return authcentereditphone();">
 				<table id="formauthphone" border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
 					<tr>
 						<td class="bangcardtd">验证码</td>
@@ -762,7 +762,7 @@ $(function(){
 					<tr>
 						<td class="bangcardtd">提现密码</td>
 						<td>
-							<input class="bangcardinput" name="withdrawauthcenter_password" type="text" placeholder="请输入您的提现密码" onblur="chewithdrawauthcenter_password(this.value);">
+							<input class="bangcardinput" name="withdrawauthcenter_password" id="wd_pw" type="password" placeholder="请输入您的提现密码" onblur="chewithdrawauthcenter_password(this.value);">
 							<label id="withdrawerror_authcenter"></label>
 						</td>
 					</tr>
@@ -775,20 +775,20 @@ $(function(){
 					<tr>
 						<td class="bangcardtd">身份证号</td>
 						<td>
-							<input class="bangcardinput" name="authcenter_idcard" type="text" placeholder="请输入您的身份证号" onblur="chekauthcenter_idcard(this.value);">
+							<input class="bangcardinput" name="authcenter_idcard" id="authcenter_idcard" type="text" placeholder="请输入您的身份证号" onblur="chekauthcenter_idcard(this.value);">
 							<label id="idcarderror_authcenter"></label>
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd">提现密码</td>
 						<td>
-							<input class="bangcardinput" name="withdrawauthidcardcenter_password" type="text" placeholder="请输入您的提现密码" onblur="chewithdrawidcardauthcenter_password(this.value);">
+							<input class="bangcardinput" name="withdrawauthidcardcenter_password" type="password" placeholder="请输入您的提现密码" onblur="chewithdrawidcardauthcenter_password(this.value);">
 							<label id="withdrawidcard_authcenter"></label>
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd"><input name="act" type="hidden" value="act_edit_password" /></td>
-						<td><div onclick="nextnewphone()" class="nextnewdiv">下一步</div></td>
+						<td><div onclick="idcardnextnewphone()" class="nextnewdiv">下一步</div></td>
 					</tr>
 				</table>
 				<table id="newphoneform" border="0px" cellspadding="10px" cellspacing="10px" class='authtablehide' >
@@ -934,9 +934,48 @@ $(function(){
 			$('#idcardauthshow').css("background-image","url("+path1+"/themes/jingdong2015/images/authcenteridcard01.png)");
 		}
 		function nextnewphone(){
-			$('#formauthphone').hide();
-			$('#formauthidcard').hide();
-			$('#newphoneform').show();
+			var verify = $("input[name='authcenter_phoneverify']").val();
+			var withverify = $("#wd_pw").val();
+
+			if(verify == ''){
+				$('#callauthphone_verify').html('请输入您收到的验证码');
+				if($("#callauthphone_verify").hasClass("focus")){
+					$("#callauthphone_verify").removeClass("focus");
+				}
+				$("#callauthphone_verify").addClass("error");
+			}else if(withverify == ''){
+				$('#withdrawidcard_authcenter').html('请输入您的提现密码');
+				if($("#withdrawidcard_authcenter").hasClass("focus")){
+					$("#withdrawidcard_authcenter").removeClass("focus");
+				}
+				$("#withdrawidcard_authcenter").addClass("error");
+			}else{
+				$('#formauthphone').hide();
+				$('#formauthidcard').hide();
+				$('#newphoneform').show();
+			}
+		}
+		function idcardnextnewphone(){
+			var idcard = $("input[name='authcenter_idcard']").val();
+			var withverify = $("input[name='withdrawauthidcardcenter_password']").val();
+
+			if(idcard == ''){
+				$('#idcarderror_authcenter').html('请输入您的身份证号');
+				if($("#idcarderror_authcenter").hasClass("focus")){
+					$("#idcarderror_authcenter").removeClass("focus");
+				}
+				$("#idcarderror_authcenter").addClass("error");
+			}else if(withverify == ''){
+				$('#withdrawerror_authcenter').html('请输入您的提现密码');
+				if($("#withdrawerror_authcenter").hasClass("focus")){
+					$("#withdrawerror_authcenter").removeClass("focus");
+				}
+				$("#withdrawerror_authcenter").addClass("error");
+			}else{
+				$('#formauthphone').hide();
+				$('#formauthidcard').hide();
+				$('#newphoneform').show();
+			}
 		}
 		<!--安全认证中心start-->
 		function authcenterphone(){
