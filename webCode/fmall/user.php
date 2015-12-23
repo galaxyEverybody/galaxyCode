@@ -3951,13 +3951,13 @@ elseif ($action == 'act_bang_truename')
 	if(empty($name)){
 		show_message($_LANG['passport_js']['truename_empty']);
 	}
-	elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/",$name)){
+	elseif(ereg("/^[\x{4e00}-\x{9fa5}]+$/u",$name)){
 		show_message($_LANG['passport_js']['truename_invalid']);
 	}
 	elseif(empty($idcard)){
 		show_message($_LANG['passport_js']['idcard_empty']);
 	}
-	elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X)$)/",$idcard)){
+	elseif(ereg("/(^\/d{15}$)|(^\/d{17}([0-9]|X|x)$)/",$idcard)){
 		show_message($_LANG['passport_js']['idcard_invalid']);
 	}
 	/* 查询身份证号是否存在*/

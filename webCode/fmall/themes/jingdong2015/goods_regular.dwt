@@ -172,8 +172,9 @@ function reg(str){
         <div class="mt">
           <ul class="tab">
             <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">基本情况</a></li>
-            <li id="p-con-attr"><a href="javascript:;" class="toggle-link">投标记录</a></li>
+            <li id="p-con-guar"><a href="javascript:;" class="toggle-link">优选债券</a></li>
             <li id="p-con-list"><a href="javascript:;" class="toggle-link">风控措施</a></li>
+            <li id="p-con-attr"><a href="javascript:;" class="toggle-link">投标记录</a></li>
           </ul>
         </div>
       </div>
@@ -190,6 +191,9 @@ function reg(str){
         </ul>
         <div class="ac" style="height:10px;"></div>
         <div class="detail-content"> {$goods.goods_desc} </div>
+      </div>
+      <div class="mc hide" id="p-con-guar-con">
+        <div class="item-detail">{$goods.customer_service}</div>
       </div>
       <div class="mc hide" id="p-con-attr-con">
         <div class="detail-correction"></div>
