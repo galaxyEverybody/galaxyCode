@@ -46,13 +46,13 @@
 		    <!--{if $goods.good_status eq 1}-->
 			<a href="{$goods.url}">立即投资</a>
 			<!--{elseif $goods.good_status eq 2}-->
-			<a href="{$goods.url}" class="catabs_over">已满标</a>
+			<a href="javascript:void(0);" class="catabs_over">已满标</a>
 			<!--{elseif $goods.good_status eq 3}-->
-			<a href="{$goods.url}" class="catabs_over">还款中</a>
+			<a href="javascript:void(0);" class="catabs_over">还款中</a>
 			<!--{elseif $goods.good_status eq 4}-->
-			<a href="{$goods.url}" class="catabs_over">已结束</a>
+			<a href="javascript:void(0);" class="catabs_over">已结束</a>
 			<!--{else}-->
-			<a href="{$goods.url}" class="catabs_over">审核中</a>
+			<a href="javascript:void(0);" class="catabs_over">审核中</a>
 			<!--{/if}-->
 		</div>
 		<!--{/foreach}-->

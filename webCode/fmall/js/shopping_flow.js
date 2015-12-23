@@ -863,7 +863,6 @@ function chekwithdrawpassword(withdrawpassword)
 			$("#withdrawpassword").removeClass("focus");
 		}
 		$("#withdrawpassword").addClass("error");
-		return false;
 	}else{
 		if(withdrawpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
 			$("#withdrawpassword").html("");
@@ -872,15 +871,15 @@ function chekwithdrawpassword(withdrawpassword)
 				$("#withdrawpassword").removeClass("error");
 			}
 			$("#withdrawpassword").addClass("focus");
-			return true;
 		}else{
-			$("#withdrawpassword").html("提现密码格式错误");
+			$("#withdrawpassword").html("提现密码输入不合法");
 			if($("#withdrawpassword").hasClass("focus"))
 			{
 				$("#withdrawpassword").removeClass("focus");
 			}
 			$("#withdrawpassword").addClass("error");
-			return false;
+			$("input[name='withdrawpassword']").val('');
+			$("input[name='withdrawpassword']").focus();
 		}
 	}
 }
@@ -898,16 +897,17 @@ function chekwithdrawpwconfirm(pwconfirm){
 			$("#withdrawpwconfirm").removeClass("focus");
 		}
 		$("#withdrawpwconfirm").addClass("error");
-		return false;
+		
 	}else{
 		if(!pwconfirm.match(/^[0-9a-zA-Z]{6,30}$/)){
-			$("#withdrawpwconfirm").html("提现密码格式错误");
+			$("#withdrawpwconfirm").html("提现密码输入不合法");
 			if($("#withdrawpwconfirm").hasClass("focus"))
 			{
 				$("#withdrawpwconfirm").removeClass("focus");
 			}
 			$("#withdrawpwconfirm").addClass("error");
-			return false;
+			$("input[name='withdrawpwconfirm']").val('');
+			$("input[name='withdrawpwconfirm']").focus();
 		}else if(pw != pwconfirm){
 			$("#withdrawpwconfirm").html("两次密码输入不一致");
 			if($("#withdrawpwconfirm").hasClass("focus"))
@@ -915,7 +915,7 @@ function chekwithdrawpwconfirm(pwconfirm){
 				$("#withdrawpwconfirm").removeClass("focus");
 			}
 			$("#withdrawpwconfirm").addClass("error");
-			return false;
+			
 		}else{
 			$("#withdrawpwconfirm").html("");
 			if($("#withdrawpwconfirm").hasClass("error"))
@@ -923,7 +923,7 @@ function chekwithdrawpwconfirm(pwconfirm){
 				$("#withdrawpwconfirm").removeClass("error");
 			}
 			$("#withdrawpwconfirm").addClass("focus");
-			return true;
+			
 		}
 	}
 	
@@ -1088,6 +1088,8 @@ function chekauthcenter_verify(phoneveri){
 				$("#callauthphone_verify").removeClass("focus");
 			}
 			$("#callauthphone_verify").addClass("error");
+			$("input[name='authcenter_phoneverify']").val('');
+			$("input[name='authcenter_phoneverify']").focus();
 		}
 	}
 }
@@ -1119,11 +1121,13 @@ function chewithdrawauthcenter_password(widthdrawpassword){
 		$("#withdrawerror_authcenter").addClass("error");
 	}else{
 		if(!widthdrawpassword.match(/[0-9a-zA-Z]{6,30}/)){
-			$('#withdrawerror_authcenter').html('输入的格式错误');
+			$('#withdrawerror_authcenter').html('输入不合法');
 			if($("#withdrawerror_authcenter").hasClass("focus")){
 				$("#withdrawerror_authcenter").removeClass("focus");
 			}
 			$("#withdrawerror_authcenter").addClass("error");
+			$("#wd_pw").val('');
+			$("#wd_pw").focus();
 		}else{
 			Ajax.call('user.php?act=che_authwd_pw','password='+widthdrawpassword,callback_auth_pw,'POST','TEXT',true,true);	
 		}

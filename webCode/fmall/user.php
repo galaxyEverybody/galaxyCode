@@ -526,11 +526,13 @@ elseif($action == 'check_phone')
 }
 
 /* 获取短信验证码*/
-elseif($action == 'get_phoneverify')
-{
-	$mobile = trim($_POST['phone']);
+elseif($action == 'get_phoneverify'){
 
-	if($user->get_phoneverify($mobile))
+	include_once(ROOT_PATH . 'includes/cls_sms.php');
+	$mobile = trim($_POST['phone']);
+	$sms = new sms();
+
+	if($sms->send($mobile))
 	{
 		echo 'ok';
 		exit;

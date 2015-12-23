@@ -153,6 +153,8 @@ function chekold_password(oldpassword)
 				$("#old_password").removeClass("focus");
 			}
 			$("#old_password").addClass("error");
+			$("input[name='old_password']").val('');
+			$("input[name='old_password']").focus();
 		}
 	}
 }
@@ -173,9 +175,8 @@ function old_pwcallback(result)
 			$("#old_password").removeClass("focus");
 		}
 		$("#old_password").addClass("error");
-		$('#formPassword').on('submit',function(e){
-			e.preventDefault();
-		});
+		$("input[name='old_password']").val('');
+		$("input[name='old_password']").focus();
 	}
 }
 
@@ -203,6 +204,8 @@ function cheknew_password(newpassword)
 				$("#new_password").removeClass("focus");
 			}
 			$("#new_password").addClass("error");
+			$("input[name='new_password']").val('');
+			$("input[name='new_password']").focus();
 		}
 	}
 }
@@ -241,6 +244,8 @@ function chekconfirm_password(confirmpassword)
 				$("#confirm_password").removeClass("focus");
 			}
 			$("#confirm_password").addClass("error");
+			$("input[name='confirm_password']").val('');
+			$("input[name='confirm_password']").focus();
 		}
 	}
 }

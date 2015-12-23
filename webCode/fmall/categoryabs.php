@@ -128,7 +128,7 @@ function assign_catabs_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         {
             $goods[$idx]['promote_price'] = '';
         }
-
+		
         $goods[$idx]['id']           = $row['goods_id'];
         $goods[$idx]['name']         = $row['goods_name'];
         $goods[$idx]['brief']        = $row['goods_brief'];
@@ -141,6 +141,9 @@ function assign_catabs_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
         $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
    		$goods[$idx]['advance']		 = ceil(($row['shop_price']-$row['surplus_price'])/$row['shop_price']*100);
    		$goods[$idx]['goods_weight_day']	 = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));
+    	if($goods[$idx]['advance'] < 0){
+    		$goods[$idx]['advance'] = 0;
+    	}
     	if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
     		$goods[$idx]['good_status'] = $row['good_status'];
     	}elseif(gmtime()>$row['goods_weight'] && gmtime()<$row['goods_number']){

@@ -17,8 +17,8 @@ if (!defined('IN_ECS'))
 {
     die('Hacking attempt');
 }
-define('SOURCE_TOKEN', 'b11983d30cb6821158744d5d065d0f70');
-define('SOURCE_ID', '620386');
+define('SMSNAME', 'cf_yhzl830702');
+define('SMSPW', 'yhzl888');
 require_once(ROOT_PATH . 'includes/cls_transport.php');
 require_once(ROOT_PATH . 'includes/shopex_json.php');
 
@@ -33,7 +33,7 @@ class sms
      */
     var $api_urls   = array(
                             'info'              =>      'http://api.sms.shopex.cn',
-                            'send'              =>      'http://api.sms.shopex.cn',
+                            'send'              =>      'http://106.ihuyi.cn/webservice/sms.php?method=Submit',
                             'servertime'        =>      'http://webapi.sms.shopex.cn'
     
     );
@@ -106,207 +106,38 @@ class sms
      * @param   string  $phone          要发送到哪些个手机号码，传的值是一个数组
      * @param   string  $msg            发送的消息内容
      */
-    function send($phones,$msg,$send_date = '', $send_num = 1,$sms_type='',$version='1.0')
+    function send($phones)
     {
-       
         /* 检查发送信息的合法性 */
-        $contents=$this->get_contents($phones, $msg);  
-        if(!$contents)
-        {
-            $this->errors['server_errors']['error_no'] = 3;//发送的信息有误
-            return false;
+        $contents=$this->is_moblie($phones);
+        
+        if(!$contents){
+            exit('手机号码不合法');
         }
         
-        $login_info = $this->getSmsInfo();
-        if (!$login_info)
-        {
-            $this->errors['server_errors']['error_no'] = 5;//无效的身份信息
-
-            return false;
-        }
-        else
-        {
-            if($login_info['info']['account_info']['active']!='1')
-            {
-                $this->errors['server_errors']['error_no'] = 11;//短信功能没有激活
-                return false;
-            }
-            
-        }
-         /* 获取API URL */
-        $sms_url = $this->get_url('send');
-
+        $sms_url = $this->get_url('send');	//检测url
+		
         if (!$sms_url)
         {
             $this->errors['server_errors']['error_no'] = 6;//URL不对
 
             return false;
         }
-
-        $t_contents=array();
-        if(count($contents)>1)
-        {
-            foreach ($contents as $key=>$val)
-            {
-                $t_contents['0']['phones']=$val['phones'];
-                $t_contents['0']['content']=$val['content'];
-                $send_str['contents']= $this->json->encode($t_contents);
-                $send_str['certi_app']='sms.send';
-                $send_str['entId']=$GLOBALS['_CFG']['ent_id'];
-                $send_str['entPwd']=$GLOBALS['_CFG']['ent_ac'];
-                $send_str['license']=$GLOBALS['_CFG']['certificate_id'];
-                $send_str['source']=SOURCE_ID;
-
-                $send_str['sendType'] = 'fan-out';
-                $send_str['use_backlist'] = '1';
-                $send_str['version'] = $version;
-                $send_str['format']='json'; 
-                $send_str['timestamp'] = $this->getTime(); 
-                $send_str['certi_ac']=$this->make_shopex_ac($send_str,SOURCE_TOKEN);
-                $sms_url= $this->get_url('send');
-                $arr = json_decode($send_str['contents'],true);
-                /* 发送HTTP请求 */
-                $response = $this->t->request($sms_url, $send_str,'POST');
-                $result = $this->json->decode($response['body'], true);
-                sleep(1);
-            }
-        }
-        else
-        {
-            if(strlen($contents['0']['phones'])>20)
-            {
-                $send_str['sendType'] = 'fan-out';
-            }
-            else
-            {
-                 $send_str['sendType'] = 'notice';
-            }
-            $send_str['contents']= $this->json->encode($contents);
-            $send_str['certi_app']='sms.send';
-            $send_str['entId']=$GLOBALS['_CFG']['ent_id'];
-            $send_str['entPwd']=$GLOBALS['_CFG']['ent_ac'];
-            $send_str['license']=$GLOBALS['_CFG']['certificate_id'];
-            $send_str['source']=SOURCE_ID;
-
-            $send_str['use_backlist'] = '1';
-            $send_str['version'] = $version;
-            $send_str['format']='json'; 
-            $send_str['timestamp'] = $this->getTime(); 
-            $send_str['certi_ac']=$this->make_shopex_ac($send_str,SOURCE_TOKEN);
-            $sms_url= $this->get_url('send');
-            $arr = json_decode($send_str['contents'],true);
-            /* 发送HTTP请求 */
-            $response = $this->t->request($sms_url, $send_str,'POST');
-            $result = $this->json->decode($response['body'], true);
-        }
-
-        if($result['res'] == 'succ')
-        {
-            return true;
-        }
-        elseif($result['res'] == 'fail')
-        {
-            return false;
-        }
-       
-    }
-   
-
-    
-
-    /**
-     * 检测启用短信服务需要的信息
-     *
-     * @access  private
-     * @param   string      $email          邮箱
-     * @param   string      $password       密码
-     * @return  boolean                     如果启用信息格式合法就返回true，否则返回false。
-     */
-    function check_enable_info($email, $password)
-    {
-        if (empty($email) || empty($password))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    //查询是否已有通行证
-    function has_registered()
-    {
-        $sql = 'SELECT `value`
-                FROM ' . $this->ecs->table('shop_config') . "
-                WHERE `code` = 'ent_id'";
-
-        $result = $this->db->getOne($sql);
-
-        if (empty($result))
-        {
-            return false;
-        }
-
-        return true;
-    }
-    function get_site_info()
-    {
-        /* 获得当前处于会话状态的管理员的邮箱 */
-        $email = $this->get_admin_email();
-        $email = $email ? $email : '';
-        /* 获得当前网店的域名 */
-        $domain = $this->ecs->get_domain();
-        $domain = $domain ? $domain : '';
-        /* 赋给smarty模板 */
-        $sms_site_info['email'] = $email;
-        $sms_site_info['domain'] = $domain;
-
-        return $sms_site_info;
-    }
-    function get_site_url()
-    {
-        $url = $this->ecs->url();
-        $url = $url ? $url : '';
-        return $url;
-    }
-    /**
-     * 获得当前处于会话状态的管理员的邮箱
-     *
-     * @access  private
-     * @return  string or boolean       成功返回管理员的邮箱，否则返回false。
-     */
-    function get_admin_email()
-    {
-        $sql = 'SELECT `email` FROM ' . $this->ecs->table('admin_user') . " WHERE `user_id` = '" . $_SESSION['admin_id'] . "'";
-         $email = $this->db->getOne($sql);
-
-         if (empty($email))
-         {
-            return false;
-         }
-
-         return $email;
-    }
-    //用户短信账户信息获取
-    function getSmsInfo($certi_app='sms.info',$version='1.0', $format='json'){
-        $send_str['certi_app'] = $certi_app;
-        $send_str['entId'] = $GLOBALS['_CFG']['ent_id'];
-        $send_str['entPwd'] = $GLOBALS['_CFG']['ent_ac'];
-        $send_str['source'] = SOURCE_ID;
-        $send_str['version'] = $version;
-        $send_str['format'] = $format;
-        $send_str['timestamp'] = $this->getTime();
-        $send_str['certi_ac'] = $this->make_shopex_ac($send_str,SOURCE_TOKEN);
-        $sms_url = $this->get_url('info');
-        $response = $this->t->request($sms_url, $send_str,'POST');
-        $result = $this->json->decode($response['body'],true);
-        if($result['res'] == 'succ')
-        {
-            return $result;
-        }
-        elseif($result['res'] == 'fail')
-        {
-            return false;
-        }
+		$mobile_code = $this->random(4,1);
+		$post_data = "account=cf_yhzl830702&password=yhzl888&mobile=".$phones."&content=".rawurlencode("您的验证码是：".$mobile_code."。请不要把验证码泄露给其他人。");
+        
+        $phoneverify = $this->Post($post_data, $sms_url);
+    	$gets =  $this->xml_to_array($phoneverify);
+    	if($gets['SubmitResult']['code']==2){
+    		$_SESSION['mobile'] = $mobile;
+    		$_SESSION['mobile_code'] = $mobile_code;
+    	}
+    	if($gets['SubmitResult']['msg'] == '提交成功'){
+    		return 'true';
+    	}else{
+    		return 'false';
+    	}
+ 
     }
     
     //检查手机号和发送的内容并生成生成短信队列
@@ -405,34 +236,51 @@ class sms
        return  preg_match("/^0?1((3|8)[0-9]|5[0-35-9]|4[57])\d{8}$/", $moblie);
     }
    
-    //加密算法
-    function make_shopex_ac($temp_arr,$token)
-    {
-       ksort($temp_arr);
-       $str = '';
-       foreach($temp_arr as $key=>$value)
-       {
-            if($key!='certi_ac') 
-            {
-               $str.= $value;
-            }
-        }
-       return strtolower(md5($str.strtolower(md5($token))));
-     }
-    function base_encode($str)
-    {
-        $str = base64_encode($str);
-        return strtr($str, $this->pattern());
-    }
-    function pattern()
-    {
-        return array(
-        '+'=>'_1_',
-        '/'=>'_2_',
-        '='=>'_3_',
-        );
-    }
-    
+   /**
+   * 生成随机验证码
+   */
+	function random($length = 6 , $numeric = 0) {
+		PHP_VERSION < '4.2.0' && mt_srand((double)microtime() * 1000000);
+		if($numeric) {
+			$hash = sprintf('%0'.$length.'d', mt_rand(0, pow(10, $length) - 1));
+		} else {
+			$hash = '';
+			$chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789abcdefghjkmnpqrstuvwxyz';
+			$max = strlen($chars) - 1;
+			for($i = 0; $i < $length; $i++) {
+				$hash .= $chars[mt_rand(0, $max)];
+			}
+		}
+		return $hash;
+	}
+	function xml_to_array($xml){
+		$reg = "/<(\w+)[^>]*>([\\x00-\\xFF]*)<\\/\\1>/";
+		if(preg_match_all($reg, $xml, $matches)){
+			$count = count($matches[0]);
+			for($i = 0; $i < $count; $i++){
+				$subxml= $matches[2][$i];
+				$key = $matches[1][$i];
+				if(preg_match( $reg, $subxml )){
+					$arr[$key] = $this->xml_to_array( $subxml );
+				}else{
+					$arr[$key] = $subxml;
+				}
+			}
+		}
+		return $arr;
+	}
+	function Post($curlPost,$url){
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_NOBODY, true);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+		$return_str = curl_exec($curl);
+		curl_close($curl);
+		return $return_str;
+	}
 }
 
 ?>

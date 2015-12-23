@@ -882,14 +882,14 @@ $(function(){
 					<tr>
 						<td class="bangcardtd">原密码</td>
 						<td>
-							<input class="bangcardinput" name="old_password" type="password" placeholder="请输入您以前的密码" onblur="chekold_password(this.value);">
+							<input class="bangcardinput" name="old_password" type="password" placeholder="请输入您的原登录密码" onblur="chekold_password(this.value);">
 							<label id="old_password"></label>
 						</td>
 					</tr>
 					<tr>
 						<td class="bangcardtd">新密码</td>
 						<td>
-							<input class="bangcardinput" name="new_password" type="password" placeholder="请输入您的新密码" onblur="cheknew_password(this.value);">
+							<input class="bangcardinput" name="new_password" type="password" placeholder="请输入不小于6位的任意字符" onblur="cheknew_password(this.value);">
 							<label id="new_password"></label>
 						</td>
 					</tr>
