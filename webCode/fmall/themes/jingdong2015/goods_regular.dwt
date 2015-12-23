@@ -172,7 +172,7 @@ function reg(str){
         <div class="mt">
           <ul class="tab">
             <li class="curr" id="p-con-detail"><a href="javascript:;" class="toggle-link">基本情况</a></li>
-            <li id="p-con-guar"><a href="javascript:;" class="toggle-link">优选债券</a></li>
+            <li id="p-con-guar"><a href="javascript:;" class="toggle-link">优选债权</a></li>
             <li id="p-con-list"><a href="javascript:;" class="toggle-link">风控措施</a></li>
             <li id="p-con-attr"><a href="javascript:;" class="toggle-link">投标记录</a></li>
           </ul>

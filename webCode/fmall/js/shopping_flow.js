@@ -761,12 +761,43 @@ function withdrawinfo()
 	var withdrawpassword = $("input[name='withdrawpassword']")[0].value;
 	var withdrawpwconfirm = $("input[name='withdrawpwconfirm']")[0].value;
 	
-	if(chekwithdrawverify(withdrawverify) && chekwithdrawpassword(withdrawpassword) && chekwithdrawpwconfirm(pwconfirm)){
-		return true;
-	}else{
+	if(withdrawverify == ''){
+		$("#withdrawverify").html("请输入短信验证码");
+		if($("#withdrawverify").hasClass("focus"))
+		{
+			$("#withdrawverify").removeClass("focus");
+		}
+		$("#withdrawverify").addClass("error");
 		return false;
 	}
-	
+	if(withdrawpassword == ''){
+		$("#withdrawpassword").html("请输入您的提现密码");
+		if($("#withdrawpassword").hasClass("focus"))
+		{
+			$("#withdrawpassword").removeClass("focus");
+		}
+		$("#withdrawpassword").addClass("error");
+		return false;
+	}
+	if(withdrawpwconfirm == ''){
+		$("#withdrawpwconfirm").html("请输入您的提现密码");
+		if($("#withdrawpwconfirm").hasClass("focus"))
+		{
+			$("#withdrawpwconfirm").removeClass("focus");
+		}
+		$("#withdrawpwconfirm").addClass("error");
+		return false;
+	}
+	if(withdrawpassword != withdrawpwconfirm){
+		$("#withdrawpwconfirm").html("两次密码输入不一致");
+		if($("#withdrawpwconfirm").hasClass("focus"))
+		{
+			$("#withdrawpwconfirm").removeClass("focus");
+		}
+		$("#withdrawpwconfirm").addClass("error");
+		return false;
+	}
+	return true;
 }
 
 /*
@@ -781,21 +812,43 @@ function chekwithdrawverify(withdrawverify)
 			$("#withdrawverify").removeClass("focus");
 		}
 		$("#withdrawverify").addClass("error");
-		return false;
 	}else{
 		if(withdrawverify.match(/^[0-9]{4}$/)){
 			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + withdrawverify, check_withdrawphoneverify_callback , 'GET', 'TEXT', true, true );
-			return true;
 		}else{
-			$("#withdrawverify").html("短信验证码错误");
+			$("#withdrawverify").html("输入不合法");
 			if($("#withdrawverify").hasClass("focus"))
 			{
 				$("#withdrawverify").removeClass("focus");
 			}
 			$("#withdrawverify").addClass("error");
-			return false;
+			$("input[name='withdrawverify']").val('');
+			$("input[name='withdrawverify']").focus();
 		}
 	}
+}
+function check_withdrawphoneverify_callback(result)
+{
+	if ( result == 'ok' )
+	  {
+		$('#withdrawverify').html('');
+		if($("#withdrawverify").hasClass("error"))
+		{
+			$("#withdrawverify").removeClass("error");
+		}
+		$("#withdrawverify").addClass("focus");
+		
+	  }
+	  else
+	  {
+		  $('#withdrawverify').html('输入错误');
+		  if($("#withdrawverify").hasClass("focus")){
+				$("#withdrawverify").removeClass("focus");
+			}
+			$("#withdrawverify").addClass("error");
+		  $("input[name='withdrawverify']").val('');
+		  $("input[name='withdrawverify']").focus();
+	  }
 }
 
 /*
@@ -905,31 +958,6 @@ function withdraw_phoneverify_callback(result)
 			$("#withdrawverify").addClass("error");
 			$('#withdraw_click').html('0');
 			$('#withdrawform').submit(function(){ return false;});
-	  }
-}
-
-function check_withdrawphoneverify_callback(result)
-{
-	if ( result == 'ok' )
-	  {
-		$('#withdrawverify').html('');
-		if($("#withdrawverify").hasClass("error"))
-		{
-			$("#withdrawverify").removeClass("error");
-		}
-		$("#withdrawverify").addClass("focus");
-		return true;
-	  }
-	  else
-	  {
-		  $('#withdrawverify').html('输入错误');
-		  if($("#withdrawverify").hasClass("focus"))
-			{
-				$("#withdrawverify").removeClass("focus");
-			}
-			$("#withdrawverify").addClass("error");
-		  $('#withdrawform').submit(function(){ return false;});
-		  return false;
 	  }
 }
 

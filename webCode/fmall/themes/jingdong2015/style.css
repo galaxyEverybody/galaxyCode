@@ -381,6 +381,7 @@ h6 span{float:left;padding-left:15px}
 .bangcardtitle{ width:100%;height:30px;line-height:30px;border-bottom:1px solid #FF852F;}
 .bangcardtd{ width:100px;text-align:right;align:right;}
 .bangcardinput{ width:260px;height:30px;float:left;}
+.bangcard_verify{ width:150px;height:30px;float:left;}
 .bangcardadd{ width:130px;height:35px;}
 .bangcardaddleft{ width:130px;height:35px;margin-left:10px;}
 .bangcardsub{ width:260px;height:40px;border:1px solid #FF852F; background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;cursor:pointer;}

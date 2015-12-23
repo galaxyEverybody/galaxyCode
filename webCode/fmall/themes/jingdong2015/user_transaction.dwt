@@ -160,8 +160,8 @@ $(function(){
 				<tr>
 					<td class="bangcardtd">验证码</td>
 					<td>
-						<input style="width:150px;height:30px;float:left;" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
-						<div class="widthdraw_button_time" id="get_withdraw_time" onclick="getwithdrawphoneverify()">获取验证码</div>
+						<input class="bangcard_verify" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
+						<div class="widthdraw_button_time" id="get_withdraw_time" onclick="getwithdrawphoneverify()"><a href="javascript:void(0)">获取验证码</a></div>
 						<label id="withdrawverify"></label>
 						<div id="doutimeinp"></div>
 					</td>
@@ -169,7 +169,7 @@ $(function(){
 				<tr>
 					<td class="bangcardtd">提现密码</td>
 					<td>
-						<input class="bangcardinput" name="withdrawpassword" type="password" placeholder="请输入您的提现密码" onblur="chekwithdrawpassword(this.value);">
+						<input class="bangcardinput" name="withdrawpassword" type="password" placeholder="请输入不小于6位的任意数字与字母" onblur="chekwithdrawpassword(this.value);">
 						<label id="withdrawpassword"></label>
 					</td>
 				</tr>
@@ -197,24 +197,24 @@ $(function(){
 			<tr>
 				<td class="bangcardtd">验证码</td>
 				<td>
-					<input style="width:150px;height:30px;float:left;" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
-					<div class="widthdraw_button_time" id="get_withdraw_time" onclick="getwithdrawphoneverify()">获取验证码</div>
-					<span id="withdrawverify" style="color:#FF852F;margin-left:5px;line-height:30px;height:30px;"></span>
+					<input class="bangcard_verify" name="withdrawverify" type="text" placeholder="请输入您收到的验证码" onblur="chekwithdrawverify(this.value);">
+					<div class="widthdraw_button_time" id="get_withdraw_time" onclick="getwithdrawphoneverify()"><a href="javascript:void(0)">获取验证码</a></div>
+					<span id="withdrawverify"></span>
 					<div id="doutimeinp"></div>
 				</td>
 			</tr>
 			<tr>
 				<td class="bangcardtd">提现密码</td>
 				<td>
-					<input class="bangcardinput" name="withdrawpassword" type="text" placeholder="请输入您的提现密码" onblur="chekwithdrawpassword(this.value);">
-					<span id="withdrawpassword" style="color:#FF852F;"></span>
+					<input class="bangcardinput" name="withdrawpassword" type="password" placeholder="请输入不小于6位的任意数字与字母" onblur="chekwithdrawpassword(this.value);">
+					<span id="withdrawpassword"></span>
 				</td>
 			</tr>
 			<tr>
 				<td class="bangcardtd">确认密码</td>
 				<td>
-					<input class="bangcardinput" name="withdrawpwconfirm" type="text" placeholder="重新输入您的提现密码" onblur="chekwithdrawpwconfirm(this.value);">
-					<span id="withdrawpwconfirm" style="color:#FF852F;"></span>
+					<input class="bangcardinput" name="withdrawpwconfirm" type="password" placeholder="重新输入您的提现密码" onblur="chekwithdrawpwconfirm(this.value);">
+					<span id="withdrawpwconfirm"></span>
 				</td>
 			</tr>
 			<tr>
