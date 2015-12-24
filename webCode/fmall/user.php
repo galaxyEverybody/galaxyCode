@@ -530,24 +530,26 @@ elseif($action == 'get_phoneverify'){
 
 	include_once(ROOT_PATH . 'includes/cls_sms.php');
 	$mobile = trim($_POST['phone']);
+	$phone_flag = trim($_POST['phone_flag']);
 	$sms = new sms();
 
-	if($sms->send($mobile))
-	{
+	if($sms->send($mobile,$phone_flag)){
 		echo 'ok';
 		exit;
-	}
-	else
-	{
+	}else{
 		echo 'false';
 		exit;
 	}
 }
 /* 验证短信验证码*/
-elseif($action == 'check_phoneverify')
-{	
-	$phoneverify = trim($_GET['phoneverify']);
-	if($_SESSION['mobile_code'] == $phoneverify)
+elseif($action == 'check_phoneverify'){
+
+	include_once(ROOT_PATH . 'includes/cls_sms.php');	
+	$phoneverify = trim($_POST['phoneverify']);
+	$verify_flag = trim($_POST['verify_flag']);
+	$sms = new sms();
+	
+	if($sms->check_verify($phoneverify,$verify_flag))
 	{
 		echo 'ok';
 	}else{
@@ -1433,33 +1435,22 @@ elseif ($action == 'act_edit_password')
     $user_id      = isset($_POST['uid'])  ? intval($_POST['uid']) : $user_id;
     $code         = isset($_POST['code']) ? trim($_POST['code'])  : '';
 
-    if (strlen($new_password) < 6)
-    {
+    if (strlen($new_password) < 6){
         show_message($_LANG['passport_js']['password_shorter']);
     }
-
-    $user_info = $user->get_profile_by_id($user_id); //论坛记录
-
-    if (($user_info && (!empty($code) && md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']) == $code)) || ($_SESSION['user_id']>0 && $_SESSION['user_id'] == $user_id && $user->check_user($_SESSION['user_name'], $old_password)))
-    {
-		
-        if ($user->edit_user(array('username'=> (empty($code) ? $_SESSION['user_name'] : $user_info['user_name']), 'old_password'=>$old_password, 'password'=>$new_password), empty($code) ? 0 : 1))
-        {
-			$sql="UPDATE ".$ecs->table('users'). "SET `ec_salt`='0' WHERE user_id= '".$user_id."'";
-			$db->query($sql);
-            $user->logout();
-            show_message($_LANG['edit_password_success'], $_LANG['relogin_lnk'], 'user.php?act=login', 'info');
-        }
-        else
-        {
-            show_message($_LANG['edit_password_failure'], $_LANG['back_page_up'], '', 'info');
-        }
+	$user_name = $_SESSION['user_name'];
+	
+    if ($user->edit_user(array('username'=>$user_name,'password'=>$new_password))){
+		$sql="UPDATE ".$ecs->table('users'). "SET `ec_salt`='0' WHERE user_id= '".$user_id."'";
+		$db->query($sql);
+        $user->logout();
+        show_message($_LANG['edit_password_success'], $_LANG['relogin_lnk'], 'user.php?act=login', 'info');
     }
     else
     {
         show_message($_LANG['edit_password_failure'], $_LANG['back_page_up'], '', 'info');
     }
-
+    
 }
 
 /* 修改会员提现密码 */

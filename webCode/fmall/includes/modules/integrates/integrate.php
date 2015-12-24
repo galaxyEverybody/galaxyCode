@@ -278,7 +278,7 @@ class integrate
             $cfg['post_username'] = $cfg['username'];
 
         }
-
+		
         $values = array();
         /* 登录密码的组装*/
         if (!empty($cfg['password']) && empty($cfg['md5password']))
@@ -340,7 +340,7 @@ class integrate
             $sql = "UPDATE " . $this->table($this->user_table).
                    " SET " . implode(', ', $values).
                    " WHERE " . $this->field_name . "='" . $cfg['post_username'] . "' LIMIT 1";
-
+			
             $this->db->query($sql);
 
             if ($this->need_sync)

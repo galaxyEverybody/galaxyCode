@@ -726,7 +726,8 @@ function check_phone_callback(result){
 function getphoneverify()
 {
 	var phone = document.getElementById('phone').value;
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, get_phoneverify_callback , 'POST', 'TEXT', true, true );
+	var phone_flag = 'register';
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone+'&phone_flag='phone_flag, get_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 function get_phoneverify_callback(result)
 {
@@ -745,6 +746,7 @@ function get_phoneverify_callback(result)
 function checkphoneverify(phoneverify)
 {
 	var submit_disabled = false;
+	var verify_flag = 'register';
 	if (phoneverify == '')
 	  {
 	    document.getElementById('verify_notice').innerHTML = '验证码不能为空';
@@ -772,7 +774,7 @@ function checkphoneverify(phoneverify)
 		}
 		$("#verify_notice").addClass("verifyerror");
 	  }
-	 Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify, check_phoneverify_callback , 'GET', 'TEXT', true, true );
+	 Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneverify+'&verify_flag='+verify_flag, check_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 function check_phoneverify_callback(result)
 {

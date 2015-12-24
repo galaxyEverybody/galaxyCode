@@ -17,8 +17,8 @@ if (!defined('IN_ECS'))
 {
     die('Hacking attempt');
 }
-define('SMSNAME', 'cf_yhzl830702');
-define('SMSPW', 'yhzl888');
+define(SMSNAME, 'cf_yhzl830702');
+define(SMSPW, 'yhzl888');
 require_once(ROOT_PATH . 'includes/cls_transport.php');
 require_once(ROOT_PATH . 'includes/shopex_json.php');
 
@@ -103,13 +103,13 @@ class sms
      /* 发送短消息
      *
      * @access  public
-     * @param   string  $phone          要发送到哪些个手机号码，传的值是一个数组
-     * @param   string  $msg            发送的消息内容
+     * @param   string  $phone          要发送到哪些个手机号码
+     * @param   string  $phone_flag     发送的标识
      */
-    function send($phones)
+    function send($phones,$phone_flag)
     {
-        /* 检查发送信息的合法性 */
-        $contents=$this->is_moblie($phones);
+    	
+        $contents=$this->is_moblie($phones);	//检测手机号是否合法
         
         if(!$contents){
             exit('手机号码不合法');
@@ -124,13 +124,20 @@ class sms
             return false;
         }
 		$mobile_code = $this->random(4,1);
-		$post_data = "account=cf_yhzl830702&password=yhzl888&mobile=".$phones."&content=".rawurlencode("您的验证码是：".$mobile_code."。请不要把验证码泄露给其他人。");
+		$post_data = "account=".SMSNAME."&password=".SMSPW."&mobile=".$phones."&content=".rawurlencode("您的验证码是：".$mobile_code."。请不要把验证码泄露给其他人。");
         
         $phoneverify = $this->Post($post_data, $sms_url);
     	$gets =  $this->xml_to_array($phoneverify);
     	if($gets['SubmitResult']['code']==2){
-    		$_SESSION['mobile'] = $mobile;
-    		$_SESSION['mobile_code'] = $mobile_code;
+	    	$md5code = md5($mobile_code);
+	    	$verifyinfo = array(
+				'phonenum'		=>	$phones,
+				'verify_flag'	=>	$phone_flag,
+				'verify_code'	=>	$md5code,
+				'is_use'		=>	0,
+				'add_time'		=>	gmtime()
+			);
+	        $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('verify'), $verifyinfo, 'INSERT');
     	}
     	if($gets['SubmitResult']['msg'] == '提交成功'){
     		return 'true';
@@ -233,7 +240,7 @@ class sms
      */
     function is_moblie($moblie)
     {
-       return  preg_match("/^0?1((3|8)[0-9]|5[0-35-9]|4[57])\d{8}$/", $moblie);
+       return  preg_match("/^0?1[3|4|5|7|8]\d{9}$/", $moblie);
     }
    
    /**
@@ -280,6 +287,28 @@ class sms
 		$return_str = curl_exec($curl);
 		curl_close($curl);
 		return $return_str;
+	}
+	/*
+	* 对验证码的检测
+	* $code 验证码
+	* $verify_flag 验证标识
+	*/
+	function check_verify($code,$verify_flag){
+		if(empty($code) || empty($verify_flag)){
+			return false;
+		}
+		$md5code = md5($code);
+		$sql = "SELECT verify_id FROM ".$GLOBALS['ecs']->table('verify').
+		" WHERE  verify_code='".$md5code."' AND verify_flag='".$verify_flag."'";
+		$res = $GLOBALS['db']->getOne($sql);
+		
+		if($res){
+			$sql = "UPDATE ".$GLOBALS['ecs']->table('verify')." SET is_use=1 WHERE verify_id=".$res;
+			$GLOBALS['db']->query($sql);
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 

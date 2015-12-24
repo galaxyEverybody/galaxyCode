@@ -311,8 +311,21 @@
 	}
 	function nextnewphone(){
 		var verify = $("input[name='getpw_verify']").val();
-
-		if(verify == ''){
+		var uname = $("input[name='getpwphone_user']").val();
+		var uphone = $("input[name='']");
+		if(uname == ''){
+			$("#user_getpw").html('请输入您注册的账号');
+			if($("#user_getpw").hasClass("focus")){
+				$("#user_getpw").removeClass("focus");
+			}
+			$("#user_getpw").addClass("error");
+		}else if(uphone == 'getpwphone_phone'){
+			if($("#phone_getpw").hasClass("focus")){
+				$("#phone_getpw").removeClass("focus");
+			}
+			$("#phone_getpw").addClass("error");
+			$("#phone_getpw").html('请输入您注册时的手机号');
+		}else if(verify == ''){
 			if($("#verify_getpw").hasClass("focus")){
 				$("#verify_getpw").removeClass("focus");
 			}

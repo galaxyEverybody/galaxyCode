@@ -803,8 +803,8 @@ function withdrawinfo()
 /*
  * 设定提现密码验证码检测
  */
-function chekwithdrawverify(withdrawverify)
-{
+function chekwithdrawverify(withdrawverify){
+	var verify_flag = 'wdphone';
 	if(withdrawverify == ''){
 		$("#withdrawverify").html("请输入短信验证码");
 		if($("#withdrawverify").hasClass("focus"))
@@ -814,7 +814,7 @@ function chekwithdrawverify(withdrawverify)
 		$("#withdrawverify").addClass("error");
 	}else{
 		if(withdrawverify.match(/^[0-9]{4}$/)){
-			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + withdrawverify, check_withdrawphoneverify_callback , 'GET', 'TEXT', true, true );
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + withdrawverify+'&verify_flag='+verify_flag, check_withdrawphoneverify_callback , 'POST', 'TEXT', true, true );
 		}else{
 			$("#withdrawverify").html("输入不合法");
 			if($("#withdrawverify").hasClass("focus"))
@@ -933,7 +933,8 @@ function chekwithdrawpwconfirm(pwconfirm){
 function getwithdrawphoneverify()
 {
 	var phone = document.getElementById('truephone').value;
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, withdraw_phoneverify_callback , 'POST', 'TEXT', true, true );
+	var phone_flag = 'wdphone';
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone +'&phone_flag='+phone_flag, withdraw_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 
 function withdraw_phoneverify_callback(result)
@@ -1050,8 +1051,9 @@ function RemainauthcenternewphoneTime(){
 
 /* 安全认证中心手机更换手机获取验证码*/
 function getauthcenter_phone(){
+	var phone_flag = 'oldphone';
 	var phone = document.getElementById('oldmobile_phone').innerHTML;
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_phoneverify_callback , 'POST', 'TEXT', true, true );
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone + '&phone_flag=' + phone_flag, authcenter_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 function authcenter_phoneverify_callback(result){
 	if(result == 'ok'){
@@ -1073,6 +1075,7 @@ function authcenter_phoneverify_callback(result){
 
 /* 安全认证中心手机修改验证码验证*/
 function chekauthcenter_verify(phoneveri){
+	var verify_flag = 'oldphone';
 	if(phoneveri == ''){
 		$('#callauthphone_verify').html('请输入您收到的验证码');
 		if($("#callauthphone_verify").hasClass("focus")){
@@ -1081,7 +1084,7 @@ function chekauthcenter_verify(phoneveri){
 		$("#callauthphone_verify").addClass("error");
 	}else{
 		if(phoneveri.match(/[0-9]{4}/)){
-			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneveri, check_auphoneverify_callback , 'GET', 'TEXT', true, true );
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + phoneveri + '&verify_flag='+verify_flag, check_auphoneverify_callback , 'POST', 'TEXT', true, true );
 		}else{
 			$('#callauthphone_verify').html('验证码不合法');
 			if($("#callauthphone_verify").hasClass("focus")){
@@ -1275,6 +1278,7 @@ function check_newphone_callback(result){
 function getwithdrawnewphoneverify(){
 	var reg = /^1[3|5|8|7]\d{9}$/;
 	var phone = document.getElementById('newmobile_phone').value;
+	var phone_flag = 'newphone';
 	if(phone == ''){
 		$('#newphone_authcenter').html('请输入您的新手机号');
 		if($("#newphone_authcenter").hasClass("focus")){
@@ -1283,7 +1287,7 @@ function getwithdrawnewphoneverify(){
 		$("#newphone_authcenter").addClass("error");
 	}else{
 		if(reg.test(phone)){
-			Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, authcenter_newphoneverify_callback , 'GET', 'TEXT', true, true );
+			Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone + '&phone_flag='+phone_flag, authcenter_newphoneverify_callback , 'POST', 'TEXT', true, true );
 		}else{
 			$('#newphone_authcenter').html('手机号格式错误');
 			if($("#newphone_authcenter").hasClass("focus")){
@@ -1302,6 +1306,7 @@ function authcenter_newphoneverify_callback(result){
 
 /*新手机号验证码的验证*/
 function cheauthcenter_newverify(verify){
+	var verify_flag = 'newphone';
 	if(verify == ''){
 		$('#newphonemsg_authcenter').html('请输入验证码');
 		if($("#newphonemsg_authcenter").hasClass("focus")){
@@ -1310,7 +1315,7 @@ function cheauthcenter_newverify(verify){
 		$("#newphonemsg_authcenter").addClass("error");
 	}else{
 		if(verify.match(/[0-9]{4}/)){
-			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + verify, check_authcenternewphoneverify_callback , 'GET', 'TEXT', true, true );
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + verify + '&verify_flag='+verify_flag, check_authcenternewphoneverify_callback , 'POST', 'TEXT', true, true );
 		}else{
 			$('#newphonemsg_authcenter').html('输入不合法');
 			if($("#newphonemsg_authcenter").hasClass("focus")){
@@ -1678,10 +1683,10 @@ function chekgetpwphone_user(username){
 			$("#user_getpw").removeClass("focus");
 		}
 		$("#user_getpw").addClass("error");
-		return false;
+		
 	}else{
 		Ajax.call( 'user.php?act=is_registered', 'username=' + username, registed_callbackonlogin , 'GET', 'TEXT', true, true );
-		return true;
+		
 	}
 }
 function registed_callbackonlogin(result){
@@ -1691,14 +1696,14 @@ function registed_callbackonlogin(result){
 		}
 	  $("#user_getpw").addClass("error");
 	  $("#user_getpw").html('您输入的账号不存在');
-	  return false;
+	  $("input[name='getpwphone_user']").val('');
+	  $("input[name='getpwphone_user']").focus();
   }else{
 	  $("#user_getpw").html('');
 	  if($("#user_getpw").hasClass("error")){
 			$("#user_getpw").removeClass("error");
 		}
 	  $("#user_getpw").addClass("focus");
-	  return true;
   }
 }
 
@@ -1711,7 +1716,7 @@ function chekgetpwphone_phone(phone){
 		}
 		$("#phone_getpw").addClass("error");
 		$("#phone_getpw").html('请输入您注册时的手机号');
-		return false;
+		
 	}else{
 		if(!reg.test(phone)){
 			if($("#phone_getpw").hasClass("focus")){
@@ -1719,10 +1724,11 @@ function chekgetpwphone_phone(phone){
 			}
 			$("#phone_getpw").addClass("error");
 			$("#phone_getpw").html('输入的手机号不合法');
-			return false;
+			$("input[name='getpwphone_phone']").val('');
+			$("input[name='getpwphone_phone']").focus();
 		}else{
 			Ajax.call( 'user.php?act=check_phone', 'phone=' + phone, check_phone_callbacknologin , 'GET', 'TEXT', true, true );
-			return true;
+			
 		}
 	}
 }
@@ -1733,20 +1739,21 @@ function check_phone_callbacknologin(result){
 		}
 		$("#phone_getpw").addClass("error");
 		$("#phone_getpw").html('您输入的号码不存在');
-		return true;
+		$("input[name='getpwphone_phone']").val('');
+		$("input[name='getpwphone_phone']").focus();
 	}else{
 		if($("#phone_getpw").hasClass("error")){
 			$("#phone_getpw").removeClass("error");
 		}
 		$("#phone_getpw").addClass("focus");
 		$("#phone_getpw").html('');
-		return true;
 	}
 }
 
 //短信验证码验证
 function chekgetpwphone_verify(verify){
 	var reg = /^[0-9]{4}$/;
+	var verify_flag = 'pwphone';
 	if(verify == ''){
 		if($("#verify_getpw").hasClass("focus")){
 			$("#verify_getpw").removeClass("focus");
@@ -1762,7 +1769,7 @@ function chekgetpwphone_verify(verify){
 		$("#verify_getpw").html('输入的验证码不合法');
 		return false;
 	}else{
-		Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + verify, checkgetpw_phoneverify_callback , 'GET', 'TEXT', true, true );
+		Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + verify+'&verify_flag='+verify_flag, checkgetpw_phoneverify_callback , 'POST', 'TEXT', true, true );
 	}
 }
 function checkgetpw_phoneverify_callback(result){
@@ -1787,10 +1794,11 @@ function checkgetpw_phoneverify_callback(result){
 function emailgetpwform(){
 	var pwuser = $("input[name='getpwemail_user']")[0].value;
 	var pwemail = $("input[name='getpwemail_email']")[0].value;
-	if(chekgetpwemail_user(pwuser)&&chekgetpwemail_email(pwemail)){
-		return true;
-	}else{
+
+	if(pwuser == '' || pwemail == ''){
 		return false;
+	}else{
+		return true;
 	}
 	
 }
@@ -1803,10 +1811,9 @@ function chekgetpwemail_user(username){
 		}
 		$("#emailuser_getpw").addClass("error");
 		$("#emailuser_getpw").html('请输入您注册的账号');
-		return false;
 	}else{
 		Ajax.call( 'user.php?act=is_registered', 'username=' + username, onlogin_callback_username , 'GET', 'TEXT', true, true );
-		return true;
+		
 	}
 }
 function onlogin_callback_username(result){
@@ -1816,14 +1823,15 @@ function onlogin_callback_username(result){
 		}
 	  $("#emailuser_getpw").addClass("error");
 	  $("#emailuser_getpw").html('您输入的账号不存在');
-	  return false;
+	  $("input[name='getpwemail_user']").val('');
+	  $("input[name='getpwemail_user']").focus();
   }else{
 	  if($("#emailuser_getpw").hasClass("error")){
 			$("#emailuser_getpw").removeClass("error");
 		}
 	  $("#emailuser_getpw").addClass("focus");
 	  $("#emailuser_getpw").html('');
-	  return true;
+	  
   }
 }
 //邮箱验证
@@ -1835,7 +1843,6 @@ function chekgetpwemail_email(email){
 		}
 		$("#emailemail_getpw").addClass("error");
 		$('#emailemail_getpw').html('请输入您的邮箱账号');
-		return false;
 	}else{
 		if(!reg.test(email)){
 			if($("#emailemail_getpw").hasClass("focus")){
@@ -1843,7 +1850,8 @@ function chekgetpwemail_email(email){
 			}
 			$("#emailemail_getpw").addClass("error");
 			$('#emailemail_getpw').html('输入的邮箱账号不合法');
-			return false;
+			$("input[name='getpwemail_email']").val('');
+			$("input[name='getpwemail_email']").focus();
 		}else{
 			Ajax.call( 'user.php?act=check_email', 'email=' + email, onlogin_callback_email , 'GET', 'TEXT', true, true );
 			return true;
@@ -1857,14 +1865,14 @@ function onlogin_callback_email(result){
 		}
 		$("#emailemail_getpw").addClass("focus");
 	  $("#emailemail_getpw").html('');
-	  return true;
   }else{
 	  if($("#emailemail_getpw").hasClass("focus")){
 			$("#emailemail_getpw").removeClass("focus");
 		}
 		$("#emailemail_getpw").addClass("error");
 	  $("#emailemail_getpw").html('您输入的账号不存在');
-	  return false;
+	  $("input[name='getpwemail_email']").val('');
+	  $("input[name='getpwemail_email']").focus();
   }
 }
 //新密码的验证
@@ -1936,7 +1944,8 @@ function chekgetpw_newpwconfirm(newpwconfirm){
 function getuserpw_phone()
 {
 	var phone = $("input[name='getpwphone_phone']")[0].value;
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone, getpw_phoneverify_callback , 'POST', 'TEXT', true, true );
+	var phone_flag = 'pwphone';
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone+'&phone_flag='+phone_flag, getpw_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 function getpw_phoneverify_callback(result)
 {

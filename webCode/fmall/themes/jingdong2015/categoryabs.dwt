@@ -124,9 +124,9 @@
     	 			
     	 			var number = 0;	
             		var startwidth12 = 400;
-            		var startwidth6 = 400*carone[1]/carone[0];
-            		var startwidth3 = 400*carone[2]/carone[0];
-            		var startwidth1 = 400*carone[3]/carone[0];
+            		var startwidth6 = 250;	//400*carone[1]/carone[0];
+            		var startwidth3 = 200;	//400*carone[2]/carone[0];
+            		var startwidth1 = 100;	400*carone[3]/carone[0];
             		
             		var auto12 = setInterval(autoaddwidth12,"100");
             		function autoaddwidth12(){
