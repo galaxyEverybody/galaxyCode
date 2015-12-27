@@ -80,8 +80,8 @@ Utils.isIdcard = function( idcard )
 
 Utils.isTel = function ( tel )
 {
-  var reg = /1[34578]\d{9}/; //只允许使用数字-空格等
-
+  var reg = /^1[34578]\d{9}$/; //只允许使用数字-空格等
+  
   return reg.test( tel );
 }
 
