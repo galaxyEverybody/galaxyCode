@@ -727,7 +727,7 @@ function getphoneverify()
 {
 	var phone = document.getElementById('phone').value;
 	var phone_flag = 'register';
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone+'&phone_flag='phone_flag, get_phoneverify_callback , 'POST', 'TEXT', true, true );
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone+'&phone_flag='+phone_flag, get_phoneverify_callback , 'POST', 'TEXT', true, true );
 }
 function get_phoneverify_callback(result)
 {
