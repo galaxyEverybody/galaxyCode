@@ -185,8 +185,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                 }
                 
                 /* 修改商品的可投资金额*/
-                $sql = 'UPDATE '.$GLOBALS['ecs']->table('goods').' SET surplus_price ="'.$invest_price.'" where goods_id ='.$goodid;
-
+                $sql = 'UPDATE '.$GLOBALS['ecs']->table('goods').' SET surplus_price ='.$invest_price.' where goods_id ='.$goodid;
                 $GLOBALS['db']->query($sql);
                 
                 /* 记录订单操作记录 

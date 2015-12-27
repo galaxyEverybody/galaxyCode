@@ -1142,7 +1142,7 @@ elseif ($_REQUEST['step'] == 'select_payment')
 	
 	//支付成功
 	if(true){
-		//order_paid($log_id, $pay_status = PS_PAYED, $note = '');	//修改订单的支付状态
+		order_paid($log_id, $pay_status = PS_PAYED, $note = '');	//修改订单的支付状态
 		
 		header('location:user.php?act=default');
 	}
