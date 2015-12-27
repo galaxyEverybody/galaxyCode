@@ -16,9 +16,10 @@
 </head>
 <body class="register_warp" {if $action == 'login'}style="background:#fff;"{/if}>
 {* 包含脚本文件 *}
-{insert_scripts files='common.js,user.js'}
+{insert_scripts files='common.js,user.js,shopping_flow.js'}
 {insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,jd_common_flow.js'}
 {insert_scripts files='transport_jquery.js,utils.js,jquery.SuperSlide.js'}
+
 <!-- {if $action !== 'login'} -->
 <!-- #BeginLibraryItem "/library/page_header_register.lbi" --><!-- #EndLibraryItem -->
 <!-- {/if} -->
@@ -101,8 +102,7 @@
     <div class="f1 f5" align="center">{$lang.shop_register_closed}</div>
   </div>
 </div>
-<!-- {else} --> 
-{insert_scripts files='utils.js,user.js'}
+<!-- {else} -->
 <DIV id="regist" class="w">
 	<div class="extra"> <span>我已经注册，现在就&nbsp;<a href="user.php" class="flk13">登录</a></span> </div>
 	<div class="mt">

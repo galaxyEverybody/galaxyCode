@@ -299,7 +299,8 @@ class sms
 		}
 		$md5code = md5($code);
 		$sql = "SELECT verify_id FROM ".$GLOBALS['ecs']->table('verify').
-		" WHERE  verify_code='".$md5code."' AND verify_flag='".$verify_flag."'";
+		" WHERE  verify_code='".$md5code."' AND verify_flag='".$verify_flag.
+		"' AND is_use=0 ORDER BY verify_id DESC";
 		$res = $GLOBALS['db']->getOne($sql);
 		
 		if($res){

@@ -292,14 +292,16 @@ function reg(str){
  	{
  		var investnum = $("#investamount").val();
  		var goodsid = $("#hidgoodsid").val();
+		
  		if(investnum == ''){
  			alert('请输入投资金额');
  			return false;
- 		}else{
- 			if(investnum%100 != 0){
- 				alert('输入金额必须为100的倍数');
- 				return false;
- 			}
+ 		}else if(investnum%100 != 0){
+ 			alert('输入金额必须为100的倍数');
+ 			return false;
+ 		}else if(investnum > 50000){
+ 			alert('最大投资金额为5万');
+ 			return false;
  		}
  		if(goodsid == ''){
  			return false;

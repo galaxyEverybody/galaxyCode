@@ -17,19 +17,6 @@ $user_id = trim($data['useruser']);
 $realname = trim($data['realname']);
 
 if($user_id = $userid){
-	//查询认证次数
-	$countinfo = select_chek_id($userid);
-	$num = $countinfo['num'];
-	$addtime = $countinfo['time'];
-	$nowtime = gmtime();
-	
-	if($num == 5 && ($nowtime-$addtime) > 24*60*60){
-		$sql = "UPDATE ".$GLOBALS['ecs']->table('check_idcard')." SET checktimes=0 WHERE user_id=".$userid;
-		$GLOBALS['db']->query($sql);
-	}elseif($num == 5){
-		$arr['status'] = '2';
-		die(json_encode($arr));
-	}
 	
 	$post_data [ 'name' ] = $realname;
 	$post_data [ 'cardno' ] = $data['idcard'] ;
@@ -51,7 +38,8 @@ if($user_id = $userid){
 	$result = curl_exec ( $ch ) ;
 	$arr = json_decode($result);
 	
-	$data = $arr->data;
+	$code = $arr->code;
+	/*$data = $arr->data;
 	$err = $data->err;
 	$address = $data->address;
 	$sex = $data->sex;
@@ -71,19 +59,22 @@ if($user_id = $userid){
 			'birthday'		=>	isset($birthday)?$birthday:'0',
 			'addtime'		=>	$time,
 			'checktimes'	=>	'1',
-	);
+	);*/
 	
 	if($code =='1'){
 		$res['status'] = '1';
 		echo json_encode($res);
+		exit;
 	}else{
 		$res['status'] = '0';
 		echo json_encode($res);
+		exit;
 	}
-	insert_check_id($userid,$checkidinfo);		//记录认证的信息
+	//insert_check_id($userid,$checkidinfo);		//记录认证的信息
 }else{
 	$res['status'] = '0';
 	echo json_encode($res);
+	exit;
 }
 
 

@@ -865,12 +865,7 @@ function chekwithdrawpassword(withdrawpassword)
 		$("#withdrawpassword").addClass("error");
 	}else{
 		if(withdrawpassword.match(/^[0-9a-zA-Z]{6,30}$/)){
-			$("#withdrawpassword").html("");
-			if($("#withdrawpassword").hasClass("error"))
-			{
-				$("#withdrawpassword").removeClass("error");
-			}
-			$("#withdrawpassword").addClass("focus");
+			Ajax.call("user.php?act=loginpw_wdpw",'wdpw='+withdrawpassword,call_back_wdpw,'POST','TEXT',true,true);
 		}else{
 			$("#withdrawpassword").html("提现密码输入不合法");
 			if($("#withdrawpassword").hasClass("focus"))
@@ -883,7 +878,25 @@ function chekwithdrawpassword(withdrawpassword)
 		}
 	}
 }
-
+function call_back_wdpw(result){
+	if(result == 'ok'){
+		$("#withdrawpassword").html("");
+		if($("#withdrawpassword").hasClass("error"))
+		{
+			$("#withdrawpassword").removeClass("error");
+		}
+		$("#withdrawpassword").addClass("focus");
+	}else{
+		$("#withdrawpassword").html("提现密码不能与登录密码重复");
+		if($("#withdrawpassword").hasClass("focus"))
+		{
+			$("#withdrawpassword").removeClass("focus");
+		}
+		$("#withdrawpassword").addClass("error");
+		$("input[name='withdrawpassword']").val('');
+		$("input[name='withdrawpassword']").focus();
+	}
+}
 /*
  * 重复密码的验证
  */
@@ -1138,20 +1151,26 @@ function chewithdrawauthcenter_password(widthdrawpassword){
 }
 
 function callback_auth_pw(result){
-	if(result == 'ok'){
+	if(result == '1'){
 		$('#withdrawerror_authcenter').html('');
 		if($("#withdrawerror_authcenter").hasClass("error")){
 			$("#withdrawerror_authcenter").removeClass("error");
 		}
 		$("#withdrawerror_authcenter").addClass("focus");
-	}else{
-		$('#withdrawerror_authcenter').html('验证码输入错误');
+	}else if(result == '2'){
+		$('#withdrawerror_authcenter').html('提现密码输入错误');
 		if($("#withdrawerror_authcenter").hasClass("focus")){
 			$("#withdrawerror_authcenter").removeClass("focus");
 		}
 		$("#withdrawerror_authcenter").addClass("error");
 		$("#wd_pw").val('');
 		$("#wd_pw").focus();
+	}else{
+		$('#withdrawerror_authcenter').html('请先设置提现密码');
+		if($("#withdrawerror_authcenter").hasClass("focus")){
+			$("#withdrawerror_authcenter").removeClass("focus");
+		}
+		$("#withdrawerror_authcenter").addClass("error");
 	}
 }
 
@@ -1532,6 +1551,150 @@ function authcentertruenamefrom(){
 	}
 	
 	return true;
+}
+
+/* 检测输入的原密码是否正确*/
+function chekold_password(oldpassword)
+{	
+	if(oldpassword == ''){
+		$('#old_password').html('请输入您的原密码');
+		if($("#old_password").hasClass("focus"))
+		{
+			$("#old_password").removeClass("focus");
+		}
+		$("#old_password").addClass("error");
+	}else{
+		if(oldpassword.length >= 6){
+			Ajax.call('user.php?act=ajax_checkoldpassword','oldpassword=' + oldpassword,old_pwcallback,'POST','JSON');
+		}else{
+			$('#old_password').html('输入的内容不合法');
+			if($("#old_password").hasClass("focus"))
+			{
+				$("#old_password").removeClass("focus");
+			}
+			$("#old_password").addClass("error");
+			$("input[name='old_password']").val('');
+			$("input[name='old_password']").focus();
+		}
+	}
+}
+
+function old_pwcallback(result)
+{
+	if(result > 0){
+		$('#old_password').html('');
+		if($("#old_password").hasClass("error"))
+		{
+			$("#old_password").removeClass("error");
+		}
+		$("#old_password").addClass("focus");
+	}else{
+		$('#old_password').html('原密码输入错误');
+		if($("#old_password").hasClass("focus"))
+		{
+			$("#old_password").removeClass("focus");
+		}
+		$("#old_password").addClass("error");
+		$("input[name='old_password']").val('');
+		$("input[name='old_password']").focus();
+	}
+}
+/* 检测输入的新密码是否正确*/
+function cheknew_password(newpassword)
+{
+	if(newpassword == ''){
+		$('#new_password').html('请输入您的新密码');
+		if($("#new_password").hasClass("focus"))
+		{
+			$("#new_password").removeClass("focus");
+		}
+		$("#new_password").addClass("error");
+	}else{
+		if(newpassword.length >= 6){
+			$('#new_password').html('');
+			if($("#new_password").hasClass("error"))
+			{
+				$("#new_password").removeClass("error");
+			}
+			$("#new_password").addClass("focus");
+		}else{
+			$('#new_password').html('输入的内容不合法');
+			if($("#new_password").hasClass("focus"))
+			{
+				$("#new_password").removeClass("focus");
+			}
+			$("#new_password").addClass("error");
+			$("input[name='new_password']").val('');
+			$("input[name='new_password']").focus();
+		}
+	}
+}
+/* 检测输入的新密码确认*/
+function chekconfirm_password(confirmpassword)
+{
+	var newpassword = $("input[name='new_password']")[0].value;
+	if(confirmpassword == ''){
+		$('#confirm_password').html('请输入您的新密码');
+		if($("#confirm_password").hasClass("focus"))
+		{
+			$("#confirm_password").removeClass("focus");
+		}
+		$("#confirm_password").addClass("error");
+	}else{
+		if(confirmpassword.length >= 6){
+			if(newpassword == confirmpassword){
+				$('#confirm_password').html('');
+				if($("#confirm_password").hasClass("error"))
+				{
+					$("#confirm_password").removeClass("error");
+				}
+				$("#confirm_password").addClass("focus");
+			}else{
+				$('#confirm_password').html('两次密码输入不一致');
+				if($("#confirm_password").hasClass("focus"))
+				{
+					$("#confirm_password").removeClass("focus");
+				}
+				$("#confirm_password").addClass("error");
+			}
+		}else{
+			$('#confirm_password').html('输入的内容不合法');
+			if($("#confirm_password").hasClass("focus"))
+			{
+				$("#confirm_password").removeClass("focus");
+			}
+			$("#confirm_password").addClass("error");
+			$("input[name='confirm_password']").val('');
+			$("input[name='confirm_password']").focus();
+		}
+	}
+}
+
+/*
+ *  会员修改密码提交的验证
+ */
+function editPassword()
+{
+	var msg='';
+	var oldpassword = $("input[name='old_password']")[0].value;
+	var newpassword = $("input[name='new_password']")[0].value;
+	var confirmpassword = $("input[name='confirm_password']")[0].value;
+	if(oldpassword == ''){
+		msg = '原密码不可以为空 \n';
+	}
+	if(newpassword == ''){
+		msg += '新密码不可以为空 \n';
+	}
+	if(newpassword != confirmpassword){
+		msg += '两次密码输入不一致 \n';
+	}
+	
+	if(msg.length > 0){
+		alert(msg);
+		return false;
+	}else{
+		return true;
+	}
 }
 
 /* 充值页面表单的验证*/
