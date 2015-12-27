@@ -359,14 +359,15 @@ function get_booking_list($user_id,$catstatus)
     $info['bond_list_abs'] = array();
     
     foreach($res as $row){
+    	$inv_time = ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24));	//投资期限
     	if($row['goods_weight'] >= gmtime() && gmtime() >=$row['add_time']){
     	
     		$info['bid_list_abs'][] = array(
 				'good_id'		=> $row['goods_sn'],		//债券id
 				'invest_price'  => $row['invest_price'],	//投资金额
 				'market_price'  => $row['market_price'].'%',	//年利率
-                'invest_time' 	=> ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24)),//投资期限
-                'me_money'  	=> number_format($row['invest_price']+$row['invest_price']*$row['market_price']/100,2),		//待收本息
+                'invest_time' 	=> $inv_time,//投资期限
+                'me_money'  	=> number_format($row['invest_price']+$row['invest_price']*$row['market_price']/36500*$inv_time,2),	//待收本息
                 'invest_temp'	=> floor(ceil((($row['shop_price']-$row['surplus_price'])/$row['shop_price'])*100))/100		//投资进度	
 			);
 			
@@ -376,8 +377,8 @@ function get_booking_list($user_id,$catstatus)
 				'good_id'		=> $row['goods_sn'],		//债券id
 				'invest_price'  => $row['invest_price'],	//投资金额
 				'market_price'  => $row['market_price'].'%',	//年利率
-                'invest_time' 	=> ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24)),//投资期限
-                'me_money'  	=> $row['invest_price']+$row['invest_price']*$row['market_price']/100,		//待收本息
+                'invest_time' 	=> $inv_time,//投资期限
+                'me_money'  	=> number_format($row['invest_price']+$row['invest_price']*$row['market_price']/36500*$inv_time,2),	//待收本息
                 'time_start'	=> date('Y-m-d',$row['goods_weight'])	//计息日期
 			);
     		
@@ -387,8 +388,8 @@ function get_booking_list($user_id,$catstatus)
 				'good_id'		=> $row['goods_sn'],		//债券id
 				'invest_price'  => $row['invest_price'],	//投资金额
 				'market_price'  => $row['market_price'].'%',	//年利率
-                'invest_time' 	=> ceil(($row['goods_number']-$row['goods_weight'])/(60*60*24)),//投资期限
-                'me_money'  	=> $row['invest_price']+$row['invest_price']*$row['market_price']/100,		//待收本息
+                'invest_time' 	=> $inv_time,//投资期限
+                'me_money'  	=> number_format($row['invest_price']+$row['invest_price']*$row['market_price']/36500*$inv_time,2),	//待收本息
                 'time_end'		=> date('Y-m-d',$row['goods_number'])		//结清日期	
 			);
     	
