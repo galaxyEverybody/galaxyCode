@@ -819,28 +819,54 @@ $(function(){
 		</div>
 		<!--手机修改end-->
 		
-		<!--邮箱修改start-->
+		<!--邮箱绑定与修改start-->
 		<p><img src="images/emailauth01.png" width="25px"><span class="capitalauthphone">绑定邮箱</span>
 			<span class="capitalauthnum">{if $userinfostatus.emailstatus eq 0}未绑定[用于账号密码的找回]<a onclick="authcenteremail()" id="capitalupdaemial" class="capitalauthupda">绑定</a>
-			{else}{$userinfostatus.email}</span> <span class="capitalauthupdaspan">已绑定</span>{/if}</p>
+			{else}{$userinfostatus.email}</span> <span onclick="auth_upda_email()" id="authspan_upda_email" class="capitalauthupdaspan">修改</span>{/if}</p>
 		<div id="authemaildiv">
-				<form id="formauthcenteremail" action="user.php" method="post" onSubmit="return authcenteremailform();">
-				<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
-					<tr>
-						<td class="bangcardtd">邮箱账号</td>
-						<td>
-							<input class="bangcardinput" name="authcenter_email" type="text" placeholder="请输入您的邮箱账号" onblur="chekauthcenteremail(this.value);">
-							<label id="emailmsg_authcenter"></label>
-						</td>
-					</tr>
-					<tr>
-						<td class="bangcardtd"><input name="act" type="hidden" value="act_bang_email" /></td>
-						<td><input class="bangcardsub" type="submit" value="确认提交"></td>
-					</tr>
-				</table>
-				</form>
+			<form id="formauthcenteremail" action="user.php" method="post" onSubmit="return authcenteremailform();">
+			<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
+				<tr>
+					<td class="bangcardtd">邮箱账号</td>
+					<td>
+						<input class="bangcardinput" name="authcenter_email" type="text" placeholder="请输入您的邮箱账号" onblur="chekauthcenteremail(this.value);">
+						<label id="emailmsg_authcenter"></label>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd"><input name="act" type="hidden" value="act_bang_email" /></td>
+					<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+				</tr>
+			</table>
+			</form>
 		</div>
-		<!--邮箱修改end-->
+		<div id="auth_upda_email">
+		<form id="authcenterupemailform" action="user.php" method="post" onsubmit="return authcenterupemailform();">
+			<table border="0px" cellspadding="10px" cellspacing="10px" class='authtableshow'>
+				<tr>
+					<td class="bangcardtd">验证码</td>
+					<td>
+						<input class="verifyauthinput" name="authemail_phoneverify" type="text" placeholder="请输入验证码" onblur="auth_mail_verify(this.value);">
+						<div class="widthdraw_button_time" id="get_authmailphone_time" onclick="getauthmail_phone()"><a href="javascript:void(0)">获取验证码<a></div>
+						<label id="callauthemail_verify"></label>
+						<input id="oldphone_verify_time" type="text" value='60' style="display:none;"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd">邮箱账号</td>
+					<td>
+						<input class="bangcardinput" name="authcenter_email" id="auth_upemail" type="text" placeholder="请输入您的邮箱账号" onblur="chekauthcenterupemail(this.value);">
+						<label id="upemailerror_authcenter"></label>
+					</td>
+				</tr>
+				<tr>
+					<td class="bangcardtd"><input name="act" type="hidden" value="act_bang_email" /></td>
+					<td><input class="bangcardsub" type="submit" value="确认提交"></td>
+				</tr>
+			</table>
+		</form>
+		</div>
+		<!--邮箱绑定与修改end-->
 		
 		<!--进行实名认证start-->
 		<p><img src="images/idcardauth01.png"><span class="capitalauthphone">实名认证</span><span class="capitalauthnum">
@@ -986,6 +1012,16 @@ $(function(){
 			}else{
 				$("#authphonediv").slideToggle(500);
 				$('#capitalupdaphone').html('修改');
+			}
+		}
+		function auth_upda_email(){
+			var emailnum = $('#authspan_upda_email').html();
+			if(emailnum == '修改'){
+				$("#auth_upda_email").slideToggle(500);
+				$('#authspan_upda_email').html('取消修改');
+			}else{
+				$("#auth_upda_email").slideToggle(500);
+				$('#authspan_upda_email').html('修改');
 			}
 		}
 		function authcenteremail(){

@@ -3155,6 +3155,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv .authupphone .focus{ background:url(images/register_right.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;}
 .authcenterdiv .autherrorinfo{ color:red;width:200px;line-height:30px;height:30px;float:left;margin-left:5px;}
 .authcenterdiv #authemaildiv{ width:650px;height:200px;display:none;margin-left:200px;}
+.authcenterdiv #auth_upda_email{ width:650px;height:200px;display:none;margin-left:200px;}
 .authcenterdiv #authidcarddiv{ width:750px;height:200px;display:none;margin-left:200px;}
 .authcenterdiv #authpwssdiv{ width:750px;height:260px;display:none;}
 .authcenterdiv .authtableshow{ margin-top:20px;font-size:16px;}
@@ -3162,7 +3163,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .authcenterdiv .capitalauthphone{ margin-left:50px;font-size:20px;}
 .authcenterdiv .capitalauthnum{ margin-left:100px;}
 .authcenterdiv .capitalauthupda{ float:right;margin-right:20px;color:#185283;cursor:pointer;}
-.authcenterdiv .capitalauthupdaspan{ float:right;margin-right:20px;color:#FF852F;cursor:pointer;}
+.authcenterdiv .capitalauthupdaspan{ float:right;margin-right:20px;color:#FF852F;cursor:pointer;color:#185283;}
 .authcenterdiv #authphonediv{ width:60%;height:auto;display:none;}
 .authcenterdiv #phoneauthupshow{ width:214px;height:30px;float:left;cursor:pointer;text-align:center;background:url(images/auth_centerphone01.png);}
 .authcenterdiv #idcardauthshow{ width:206px;height:30px;float:right;cursor:pointer;text-align:center;background:url(images/authcenteridcard02.png);position:absolute;z-index:6;margin-left:206px;}

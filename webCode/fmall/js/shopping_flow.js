@@ -1171,6 +1171,8 @@ function callback_auth_pw(result){
 			$("#withdrawerror_authcenter").removeClass("focus");
 		}
 		$("#withdrawerror_authcenter").addClass("error");
+		$("#wd_pw").val('');
+		$("#wd_pw").focus();
 	}
 }
 
@@ -1197,14 +1199,22 @@ function chewithdrawidcardauthcenter_password(widthdrawpassword){
 	}
 }
 function callback_authidcard_pw(result){
-	if(result == 'ok'){
+	if(result == '1'){
 		$('#withdrawidcard_authcenter').html('');
 		if($("#withdrawidcard_authcenter").hasClass("error")){
 			$("#withdrawidcard_authcenter").removeClass("error");
 		}
 		$("#withdrawidcard_authcenter").addClass("focus");
-	}else{
+	}else if(result == '2'){
 		$('#withdrawidcard_authcenter').html('提现密码输入错误');
+		if($("#withdrawidcard_authcenter").hasClass("focus")){
+			$("#withdrawidcard_authcenter").removeClass("focus");
+		}
+		$("#withdrawidcard_authcenter").addClass("error");
+		$("input[name='withdrawauthidcardcenter_password']").val('');
+		$("input[name='withdrawauthidcardcenter_password']").focus();
+	}else{
+		$('#withdrawidcard_authcenter').html('请先设置提现密码');
 		if($("#withdrawidcard_authcenter").hasClass("focus")){
 			$("#withdrawidcard_authcenter").removeClass("focus");
 		}
@@ -1387,7 +1397,7 @@ function authcentereditphone(){
 	return true;
 }
 
-/*安全认证中心邮箱的验证*/
+/*安全认证中心邮箱绑定的验证*/
 function chekauthcenteremail(email){
 	if(email == ''){
 		$('#emailmsg_authcenter').html('请输入您的邮箱账号');
@@ -1398,11 +1408,8 @@ function chekauthcenteremail(email){
 		$('#formauthcenteremail').submit(function(){return false;});
 	}else{
 		if(email.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)){
-			$('#emailmsg_authcenter').html('');
-			if($("#emailmsg_authcenter").hasClass("error")){
-				$("#emailmsg_authcenter").removeClass("error");
-			}
-			$("#emailmsg_authcenter").addClass("focus");
+			
+			Ajax.call('user.php?act=check_email','email='+email,is_email_mysql,'POST','TEXT',true,true);
 		}else{
 			$('#emailmsg_authcenter').html('邮箱账号不合法');
 			if($("#emailmsg_authcenter").hasClass("focus")){
@@ -1413,7 +1420,22 @@ function chekauthcenteremail(email){
 		}
 	}
 }
-
+function is_email_mysql(result){
+	if(result == 'ok'){
+		$('#emailmsg_authcenter').html('');
+		if($("#emailmsg_authcenter").hasClass("error")){
+			$("#emailmsg_authcenter").removeClass("error");
+		}
+		$("#emailmsg_authcenter").addClass("focus");
+	}else{
+		$('#emailmsg_authcenter').html('您输入的邮箱账号已存在');
+		if($("#emailmsg_authcenter").hasClass("focus")){
+			$("#emailmsg_authcenter").removeClass("focus");
+		}
+		$("#emailmsg_authcenter").addClass("error");
+		$('#formauthcenteremail').submit(function(){return false;});
+	}
+}
 /*安全认证中心绑定邮箱提交的验证*/
 function authcenteremailform(){
 
@@ -1435,6 +1457,129 @@ function authcenteremailform(){
 			return false;
 		}
 	}
+}
+
+/*安全认证中心修改邮箱中发送验证码*/
+function getauthmail_phone(){
+	var phone_flag = 'upemail';
+	var phone = document.getElementById('oldmobile_phone').innerHTML;
+	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone + '&phone_flag=' + phone_flag, authemail_phoneverify_callback , 'POST', 'TEXT', true, true );
+}
+function authemail_phoneverify_callback(result){
+	alert(result);
+	if(result == 'ok'){
+		$('#callauthemail_verify').html('验证码已发送');
+		if($("#callauthemail_verify").hasClass("error")){
+			$("#callauthemail_verify").removeClass("error");
+		}
+		$("#callauthemail_verify").addClass("focus");
+		RemainauthcenterphoneTime();
+	}else{
+		$('#callauthemail_verify').html('验证码发送失败');
+		if($("#callauthemail_verify").hasClass("focus")){
+			$("#callauthemail_verify").removeClass("focus");
+		}
+		$("#callauthemail_verify").addClass("error");
+	}
+}
+/*安全认证中心修改邮箱验证码的校验*/
+function auth_mail_verify(verify){
+	var verify_flag = 'upemail';
+	if(verify == ''){
+		$('#callauthemail_verify').html('请输入验证码');
+		if($("#callauthemail_verify").hasClass("focus")){
+			$("#callauthemail_verify").removeClass("focus");
+		}
+		$("#callauthemail_verify").addClass("error");
+	}else{
+		if(verify.match(/[0-9]{4}/)){
+			Ajax.call( 'user.php?act=check_phoneverify', 'phoneverify=' + verify + '&verify_flag='+verify_flag, check_authemailverify_callback , 'POST', 'TEXT', true, true );
+		}else{
+			$('#callauthemail_verify').html('输入不合法');
+			if($("#callauthemail_verify").hasClass("focus")){
+				$("#callauthemail_verify").removeClass("focus");
+			}
+			$("#callauthemail_verify").addClass("error");
+			$("input[name='authemail_phoneverify']").val('');
+			$("input[name='authemail_phoneverify']").focus();
+		}
+	}
+}
+function check_authemailverify_callback(result){
+	if(result == 'ok'){
+		$('#callauthemail_verify').html('');
+		if($("#callauthemail_verify").hasClass("error")){
+			$("#callauthemail_verify").removeClass("error");
+		}
+		$("#callauthemail_verify").addClass("focus");
+	}else{
+		$('#callauthemail_verify').html('输入错误');
+		if($("#callauthemail_verify").hasClass("focus")){
+			$("#callauthemail_verify").removeClass("focus");
+		}
+		$("#callauthemail_verify").addClass("error");
+		$("input[name='authemail_phoneverify']").val('');
+		$("input[name='authemail_phoneverify']").focus();
+	}
+}
+/*安全认证中心修改邮箱邮箱的验证*/
+function chekauthcenterupemail(email){
+	if(email == ''){
+		$('#upemailerror_authcenter').html('请输入您的邮箱账号');
+		if($("#upemailerror_authcenter").hasClass("focus")){
+			$("#upemailerror_authcenter").removeClass("focus");
+		}
+		$("#upemailerror_authcenter").addClass("error");
+		$('#formauthcenteremail').submit(function(){return false;});
+	}else{
+		if(email.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)){
+			Ajax.call('user.php?act=check_email','email='+email,is_upemail_mysql,'POST','TEXT',true,true);
+		}else{
+			$('#upemailerror_authcenter').html('邮箱账号不合法');
+			if($("#upemailerror_authcenter").hasClass("focus")){
+				$("#upemailerror_authcenter").removeClass("focus");
+			}
+			$("#upemailerror_authcenter").addClass("error");
+			$('#authcenterupemailform').submit(function(){return false;});
+		}
+	}
+}
+function is_upemail_mysql(result){
+	if(result == 'ok'){
+		$('#upemailerror_authcenter').html('');
+		if($("#upemailerror_authcenter").hasClass("error")){
+			$("#upemailerror_authcenter").removeClass("error");
+		}
+		$("#upemailerror_authcenter").addClass("focus");
+	}else{
+		$('#upemailerror_authcenter').html('您输入的邮箱账号已存在');
+		if($("#upemailerror_authcenter").hasClass("focus")){
+			$("#upemailerror_authcenter").removeClass("focus");
+		}
+		$("#upemailerror_authcenter").addClass("error");
+		$('#authcenterupemailform').submit(function(){return false;});
+	}
+}
+/* 安全认证中心修改邮箱提交的验证*/
+function authcenterupemailform(){
+	var verify = $("input[name='authemail_phoneverify']").val();
+	var email = $("#auth_upemail").val();
+	if(verify == ''){
+		$('#callauthemail_verify').html('请输入验证码');
+		if($("#callauthemail_verify").hasClass("focus")){
+			$("#callauthemail_verify").removeClass("focus");
+		}
+		$("#callauthemail_verify").addClass("error");
+		return false;
+	}else if(email == ''){
+		$('#upemailerror_authcenter').html('请输入您的邮箱账号');
+		if($("#upemailerror_authcenter").hasClass("focus")){
+			$("#upemailerror_authcenter").removeClass("focus");
+		}
+		$("#upemailerror_authcenter").addClass("error");
+		return false;
+	}
+	return true;
 }
 
 /*安全中心实名认证姓名检测*/
@@ -1547,10 +1692,13 @@ function authcentertruenamefrom(){
 			$("#idcardnamemsg_authcenter").removeClass("focus");
 		}
 		$("#idcardnamemsg_authcenter").addClass("error");
+		
 		return false;
 	}
+	setTimeout(function(){
+		return true;
+	},5000)
 	
-	return true;
 }
 
 /* 检测输入的原密码是否正确*/

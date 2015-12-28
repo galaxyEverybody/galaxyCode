@@ -502,6 +502,7 @@ elseif($action == 'ajax_checkidcard'){
 elseif($action == 'check_email')
 {
     $email = trim($_REQUEST['email']);
+    
     if ($user->check_email($email))
     {
         echo 'false';
@@ -532,7 +533,7 @@ elseif($action == 'get_phoneverify'){
 	$mobile = trim($_POST['phone']);
 	$phone_flag = trim($_POST['phone_flag']);
 	$sms = new sms();
-
+	
 	if($sms->send($mobile,$phone_flag)){
 		echo 'ok';
 		exit;
@@ -548,7 +549,7 @@ elseif($action == 'check_phoneverify'){
 	$phoneverify = trim($_POST['phoneverify']);
 	$verify_flag = trim($_POST['verify_flag']);
 	$sms = new sms();
-	
+	echo $phoneverify."<br/>".$verify_flag;
 	if($sms->check_verify($phoneverify,$verify_flag))
 	{
 		echo 'ok';
