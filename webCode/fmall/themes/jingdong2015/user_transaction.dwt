@@ -325,20 +325,8 @@ $(function(){
 <!-- {if $action eq 'bangcard'}-->
 {* 包含脚本文件 *}
 {insert_scripts files='utils.js,transport_jquery.js,region.js,shopping_flow.js'}
-<script type="text/javascript">
-	region.isAdmin = false;
-	{foreach from=$lang.flow_js item=item key=key}
-		var {$key} = "{$item}";
-	{/foreach}
-	{literal}
-	onload = function() {
-		if (!document.all){
-		document.forms['theForm'].reset();
-		}
-	}
-	{/literal}
-</script>
 <div class="boxCenterList">
+	<!--{if $cardflag eq '0'}-->
 	<div class="capitaldiv">
 		<span class="capitalleft"></span><span class="capitalright">绑定银行卡</span>
 	</div>
@@ -347,8 +335,7 @@ $(function(){
 		<tr>
 			<td class="bangcardtd">真实姓名</td>
 			<td>
-				<input class="bangcardinput" name="bangtruename" type="text" placeholder="请输入您的真实姓名" onblur="chekbangtruename(this.value);">
-				<label id="bangtruename"></label>
+				{$real_name}
 			</td>
 		</tr>
 		<tr>
@@ -407,16 +394,13 @@ $(function(){
 		</tr>
 	</table>
 	</form>
+	<!--{else}-->
 	<div class="bangcardsuccess">
 		<div class="capitaldiv">
 			<span class="capitalleft"></span><span class="capitalright">成功绑定的银行卡</span>
 		</div>
 		<div class="bangcardnum">
-			<ul>
-				{foreach from=$cardinfo item=cardsinfo}
-				<li> 银行账号:<span>{$cardsinfo.cardnum}</span><a class="unbundcard">解绑</a></li>
-				{/foreach}
-			</ul>
+			<p>{$lang.bank_name.$cardinfo.cardbank}<span>{$cardinfo.cardnum}</span></p><em class="unbundcard">解绑</em>
 		</div>
 		<script>
 			$(function(){
@@ -438,6 +422,7 @@ $(function(){
 			});
 		</script>
 	</div>
+	<!--{/if}-->
 </div>
 <!--{/if}-->
 <!--绑定银行卡 end-->

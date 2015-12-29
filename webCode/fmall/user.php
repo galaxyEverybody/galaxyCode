@@ -720,26 +720,28 @@ elseif ($action == 'bangcard')
 {
 	include_once('includes/lib_transaction.php');
 	/*判断用户的实名认证状态*/
-	$sql = 'select idcard,idcardstatus from '.$ecs->table('users').' where user_id ='.$user_id;
+	$sql = 'select idcard,idcardstatus,realname from '.$ecs->table('users').' where user_id ='.$user_id;
 	$row = $db->getRow($sql);
-	if(empty($row['idcard']) || empty($row['idcardstatus'])){
+	if(empty($row['idcard']) || empty($row['idcardstatus']) || empty($row['realname'])){
 		show_message($_LANG['withdraws_idcard_fail'],$_LANG['back_up_page'], 'user.php?act=auth_center', 'info');
 	}
+	$realname = substr($row['realname'],0,3)."***";
+	
 	/* 取得国家的省列表 */
 	$province_list[$region_id] = get_regions(1, 1);
 	$smarty->assign('province_list',    $province_list);
+	$smarty->assign('real_name',$realname);
 	
 	$cardinfo = getbangcard_success($user_id);	//查询已绑定的银行卡
-	
-	$smarty->assign('cardinfotrue',$cardinfo);
-	foreach($cardinfo as $key=>$cinfo){
-		$str1 = substr($cinfo['cardnum'],0,4);
-		$str2 = substr($cinfo['cardnum'],-4);
-		$str = $str1.'*********'.$str2;
-		$cardinfo[$key]['cardnum'] = $str;
+	if(empty($cardinfo)){
+		$smarty->assign('cardflag',0);
+	}else{
+		$smarty->assign('cardflag',1);
 	}
+	$cardinfo['cardnum'] = substr($cardinfo['cardnum'],0,4).'************'.substr($cardinfo['cardnum'],-4);
 
 	$smarty->assign('cardinfo',$cardinfo);
+	
 	$smarty->display('user_transaction.dwt');
 }
 
@@ -774,11 +776,16 @@ elseif ($action == 'bangcardadd')
 {
 	include_once('includes/lib_transaction.php');
 	include_once('includes/cls_mysql.php');
+	include_once('includes/lib_llpay.php');
 	
-	$bangcardinfo = array(
+	$cardnum = isset($_POST['cardnum'])?trim($_POST['cardnum']):0;
+	//$check = new conpay;
+	//$res = $check->select_cardinfo($cardnum);
+	//print_r($res);exit;
+	/*$bangcardinfo = array(
 		'user_id'		=>	$user_id,
 		'addtime'		=>	gmtime(),
-		'cardnum'		=>	isset($_POST['cardnum'])?trim($_POST['cardnum']):0,
+		'cardnum'		=>	$cardnum,
 		'cardprovince'	=>	isset($_POST['provincename'])?$_POST['provincename']:0,
 		'cardcity'		=>	isset($_POST['cityname'])?trim($_POST['cityname']):0,
 		'cardcounty'	=>	isset($_POST['countyname'])?trim($_POST['countyname']):0,
@@ -788,12 +795,12 @@ elseif ($action == 'bangcardadd')
 		'bangstatus'	=>	'1'
 	);
 
-	if(insert_bangcard($bangcardinfo)){
+	if(insert_bangcard($bangcardinfo)){*/
 		/* 更改绑定银行卡认证状态*/
-		$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET bangcardstatus =1 WHERE user_id ='.$user_id;
+		/*$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET bangcardstatus =1 WHERE user_id ='.$user_id;
 		$GLOBALS['db']->query($sql);
 		header("Location:./user.php?act=bangcard");
-	}
+	}*/
 }
 
 /* 安全认证中心页面*/

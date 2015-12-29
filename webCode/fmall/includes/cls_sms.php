@@ -124,7 +124,7 @@ class sms
             return false;
         }
 		$mobile_code = $this->random(4,1);
-		$post_data = "account=".SMSNAME."&password=".SMSPW."&mobile=".$phones."&content=".rawurlencode("您的校验码是：".$mobile_code."。千万不要把校验码泄露给其他人。");
+		$post_data = "account=".SMSNAME."&password=".SMSPW."&mobile=".$phones."&content=".rawurlencode("您的校验码是：".$mobile_code."千万不要向任何人提供您收到的校验码。");
         
         $phoneverify = $this->Post($post_data, $sms_url);
     	$gets =  $this->xml_to_array($phoneverify);

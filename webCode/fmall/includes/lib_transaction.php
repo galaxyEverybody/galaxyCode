@@ -745,8 +745,8 @@ function insert_bangcard($bangcardinfo)
  * @return  array
  */
  function getbangcard_success($userid){
- 	$sql = 'SELECT cardnum from '.$GLOBALS['ecs']->table('bang_card').' where bangstatus = 1 AND user_id = '.$userid;
- 	$cardinfo = $GLOBALS['db']->getAll($sql);
+ 	$sql = 'SELECT cardnum,cardbank from '.$GLOBALS['ecs']->table('bang_card').' where bangstatus = 1 AND user_id = '.$userid;
+ 	$cardinfo = $GLOBALS['db']->getRow($sql);
  	
  	return $cardinfo;
  }
