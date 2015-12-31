@@ -720,21 +720,21 @@ function insert_borrow($info,$type=0)
  * @param   array       $bangcardinfo
  * @return  bool
  */
-function insert_bangcard($bangcardinfo)
-{
-	
-	$sql = 'SELECT * from '.$GLOBALS['ecs']->table('bang_card').' where user_id ='.$bangcardinfo['user_id'].' AND cardnum ='.$bangcardinfo['cardnum'];
-	$row = $GLOBALS['db']->getRow($sql);
-	
-	if(empty($row)){
+function insert_bangcard($bangcardinfo){
+	/* 查询改账户是否绑定过银行卡*/
+	$sql = "SELECT cardid,bangstatus FROM ".$GLOBALS['ecs']->table('bang_card')." WHERE user_id=".$bangcardinfo['user_id'];
+	$res = $GLOBALS['db']->getRow($sql);
+	if(empty($res)){
 		/* 插入一条新记录 */
 		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('bang_card'), $bangcardinfo, 'INSERT');
+		return true;
+	}elseif($res && empty($res['bangstatus'])){
+		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('bang_card'), $bangcardinfo, 'UPDATE', 'cardid='.$res['cardid'].' AND user_id='.$bangcardinfo['user_id']);
+		return true;
 	}else{
-		/* 更新指定目录*/
-		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('bang_card'), $bangcardinfo, 'UPDATE', 'cardid = ' .$row['cardid'] . ' AND user_id = ' . $bangcardinfo['user_id']);
+		return false;
 	}
 	
-	return true;
 }
 
 /**
@@ -745,7 +745,7 @@ function insert_bangcard($bangcardinfo)
  * @return  array
  */
  function getbangcard_success($userid){
- 	$sql = 'SELECT cardnum,cardbank from '.$GLOBALS['ecs']->table('bang_card').' where bangstatus = 1 AND user_id = '.$userid;
+ 	$sql = 'SELECT no_agree,cardnum,cardbank FROM '.$GLOBALS['ecs']->table('bang_card').' where bangstatus = 1 AND user_id = '.$userid;
  	$cardinfo = $GLOBALS['db']->getRow($sql);
  	
  	return $cardinfo;

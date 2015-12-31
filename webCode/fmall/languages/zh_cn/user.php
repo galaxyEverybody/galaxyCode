@@ -236,6 +236,18 @@ $_LANG['confirm_edit'] = '确认修改';
 
 $_LANG['confirm_drop_address'] = '你确认要删除该收货地址吗？';
 
+/* 绑定银行卡*/
+$_LANG['card_bank_error'] = '您选择银行卡的开户户银行！';
+$_LANG['card_addr_error'] = '您选择银行卡的开户地区！';
+$_LANG['card_shop_error'] = '您输入银行卡的开户网点！';
+$_LANG['card_num_error'] = '您输入您的银行卡号！';
+$_LANG['bang_cardbank_error'] = '您输入卡号与开户行不一致！';
+$_LANG['bang_cardtype_error'] = '平台暂不支持信用卡的绑定！';
+$_LANG['bang_card_false'] = '您输入的信息有误请重新输入！';
+$_LANG['bang_card_success'] = '银行卡绑定成功';
+$_LANG['unbang_card_false'] = '银行卡解绑失败！';
+$_LANG['unbang_card_success'] = '银行卡解绑成功';
+
 /* 会员密码找回 */
 $_LANG['username_and_email'] = '请输入您注册的用户名和注册时填写的电子邮件地址。';
 $_LANG['enter_new_password'] = '请输入您的新密码';

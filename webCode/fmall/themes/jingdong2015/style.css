@@ -494,10 +494,11 @@ h6 span{float:left;padding-left:15px}
 .boxCenterList li{float:left;width:120px}
 .boxCenterList li.goodsimg{width:48px;margin-right:10px}
 .bangcardsuccess{ width:100%;height:auto;border:1px solid #ddd;margin-top:30px;padding-bottom:50px;}
-.bangcardnum{ width:600px;height:35px;line-height:35px;margin-left:100px;font-size:16px;margin-top:20px;padding-bottom:50px;font-family:microsoft yahei;}
+.bangcard_hint{ width:600px;height:100px;border:2px solid #FF500B;border-radius:5px;}
+.bangcardnum{ width:600px;height:35px;line-height:35px;margin-left:130px;font-size:16px;margin-top:20px;padding-bottom:50px;font-family:microsoft yahei;}
 .bangcardnum p{ float:left;}
 .bangcardnum span{ margin-left:100px;margin-right:100px;}
-.bangcardnum em{ color:#FFF;font-weight:bold;float:left;border-radius:5px;cursor:pointer;width:80px;text-align:center;height:35px;line-height:35px;display:block;background:#FF500B;}
+.bangcardnum .unbundcard{ color:#FFF;font-weight:bold;font-size:14px;float:left;border-radius:5px;cursor:pointer;width:80px;border:0px;text-align:center;height:35px;line-height:35px;display:block;background:#FF500B;}
 .boxCenterList li.goodsimg img{width:48px;height:48px;display:block}
 .RelaArticle a,.alone{background:url(images/bg.gif) no-repeat 0 -170px;padding:0 0 0 10px;color:#3f3f3f;text-decoration:none}
 .RelaArticle a:hover{background:url(images/bg.gif) no-repeat 0 -170px;padding:0 0 0 10px;color:#f60;text-decoration:none}
@@ -1125,6 +1126,7 @@ h2,h3{font-size:14px}
 #footer-2013 .copyright{color:#DEDEDE;}
 #footer-2013 .authentication a{margin-top:10px;}
 #footer-2013 .links a{color:#666}
+#footer-2013 .footerspan a{ color:#fff;}
 .authentication{width:455px;height:auto;overflow:hidden}
 .authentication a{display:block;}
 .breadcrumb{height:20px;padding:8px 0 8px 6px;overflow:hidden;line-height:20px;vertical-align:baseline}

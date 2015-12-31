@@ -331,7 +331,7 @@ $(function(){
 		<span class="capitalleft"></span><span class="capitalright">绑定银行卡</span>
 	</div>
 	<form action="user.php" method="post" onsubmit="return bangkainfo()">
-	<table class="bangcardtable" border="0px" cellspadding="10px" cellspacing="10px">
+	<table class="bangcardtable" border="0px" cellspadding="15px" cellspacing="15px">
 		<tr>
 			<td class="bangcardtd">真实姓名</td>
 			<td>
@@ -384,7 +384,7 @@ $(function(){
 		<tr>
 			<td class="bangcardtd">银行卡号</td>
 			<td>
-				<input class="bangcardinput" name="cardnum" type="text" placeholder="请输入您的银行卡号" onblur="chekcardnum(this.value);">
+				<input class="bangcardinput" name="cardnum" type="text" placeholder="平台暂不支持信用卡" onblur="chekcardnum(this.value);">
 				<span id="cardnum"></span>
 			</td>
 		</tr>
@@ -400,27 +400,16 @@ $(function(){
 			<span class="capitalleft"></span><span class="capitalright">成功绑定的银行卡</span>
 		</div>
 		<div class="bangcardnum">
-			<p>{$lang.bank_name.$cardinfo.cardbank}<span>{$cardinfo.cardnum}</span></p><em class="unbundcard">解绑</em>
+			<form action="user.php" method="post">
+				<p>{$lang.bank_name.$cardinfo.cardbank}<span>{$cardinfo.cardnum}</span></p>
+				<input type="hidden" name="act" value="unbundcard"/>
+				<input type="submit" class="unbundcard" value="解 绑"/>
+			</form>
 		</div>
-		<script>
-			$(function(){
-				var con = $(".unbundcard");
-				con.click(function(){
-					var num = $(this).prev().html();
-					Ajax.call('user.php?act=unbundcard', 'con='+num, unbundcard_callback, 'POST', 'TEXT',true,true);
-				});
-				
-				function unbundcard_callback(result){
-					if(result){
-						alert('您的银行卡解绑成功');
-						window.location.reload();//刷新当前页面
-					}else{
-						alert('您的银行卡'+result.content+'解绑失败');
-					}
-				}
-			
-			});
-		</script>
+		<div class="bangcard_hint">
+			<p style="margin:10px;">温馨提示:</p>
+			<p></p>
+		</div>
 	</div>
 	<!--{/if}-->
 </div>

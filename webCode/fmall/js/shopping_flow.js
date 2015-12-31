@@ -641,55 +641,28 @@ function checksubmitorder(){
  */
 function bangkainfo()
 {
-	var bangtruename = $("input[name='bangtruename']")[0].value;
-	var cardwang = $("input[name='cardwang']")[0].value;
-	var cardnum = $("input[name='cardnum']")[0].value;
+	var cardwang = $("input[name='cardwang']").val();
+	var cardnum = $("input[name='cardnum']").val();
 
-	if(bangtruename ==''){
-		$("#bangtruename").html("请输入您的真实姓名");
-		return false;
-	}
 	if(cardwang ==''){
-		$("#cardwang").html("请输入开户网点");
+		$("#cardwang").html("请输入您的银行卡开户网点");
+		if($("#cardwang").hasClass("focus")){
+			$("#cardwang").removeClass("focus");
+		}
+		$("#cardwang").addClass("error");
 		return false;
 	}
 	if(cardnum ==''){
-		$("#cardnum").html("请输入银行卡号");
+		$("#cardnum").html("请输入您的银行卡号");
+		if($("#cardnum").hasClass("focus")){
+			$("#cardnum").removeClass("focus");
+		}
+		$("#cardnum").addClass("error");
 		return false;
 	}
 	
 	return true;
 	
-}
-
-/*
- * 绑定银行卡检测真实姓名
- */
-function chekbangtruename(bangtruename)
-{
-	if(bangtruename == ''){
-		$("#bangtruename").html("请输入您的真实姓名");
-		if($("#bangtruename").hasClass("focus")){
-			$("#bangtruename").removeClass("focus");
-		}
-		$("#bangtruename").addClass("error");
-		return false;
-	}else{
-		if(bangtruename.match(/[^\u4e00-\u9fa5]/)){
-			$("#bangtruename").html("输入姓名不合法");
-			if($("#bangtruename").hasClass("focus")){
-				$("#bangtruename").removeClass("focus");
-			}
-			$("#bangtruename").addClass("error");
-			return false;
-		}else{
-			$("#bangtruename").html("");
-			if($("#bangtruename").hasClass("error")){
-				$("#bangtruename").removeClass("error");
-			}
-			$("#bangtruename").addClass("focus");
-		}
-	}
 }
 
 /*
@@ -703,7 +676,6 @@ function checkcardwang(cardwang)
 			$("#cardwang").removeClass("focus");
 		}
 		$("#cardwang").addClass("error");
-		return false;
 	}else{
 		if(cardwang.match(/[^\u4e00-\u9fa5]/)){
 			if($("#cardwang").hasClass("focus")){
@@ -711,7 +683,8 @@ function checkcardwang(cardwang)
 			}
 			$("#cardwang").addClass("error");
 			$("#cardwang").html("输入开户网点不合法");
-			return false;
+			$("input[name=cardwang]").val('');
+			$("input[name=cardwang]").focus();
 		}else{
 			$("#cardwang").html("");
 			if($("#cardwang").hasClass("error")){
@@ -733,7 +706,6 @@ function chekcardnum(cardnum)
 			$("#cardnum").removeClass("focus");
 		}
 		$("#cardnum").addClass("error");
-		return false;
 	}else{
 		if(cardnum.match(/^[0-9]{15,20}$/)){
 			$("#cardnum").html("");
@@ -747,7 +719,8 @@ function chekcardnum(cardnum)
 				$("#cardnum").removeClass("focus");
 			}
 			$("#cardnum").addClass("error");
-			return false;
+			$("input[name=cardnum]").val('');
+			$("input[name=cardnum]").focus();
 		}
 	}
 }
