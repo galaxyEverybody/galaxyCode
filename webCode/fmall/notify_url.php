@@ -3,6 +3,7 @@
 *	支付返回结果异步通知页面
 *	2016-1-6
 */
+define('IN_ECS',true);
 if (!defined('IN_ECS'))
 {
     die('Hacking attempt');
@@ -30,11 +31,11 @@ $no_agree = trim($backinfo->no_agree);			//签约协议号
 
 if($oid_partner != $conpay->oid_partner){
 	/* 记录订单操作记录*/
-	order_action($order_id,1,0,'商户号不一致');
+	orderlog_action($order_id,1,0,'商户号不一致');
 	die("{'ret_code':'9999','ret_msg':'商户号不一致'}");
 }
 
-/ *需要进行验签的数组*/
+/*需要进行验签的数组*/
 $parameter = array (
 		'oid_partner' => $oid_partner,
 		'sign_type' => $sign_type,
@@ -63,7 +64,7 @@ if($boolsta && $result_pay == 'SUCCESS'){
 	}else{
 		/* 支付成功更改订单的状态信息*/
 		$sql = 'UPDATE '.$GLOBALS['ecs']->table('order_goods').' SET order_status=1,'.
-			pay_status=2,pay_time="'.gmtime().'" WHERE order_sn='.$no_order;
+			'pay_status=2,pay_time="'.gmtime().'" WHERE order_sn='.$no_order;
 		$GLOBALS['db']->query($sql);
 		/* 更改pay_log的状态*/
 		$sql = 'UPDAET '.$GLOBALS['ecs']->table('pay_log').' SET is_paid=1 WHERE order_id="'.$no_order.'"';
@@ -74,13 +75,13 @@ if($boolsta && $result_pay == 'SUCCESS'){
 		/* 修改商品的可投资金额*/
 		update_goods_surprice($no_order,$money_order);
 		/* 记录订单操作记录*/
-		order_action($order_id,1,2,$result_pay);
+		orderlog_action($order_id,1,2,$result_pay);
 		
 		die("{'ret_code':'0000','ret_msg':'交易成功'}");
 	}
 }else{
 	/* 记录订单操作记录*/
-	order_action($order_id,1,0,'验签没有通过');
+	orderlog_action($order_id,1,0,'验签没有通过');
 	die("{'ret_code':'9999','ret_msg':'验签失败'}");
 }
 
@@ -117,7 +118,7 @@ function update_goods_surprice($order_id,$money_order){
 *	@param string $action_note	备注
 *	@param int $log_time		产生时间
 */
-function order_action($order_id,$order_status,$pay_status,$action_note){
+function orderlog_action($order_id,$order_status,$pay_status,$action_note){
 	$addtime = gmtime();
 	$sql = 'INSERT INTO '.$GLOBALS['ecs']->table('order_action').' values("'.$order_id.
 		'","llpay",$order_status,0,$pay_status,1,$action_note,'.$addtime.')';

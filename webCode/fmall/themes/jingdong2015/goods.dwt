@@ -221,6 +221,7 @@ function reg(str){
 </div>
 </div>
 <div class="clr"></div>
+<div class="blank10"></div>
 </div>
 <div class="index_help_new">
 <!-- #BeginLibraryItem "/library/help_index.lbi" --><!-- #EndLibraryItem -->

@@ -192,7 +192,7 @@ class conpay{
 	}
 	/* 整合支付参数*/
 	function createpaystring($para,$url){
-		$sHtml = "<form id='llpaysubmit' name='llpaysubmit' action='" . $url . "' method='post'>";
+		$sHtml = "<form id='llpaysubmit' name='llpaysubmit' target='_blank' action='" . $url . "' method='post'>";
 		$sHtml .= "<input type='hidden' name='acct_name' value='" . $para['acct_name'] . "'/>";
 		$sHtml .= "<input type='hidden' name='bank_code' value='" . $para['bank_code'] . "'/>";
 		$sHtml .= "<input type='hidden' name='busi_partner' value='" . $para['busi_partner'] . "'/>";

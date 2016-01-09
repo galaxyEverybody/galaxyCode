@@ -2799,7 +2799,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .selected-c .v-fold .f-list li:hover{ border-color:#999;}
 
 .GoodsPageHeader #top-banner{ display:none;}
-.rootNav{ background:#f2f2f2; border-bottom:solid 1px #f2f2f2; margin-bottom:10px;}
+.rootNav{ background:#f2f2f2; border-bottom:solid 1px #f2f2f2;}
 .rootNav .breadcrumb{ padding:0 0 0 6px; line-height:45px; height:45px;}
 .rootNav #product-intro{ background:#fff;padding-left:50px; min-height:350px; _height:350px;background:#fff;-webkit-box-shadow: #666 0px 0px 10px;-moz-box-shadow: #666 0px 0px 10px;box-shadow: #666 0px 0px 10px;}
 .rootNav #preview{ width:200px; padding-bottom:15px;}
