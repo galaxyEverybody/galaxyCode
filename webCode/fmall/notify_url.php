@@ -9,7 +9,7 @@ if (!defined('IN_ECS'))
 }
 require(dirname(__FILE__) . '/includes/init.php');
 include_once('includes/lib_llpay.php');
-
+echo "<script>alert('aa');</script>";
 /* 对返回的数据进行验签*/
 
 $str = file_get_contents("php://input");
