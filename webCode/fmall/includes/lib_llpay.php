@@ -105,6 +105,7 @@ class conpay{
     		'name_goods'	=>	$para['goods_name'],	//商品名称
     		'money_order'	=>	$para['order_price'],	//交易金额
     		'notify_url'	=>	$this->notify_url,
+    		'url_return'	=>	$this->url_return,
     		'bank_code'		=>	$para['cardbank'],		//银行编号
     		'card_no'		=>	$para['cardnum'],		//银行卡号
     		'pay_type'		=>	$this->pay_style,
@@ -208,6 +209,7 @@ class conpay{
 		$sHtml .= "<input type='hidden' name='risk_item' value='" . $para['risk_item'] . "'/>";
 		$sHtml .= "<input type='hidden' name='sign_type' value='" . $para['sign_type'] . "'/>";
 		$sHtml .= "<input type='hidden' name='timestamp' value='" . $para['timestamp'] . "'/>";
+		$sHtml .= "<input type='hidden' name='url_return' value='" . $para['url_return'] . "'/>";
 		$sHtml .= "<input type='hidden' name='user_id' value='" . $para['user_id'] . "'/>";
 		$sHtml .= "<input type='hidden' name='version' value='" . $para['version'] . "'/>";
 		$sHtml .= "<input type='hidden' name='sign' value='" . $para['sign'] . "'/>";
