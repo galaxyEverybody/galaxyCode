@@ -1319,7 +1319,7 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
     }
     
     $cat['goods_level2'] = $goods;
-	//print_r($goods);
+
     if ($from == 'web')
     {
         $GLOBALS['smarty']->assign('cat_goods_' . $cat_id, $goods);
@@ -1411,7 +1411,6 @@ function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
 		$brands[$key]['logo'] = 'data/brandlogo/'.$val['brand_logo'];
 	}			
 	$cat['brands'] = $brands;*/
-	//print_r($cat);exit;
 	
     //$cat['goods_level2'] = $cat_list_arr;
     return $cat;

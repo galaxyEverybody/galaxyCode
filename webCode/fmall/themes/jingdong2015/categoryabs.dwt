@@ -27,7 +27,6 @@
 <div class="w main">
 	<div class="blank70"></div>
     <div class="catabs_div">
-    	<div class="blankleft2"></div>
 		<!-- {foreach from=$catabs_goods item=goods name=foo2} -->
 		<div class="catabs_info">
 		    <p>{$goods.name}</p>

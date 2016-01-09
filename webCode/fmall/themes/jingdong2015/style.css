@@ -152,14 +152,15 @@ h6 span{float:left;padding-left:15px}
 .regular_top_image_three{ width:100%;height:126px;background:url(images/baozhang_three.jpg) no-repeat;background-position:80px;}
 .regular_top_image_four{ width:100%;height:126px;background:url(images/baozhang_four.jpg) no-repeat;background-position:80px;}
 
-.index_faxdate{ background:#F2F2F2;width:100%;height:1300px;}
+.index_faxdate{ background:#F2F2F2;width:100%;height:1320px;}
+.index_faxdate .goods_absinfo{ width:1200px;height:300px;overflow:hidden;}
 .faxdate_title{ width:100%;height:50px;line-height:50px;}
 .faxdate_title span{ width:33px;height:50px;float:left;display:inline-block;background:url(images/dingqi.jpg) no-repeat;background-position:0px 12px;}
 .faxdate_title a{ font-size:24px;font-family:microsoft yahei;padding:0px 15px 0px 5px;float:left;cursor:pointer;}
 .faxdate_title .fax_title_s{ float:left;width:1px;height:25px;background:#ddd;margin-top:15px;}
 .faxdate_title .fax_title_img{ display:block;float:left;width:193px;height:51px;background:url(images/fax_title_img.png) no-repeat;background-position:0px 5px;}
 .faxdate_div{ width:100%;height:280px;overflow:hidden;}
-.blank_index{ width:28px;height:280px;float:left;}
+.blank_index{ width:26px;height:280px;float:left;}
 .faxdate_month{ width:280px;height:280px;float:left;background:#FFF;}
 .faxdate_top_form{ width:100%;height:10px;background:#FF8A00;}
 .faxdate_top_p{ font-size:16px;margin-top:10px;margin-left:30px;font-family:microsoft yahei;}
@@ -189,8 +190,8 @@ h6 span{float:left;padding-left:15px}
 .powder_title_a{ font-size:24px;font-family:microsoft yahei;padding:0px 20px 0px 5px;float:left;}
 .powder_title .powder_title_s{ float:left;width:1px;height:25px;background:#ddd;margin-top:15px;}
 .powder_title .powder_title_img{ display:block;float:left;width:193px;height:51px;background:url(images/powder_title_img.png) no-repeat;background-position:0px 5px;}
-.powder_div{ width:100%;height:287px;background:#FFF;}
-.powder_con_div{ width:1170px;height:280px;}
+.powder_div{ width:100%;height:287px;background:#FFF;overflow:hidden;}
+.powder_con_div{ width:1170px;height:287px;}
 .powder_con_div ul{ height:100%;line-height:70px;font-fize:16px;font-family:microsoft yahei;}
 .powder_con_div li{ border:1px solid #fff;border-bottom:1px solid #DDD;}
 .powder_con_div .powder_con_title{ font-weight:bold;font-size:14px;}
@@ -209,8 +210,8 @@ h6 span{float:left;padding-left:15px}
 
 .powder_news_title{ width:100%;height:50px;line-height:50px;}
 .powder_news_title span{ width:33px;height:50px;float:left;display:inline-block;background:url(images/dongtai.jpg) no-repeat;background-position:0px 12px;}
-.new_news{ width:100%;height:283px;background:#FFF;}
-.news_div{ width:1070px;height:280px;}
+.new_news{ width:100%;height:283px;background:#FFF;overflow:hidden;}
+.news_div{ width:1070px;height:283px;}
 .powder_news_title .news_title_s{ float:left;width:1px;height:25px;background:#ddd;margin-top:15px;}
 .powder_news_title .news_title_img{ display:block;float:left;width:193px;height:51px;background:url(images/news_title_img.png) no-repeat;background-position:0px 5px;}
 .news_div ul{ height:100%;line-height:69px;}
@@ -304,7 +305,7 @@ h6 span{float:left;padding-left:15px}
 .blank70{ width:100%;height:70px;}
 .catabs_div{ width:100%;height:400px;background:#FFF;border:1px solid #CCC;border-right:0px;}
 .blankleft2{ width:2px;height:100%;float:left;}
-.catabs_info{ width:301px;height:400px;float:left;font-size:16px;font-family:microsoft yahei;border-right:1px solid #ccc;}
+.catabs_info{ width:299px;height:400px;float:left;font-size:16px;font-family:microsoft yahei;border-right:1px solid #ccc;}
 .catabs_info p{ width:100%;height:40px;line-height:40px;border-bottom:1px solid #ccc;text-align:center;color:#FF8A00;}
 .catabs_info ul{ width:260px;margin-left:20px;}
 .catabs_info ul li{ height:70px;line-height:70px;}
@@ -399,7 +400,7 @@ h6 span{float:left;padding-left:15px}
 .withdraw_verify .focus{ background:url(images/register_right.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;}
 
 /* category*/
-.cate_all_div{ height:auto;background:#fff;width:100%;}
+.cate_all_div{ height:auto;background:#fff;width:100%;overflow:hidden;}
 .cate_all_middle{ width:95%;height:auto;margin-left:35px;}
 .cate_all_middle .firstli{ font-weight:bold;}
 .cate_all_div ul{ width:100%;height:auto;line-height:70px;font-size:16px;font-family:microsoft yahei;}
@@ -639,7 +640,7 @@ ol,ul{list-style:none}
 .root61 .banner_s{display:none}
 .banner_w{display:none}
 .banner_s{display:block}
-.root61 .w{width:1210px}
+.root61 .w{width:1200px}
 
 #shortcut-2013{width:100%;border-bottom:1px solid #eee;line-height:40px}
 #shortcut-2013,#shortcut-2013 .w{height:40px;background:#DDD;}
@@ -1606,11 +1607,11 @@ h2,h3{font-size:14px}
 .bondinfo_left_top{ line-height:40px;margin-top:20px;font-family:"microsoft yahei";}
 .bondinfo_left_top span{ font-size:18px;}
 .bondinfo_left .bond_left_topsize{ font-size:24px;color:#FF500B;}
-.bondinfo_recharge{ font-size:14px;float:right;margin-right:60px;text-align:center;color:#fff;font-weight:bold;}
-.bondinfo_left_middle{ width:80%;height:35px;margin-top:20px;background-color:#fff;float:left;border:1px solid #D7D7CC;}
-.bondinfo_left_middle_top{ float:left;}
+.bondinfo_recharge{ font-size:14px;float:right;margin-right:40px;margin-top:4px;text-align:center;color:#fff;font-weight:bold;}
+.bondinfo_left_middle{ width:87%;height:35px;line-height:35px;margin-top:20px;background-color:#fff;float:left;border:1px solid #D7D7CC;}
+.bondinfo_left_middle_top{ float:left;width:230px;}
 .bondinfo_left_middle em{ float:right;margin-right:5px;font-size:16px;color:#c0c0c0;}
-.recharge_input{ width:95%;height:30px;border-style:none;font-size:14px;outline:none;margin-left:2px;}
+.recharge_input{ width:95%;height:33px;border-style:none;font-size:14px;outline:none;margin-left:2px;}
 .bondinfo_num{ height:auto;margin-top:70px;line-height:25px;}
 .bondinfo_num li{ width:auto;height:20px;padding:5px 8px 5px 5px;border:1px solid #fff;float:left;cursor:pointer;background-color:#fff;border:1px solid #ddd;}
 .bondinfo_first{ margin-left:15px;float:left;}
@@ -3613,8 +3614,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .borrow_category{ width:100%;height:215px;}
 .count_click_car{ display:block;margin-left:500px;width:200px;height:40px;background:#FF8A00;text-align:center;font-weight: bold;line-height: 40px;margin-top:50px;color:#FFF;font-size:16px;}
 .borrow_category .category_input_style{ float:left;width:20px;height:20px;filter:alpha(opacity=50);opacity:0.5;}
-.borrow_category .category_car{ width:603px;height:215px;float:left;cursor:pointer;background:url(images/borrow_carover.jpg) no-repeat;}
-.borrow_category .category_house{ width:603px;height:215px;float:right;border-left:1px solid #CCC;border-bottom:1px solid #CCC;cursor:pointer;background:url(images/borrow_house.jpg) no-repeat;}
+.borrow_category .category_car{ width:599px;height:215px;float:left;cursor:pointer;background:url(images/borrow_carover.jpg) no-repeat;}
+.borrow_category .category_house{ width:599px;height:215px;float:right;border-left:1px solid #CCC;border-bottom:1px solid #CCC;cursor:pointer;background:url(images/borrow_house.jpg) no-repeat;}
 .countbig_div_car{ width:1200px;height:300px;}
 .countbig_div_car .bigdiv_left{ width:400px;height:300px;float:left;}
 .countbig_div_car .bigdiv_left p,.bigdiv_right p{ font-size:24px;margin-top:40px;margin-left:40px;}
@@ -3636,7 +3637,7 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 .rate_count_div ul{ line-height:45px;height:45px;text-align:center;float:left;}
 .rate_count_div .rate_car_li{ float:left;width:120px;cursor:pointer;font-weight:bold;color:#FE8A0F;}
 .rate_count_div .rate_house_li{ float:left;width:120px;cursor:pointer;border-bottom:1px solid #CCC;border-left:1px solid #CCC;}
-.rate_count_div .borrow_rate_blank{ width:1007px;height:45px;border-bottom:1px solid #CCC;float:right;border-left:1px solid #CCC;}
+.rate_count_div .borrow_rate_blank{ width:958px;height:45px;border-bottom:1px solid #CCC;float:right;border-left:1px solid #CCC;}
 #borrow_car_term{ width:100%;height:380px;display:block;}
 #borrow_car_term a:hover,#borrow_house_term a:hover{ color:#FFF;}
 #borrow_house_term{ width:100%;height:380px;display:none;}
@@ -3647,8 +3648,8 @@ ul.brand li .p-price{margin:10px 20px 0;height:40px;_margin:2px 20px 0}
 #borrow_house_term .house_term_td{ width:200px;height:200px;float:left;background:url(images/borrow_housetd.jpg) no-repeat;margin-left:100px;}
 #borrow_house_term .house_term_tj{ width:200px;height:200px;float:left;background:url(images/borrow_housetj.jpg) no-repeat;margin-left:200px;}
 #borrow_house_term .house_term_zl{ width:200px;height:200px;float:left;background:url(images/borrow_housezl.jpg) no-repeat;margin-left:200px;}
-.borrow_category .clickhouse{ width:603px;height:215px;float:right;cursor:pointer;background:url(images/borrow_houseover.jpg) no-repeat;}
-.borrow_category .clickhouse_car{ border-bottom:1px solid #CCC;border-right:1px solid #CCC;width:603px;height:215px;float:left;cursor:pointer;background:url(images/borrow_car.jpg) no-repeat;}
+.borrow_category .clickhouse{ width:599px;height:215px;float:right;cursor:pointer;background:url(images/borrow_houseover.jpg) no-repeat;}
+.borrow_category .clickhouse_car{ border-bottom:1px solid #CCC;border-right:1px solid #CCC;width:599px;height:215px;float:left;cursor:pointer;background:url(images/borrow_car.jpg) no-repeat;}
 .borrow_carinfo_top{ width:100%;height:119px;background:url(images/borrow_car_top.jpg) center center no-repeat;}
 .borrow_carinfo_middle{ width:100%;height:435px;background:url(images/car_banner.jpg) center center no-repeat;}
 .car_detail_div{ background:transparent;background-color:rgba(255,255,255,0.35);width:330px;height:415px;margin-top:9px;float:right;}

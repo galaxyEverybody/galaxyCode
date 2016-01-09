@@ -1107,13 +1107,14 @@ elseif ($_REQUEST['step'] == 'select_payment')
     //-- 改变支付方式
     /*------------------------------------------------------ */
 	include_once('includes/lib_payment.php');
+	include_once('includes/lib_llpay.php');
 	
 	$market_trueprice = trim($_POST['market_trueprice']);
 	$money = trim($_POST['investnum']);
 	$payment = trim($_POST['payment']);
 	$code = trim($_POST['code']);
 	$log_id = trim($_POST['log_id']);
-
+	
 	$goods_id=trim($_POST['goods_id']);
 	if(empty($payment) || empty($money) || empty($market_trueprice) || empty($log_id) || empty($code)){
 		show_message($_LANG['submit_payment_error'], $_LANG['back_up_page'], 'goods.php?id='.$goods_i);
@@ -1131,21 +1132,34 @@ elseif ($_REQUEST['step'] == 'select_payment')
 		show_message($_LANG['submit_payment_num'], $_LANG['back_up_page'], 'goods.php?id='.$goods_id);
 		exit;
 	}
+
+	/* 取得订单信息 */
+    $sql = 'SELECT o.user_id, o.order_sn, o.order_price, o.add_time, o.goods_name, '.
+    		'u.realname, u.idcard , b.cardbank, b.cardnum FROM '.
+            $GLOBALS['ecs']->table('order_goods').' as o,'.
+            $GLOBALS['ecs']->table('users').' as u,'.
+            $GLOBALS['ecs']->table('bang_card').' as b,'.
+            $GLOBALS['ecs']->table('pay_log').' as p '.
+           'WHERE o.user_id=u.user_id AND o.order_sn=p.order_id AND'.
+           ' u.user_id = b.user_id AND p.is_paid=0 AND p.log_id='.$log_id;
+    
+    $orderinfo    = $GLOBALS['db']->getRow($sql);
 	
-	
-	/*支付方式的选择
+	/* 支付方式的选择*/
 	if($payment == '0'){
 		
-	}elseif($payment == '1'){
-		
-	}*/
+	}elseif($payment == '4'){
+		$conpay = new conpay;
+		$conpay->pay_handle($orderinfo);
+		exit;
+	}
 	
 	//支付成功
-	if(true){
+	/*if(true){
 		order_paid($log_id, $pay_status = PS_PAYED, $note = '');	//修改订单的支付状态
 		
 		header('location:user.php?act=default');
-	}
+	}*/
 	
 	
     /*include_once('includes/cls_json.php');
@@ -1616,19 +1630,16 @@ elseif ($_REQUEST['step'] == 'done')
     $investprice = trim($_POST['investamount']);
     $goods_id = trim($_POST['goods_id']);
     $userid = $_SESSION['user_id'];
-    /* 查询是否是借款用户*/
-    $sql = 'SELECT is_loan_money,idcardstatus FROM '.$GLOBALS['ecs']->table('users').' WHERE user_id='.$userid;
-    $countrec = $GLOBALS['db']->getAll($sql);
-    
-    /*if($countrec[0]['is_loan_money'] == '2'){
-    	show_message($_LANG['financing_record_info'],$_LANG['back_up_page'],'./index.php');
-    }*/
-    
+    /* 查询认证状态*/
+    $sql = 'SELECT idcardstatus,bangcardstatus FROM '.$GLOBALS['ecs']->table('users').' WHERE user_id='.$userid;
+    $countrec = $GLOBALS['db']->getRow($sql);
+   
     //是否进行了实名认证
-    if(empty($countrec[0]['idcardstatus'])){
+    if(empty($countrec['idcardstatus'])){
     	show_message($_LANG['is_idcard_fail'],$_LANG['back_up_page'],'user.php?act=auth_center');
+    }elseif(empty($countrec['bangcardstatus'])){
+    	show_message($_LANG['is_bangcard_fail'],$_LANG['back_up_page'],'user.php?act=bangcard');
     }
- 	
     /* 取得商品信息 */
     $sql = "SELECT goods_name, goods_sn, is_on_sale, is_real, market_price, shop_price,
              goods_weight, integral, extension_code, goods_number, is_alone_sale, is_shipping FROM " .$GLOBALS['ecs']->table('goods')."
@@ -1655,7 +1666,7 @@ elseif ($_REQUEST['step'] == 'done')
     		'is_gift'       => 0,
     		'parent_id'		=>$goods['cat_id'],
     		'is_shipping'   => $goods['is_shipping'],
-    		'add_time'      => gmtime(),
+    		'add_time'      => time(),
     		'pay_id'		=> 4,
     		'pay_time'		=> 0,
     		'pay_status'	=> PS_UNPAYED,
@@ -2065,7 +2076,7 @@ elseif ($_REQUEST['step'] == 'done')
         send_mail($_CFG['shop_name'], $_CFG['service_email'], $tpl['template_subject'], $content, $tpl['is_html']);
     }
 
-    /* 如果需要，发短信 */
+    /* 如果需要，发短信 
     if ($_CFG['sms_order_placed'] == '1' && $_CFG['sms_shop_mobile'] != '')
     {
         include_once('includes/cls_sms.php');
@@ -2073,7 +2084,7 @@ elseif ($_REQUEST['step'] == 'done')
         $msg = $order['pay_status'] == PS_UNPAYED ?
             $_LANG['order_placed_sms'] : $_LANG['order_placed_sms'] . '[' . $_LANG['sms_paid'] . ']';
         $sms->send($_CFG['sms_shop_mobile'], sprintf($msg, $order['consignee'], $order['tel']),'', 13,1);
-    }
+    }*/
 
     /* 如果订单金额为0 处理虚拟卡 
     if ($order['order_amount'] <= 0)

@@ -549,7 +549,7 @@ elseif($action == 'check_phoneverify'){
 	$phoneverify = trim($_POST['phoneverify']);
 	$verify_flag = trim($_POST['verify_flag']);
 	$sms = new sms();
-	echo $phoneverify."<br/>".$verify_flag;
+	
 	if($sms->check_verify($phoneverify,$verify_flag))
 	{
 		echo 'ok';
@@ -738,37 +738,11 @@ elseif ($action == 'bangcard')
 	}else{
 		$smarty->assign('cardflag',1);
 	}
-	$cardinfo['cardnum'] = substr($cardinfo['cardnum'],0,4).'************'.substr($cardinfo['cardnum'],-4);
+	$cardinfo['cardnum'] = substr($cardinfo['cardnum'],0,4).'********************'.substr($cardinfo['cardnum'],-4);
 
 	$smarty->assign('cardinfo',$cardinfo);
 	
 	$smarty->display('user_transaction.dwt');
-}
-
-/* 解除绑定银行卡*/
-elseif ($action == 'unbundcard'){
-	include_once('includes/lib_transaction.php');
-	
-	$num = trim($_POST['con']);
-	$str1 = substr($num,0,4);
-	$str2 = substr($num,-4);
-	$cardinfo = getbangcard_success($user_id);	//查询已绑定的银行卡
-	foreach($cardinfo as $val){
-		$strnum .= $val['cardnum'].',';
-	}
-	$reg = '/'.$str1.'[0-9]{1,20}'.$str2.'/';
-	preg_match_all($reg,$strnum,$truenum);
-	
-	/* 更改银行卡的绑定状态*/
-	$sql = 'UPDATE '.$GLOBALS['ecs']->table('bang_card').' SET bangstatus = 0 where cardnum ='.$truenum[0][0];
-	$res = $GLOBALS['db']->query($sql);
-
-	if($res){
-		echo 'true';
-	}else{
-		echo 'false';
-	}
-	
 }
 
 /* 绑定银行卡信息的添加*/
@@ -778,29 +752,88 @@ elseif ($action == 'bangcardadd')
 	include_once('includes/cls_mysql.php');
 	include_once('includes/lib_llpay.php');
 	
-	$cardnum = isset($_POST['cardnum'])?trim($_POST['cardnum']):0;
-	//$check = new conpay;
-	//$res = $check->select_cardinfo($cardnum);
-	//print_r($res);exit;
-	/*$bangcardinfo = array(
-		'user_id'		=>	$user_id,
-		'addtime'		=>	gmtime(),
-		'cardnum'		=>	$cardnum,
-		'cardprovince'	=>	isset($_POST['provincename'])?$_POST['provincename']:0,
-		'cardcity'		=>	isset($_POST['cityname'])?trim($_POST['cityname']):0,
-		'cardcounty'	=>	isset($_POST['countyname'])?trim($_POST['countyname']):0,
-		'cardbank'		=>	isset($_POST['bankname'])?trim($_POST['bankname']):0,
-		'cardshop'		=>	isset($_POST['cardwang'])?trim($_POST['cardwang']):'',
-		'idcard'		=>	'0',
-		'bangstatus'	=>	'1'
-	);
+	$cardnum = isset($_POST['cardnum'])?mysql_real_escape_string(trim($_POST['cardnum'])):0;
+	$cardprovince = isset($_POST['provincename'])?$_POST['provincename']:0;
+	$cardcity = isset($_POST['cityname'])?trim($_POST['cityname']):0;
+	$cardcounty	= isset($_POST['countyname'])?trim($_POST['countyname']):0;
+	$cardbank = isset($_POST['bankname'])?trim($_POST['bankname']):0;
+	$cardshop = isset($_POST['cardwang'])?trim($_POST['cardwang']):'0';
+	
+	if(empty($cardbank)){
+		show_message($_LANG['card_bank_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
+	}elseif(empty($cardprovince) || empty($cardcity) || empty($cardcounty)){
+		show_message($_LANG['card_addr_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
+	}elseif(empty($cardshop)){
+		show_message($_LANG['card_shop_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
+	}elseif(empty($cardnum)){
+		show_message($_LANG['card_num_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
+	}
+	
+	$check = new conpay;
+	$res = $check->select_cardinfo($cardnum);
+	
+	$cardinfo = json_decode($res);
+	
+	/* 判断银行编号是否一致*/
+	if($cardinfo->bank_code != $_POST['bankname']){
+		show_message($_LANG['bang_cardbank_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
+	}
+	
+	/* 判断是否为信用卡*/
+	if($cardinfo->card_type == 3){
+		show_message($_LANG['bang_cardtype_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
+	}
+	
+	if($cardinfo->ret_code == '0000' && $cardinfo->ret_msg == '交易成功'){
+		$bangcardinfo = array(
+			'user_id'		=>	$user_id,
+			'addtime'		=>	gmtime(),
+			'cardnum'		=>	$cardnum,
+			'cardprovince'	=>	$cardprovince,
+			'cardcity'		=>	$cardcity,
+			'cardcounty'	=>	$cardcounty,
+			'cardbank'		=>	$cardbank,
+			'cardshop'		=>	$cardshop,
+			'card_type'		=>	$cardinfo->card_type,
+			'bangstatus'	=>	'1',
+			'no_agree'		=>	'0'
+			
+		);
+	
+		if(insert_bangcard($bangcardinfo)){
+			show_message($_LANG['bang_card_success'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
+		}else{
+			show_message($_LANG['bang_card_false'], $_LANG['back_up_page'], 'user.php?act=bangcard', 'info');
+		}
+	}else{
+		show_message($_LANG['bang_card_false'], $_LANG['back_up_page'], 'user.php?act=bangcard', 'info');
+	}
+}
 
-	if(insert_bangcard($bangcardinfo)){*/
-		/* 更改绑定银行卡认证状态*/
-		/*$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET bangcardstatus =1 WHERE user_id ='.$user_id;
-		$GLOBALS['db']->query($sql);
-		header("Location:./user.php?act=bangcard");
-	}*/
+/* 解除绑定银行卡*/
+elseif ($action == 'unbundcard'){
+	include_once('includes/lib_transaction.php');
+	include_once('includes/lib_llpay.php');
+	
+	$cardinfo = getbangcard_success($user_id);	//查询已绑定的银行卡
+	
+	if(empty($cardinfo['no_agree'])){
+		show_message($_LANG['unbang_card_false'], $_LANG['back_up_page'], 'user.php?act=bangcard', 'info');
+	}
+	
+	$unbind = new conpay;
+	$cardinfo['user_id'] = $user_id;
+	$unbind->unbind_card($cardinfo);
+	if($unbind->ret_code == '0000' && $unbind->msg == '交易成功'){
+		/* 更改银行卡的绑定状态*/
+		if(update_bangcard($cardinfo)){
+			show_message($_LANG['unbang_card_success'], $_LANG['back_up_page'], 'user.php?act=bangcard', 'info');
+		}else{
+			show_message($_LANG['unbang_card_false'], $_LANG['back_up_page'], 'user.php?act=bangcard', 'info');
+		}
+	}else{
+		show_message($_LANG['unbang_card_false'], $_LANG['back_up_page'], 'user.php?act=bangcard', 'info');
+	}
 }
 
 /* 安全认证中心页面*/

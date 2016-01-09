@@ -727,6 +727,8 @@ function insert_bangcard($bangcardinfo){
 	if(empty($res)){
 		/* 插入一条新记录 */
 		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('bang_card'), $bangcardinfo, 'INSERT');
+		$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET bangcardstatus=1 WHERE user_id='.$bangcardinfo['user_id'];
+		$GLOBALS['db']->query($sql);
 		return true;
 	}elseif($res && empty($res['bangstatus'])){
 		$GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('bang_card'), $bangcardinfo, 'UPDATE', 'cardid='.$res['cardid'].' AND user_id='.$bangcardinfo['user_id']);
@@ -735,6 +737,27 @@ function insert_bangcard($bangcardinfo){
 		return false;
 	}
 	
+}
+
+/**
+*	解绑银行卡
+*	@param	array	$cardinfo
+*	@return	bool
+*/
+function update_bangcard($cardinfo){
+	$sql = 'UPDATE '.$GLOBALS['ecs']->table('bang_card').' SET bangstatus = 0 where cardnum ='.$cardinfo['cardnum'];
+	$resone = $GLOBALS['db']->query($sql);
+	if($resone){
+		$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET bangcardstatus=0 WHERE user_id='.$cardinfo['user_id'];
+		$restwo = $GLOBALS['db']->query($sql);
+		if($restwo){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		return false;
+	}
 }
 
 /**

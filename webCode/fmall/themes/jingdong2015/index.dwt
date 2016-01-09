@@ -111,156 +111,163 @@
 			<s class="fax_title_s"></s>
 			<em class="fax_title_img"></em>
 		</div>
+		<div class="goods_absinfo">
 		<!-- TemplateBeginEditable name="分类下商品区域" -->
-		<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-		<!-- #EndLibraryItem -->
-		<div class="faxdate_div">
-			<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-			<div class="faxdate_quarter">
-				<div class="faxdate_top_form"></div>
-				<p class="faxdate_top_p">预期年化</p>
-				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">{$goods.market_price}
-						<span>%</span>
-					</div>
-				</div>
-				<div class="faxdate_coninfo">
-					<div class="faxdate_con_day">
-						<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
-						<div class="faxdate_day_font">天<br/>锁定期</div>
-					</div>
-					<div class="faxdate_coninfo_font">
-						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
-						<p>起投金额</p>
-					</div>
-				</div>
-				<!--{if $goods.good_status eq 1}-->
-				<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
-				<!--{elseif $goods.good_status eq 2}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">已满额</a></div>
-				<!--{elseif $goods.good_status eq 3}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
-				<!--{elseif $goods.good_status eq 4}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
-				<!--{else}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
-				<!--{/if}-->
-			</div>
-			<div class="blank_index"></div>
-			<!--{/foreach}-->
-        	<!-- #EndLibraryItem -->
-        	<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-			<div class="faxdate_quarter">
-				<div class="faxdate_top_form"></div>
-				<p class="faxdate_top_p">预期年化</p>
-				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">{$goods.market_price}
-						<span>%</span>
-					</div>
-				</div>
-				<div class="faxdate_coninfo">
-					<div class="faxdate_con_day">
-						<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
-						<div class="faxdate_day_font">天<br/>锁定期</div>
-					</div>
-					<div class="faxdate_coninfo_font">
-						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
-						<p>起投金额</p>
-					</div>
-				</div>
-				<!--{if $goods.good_status eq 1}-->
-				<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
-				<!--{elseif $goods.good_status eq 2}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">已满额</a></div>
-				<!--{elseif $goods.good_status eq 3}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
-				<!--{elseif $goods.good_status eq 4}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
-				<!--{else}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
-				<!--{/if}-->	
-			</div>
-			<div class="blank_index"></div>
-			<!--{/foreach}-->
-        	<!-- #EndLibraryItem -->
-        	<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-			<div class="faxdate_quarter">
-				<div class="faxdate_top_form"></div>
-				<p class="faxdate_top_p">预期年化</p>
-				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">{$goods.market_price}
-						<span>%</span>
-					</div>
-				</div>
-				<div class="faxdate_coninfo">
-					<div class="faxdate_con_day">
-						<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
-						<div class="faxdate_day_font">天<br/>锁定期</div>
-					</div>
-					<div class="faxdate_coninfo_font">
-						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
-						<p>起投金额</p>
-					</div>
-				</div>
-				<!--{if $goods.good_status eq 1}-->
-				<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
-				<!--{elseif $goods.good_status eq 2}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">已满额</a></div>
-				<!--{elseif $goods.good_status eq 3}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
-				<!--{elseif $goods.good_status eq 4}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
-				<!--{else}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
-				<!--{/if}-->	
-			</div>
-			<div class="blank_index"></div>
-			<!--{/foreach}-->
-        	<!-- #EndLibraryItem -->
-        	<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
-			<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
-			<div class="faxdate_quarter">
-				<div class="faxdate_top_form"></div>
-				<p class="faxdate_top_p">预期年化</p>
-				<div class="faxdate_expect">
-					<div class="faxdate_expect_day">{$goods.market_price}
-						<span>%</span>
-					</div>
-				</div>
-				<div class="faxdate_coninfo">
-					<div class="faxdate_con_day">
-						<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
-						<div class="faxdate_day_font">天<br/>锁定期</div>
-					</div>
-					<div class="faxdate_coninfo_font">
-						<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
-						<p>起投金额</p>
-					</div>
-				</div>
-				<!--{if $goods.good_status eq 1}-->
-				<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
-				<!--{elseif $goods.good_status eq 2}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">已满额</a></div>
-				<!--{elseif $goods.good_status eq 3}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
-				<!--{elseif $goods.good_status eq 4}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
-				<!--{else}-->
-				<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
-				<!--{/if}-->	
-			</div>
-			<div class="blank_index"></div>
-			<!--{/foreach}-->
-        	<!-- #EndLibraryItem -->
-        	
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->		
+{if $goods_cat.isalone neq 0}
+<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+<div class="faxdate_quarter">
+    <div class="faxdate_top_form"></div>
+	<p class="faxdate_top_p">预期年化</p>
+	<div class="faxdate_expect">
+		<div class="faxdate_expect_day">{$goods.market_price}
+			<span>%</span>
 		</div>
-		<!-- TemplateEndEditable -->
+	</div>
+	<div class="faxdate_coninfo">
+		<div class="faxdate_con_day">
+			<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
+			<div class="faxdate_day_font">天<br/>锁定期</div>
+		</div>
+		<div class="faxdate_coninfo_font">
+			<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+			<p>起投金额</p>
+		</div>
+	</div>
+	<!--{if $goods.good_status eq 1}-->
+	<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
+	<!--{elseif $goods.good_status eq 2}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已满额</a></div>
+	<!--{elseif $goods.good_status eq 3}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
+	<!--{elseif $goods.good_status eq 4}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
+	<!--{else}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
+	<!--{/if}-->
+</div>
+<div class="blank_index"></div>
+<!--{/foreach}-->
+{/if}
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+{if $goods_cat.isalone neq 0}
+<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+<div class="faxdate_quarter">
+    <div class="faxdate_top_form"></div>
+	<p class="faxdate_top_p">预期年化</p>
+	<div class="faxdate_expect">
+		<div class="faxdate_expect_day">{$goods.market_price}
+			<span>%</span>
+		</div>
+	</div>
+	<div class="faxdate_coninfo">
+		<div class="faxdate_con_day">
+			<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
+			<div class="faxdate_day_font">天<br/>锁定期</div>
+		</div>
+		<div class="faxdate_coninfo_font">
+			<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+			<p>起投金额</p>
+		</div>
+	</div>
+	<!--{if $goods.good_status eq 1}-->
+	<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
+	<!--{elseif $goods.good_status eq 2}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已满额</a></div>
+	<!--{elseif $goods.good_status eq 3}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
+	<!--{elseif $goods.good_status eq 4}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
+	<!--{else}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
+	<!--{/if}-->
+</div>
+<div class="blank_index"></div>
+<!--{/foreach}-->
+{/if}
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+{if $goods_cat.isalone neq 0}
+<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+<div class="faxdate_quarter">
+    <div class="faxdate_top_form"></div>
+	<p class="faxdate_top_p">预期年化</p>
+	<div class="faxdate_expect">
+		<div class="faxdate_expect_day">{$goods.market_price}
+			<span>%</span>
+		</div>
+	</div>
+	<div class="faxdate_coninfo">
+		<div class="faxdate_con_day">
+			<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
+			<div class="faxdate_day_font">天<br/>锁定期</div>
+		</div>
+		<div class="faxdate_coninfo_font">
+			<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+			<p>起投金额</p>
+		</div>
+	</div>
+	<!--{if $goods.good_status eq 1}-->
+	<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
+	<!--{elseif $goods.good_status eq 2}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已满额</a></div>
+	<!--{elseif $goods.good_status eq 3}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
+	<!--{elseif $goods.good_status eq 4}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
+	<!--{else}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
+	<!--{/if}-->
+</div>
+<div class="blank_index"></div>
+<!--{/foreach}-->
+{/if}
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+{if $goods_cat.isalone neq 0}
+<!-- {foreach from=$goods_cat.goods_level2 item=goods name=foo2} -->
+<div class="faxdate_quarter">
+    <div class="faxdate_top_form"></div>
+	<p class="faxdate_top_p">预期年化</p>
+	<div class="faxdate_expect">
+		<div class="faxdate_expect_day">{$goods.market_price}
+			<span>%</span>
+		</div>
+	</div>
+	<div class="faxdate_coninfo">
+		<div class="faxdate_con_day">
+			<div class="faxdate_day_num">{$goods.goods_weight_day}</div>
+			<div class="faxdate_day_font">天<br/>锁定期</div>
+		</div>
+		<div class="faxdate_coninfo_font">
+			<div class="faxdate_coninfo_font_div"><span>100</span>元</div>
+			<p>起投金额</p>
+		</div>
+	</div>
+	<!--{if $goods.good_status eq 1}-->
+	<div class="faxdate_invest_div"><a href="{$goods.url}">立即投资</a></div>
+	<!--{elseif $goods.good_status eq 2}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已满额</a></div>
+	<!--{elseif $goods.good_status eq 3}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">还款中</a></div>
+	<!--{elseif $goods.good_status eq 4}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">已结束</a></div>
+	<!--{else}-->
+	<div class="faxdate_invest_over"><a href="{$goods.url}">审核中</a></div>
+	<!--{/if}-->
+</div>
+<div class="blank_index"></div>
+<!--{/foreach}-->
+{/if}
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+    </div>
     </div>
     <div class="blank30"></div>
-    
     <div class="w">
 	    <div class="powder_title">
 			<span></span>

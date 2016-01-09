@@ -102,6 +102,7 @@ $_LANG['signin_failed'] = '对不起，登录失败，请检查您的用户名�
 $_LANG['gift_remainder'] = '说明：在您登录或注册后，请到购物车页面重新选择赠品。';
 $_LANG['financing_record_info'] = '系统错误，请联系客服！';
 $_LANG['is_idcard_fail'] = '-实名认证之后才可以进行投资！';
+$_LANG['is_bangcard_fail'] = '-绑定银行卡之后才可以进行投资！';
 
 /* 收货人信息 */
 $_LANG['flow_js']['consignee_not_null'] = '收货人姓名不能为空！';

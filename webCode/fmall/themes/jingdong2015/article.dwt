@@ -35,7 +35,7 @@
                 <!-- {/foreach} --> 
             </div>
         </div>
-        <div class="right" style="width:980px">
+        <div class="right" style="width:970px">
         	<div class="urHere"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
             <div class="articleCon">
                 <h3 class="tit">{$article.title|escape:html}</h3>

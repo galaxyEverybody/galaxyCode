@@ -393,7 +393,7 @@
                                     	<p class="consigneechin">利率</p>
                                     </li>
                                     <li>
-                                    	<div class="consigneenum" style="margin-left:30px;">{$invest_price}<span>.00</span></div>
+                                    	<div class="consigneenum">{$invest_price}<span>RMB</span></div>
                                     	<input type="hidden" name="investnum" value="{$invest_price}">
                                     	<p class="consigneechin">申购金额</p>
                                     </li>

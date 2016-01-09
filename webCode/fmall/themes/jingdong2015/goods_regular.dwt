@@ -91,7 +91,7 @@ function reg(str){
     	<div class="bondinfo_left">
     		<!--{if $goods.good_status eq 1}-->
     		<div class="bondinfo_leftdiv">
-    			<form action="flow.php" method="post" onsubmit="return checkgoodsform();">
+    			<form action="flow.php" method="post" <!--onsubmit="return checkgoodsform();"-->>
         		<ul class="bondinfo_left_top">
         			<li>
         				<b>可投金额：</b><span class="bond_left_topsize" id="usenumprice">{$goods.surplus_price}</span>&nbsp;元
@@ -103,7 +103,7 @@ function reg(str){
         			<li>
         				<div class="bondinfo_left_middle">
 	        				<div class="bondinfo_left_middle_top">
-	        					<input class="recharge_input" id="investamount" type="text" name="investamount" placeholder="投资金额为100的倍数"/>
+	        					<input class="recharge_input" <!--id="investamount"--> type="text" name="investamount" placeholder="投资金额为100的倍数"/>
 	        				</div>
         					<em>元</em>
         				</div>
