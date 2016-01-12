@@ -10,18 +10,18 @@ if (!defined('IN_ECS'))
 require_once(ROOT_PATH . 'includes/cls_mysql.php');
 class conpay{
 
-	protected $oid_partner = '201512281000658793';				//商户编号
-	protected $pay_style = 'D';									//支付方式
-	protected $sign_type = 'RSA';								//签名方式
-	protected $version = '1.0';									//版本号
-	protected $busi_partner = '101001';							//商户业务类型
-	protected $notify_url = 'www.jnz360.com/notify_url.php';	//异步通知地址
-	protected $url_return = 'www.jnz360.com/pay_back.php';		//支付成功的回显页面
-	protected $id_type = '0';									//证件类型(身份证)
+	public $oid_partner = '201512281000658793';				//商户编号
+	public $pay_style = 'D';									//支付方式
+	public $sign_type = 'RSA';								//签名方式
+	public $version = '1.0';									//版本号
+	public $busi_partner = '101001';							//商户业务类型
+	public $notify_url = 'http://www.jnz360.com/notify_url.php';	//异步通知地址
+	public $url_return = 'http://www.jnz360.com/pay_back.php';		//支付成功的回显页面
+	public $id_type = '0';									//证件类型(身份证)
 	/* 风控参数*/
-	protected $frms_ware_category = '2009';						//商品类目
-	protected $user_info_identify_state = '1';					//是否实名认证
-	protected $user_info_identify_type = '4';					//实名认证方式
+	public $frms_ware_category = '2009';						//商品类目
+	public $user_info_identify_state = '1';					//是否实名认证
+	public $user_info_identify_type = '4';					//实名认证方式
 	/* 连接数据库参数*/
 	public $db = null;
 	public $ecs = null;
@@ -156,6 +156,7 @@ class conpay{
 		$res = openssl_get_publickey($pubKey);	//转换为openssl格式密钥
 		$result = (bool)openssl_verify($data, base64_decode($sign), $res,OPENSSL_ALGO_MD5);
 		openssl_free_key($res);
+		
 		return $result;
 	}
 	/* 整合验证的数据*/
@@ -216,7 +217,7 @@ class conpay{
 	
 		//submit按钮控件请不要含有name属性
 		$sHtml = $sHtml . "<input type='submit' value='立即支付'></form>";
-		$sHtml = $sHtml."<script>window.open();document.forms['llpaysubmit'].submit();</script>";
+		$sHtml = $sHtml."<script>document.forms['llpaysubmit'].submit();</script>";
 		return $sHtml;
 	}
 }

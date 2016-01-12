@@ -291,7 +291,7 @@ function reg(str){
 <script>
  	function checkgoodsform()
  	{
- 		var investnum = $("#investamount").val();
+ 		/*var investnum = $("#investamount").val();
  		var goodsid = $("#hidgoodsid").val();
 		
  		if(investnum == ''){
@@ -306,7 +306,7 @@ function reg(str){
  		}
  		if(goodsid == ''){
  			return false;
- 		}
+ 		}*/
  		return true;
  	}
  </script>

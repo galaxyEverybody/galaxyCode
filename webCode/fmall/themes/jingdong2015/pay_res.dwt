@@ -1,0 +1,36 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<!-- {if $cat_style} -->
+<link href="{$cat_style}" rel="stylesheet" type="text/css" />
+<!-- {/if} -->
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem -->
+<div class="res_pay_div">
+	<div class="pay_info_div">
+		<p class="pay_flag">{$pay_flag}</p>
+		<p class="pay_info_middle">{$info}<span>￥{$money_num}</span></p>
+		<p class="pay_location">
+			<a class="location_left" href="user.php">个人中心</a>
+			<a class="location_right" href="index.php">首页</a>
+		</p>
+	</div>
+</div>
+<div class="index_help_new">
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+</div>
+<div class="index_footer_new">
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
+</body>
+</html>
