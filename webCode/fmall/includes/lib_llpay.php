@@ -10,16 +10,20 @@ if (!defined('IN_ECS'))
 require_once(ROOT_PATH . 'includes/cls_mysql.php');
 class conpay{
 
-	public $oid_partner = '201512281000658793';				//商户编号
+	public $oid_partner = '201512281000658793';					//商户编号
 	public $pay_style = 'D';									//支付方式
-	public $sign_type = 'RSA';								//签名方式
+	public $sign_type = 'RSA';									//签名方式
 	public $version = '1.0';									//版本号
 	public $busi_partner = '101001';							//商户业务类型
-	public $notify_url = 'http://www.jnz360.com/notify_url.php';	//异步通知地址
-	public $url_return = 'http://www.jnz360.com/pay_back.php';		//支付成功的回显页面
+	public $notify_url = 'http://www.jnz360.com/notify_url.php';				//支付异步通知地址
+	public $url_return = 'http://www.jnz360.com/pay_back.php';					//支付成功的回显页面
+	public $notify_chargeurl = 'http://www.jnz360.com/notify_chargeurl.php';	//充值异步通知地址
+	public $url_chargereturn = 'http://www.jnz360.com/pay_chargeback.php';		//充值成功的回显页面
+	public $notify_cashurl = 'http://www.jnz360.com/notify_cashurl.php';		//提现异步通知地址
+	public $url_cashreturn = 'http://www.jnz360.com/pay_cashback.php';			//提现成功的回显页面
 	public $id_type = '0';									//证件类型(身份证)
 	/* 风控参数*/
-	public $frms_ware_category = '2009';						//商品类目
+	public $frms_ware_category = '2009';					//商品类目
 	public $user_info_identify_state = '1';					//是否实名认证
 	public $user_info_identify_type = '4';					//实名认证方式
 	/* 连接数据库参数*/
@@ -30,7 +34,9 @@ class conpay{
 	var $api_urls = array(
 		'checkbangcard'	=>	'https://yintong.com.cn/queryapi/bankcardbin.htm',
 		'unbindcard'	=>	'https://yintong.com.cn/traderapi/bankcardunbind.htm',
-		'paymoney'		=>	'https://cashier.lianlianpay.com/payment/authpay.htm'
+		'paymoney'		=>	'https://cashier.lianlianpay.com/payment/authpay.htm',
+		'bigbankcode'	=>	'https://yintong.com.cn/traderapi/CNAPSCodeQuery.htm',
+		'withdrawmoney'	=>	'https://yintong.com.cn/traderapi/cardandpay.htm'
 	);
 	
 	/**
@@ -68,6 +74,27 @@ class conpay{
     	$cardmsg = $this->Post($resinfo,$url);
     	return $cardmsg;
     }
+    
+    /* 大额行号查询*/
+    function select_bigbankcode($bankinfo){
+    	$url = $this->api_urls['bigbankcode'];
+    	$postinfo = array(
+    		'oid_partner'	=>	$this->oid_partner,
+    		'sign_type'		=>	$this->sign_type,
+    		'bank_code'		=>	$bankinfo['bankcode'],
+    		'brabank_name'	=>	$bankinfo['shopname'],
+    		'city_code'		=>	$bankinfo['citycode']
+    	);
+    	ksort($postinfo);
+    	$data = $this->createlinkstring($postinfo);
+    	$sign = $this->rsasign($data);
+    	$postinfo['sign'] = $sign;
+    	ksort($postinfo);
+    	$resinfo = json_encode($postinfo);	//将数据转化为json格式
+    	$cardmsg = $this->Post($resinfo,$url);
+    	return $cardmsg;
+    }
+    
     /* 银行卡解绑操作*/
     function unbind_card($userinfo){
     	$url = $this->api_urls['unbindcard'];
@@ -87,6 +114,7 @@ class conpay{
     	$cardmsg = $this->Post($resinfo,$url);
     	return $cardmsg;
     }
+    
     /* 支付操作*/
     function pay_handle($para){
     	$url = $this->api_urls['paymoney'];
@@ -122,6 +150,42 @@ class conpay{
     	echo $resinfo;
     	
     }
+    
+    /* 充值操作*/
+    function recharge_handle($para){
+    	$url = $this->api_urls['paymoney'];
+    	$windpara = $this->createwindstring($para['user_id']);
+
+  		date_default_timezone_set('PRC');
+    	$payinfo = array(
+    		'version'		=>	$this->version,
+    		'oid_partner'	=>	$this->oid_partner,
+    		'user_id'		=>	$para['user_id'],
+    		'timestamp'		=>	date('YmdHis',time()),
+    		'sign_type'		=>	$this->sign_type,
+    		'busi_partner'	=>	$this->busi_partner,
+    		'no_order'		=>	$para['change_sn'],
+    		'dt_order'		=>	date('YmdHis',$para['add_time']),	//生成订单时间
+    		'name_goods'	=>	$para['goods_name'],	//商品名称
+    		'money_order'	=>	$para['amount'],		//充值金额
+    		'notify_url'	=>	$this->notify_chargeurl,
+    		'url_return'	=>	$this->url_chargereturn,
+    		'bank_code'		=>	$para['cardbank'],		//银行编号
+    		'card_no'		=>	$para['cardnum'],		//银行卡号
+    		'pay_type'		=>	$this->pay_style,
+    		'risk_item'		=>	$windpara,				//风控参数
+    		'id_type'		=>	$this->id_type,
+    		'id_no'			=>	$para['idcard'],		//身份证号
+    		'acct_name'		=>	$para['realname']		//真实姓名
+    	);
+    	ksort($payinfo);
+    	$data = $this->createlinkstring($payinfo);
+    	$sign = $this->rsasign($data);
+    	$payinfo['sign'] = $sign;
+    	$resinfo = $this->createpaystring($payinfo,$url);
+    	echo $resinfo;
+    }
+    
     /* 数据的提交*/
     function Post($curlPost,$url){
 		$curl = curl_init();
@@ -137,6 +201,7 @@ class conpay{
 		curl_close($curl);
 		return $return_str;
 	}
+	
 	/* RSA签名*/
 	function rsasign($data){
 		$prikey = file_get_contents('includes/key/rsa_private_key.pem');
@@ -149,6 +214,7 @@ class conpay{
     	
     	return $sign;
 	}
+	
 	/* RSA验签*/
 	function rsaverify($data,$sign){
 		$pubKey = file_get_contents('includes/key/llpay_public_key.pem');
@@ -159,6 +225,7 @@ class conpay{
 		
 		return $result;
 	}
+	
 	/* 整合验证的数据*/
 	function createlinkstring($para) {
 		$arg  = "";
@@ -170,6 +237,7 @@ class conpay{
 		//if(get_magic_quotes_gpc()){$arg = stripslashes($arg);}
 		return $arg;
 	}
+	
 	/* 整合风控参数*/
 	function createwindstring($para){
 		
@@ -191,6 +259,7 @@ class conpay{
 		ksort($userinfo);
 		return json_encode($userinfo);
 	}
+	
 	/* 整合支付参数*/
 	function createpaystring($para,$url){
 		$sHtml = "<form id='llpaysubmit' name='llpaysubmit' target='_blank' action='" . $url . "' method='post'>";

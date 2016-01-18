@@ -255,14 +255,20 @@ h6 span{float:left;padding-left:15px}
 .miancounter .tabletwo{background-color:#E1E4E9;height:40px;}
 
 
-.rechangermiddle{ width:75%;height:auto;font-size:16px;margin-top:20px;}
+.rechangermiddle{ width:75%;height:auto;font-size:16px;margin-top:20px;font-family:Microsoft YaHei;}
+.rechangermiddle .rechangelefttd{ width:100px;text-align:right;}
+.rechangell{ color:blue;}
+.rechangell label{ border:2px solid #FF500B;padding:4px 23px;float:left;position:relative;}
+.rechangell b{ float:left;position:absolute;display:block;background:url(images/user_purchase20150409154845.gif) no-repeat;right:0px;bottom:0px;width:12px;height:12px;}
 .rechangernumdiv{ width:260px;height:32px;border:1px solid #A9A9A9;float:left;}
 .rechangernuminput{ width:240px;height:30px;border:0px;outline:none;}
-.rechangerreminder{ width:75%;height:120px;background:#F68A1D;color:#fff;margin-top:50px;}
-.rechangerreminder p{ margin-top:7px;margin-left:10px;}
+.rechangerreminder{ width:75%;height:150px;background:#F68A1D;color:#fff;margin-top:50px;font-family:microsoft yahei;}
+.rechangerreminder p{ margin-top:5px;margin-left:10px;font-weight:bold;text-indent:10px;font-size:14px;}
+.rechangerreminder div{ width:100%;height:5px;}
 .rechangermiddle .rechangersub{ text-align:center;width:260px;height:40px;background-color:#FF852F;margin-top:20px;color:#fff;font-size:16px;font-weight:bold;border:0px;cursor:pointer;}
-.withdrawalsreminder{ width:75%;height:70px;background:#F68A1D;color:#fff;margin-top:50px;}
-.withdrawalsreminder p{ margin-top:7px;margin-left:10px;}
+.withdrawalsreminder{ width:75%;height:100px;background:#F68A1D;color:#fff;margin-top:50px;font-family:microsoft yahei;}
+.withdrawalsreminder div{ width:100%;height:5px;}
+.withdrawalsreminder p{ margin-top:7px;margin-left:10px;font-indent:10px;font-weight:bold;font-size:14px;}
 .rechangermiddle .error{ background:url(images/register_error.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;font-size:12px;color:red;}
 .rechangermiddle .focus{ background:url(images/register_right.jpg) 5px no-repeat;padding-left:23px;height:30px;line-height:30px;}
 

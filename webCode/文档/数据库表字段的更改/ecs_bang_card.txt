@@ -3,3 +3,5 @@ idcard => 身份证号 改为 no_agree => 签约协议号 varchar(20);
 更改 cardbank 为 char(8)
 
 增加 card_type(smallint) => 银行卡类型 （2：储蓄卡；3：信用卡) 
+
+增加 bigcode(varchar(20)) => 大额行号

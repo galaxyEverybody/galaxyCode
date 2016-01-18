@@ -768,10 +768,13 @@ elseif ($action == 'bangcardadd')
 	}elseif(empty($cardnum)){
 		show_message($_LANG['card_num_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
 	}
+	/* 查询城市编号
+	$sql = 'SELECT agency_id FROM '.$GLOBALS['ecs']->table('region').' WHERE region_id='.$cardcity;
+	$citycode = $GLOBALS['ecs']->getOne($sql);*/
 	
+	/* 查询银行卡信息*/
 	$check = new conpay;
 	$res = $check->select_cardinfo($cardnum);
-	
 	$cardinfo = json_decode($res);
 	
 	/* 判断银行编号是否一致*/
@@ -783,6 +786,12 @@ elseif ($action == 'bangcardadd')
 	if($cardinfo->card_type == 3){
 		show_message($_LANG['bang_cardtype_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
 	}
+	
+	/* 查询大额行号
+	$banks = array('shopname'=>$cardshop,'bankcode'=>$cardbank,'citycode'=>$citycode);
+	$bankres = $check->select_bigbankcode($banks);
+	$bankinfo = json_decode($bankres);*/
+	
 	
 	if($cardinfo->ret_code == '0000' && $cardinfo->ret_msg == '交易成功'){
 		$bangcardinfo = array(
@@ -797,6 +806,7 @@ elseif ($action == 'bangcardadd')
 			'card_type'		=>	$cardinfo->card_type,
 			'bangstatus'	=>	'1',
 			'no_agree'		=>	'0'
+			//'bigcode'		=>	$bankinfo->prcptcd
 			
 		);
 	
@@ -2531,31 +2541,19 @@ elseif ($action == 'account_withdrawals')
 {
 	$sql = "select u.realname,u.user_money,u.idcardstatus,u.bangcardstatus,b.cardnum from ".$GLOBALS['ecs']->table('users')." as u,".$GLOBALS['ecs']->table('bang_card')." as b where ".
 	"u.user_id = b.user_id and b.bangstatus =1 and u.user_id =".$user_id;
-	$withinfo = $GLOBALS['db']->getAll($sql);
-
+	$withinfo = $GLOBALS['db']->getRow($sql);
+	
 	//实名与绑定卡的判断
-	if($withinfo[0]['idcardstatus'] != 1){
+	if($withinfo['idcardstatus'] != 1){
 		show_message($_LANG['withdraws_idcard_fail'],$_LANG['back_up_page'], 'user.php?act=auth_center');
-	}elseif($withinfo[0]['bangcardstatus'] != 1){
+	}elseif($withinfo['bangcardstatus'] != 1){
 		show_message($_LANG['withdraws_bangcard_fail'],$_LANG['back_up_page'], 'user.php?act=bangcard');
 	}
 	
-	$withinfos = array();
-	$cards = array();
-	foreach($withinfo as $with){
-		$withinfos['name'] = $with['realname'];
-		$withinfos['money'] = $with['user_money'];
-		$cardstr1 = substr($with['cardnum'],0,4);
-		$cardstr2 = substr($with['cardnum'],-4);
-		$with['cardnum'] = $cardstr1.'***********'.$cardstr2;
-		array_push($cards,$with['cardnum']);
-	}
+	$withinfo['name'] = str_replace(substr($withinfo['realname'],3),'*',$withinfo['realname']);
+	$withinfo['cardnum'] = substr($withinfo['cardnum'],0,4).'*************'.substr($withinfo['cardnum'],-4);
 	
-	$withinfos['money'] = empty($withinfos['money'])?'0.00':$withinfos['money'];
-	$withinfos['name'] = str_replace(substr($withinfos['name'],3),'****',$withinfos['name']);
-	
-	$smarty->assign('cards',$cards);
-	$smarty->assign('withinfos',$withinfos);
+	$smarty->assign('withinfo',$withinfo);
 	$smarty->display('user_transaction.dwt');
 }
 
@@ -2563,33 +2561,44 @@ elseif ($action == 'account_withdrawals')
 elseif ($action == 'act_rechanger')
 {
 	include_once(ROOT_PATH . 'includes/lib_clips.php');
+	include_once(ROOT_PATH . 'includes/lib_llpay.php');
 	
 	$amount = trim($_POST['rechargernum']);
+	$payment = trim($_POST['payment']);
+	if(empty($amount) || $payment !=4){
+		show_message($_LANG['recharge_no_num'],$_LANG['back_up_page'], 'user.php?act=account_rechanger', 'info');
+	}
 	
 	if(!is_numeric($amount)){
 		show_message($_LANG['no_num'],$_LANG['back_up_page'], 'user.php?act=account_rechanger', 'info');
 	}
-	
-	/* 调用支付接口进行充值*/
-	
-	/* 变量初始化 */
+	/* 添加充值信息*/
 	$surplus = array(
-			'user_id'      => $user_id,
-			'rec_id'       => !empty($_POST['rec_id'])      ? intval($_POST['rec_id'])       : 0,
-			'process_type' => 2,
-			'payment_id'   => isset($_POST['payment_id'])   ? intval($_POST['payment_id'])   : 0,
-			'user_note'    => '',
-			'amount'       => $amount
+			'user_id'		=> $user_id,
+			'change_sn'		=>date('YmdHis',time()).rand(1,10000),
+			'process_type'	=> 0,
+			'payment_id'	=> $payment,		//连连支付
+			'amount'		=> $amount
 	);
-	
-	//更改用户的余额
-	updateuser_account($surplus, $amount , 2);
-	
-	//记录日志
 	$accountid = insert_user_account($surplus, $amount);
-	if($accountid > 0){
-		show_message($_LANG['rechanger_success'],$_LANG['back_up_page'], 'user.php', 'info');
-	}
+	
+	/* 查询个人信息*/
+	$sql = 'SELECT u.user_id,u.realname,u.idcard,b.cardbank,b.cardnum,a.change_sn,a.amount,a.add_time FROM'.
+			$GLOBALS['ecs']->table('users').' as u,'.
+			$GLOBALS['ecs']->table('user_account').' as a,'.
+			$GLOBALS['ecs']->table('bang_card').' as b WHERE '.
+			'u.user_id=b.user_id AND u.user_id=a.user_id AND u.user_id='.$user_id.
+			' AND a.is_paid=0 ORDER BY a.id DESC';
+			
+	$parainfo = $GLOBALS['db']->getRow($sql);
+	
+	$parainfo['goods_name'] = '充值';
+
+	/* 调用支付接口进行充值*/
+	$conpay = new conpay;
+	$conpay->recharge_handle($parainfo);
+	
+	exit;
 }
 
 /* 会员进行提现*/

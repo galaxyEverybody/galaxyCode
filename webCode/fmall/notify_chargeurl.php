@@ -60,60 +60,33 @@ ksort($parameter);
 $data = $conpay->createlinkstring($parameter);
 $boolsta = $conpay->rsaverify($data,$sign);
 if($boolsta && $result_pay == 'SUCCESS'){
-	/*查询订单状态*/
-	$sql = 'SELECT pay_status,user_id FROM '.$GLOBALS['ecs']->table('order_goods').
-		' WHERE order_sn="'.$no_order.'"';
+	/* 查询订单状态*/
+	$sql = 'SELECT is_paid,user_id FROM '.$GLOBALS['ecs']->table('user_account').
+		' WHERE change_sn="'.$no_order.'"';
 	$res = $GLOBALS['db']->getRow($sql);
 	
-	if($res && $res['pay_status'] > 0){
+	if($res && $res['is_paid'] > 0){
 		die("{'ret_code':'0000','ret_msg':'交易成功'}");
 	}else{
 		/* 支付成功更改订单的状态信息*/
-		$sql = 'UPDATE '.$GLOBALS['ecs']->table('order_goods').' SET order_status=1,'.
-			'pay_status=2,pay_time="'.gmtime().'" WHERE order_sn='.$no_order;
-		$GLOBALS['db']->query($sql);
-		/* 更改pay_log的状态*/
-		$sql = 'UPDATE '.$GLOBALS['ecs']->table('pay_log').' SET is_paid=1 WHERE order_id="'.$no_order.'"';
+		$sql = 'UPDATE '.$GLOBALS['ecs']->table('user_account').' SET is_paid=1,'.
+			'paid_time="'.gmtime().'" WHERE change_sn='.$no_order;
 		$GLOBALS['db']->query($sql);
 		/* 添加银行卡签约协议号*/
-		update_bank_agree($res['user_id']);
-		/* 修改商品的可投资金额*/
-		update_goods_surprice($no_order,$money_order);
+		update_chargebank_agree($res['user_id']);
+		
+		/* 修改账户的余额*/
+		update_user_money($res['user_id'],$acct_name,$money_order);
+		
 		/* 记录订单操作记录*/
-		orderlog_action($order_id,1,2,$result_pay);
+		chargeorderlog_action($order_id,1,2,$result_pay);
 		
 		die("{'ret_code':'0000','ret_msg':'交易成功'}");
 	}
 }else{
 	/* 记录订单操作记录*/
-	orderlog_action($order_id,1,0,'验签没有通过');
+	chargeorderlog_action($order_id,1,0,'验签没有通过');
 	die("{'ret_code':'9999','ret_msg':'验签失败'}");
-}
-
-/*
-*	修改商品的可投资金额
-*	@param string $order_id		订单号
-*	@param decime $money_order	交易金额
-*/
-function update_goods_surprice($order_id,$money_order){
-	/* 查询可投资金额*/
-	$sql = 'SELECT g.surplus_price,g.goods_id FROM '.$GLOBALS['ecs']->table('order_goods').' as o,'.
-		$GLOBALS['ecs']->table('goods').' as g WHERE o.goods_id=g.goods_id AND o.order_sn="'.$order_id.'"';
-	$surprice = $GLOBALS['db']->getRow($sql);
-	$invest_price = $surprice['surplus_price']-$money_order;
-	$status_time = time();
-	if($invest_price > 0){
-		/* 更改产品的可投资金额*/
-		$sql = 'UPDATE '.$GLOBALS['ecs']->table('goods').' SET surplus_price="'.$invest_price.
-			'",upstatus_time="'.$status_time.'" WHERE goods_id='.$surprice['goods_id'];
-		$GLOBALS['db']->query($sql);
-	}else{
-		$status_time = gmtime();
-		/* 更改产品的投资状态*/
-		$sql = 'UPDATE '.$GLOBALS['ecs']->table('goods').' SET surplus_price="'.$invest_price.
-			'",good_status=2,upstatus_time="'.$status_time.'" WHERE goods_id='.$surprice['goods_id'];
-		$GLOBALS['db']->query($sql);
-	}
 }
 
 /*
@@ -121,14 +94,28 @@ function update_goods_surprice($order_id,$money_order){
  * $param int $user_id	用户id
  * return bool
  */
-function update_bank_agree($user_id){
+function update_chargebank_agree($user_id){
 	$sql = 'SELECT no_agree FROM '.$GLOBALS['ecs']->table('bang_card').' WHERE user_id='.$user_id;
 	$bank_agree = $GLOBALS['db']->getOne($sql);
 	if(empty($bank_agree)){
 		$sql = 'UPDATE '.$GLOBALS['ecs']->table('bang_card').' SET no_agree="'.$no_agree.'" WHERE user_id='.$res['user_id'];
 		$GLOBALS['db']->query($sql);
 	}
-	return true;
+}
+
+/*
+*	修改用户余额
+*	@param int $user_id		用户id
+*	@param string $acct_name	用户真实姓名
+*	@param decime $money_order	订单金额
+*/
+function update_user_money($user_id,$acct_name,$money_order){
+	$sql = 'UPDATE '.$GLOBALS['ecs']->table('users').' SET user_money=user_money+'.
+		$money_order.' WHERE user_id='.$user_id.' AND realname="'.$acct_name.'"';
+		
+	$resbool = $GLOBALS['db']->query($sql);
+	
+	return $resbool;
 }
 
 /*
@@ -139,9 +126,9 @@ function update_bank_agree($user_id){
 *	@param string $action_note	备注
 *	@param int $log_time		产生时间
 */
-function orderlog_action($order_id,$order_status,$pay_status,$action_note){
+function chargeorderlog_action($order_id,$order_status,$pay_status,$action_note){
 	$addtime = time();
 	$sql = 'INSERT INTO '.$GLOBALS['ecs']->table('order_action').' values("'.$order_id.
-		'","llpay",'.$order_status.',0,'.$pay_status.',1,'.$action_note.','.$addtime.')';
+		'","llpay",'.$order_status.',0,'.$pay_status.',2,'.$action_note.','.$addtime.')';
 	$GLOBALS['db']->query($sql);
 }

@@ -52,11 +52,12 @@ $_LANG['label_logout'] = '退出';
 
 /* 会员余额(预付款) */
 $_LANG['add_kindly_reminder'] = '温馨提示:';
-$_LANG['add_reminder_one'] = '1. 联众金融禁止信用卡套现、虚假交易等行为,一经发现将予以冻结账户、暂停交易等操作。';
+$_LANG['add_reminder_one'] = '1. 银河众联禁止信用卡套现、虚假交易等行为,一经发现将予以冻结账户、暂停交易等操作。';
 $_LANG['add_reminder_two'] = '2. 为了您的资金安全，请在充值前进行实名认证及交易密码设置。';
 $_LANG['add_reminder_three'] = '3. 请注意您的银行卡充值限制，以免造成不便。';
 $_LANG['add_withdrawals_reminder'] = '提现资费说明:';
-$_LANG['add_withdrawals_one'] = '0-10000元，手续费3元；10001-50000元，手续费5元。提现手续费率(其他银行)手续费3元；提现手续费率(其他银行)手续费5元。';
+$_LANG['add_withdrawals_one'] = '1.0-10000元，手续费3元；10001-50000元，手续费5元。';
+$_LANG['add_withdrawals_two'] = '2.提现手续费率(其他银行)手续费3元；提现手续费率(其他银行)手续费5元。';
 $_LANG['add_surplus_log'] = '查看帐户明细';
 $_LANG['view_application'] = '查看申请记录';
 $_LANG['surplus_pro_type'] = '类型';
@@ -117,6 +118,7 @@ $_LANG['not_dispose'] = '未处理';
 $_LANG['no_goods_id'] = '请指定商品ID';
 $_LANG['no_withdrawals_num'] = '-提现金额大于您的账户余额';
 $_LANG['no_num'] = '-输入的金额不合法';
+$_LANG['recharge_no_num'] = '-信息缺失';
 $_LANG['withdraws_idcard_fail'] = '-您还没有实名认证请先进行认证';
 $_LANG['withdraws_bangcard_fail'] = '-您还没有绑定银行卡请先进行绑定';
 $_LANG['rechanger_password_fail'] = '-为您的账户安全请设置提现密码';

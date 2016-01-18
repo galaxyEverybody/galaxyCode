@@ -252,21 +252,30 @@ $(function(){
 		<form action="user.php" method="post" onsubmit="return formrechanger()">
 		<table border="0px" cellspadding="10px" cellpadding="10px">
 			<tr>
-				<td width="100px;">充值金额</td>
-				<td><div class='rechangernumdiv'><input type="text" id="rechargernum" class='rechangernuminput' name="rechargernum"  placeholder="充值金额为50的倍数" onblur="chekrechargernum(this.value)">元</div>
+				<td class="rechangelefttd">充值金额</td>
+				<td><div class='rechangernumdiv'><input type="text" id="rechargernum" class='rechangernuminput' name="rechargernum"  placeholder="充值金额为50的倍数" onkeyup="chekrechargernum(this.value)">元</div>
 					<label id="rechargernumspan"></label></td>
 				</tr>
-			<tr><td width="100px;">充值渠道</td><td></td></tr>
-			<tr><td width="100px;">手续费</td><td></td></tr>
-			<tr><td width="100px;">实际到账金额</td><td></td></tr>
+			<tr>
+				<td class="rechangelefttd">充值渠道</td>
+				<td>
+					<div class="rechangell">
+                    	<label for="ll"><b></b>连连支付</label>
+                        <input type="hidden" type="radio" name="payment" value="4" id="ll" checked="checked"/>
+                    </div>
+				</td>
+			</tr>
+			<tr><td class="rechangelefttd">手续费</td><td>0.00 元</td></tr>
+			<tr><td class="rechangelefttd">实际到账金额</td><td><span id="recharge_money"></span> 元</td></tr>
 			<tr>
 				<td><input type="hidden" name="act" value="act_rechanger"></td>
-				<td><input type="submit" value="充值" class="rechangersub"></td>
+				<td><input type="submit" value="立即充值" class="rechangersub"></td>
 			</tr>
 		</table>
 		</form>
 	</div>
 	<div class="rechangerreminder">
+		<div></div>
 		<p>{$lang.add_kindly_reminder}</p>
 		<p>{$lang.add_reminder_one}</p>
 		<p>{$lang.add_reminder_two}</p>
@@ -286,26 +295,15 @@ $(function(){
 	<div class="rechangermiddle">
 		<form action="user.php" method="post" onsubmit="return formwithdrawals()">
 		<table border="0px" cellspadding="10px" cellpadding="10px" width='630px'>
-			<tr><td width="100px;">真实姓名</td><td>{$withinfos.name}</td></tr>
-			<tr><td width="100px;">账户可用余额</td><td>{$withinfos.money}<em style='margin-left:5px;'>元</em></td></tr>
-			<tr><td width="100px;">可提现额度</td><td></td></tr>
+			<tr><td class="rechangelefttd">真实姓名</td><td>{$withinfo.realname}</td></tr>
+			<tr><td class="rechangelefttd">可提现额度</td><td><span id="user_withdmon">{$withinfo.user_money}</span> 元</td></tr>
+			<tr><td class="rechangelefttd">绑定的银行卡</td><td>{$withinfo.cardnum}</td></tr>
 			<tr>
-				<td width="100px;">绑定的银行卡</td>
-				<td>
-				<select class="bangcardinput" style='height:35px;font-size:16px;' name="bankcard">
-	                <option value="0">请选择</option>
-	                <!-- {foreach from=$cards item=card} -->
-	                <option>{$card}</option>
-	                <!-- {/foreach} -->
-                </select>
-				</td>
-			</tr>
-			<tr>
-				<td width="100px;">提现金额</td>
-				<td><div class='rechangernumdiv'><input type="text" name="withdrawalsnum" id="withdrawalsnum" class='rechangernuminput' onblur="chekwithdrawalsnum(this.value)">元</div>
+				<td class="rechangelefttd">提现金额</td>
+				<td><div class='rechangernumdiv'><input type="text" name="withdrawalsnum" id="withdrawalsnum" class='rechangernuminput' onkeyup="chekwithdrawalsnum(this.value)">元</div>
 				<span id="withdrawalsnumspan"></span></td>
 			</tr>
-			<tr><td width="100px;">实际到账金额</td><td></td></tr>
+			<tr><td class="rechangelefttd">实际到账金额</td><td><span id="true_wdmoney"></span> 元</td></tr>
 			<tr>
 				<td><input type="hidden" name="act" value="act_withdrawals"></td>
 				<td><input type="submit" value="提现" class="rechangersub"></td>
@@ -314,8 +312,10 @@ $(function(){
 		</form>
 	</div>
 	<div class="withdrawalsreminder">
+		<div></div>
 		<p>{$lang.add_withdrawals_reminder}</p>
 		<p>{$lang.add_withdrawals_one}</p>
+		<p>{$lang.add_withdrawals_two}</p>
 	</div>
 </div>
 <!--{/if}-->

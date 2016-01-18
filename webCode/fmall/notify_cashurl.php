@@ -76,7 +76,8 @@ if($boolsta && $result_pay == 'SUCCESS'){
 		$sql = 'UPDATE '.$GLOBALS['ecs']->table('pay_log').' SET is_paid=1 WHERE order_id="'.$no_order.'"';
 		$GLOBALS['db']->query($sql);
 		/* 添加银行卡签约协议号*/
-		update_bank_agree($res['user_id']);
+		$sql = 'UPDATE '.$GLOBALS['ecs']->table('bang_card').' SET no_agree="'.$no_agree.'" WHERE user_id='.$res['user_id'];
+		$GLOBALS['db']->query($sql);
 		/* 修改商品的可投资金额*/
 		update_goods_surprice($no_order,$money_order);
 		/* 记录订单操作记录*/
@@ -114,21 +115,6 @@ function update_goods_surprice($order_id,$money_order){
 			'",good_status=2,upstatus_time="'.$status_time.'" WHERE goods_id='.$surprice['goods_id'];
 		$GLOBALS['db']->query($sql);
 	}
-}
-
-/*
- * 添加银行卡的签约协议号
- * $param int $user_id	用户id
- * return bool
- */
-function update_bank_agree($user_id){
-	$sql = 'SELECT no_agree FROM '.$GLOBALS['ecs']->table('bang_card').' WHERE user_id='.$user_id;
-	$bank_agree = $GLOBALS['db']->getOne($sql);
-	if(empty($bank_agree)){
-		$sql = 'UPDATE '.$GLOBALS['ecs']->table('bang_card').' SET no_agree="'.$no_agree.'" WHERE user_id='.$res['user_id'];
-		$GLOBALS['db']->query($sql);
-	}
-	return true;
 }
 
 /*

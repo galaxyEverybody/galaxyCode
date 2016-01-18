@@ -1860,23 +1860,26 @@ function chekrechargernum(num){
 		$("#rechargernumspan").addClass("error");
 	}else{
 		if(!reg.test(num)){
-			$("#rechargernumspan").html('请输入您要充值的金额');
+			$("#rechargernumspan").html('输入的金额不合法');
 			if($("#rechargernumspan").hasClass("focus")){
 				$("#rechargernumspan").removeClass("focus");
 			}
 			$("#rechargernumspan").addClass("error");
+			$("#recharge_money").html(' ');
 		}else if(num%50 != 0){
 			$("#rechargernumspan").html('充值的金额必须为50的倍数');
 			if($("#rechargernumspan").hasClass("focus")){
 				$("#rechargernumspan").removeClass("focus");
 			}
 			$("#rechargernumspan").addClass("error");
+			$("#recharge_money").html(' ');
 		}else{
 			$("#rechargernumspan").html('');
 			if($("#rechargernumspan").hasClass("error")){
 				$("#rechargernumspan").removeClass("error");
 			}
 			$("#rechargernumspan").addClass("focus");
+			$("#recharge_money").html(num);
 		}
 	}
 }
@@ -1884,7 +1887,8 @@ function chekrechargernum(num){
 /* 提现页面表单的验证*/
 function formwithdrawals(){
 	var num = $("#withdrawalsnum").val();
-	var reg = /^[0-9]{1,10}$/;
+	var usermoney = $("#user_withdmon").html();
+	
 	if(num == ''){
 		$("#withdrawalsnumspan").html('请输入您要提现的金额');
 		if($("#withdrawalsnumspan").hasClass("focus")){
@@ -1893,15 +1897,17 @@ function formwithdrawals(){
 		$("#withdrawalsnumspan").addClass("error");
 		return false;
 	}else{
-		if(!reg.test(num)){
+		num = parseFloat(num);
+		usermoney = parseFloat(usermoney);
+		if(!Utils.isNumber(num)){
 			$("#withdrawalsnumspan").html('输入的金额不合法');
 			if($("#withdrawalsnumspan").hasClass("focus")){
 				$("#withdrawalsnumspan").removeClass("focus");
 			}
 			$("#withdrawalsnumspan").addClass("error");
 			return false;
-		}else if(num < 5){
-			$("#withdrawalsnumspan").html('提现的金额小于最小金额');
+		}else if(num > usermoney){
+			$("#withdrawalsnumspan").html('超出提现额度值');
 			if($("#withdrawalsnumspan").hasClass("focus")){
 				$("#withdrawalsnumspan").removeClass("focus");
 			}
@@ -1914,32 +1920,37 @@ function formwithdrawals(){
 }
 
 function chekwithdrawalsnum(num){
-	var reg = /^[0-9]{1,10}$/;
+	var usermoney = $("#user_withdmon").html();
+	usermoney = parseFloat(usermoney);
 	if(num == ''){
 		$("#withdrawalsnumspan").html('请输入您要提现的金额');
 		if($("#withdrawalsnumspan").hasClass("focus")){
 			$("#withdrawalsnumspan").removeClass("focus");
 		}
 		$("#withdrawalsnumspan").addClass("error");
+		$("#true_wdmoney").html('');
 	}else{
-		if(!reg.test(num)){
+		if(!Utils.isNumber(num)){
 			$("#withdrawalsnumspan").html('输入的金额不合法');
 			if($("#withdrawalsnumspan").hasClass("focus")){
 				$("#withdrawalsnumspan").removeClass("focus");
 			}
 			$("#withdrawalsnumspan").addClass("error");
-		}else if(num < 5){
-			$("#withdrawalsnumspan").html('提现的金额小于最小金额');
+			$("#true_wdmoney").html('');
+		}else if(num > usermoney){
+			$("#withdrawalsnumspan").html('超出提现额度值');
 			if($("#withdrawalsnumspan").hasClass("focus")){
 				$("#withdrawalsnumspan").removeClass("focus");
 			}
 			$("#withdrawalsnumspan").addClass("error");
+			$("#true_wdmoney").html('');
 		}else{
 			$("#withdrawalsnumspan").html('');
 			if($("#withdrawalsnumspan").hasClass("error")){
 				$("#withdrawalsnumspan").removeClass("error");
 			}
 			$("#withdrawalsnumspan").addClass("focus");
+			$("#true_wdmoney").html(num);
 		}
 	}
 }
