@@ -261,6 +261,7 @@ h6 span{float:left;padding-left:15px}
 .rechangell label{ border:2px solid #FF500B;padding:4px 23px;float:left;position:relative;}
 .rechangell b{ float:left;position:absolute;display:block;background:url(images/user_purchase20150409154845.gif) no-repeat;right:0px;bottom:0px;width:12px;height:12px;}
 .rechangernumdiv{ width:260px;height:32px;border:1px solid #A9A9A9;float:left;}
+.withdrawpw{ width:260px;height:32px;}
 .rechangernuminput{ width:240px;height:30px;border:0px;outline:none;}
 .rechangerreminder{ width:75%;height:150px;background:#F68A1D;color:#fff;margin-top:50px;font-family:microsoft yahei;}
 .rechangerreminder p{ margin-top:5px;margin-left:10px;font-weight:bold;text-indent:10px;font-size:14px;}

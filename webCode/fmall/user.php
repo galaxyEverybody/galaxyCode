@@ -35,7 +35,7 @@ array('login','act_login','register','act_register','act_edit_password','act_edi
 
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'manage_msg', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
-'message_list', 'che_authwd_pw', 'ajax_center_manadel', 'loginpw_wdpw', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
+'message_list','chewithdrawpw', 'che_authwd_pw', 'ajax_center_manadel', 'loginpw_wdpw', 'user_head_img', 'act_bang_email', 'act_rechanger', 'act_withdrawals', 'act_bang_truename', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'loan_list','add_booking', 'account_raply',
 'account_deposit','bang_payment','account_log', 'booking_list_month', 'account_rechanger', 'account_withdrawals', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list',
 'validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer', 'callback_invest_ajax', 'over_invest_ajax', 'on_invest_ajax', 'callback_fixinvest_ajax', 'over_fixinvest_ajax', 'on_fixinvest_ajax');
 
@@ -768,9 +768,17 @@ elseif ($action == 'bangcardadd')
 	}elseif(empty($cardnum)){
 		show_message($_LANG['card_num_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
 	}
-	/* 查询城市编号
+	/* 查询城市编号*/
 	$sql = 'SELECT agency_id FROM '.$GLOBALS['ecs']->table('region').' WHERE region_id='.$cardcity;
-	$citycode = $GLOBALS['ecs']->getOne($sql);*/
+	$citycode = $GLOBALS['db']->getOne($sql);
+	
+	/* 判断银行卡是否已被绑定*/
+	$sql = 'SELECT cardid FROM '.$GLOBALS['ecs']->table('bang_card').
+		' WHERE bangstatus=1 AND cardnum="'.$cardnum.'"';
+	$cardexist = $GLOBALS['db']->getOne($sql);
+	if($cardexist > 0){
+		show_message($_LANG['bang_card_exist'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
+	}
 	
 	/* 查询银行卡信息*/
 	$check = new conpay;
@@ -787,11 +795,11 @@ elseif ($action == 'bangcardadd')
 		show_message($_LANG['bang_cardtype_error'], $_LANG['back_up_page'],'user.php?act=bangcard', 'info');
 	}
 	
-	/* 查询大额行号
+	/* 查询大额行号*/
 	$banks = array('shopname'=>$cardshop,'bankcode'=>$cardbank,'citycode'=>$citycode);
 	$bankres = $check->select_bigbankcode($banks);
-	$bankinfo = json_decode($bankres);*/
-	
+	$bankinfo = json_decode($bankres);
+	print_r($bankinfo);exit;
 	
 	if($cardinfo->ret_code == '0000' && $cardinfo->ret_msg == '交易成功'){
 		$bangcardinfo = array(
@@ -805,8 +813,8 @@ elseif ($action == 'bangcardadd')
 			'cardshop'		=>	$cardshop,
 			'card_type'		=>	$cardinfo->card_type,
 			'bangstatus'	=>	'1',
-			'no_agree'		=>	'0'
-			//'bigcode'		=>	$bankinfo->prcptcd
+			'no_agree'		=>	'0',
+			'bigcode'		=>	$bankinfo->prcptcd
 			
 		);
 	
@@ -2539,12 +2547,14 @@ elseif ($action == 'account_rechanger')
 /* 会员账户提现页面*/
 elseif ($action == 'account_withdrawals')
 {
-	$sql = "select u.realname,u.user_money,u.idcardstatus,u.bangcardstatus,b.cardnum from ".$GLOBALS['ecs']->table('users')." as u,".$GLOBALS['ecs']->table('bang_card')." as b where ".
+	$sql = "select u.realname,u.user_money,u.idcardstatus,u.bangcardstatus,b.cardnum from ".$GLOBALS['ecs']->table('users')." as u left join ".$GLOBALS['ecs']->table('bang_card')." as b on ".
 	"u.user_id = b.user_id and b.bangstatus =1 and u.user_id =".$user_id;
 	$withinfo = $GLOBALS['db']->getRow($sql);
 	
 	//实名与绑定卡的判断
-	if($withinfo['idcardstatus'] != 1){
+	if(empty($withinfo)){
+		show_message($_LANG['withdraws_idandcard_fail'],$_LANG['back_up_page'], 'user.php?act=auth_center');
+	}elseif($withinfo['idcardstatus'] != 1){
 		show_message($_LANG['withdraws_idcard_fail'],$_LANG['back_up_page'], 'user.php?act=auth_center');
 	}elseif($withinfo['bangcardstatus'] != 1){
 		show_message($_LANG['withdraws_bangcard_fail'],$_LANG['back_up_page'], 'user.php?act=bangcard');
@@ -2555,6 +2565,26 @@ elseif ($action == 'account_withdrawals')
 	
 	$smarty->assign('withinfo',$withinfo);
 	$smarty->display('user_transaction.dwt');
+}
+
+/* 提现时提现密码AJAX的验证*/
+elseif ($action == 'chewithdrawpw'){
+	$pw = $_POST['pw'];
+	if(empty($pw)){
+		echo "error";exit;
+	}
+	$withdrawpw = $user->compile_password(array('password'=>$pw));
+	
+	$sql = 'SELECT user_id FROM '.$GLOBALS['ecs']->table('users').
+	' WHERE user_id='.$user_id.' AND paypassword="'.$withdrawpw.'"';
+
+	$res = $GLOBALS['db']->getOne($sql);
+	
+	if($res > 0){
+		echo "right";exit;
+	}else{
+		echo "error";exit;
+	}
 }
 
 /* 会员进行充值*/
@@ -2607,8 +2637,18 @@ elseif ($action == 'act_withdrawals')
 	include_once(ROOT_PATH . 'includes/lib_clips.php');
 	
 	$number = trim($_POST['withdrawalsnum']);
+	$withdrawpw = trim($_POST['withdrawpw']);
 	if(!is_numeric($number)){
 		show_message($_LANG['no_num'],$_LANG['back_up_page'], 'user.php?act=account_withdrawals', 'info');
+	}
+	/* 判断提现密码是否一致*/
+	$withdrawpw = $user->compile_password(array('password'=>$withdrawpw));
+	$sql = 'SELECT user_id FROM '.$GLOBALS['ecs']->table('users').
+	' WHERE user_id='.$user_id.' AND paypassword="'.$withdrawpw.'"';
+
+	$res = $GLOBALS['db']->getOne($sql);
+	if(empty($res)){
+		show_message($_LANG['widthdrawpw_error'],$_LANG['back_up_page'], 'user.php?act=account_withdrawals', 'info');
 	}
 	/* 查询账户余额*/
 	$sql = "select user_money from ".$GLOBALS['ecs']->table('users')." where user_id =".$user_id;

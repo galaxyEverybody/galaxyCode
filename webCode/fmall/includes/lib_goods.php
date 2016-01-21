@@ -1044,12 +1044,13 @@ function get_goods_info($goods_id)
 function get_goods_bid($goods_id)
 {
 	$sql = 'select g.rec_id,u.user_name,g.invest_price,g.add_time from '.$GLOBALS['ecs']->table('order_goods').' as g,'.
-	$GLOBALS['ecs']->table('users').'as u where g.user_id=u.user_id and g.pay_status=2 and g.goods_id='.$goods_id.' limit 10';
+	$GLOBALS['ecs']->table('users').'as u where g.user_id=u.user_id and g.pay_status=2 and g.order_status=1 and g.goods_id='.$goods_id.' limit 15';
 
 	$goodsbidrecord = $GLOBALS['db']->getAll($sql);
 	
 	foreach($goodsbidrecord as $key=>$goodsbidrec){
-		$goodsbidrecord[$key]['add_time'] = local_date("Y-m-d H:i:s",$goodsbidrec['add_time']);
+		$goodsbidrecord[$key]['add_time'] = date("Y-m-d H:i:s",$goodsbidrec['add_time']);
+		$goodsbidrecord[$key]['user_name'] = substr($goodsbidrecord[$key]['user_name'],0,3).'****';
 	}
 	return $goodsbidrecord;
 

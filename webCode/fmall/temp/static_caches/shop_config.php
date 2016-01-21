@@ -183,7 +183,7 @@ scrollAmount=3><U><FONT color=red>
   'sms_order_placed' => '1',
   'sms_order_payed' => '0',
   'sms_order_shipped' => '0',
-  'wap_config' => '0',
+  'wap_config' => '1',
   'wap_logo' => '',
   'message_check' => '1',
   'best_number' => 3,
