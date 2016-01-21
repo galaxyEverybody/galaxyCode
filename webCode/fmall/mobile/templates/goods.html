@@ -1,62 +1,97 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ECShop_mobile</title>
-</head>
-
-<body>
-<p align='left'>
-{$goods_info.goods_name}<br/>
---------------<br/>
-{if $goods_info.brand_id}
-    商品品牌:<a href='brands.php?b_id={$goods_info.brand_id}'>{$brand_name}</a><br/>
-{/if}
-商品编号:{$goods_info.goods_sn}<br/>
-商品分类:
-{foreach from=$cat_array item=cat_data}
-    <a href='category.php?c_id={$cat_data.cat_id}'>{$cat_data.cat_name}</a>-&gt;
-{/foreach}
-{$goods_info.goods_name}<br/>
-{if $goods_info.goods_number neq ""}商品库存：
-{if $goods_info.goods_number eq 0}
-已售完
-{else}
-{$goods_info.goods_number}
-{/if}<br />
-{/if}
-市场价格:{$goods_info.market_price}<br/>
-商品价格:{if $promote_price_org}{$goods_info.promote_price}{else}{$goods_info.shop_price_formated}{/if}<br/>
- <!-- {foreach from=$rank_prices item=rank_price key=key} 会员等级对应的价格-->
-       <strong>{$rank_price.rank_name}：</strong><font class="shop" id="ECS_RANKPRICE_{$key}">{$rank_price.price}</font><br />
-       <!--{/foreach}-->
-{if $goods_info.promote_price and $goods_info.gmt_end_time}促销价格:{$goods_info.promote_price}{/if}<br/>
-{foreach from=$specification item=spec key=spec_key}
-{$spec.name}:<br />
-  {if $spec.attr_type eq 1}
-    {foreach from=$spec.values item=value key=key}
-    <input type="radio" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" {if $key eq 0}checked{/if}/>
-    {$value.label} [{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]<br />
-    {/foreach}
-    <input type="hidden" name="spec_list" value="{$key}" />
-  {else}
-    {foreach from=$spec.values item=value key=key}
-    <input type="checkbox" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}"/>
-    {$value.label} [{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]<br />
-    {/foreach}
-    <input type="hidden" name="spec_list" value="{$key}" />
-  {/if}
-{/foreach}
-浏览次数:{$goods_info.click_count}<br/>
-商品说明:{$goods_info.goods_brief}<br/><br/>
-<a href='buy.php?id={$goods_id}'>购买此商品</a><br/>
-<a href='goods.php?act=view_img&amp;id={$goods_id}'>点击查看商品图片</a><br/>
-<a href='comment.php?g_id={$goods_id}'>商品评论({$comment.pager.record_count})</a><br/>
-
---------------<br/>
-<a href="javascript:history.back(-1)">回上一页</a><br/>
-<a href='index.php'>返回首页</a>
-{$footer}
-</p>
-</body>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" width="device-width,initial-scale=1.0">
+		<link type="text/css" href="./js/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+		<script src="./js/jquery-1.8.2.min.js"></script>
+		<script src="./js/jquery.mobile-1.4.5.min.js"></script>
+		<title>银河众联,p2p,p2p理财</title>
+	</head>
+	<body>
+		<div data-role="page">
+			<div data-role="header" style="text-align:center;">
+				<div style="margin:20px;"><em style="font-size:4em;">{$goods_info.market_price}%</em><br/>预期年化收益</div>
+				<div>
+					<span style="padding-right:10px;">期限<span id="daynum">{$goods_info.goods_weight_day}</span>天</span>|
+					<span style="padding-left:10px;padding-right:10px;">起投金额100元</span>|
+					<span style="padding-left:10px;">t+0日计息</span>
+				</div>
+			</div>
+			<div style="width:100%;height:50px;line-height:50px;">
+				<span style="float:left;">项目金额:{$goods_info.shop_price}元</span>
+				<span style="float:right;">可投金额:{$goods_info.surplus_price}元</span>
+			</div>
+			<div>
+				<div class="ui-grid-b">
+					<div class="ui-block-a">
+						<input type="button" data-theme="a" value="项目介绍"/>
+					</div>
+					<div class="ui-block-b">
+						<input type="button" data-theme="a" value="风控措施"/>
+					</div>
+					<div class="ui-block-c">
+						<input type="button" data-theme="a" value="投资记录"/>
+					</div>
+				</div>
+				<div id="introinfo" style="width:100%;height:100px;background:red;">
+					{$goods_info.goods_desc}
+				</div>
+				<div id="windcontrol" style="width:100%;height:100px;background:yellow;display:none;">
+					{$goods_info.packing_list}
+				</div>
+				<div id="intorecord" style="width:100%;height:100px;background:blue;display:none;">
+					
+				</div>
+			</div>
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<a href="#pageinto" data-rel="dialog"  data-role="button">购买</a>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="pageinto">
+			<div style="height:35px;line-height:35px;">
+				<p><span style="float:left;margin-left:5px;">年化利率:<span style="color:red;" id="raterate">{$goods_info.market_price}%</span></span><span style="float:right;margin-right:5px;">到期收益:<span style="color:red;" id="intomoney">0.00</span></span></p>
+			</div>
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<input type="text" id="name" placeholder="投资金额" name="name" oninput="changenum(event)">
+				</div>
+			</div>
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<input type="button" data-theme="a" value="确定">
+				</a>
+			</div>
+		</div>
+	</body>
 </html>
+<script>
+	$(document).on("pageinit",function(){
+		$(".ui-block-a").on("tap",function(){
+			$("#introinfo").show();
+			$("#windcontrol").hide();
+			$("#intorecord").hide();
+		});
+		$(".ui-block-b").on("tap",function(){
+			$("#introinfo").hide();
+			$("#windcontrol").show();
+			$("#intorecord").hide();
+		});
+		$(".ui-block-c").on("tap",function(){
+			$("#introinfo").hide();
+			$("#windcontrol").hide();
+			$("#intorecord").show();
+		});
+	})
+	function changenum(event){
+		var num = event.target.value;
+		var day = $("#daynum").html();
+		var rate = $("#raterate").html();
+		var dis = rate.indexOf("%");
+		var rate = rate.substring(0,dis);
+		var intonum = (num*rate/36500*day).toFixed(2);
+		$("#intomoney").html(intonum);
+	}
+</script>

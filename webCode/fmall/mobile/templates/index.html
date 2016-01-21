@@ -1,79 +1,182 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>银河众联,p2p理财</title>
-</head>
-
-<body>
-
-<p align='left'>
-{if $user_name}
-    [<a href='user.php?act=user_center'>用户中心</a>]&nbsp;[<a href='user.php?act=logout'>退出</a>]<br/>
-{else}
-    ［<a href='user.php?act=login'>登录</a>］&nbsp;［<a href='user.php?act=register'>免费注册</a>］<br/>
-{/if}
-<img src='{$wap_logo|default:../images/wap_logo.png}' alt='LOGO' /><br/>
-
-<form name="searchForm" method="get" action="search.php">
- <input name="keywords" type="text" />
- <input type="submit" value="商品搜索"/>
-</form>
-{if $searchkeywords}
- 热门搜索 ：
- {foreach from=$searchkeywords item=val}
- <a href="search.php?keywords={$val|escape:url}">{$val}</a>
- {/foreach}
-{/if}
-<br/>--------------<br/>
-{if $best_num > 0}
-[精品推荐]&gt;&gt;<a href='goods_list.php?type=best'>更多</a><br/>
-  {foreach from=$best_goods item=best_data}
-      <a href='goods.php?id={$best_data.id}'>{$best_data.name}</a>[{$best_data.shop_price}]<br/>
-  {/foreach}
-{/if}
-<br/>--------------<br/>
-{if $promote_num > 0}
-[促销商品]&gt;&gt;<a href='goods_list.php?type=promote'>更多</a><br/>
-  {foreach from=$promote_goods item=promote_data}
-      <a href='goods.php?id={$promote_data.id}'>{$promote_data.name}</a>[{$promote_data.shop_price}]<br/>
-  {/foreach}
-{/if}
-<br/>--------------<br/>
-{if $hot_num > 0}
-[热门商品]&gt;&gt;<a href='goods_list.php?type=hot'>更多</a><br/>
-  {foreach from=$hot_goods item=hot_data}
-      <a href='goods.php?id={$hot_data.id}'>{$hot_data.name}</a>[{$hot_data.shop_price}]<br/>
-  {/foreach}
-{/if}
-<br/>--------------<br/>
-&gt;&gt;商品分类&gt;&gt;<a href='cat_all.php'>更多</a><br/><br/>
-
-{foreach from=$pcat_array item=pcat_data}
-<a href='category.php?c_id={$pcat_data.id}'>{$pcat_data.name}</a>|&nbsp;&nbsp;
-{foreach from=$pcat_data['cat_id'] item=cat_data name=foo}
-{if $smarty.foreach.foo.iteration <= 3}
-<a href='category.php?c_id={$cat_data.id}'>{$cat_data.name}</a>
-{/if}
-{/foreach}
-&nbsp;&nbsp;<a href='cat_all.php'>...更多</a><br/>
-{/foreach}
-<br/>--------------<br/>
-{if $brand_array}
-品牌专区&gt;&gt;<a href='brands.php'>更多</a><br/>
-{foreach from=$brand_array item=brand_data}
-<a href='brands.php?b_id={$brand_data.brand_id}'>{$brand_data.brand_name}</a><br/>
-{/foreach}
-{/if}
-<br/>--------------<br/>
-[站内资讯]&gt;&gt;<a href='article.php'>更多</a><br/>
-{if $article_array}
-{foreach from=$article_array item=article_data}
-<a href='article.php?act=detail&amp;a_id={$article_data.article_id}'>{$article_data.title}</a><br/>
-{/foreach}
-{/if}
-{$footer}
-</p>
-
-</body>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link type="text/css" href="./js/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+		<script src="./js/jquery-1.8.2.min.js"></script>
+		<script src="./js/jquery.mobile-1.4.5.min.js"></script>
+		<title>银河众联,p2p,p2p理财</title>
+		<style>
+			.ratenum{width:200px;height:200px;line-height:200px;box-shadow:-5px 0px 8px red,0px -5px 8px red,5px 0px 8px red,0px 5px 8px red;font-size:5em;border-radius:100px;}
+			a{text-decoration:none;}
+		</style>
+	</head>
+	<body>
+		<!--定期30天start-->
+		<div data-role="page" id="ratepageone">
+			<div data-role="header">
+				<img src="./mobileimages/phonerateimgtop.gif" alt="银河众联" width="100%">
+			</div>
+			<div data-role="content" style="text-align:center;">
+				<a href="{$infoone.url}"><div class="ratenum">{$infoone.market_price}%</div></a>
+				<div>
+					<span style="float:left;margin-left:10px;">理财期限:{$infoone.good_weight_day}天</span>
+					<span style="float:right;margin-right:10px;">项目总额:{$infoone.shop_price}元</span>
+				</div>
+			</div>
+			<div class="ui-grid-c">
+				<div class="ui-block-a">
+					<a href="#ratepageone" data-transition="slide" data-role="button">30天</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="#ratepagetwo" data-transition="slide" data-role="button">90天</a>
+				</div>
+				<div class="ui-block-c">
+					<a href="#ratepagethree" data-transition="slide" data-role="button">180天</a>
+				</div>
+				<div class="ui-block-d">
+					<a href="#ratepagefour" data-transition="slide" data-role="button">365天</a>
+				</div>
+			</div>
+			<div class="ui-grid-b" data-position="fixed" data-role="footer">
+				<div class="ui-block-a">
+					<a href="index.php" data-role="button">聚能赚定期</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="category.php" data-role="button">精选散标</a>
+				</div>
+				<div class="ui-block-c">
+					<a href="user.php" data-role="button">个人中心</a>
+				</div>
+			</div>
+		</div>
+		<!--定期30天end-->
+		<!--定期90天start-->
+		<div data-role="page" id="ratepagetwo">
+			<div data-role="header">
+				<img src="./mobileimages/phonerateimgtop.gif" alt="银河众联" width="100%">
+			</div>
+			<div data-role="content">
+				<a href="{$infotwo.url}"><div class="ratenum">{$infotwo.market_price}%</div></a>
+				<div>
+					<span style="float:left;margin-left:10px;">理财期限:{$infotwo.good_weight_day}天</span>
+					<span style="float:right;margin-right:10px;">项目总额:{$infotwo.shop_price}元</span>
+				</div>
+			</div>
+			<div class="ui-grid-c">
+				<div class="ui-block-a">
+					<a href="#ratepageone" data-transition="slide" data-role="button">30天</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="#ratepagetwo" data-transition="slide" data-role="button">90天</a>
+				</div>
+				<div class="ui-block-c">
+					<a href="#ratepagethree" data-transition="slide" data-role="button">180天</a>
+				</div>
+				<div class="ui-block-d">
+					<a href="#ratepagefour" data-transition="slide" data-role="button">365天</a>
+				</div>
+			</div>
+			<div class="ui-grid-b" data-position="fixed" data-role="footer">
+				<div class="ui-block-a">
+					<a href="index.php" data-role="button">聚能赚定期</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="category.php" data-role="button">精选散标</a>
+				</div>
+				<div class="ui-block-c">
+					<a href="user.php" data-role="button">个人中心</a>
+				</div>
+			</div>
+		</div>
+		<!--定期90天end-->
+		<!--定期180天start-->
+		<div data-role="page" id="ratepagethree">
+			<div data-role="header">
+				<img src="./mobileimages/phonerateimgtop.gif" alt="银河众联" width="100%">
+			</div>
+			<div data-role="content">
+				<a href="{$infothree.url}"><div class="ratenum">{$infothree.market_price}%</div></a>
+				<div>
+					<span style="float:left;margin-left:10px;">理财期限:{$infothree.good_weight_day}天</span>
+					<span style="float:right;margin-right:10px;">项目总额:{$infothree.shop_price}元</span>
+				</div>
+			</div>
+			<div class="ui-grid-c">
+				<div class="ui-block-a">
+					<a href="#ratepageone" data-transition="slide" data-role="button">30天</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="#ratepagetwo" data-transition="slide" data-role="button">90天</a>
+				</div>
+				<div class="ui-block-c">
+					<a href="#ratepagethree" data-transition="slide" data-role="button">180天</a>
+				</div>
+				<div class="ui-block-d">
+					<a href="#ratepagefour" data-transition="slide" data-role="button">365天</a>
+				</div>
+			</div>
+			<div class="ui-grid-b" data-position="fixed" data-role="footer">
+				<div class="ui-block-a">
+					<a href="index.php" data-role="button">聚能赚定期</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="category.php" data-role="button">精选散标</a>
+				</div>
+				<div class="ui-block-c">
+					<a href="user.php" data-role="button">个人中心</a>
+				</div>
+			</div>
+		</div>
+		<!--定期180天end-->
+		<!--定期365天start-->
+		<div data-role="page" id="ratepagefour">
+			<div data-role="header">
+				<img src="./mobileimages/phonerateimgtop.gif" alt="银河众联" width="100%">
+			</div>
+			<div data-role="content">
+				<a href="{$infofour.url}"><div class="ratenum">{$infofour.market_price}%</div></a>
+				<div>
+					<span style="float:left;margin-left:10px;">理财期限:{$infofour.good_weight_day}天</span>
+					<span style="float:right;margin-right:10px;">项目总额:{$infofour.shop_price}元</span>
+				</div>
+			</div>
+			<div class="ui-grid-c">
+				<div class="ui-block-a">
+					<a href="#ratepageone" data-transition="slide" data-role="button">30天</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="#ratepagetwo" data-transition="slide" data-role="button">90天</a>
+				</div>
+				<div class="ui-block-c">
+					<a href="#ratepagethree" data-transition="slide" data-role="button">180天</a>
+				</div>
+				<div class="ui-block-d">
+					<a href="#ratepagefour" data-transition="slide" data-role="button">365天</a>
+				</div>
+			</div>
+			<div class="ui-grid-b" data-position="fixed" data-role="footer">
+				<div class="ui-block-a">
+					<a href="index.php" data-role="button">聚能赚定期</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="categroy.php" data-role="button">精选散标</a>
+				</div>
+				<div class="ui-block-c">
+					<a href="user.php" data-role="button">个人中心</a>
+				</div>
+			</div>
+		</div>
+		<!--定期365天end-->
+	</body>
 </html>
+<script>
+	$(document).on("pageinit",function(){
+		$("#ratepageone").on("swipeleft",function(){
+			$(this).hide();
+			$(this).siblings().hide();
+			$("ratepagetwo").show();
+		});
+	});
+</script>

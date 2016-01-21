@@ -1,56 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ECShop_mobile</title>
-</head>
-
-<body>
-<p align='left'>
-{if $all_cat}
-分类列表<br/>
---------------<br/>
-{foreach from=$cat_array item=cat_data}
-<a href='category.php?c_id={$cat_data.id}'>{$cat_data.name}</a><br/>
-{foreach from=$cat_data['cat_id'] item=ccat_data}
-><a href='category.php?c_id={$ccat_data.id}'>{$ccat_data.name}</a><br/>
-{/foreach}
-{/foreach}
-{else}
-{$cat_name}的商品列表<br/>
---------------<br/>
-
-{if $smarty.get.order_price}
-当前为价格降序排列，<a href='category.php?c_id={$smarty.get.c_id}{if $smarty.get.page}&page={$smarty.get.page}{/if}'>转换成价格升序排列</a>
-{else}
-当前为价格升序排列，<a href='category.php?c_id={$smarty.get.c_id}&order_price=1{if $smarty.get.page}&page={$smarty.get.page}{/if}'>转换成价格降序排列</a>
-{/if}<br/><br/>
-{if $cat_children}
-  下级分类<br/>
-    {foreach from=$cat_children item=child_data}
-        <a href='category.php?c_id={$child_data.id}'>{$child_data.name}</a><br/>
-    {/foreach}
-    --------------<br/>
-{/if}
-{foreach from=$goods_data item=goods}
-    {$goods.i}.<a href='goods.php?id={$goods.id}'>{$goods.name}</a>[{$goods.price}]<br/>
-{foreachelse}
-    暂无此类商品<br/>
-{/foreach}<br/>
-{if $pagebar}
-{$pagebar}<br/>
-{/if}
-{/if}
---------------<br/>
-<a href="javascript:history.back(-1)">回上一页</a><br/>
-{if $pcat_array}
-    <a href='category.php?c_id={$pcat_array.cat_id}'>回{$pcat_array.cat_name}</a><br/>
-{/if}
-{if $c_id}
-    <a href='category.php'>回所有分类</a><br/>
-{/if}
-<a href='index.php'>返回首页</a>
-{$footer}
-</p>
-</body>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link type="text/css" href="./js/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+		<script src="./js/jquery-1.8.2.min.js"></script>
+		<script src="./js/jquery.mobile-1.4.5.min.js"></script>
+		<title>银河众联,p2p,p2p理财</title>
+		<style>
+			.top{width:100%;height:3px;background:#FF500B;}
+			.content{border:1px solid #000000;border-radius:10px;overflow:hidden;margin-top:10px;}
+			.pone{float:left;}
+			.ptwo{float:left;margin-left:50px;}
+			a{text-decoration:none;}
+		</style>
+	</head>
+	<body>
+		<div data-role="header">
+			<img src="./mobileimages/phonerateimgtop.gif" alt="银河众联" width="100%">
+		</div>
+		{foreach from=$cateinfo item=cate}
+		<div class="content">
+			<div class="top"></div>
+			<a href="{$cate.url}"><div class="ui-block-a">
+				<p>{$cate.short_name}</p>
+				<div>
+					<p class="pone">{$cate.market_price}%</br>年化利率</p>
+					<p class="ptwo">{$cate.term}</br>理财期限</p>
+				</div>
+			</div></a>
+		</div>
+		{/foreach}
+		<div class="ui-grid-b" data-position="fixed" data-role="footer">
+			<div class="ui-block-a">
+				<a href="index.php" data-role="button">聚能赚定期</a>
+			</div>
+			<div class="ui-block-b">
+				<a href="category.php" data-role="button">精选散标</a>
+			</div>
+			<div class="ui-block-c">
+				<a href="user.php" data-role="button">个人中心</a>
+			</div>
+		</div>
+	</body>
 </html>

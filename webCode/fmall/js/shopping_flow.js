@@ -1887,8 +1887,7 @@ function chekrechargernum(num){
 /* 提现页面表单的验证*/
 function formwithdrawals(){
 	var num = $("#withdrawalsnum").val();
-	var usermoney = $("#user_withdmon").html();
-	
+	var withpw = $("#withdrawpw").val();
 	if(num == ''){
 		$("#withdrawalsnumspan").html('请输入您要提现的金额');
 		if($("#withdrawalsnumspan").hasClass("focus")){
@@ -1896,29 +1895,18 @@ function formwithdrawals(){
 		}
 		$("#withdrawalsnumspan").addClass("error");
 		return false;
-	}else{
-		num = parseFloat(num);
-		usermoney = parseFloat(usermoney);
-		if(!Utils.isNumber(num)){
-			$("#withdrawalsnumspan").html('输入的金额不合法');
-			if($("#withdrawalsnumspan").hasClass("focus")){
-				$("#withdrawalsnumspan").removeClass("focus");
-			}
-			$("#withdrawalsnumspan").addClass("error");
-			return false;
-		}else if(num > usermoney){
-			$("#withdrawalsnumspan").html('超出提现额度值');
-			if($("#withdrawalsnumspan").hasClass("focus")){
-				$("#withdrawalsnumspan").removeClass("focus");
-			}
-			$("#withdrawalsnumspan").addClass("error");
-			return false;
-		}else{
-			return true;
+	}else if(withpw == ''){
+		$("#withdrawpwspan").html('请输入您的提现密码');
+		if($("#withdrawpwspan").hasClass("focus")){
+			$("#withdrawpwspan").removeClass("focus");
 		}
+		$("#withdrawpwspan").addClass("error");
+		return false;
+	}else{
+		return true;
 	}
 }
-
+/* 提现金额的验证*/
 function chekwithdrawalsnum(num){
 	var usermoney = $("#user_withdmon").html();
 	usermoney = parseFloat(usermoney);
@@ -1936,6 +1924,7 @@ function chekwithdrawalsnum(num){
 				$("#withdrawalsnumspan").removeClass("focus");
 			}
 			$("#withdrawalsnumspan").addClass("error");
+			$("#withdrawalsnum").val('');
 			$("#true_wdmoney").html('');
 		}else if(num > usermoney){
 			$("#withdrawalsnumspan").html('超出提现额度值');
@@ -1943,6 +1932,7 @@ function chekwithdrawalsnum(num){
 				$("#withdrawalsnumspan").removeClass("focus");
 			}
 			$("#withdrawalsnumspan").addClass("error");
+			$("#withdrawalsnum").val('');
 			$("#true_wdmoney").html('');
 		}else{
 			$("#withdrawalsnumspan").html('');
@@ -1952,6 +1942,43 @@ function chekwithdrawalsnum(num){
 			$("#withdrawalsnumspan").addClass("focus");
 			$("#true_wdmoney").html(num);
 		}
+	}
+}
+/* 提现密码的验证*/
+function chekwithdrawpw(pw){
+	if(pw == ''){
+		$("#withdrawpwspan").html('请输入您的提现密码');
+		if($("#withdrawpwspan").hasClass("focus")){
+			$("#withdrawpwspan").removeClass("focus");
+		}
+		$("#withdrawpwspan").addClass("error");
+	}else{
+		if(pw.length < 6){
+			$("#withdrawpwspan").html('输入的密码不合法');
+			if($("#withdrawpwspan").hasClass("focus")){
+				$("#withdrawpwspan").removeClass("focus");
+			}
+			$("#withdrawpwspan").addClass("error");
+			$("#withdrawsubform").submit(function(){return false;});
+		}else{
+			Ajax.call('user.php?act=chewithdrawpw','pw='+pw,callback_withdrawpw,'POST','TEXT',true,true);
+		}
+	}
+}
+function callback_withdrawpw(res){
+	if(res == 'right'){
+		$("#withdrawpwspan").html('');
+		if($("#withdrawpwspan").hasClass("error")){
+			$("#withdrawpwspan").removeClass("error");
+		}
+		$("#withdrawpwspan").addClass("focus");
+	}else{
+		$("#withdrawpwspan").html('提现密码输入错误');
+		if($("#withdrawpwspan").hasClass("focus")){
+			$("#withdrawpwspan").removeClass("focus");
+		}
+		$("#withdrawpwspan").addClass("error");
+		$("#withdrawsubform").submit(function(){return false;});
 	}
 }
 

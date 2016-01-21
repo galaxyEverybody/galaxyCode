@@ -293,7 +293,7 @@ $(function(){
 		<span class="capitalleft"></span><span class="capitalright">账户提现</span>
 	</div>
 	<div class="rechangermiddle">
-		<form action="user.php" method="post" onsubmit="return formwithdrawals()">
+		<form action="user.php" id="withdrawsubform" method="post" onsubmit="return formwithdrawals()">
 		<table border="0px" cellspadding="10px" cellpadding="10px" width='630px'>
 			<tr><td class="rechangelefttd">真实姓名</td><td>{$withinfo.realname}</td></tr>
 			<tr><td class="rechangelefttd">可提现额度</td><td><span id="user_withdmon">{$withinfo.user_money}</span> 元</td></tr>
@@ -304,6 +304,11 @@ $(function(){
 				<span id="withdrawalsnumspan"></span></td>
 			</tr>
 			<tr><td class="rechangelefttd">实际到账金额</td><td><span id="true_wdmoney"></span> 元</td></tr>
+			<tr>
+				<td class="rechangelefttd">提现密码</td>
+				<td><input type="password" name="withdrawpw" id="withdrawpw" class="withdrawpw" onkeyup="chekwithdrawpw(this.value)">
+				<span id="withdrawpwspan"></span></td>
+			</tr>
 			<tr>
 				<td><input type="hidden" name="act" value="act_withdrawals"></td>
 				<td><input type="submit" value="提现" class="rechangersub"></td>

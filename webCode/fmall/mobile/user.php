@@ -19,10 +19,13 @@ require(dirname(__FILE__) . '/includes/init.php');
 /* 载入语言文件 */
 require_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/user.php');
 
-$act = isset($_GET['act']) ? $_GET['act'] : '';
+$act = isset($_GET['act']) ? $_GET['act'] : 'login';
 
+if($act == 'login'){
+	$smarty->display('login.html');
+}
 /* 用户登陆 */
-if ($act == 'do_login')
+elseif ($act == 'do_login')
 {
     $user_name = !empty($_POST['username']) ? $_POST['username'] : '';
     $pwd = !empty($_POST['pwd']) ? $_POST['pwd'] : '';
@@ -257,17 +260,8 @@ else
  */
 function show_user_center()
 {
-    $best_goods = get_recommend_goods('best');
-    if (count($best_goods) > 0)
-    {
-        foreach  ($best_goods as $key => $best_data)
-        {
-            $best_goods[$key]['shop_price'] = encode_output($best_data['shop_price']);
-            $best_goods[$key]['name'] = encode_output($best_data['name']);
-        }
-    }
+    
     $GLOBALS['smarty']->assign('best_goods' , $best_goods);
-    $GLOBALS['smarty']->assign('footer', get_footer());
     $GLOBALS['smarty']->display('user.html');
 }
 
