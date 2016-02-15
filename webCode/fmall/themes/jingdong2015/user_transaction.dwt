@@ -19,6 +19,7 @@
 <div class="hide"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
 <div class="JD_userMain">
 <div class="w main">
+	<div class="blank5"></div>
 	<div class="right">
     	<Div class="ordercontainer">
         	<div class="userCenterBox clearfix" style="_height:1%;">
@@ -260,7 +261,7 @@ $(function(){
 				<td class="rechangelefttd">充值渠道</td>
 				<td>
 					<div class="rechangell">
-                    	<label for="ll"><b></b>连连支付</label>
+                    	<label for="ll"><b></b>宝付支付</label>
                         <input type="hidden" type="radio" name="payment" value="4" id="ll" checked="checked"/>
                     </div>
 				</td>
@@ -306,7 +307,7 @@ $(function(){
 			<tr><td class="rechangelefttd">实际到账金额</td><td><span id="true_wdmoney"></span> 元</td></tr>
 			<tr>
 				<td class="rechangelefttd">提现密码</td>
-				<td><input type="password" name="withdrawpw" id="withdrawpw" class="withdrawpw" onkeyup="chekwithdrawpw(this.value)">
+				<td><input type="password" name="withdrawpw" id="withdrawpasswd" class="withdrawpw" onkeyup="chekwithdrawpw(this.value)">
 				<span id="withdrawpwspan"></span></td>
 			</tr>
 			<tr>

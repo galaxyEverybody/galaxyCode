@@ -1107,7 +1107,7 @@ elseif ($_REQUEST['step'] == 'select_payment')
     //-- 改变支付方式
     /*------------------------------------------------------ */
 	include_once('includes/lib_payment.php');
-	include_once('includes/lib_llpay.php');
+	include_once('includes/lib_bfpay.php');
 	
 	$market_trueprice = trim($_POST['market_trueprice']);
 	$money = trim($_POST['investnum']);
@@ -1135,7 +1135,7 @@ elseif ($_REQUEST['step'] == 'select_payment')
 
 	/* 取得订单信息 */
     $sql = 'SELECT o.user_id, o.order_sn, o.order_price, o.add_time, o.goods_name, '.
-    		'u.realname, u.idcard , b.cardbank, b.cardnum FROM '.
+    		'u.realname, u.idcard , u.mobile_phone, b.cardbank, b.cardnum FROM '.
             $GLOBALS['ecs']->table('order_goods').' as o,'.
             $GLOBALS['ecs']->table('users').' as u,'.
             $GLOBALS['ecs']->table('bang_card').' as b,'.

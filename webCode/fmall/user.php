@@ -2591,7 +2591,7 @@ elseif ($action == 'chewithdrawpw'){
 elseif ($action == 'act_rechanger')
 {
 	include_once(ROOT_PATH . 'includes/lib_clips.php');
-	include_once(ROOT_PATH . 'includes/lib_llpay.php');
+	include_once(ROOT_PATH . 'includes/lib_bfpay.php');
 	
 	$amount = trim($_POST['rechargernum']);
 	$payment = trim($_POST['payment']);
@@ -2605,7 +2605,7 @@ elseif ($action == 'act_rechanger')
 	/* 添加充值信息*/
 	$surplus = array(
 			'user_id'		=> $user_id,
-			'change_sn'		=>date('YmdHis',time()).rand(1,10000),
+			'change_sn'		=> "c".date('YmdHis',time()).rand(1,10000),
 			'process_type'	=> 0,
 			'payment_id'	=> $payment,		//连连支付
 			'amount'		=> $amount
@@ -2613,7 +2613,7 @@ elseif ($action == 'act_rechanger')
 	$accountid = insert_user_account($surplus, $amount);
 	
 	/* 查询个人信息*/
-	$sql = 'SELECT u.user_id,u.realname,u.idcard,b.cardbank,b.cardnum,a.change_sn,a.amount,a.add_time FROM'.
+	$sql = 'SELECT u.user_id,u.realname,u.mobile_phone,u.idcard,b.cardbank,b.cardnum,a.change_sn,a.amount,a.add_time FROM'.
 			$GLOBALS['ecs']->table('users').' as u,'.
 			$GLOBALS['ecs']->table('user_account').' as a,'.
 			$GLOBALS['ecs']->table('bang_card').' as b WHERE '.
@@ -2621,8 +2621,6 @@ elseif ($action == 'act_rechanger')
 			' AND a.is_paid=0 ORDER BY a.id DESC';
 			
 	$parainfo = $GLOBALS['db']->getRow($sql);
-	
-	$parainfo['goods_name'] = '充值';
 
 	/* 调用支付接口进行充值*/
 	$conpay = new conpay;
@@ -2635,6 +2633,7 @@ elseif ($action == 'act_rechanger')
 elseif ($action == 'act_withdrawals')
 {
 	include_once(ROOT_PATH . 'includes/lib_clips.php');
+	include_once(ROOT_PATH . 'includes/lib_bfpay.php');
 	
 	$number = trim($_POST['withdrawalsnum']);
 	$withdrawpw = trim($_POST['withdrawpw']);
@@ -2650,15 +2649,31 @@ elseif ($action == 'act_withdrawals')
 	if(empty($res)){
 		show_message($_LANG['widthdrawpw_error'],$_LANG['back_up_page'], 'user.php?act=account_withdrawals', 'info');
 	}
-	/* 查询账户余额*/
-	$sql = "select user_money from ".$GLOBALS['ecs']->table('users')." where user_id =".$user_id;
-	$money = $GLOBALS['db']->getOne($sql);
+	/* 查询账户余额与银行卡信息*/
+	$sql = "select u.user_money,u.realname,b.cardprovince,b.cardcity,b.cardbank," .
+			"b.cardshop,b.cardnum from ".$GLOBALS['ecs']->table('users').
+			" as u,".$GLOBALS['ecs']->table('bang_card').
+			" as b where u.user_id=b.user_id AND b.bangstatus=1 AND b.user_id =".$user_id;
+	$withinfo = $GLOBALS['db']->getRow($sql);
 	
-	if($number > $money){
+	if($number > $withinfo['user_money']){
 		show_message($_LANG['no_withdrawals_num'],$_LANG['back_up_page'], 'user.php?act=account_withdrawals', 'info');
 	}
+	$withinfo['with_sn'] = "t".date('YmdHis',time()).rand(1,10000);
+	$withinfo['number'] = $number;
+	$withinfo['bankname'] = $_LANG['bank_name'][$withinfo['cardbank']];
 	
-	/* 调用支付接口*/
+	/* 银行卡开户省市*/
+	$sql = 'SELECT region_name FROM '.$GLOBALS['ecs']->table('region').
+			' WHERE region_id ='.$withinfo['cardprovince'];
+	$withinfo['proname'] = $GLOBALS['db']->getOne($sql);
+	$sql = 'SELECT region_name FROM '.$GLOBALS['ecs']->table('region').
+			' WHERE region_id ='.$withinfo['cardcity'];
+	$withinfo['procity'] = $GLOBALS['db']->getOne($sql);
+	
+	/* 调用提现接口*/
+	$conpay = new conpay;
+	$conpay->withdraw_handle($withinfo);
 	
 	//更改用户的余额
 	updateuser_account($surplus, $amount , 3);

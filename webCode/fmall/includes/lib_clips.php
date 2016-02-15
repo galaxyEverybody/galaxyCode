@@ -738,7 +738,7 @@ function get_user_default($user_id)
     $info['bonus']     = sprintf($GLOBALS['_LANG']['user_bonus_info'], $user_bonus['bonus_count'], price_format($user_bonus['bonus_value'], false));
 
     $sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('order_goods').
-            " WHERE user_id = '" .$user_id. "' AND add_time > '" .local_strtotime('-1 months'). "'";
+            " WHERE user_id = '" .$user_id. "' AND pay_status=2 AND add_time > '" .local_strtotime('-1 months'). "'";
     $info['order_count'] = $GLOBALS['db']->getOne($sql);
     /* 理财资产*/
     $sqlsum = "SELECT SUM(invest_price) FROM ".$GLOBALS['ecs']->table('order_goods')." where pay_status =".$paystatus." and user_id =".$user_id;

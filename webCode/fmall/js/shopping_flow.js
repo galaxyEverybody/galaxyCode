@@ -1887,7 +1887,8 @@ function chekrechargernum(num){
 /* 提现页面表单的验证*/
 function formwithdrawals(){
 	var num = $("#withdrawalsnum").val();
-	var withpw = $("#withdrawpw").val();
+	var withpass = $("#withdrawpasswd").val();
+	
 	if(num == ''){
 		$("#withdrawalsnumspan").html('请输入您要提现的金额');
 		if($("#withdrawalsnumspan").hasClass("focus")){
@@ -1895,7 +1896,7 @@ function formwithdrawals(){
 		}
 		$("#withdrawalsnumspan").addClass("error");
 		return false;
-	}else if(withpw == ''){
+	}else if(withpass == ''){
 		$("#withdrawpwspan").html('请输入您的提现密码');
 		if($("#withdrawpwspan").hasClass("focus")){
 			$("#withdrawpwspan").removeClass("focus");
@@ -1959,7 +1960,7 @@ function chekwithdrawpw(pw){
 				$("#withdrawpwspan").removeClass("focus");
 			}
 			$("#withdrawpwspan").addClass("error");
-			$("#withdrawsubform").submit(function(){return false;});
+			//$("#withdrawsubform").submit(function(){return false;});
 		}else{
 			Ajax.call('user.php?act=chewithdrawpw','pw='+pw,callback_withdrawpw,'POST','TEXT',true,true);
 		}
@@ -1972,13 +1973,14 @@ function callback_withdrawpw(res){
 			$("#withdrawpwspan").removeClass("error");
 		}
 		$("#withdrawpwspan").addClass("focus");
+		//$("#withdrawsubform").submit(function(){return true;});
 	}else{
 		$("#withdrawpwspan").html('提现密码输入错误');
 		if($("#withdrawpwspan").hasClass("focus")){
 			$("#withdrawpwspan").removeClass("focus");
 		}
 		$("#withdrawpwspan").addClass("error");
-		$("#withdrawsubform").submit(function(){return false;});
+		//$("#withdrawsubform").submit(function(){return false;});
 	}
 }
 
