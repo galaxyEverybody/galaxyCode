@@ -11,11 +11,11 @@
             <div id="weixinshow">
             	<div class="weixindyhao">
             		<span></span>
-            		[订阅号]
+            		<p>[订阅号]</p>
             	</div>
             	<div class="weixinfwhao">
             		<span></span>
-            		[服务号]
+            		<p>[服务号]</p>
             	</div>
             </div>
         </li>

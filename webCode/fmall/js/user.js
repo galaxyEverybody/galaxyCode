@@ -583,9 +583,31 @@ function check_phone_callback(result){
 /* 点击获取验证码*/
 function getphoneverify()
 {
-	var phone = document.getElementById('phone').value;
-	var phone_flag = 'register';
-	Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone+'&phone_flag='+phone_flag, get_phoneverify_callback , 'POST', 'TEXT', true, true );
+	//图形验证码校验
+	var imgverify = document.getElementById('captcha').value;
+	Ajax.call('user.php?act=get_imgverify','imgverify='+imgverify,call_back_img_verify,'POST','TEXT',true,true);
+
+}
+function call_back_img_verify(res){
+	if(res == 'ok'){
+		var phone = document.getElementById('phone').value;
+		var phone_flag = 'register';
+		$("#imgverify_notice").html('');
+		if($("#imgverify_notice").hasClass("verifyerror"))
+		{
+			$("#imgverify_notice").removeClass("verifyerror");
+		}
+		$("#imgverify_notice").addClass("verifyfocus");
+		
+		Ajax.call( 'user.php?act=get_phoneverify', 'phone=' + phone+'&phone_flag='+phone_flag, get_phoneverify_callback , 'POST', 'TEXT', true, true );
+	}else{
+		document.getElementById('imgverify_notice').innerHTML = '验证码输入错误';
+		if($("#imgverify_notice").hasClass("verifyfocus"))
+		{
+			$("#imgverify_notice").removeClass("verifyfocus");
+		}
+		$("#imgverify_notice").addClass("verifyerror");
+	}
 }
 function get_phoneverify_callback(result)
 {

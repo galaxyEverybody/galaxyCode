@@ -31,7 +31,7 @@ $back_act='';
 
 // 不需要登录的操作或自己验证是否登录（如ajax处理）的act
 $not_login_arr =
-array('login','act_login','register','act_register','act_edit_password','act_edit_paypassword', 'act_editlogin_userphone','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
+array('login','get_imgverify','act_login','register','act_register','act_edit_password','act_edit_paypassword', 'act_editlogin_userphone','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','check_phone','check_phoneverify','get_phoneverify','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','oath' , 'oath_login', 'other_login');
 
 /* 显示页面的action列表 */
 $ui_arr = array('register','ajax_checkoldpassword', 'manage_msg', 'auth_center', 'login','borrow_money','insert_borrow_money','withdraw_password','withdraw_pwadd','bangcard','unbundcard','bangcardadd', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
@@ -138,7 +138,20 @@ elseif ($action == 'register')
 //    $smarty->assign('back_act', $back_act);
     $smarty->display('user_passport.dwt');
 }
-
+/* 图形验证码的校验*/
+elseif ($action == 'get_imgverify'){
+    include_once('includes/cls_captcha.php');
+	$captcha = $_POST['imgverify'];
+    $validator = new captcha();
+    if ($validator->check_word($captcha)){
+    	echo "ok";
+    	exit;
+    }else{
+    	echo "error";
+    	exit;
+    }
+    
+}
 /* 注册会员的处理 */
 elseif ($action == 'act_register')
 {

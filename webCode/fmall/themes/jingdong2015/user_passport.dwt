@@ -150,6 +150,16 @@
                             <label id="phone_notice"></label>
                         </div>
                     </div>
+                    <!-- 判断是否启用验证码{if $enabled_captcha} -->
+                    <div class="item" id="authcodeDiv">
+                        <span class="label"><b class="ftx04">*</b>图形验证码：</span>
+                        <div class="fl item-ifo">
+                            <input type="text" id="captcha" style="ime-mode:disabled" name="captcha" class="text text-1" tabindex="6" autocomplete="off" maxlength="6">
+                            <label class="img"> <img src="captcha.php?{$rand}" alt="captcha" style="cursor:pointer;width:100px;height:38px;display:block; margin-left:10px;"  onClick="this.src='captcha.php?'+Math.random()" /> </label>
+                        	<label id="imgverify_notice"></label>
+                        </div>
+                    </div>
+                    <!--{/if}-->
                     <div class="item">
                         <span class="label"><b class="ftx04">*</b>{$lang.label_telephone_verify}：</span>
                         <div class="fl item-ifo" style="width:500px;">
@@ -160,15 +170,6 @@
                         </div>
                     </div>
                      
-                    <!-- 判断是否启用验证码{if $enabled_captcha} -->
-                    <div class="item" id="authcodeDiv">
-                        <span class="label"><b class="ftx04">*</b>验证码：</span>
-                        <div class="fl item-ifo">
-                            <input type="text" id="captcha" style="ime-mode:disabled" name="captcha" class="text text-1" tabindex="6" autocomplete="off" maxlength="6">
-                            <label class="img"> <img src="captcha.php?{$rand}" alt="captcha" style="cursor:pointer;width:100px;height:38px;display:block; margin-left:10px;"  onClick="this.src='captcha.php?'+Math.random()" /> </label>
-                        </div>
-                    </div>
-                    <!--{/if}-->
                     <div class="item item-new">
                         <span class="label">&nbsp;</span>
                         <div class="fl item-ifo" style="width:450px;">
